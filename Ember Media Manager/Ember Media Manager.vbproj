@@ -1,0 +1,539 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9B57D3AB-AF12-4012-B945-284C2448DC81}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Ember_Media_Manager.My.MyApplication</StartupObject>
+    <RootNamespace>Ember_Media_Manager</RootNamespace>
+    <AssemblyName>Ember Media Manager</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>On</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\EmberMM\</OutputPath>
+    <DocumentationFile>Ember Media Manager.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>..\..\Ember-MM - Development\Ember Media Manager.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <WarningsAsErrors>41998,41999,42004,42016,42017,42018,42019,42020,42021,42022,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109</WarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>..\EmberMM\</OutputPath>
+    <DocumentationFile>Ember Media Manager.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisLogFile>bin\Release\Ember Media Manager.exe.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisFailOnMissingRules>false</CodeAnalysisFailOnMissingRules>
+    <WarningsAsErrors>41998,41999,42004,42016,42017,42018,42019,42020,42021,42022,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.77.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Libraries\sqlite\x64\System.Data.SQLite.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="clsTheming.vb" />
+    <Compile Include="ctlAddonItem.Designer.vb">
+      <DependentUpon>ctlAddonItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctlAddonItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="dlgAbout.Designer.vb">
+      <DependentUpon>dlgAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgAddEditActor.Designer.vb">
+      <DependentUpon>dlgAddEditActor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAddEditActor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgAddEditAddon.Designer.vb">
+      <DependentUpon>dlgAddEditAddon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAddEditAddon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgAddonFile.Designer.vb">
+      <DependentUpon>dlgAddonFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAddonFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgAddonFiles.Designer.vb">
+      <DependentUpon>dlgAddonFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAddonFiles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgAddons.Designer.vb">
+      <DependentUpon>dlgAddons.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgAddons.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgDeleteAddon.Designer.vb">
+      <DependentUpon>dlgDeleteAddon.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgDeleteAddon.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgDeleteConfirm.Designer.vb">
+      <DependentUpon>dlgDeleteConfirm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgDeleteConfirm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgEditEpisode.Designer.vb">
+      <DependentUpon>dlgEditEpisode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgEditEpisode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgEditMovie.Designer.vb">
+      <DependentUpon>dlgEditMovie.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgEditMovie.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgEditSeason.Designer.vb">
+      <DependentUpon>dlgEditSeason.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgEditSeason.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgEditShow.Designer.vb">
+      <DependentUpon>dlgEditShow.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgEditShow.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgErrorViewer.Designer.vb">
+      <DependentUpon>dlgErrorViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgErrorViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgFileInfo.Designer.vb">
+      <DependentUpon>dlgFileInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgFileInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgFIStreamEditor.Designer.vb">
+      <DependentUpon>dlgFIStreamEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgFIStreamEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgImgManual.Designer.vb">
+      <DependentUpon>dlgImgManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgImgManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgImgView.Designer.vb">
+      <DependentUpon>dlgImgView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgImgView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgManualEdit.Designer.vb">
+      <DependentUpon>dlgManualEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgManualEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgMovieSource.Designer.vb">
+      <DependentUpon>dlgMovieSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgMovieSource.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgNewSet.Designer.vb">
+      <DependentUpon>dlgNewSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgNewSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgNewVersion.Designer.vb">
+      <DependentUpon>dlgNewVersion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgNewVersion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgRestart.Designer.vb">
+      <DependentUpon>dlgRestart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgRestart.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgSetsManager.Designer.vb">
+      <DependentUpon>dlgSetsManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgSetsManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgSettings.Designer.vb">
+      <DependentUpon>dlgSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgSortFiles.Designer.vb">
+      <DependentUpon>dlgSortFiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgSortFiles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgStudioSelect.Designer.vb">
+      <DependentUpon>dlgStudioSelect.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgStudioSelect.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgTVRegExProfiles.Designer.vb">
+      <DependentUpon>dlgTVRegExProfiles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgTVRegExProfiles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgTVSource.Designer.vb">
+      <DependentUpon>dlgTVSource.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgTVSource.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgUpdateMedia.designer.vb">
+      <DependentUpon>dlgUpdateMedia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgUpdateMedia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgWizard.Designer.vb">
+      <DependentUpon>dlgWizard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="dlgWizard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.vb">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSplash.Designer.vb">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ctlAddonItem.resx">
+      <DependentUpon>ctlAddonItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAbout.resx">
+      <DependentUpon>dlgAbout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAddEditActor.resx">
+      <DependentUpon>dlgAddEditActor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAddEditAddon.resx">
+      <DependentUpon>dlgAddEditAddon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAddonFile.resx">
+      <DependentUpon>dlgAddonFile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAddonFiles.resx">
+      <DependentUpon>dlgAddonFiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgAddons.resx">
+      <DependentUpon>dlgAddons.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgDeleteAddon.resx">
+      <DependentUpon>dlgDeleteAddon.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgDeleteConfirm.resx">
+      <DependentUpon>dlgDeleteConfirm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgEditEpisode.resx">
+      <DependentUpon>dlgEditEpisode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgEditMovie.resx">
+      <DependentUpon>dlgEditMovie.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgEditSeason.resx">
+      <DependentUpon>dlgEditSeason.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgEditShow.resx">
+      <DependentUpon>dlgEditShow.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgErrorViewer.resx">
+      <DependentUpon>dlgErrorViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgFileInfo.resx">
+      <DependentUpon>dlgFileInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgFIStreamEditor.resx">
+      <DependentUpon>dlgFIStreamEditor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgImgManual.resx">
+      <DependentUpon>dlgImgManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgImgView.resx">
+      <DependentUpon>dlgImgView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgManualEdit.resx">
+      <DependentUpon>dlgManualEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgMovieSource.resx">
+      <DependentUpon>dlgMovieSource.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgNewSet.resx">
+      <DependentUpon>dlgNewSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgNewVersion.resx">
+      <DependentUpon>dlgNewVersion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgRestart.resx">
+      <DependentUpon>dlgRestart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgSetsManager.resx">
+      <DependentUpon>dlgSetsManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgSettings.resx">
+      <DependentUpon>dlgSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgSortFiles.resx">
+      <DependentUpon>dlgSortFiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgStudioSelect.resx">
+      <DependentUpon>dlgStudioSelect.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgTVRegExProfiles.resx">
+      <DependentUpon>dlgTVRegExProfiles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgTVSource.resx">
+      <DependentUpon>dlgTVSource.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgUpdateMedia.resx">
+      <DependentUpon>dlgUpdateMedia.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgWizard.resx">
+      <DependentUpon>dlgWizard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSplash.resx">
+      <DependentUpon>frmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\actor_silhouette.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\desc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\film.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\haslanguage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\invalid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaListLogo.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\modules.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\movie-Default.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListFooter.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListHeader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListTableCol.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListTableEnd.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListTableHeader.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListTableRowEnd.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListTableRowStart.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MovieListTableStart.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pages.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Play_Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\process.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\puzzle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\starhalf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\television.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tvep-Default.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tvshow-Default.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\valid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Wizard.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmberAPI\EmberAPI.vbproj">
+      <Project>{208AA35E-C6AE-4D2D-A9DD-B6EFD19A4279}</Project>
+      <Name>EmberAPI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
