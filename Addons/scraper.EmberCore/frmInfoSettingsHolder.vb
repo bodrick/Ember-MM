@@ -228,7 +228,4 @@ Public Class frmInfoSettingsHolder
 
 #End Region 'Methods
 
-    Private Sub pnlSettings_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pnlSettings.Paint
-
-    End Sub
 End Class

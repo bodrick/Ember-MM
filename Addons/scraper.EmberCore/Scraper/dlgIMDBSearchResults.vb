@@ -39,20 +39,28 @@ Public Class dlgIMDBSearchResults
     Dim UseOFDBTitle As Boolean
     Private _currnode As Integer = -1
     Private _prevnode As Integer = -2
+
+    Private _InfoCache As New Dictionary(Of String, MediaContainers.Movie)
+    Private _PosterCache As New Dictionary(Of String, System.Drawing.Image)
+    Private _filterOptions As Structures.ScrapeOptions
+
 #End Region 'Fields
 
     #Region "Methods"
 
-    Public Overloads Function ShowDialog(ByVal sMovieTitle As String) As Windows.Forms.DialogResult
+    Public Overloads Function ShowDialog(ByVal sMovieTitle As String, ByVal filterOptions As Structures.ScrapeOptions) As Windows.Forms.DialogResult
         Me.tmrWait.Enabled = False
         Me.tmrWait.Interval = 250
         Me.tmrLoad.Enabled = False
         Me.tmrLoad.Interval = 100
 
-        Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results - "), sMovieTitle)
+		_filterOptions = filterOptions        
+
+		Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results - "), sMovieTitle)
+		Me.txtSearch.Text = sMovieTitle
         chkManual.Enabled = False
         IMDB.IMDBURL = IMDBURL
-        IMDB.SearchMovieAsync(sMovieTitle)
+        IMDB.SearchMovieAsync(sMovieTitle, _filterOptions)
 
         Return MyBase.ShowDialog()
     End Function
@@ -64,6 +72,7 @@ Public Class dlgIMDBSearchResults
         Me.tmrLoad.Interval = 100
 
         Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results - "), sMovieTitle)
+		Me.txtSearch.Text = sMovieTitle
         SearchResultsDownloaded(Res)
 
         Return MyBase.ShowDialog()
@@ -72,13 +81,16 @@ Public Class dlgIMDBSearchResults
     Private Sub btnSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSearch.Click
         If Not String.IsNullOrEmpty(Me.txtSearch.Text) Then
             Me.OK_Button.Enabled = False
+            pnlPicStatus.Visible = False
+            _InfoCache.Clear()
+            _PosterCache.Clear()
             Me.ClearInfo()
             Me.Label3.Text = Master.eLang.GetString(11, "Searching IMDB...")
             Me.pnlLoading.Visible = True
             chkManual.Enabled = False
             IMDB.CancelAsync()
             IMDB.IMDBURL = IMDBURL
-            IMDB.SearchMovieAsync(Me.txtSearch.Text)
+            IMDB.SearchMovieAsync(Me.txtSearch.Text, _filterOptions)
         End If
     End Sub
 
@@ -100,7 +112,7 @@ Public Class dlgIMDBSearchResults
             Application.DoEvents()
         End While
 
-        e.Result = New Results With {.Result = sHTTP.Image}
+        e.Result = New Results With {.Result = sHTTP.Image, .IMDBId = Args.IMDBId}
     End Sub
 
     Private Sub bwDownloadPic_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwDownloadPic.RunWorkerCompleted
@@ -112,8 +124,13 @@ Public Class dlgIMDBSearchResults
 
         Try
             Me.pbPoster.Image = Res.Result
+            If Not _PosterCache.ContainsKey(Res.IMDBId) Then
+                _PosterCache.Add(Res.IMDBId, Res.Result)
+            End If
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        Finally
+            pnlPicStatus.Visible = False
         End Try
     End Sub
 
@@ -174,6 +191,7 @@ Public Class dlgIMDBSearchResults
 
     Private Sub dlgIMDBSearchResults_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.SetUp()
+        pnlPicStatus.Visible = False
         IMDB.IMDBURL = IMDBURL
         IMDB.UseOFDBTitle = UseOFDBTitle
         IMDB.UseOFDBOutline = UseOFDBOutline
@@ -239,15 +257,28 @@ Public Class dlgIMDBSearchResults
                 Me.txtOutline.Text = Master.tmpMovie.Outline
                 Me.lblIMDB.Text = Master.tmpMovie.IMDBID
 
+                If _PosterCache.ContainsKey(Master.tmpMovie.IMDBID) Then
+                    'just set it
+                    Me.pbPoster.Image = _PosterCache(Master.tmpMovie.IMDBID)
+                Else
+                    'go download it, if available
                 If Not String.IsNullOrEmpty(sPoster) Then
                     If Me.bwDownloadPic.IsBusy Then
                         Me.bwDownloadPic.CancelAsync()
                     End If
-
+                        pnlPicStatus.Visible = True
                     Me.bwDownloadPic = New System.ComponentModel.BackgroundWorker
                     Me.bwDownloadPic.WorkerSupportsCancellation = True
-                    Me.bwDownloadPic.RunWorkerAsync(New Arguments With {.pURL = sPoster})
+                        Me.bwDownloadPic.RunWorkerAsync(New Arguments With {.pURL = sPoster, .IMDBId = Master.tmpMovie.IMDBID})
                 End If
+
+                End If
+
+                'store clone of tmpmovie
+                If Not _InfoCache.ContainsKey(Master.tmpMovie.IMDBID) Then
+                    _InfoCache.Add(Master.tmpMovie.IMDBID, GetMovieClone(Master.tmpMovie))
+                End If
+
 
                 Me.btnVerify.Enabled = False
             Else
@@ -318,7 +349,17 @@ Public Class dlgIMDBSearchResults
                         selNode = TnP.FirstNode
                     End If
                     Me._prevnode = -2
+
+                    'determine if we automatically start downloading info for selected node
+                    If M.ExactMatches.Count > 0 Then
+                        If M.ExactMatches.Count = 1 Then
                     Me.tvResults.SelectedNode = selNode
+                        Else
+                            Me.tvResults.SelectedNode = Nothing
+                        End If
+                    Else
+                        Me.tvResults.SelectedNode = Nothing
+                    End If
                     Me.tvResults.Focus()
                 Else
                     Me.tvResults.Nodes.Add(New TreeNode With {.Text = Master.eLang.GetString(20, "No Matches Found")})
@@ -376,6 +417,14 @@ Public Class dlgIMDBSearchResults
 
             If Not IsNothing(Me.tvResults.SelectedNode.Tag) AndAlso Not String.IsNullOrEmpty(Me.tvResults.SelectedNode.Tag.ToString) Then
                 Me._currnode = Me.tvResults.SelectedNode.Index
+
+                'check if this movie is in the cache already
+                If _InfoCache.ContainsKey(Me.tvResults.SelectedNode.Tag.ToString) Then
+                    Master.tmpMovie = GetMovieClone(_InfoCache(Me.tvResults.SelectedNode.Tag.ToString))
+                    SearchMovieInfoDownloaded(String.Empty, True)
+                    Return
+                End If
+
                 Me.pnlLoading.Visible = True
                 Me.tmrWait.Start()
             Else
@@ -406,6 +455,29 @@ Public Class dlgIMDBSearchResults
         Me.AcceptButton = Me.btnSearch
     End Sub
 
+    Private Function GetMovieClone(ByVal original As MediaContainers.Movie) As MediaContainers.Movie
+        'have to do this the old-fashioned way because it is not serializable
+        Dim result As New MediaContainers.Movie
+        With result
+            .IMDBID = original.IMDBID
+            .Genre = original.Genre
+            .Title = original.Title
+            .Tagline = original.Tagline
+            .Year = original.Year
+            .Director = original.Director
+            .Genre = original.Genre
+            .Outline = original.Outline
+        End With
+        Return result
+        'Using mem As New IO.MemoryStream()
+        '    Dim bin As New System.Runtime.Serialization.Formatters.Binary.BinaryFormatter(Nothing, New System.Runtime.Serialization.StreamingContext(Runtime.Serialization.StreamingContextStates.Clone))
+        '    bin.Serialize(mem, original)
+        '    mem.Seek(0, IO.SeekOrigin.Begin)
+        '    Return DirectCast(bin.Deserialize(mem), MediaContainers.Movie)
+        'End Using
+    End Function
+
+
     #End Region 'Methods
 
     #Region "Nested Types"
@@ -415,6 +487,7 @@ Public Class dlgIMDBSearchResults
         #Region "Fields"
 
         Dim pURL As String
+        Dim IMDBId As String
 
         #End Region 'Fields
 
@@ -425,6 +498,7 @@ Public Class dlgIMDBSearchResults
         #Region "Fields"
 
         Dim Result As Image
+        Dim IMDBId As String
 
         #End Region 'Fields
 

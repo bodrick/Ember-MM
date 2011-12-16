@@ -75,6 +75,7 @@ Public Class frmMediaSettingsHolder
 
     Private Sub chkScrapeFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapeFanart.CheckedChanged
         RaiseEvent ModuleSettingsChanged()
+        grpSaveFanart.Enabled = chkScrapeFanart.Checked
     End Sub
 
     Private Sub chkScrapePoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapePoster.CheckedChanged
@@ -124,6 +125,7 @@ Public Class frmMediaSettingsHolder
         Me.Label23.Text = Master.eLang.GetString(7, "Timeout:")
         Me.GroupBox2.Text = Master.eLang.GetString(8, "Supported Sites:")
         Me.GroupBox9.Text = Master.eLang.GetString(9, "Get Images From:")
+        Me.grpSaveFanart.Text = Master.eLang.GetString(8001, "Save Fanart In:")
         Me.chkDownloadTrailer.Text = Master.eLang.GetString(529, "Enable Trailer Support", True)
         Me.Label3.Text = Master.eLang.GetString(168, "Scrape Order", True)
         Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
@@ -133,6 +135,14 @@ Public Class frmMediaSettingsHolder
     End Sub
 
     Private Sub txtTimeout_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTimeout.TextChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
+    Private Sub optFanartFolderExtraFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles optFanartFolderExtraFanart.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
+    Private Sub optFanartFolderExtraThumbs_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles optFanartFolderExtraThumbs.CheckedChanged
         RaiseEvent ModuleSettingsChanged()
     End Sub
 

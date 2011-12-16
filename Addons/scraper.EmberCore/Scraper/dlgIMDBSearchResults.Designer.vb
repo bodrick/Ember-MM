@@ -51,10 +51,13 @@ Partial Class dlgIMDBSearchResults
         Me.pnlLoading = New System.Windows.Forms.Panel
         Me.Label3 = New System.Windows.Forms.Label
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
+        Me.pnlPicStatus = New System.Windows.Forms.Panel
+        Me.Label4 = New System.Windows.Forms.Label
         CType(Me.pbPoster, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlTop.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlLoading.SuspendLayout()
+        Me.pnlPicStatus.SuspendLayout()
         Me.SuspendLayout()
         '
         'OK_Button
@@ -349,6 +352,25 @@ Partial Class dlgIMDBSearchResults
         Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee
         Me.ProgressBar1.TabIndex = 0
         '
+        'pnlPicStatus
+        '
+        Me.pnlPicStatus.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.pnlPicStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlPicStatus.Controls.Add(Me.Label4)
+        Me.pnlPicStatus.Location = New System.Drawing.Point(308, 155)
+        Me.pnlPicStatus.Name = "pnlPicStatus"
+        Me.pnlPicStatus.Size = New System.Drawing.Size(81, 45)
+        Me.pnlPicStatus.TabIndex = 69
+        '
+        'Label4
+        '
+        Me.Label4.Location = New System.Drawing.Point(5, 5)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(70, 33)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "Fetching Poster..."
+        Me.Label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'dlgIMDBSearchResults
         '
         Me.AcceptButton = Me.OK_Button
@@ -357,9 +379,10 @@ Partial Class dlgIMDBSearchResults
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(643, 431)
         Me.ControlBox = False
+        Me.Controls.Add(Me.pnlLoading)
+        Me.Controls.Add(Me.pnlPicStatus)
         Me.Controls.Add(Me.Cancel_Button)
         Me.Controls.Add(Me.OK_Button)
-        Me.Controls.Add(Me.pnlLoading)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblPlotHeader)
@@ -395,6 +418,7 @@ Partial Class dlgIMDBSearchResults
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlLoading.ResumeLayout(False)
         Me.pnlLoading.PerformLayout()
+        Me.pnlPicStatus.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -427,5 +451,7 @@ Partial Class dlgIMDBSearchResults
     Friend WithEvents pnlLoading As System.Windows.Forms.Panel
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+    Friend WithEvents pnlPicStatus As System.Windows.Forms.Panel
+    Friend WithEvents Label4 As System.Windows.Forms.Label
 
 End Class

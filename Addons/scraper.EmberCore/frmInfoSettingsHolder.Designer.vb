@@ -42,8 +42,8 @@ Partial Class frmInfoSettingsHolder
         Me.PictureBox1 = New System.Windows.Forms.PictureBox
         Me.gbOptions = New System.Windows.Forms.GroupBox
         Me.chkCertification = New System.Windows.Forms.CheckBox
-        Me.chkTop250 = New System.Windows.Forms.CheckBox
         Me.chkCountry = New System.Windows.Forms.CheckBox
+        Me.chkTop250 = New System.Windows.Forms.CheckBox
         Me.chkCrew = New System.Windows.Forms.CheckBox
         Me.chkMusicBy = New System.Windows.Forms.CheckBox
         Me.chkProducers = New System.Windows.Forms.CheckBox
@@ -168,6 +168,7 @@ Partial Class frmInfoSettingsHolder
         'cbEnabled
         '
         Me.cbEnabled.AutoSize = True
+        Me.cbEnabled.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cbEnabled.Location = New System.Drawing.Point(10, 5)
         Me.cbEnabled.Name = "cbEnabled"
         Me.cbEnabled.Size = New System.Drawing.Size(68, 17)
@@ -259,8 +260,8 @@ Partial Class frmInfoSettingsHolder
         'gbOptions
         '
         Me.gbOptions.Controls.Add(Me.chkCertification)
-        Me.gbOptions.Controls.Add(Me.chkTop250)
         Me.gbOptions.Controls.Add(Me.chkCountry)
+        Me.gbOptions.Controls.Add(Me.chkTop250)
         Me.gbOptions.Controls.Add(Me.chkCrew)
         Me.gbOptions.Controls.Add(Me.chkMusicBy)
         Me.gbOptions.Controls.Add(Me.chkProducers)
@@ -301,17 +302,6 @@ Partial Class frmInfoSettingsHolder
         Me.chkCertification.Text = "Certification"
         Me.chkCertification.UseVisualStyleBackColor = True
         '
-        'chkTop250
-        '
-        Me.chkTop250.AutoSize = True
-        Me.chkTop250.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkTop250.Location = New System.Drawing.Point(237, 19)
-        Me.chkTop250.Name = "chkTop250"
-        Me.chkTop250.Size = New System.Drawing.Size(66, 17)
-        Me.chkTop250.TabIndex = 23
-        Me.chkTop250.Text = "Top 250"
-        Me.chkTop250.UseVisualStyleBackColor = True
-        '
         'chkCountry
         '
         Me.chkCountry.AutoSize = True
@@ -322,6 +312,17 @@ Partial Class frmInfoSettingsHolder
         Me.chkCountry.TabIndex = 25
         Me.chkCountry.Text = "Country"
         Me.chkCountry.UseVisualStyleBackColor = True
+        '
+        'chkTop250
+        '
+        Me.chkTop250.AutoSize = True
+        Me.chkTop250.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTop250.Location = New System.Drawing.Point(237, 19)
+        Me.chkTop250.Name = "chkTop250"
+        Me.chkTop250.Size = New System.Drawing.Size(66, 17)
+        Me.chkTop250.TabIndex = 23
+        Me.chkTop250.Text = "Top 250"
+        Me.chkTop250.UseVisualStyleBackColor = True
         '
         'chkCrew
         '

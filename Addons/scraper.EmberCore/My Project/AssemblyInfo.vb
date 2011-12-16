@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("scraper.EmberCore")> 
 <Assembly: AssemblyDescription("www.embermm.com")> 
-<Assembly: AssemblyCompany("")> 
+<Assembly: AssemblyCompany("Ember Media Manager")>
 <Assembly: AssemblyProduct("scraper.EmberCore")> 
 <Assembly: AssemblyCopyright("Copyright © 2011")> 
 <Assembly: AssemblyTrademark("")> 
