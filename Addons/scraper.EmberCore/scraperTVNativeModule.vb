@@ -79,7 +79,7 @@ Public Class EmberNativeTVScraperModule
 
     Public ReadOnly Property ModuleVersion() As String Implements Interfaces.EmberTVScraperModule.ModuleVersion
         Get
-            Return FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly.Location).FilePrivatePart.ToString
+            Return FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly.Location).FileVersion.ToString
         End Get
     End Property
 

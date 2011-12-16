@@ -22,11 +22,11 @@ Partial Class dlgVersions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.lstVersions = New System.Windows.Forms.ListView
-        Me.ColumnHeader15 = New System.Windows.Forms.ColumnHeader
-        Me.ColumnHeader16 = New System.Windows.Forms.ColumnHeader
-        Me.btnCopy = New System.Windows.Forms.Button
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.lstVersions = New System.Windows.Forms.ListView()
+        Me.ColumnHeader15 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ColumnHeader16 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.btnCopy = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'OK_Button
@@ -57,7 +57,7 @@ Partial Class dlgVersions
         '
         'ColumnHeader16
         '
-        Me.ColumnHeader16.Text = "Revision"
+        Me.ColumnHeader16.Text = "Version"
         Me.ColumnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.ColumnHeader16.Width = 99
         '

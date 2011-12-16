@@ -23,37 +23,37 @@ Partial Class dlgImgSelect
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgImgSelect))
-        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.Cancel_Button = New System.Windows.Forms.Button
-        Me.pnlBG = New System.Windows.Forms.Panel
-        Me.pnlBottomMain = New System.Windows.Forms.Panel
-        Me.pnlSize = New System.Windows.Forms.Panel
-        Me.btnPreview = New System.Windows.Forms.Button
-        Me.rbSmall = New System.Windows.Forms.RadioButton
-        Me.rbLarge = New System.Windows.Forms.RadioButton
-        Me.rbMedium = New System.Windows.Forms.RadioButton
-        Me.rbXLarge = New System.Windows.Forms.RadioButton
-        Me.pnlFanart = New System.Windows.Forms.Panel
-        Me.chkThumb = New System.Windows.Forms.CheckBox
-        Me.chkMid = New System.Windows.Forms.CheckBox
-        Me.chkOriginal = New System.Windows.Forms.CheckBox
-        Me.lblInfo = New System.Windows.Forms.Label
-        Me.pnlDLStatus = New System.Windows.Forms.Panel
-        Me.pnlMPDB = New System.Windows.Forms.Panel
-        Me.lblDL3Status = New System.Windows.Forms.Label
-        Me.lblDL3 = New System.Windows.Forms.Label
-        Me.pbDL3 = New System.Windows.Forms.ProgressBar
-        Me.pnlIMPA = New System.Windows.Forms.Panel
-        Me.lblDL2Status = New System.Windows.Forms.Label
-        Me.lblDL2 = New System.Windows.Forms.Label
-        Me.pbDL2 = New System.Windows.Forms.ProgressBar
-        Me.lblDL1Status = New System.Windows.Forms.Label
-        Me.lblDL1 = New System.Windows.Forms.Label
-        Me.pbDL1 = New System.Windows.Forms.ProgressBar
-        Me.pnlSinglePic = New System.Windows.Forms.Panel
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.Cancel_Button = New System.Windows.Forms.Button()
+        Me.pnlBG = New System.Windows.Forms.Panel()
+        Me.pnlBottomMain = New System.Windows.Forms.Panel()
+        Me.pnlSize = New System.Windows.Forms.Panel()
+        Me.btnPreview = New System.Windows.Forms.Button()
+        Me.rbSmall = New System.Windows.Forms.RadioButton()
+        Me.rbMedium = New System.Windows.Forms.RadioButton()
+        Me.rbLarge = New System.Windows.Forms.RadioButton()
+        Me.rbXLarge = New System.Windows.Forms.RadioButton()
+        Me.pnlFanart = New System.Windows.Forms.Panel()
+        Me.chkThumb = New System.Windows.Forms.CheckBox()
+        Me.chkMid = New System.Windows.Forms.CheckBox()
+        Me.chkOriginal = New System.Windows.Forms.CheckBox()
+        Me.lblInfo = New System.Windows.Forms.Label()
+        Me.pnlDLStatus = New System.Windows.Forms.Panel()
+        Me.pnlMPDB = New System.Windows.Forms.Panel()
+        Me.lblDL3Status = New System.Windows.Forms.Label()
+        Me.lblDL3 = New System.Windows.Forms.Label()
+        Me.pbDL3 = New System.Windows.Forms.ProgressBar()
+        Me.pnlIMPA = New System.Windows.Forms.Panel()
+        Me.lblDL2Status = New System.Windows.Forms.Label()
+        Me.lblDL2 = New System.Windows.Forms.Label()
+        Me.pbDL2 = New System.Windows.Forms.ProgressBar()
+        Me.lblDL1Status = New System.Windows.Forms.Label()
+        Me.lblDL1 = New System.Windows.Forms.Label()
+        Me.pbDL1 = New System.Windows.Forms.ProgressBar()
+        Me.pnlSinglePic = New System.Windows.Forms.Panel()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.pnlBottomMain.SuspendLayout()
         Me.pnlSize.SuspendLayout()
@@ -129,8 +129,8 @@ Partial Class dlgImgSelect
         Me.pnlSize.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.pnlSize.Controls.Add(Me.btnPreview)
         Me.pnlSize.Controls.Add(Me.rbSmall)
-        Me.pnlSize.Controls.Add(Me.rbLarge)
         Me.pnlSize.Controls.Add(Me.rbMedium)
+        Me.pnlSize.Controls.Add(Me.rbLarge)
         Me.pnlSize.Controls.Add(Me.rbXLarge)
         Me.pnlSize.Location = New System.Drawing.Point(8, 8)
         Me.pnlSize.Name = "pnlSize"
@@ -165,30 +165,30 @@ Partial Class dlgImgSelect
         Me.rbSmall.Text = "Small"
         Me.rbSmall.UseVisualStyleBackColor = True
         '
-        'rbLarge
-        '
-        Me.rbLarge.AutoSize = True
-        Me.rbLarge.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.rbLarge.Location = New System.Drawing.Point(201, 8)
-        Me.rbLarge.Name = "rbLarge"
-        Me.rbLarge.Size = New System.Drawing.Size(69, 17)
-        Me.rbLarge.TabIndex = 4
-        Me.rbLarge.TabStop = True
-        Me.rbLarge.Text = "Medium"
-        Me.rbLarge.UseVisualStyleBackColor = True
-        '
         'rbMedium
         '
         Me.rbMedium.AutoSize = True
-        Me.rbMedium.Enabled = False
         Me.rbMedium.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.rbMedium.Location = New System.Drawing.Point(343, 8)
+        Me.rbMedium.Location = New System.Drawing.Point(201, 8)
         Me.rbMedium.Name = "rbMedium"
-        Me.rbMedium.Size = New System.Drawing.Size(55, 17)
-        Me.rbMedium.TabIndex = 3
+        Me.rbMedium.Size = New System.Drawing.Size(69, 17)
+        Me.rbMedium.TabIndex = 4
         Me.rbMedium.TabStop = True
-        Me.rbMedium.Text = "Cover"
+        Me.rbMedium.Text = "Medium"
         Me.rbMedium.UseVisualStyleBackColor = True
+        '
+        'rbLarge
+        '
+        Me.rbLarge.AutoSize = True
+        Me.rbLarge.Enabled = False
+        Me.rbLarge.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.rbLarge.Location = New System.Drawing.Point(343, 8)
+        Me.rbLarge.Name = "rbLarge"
+        Me.rbLarge.Size = New System.Drawing.Size(55, 17)
+        Me.rbLarge.TabIndex = 3
+        Me.rbLarge.TabStop = True
+        Me.rbLarge.Text = "Cover"
+        Me.rbLarge.UseVisualStyleBackColor = True
         '
         'rbXLarge
         '
@@ -253,7 +253,7 @@ Partial Class dlgImgSelect
         Me.lblInfo.Size = New System.Drawing.Size(240, 31)
         Me.lblInfo.TabIndex = 3
         Me.lblInfo.Text = "Selected item will be set as fanart. All checked items will be saved to \extrathu" & _
-            "mbs."
+    "mbs."
         Me.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         Me.lblInfo.Visible = False
         '
@@ -447,8 +447,8 @@ Partial Class dlgImgSelect
     Friend WithEvents lblInfo As System.Windows.Forms.Label
     Friend WithEvents pnlSize As System.Windows.Forms.Panel
     Friend WithEvents rbSmall As System.Windows.Forms.RadioButton
-    Friend WithEvents rbLarge As System.Windows.Forms.RadioButton
     Friend WithEvents rbMedium As System.Windows.Forms.RadioButton
+    Friend WithEvents rbLarge As System.Windows.Forms.RadioButton
     Friend WithEvents rbXLarge As System.Windows.Forms.RadioButton
     Friend WithEvents pnlSinglePic As System.Windows.Forms.Panel
     Friend WithEvents Label2 As System.Windows.Forms.Label

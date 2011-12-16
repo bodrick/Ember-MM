@@ -26,13 +26,13 @@ Imports EmberAPI
 
 Public Class dlgImgSelect
 
-    #Region "Fields"
+#Region "Fields"
 
     Public IMDBURL As String
 
-    Friend  WithEvents bwIMPADownload As New System.ComponentModel.BackgroundWorker
-    Friend  WithEvents bwMPDBDownload As New System.ComponentModel.BackgroundWorker
-    Friend  WithEvents bwTMDBDownload As New System.ComponentModel.BackgroundWorker
+    Friend WithEvents bwIMPADownload As New System.ComponentModel.BackgroundWorker
+    Friend WithEvents bwMPDBDownload As New System.ComponentModel.BackgroundWorker
+    Friend WithEvents bwTMDBDownload As New System.ComponentModel.BackgroundWorker
 
     Private CachePath As String = String.Empty
     Private chkImage() As CheckBox
@@ -62,9 +62,9 @@ Public Class dlgImgSelect
     Private _mpdbDone As Boolean = True
     Private _tmdbDone As Boolean = True
 
-    #End Region 'Fields
+#End Region 'Fields
 
-    #Region "Events"
+#Region "Events"
 
     Private Event IMPADone()
 
@@ -72,9 +72,9 @@ Public Class dlgImgSelect
 
     Private Event TMDBDone()
 
-    #End Region 'Events
+#End Region 'Events
 
-    #Region "Methods"
+#Region "Methods"
 
     Public Sub PreLoad(ByVal mMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, Optional ByVal _isEdit As Boolean = False)
         Me.tMovie = mMovie
@@ -106,7 +106,8 @@ Public Class dlgImgSelect
         Return Results
     End Function
 
-    Private Sub AddImage(ByVal iImage As Image, ByVal sDescription As String, ByVal iIndex As Integer, ByVal sURL As String, ByVal isChecked As Boolean)
+    'Rewrite to simplify
+    Private Sub AddImage(ByVal iImage As Image, ByVal sDescription As String, ByVal iIndex As Integer, ByVal sURL As String, ByVal isChecked As Boolean, poster As MediaContainers.Image)
         Try
             ReDim Preserve Me.pnlImage(iIndex)
             ReDim Preserve Me.pbImage(iIndex)
@@ -119,8 +120,8 @@ Public Class dlgImgSelect
             Me.pnlImage(iIndex).BackColor = Color.White
             Me.pnlImage(iIndex).BorderStyle = BorderStyle.FixedSingle
             Me.pbImage(iIndex).SizeMode = PictureBoxSizeMode.Zoom
-            Me.pnlImage(iIndex).Tag = sURL
-            Me.pbImage(iIndex).Tag = sURL
+            Me.pnlImage(iIndex).Tag = poster
+            Me.pbImage(iIndex).Tag = poster
             Me.pbImage(iIndex).Image = iImage
             Me.pnlImage(iIndex).Left = iLeft
             Me.pbImage(iIndex).Left = 3
@@ -158,17 +159,12 @@ Public Class dlgImgSelect
                 Me.lblImage(iIndex).AutoSize = False
                 Me.lblImage(iIndex).BackColor = Color.White
                 Me.lblImage(iIndex).TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-                If sURL.ToLower.Contains("themoviedb.org") And Not Master.eSettings.PosterPrefSizeOnly Then     'CHANGE
+                If IsTMDBURL(sURL) Then
                     Me.lblImage(iIndex).Text = Master.eLang.GetString(55, "Multiple")
                 Else
-                    If IsNothing(Me.pbImage(iIndex).Image) Then
-                        Me.lblImage(iIndex).Text = String.Format("{0}x{1} ({2})", Me.pbImage(iIndex).Width.ToString, Me.pbImage(iIndex).Height.ToString, sDescription)
-                    Else
-                        Me.lblImage(iIndex).Text = String.Format("{0}x{1} ({2})", Me.pbImage(iIndex).Image.Width.ToString, Me.pbImage(iIndex).Image.Height.ToString, sDescription)
-                    End If
-
+                    Me.lblImage(iIndex).Text = String.Format("{0}x{1} ({2})", Me.pbImage(iIndex).Image.Width.ToString, Me.pbImage(iIndex).Image.Height.ToString, sDescription)
                 End If
-                Me.lblImage(iIndex).Tag = sURL
+                Me.lblImage(iIndex).Tag = poster
                 Me.lblImage(iIndex).Left = 0
                 Me.lblImage(iIndex).Top = 250
                 Me.pnlImage(iIndex).Controls.Add(Me.lblImage(iIndex))
@@ -394,7 +390,7 @@ Public Class dlgImgSelect
                         End If
                         If Master.eSettings.UseImgCache OrElse Master.eSettings.AutoET Then
                             Try
-                                Me.TMDBPosters.Item(i).URL = StringUtils.CleanURL(Me.TMDBPosters.Item(i).URL)
+                                Me.TMDBPosters.Item(i).URL = Me.CleanTMDBURL(Me.TMDBPosters.Item(i).URL)
 
                                 savePath = Path.Combine(CachePath, String.Concat(If(Me.DLType = Enums.ImageType.Fanart, "fanart_(", "poster_("), Me.TMDBPosters.Item(i).Description, ")_(url=", Me.TMDBPosters.Item(i).URL, ").jpg"))
                                 Me.TMDBPosters.Item(i).WebImage.Save(savePath)
@@ -528,7 +524,7 @@ Public Class dlgImgSelect
         End Try
     End Sub
 
-    Private Sub DoSelect(ByVal iIndex As Integer, ByVal sURL As String)
+    Private Sub DoSelect(ByVal iIndex As Integer, poster As MediaContainers.Image)
         Try
             'set all pnl colors to white first
             'remove all the current genres
@@ -559,9 +555,9 @@ Public Class dlgImgSelect
 
             Me.pnlSize.Visible = False
 
-            If Not Me.DLType = Enums.ImageType.Fanart AndAlso (sURL.ToLower.Contains("imgobject.com") OrElse Master.eSettings.UseImgCache) Then
-                Me.SetupSizes(sURL)
-                If Not rbMedium.Checked AndAlso Not rbLarge.Checked AndAlso Not rbSmall.Checked AndAlso Not rbXLarge.Checked Then
+            If Not Me.DLType = Enums.ImageType.Fanart AndAlso IsTMDBURL(poster.URL) Then
+                Me.SetupSizes(poster.ParentID)
+                If Not rbLarge.Checked AndAlso Not rbMedium.Checked AndAlso Not rbSmall.Checked AndAlso Not rbXLarge.Checked Then
                     Me.OK_Button.Enabled = False
                 Else
                     Me.OK_Button.Focus()
@@ -569,8 +565,8 @@ Public Class dlgImgSelect
                 Me.tmpImage.Clear()
             Else
                 Me.rbXLarge.Checked = False
-                Me.rbMedium.Checked = False
                 Me.rbLarge.Checked = False
+                Me.rbMedium.Checked = False
                 Me.rbSmall.Checked = False
                 Me.OK_Button.Enabled = True
                 Me.OK_Button.Focus()
@@ -581,6 +577,32 @@ Public Class dlgImgSelect
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
     End Sub
+
+    Private Function IsTMDBURL(ByVal sURL As String) As Boolean
+        If sURL.ToLower.Contains("themoviedb.org") OrElse sURL.ToLower.Contains("cf1.imgobject.com") OrElse sURL.ToLower.Contains("cf2.imgobject.com") Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Private Function CleanTMDBURL(ByVal sURL As String) As String
+        If IsTMDBURL(sURL) Then
+            Dim tURL As String = String.Empty
+            Dim i As Integer = sURL.IndexOf("/posters/")
+            If i >= 0 Then tURL = sURL.Substring(i + 9)
+            i = sURL.IndexOf("/backdrops/")
+            If i >= 0 Then tURL = sURL.Substring(i + 11)
+            'tURL = sURL.Replace("http://images.themoviedb.org/posters/", String.Empty)
+            'tURL = tURL.Replace("http://images.themoviedb.org/backdrops/", String.Empty)
+            '$$ to sort first
+            sURL = String.Concat("$$[themoviedb.org]", tURL)
+        Else
+            sURL = StringUtils.TruncateURL(sURL, 40, True)
+        End If
+        Return sURL.Replace(":", "$c$").Replace("/", "$s$")
+    End Function
+
 
     Private Sub GetFanart()
         Try
@@ -799,8 +821,8 @@ Public Class dlgImgSelect
         Me.pbDL2.Value = iPercent
     End Sub
 
-    Private Sub lblImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Me.DoSelect(Convert.ToInt32(DirectCast(sender, Label).Name), DirectCast(sender, Label).Tag.ToString)
+    Private Sub lblImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)        
+        Me.DoSelect(Convert.ToInt32(DirectCast(sender, Label).Name), DirectCast(DirectCast(sender, Label).Tag, MediaContainers.Image))
     End Sub
 
     Private Sub MouseWheelEvent(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
@@ -883,13 +905,13 @@ Public Class dlgImgSelect
                         Else
                             Me.tmpImage.FromWeb(Me.rbXLarge.Tag.ToString)
                         End If
-                    Case Me.rbMedium.Checked
+                    Case Me.rbLarge.Checked
                         If Master.eSettings.UseImgCache Then
-                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))    'FIX
+                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))
                         Else
                             Me.tmpImage.FromWeb(Me.rbLarge.Tag.ToString)
                         End If
-                    Case Me.rbLarge.Checked
+                    Case Me.rbMedium.Checked
                         Me.tmpImage.Image = Me.pbImage(selIndex).Image
                     Case Me.rbSmall.Checked
                         If Master.eSettings.UseImgCache Then
@@ -928,16 +950,16 @@ Public Class dlgImgSelect
                 Next
 
                 If isChecked Then
-
+                    Dim extrathumbsFolderName As String = AdvancedSettings.GetSetting("ExtraThumbsFolderName", "extrathumbs")
                     If isEdit Then
-                        extraPath = Path.Combine(Master.TempPath, "extrathumbs")
+                        extraPath = Path.Combine(Master.TempPath, extrathumbsFolderName)
                     Else
                         If Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isVideoTS(Me.tMovie.Filename) Then
-                            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Me.tMovie.Filename).FullName).FullName, "extrathumbs")
+                            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Me.tMovie.Filename).FullName).FullName, extrathumbsFolderName)
                         ElseIf Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isBDRip(Me.tMovie.Filename) Then
-                            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Me.tMovie.Filename).FullName).FullName).FullName, "extrathumbs")
+                            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Me.tMovie.Filename).FullName).FullName).FullName, extrathumbsFolderName)
                         Else
-                            extraPath = Path.Combine(Directory.GetParent(Me.tMovie.Filename).FullName, "extrathumbs")
+                            extraPath = Path.Combine(Directory.GetParent(Me.tMovie.Filename).FullName, extrathumbsFolderName)
                         End If
                         iMod = Functions.GetExtraModifier(extraPath)
                         iVal = iMod + 1
@@ -968,12 +990,12 @@ Public Class dlgImgSelect
     End Sub
 
     Private Sub pbImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Me.DoSelect(Convert.ToInt32(DirectCast(sender, PictureBox).Name), DirectCast(sender, PictureBox).Tag.ToString)
+        Me.DoSelect(Convert.ToInt32(DirectCast(sender, PictureBox).Name), DirectCast(DirectCast(sender, PictureBox).Tag, MediaContainers.Image))
     End Sub
 
     Private Sub pbImage_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            If Me.DLType = Enums.ImageType.Fanart OrElse Not DirectCast(sender, PictureBox).Tag.ToString.Contains("themoviedb.org") Then
+            If Me.DLType = Enums.ImageType.Fanart OrElse Not IsTMDBURL(DirectCast(sender, PictureBox).Tag.ToString) Then
                 ModulesManager.Instance.RuntimeObjects.InvokeOpenImageViewer(DirectCast(sender, PictureBox).Image)
             Else
                 PreviewImage()
@@ -983,7 +1005,7 @@ Public Class dlgImgSelect
     End Sub
 
     Private Sub pnlImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Me.DoSelect(Convert.ToInt32(DirectCast(sender, Panel).Name), DirectCast(sender, Panel).Tag.ToString)
+        Me.DoSelect(Convert.ToInt32(DirectCast(sender, Panel).Name), DirectCast(DirectCast(sender, Panel).Tag, MediaContainers.Image))
     End Sub
 
     Private Sub ProcessPics(ByVal posters As List(Of MediaContainers.Image))
@@ -999,10 +1021,10 @@ Public Class dlgImgSelect
                 Next
             End If
 
-            If posters.Count > 0 Then   'IMAGE NEEDS cover in FileName to be Displayed on Front Page.
+            If posters.Count > 0 Then
                 For Each xPoster As MediaContainers.Image In posters.OrderBy(Function(p) RemoveServerURL(p.URL))
-                    If Not IsNothing(xPoster.WebImage.Image) AndAlso (Me.DLType = Enums.ImageType.Fanart OrElse Not ((xPoster.URL.ToLower.Contains("imgobject.com") AndAlso Not xPoster.Description = "cover") OrElse (Master.eSettings.UseImgCache AndAlso Not xPoster.Description = "cover")) OrElse Master.eSettings.PosterPrefSizeOnly) Then
-                        Me.AddImage(xPoster.WebImage.Image, xPoster.Description, iIndex, xPoster.URL, xPoster.isChecked)
+                    If Not IsNothing(xPoster.WebImage.Image) AndAlso (Me.DLType = Enums.ImageType.Fanart OrElse Not (IsTMDBURL(xPoster.URL) AndAlso Not xPoster.Description = "cover")) Then
+                        Me.AddImage(xPoster.WebImage.Image, xPoster.Description, iIndex, xPoster.URL, xPoster.isChecked, xPoster)
                         iIndex += 1
                     End If
                 Next
@@ -1027,12 +1049,12 @@ Public Class dlgImgSelect
         End Try
     End Sub
 
-    Private Sub rbLarge_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMedium.CheckedChanged
+    Private Sub rbLarge_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbLarge.CheckedChanged
         Me.OK_Button.Enabled = True
         Me.btnPreview.Enabled = True
     End Sub
 
-    Private Sub rbMedium_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbLarge.CheckedChanged
+    Private Sub rbMedium_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rbMedium.CheckedChanged
         Me.OK_Button.Enabled = True
         Me.btnPreview.Enabled = True
     End Sub
@@ -1113,84 +1135,67 @@ Public Class dlgImgSelect
         Return sURL
     End Function
 
-    Private Function RemoveImageExtension(ByVal sURL As String) As String
-        If sURL.LastIndexOf(".") > 0 Then
-            sURL = Strings.Left(sURL, (sURL.Length - (sURL.Length - sURL.LastIndexOf("."))))
-        End If
-        Return sURL
-    End Function
-    Private Sub SetupSizes(ByVal sURL As String)
+    Private Sub SetupSizes(ByVal ParentID As String)
         Try
-            Dim sLeft As String = RemoveServerURL(Strings.Left(sURL, (sURL.Length - (sURL.Length - sURL.LastIndexOf("-")))))
+            rbXLarge.Checked = False
+            rbXLarge.Enabled = False
+            rbXLarge.Text = Master.eLang.GetString(47, "Original")
+            rbLarge.Checked = False
+            rbLarge.Enabled = False
+            rbLarge.Text = Master.eLang.GetString(48, "Cover")
+            rbMedium.Checked = False
+            rbMedium.Text = Master.eLang.GetString(49, "Medium")
+            rbSmall.Checked = False
+            rbSmall.Enabled = False
+            rbSmall.Text = Master.eLang.GetString(50, "Small")
 
-            Me.rbXLarge.Checked = False
-            Me.rbXLarge.Enabled = False
-            Me.rbXLarge.Text = Master.eLang.GetString(47, "Original")
-            Me.rbLarge.Checked = False
-            Me.rbLarge.Enabled = False
-            Me.rbLarge.Text = Master.eLang.GetString(49, "Medium")
-            Me.rbMedium.Checked = False
-            Me.rbMedium.Enabled = False
-            Me.rbMedium.Text = Master.eLang.GetString(48, "Cover")
-            Me.rbSmall.Checked = False
-            Me.rbSmall.Enabled = False
-            Me.rbSmall.Text = Master.eLang.GetString(50, "Small")
-
-            For i As Integer = 0 To Me.TMDBPosters.Count - 1
-                Select Case True
-                    Case RemoveServerURL(RemoveImageExtension(Me.TMDBPosters.Item(i).URL)) = String.Concat(sLeft, "-original")
-                        ' xlarge        Original    1000x1500
-                        Me.rbXLarge.Enabled = True
-                        Me.rbXLarge.Tag = Me.TMDBPosters.Item(i).URL
-                        If Not IsNothing(TMDBPosters.Item(i).WebImage.Image) Then
-                            Me.rbXLarge.Text = String.Format(Master.eLang.GetString(51, "Original ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
-                        Else
-                            Me.rbXLarge.Text = String.Format(Master.eLang.GetString(51, "Original ({0}x{1})"), Me.TMDBPosters.Item(i).Width, Me.TMDBPosters.Item(i).Height)
+            For Each TMDBPoster As MediaContainers.Image In TMDBPosters.Where(Function(f) f.ParentID = ParentID)
+                Select Case TMDBPoster.Description
+                    Case "original"
+                        ' xlarge
+                        If Not Master.eSettings.UseImgCache OrElse Not IsNothing(TMDBPoster.WebImage.Image) Then
+                            rbXLarge.Enabled = True
+                            rbXLarge.Tag = TMDBPoster.URL
+                            'If Master.eSettings.UseImgCache Then Me.rbXLarge.Text = String.Format(Master.eLang.GetString(51, "Original ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
+                            rbXLarge.Text = String.Format(Master.eLang.GetString(51, "Original ({0}x{1})"), TMDBPoster.Width, TMDBPoster.Height)
                         End If
-                    Case RemoveServerURL(RemoveImageExtension(Me.TMDBPosters.Item(i).URL)) = String.Concat(sLeft, "-mid")
-                        ' large         Mid     500x740
-                        Me.rbLarge.Enabled = True
-                        Me.rbLarge.Tag = Me.TMDBPosters.Item(i).URL
-                        If Not IsNothing(TMDBPosters.Item(i).WebImage.Image) Then
-                            Me.rbLarge.Text = String.Format(Master.eLang.GetString(54, "Medium ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
-                        Else
-                            Me.rbLarge.Text = String.Format(Master.eLang.GetString(54, "Medium ({0}x{1})"), Me.TMDBPosters.Item(i).Width, Me.TMDBPosters.Item(i).Height)
+                    Case "cover"
+                        ' large
+                        If Not Master.eSettings.UseImgCache OrElse Not IsNothing(TMDBPoster.WebImage.Image) Then
+                            rbLarge.Enabled = True
+                            rbLarge.Tag = TMDBPoster.URL
+                            'If Master.eSettings.UseImgCache Then Me.rbLarge.Text = String.Format(Master.eLang.GetString(52, "Cover ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
+                            rbLarge.Text = String.Format(Master.eLang.GetString(52, "Cover ({0}x{1})"), TMDBPoster.Width, TMDBPoster.Height)
                         End If
-                    Case RemoveServerURL(RemoveImageExtension(Me.TMDBPosters.Item(i).URL)) = String.Concat(sLeft, "-cover")
-                        ' medium         cover     185x273
-                        Me.rbMedium.Enabled = True
-                        Me.rbMedium.Tag = Me.TMDBPosters.Item(i).URL
-                        If Not IsNothing(TMDBPosters.Item(i).WebImage.Image) Then
-                            Me.rbMedium.Text = String.Format(Master.eLang.GetString(52, "Cover ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
-                        Else
-                            Me.rbMedium.Text = String.Format(Master.eLang.GetString(52, "Cover ({0}x{1})"), Me.TMDBPosters.Item(i).Width, Me.TMDBPosters.Item(i).Height)
+                    Case "thumb"
+                        ' small
+                        If Not Master.eSettings.UseImgCache OrElse Not IsNothing(TMDBPoster.WebImage.Image) Then
+                            rbSmall.Enabled = True
+                            rbSmall.Tag = TMDBPoster.URL
+                            'If Master.eSettings.UseImgCache Then Me.rbSmall.Text = String.Format(Master.eLang.GetString(53, "Small ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
+                            rbSmall.Text = String.Format(Master.eLang.GetString(53, "Small ({0}x{1})"), TMDBPoster.Width, TMDBPoster.Height)
                         End If
-                    Case RemoveServerURL(RemoveImageExtension(Me.TMDBPosters.Item(i).URL)) = String.Concat(sLeft, "-thumb")
-                        ' small         thumb     92x136
-                        Me.rbSmall.Enabled = True
-                        Me.rbSmall.Tag = Me.TMDBPosters.Item(i).URL
-                        If Not IsNothing(TMDBPosters.Item(i).WebImage.Image) Then
-                            Me.rbSmall.Text = String.Format(Master.eLang.GetString(53, "Small ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
-                        Else
-                            Me.rbSmall.Text = String.Format(Master.eLang.GetString(53, "Small ({0}x{1})"), Me.TMDBPosters.Item(i).Width, Me.TMDBPosters.Item(i).Height)
-                        End If
+                    Case "mid"
+                        'If Master.eSettings.UseImgCache Then Me.rbMedium.Text = String.Format(Master.eLang.GetString(54, "Medium ({0}x{1})"), Me.TMDBPosters.Item(i).WebImage.Image.Width, Me.TMDBPosters.Item(i).WebImage.Image.Height)
+                        rbMedium.Text = String.Format(Master.eLang.GetString(54, "Medium ({0}x{1})"), TMDBPoster.Width, TMDBPoster.Height)
+                        rbMedium.Tag = TMDBPoster.URL
                 End Select
             Next
 
             Select Case Master.eSettings.PreferredPosterSize
                 Case Enums.PosterSize.Small
-                    Me.rbSmall.Checked = Me.rbSmall.Enabled
+                    rbSmall.Checked = rbSmall.Enabled
                 Case Enums.PosterSize.Mid
-                    Me.rbMedium.Checked = Me.rbMedium.Enabled
+                    rbMedium.Checked = rbMedium.Enabled
                 Case Enums.PosterSize.Lrg
-                    Me.rbLarge.Checked = Me.rbLarge.Enabled
+                    rbLarge.Checked = rbLarge.Enabled
                 Case Enums.PosterSize.Xlrg
-                    Me.rbXLarge.Checked = Me.rbXLarge.Enabled
+                    rbXLarge.Checked = rbXLarge.Enabled
             End Select
 
             pnlSize.Visible = True
 
-            Me.Invalidate()
+            Invalidate()
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
@@ -1249,5 +1254,5 @@ Public Class dlgImgSelect
         Me.pbDL1.Value = iPercent
     End Sub
 
-    #End Region 'Methods
+#End Region 'Methods
 End Class

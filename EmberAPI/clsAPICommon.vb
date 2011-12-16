@@ -806,7 +806,7 @@ Public Class Functions
     End Sub
 
     Public Shared Function EmberAPIVersion() As String
-        Return FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly.Location).FilePrivatePart.ToString
+        Return FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly.Location).FileVersion
     End Function
 
     ''' <summary>

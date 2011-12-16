@@ -1518,16 +1518,6 @@ Namespace MediaContainers
 
     Public Class [Image]
 
-#Region "Fields"
-
-        Private _description As String
-        Private _ischecked As Boolean
-        Private _url As String
-        Private _webimage As Images
-        Private _width As String
-        Private _height As String
-#End Region 'Fields
-
 #Region "Constructors"
 
         Public Sub New()
@@ -1537,60 +1527,13 @@ Namespace MediaContainers
 #End Region 'Constructors
 
 #Region "Properties"
-        Public Property Width() As String
-            Get
-                Return Me._width
-            End Get
-            Set(ByVal value As String)
-                Me._width = value
-            End Set
-        End Property
-
-        Public Property Height() As String
-            Get
-                Return Me._height
-            End Get
-            Set(ByVal value As String)
-                Me._height = value
-            End Set
-        End Property
-
-        Public Property Description() As String
-            Get
-                Return Me._description
-            End Get
-            Set(ByVal value As String)
-                Me._description = value
-            End Set
-        End Property
-
-        Public Property isChecked() As Boolean
-            Get
-                Return Me._ischecked
-            End Get
-            Set(ByVal value As Boolean)
-                Me._ischecked = value
-            End Set
-        End Property
-
-        Public Property URL() As String
-            Get
-                Return Me._url
-            End Get
-            Set(ByVal value As String)
-                Me._url = value
-            End Set
-        End Property
-
-        Public Property WebImage() As Images
-            Get
-                Return Me._webimage
-            End Get
-            Set(ByVal value As Images)
-                Me._webimage = value
-            End Set
-        End Property
-
+        Public Property Width As String        
+        Public Property Height As String            
+        Public Property Description As String            
+        Public Property isChecked As Boolean
+        Public Property URL As String
+        Public Property WebImage As Images
+        Public Property ParentID As String
 #End Region 'Properties
 
 #Region "Methods"

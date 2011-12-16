@@ -33,8 +33,6 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scraper.EmberCore", "Addons
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scraper.EmberCore.XML", "Addons\scraper.EmberCore.XML\scraper.EmberCore.XML.vbproj", "{E567C031-1F7B-4637-9B3A-806988DE50CF}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scraper.Rogue", "Addons\scraper.Rogue\scraper.Rogue.vbproj", "{080793AD-A5AB-4228-887F-C3488552377E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,10 +99,6 @@ Global
 		{E567C031-1F7B-4637-9B3A-806988DE50CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E567C031-1F7B-4637-9B3A-806988DE50CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E567C031-1F7B-4637-9B3A-806988DE50CF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{080793AD-A5AB-4228-887F-C3488552377E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{080793AD-A5AB-4228-887F-C3488552377E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{080793AD-A5AB-4228-887F-C3488552377E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{080793AD-A5AB-4228-887F-C3488552377E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -123,6 +117,5 @@ Global
 		{62356BCF-D15A-4BF1-B980-395CEC0004A9} = {4FD2B635-11BD-4532-96F6-97ECB41072A1}
 		{EF6A550E-DD76-4F4D-8250-8598140F828B} = {4FD2B635-11BD-4532-96F6-97ECB41072A1}
 		{E567C031-1F7B-4637-9B3A-806988DE50CF} = {4FD2B635-11BD-4532-96F6-97ECB41072A1}
-		{080793AD-A5AB-4228-887F-C3488552377E} = {4FD2B635-11BD-4532-96F6-97ECB41072A1}
 	EndGlobalSection
 EndGlobal

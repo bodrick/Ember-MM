@@ -34,33 +34,30 @@ Partial Class frmSplash
         Me.Version.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
         Me.Version.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Version.ForeColor = System.Drawing.Color.White
-        Me.Version.Location = New System.Drawing.Point(278, 6)
-        Me.Version.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Version.Location = New System.Drawing.Point(204, 272)
         Me.Version.Name = "Version"
-        Me.Version.Size = New System.Drawing.Size(104, 14)
+        Me.Version.Size = New System.Drawing.Size(83, 11)
         Me.Version.TabIndex = 2
         Me.Version.Text = "Version X.X.XXXX"
-        Me.Version.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.Version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PictureBox1
         '
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox1.Image = Global.Ember_Media_Manager.My.Resources.Resources.Splash
-        Me.PictureBox1.Location = New System.Drawing.Point(5, 5)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Location = New System.Drawing.Point(4, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(377, 380)
+        Me.PictureBox1.Size = New System.Drawing.Size(302, 304)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
         '
         'pbLoading
         '
-        Me.pbLoading.Location = New System.Drawing.Point(6, 369)
-        Me.pbLoading.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbLoading.Location = New System.Drawing.Point(5, 295)
         Me.pbLoading.Maximum = 9
         Me.pbLoading.Name = "pbLoading"
-        Me.pbLoading.Size = New System.Drawing.Size(375, 15)
+        Me.pbLoading.Size = New System.Drawing.Size(300, 12)
         Me.pbLoading.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         Me.pbLoading.TabIndex = 4
         '
@@ -69,19 +66,18 @@ Partial Class frmSplash
         Me.txtStage.BackColor = System.Drawing.Color.Black
         Me.txtStage.Font = New System.Drawing.Font("Segoe UI", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtStage.ForeColor = System.Drawing.Color.White
-        Me.txtStage.Location = New System.Drawing.Point(10, 354)
-        Me.txtStage.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.txtStage.Location = New System.Drawing.Point(8, 283)
         Me.txtStage.Name = "txtStage"
-        Me.txtStage.Size = New System.Drawing.Size(219, 14)
+        Me.txtStage.Size = New System.Drawing.Size(175, 11)
         Me.txtStage.TabIndex = 3
         Me.txtStage.Text = "Loading settings..."
         Me.txtStage.TextAlign = System.Drawing.ContentAlignment.BottomLeft
         '
         'frmSplash
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(120.0!, 120.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(388, 390)
+        Me.ClientSize = New System.Drawing.Size(310, 312)
         Me.ControlBox = False
         Me.Controls.Add(Me.pbLoading)
         Me.Controls.Add(Me.txtStage)
@@ -89,7 +85,6 @@ Partial Class frmSplash
         Me.Controls.Add(Me.PictureBox1)
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmSplash"
