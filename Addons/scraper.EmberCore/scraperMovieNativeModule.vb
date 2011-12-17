@@ -573,8 +573,8 @@ Public Class EmberNativeScraperModule
                             tmpTitle = StringUtils.FilterName(If(DBMovie.isSingle, Directory.GetParent(DBMovie.Filename).Name, Path.GetFileNameWithoutExtension(DBMovie.Filename)))
                         End If
                     End If
-
-                    If dSearch.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                    Dim filterOptions As Structures.ScrapeOptions = Functions.ScrapeOptionsAndAlso(Options, ConfigOptions)
+                    If dSearch.ShowDialog(tmpTitle, filterOptions) = Windows.Forms.DialogResult.OK Then
                         If Not String.IsNullOrEmpty(Master.tmpMovie.IMDBID) Then
                             DBMovie.Movie.IMDBID = Master.tmpMovie.IMDBID
                         End If
@@ -587,7 +587,7 @@ Public Class EmberNativeScraperModule
                             Master.currMovie.ExtraPath = String.Empty
                             Master.currMovie.SubPath = String.Empty
                             Master.currMovie.NfoPath = String.Empty
-                            Dim filterOptions As Structures.ScrapeOptions = Functions.ScrapeOptionsAndAlso(Options, ConfigOptions)
+
 
                             IMDB.GetMovieInfo(DBMovie.Movie.IMDBID, DBMovie.Movie, filterOptions.bFullCrew, filterOptions.bFullCast, False, filterOptions, False)
                         End If
