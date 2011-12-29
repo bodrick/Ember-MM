@@ -81,6 +81,13 @@ Namespace My.Resources
             End Get
         End Property
         
+        Friend ReadOnly Property EmberSplashScreen() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("EmberSplashScreen", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
         Friend ReadOnly Property General() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("General", resourceCulture)
@@ -272,13 +279,6 @@ Namespace My.Resources
         Friend ReadOnly Property puzzle() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("puzzle", resourceCulture)
-                Return CType(obj,System.Drawing.Bitmap)
-            End Get
-        End Property
-        
-        Friend ReadOnly Property Splash() As System.Drawing.Bitmap
-            Get
-                Dim obj As Object = ResourceManager.GetObject("Splash", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

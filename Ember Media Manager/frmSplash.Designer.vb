@@ -31,12 +31,12 @@ Partial Class frmSplash
         '
         'Version
         '
-        Me.Version.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer))
-        Me.Version.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Version.ForeColor = System.Drawing.Color.White
-        Me.Version.Location = New System.Drawing.Point(204, 272)
+        Me.Version.BackColor = System.Drawing.Color.Gainsboro
+        Me.Version.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Version.ForeColor = System.Drawing.Color.Black
+        Me.Version.Location = New System.Drawing.Point(193, 278)
         Me.Version.Name = "Version"
-        Me.Version.Size = New System.Drawing.Size(83, 11)
+        Me.Version.Size = New System.Drawing.Size(100, 14)
         Me.Version.TabIndex = 2
         Me.Version.Text = "Version X.X.XXXX"
         Me.Version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -44,7 +44,7 @@ Partial Class frmSplash
         'PictureBox1
         '
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Image = Global.Ember_Media_Manager.My.Resources.Resources.Splash
+        Me.PictureBox1.Image = Global.Ember_Media_Manager.My.Resources.Resources.EmberSplashScreen
         Me.PictureBox1.Location = New System.Drawing.Point(4, 4)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(302, 304)
@@ -63,12 +63,12 @@ Partial Class frmSplash
         '
         'txtStage
         '
-        Me.txtStage.BackColor = System.Drawing.Color.Black
-        Me.txtStage.Font = New System.Drawing.Font("Segoe UI", 6.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtStage.ForeColor = System.Drawing.Color.White
-        Me.txtStage.Location = New System.Drawing.Point(8, 283)
+        Me.txtStage.BackColor = System.Drawing.Color.Gainsboro
+        Me.txtStage.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtStage.ForeColor = System.Drawing.Color.Black
+        Me.txtStage.Location = New System.Drawing.Point(8, 278)
         Me.txtStage.Name = "txtStage"
-        Me.txtStage.Size = New System.Drawing.Size(175, 11)
+        Me.txtStage.Size = New System.Drawing.Size(175, 14)
         Me.txtStage.TabIndex = 3
         Me.txtStage.Text = "Loading settings..."
         Me.txtStage.TextAlign = System.Drawing.ContentAlignment.BottomLeft
