@@ -6998,7 +6998,8 @@ doCancel:
                         selRow.Item(27) = tmpMovieDb.Movie.Genre
                     End If
                 End If
-                Master.DB.SaveMovieToDB(tmpMovieDb, False, BatchMode, ToNfo)
+                'Why on earth resave the movie if we just refreshed its data (causes issues with saving rescrapes_
+                'Master.DB.SaveMovieToDB(tmpMovieDb, False, BatchMode, ToNfo)
 
             Else
                 Master.DB.DeleteFromDB(ID, BatchMode)
