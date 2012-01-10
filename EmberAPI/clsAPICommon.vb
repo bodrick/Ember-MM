@@ -588,7 +588,7 @@ Public Class Enums
     End Enum
 
     Public Enum TrailerPages As Integer
-        AllHTPC = 0
+        ' ALLHTPC = 0 Site no longer exists
         TMDB = 1
         IMDB = 2
     End Enum
@@ -814,17 +814,17 @@ Public Class Functions
     ''' </summary>
     ''' <returns>Changelog as string</returns>
     Public Shared Function GetChangelog() As String
-        Try
-            Dim sHTTP As New HTTP
-            Dim strChangelog As String = sHTTP.DownloadData(String.Format("http://pcjco.dommel.be/emm-r/{0}/WhatsNew.txt", If(IsBetaEnabled(), "updatesbeta", "updates")))
-            sHTTP = Nothing
+        'Try
+        '    Dim sHTTP As New HTTP
+        '    Dim strChangelog As String = sHTTP.DownloadData(String.Format("http://pcjco.dommel.be/emm-r/{0}/WhatsNew.txt", If(IsBetaEnabled(), "updatesbeta", "updates")))
+        '    sHTTP = Nothing
 
-            If strChangelog.Length > 0 Then
-                Return strChangelog
-            End If
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
+        '    If strChangelog.Length > 0 Then
+        '        Return strChangelog
+        '    End If
+        'Catch ex As Exception
+        '    Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        'End Try
         Return "Unavailable"
     End Function
 

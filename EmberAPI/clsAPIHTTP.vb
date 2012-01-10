@@ -308,11 +308,10 @@ Public Class HTTP
                     If Me._cancel Then Return
                     Dim temp As String = wrResponse.ContentType.ToString
                     If wrResponse.ContentType.ToLower.Contains("image") Then
-                        If Me._cancel Then Return
-                        Me._image = ReadImageStreamToEnd(wrResponse.GetResponseStream)
+                        If Me._cancel Then Return                                                
+                        Me._image = Image.FromStream(wrResponse.GetResponseStream)
                     End If
                 End Using
-
             End If
         Catch
         End Try
@@ -374,27 +373,6 @@ Public Class HTTP
         wrResponse.Close()
         wrResponse = Nothing
         Return True
-    End Function
-
-    Public Function ReadImageStreamToEnd(ByVal rStream As Stream) As Image
-        Try
-            Dim StreamBuffer(4096) As Byte
-            Dim BlockSize As Integer = 0
-            Using mStream As MemoryStream = New MemoryStream()
-                Do
-                    BlockSize = rStream.Read(StreamBuffer, 0, StreamBuffer.Length)
-                    If Me._cancel Then Return Nothing
-                    If BlockSize > 0 Then mStream.Write(StreamBuffer, 0, BlockSize)
-                    If Me._cancel Then Return Nothing
-
-                Loop While BlockSize > 0
-
-                Return Image.FromStream(mStream)
-            End Using
-        Catch
-        End Try
-
-        Return Nothing
     End Function
 
     Public Sub StartDownloadImage(ByVal sURL As String)

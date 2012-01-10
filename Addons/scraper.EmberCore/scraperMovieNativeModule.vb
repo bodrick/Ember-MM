@@ -171,7 +171,7 @@ Public Class EmberNativeScraperModule
         _setupPost = New frmMediaSettingsHolder
         LoadSettings()
         _setupPost.cbEnabled.Checked = _PostScraperEnabled
-        Dim tCount As Integer = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerSiteCount", "0"))
+        Dim tCount As Integer = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerSiteCount", "0"))        
         For iTrailer = 0 To tCount - 1
             _setupPost.lbTrailerSites.SetItemChecked(iTrailer, AdvancedSettings.GetBooleanSetting(String.Concat("TrailerSite", iTrailer.ToString), False))
         Next

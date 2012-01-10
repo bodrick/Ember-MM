@@ -78,7 +78,13 @@ Public NotInheritable Class dlgAbout
         CredList.Add(New CredLine With {.Text = String.Empty})
         CredList.Add(New CredLine With {.Text = String.Empty})
         CredList.Add(New CredLine With {.Text = String.Empty})
-        CredList.Add(New CredLine With {.Text = "__________Project Coders__________", .Font = New Font("Microsoft Sans Serif", 10, FontStyle.Underline Or FontStyle.Bold)})
+        CredList.Add(New CredLine With {.Text = "______Currently Maintained By______", .Font = New Font("Microsoft Sans Serif", 10, FontStyle.Underline Or FontStyle.Bold)})
+        CredList.Add(New CredLine With {.Text = String.Empty})
+        CredList.Add(New CredLine With {.Text = "Chris ""bodrick"" Motch"})
+        CredList.Add(New CredLine With {.Text = String.Empty})
+        CredList.Add(New CredLine With {.Text = String.Empty})
+        CredList.Add(New CredLine With {.Text = String.Empty})
+        CredList.Add(New CredLine With {.Text = "______Original Project Coders______", .Font = New Font("Microsoft Sans Serif", 10, FontStyle.Underline Or FontStyle.Bold)})
         'CredList.Add(New CredLine With {.Text = "_______Project Main Coders________", .Font = New Font("Microsoft Sans Serif", 10, FontStyle.Underline Or FontStyle.Bold)})
         CredList.Add(New CredLine With {.Text = String.Empty})
         CredList.Add(New CredLine With {.Text = "Jason ""nul7"" Schnitzler"})
@@ -158,18 +164,6 @@ Public NotInheritable Class dlgAbout
         Me.Close()
     End Sub
 
-    Private Sub pbAllHTPC_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pbAllHTPC.Click
-        If Master.isWindows Then
-            Process.Start("http://hdtrailers.allhtpc.com/")
-        Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://hdtrailers.allhtpc.com/"
-                Explorer.Start()
-            End Using
-        End If
-    End Sub
-
     Private Sub pbFFMPEG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pbFFMPEG.Click
         If Master.isWindows Then
             Using nProc As New Process
@@ -227,7 +221,7 @@ Public NotInheritable Class dlgAbout
         Else
             Using Explorer As New Process
                 Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.ffmpeg.org/"
+                Explorer.StartInfo.Arguments = "http://www.moviepostersdb.com/"
                 Explorer.Start()
             End Using
         End If
@@ -271,11 +265,11 @@ Public NotInheritable Class dlgAbout
 
     Private Sub picDisplay_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles picDisplay.Click
         If Master.isWindows Then
-            Process.Start("https://sourceforge.net/apps/trac/emm-r/")
+            Process.Start("http://ember.purplepig.net")
         Else
             Using Explorer As New Process
                 Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "https://sourceforge.net/apps/trac/emm-r/"
+                Explorer.StartInfo.Arguments = "http://ember.purplepig.net"
                 Explorer.Start()
             End Using
         End If

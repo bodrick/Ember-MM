@@ -188,9 +188,7 @@ Public Class Trailers
             End If
             Try
                 If AdvancedSettings.GetBooleanSetting(String.Concat("TrailerSite", iTrailer.ToString), False) Then
-                    Select Case iTrailer
-                        Case Enums.TrailerPages.AllHTPC
-                            Me.GetAllHTPCTrailer()
+                    Select Case iTrailer                        
                         Case Enums.TrailerPages.TMDB
                             Me.GetTMDBTrailer()
                         Case Enums.TrailerPages.IMDB
@@ -229,17 +227,6 @@ Public Class Trailers
             End If
         End If
     End Function
-
-    Private Sub GetAllHTPCTrailer()
-        Dim AllHTPC As New AllHTPC.Scraper
-        Dim YT As String = AllHTPC.GetTrailer(_ImdbID)
-
-        If Not String.IsNullOrEmpty(YT) Then
-            Me._TrailerList.Add(YT)
-        End If
-
-        AllHTPC = Nothing
-    End Sub
 
     Private Sub GetImdbTrailer()
         Dim TrailerNumber As Integer = 0

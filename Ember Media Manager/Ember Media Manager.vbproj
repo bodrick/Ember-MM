@@ -309,6 +309,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dlgAbout.resx">
       <DependentUpon>dlgAbout.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="dlgAddEditActor.resx">
       <DependentUpon>dlgAddEditActor.vb</DependentUpon>

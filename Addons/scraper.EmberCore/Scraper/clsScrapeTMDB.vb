@@ -30,7 +30,7 @@ Namespace TMDB
 
         Friend  WithEvents bwTMDB As New System.ComponentModel.BackgroundWorker
 
-        Private Const APIKey As String = "6f96ee0ee3e734bcf5924584d0948020"
+        Private Const APIKey As String = "b1ecff8c76278262b27de1569f57f6bd"
 
         #End Region 'Fields
 

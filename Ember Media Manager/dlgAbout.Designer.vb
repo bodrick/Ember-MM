@@ -24,20 +24,18 @@ Partial Class dlgAbout
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgAbout))
-        Me.OKButton = New System.Windows.Forms.Button
-        Me.Panel1 = New System.Windows.Forms.Panel
-        Me.pbAllHTPC = New System.Windows.Forms.PictureBox
-        Me.pbYouTube = New System.Windows.Forms.PictureBox
-        Me.pbXBMC = New System.Windows.Forms.PictureBox
-        Me.pbMPDB = New System.Windows.Forms.PictureBox
-        Me.pbFFMPEG = New System.Windows.Forms.PictureBox
-        Me.pbMI = New System.Windows.Forms.PictureBox
-        Me.pbIMDB = New System.Windows.Forms.PictureBox
-        Me.pbIMPA = New System.Windows.Forms.PictureBox
-        Me.pbTMDB = New System.Windows.Forms.PictureBox
-        Me.picDisplay = New System.Windows.Forms.PictureBox
+        Me.OKButton = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.pbYouTube = New System.Windows.Forms.PictureBox()
+        Me.pbXBMC = New System.Windows.Forms.PictureBox()
+        Me.pbMPDB = New System.Windows.Forms.PictureBox()
+        Me.pbFFMPEG = New System.Windows.Forms.PictureBox()
+        Me.pbMI = New System.Windows.Forms.PictureBox()
+        Me.pbIMDB = New System.Windows.Forms.PictureBox()
+        Me.pbIMPA = New System.Windows.Forms.PictureBox()
+        Me.pbTMDB = New System.Windows.Forms.PictureBox()
+        Me.picDisplay = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
-        CType(Me.pbAllHTPC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbYouTube, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbXBMC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMPDB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,7 +62,6 @@ Partial Class dlgAbout
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.pbAllHTPC)
         Me.Panel1.Controls.Add(Me.pbYouTube)
         Me.Panel1.Controls.Add(Me.pbXBMC)
         Me.Panel1.Controls.Add(Me.pbMPDB)
@@ -77,17 +74,6 @@ Partial Class dlgAbout
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(422, 114)
         Me.Panel1.TabIndex = 8
-        '
-        'pbAllHTPC
-        '
-        Me.pbAllHTPC.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbAllHTPC.Image = CType(resources.GetObject("pbAllHTPC.Image"), System.Drawing.Image)
-        Me.pbAllHTPC.Location = New System.Drawing.Point(159, 71)
-        Me.pbAllHTPC.Name = "pbAllHTPC"
-        Me.pbAllHTPC.Size = New System.Drawing.Size(91, 38)
-        Me.pbAllHTPC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbAllHTPC.TabIndex = 18
-        Me.pbAllHTPC.TabStop = False
         '
         'pbYouTube
         '
@@ -214,7 +200,6 @@ Partial Class dlgAbout
         Me.Text = "About Ember Media Manager"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.pbAllHTPC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbYouTube, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbXBMC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMPDB, System.ComponentModel.ISupportInitialize).EndInit()
@@ -238,6 +223,5 @@ Partial Class dlgAbout
     Friend WithEvents pbXBMC As System.Windows.Forms.PictureBox
     Public WithEvents picDisplay As System.Windows.Forms.PictureBox
     Friend WithEvents pbYouTube As System.Windows.Forms.PictureBox
-    Friend WithEvents pbAllHTPC As System.Windows.Forms.PictureBox
 
 End Class

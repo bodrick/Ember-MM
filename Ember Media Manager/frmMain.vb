@@ -20,12 +20,10 @@
 
 Imports System
 Imports System.Drawing
-Imports System.Drawing.Bitmap
 Imports System.IO
 Imports System.Linq
 Imports System.Reflection
 Imports System.Text.RegularExpressions
-Imports System.Xml.Serialization
 Imports EmberAPI
 
 Public Class frmMain

@@ -115,7 +115,6 @@
     </Compile>
     <Compile Include="scraperTVNativeModule.vb" />
     <Compile Include="Scraper\clsScrapeTrailers.vb" />
-    <Compile Include="Scraper\clsScrapeAllHTPC.vb" />
     <Compile Include="Scraper\clsScrapeImages.vb" />
     <Compile Include="Scraper\clsScrapeIMDB.vb" />
     <Compile Include="Scraper\clsScrapeIMPA.vb" />
