@@ -588,15 +588,8 @@ Public Class dlgImgSelect
 
     Private Function CleanTMDBURL(ByVal sURL As String) As String
         If IsTMDBURL(sURL) Then
-            Dim tURL As String = String.Empty
-            Dim i As Integer = sURL.IndexOf("/posters/")
-            If i >= 0 Then tURL = sURL.Substring(i + 9)
-            i = sURL.IndexOf("/backdrops/")
-            If i >= 0 Then tURL = sURL.Substring(i + 11)
-            'tURL = sURL.Replace("http://images.themoviedb.org/posters/", String.Empty)
-            'tURL = tURL.Replace("http://images.themoviedb.org/backdrops/", String.Empty)
-            '$$ to sort first
-            sURL = String.Concat("$$[themoviedb.org]", tURL)
+            Dim _sURL As New Uri(sURL)
+            sURL = String.Concat("$$[themoviedb.org]", _sURL.GetComponents(UriComponents.Path, UriFormat.UriEscaped))
         Else
             sURL = StringUtils.TruncateURL(sURL, 40, True)
         End If
