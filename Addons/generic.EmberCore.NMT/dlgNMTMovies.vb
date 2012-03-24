@@ -138,6 +138,7 @@ Public Class dlgNMTMovies
             If Not conf Is Nothing Then
                 PopulateParams()
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End If
             Loaded = True
             btnSave.Enabled = False
@@ -189,6 +190,7 @@ Public Class dlgNMTMovies
             MySelf.isCL = True
             While Not MySelf.Loaded
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
             Application.DoEvents()
             If MySelf.CanBuild Then
@@ -1043,6 +1045,7 @@ Public Class dlgNMTMovies
                                             While Not execute.HasExited
                                                 Application.DoEvents()
                                                 execute.Refresh()
+                                                Threading.Thread.Sleep(50)
                                             End While
                                         End If
                                     End Using
@@ -1074,6 +1077,7 @@ Public Class dlgNMTMovies
                                             While Not execute.HasExited
                                                 Application.DoEvents()
                                                 execute.Refresh()
+                                                Threading.Thread.Sleep(50)
                                             End While
                                         End If
                                     End Using
@@ -1120,6 +1124,7 @@ Public Class dlgNMTMovies
                                             While Not execute.HasExited
                                                 Application.DoEvents()
                                                 execute.Refresh()
+                                                Threading.Thread.Sleep(50)
                                             End While
                                         End If
                                     End Using
@@ -1151,6 +1156,7 @@ Public Class dlgNMTMovies
                                             While Not execute.HasExited
                                                 Application.DoEvents()
                                                 execute.Refresh()
+                                                Threading.Thread.Sleep(50)
                                             End While
                                         End If
                                     End Using
@@ -1382,6 +1388,7 @@ Public Class dlgNMTMovies
                     mythread.Start(bpath)
                     While mythread.IsAlive
                         Application.DoEvents()
+                        Threading.Thread.Sleep(50)
                     End While
                 End If
                 lblCompiling.Text = Master.eLang.GetString(23, "Preparing folders")
@@ -1400,6 +1407,7 @@ Public Class dlgNMTMovies
                 Me.bwBuildHTML.RunWorkerAsync()
                 While bwBuildHTML.IsBusy
                     Application.DoEvents()
+                    Threading.Thread.Sleep(50)
                 End While
 
                 Exit While

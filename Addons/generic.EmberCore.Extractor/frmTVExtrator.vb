@@ -104,7 +104,7 @@ Public Class frmTVExtrator
 
             ffmpeg.StartInfo.FileName = Functions.GetFFMpeg
             'ffmpeg.StartInfo.Arguments = String.Format("-ss {0} -i ""{1}"" -an -f rawvideo -vframes 1 -vcodec mjpeg -y ""{2}""", tbFrame.Value, Master.currShow.Filename, Path.Combine(Master.TempPath, "frame.jpg"))
-            ffmpeg.StartInfo.Arguments = String.Format("-ss {0} -i ""{1}"" -vframes 1 -y ""{2}""", tbFrame.Value, Master.currMovie.Filename, Path.Combine(Master.TempPath, "frame.jpg"))
+            ffmpeg.StartInfo.Arguments = String.Format("-ss {0} -i ""{1}"" -vframes 1 -y ""{2}""", tbFrame.Value, Master.currShow.Filename, Path.Combine(Master.TempPath, "frame.jpg"))
             ffmpeg.EnableRaisingEvents = False
             ffmpeg.StartInfo.UseShellExecute = False
             ffmpeg.StartInfo.CreateNoWindow = True

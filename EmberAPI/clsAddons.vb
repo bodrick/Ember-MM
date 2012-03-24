@@ -55,6 +55,7 @@ Public Class EmberAddons
         aCheck.bwDownload.RunWorkerAsync()
         While aCheck.bwDownload.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
         Return AddonList.Count
     End Function

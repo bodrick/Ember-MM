@@ -62,6 +62,7 @@ Public Class dlgExportMovies
             MySelf.bwLoadInfo.RunWorkerAsync()
             While MySelf.bwLoadInfo.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
             MySelf.BuildHTML(False, String.Empty, String.Empty, template, False)
             Dim srcPath As String = String.Concat(Functions.AppPath, "Langs", Path.DirectorySeparatorChar, "html", Path.DirectorySeparatorChar, template, Path.DirectorySeparatorChar)
@@ -474,6 +475,7 @@ Public Class dlgExportMovies
         End If
         While bwSaveAll.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
     End Sub
 
@@ -482,6 +484,7 @@ Public Class dlgExportMovies
             Me.DoCancel()
             While Me.bwLoadInfo.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End If
         FileUtils.Delete.DeleteDirectory(Me.TempPath)
@@ -724,6 +727,7 @@ Public Class dlgExportMovies
         Me.bwSaveAll.RunWorkerAsync(New Arguments With {.srcPath = srcPath, .destPath = destPath, .resizePoster = resizePoster})
         While bwSaveAll.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         cbSearch.Enabled = True

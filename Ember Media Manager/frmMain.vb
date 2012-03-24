@@ -220,6 +220,7 @@ Public Class frmMain
                 While .bwDownloadPic.IsBusy OrElse .bwLoadInfo.IsBusy OrElse .bwLoadShowInfo.IsBusy OrElse _
                         .bwLoadSeasonInfo.IsBusy OrElse .bwLoadEpInfo.IsBusy
                     Application.DoEvents()
+                    Threading.Thread.Sleep(50)
                 End While
 
                 If Not IsNothing(.pbFanart.Image) Then
@@ -520,6 +521,7 @@ Public Class frmMain
         If Me.bwNonScrape.IsBusy Then Me.bwNonScrape.CancelAsync()
         While Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwNonScrape.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
     End Sub
 
@@ -800,6 +802,7 @@ Public Class frmMain
                     sHTTP.Cancel()
                     Return
                 End If
+                Threading.Thread.Sleep(50)
             End While
 
             e.Result = New Results With {.Result = sHTTP.Image}
@@ -876,6 +879,7 @@ Public Class frmMain
             'wait for mediainfo to update the nfo
             While bwMediaInfo.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             If bwLoadEpInfo.CancellationPending Then
@@ -935,6 +939,7 @@ Public Class frmMain
             'wait for mediainfo to update the nfo
             While bwMediaInfo.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             If bwLoadInfo.CancellationPending Then
@@ -1434,6 +1439,7 @@ doCancel:
         Try
             While Me.fScanner.IsBusy OrElse Me.bwMediaInfo.IsBusy OrElse Me.bwLoadInfo.IsBusy OrElse Me.bwDownloadPic.IsBusy OrElse Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwCleanDB.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             For i As Integer = Me.FilterArray.Count - 1 To 0 Step -1
@@ -4227,6 +4233,7 @@ doCancel:
             If Me.bwRefreshMovies.IsBusy Then Me.bwRefreshMovies.CancelAsync()
             While Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwMovieScraper.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         Else
             Me.Close()
@@ -5238,6 +5245,7 @@ doCancel:
             OrElse Me.bwCleanDB.IsBusy OrElse Me.bwLoadShowInfo.IsBusy OrElse Me.bwLoadEpInfo.IsBusy _
             OrElse Me.bwLoadSeasonInfo.IsBusy OrElse ModulesManager.Instance.TVIsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             If doSave Then Master.DB.ClearNew()
@@ -5512,6 +5520,7 @@ doCancel:
                                 LoadMedia(New Structures.Scans With {.Movies = True})
                                 While Not Me.LoadingDone
                                     Application.DoEvents()
+                                    Threading.Thread.Sleep(50)
                                 End While
                                 fLoading.pbLoading.Style = ProgressBarStyle.Marquee
                                 fLoading.SetStage("Command Line Scraping...")
@@ -5597,6 +5606,7 @@ doCancel:
 
                         While Not Me.ScraperDone
                             Application.DoEvents()
+                            Threading.Thread.Sleep(50)
                         End While
                     End If
 
@@ -5932,6 +5942,7 @@ doCancel:
                     Me.bwDownloadPic.CancelAsync()
                     While Me.bwDownloadPic.IsBusy
                         Application.DoEvents()
+                        Threading.Thread.Sleep(50)
                     End While
                 End If
 
@@ -7177,6 +7188,7 @@ doCancel:
                                 If Not BatchMode Then
                                     Me.tspbLoading.Value += 1
                                     Application.DoEvents()
+                                    Threading.Thread.Sleep(50)
                                 End If
                             End While
                         End Using
@@ -7923,6 +7935,7 @@ doCancel:
             'might as well wait for these
             While Me.bwMediaInfo.IsBusy OrElse Me.bwDownloadPic.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             If dresult.NeedsRefresh OrElse dresult.NeedsUpdate Then
@@ -7930,6 +7943,7 @@ doCancel:
                     If Not Me.fScanner.IsBusy Then
                         While Me.bwLoadInfo.IsBusy OrElse Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwCleanDB.IsBusy
                             Application.DoEvents()
+                            Threading.Thread.Sleep(50)
                         End While
                         Me.RefreshAllMovies()
                     End If
@@ -7938,6 +7952,7 @@ doCancel:
                     If Not Me.fScanner.IsBusy Then
                         While Me.bwLoadInfo.IsBusy OrElse Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwCleanDB.IsBusy
                             Application.DoEvents()
+                            Threading.Thread.Sleep(50)
                         End While
                         Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
                     End If

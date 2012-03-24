@@ -94,6 +94,7 @@ Public Class dlgAddEditActor
 
         While sHTTP.IsDownloading
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         e.Result = sHTTP.Image

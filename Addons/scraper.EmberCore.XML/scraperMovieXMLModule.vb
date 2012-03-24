@@ -830,6 +830,7 @@ Public Class EmberXMLScraperModule
                             Exit While
                         End If
                         Application.DoEvents()
+                        Threading.Thread.Sleep(50)
                     End While
                 Catch ex As Exception
                 End Try

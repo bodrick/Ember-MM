@@ -61,6 +61,7 @@ Namespace YouTube
 
             While bwYT.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Sub
 

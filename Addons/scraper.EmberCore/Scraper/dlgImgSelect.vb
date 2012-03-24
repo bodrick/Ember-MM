@@ -458,6 +458,7 @@ Public Class dlgImgSelect
 
         While bwIMPADownload.IsBusy OrElse bwMPDBDownload.IsBusy OrElse bwTMDBDownload.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         Me.DialogResult = System.Windows.Forms.DialogResult.Cancel

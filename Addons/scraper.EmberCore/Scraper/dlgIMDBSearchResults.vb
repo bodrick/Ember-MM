@@ -110,6 +110,7 @@ Public Class dlgIMDBSearchResults
 
         While sHTTP.IsDownloading
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         e.Result = New Results With {.Result = sHTTP.Image, .IMDBId = Args.IMDBId}

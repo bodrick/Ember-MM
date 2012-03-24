@@ -43,6 +43,7 @@ Public Class frmXMLSettingsHolder
         RaiseEvent PopulateScrapers()
         While parentRunning
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
         btnPopulate.Enabled = True
         cbScraper.Enabled = True
