@@ -51,6 +51,7 @@ Namespace IMPA
 
             While Me.bwIMPA.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Sub
 

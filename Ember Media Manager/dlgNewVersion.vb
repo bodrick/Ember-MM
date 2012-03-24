@@ -51,6 +51,7 @@ Public Class dlgNewVersion
         bwDownloadSetup.RunWorkerAsync()
         While bwDownloadSetup.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
         If File.Exists(Path.Combine(Functions.AppPath, "EmberSetup.exe")) Then
             lblStart.Visible = False

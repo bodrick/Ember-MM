@@ -339,6 +339,7 @@ Public Class dlgBulkRenamer
             Me.DoCancel()
             While Me.bwLoadInfo.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End If
     End Sub

@@ -121,6 +121,7 @@ Public Class ThumbGenerator
 
             While tThread.IsAlive
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Sub
 
