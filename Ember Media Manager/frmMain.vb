@@ -4222,7 +4222,7 @@ doCancel:
 
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click, cmnuTrayIconExit.Click
         If isCL Then
-            fLoading.SetStage("Canceling ...")
+            fLoading.SetLoadingMesg("Canceling ...")
             If Me.bwMovieScraper.IsBusy Then Me.bwMovieScraper.CancelAsync()
             If Me.bwRefreshMovies.IsBusy Then Me.bwRefreshMovies.CancelAsync()
             While Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwMovieScraper.IsBusy
@@ -5290,7 +5290,7 @@ doCancel:
 
             If Args.Count > 1 Then
                 isCL = True
-                fLoading.pbLoading.Maximum = 10
+                fLoading.SetProgressBarSize(10)
             End If
             fLoading.Show(Me)
             Application.DoEvents()
@@ -5301,7 +5301,7 @@ doCancel:
                 InstallNewFiles("InstallTasks.xml")
             End If
 
-            fLoading.SetStage("Basic setup...")
+            fLoading.SetLoadingMesg("Basic setup...")
 
             Dim currentDomain As AppDomain = AppDomain.CurrentDomain
             ModulesManager.AssemblyList.Add(New ModulesManager.AssemblyListItem With {.AssemblyName = "EmberAPI", _
@@ -5324,14 +5324,14 @@ doCancel:
             If Not Directory.Exists(sPath) Then
                 Directory.CreateDirectory(sPath)
             End If
-            fLoading.SetStage("Loading settings...")
+            fLoading.SetLoadingMesg("Loading settings...")
             Master.eSettings.Load()
-            fLoading.SetStage("Creating default options...")
+            fLoading.SetLoadingMesg("Creating default options...")
             Functions.CreateDefaultOptions()
             '//
             ' Add our handlers, load settings, set form colors, and try to load movies at startup
             '\\
-            fLoading.SetStage("Loading modules...")
+            fLoading.SetLoadingMesg("Loading modules...")
             'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
             'ExternalModulesManager = New ModulesManager
             ModulesManager.Instance.RuntimeObjects.MenuMediaList = Me.mnuMediaList
@@ -5344,7 +5344,7 @@ doCancel:
             ModulesManager.Instance.RuntimeObjects.DelegateOpenImageViewer(AddressOf OpenImageViewer)
             ModulesManager.Instance.LoadAllModules()
 
-            If Not isCL Then fLoading.SetStage("Creating GUI...")
+            If Not isCL Then fLoading.SetLoadingMesg("Creating GUI...")
             'setup some dummies so we don't get exceptions when resizing form/info panel
             ReDim Preserve Me.pnlGenre(0)
             ReDim Preserve Me.pbGenre(0)
@@ -5481,17 +5481,17 @@ doCancel:
                                 'End If
                         End Select
                     Next
-                    If nowindow Then fLoading.Visible = False
+                    If nowindow Then fLoading.Hide()
                     APIXML.CacheXMLs()
-                    fLoading.SetStage("Loading database...")
+                    fLoading.SetLoadingMesg("Loading database...")
                     If Master.DB.CheckEssentials() Then
                         Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
                     End If
                     Master.DB.LoadMovieSourcesFromDB()
                     Master.DB.LoadTVSourcesFromDB()
                     If RunModule Then
-                        fLoading.pbLoading.Style = ProgressBarStyle.Marquee
-                        fLoading.SetStage("Running Module...")
+                        fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
+                        fLoading.SetLoadingMesg("Running Module...")
                         Dim gModule As ModulesManager._externalGenericModuleClass = ModulesManager.Instance.externalProcessorModules.FirstOrDefault(Function(y) y.ProcessorModule.ModuleName = ModuleName)
                         If Not IsNothing(gModule) Then
                             gModule.ProcessorModule.RunGeneric(Enums.ModuleEventType.CommandLine, Nothing, Nothing)
@@ -5507,14 +5507,14 @@ doCancel:
                         Me.cmnuTrayIcon.Enabled = True
                         If Functions.HasModifier AndAlso Not clScrapeType = Enums.ScrapeType.SingleScrape Then
                             Try
-                                fLoading.pbLoading.Style = ProgressBarStyle.Marquee
-                                fLoading.SetStage("Loading Media...")
+                                fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
+                                fLoading.SetLoadingMesg("Loading Media...")
                                 LoadMedia(New Structures.Scans With {.Movies = True})
                                 While Not Me.LoadingDone
                                     Application.DoEvents()
                                 End While
-                                fLoading.pbLoading.Style = ProgressBarStyle.Marquee
-                                fLoading.SetStage("Command Line Scraping...")
+                                fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
+                                fLoading.SetLoadingMesg("Command Line Scraping...")
                                 MovieScrapeData(False, clScrapeType, Master.DefaultOptions)
                             Catch ex As Exception
                                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -5583,8 +5583,8 @@ doCancel:
                                         End If
                                         Master.tmpMovie = Master.currMovie.Movie
                                     End If
-                                    fLoading.pbLoading.Style = ProgressBarStyle.Marquee
-                                    fLoading.SetStage("Command Line Scraping...")
+                                    fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
+                                    fLoading.SetLoadingMesg("Command Line Scraping...")
                                     MovieScrapeData(False, Enums.ScrapeType.SingleScrape, Master.DefaultOptions)
                                 Else
                                     Me.ScraperDone = True
@@ -5600,7 +5600,7 @@ doCancel:
                         End While
                     End If
 
-                    frmSplash.CloseForm()
+                    frmSplash.Close()
                     Me.Close()
                 Catch ex As Exception
                 End Try
@@ -5620,13 +5620,13 @@ doCancel:
 
                     'End If
                     If Not CloseApp Then
-                        fLoading.SetStage("Loading translations...")
+                        fLoading.SetLoadingMesg("Loading translations...")
                         APIXML.CacheXMLs()
 
                         Me.SetUp(True)
                         Me.cbSearch.SelectedIndex = 0
 
-                        fLoading.SetStage("Positioning controls...")
+                        fLoading.SetLoadingMesg("Positioning controls...")
                         Me.Location = Master.eSettings.WindowLoc
                         Me.Size = Master.eSettings.WindowSize
                         Me.WindowState = Master.eSettings.WindowState
@@ -5673,7 +5673,7 @@ doCancel:
                         Me.ClearInfo()
 
                         Application.DoEvents()
-                        fLoading.SetStage("Loading database...")
+                        fLoading.SetLoadingMesg("Loading database...")
                         If Master.eSettings.Version = String.Format("r{0}", My.Application.Info.Version.Revision) Then
                             If Master.DB.CheckEssentials() Then
                                 Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
@@ -5707,7 +5707,7 @@ doCancel:
 
                         Master.DB.LoadMovieSourcesFromDB()
                         Master.DB.LoadTVSourcesFromDB()
-                        fLoading.SetStage("Setting menus...")
+                        fLoading.SetLoadingMesg("Setting menus...")
                         Me.SetMenus(True)
                         Functions.GetListOfSources()
                         Me.cmnuTrayIconExit.Enabled = True
@@ -5722,7 +5722,6 @@ doCancel:
             End If
 
             fLoading.Close()
-            fLoading.Dispose()
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
