@@ -22,80 +22,59 @@ Partial Class frmSplash
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Version = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.pbLoading = New System.Windows.Forms.ProgressBar()
-        Me.txtStage = New System.Windows.Forms.Label()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LoadingBar = New System.Windows.Forms.ProgressBar()
+        Me.VersionNumber = New System.Windows.Forms.Label()
+        Me.LoadingMesg = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
-        'Version
+        'LoadingBar
         '
-        Me.Version.BackColor = System.Drawing.Color.Gainsboro
-        Me.Version.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Version.ForeColor = System.Drawing.Color.Black
-        Me.Version.Location = New System.Drawing.Point(193, 278)
-        Me.Version.Name = "Version"
-        Me.Version.Size = New System.Drawing.Size(100, 14)
-        Me.Version.TabIndex = 2
-        Me.Version.Text = "Version X.X.XXXX"
-        Me.Version.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.LoadingBar.Location = New System.Drawing.Point(1, 357)
+        Me.LoadingBar.Maximum = 9
+        Me.LoadingBar.Name = "LoadingBar"
+        Me.LoadingBar.Size = New System.Drawing.Size(371, 15)
+        Me.LoadingBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
         '
-        'PictureBox1
+        'VersionNumber
         '
-        Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Image = Global.Ember_Media_Manager.My.Resources.Resources.EmberSplashScreen
-        Me.PictureBox1.Location = New System.Drawing.Point(4, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(302, 304)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 2
-        Me.PictureBox1.TabStop = False
+        Me.VersionNumber.AutoSize = True
+        Me.VersionNumber.BackColor = System.Drawing.Color.Transparent
+        Me.VersionNumber.Location = New System.Drawing.Point(262, 341)
+        Me.VersionNumber.Name = "VersionNumber"
+        Me.VersionNumber.Size = New System.Drawing.Size(110, 13)
+        Me.VersionNumber.Text = "Version {0}.{1}.{2}.{3}"
+        Me.VersionNumber.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'pbLoading
+        'LoadingMesg
         '
-        Me.pbLoading.Location = New System.Drawing.Point(5, 295)
-        Me.pbLoading.Maximum = 9
-        Me.pbLoading.Name = "pbLoading"
-        Me.pbLoading.Size = New System.Drawing.Size(300, 12)
-        Me.pbLoading.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        Me.pbLoading.TabIndex = 4
-        '
-        'txtStage
-        '
-        Me.txtStage.BackColor = System.Drawing.Color.Gainsboro
-        Me.txtStage.Font = New System.Drawing.Font("Segoe UI", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtStage.ForeColor = System.Drawing.Color.Black
-        Me.txtStage.Location = New System.Drawing.Point(8, 278)
-        Me.txtStage.Name = "txtStage"
-        Me.txtStage.Size = New System.Drawing.Size(175, 14)
-        Me.txtStage.TabIndex = 3
-        Me.txtStage.Text = "Loading settings..."
-        Me.txtStage.TextAlign = System.Drawing.ContentAlignment.BottomLeft
+        Me.LoadingMesg.BackColor = System.Drawing.Color.Transparent
+        Me.LoadingMesg.Location = New System.Drawing.Point(4, 341)
+        Me.LoadingMesg.Name = "LoadingMesg"
+        Me.LoadingMesg.Size = New System.Drawing.Size(252, 13)
+        Me.LoadingMesg.Text = "Loading..."
         '
         'frmSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(310, 312)
+        Me.BackgroundImage = Global.Ember_Media_Manager.My.Resources.Resources.EmberSplashScreen
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ClientSize = New System.Drawing.Size(373, 373)
         Me.ControlBox = False
-        Me.Controls.Add(Me.pbLoading)
-        Me.Controls.Add(Me.txtStage)
-        Me.Controls.Add(Me.Version)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Controls.Add(Me.LoadingMesg)
+        Me.Controls.Add(Me.VersionNumber)
+        Me.Controls.Add(Me.LoadingBar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmSplash"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents Version As System.Windows.Forms.Label
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents pbLoading As System.Windows.Forms.ProgressBar
-    Friend WithEvents txtStage As System.Windows.Forms.Label
-
+    Friend WithEvents LoadingBar As System.Windows.Forms.ProgressBar
+    Friend WithEvents VersionNumber As System.Windows.Forms.Label
+    Friend WithEvents LoadingMesg As System.Windows.Forms.Label
 End Class

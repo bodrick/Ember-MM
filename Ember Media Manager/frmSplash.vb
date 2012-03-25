@@ -1,6 +1,4 @@
-﻿Imports EmberAPI
-
-' ################################################################################
+﻿' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -20,38 +18,85 @@
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
 
-Public NotInheritable Class frmSplash
+Public Class frmSplash
 
 #Region "Delegates"
 
-    Delegate Sub DelegateToCloseForm()
+    Delegate Sub DelegateTo_SetLoadingMesg(message As String)
+    Delegate Sub DelegateTo_SetProgressBarStyle(style As ProgressBarStyle)
+    Delegate Sub DelegateTo_SetProgressBarSize(size As Integer)
+    Delegate Sub DelegateTo_Close()
+    Delegate Sub DelegateTo_Show(owner As IWin32Window)
+    Delegate Sub DelegateTo_Hide()
 
 #End Region 'Delegates
 
 #Region "Methods"
 
-    ' if the splash form, is closed by the main form, it is cross-thread
-    ' operation. so we need to use the Invoke method to deal with it.
-    Public Sub CloseForm()
+    Public Sub SetLoadingMesg(message As String)
         If (Me.InvokeRequired) Then
-            Me.Invoke(New DelegateToCloseForm(AddressOf CloseForm))
-        Else
-            Me.Close()
+            Me.Invoke(New DelegateTo_SetLoadingMesg(AddressOf SetLoadingMesg))
+            Exit Sub
         End If
+
+        LoadingMesg.Text = message
     End Sub
 
-    Public Sub SetStage(ByVal txt As String)
-        Me.txtStage.Text = txt
-        Me.pbLoading.Value += 1
-        Application.DoEvents()
+    Public Sub SetProgressBarStyle(style As ProgressBarStyle)
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New DelegateTo_SetProgressBarStyle(AddressOf setProgressBarStyle))
+            Exit Sub
+        End If
+
+        LoadingBar.Style = style
     End Sub
 
-    Private Sub frmSplash_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        Me.PictureBox1.Location = New Point(4, 4)
-        Me.PictureBox1.Size = New Size(Me.Width - 10, Me.Height - 10)
-        Version.Text = String.Format("Version {0}", My.Application.Info.Version.ToString())
+    Public Sub SetProgressBarSize(size As Integer)
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New DelegateTo_SetProgressBarSize(AddressOf SetProgressBarSize))
+            Exit Sub
+        End If
+
+        LoadingBar.Maximum = size
+    End Sub
+
+    Public Overloads Sub Close()
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New DelegateTo_Close(AddressOf Close))
+            Exit Sub
+        End If
+
+        MyBase.Close()
+        Me.Dispose()
+    End Sub
+
+    Public Overloads Sub Show(owner As IWin32Window)
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New DelegateTo_Show(AddressOf Show))
+            Exit Sub
+        End If
+
+        MyBase.Show(owner)
+    End Sub
+
+    Public Overloads Sub Hide()
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New DelegateTo_Hide(AddressOf Hide))
+            Exit Sub
+        End If
+
+        MyBase.Hide()
     End Sub
 
 #End Region 'Methods
+
+    Private Sub frmSplash_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
+        VersionNumber.Text = System.String.Format(
+            VersionNumber.Text,
+            My.Application.Info.Version.Major,
+            My.Application.Info.Version.Minor,
+            My.Application.Info.Version.Build,
+            My.Application.Info.Version.Revision)
+    End Sub
 
 End Class
