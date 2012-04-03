@@ -20,7 +20,6 @@
 
 Imports System.Drawing.Imaging
 Imports System.IO
-Imports System.Text.RegularExpressions
 Imports System.Drawing
 Imports System.Windows.Forms
 
