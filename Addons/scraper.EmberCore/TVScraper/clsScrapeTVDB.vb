@@ -657,6 +657,7 @@ Public Class Scraper
             bwTVDB.RunWorkerAsync(New Arguments With {.Type = 2, .Parameter = sInfo})
             While bwTVDB.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Sub
 
@@ -940,6 +941,7 @@ Public Class Scraper
 
             While sHTTP.IsDownloading
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             sImage.Image = sHTTP.Image

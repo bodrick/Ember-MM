@@ -331,6 +331,7 @@ Public Class dlgTrailer
 
         While Me.bwCompileList.IsBusy OrElse Me.bwDownloadTrailer.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         Me.DialogResult = System.Windows.Forms.DialogResult.Cancel

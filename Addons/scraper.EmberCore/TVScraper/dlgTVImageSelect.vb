@@ -362,6 +362,7 @@ Public Class dlgTVImageSelect
 
         While Me.bwLoadData.IsBusy OrElse Me.bwLoadImages.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         Me.DialogResult = Windows.Forms.DialogResult.Cancel

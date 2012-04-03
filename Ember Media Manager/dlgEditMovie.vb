@@ -509,6 +509,7 @@ Public Class dlgEditMovie
         If Me.bwThumbs.IsBusy Then Me.bwThumbs.CancelAsync()
         While Me.bwThumbs.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
     End Sub
 
@@ -1048,6 +1049,7 @@ Public Class dlgEditMovie
             If Me.bwThumbs.IsBusy Then Me.bwThumbs.CancelAsync()
             While Me.bwThumbs.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             Thumbs.Clear()

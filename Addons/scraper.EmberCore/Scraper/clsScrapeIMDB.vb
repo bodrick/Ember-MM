@@ -131,6 +131,7 @@ Namespace IMDB
 
             While bwIMDB.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Sub
 

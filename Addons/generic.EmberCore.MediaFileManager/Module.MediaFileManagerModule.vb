@@ -156,6 +156,7 @@ Public Class FileManagerExternalModule
             bwCopyDirectory.RunWorkerAsync(New Arguments With {.src = src, .dst = dst, .domove = False})
             While bwCopyDirectory.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Using
     End Sub
@@ -171,6 +172,7 @@ Public Class FileManagerExternalModule
             bwCopyDirectory.RunWorkerAsync(New Arguments With {.src = src, .dst = dst, .domove = True})
             While bwCopyDirectory.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
             If Not withErrors Then Directory.Delete(src, True)
 

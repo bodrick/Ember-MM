@@ -337,6 +337,7 @@ Public Class Images
 
             While sHTTP.IsDownloading
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
 
             If Not IsNothing(sHTTP.Image) Then _image = New Bitmap(sHTTP.Image)
