@@ -282,6 +282,7 @@ Public Class dlgImgSelect
         If bwDownload.IsBusy Then bwDownload.CancelAsync()
         While bwDownload.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
 
         Me.DialogResult = System.Windows.Forms.DialogResult.Cancel

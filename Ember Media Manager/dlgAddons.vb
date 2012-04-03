@@ -277,6 +277,7 @@ Public Class dlgAddons
                             sHTTP.StartDownloadImage(String.Format("http://www.embermm.com/addons/addons.php?screenshot={0}", xAddon.Element("id").Value))
                             While sHTTP.IsDownloading
                                 Application.DoEvents()
+                                Threading.Thread.Sleep(50)
                             End While
                             Me.AddonItem(iIndex).ScreenShot = sHTTP.Image
 

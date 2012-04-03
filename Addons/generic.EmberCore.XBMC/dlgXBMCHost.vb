@@ -220,6 +220,7 @@ Public Class dlgXBMCHost
         bwLoadInfo.RunWorkerAsync()
         While bwLoadInfo.IsBusy
             Application.DoEvents()
+            Threading.Thread.Sleep(50)
         End While
         If XBMCSources.Count > 0 Then
             Try

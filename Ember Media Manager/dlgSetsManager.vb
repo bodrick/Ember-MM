@@ -229,6 +229,7 @@ Public Class dlgSetsManager
             Me.DoCancel()
             While Me.bwLoadMovies.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End If
     End Sub

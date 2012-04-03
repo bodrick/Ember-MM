@@ -51,6 +51,7 @@ Namespace MPDB
 
             While Me.bwMPDB.IsBusy
                 Application.DoEvents()
+                Threading.Thread.Sleep(50)
             End While
         End Sub
 

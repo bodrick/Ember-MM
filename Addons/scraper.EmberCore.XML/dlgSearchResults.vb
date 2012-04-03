@@ -92,6 +92,7 @@ Public Class dlgSearchResults
                 sHTTP.StartDownloadImage(lMediaTag.Thumbs(0).Thumb)
                 While sHTTP.IsDownloading
                     Application.DoEvents()
+                    Threading.Thread.Sleep(50)
                 End While
                 e.Result = New Results With {.Result = sHTTP.Image}
             End If
