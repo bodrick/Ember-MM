@@ -964,7 +964,7 @@ Public Class Scraper
             Dim tmpID As String = String.Empty
 
             Try
-                Dim apiXML As String = sHTTP.DownloadData(String.Format("http://{0}/api/GetSeries.php?seriesname={1}&language=all", Master.eSettings.TVDBMirror, sInfo.ShowTitle))
+                Dim apiXML As String = sHTTP.DownloadData(String.Format("http://{0}/api/GetSeries.php?seriesname={1}&language={2}", Master.eSettings.TVDBMirror, sInfo.ShowTitle, Master.eSettings.TVDBLanguage))
 
                 If Not String.IsNullOrEmpty(apiXML) Then
                     Try
