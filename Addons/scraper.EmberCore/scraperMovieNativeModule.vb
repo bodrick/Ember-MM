@@ -385,6 +385,8 @@ Public Class EmberNativeScraperModule
                 If tURL.Substring(0, 7) = "http://" Then
                     DBMovie.Movie.Trailer = tURL
                     'doSave = True
+                ElseIf tURL.Substring(0, 9) = "plugin://" Then
+                    DBMovie.Movie.Trailer = tURL
                 Else
                     DBMovie.TrailerPath = tURL
                     RaiseEvent MovieScraperEvent(Enums.MovieScraperEventType.TrailerItem, True)
