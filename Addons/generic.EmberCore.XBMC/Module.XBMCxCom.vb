@@ -216,6 +216,7 @@ Public Class XBMCxCom
                         String.Format("c15=""{0}"",", StringEscape(DBMovie.Movie.Director)), _
                         String.Format("c16=""{0}"",", StringEscape(DBMovie.Movie.OriginalTitle)), _
                         String.Format("c18=""{0}"",", StringEscape(DBMovie.Movie.Studio)), _
+                        String.Format("c19=""{0}"",", StringEscape(DBMovie.Movie.Trailer)), _
                         String.Format("c21=""{0}""", StringEscape(DBMovie.Movie.Country)), _
                         String.Format(" Where idMovie ={0}", id.ToString))
                         str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
