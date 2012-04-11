@@ -270,22 +270,28 @@ Namespace IMDB
 
                 'trailer
                 If Options.bTrailer AndAlso (String.IsNullOrEmpty(IMDBMovie.Trailer) OrElse Not Master.eSettings.LockTrailer) Then
-                    Dim sTrailerUrl As String = Regex.Match(HTML, "href=""(.*?/video/imdb/vi.*?)""").Groups(1).Value.Trim
-                    If Not sTrailerUrl = String.Empty Then
-                        Dim sTrailerURL2 As String = String.Empty
-                        sTrailerUrl = String.Concat("http://", IMDBURL, sTrailerUrl, "player")
-                        Dim HTTPTrailer As New HTTP
-                        Dim HtmlTrailer As String = HTTPTrailer.DownloadData(sTrailerUrl)
-                        HTTPTrailer = Nothing
+                    'Get first IMDB trailer if possible
+                    Dim trailers As List(Of String) = GetTrailers(IMDBMovie.IMDBID)
+                    'Dim TMDB As New TMDB.Scraper
+                    'Dim YT As String = TMDB.GetTrailers(IMDBMovie.IMDBID)
 
-                        sTrailerUrl = Regex.Match(HtmlTrailer, "so.addVariable\(""id"", ""(.*?)""\);").Groups(1).Value.Trim
-                        If sTrailerUrl = String.Empty Then
-                            sTrailerURL2 = Regex.Match(HtmlTrailer, "so.addVariable\(""file"", ""(.*?)""\);").Groups(1).Value.Trim
-                        Else
-                            sTrailerURL2 = String.Concat(Regex.Match(HtmlTrailer, "so.addVariable\(""file"", ""(.*?)""\);").Groups(1).Value.Trim, sTrailerUrl)
-                        End If
-                        IMDBMovie.Trailer = Web.HttpUtility.UrlDecode(sTrailerURL2)
-                    End If
+                    'Dim sTrailerUrl As String = Regex.Match(HTML, "href=""(.*?/video/imdb/vi.*?)""").Groups(1).Value.Trim
+                    'If Not sTrailerUrl = String.Empty Then
+                    'Dim sTrailerURL2 As String = String.Empty
+                    'sTrailerUrl = String.Concat("http://", IMDBURL, sTrailerUrl, "player")
+                    'Dim HTTPTrailer As New HTTP
+                    'Dim HtmlTrailer As String = HTTPTrailer.DownloadData(sTrailerUrl)
+                    'HTTPTrailer = Nothing
+
+                    'sTrailerUrl = Regex.Match(HtmlTrailer, "so.addVariable\(""id"", ""(.*?)""\);").Groups(1).Value.Trim
+                    'If sTrailerUrl = String.Empty Then
+                    'sTrailerURL2 = Regex.Match(HtmlTrailer, "so.addVariable\(""file"", ""(.*?)""\);").Groups(1).Value.Trim
+                    'Else
+                    'sTrailerURL2 = String.Concat(Regex.Match(HtmlTrailer, "so.addVariable\(""file"", ""(.*?)""\);").Groups(1).Value.Trim, sTrailerUrl)
+                    'End If
+                    'IMDBMovie.Trailer = Web.HttpUtility.UrlDecode(sTrailerURL2)
+                    'End If                    
+                    IMDBMovie.Trailer = trailers.FirstOrDefault()
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing
@@ -912,6 +918,73 @@ mResult:
                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
                 Return Nothing
             End Try
+        End Function
+
+        Public Function GetTrailers(imdbID As String) As List(Of String)
+            Dim TrailerList As New List(Of String)
+            Dim TrailerNumber As Integer = 0
+            Dim Links As MatchCollection
+            Dim trailerPage As String
+            Dim trailerUrl As String
+            Dim Link As Match
+            Dim currPage As Integer = 0
+
+            Dim WebPage As New HTTP
+            Dim _ImdbTrailerPage As String = String.Empty
+
+            _ImdbTrailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/title/tt", imdbID, "/videogallery/content_type-Trailer"))
+            If _ImdbTrailerPage.ToLower.Contains("page not found") Then
+                _ImdbTrailerPage = String.Empty
+            End If
+
+            If Not String.IsNullOrEmpty(_ImdbTrailerPage) Then
+                Link = Regex.Match(_ImdbTrailerPage, "of [0-9]{1,3}")
+
+                If Link.Success Then
+                    TrailerNumber = Convert.ToInt32(Link.Value.Substring(3))
+
+                    If TrailerNumber > 0 Then
+                        currPage = Convert.ToInt32(Math.Ceiling(TrailerNumber / 10))
+
+                        For i As Integer = 1 To currPage
+                            If Not i = 1 Then
+                                _ImdbTrailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/title/tt", imdbID, "/videogallery/content_type-Trailer?page=", i))
+                            End If
+
+                            Links = Regex.Matches(_ImdbTrailerPage, "screenplay/(vi[0-9]+)/")
+                            Dim linksCollection As String() = From m As Object In Links Select CType(m, Match).Value Distinct.ToArray()
+
+                            Links = Regex.Matches(_ImdbTrailerPage, "imdb/(vi[0-9]+)/")
+                            linksCollection = linksCollection.Concat(From m As Object In Links Select CType(m, Match).Value Distinct.ToArray()).ToArray
+
+                            For Each value As String In linksCollection
+                                If value.Contains("screenplay") Then
+                                    trailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/video/", value, "player"))
+                                    trailerUrl = Web.HttpUtility.UrlDecode(Regex.Match(trailerPage, "http.+mp4").Value)
+                                    If Not String.IsNullOrEmpty(trailerUrl) AndAlso WebPage.IsValidURL(trailerUrl) Then
+                                        TrailerList.Add(trailerUrl)
+                                    End If
+                                Else
+                                    ''480p Trailer
+                                    'trailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/video/", value, "player?uff=2"))
+                                    'trailerUrl = Web.HttpUtility.UrlDecode(Regex.Match(trailerPage, "http.+mp4").Value)
+                                    'If Not String.IsNullOrEmpty(trailerUrl) AndAlso WebPage.IsValidURL(trailerUrl) Then
+                                    '    Me._TrailerList.Add(trailerUrl)
+                                    'End If
+
+                                    ''720p Trailer
+                                    'trailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/video/", value, "player?uff=3"))
+                                    'trailerUrl = Web.HttpUtility.UrlDecode(Regex.Match(trailerPage, "http.+mp4").Value)
+                                    'If Not String.IsNullOrEmpty(trailerUrl) AndAlso WebPage.IsValidURL(trailerUrl) Then
+                                    '    Me._TrailerList.Add(trailerUrl)
+                                    'End If
+                                End If
+                            Next
+                        Next
+                    End If
+                End If
+            End If
+            Return TrailerList
         End Function
 
 #End Region 'Methods

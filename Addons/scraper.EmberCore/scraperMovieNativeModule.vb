@@ -171,10 +171,9 @@ Public Class EmberNativeScraperModule
         _setupPost = New frmMediaSettingsHolder
         LoadSettings()
         _setupPost.cbEnabled.Checked = _PostScraperEnabled
-        Dim tCount As Integer = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerSiteCount", "0"))        
-        For iTrailer = 0 To tCount - 1
-            _setupPost.lbTrailerSites.SetItemChecked(iTrailer, AdvancedSettings.GetBooleanSetting(String.Concat("TrailerSite", iTrailer.ToString), False))
-        Next
+        _setupPost.chkTrailerIMDB.Checked = MySettings.UseIMDBTrailer
+        _setupPost.chkTrailerTMDB.Checked = MySettings.UseTMDBTrailer
+        _setupPost.chkTrailerTMDBXBMC.Checked = MySettings.UseTMDBTrailerXBMC
         _setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
         _setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
         _setupPost.chkUseTMDB.Checked = MySettings.UseTMDB
@@ -283,11 +282,13 @@ Public Class EmberNativeScraperModule
         MySettings.UseOFDBGenre = AdvancedSettings.GetBooleanSetting("UseOFDBGenre", False)
         MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("DownloadTraliers", False)
 
-
         MySettings.TrailerTimeout = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerTimeout", "10"))
         MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("UseIMPA", False)
         MySettings.UseMPDB = AdvancedSettings.GetBooleanSetting("UseMPDB", False)
         MySettings.UseTMDB = AdvancedSettings.GetBooleanSetting("UseTMDB", True)
+        MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
+        MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
+        MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
 
         ConfigScrapeModifier.DoSearch = True
         ConfigScrapeModifier.Meta = True
@@ -385,6 +386,8 @@ Public Class EmberNativeScraperModule
                 If tURL.Substring(0, 7) = "http://" Then
                     DBMovie.Movie.Trailer = tURL
                     'doSave = True
+                ElseIf tURL.Substring(0, 9) = "plugin://" Then
+                    DBMovie.Movie.Trailer = tURL
                 Else
                     DBMovie.TrailerPath = tURL
                     RaiseEvent MovieScraperEvent(Enums.MovieScraperEventType.TrailerItem, True)
@@ -450,6 +453,9 @@ Public Class EmberNativeScraperModule
         AdvancedSettings.SetBooleanSetting("UseIMPA", MySettings.UseIMPA)
         AdvancedSettings.SetBooleanSetting("UseMPDB", MySettings.UseMPDB)
         AdvancedSettings.SetBooleanSetting("UseTMDB", MySettings.UseTMDB)
+        AdvancedSettings.SetBooleanSetting("UseIMDBTrailer", MySettings.UseIMDBTrailer)
+        AdvancedSettings.SetBooleanSetting("UseTMDBTrailer", MySettings.UseTMDBTrailer)
+        AdvancedSettings.SetBooleanSetting("UseTMDBTrailerXBMC", MySettings.UseTMDBTrailerXBMC)
 
         AdvancedSettings.SetBooleanSetting("DoPoster", ConfigScrapeModifier.Poster)
         AdvancedSettings.SetBooleanSetting("DoFanart", ConfigScrapeModifier.Fanart)
@@ -457,15 +463,10 @@ Public Class EmberNativeScraperModule
     End Sub
 
     Sub SaveSetupPostScraper(ByVal DoDispose As Boolean) Implements Interfaces.EmberMovieScraperModule.SaveSetupPostScraper
-        MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked
-        For iTrailer = 0 To _setupPost.lbTrailerSites.Items.Count
-            If _setupPost.lbTrailerSites.CheckedIndices.Contains(iTrailer) Then
-                AdvancedSettings.SetBooleanSetting(String.Concat("TrailerSite", iTrailer.ToString), True)
-            Else
-                AdvancedSettings.SetBooleanSetting(String.Concat("TrailerSite", iTrailer.ToString), False)
-            End If
-        Next
-        AdvancedSettings.SetSetting("TrailerSiteCount", _setupPost.lbTrailerSites.Items.Count.ToString)
+        MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked        
+        MySettings.UseIMDBTrailer = _setupPost.chkTrailerIMDB.Checked
+        MySettings.UseTMDBTrailer = _setupPost.chkTrailerTMDB.Checked
+        MySettings.UseTMDBTrailerXBMC = _setupPost.chkTrailerTMDBXBMC.Checked
         MySettings.TrailerTimeout = Convert.ToInt32(_setupPost.txtTimeout.Text)
         MySettings.UseTMDB = _setupPost.chkUseTMDB.Checked
         MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
@@ -666,7 +667,9 @@ Public Class EmberNativeScraperModule
         Dim UseTMDB As Boolean
         Dim UseIMPA As Boolean
         Dim UseMPDB As Boolean
-
+        Dim UseTMDBTrailer As Boolean
+        Dim UseIMDBTrailer As Boolean
+        Dim UseTMDBTrailerXBMC As Boolean
 #End Region 'Fields
 
     End Structure

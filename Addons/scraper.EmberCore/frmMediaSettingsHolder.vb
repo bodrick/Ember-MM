@@ -59,18 +59,33 @@ Public Class frmMediaSettingsHolder
 
     Sub CheckTrailer()
         Me.txtTimeout.Enabled = Me.chkDownloadTrailer.Checked
-        Me.lbTrailerSites.Enabled = Me.chkDownloadTrailer.Checked
+        Me.chkTrailerIMDB.Enabled = Me.chkDownloadTrailer.Checked
+        Me.chkTrailerTMDB.Enabled = Me.chkDownloadTrailer.Checked
+        Me.chkTrailerTMDBXBMC.Enabled = Me.chkDownloadTrailer.Checked
         If Not Me.chkDownloadTrailer.Checked Then
             Me.txtTimeout.Text = "2"
-            For i As Integer = 0 To lbTrailerSites.Items.Count - 1
-                lbTrailerSites.SetItemChecked(i, False)
-            Next
+            Me.chkTrailerTMDB.Checked = False
+            Me.chkTrailerIMDB.Checked = False
+            Me.chkTrailerTMDBXBMC.Checked = False
         End If
     End Sub
 
     Private Sub chkDownloadTrailer_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkDownloadTrailer.CheckedChanged
         RaiseEvent ModuleSettingsChanged()
         CheckTrailer()
+    End Sub
+
+    Private Sub chkTrailerTMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailerTMDB.CheckedChanged
+        chkTrailerTMDBXBMC.Enabled = chkTrailerTMDB.Checked
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
+    Private Sub chkTrailerIMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailerIMDB.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
+    Private Sub chkTrailerTMDBXBMC_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailerTMDBXBMC.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
     End Sub
 
     Private Sub chkScrapeFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapeFanart.CheckedChanged
@@ -97,21 +112,6 @@ Public Class frmMediaSettingsHolder
     Public Sub New()
         InitializeComponent()
         Me.SetUp()
-    End Sub
-
-    Private Sub lbTrailerSites_ItemCheck(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemCheckEventArgs)
-        RaiseEvent ModuleSettingsChanged()
-        If e.Index = 0 AndAlso (e.NewValue = CheckState.Checked OrElse Me.lbTrailerSites.GetItemChecked(1)) Then
-            'Me.cbTrailerQuality.Enabled = True
-        ElseIf e.Index = 1 AndAlso (e.NewValue = CheckState.Checked OrElse Me.lbTrailerSites.GetItemChecked(0)) Then
-            'Me.cbTrailerQuality.Enabled = True
-        Else
-            If Me.lbTrailerSites.GetItemChecked(0) OrElse Me.lbTrailerSites.GetItemChecked(1) Then
-                'Me.cbTrailerQuality.Enabled = True
-            Else
-                'Me.cbTrailerQuality.Enabled = False
-            End If
-        End If
     End Sub
 
     Sub orderChanged()

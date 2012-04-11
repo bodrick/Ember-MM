@@ -148,7 +148,7 @@ Namespace YouTube
                 Dim VideoTitle As String = GetVideoTitle(Html)
                 VideoTitle = Regex.Replace(VideoTitle, "['?\\:*<>]*", "")
 
-                Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map=(.*?)&amp;", RegexOptions.IgnoreCase)
+                Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map=(.*?)\\u0026amp;", RegexOptions.IgnoreCase)
                 If fmtMatch.Success Then
                     Dim FormatMap As String = fmtMatch.Groups(1).Value
 
@@ -175,6 +175,18 @@ Namespace YouTube
                             Case "37"
                                 Link.Description = "1080p"
                                 Link.FormatQuality = Enums.TrailerQuality.HD1080p
+                            Case "46"
+                                Link.Description = "1080p (VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.HD1080pVP8
+                            Case "45"
+                                Link.Description = "720p (VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.HD720pVP8
+                            Case "44"
+                                Link.Description = "HQ (VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.HQVP8
+                            Case "43"
+                                Link.Description = "SQ (VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.SQVP8
                             Case Else
                                 Link.Description = "Other"
                                 Link.FormatQuality = Enums.TrailerQuality.OTHERS

@@ -23,30 +23,32 @@ Partial Class frmMediaSettingsHolder
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMediaSettingsHolder))
-        Me.pnlSettings = New System.Windows.Forms.Panel
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.grpSaveFanart = New System.Windows.Forms.GroupBox
-        Me.optFanartFolderExtraFanart = New System.Windows.Forms.RadioButton
-        Me.optFanartFolderExtraThumbs = New System.Windows.Forms.RadioButton
-        Me.GroupBox9 = New System.Windows.Forms.GroupBox
-        Me.chkUseMPDB = New System.Windows.Forms.CheckBox
-        Me.chkUseTMDB = New System.Windows.Forms.CheckBox
-        Me.chkUseIMPA = New System.Windows.Forms.CheckBox
-        Me.chkScrapePoster = New System.Windows.Forms.CheckBox
-        Me.chkScrapeFanart = New System.Windows.Forms.CheckBox
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.chkDownloadTrailer = New System.Windows.Forms.CheckBox
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.txtTimeout = New System.Windows.Forms.TextBox
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.lbTrailerSites = New System.Windows.Forms.CheckedListBox
-        Me.Panel2 = New System.Windows.Forms.Panel
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.btnDown = New System.Windows.Forms.Button
-        Me.btnUp = New System.Windows.Forms.Button
-        Me.cbEnabled = New System.Windows.Forms.CheckBox
+        Me.pnlSettings = New System.Windows.Forms.Panel()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.grpSaveFanart = New System.Windows.Forms.GroupBox()
+        Me.optFanartFolderExtraFanart = New System.Windows.Forms.RadioButton()
+        Me.optFanartFolderExtraThumbs = New System.Windows.Forms.RadioButton()
+        Me.GroupBox9 = New System.Windows.Forms.GroupBox()
+        Me.chkUseMPDB = New System.Windows.Forms.CheckBox()
+        Me.chkUseTMDB = New System.Windows.Forms.CheckBox()
+        Me.chkUseIMPA = New System.Windows.Forms.CheckBox()
+        Me.chkScrapePoster = New System.Windows.Forms.CheckBox()
+        Me.chkScrapeFanart = New System.Windows.Forms.CheckBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chkDownloadTrailer = New System.Windows.Forms.CheckBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.txtTimeout = New System.Windows.Forms.TextBox()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.chkTrailerTMDBXBMC = New System.Windows.Forms.CheckBox()
+        Me.chkTrailerIMDB = New System.Windows.Forms.CheckBox()
+        Me.chkTrailerTMDB = New System.Windows.Forms.CheckBox()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.btnDown = New System.Windows.Forms.Button()
+        Me.btnUp = New System.Windows.Forms.Button()
+        Me.cbEnabled = New System.Windows.Forms.CheckBox()
         Me.pnlSettings.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
@@ -79,7 +81,7 @@ Partial Class frmMediaSettingsHolder
         Me.Label1.Size = New System.Drawing.Size(225, 31)
         Me.Label1.TabIndex = 95
         Me.Label1.Text = "These settings are specific to this module." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please refer to the global settings " & _
-            "for more options."
+    "for more options."
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'PictureBox1
@@ -125,7 +127,7 @@ Partial Class frmMediaSettingsHolder
         Me.optFanartFolderExtraFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.optFanartFolderExtraFanart.Location = New System.Drawing.Point(22, 38)
         Me.optFanartFolderExtraFanart.Name = "optFanartFolderExtraFanart"
-        Me.optFanartFolderExtraFanart.Size = New System.Drawing.Size(80, 17)
+        Me.optFanartFolderExtraFanart.Size = New System.Drawing.Size(85, 17)
         Me.optFanartFolderExtraFanart.TabIndex = 84
         Me.optFanartFolderExtraFanart.TabStop = True
         Me.optFanartFolderExtraFanart.Text = "\extrafanart"
@@ -137,7 +139,7 @@ Partial Class frmMediaSettingsHolder
         Me.optFanartFolderExtraThumbs.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.optFanartFolderExtraThumbs.Location = New System.Drawing.Point(22, 19)
         Me.optFanartFolderExtraThumbs.Name = "optFanartFolderExtraThumbs"
-        Me.optFanartFolderExtraThumbs.Size = New System.Drawing.Size(87, 17)
+        Me.optFanartFolderExtraThumbs.Size = New System.Drawing.Size(93, 17)
         Me.optFanartFolderExtraThumbs.TabIndex = 84
         Me.optFanartFolderExtraThumbs.TabStop = True
         Me.optFanartFolderExtraThumbs.Text = "\extrathumbs"
@@ -225,7 +227,7 @@ Partial Class frmMediaSettingsHolder
         Me.GroupBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(15, 168)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(587, 98)
+        Me.GroupBox1.Size = New System.Drawing.Size(587, 112)
         Me.GroupBox1.TabIndex = 92
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Trailers"
@@ -237,7 +239,7 @@ Partial Class frmMediaSettingsHolder
         Me.chkDownloadTrailer.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkDownloadTrailer.Location = New System.Drawing.Point(6, 19)
         Me.chkDownloadTrailer.Name = "chkDownloadTrailer"
-        Me.chkDownloadTrailer.Size = New System.Drawing.Size(131, 17)
+        Me.chkDownloadTrailer.Size = New System.Drawing.Size(140, 17)
         Me.chkDownloadTrailer.TabIndex = 84
         Me.chkDownloadTrailer.Text = "Enable Trailer Support"
         Me.chkDownloadTrailer.UseVisualStyleBackColor = True
@@ -248,7 +250,7 @@ Partial Class frmMediaSettingsHolder
         Me.Label23.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.Location = New System.Drawing.Point(21, 43)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(48, 13)
+        Me.Label23.Size = New System.Drawing.Size(51, 13)
         Me.Label23.TabIndex = 91
         Me.Label23.Text = "Timeout:"
         '
@@ -258,35 +260,59 @@ Partial Class frmMediaSettingsHolder
         Me.txtTimeout.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtTimeout.Location = New System.Drawing.Point(82, 39)
         Me.txtTimeout.Name = "txtTimeout"
-        Me.txtTimeout.Size = New System.Drawing.Size(50, 20)
+        Me.txtTimeout.Size = New System.Drawing.Size(50, 22)
         Me.txtTimeout.TabIndex = 90
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.lbTrailerSites)
+        Me.GroupBox2.Controls.Add(Me.chkTrailerTMDBXBMC)
+        Me.GroupBox2.Controls.Add(Me.chkTrailerIMDB)
+        Me.GroupBox2.Controls.Add(Me.chkTrailerTMDB)
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(151, 12)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(161, 79)
+        Me.GroupBox2.Size = New System.Drawing.Size(161, 94)
         Me.GroupBox2.TabIndex = 83
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Supported Sites:"
         '
-        'lbTrailerSites
+        'chkTrailerTMDBXBMC
         '
-        Me.lbTrailerSites.CheckOnClick = True
-        Me.lbTrailerSites.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.lbTrailerSites.FormattingEnabled = True
-        Me.lbTrailerSites.Items.AddRange(New Object() {"YouTube/TMDB", "IMDB"})
-        Me.lbTrailerSites.Location = New System.Drawing.Point(6, 18)
-        Me.lbTrailerSites.Name = "lbTrailerSites"
-        Me.lbTrailerSites.Size = New System.Drawing.Size(149, 49)
-        Me.lbTrailerSites.TabIndex = 9
+        Me.chkTrailerTMDBXBMC.AutoSize = True
+        Me.chkTrailerTMDBXBMC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTrailerTMDBXBMC.Location = New System.Drawing.Point(26, 44)
+        Me.chkTrailerTMDBXBMC.Name = "chkTrailerTMDBXBMC"
+        Me.chkTrailerTMDBXBMC.Size = New System.Drawing.Size(95, 17)
+        Me.chkTrailerTMDBXBMC.TabIndex = 12
+        Me.chkTrailerTMDBXBMC.Text = "XBMC Format"
+        Me.chkTrailerTMDBXBMC.UseVisualStyleBackColor = True
+        '
+        'chkTrailerIMDB
+        '
+        Me.chkTrailerIMDB.AutoSize = True
+        Me.chkTrailerIMDB.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTrailerIMDB.Location = New System.Drawing.Point(6, 67)
+        Me.chkTrailerIMDB.Name = "chkTrailerIMDB"
+        Me.chkTrailerIMDB.Size = New System.Drawing.Size(54, 17)
+        Me.chkTrailerIMDB.TabIndex = 11
+        Me.chkTrailerIMDB.Text = "IMDB"
+        Me.chkTrailerIMDB.UseVisualStyleBackColor = True
+        '
+        'chkTrailerTMDB
+        '
+        Me.chkTrailerTMDB.AutoSize = True
+        Me.chkTrailerTMDB.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkTrailerTMDB.Location = New System.Drawing.Point(6, 21)
+        Me.chkTrailerTMDB.Name = "chkTrailerTMDB"
+        Me.chkTrailerTMDB.Size = New System.Drawing.Size(103, 17)
+        Me.chkTrailerTMDB.TabIndex = 10
+        Me.chkTrailerTMDB.Text = "Youtube/TMDB"
+        Me.chkTrailerTMDB.UseVisualStyleBackColor = True
         '
         'Panel2
         '
         Me.Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                    Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Panel2.BackColor = System.Drawing.Color.WhiteSmoke
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Controls.Add(Me.btnDown)
@@ -303,7 +329,7 @@ Partial Class frmMediaSettingsHolder
         Me.Label3.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.Location = New System.Drawing.Point(500, 7)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(60, 12)
+        Me.Label3.Size = New System.Drawing.Size(58, 12)
         Me.Label3.TabIndex = 87
         Me.Label3.Text = "Scraper order"
         '
@@ -332,7 +358,7 @@ Partial Class frmMediaSettingsHolder
         Me.cbEnabled.AutoSize = True
         Me.cbEnabled.Location = New System.Drawing.Point(10, 5)
         Me.cbEnabled.Name = "cbEnabled"
-        Me.cbEnabled.Size = New System.Drawing.Size(65, 17)
+        Me.cbEnabled.Size = New System.Drawing.Size(68, 17)
         Me.cbEnabled.TabIndex = 82
         Me.cbEnabled.Text = "Enabled"
         Me.cbEnabled.UseVisualStyleBackColor = True
@@ -361,6 +387,7 @@ Partial Class frmMediaSettingsHolder
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox2.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.ResumeLayout(False)
@@ -375,7 +402,6 @@ Partial Class frmMediaSettingsHolder
     Friend WithEvents chkUseTMDB As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseIMPA As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents lbTrailerSites As System.Windows.Forms.CheckedListBox
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents cbEnabled As System.Windows.Forms.CheckBox
     Friend WithEvents Label23 As System.Windows.Forms.Label
@@ -390,5 +416,8 @@ Partial Class frmMediaSettingsHolder
     Friend WithEvents grpSaveFanart As System.Windows.Forms.GroupBox
     Friend WithEvents optFanartFolderExtraFanart As System.Windows.Forms.RadioButton
     Friend WithEvents optFanartFolderExtraThumbs As System.Windows.Forms.RadioButton
+    Friend WithEvents chkTrailerIMDB As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTrailerTMDB As System.Windows.Forms.CheckBox
+    Friend WithEvents chkTrailerTMDBXBMC As System.Windows.Forms.CheckBox
 
 End Class

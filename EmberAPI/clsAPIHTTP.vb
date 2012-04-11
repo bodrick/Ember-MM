@@ -245,6 +245,8 @@ Public Class HTTP
                         outFile = Path.Combine(Directory.GetParent(LocalFile).FullName, String.Concat(Path.GetFileNameWithoutExtension(LocalFile), If(Master.eSettings.DashTrailer, "-trailer.mp4", "[trailer].mp4")))
                     Case Type = "trailer" AndAlso wrResponse.ContentType.Contains("flv")
                         outFile = Path.Combine(Directory.GetParent(LocalFile).FullName, String.Concat(Path.GetFileNameWithoutExtension(LocalFile), If(Master.eSettings.DashTrailer, "-trailer.flv", "[trailer].flv")))
+                    Case Type = "trailer" AndAlso wrResponse.ContentType.Contains("webm")
+                        outFile = Path.Combine(Directory.GetParent(LocalFile).FullName, String.Concat(Path.GetFileNameWithoutExtension(LocalFile), If(Master.eSettings.DashTrailer, "-trailer.webm", "[trailer].webm")))
                     Case Type = "other"
                         outFile = LocalFile
                 End Select

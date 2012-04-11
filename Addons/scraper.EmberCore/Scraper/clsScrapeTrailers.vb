@@ -35,7 +35,7 @@ Public Class Trailers
     Private WebPage As New HTTP
     Private _ImdbID As String = String.Empty
     Private _ImdbTrailerPage As String = String.Empty
-    Private _TrailerList As New List(Of String)
+    Private _TrailerList As New List(Of String)    
 
 #End Region 'Fields
 
@@ -115,6 +115,14 @@ Public Class Trailers
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQFLV) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQFLV).URL
                                     End If
+                                Case Enums.TrailerQuality.HD1080pVP8
+                                    If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HD720pVP8) Then
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.HD720pVP8).URL
+                                    ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HQVP8) Then
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.HQVP8).URL                                    
+                                    ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQVP8) Then
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.SQVP8).URL
+                                    End If
                                 Case Enums.TrailerQuality.HD720p
                                     If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HQFLV) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.HQFLV).URL
@@ -123,17 +131,29 @@ Public Class Trailers
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQFLV) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQFLV).URL
                                     End If
+                                Case Enums.TrailerQuality.HD720pVP8                                
+                                    If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.HQVP8) Then
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.HQVP8).URL
+                                    ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQVP8) Then
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.SQVP8).URL
+                                    End If
                                 Case Enums.TrailerQuality.HQFLV
                                     If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQMP4) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQMP4).URL
                                     ElseIf YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQFLV) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQFLV).URL
                                     End If
+                                Case Enums.TrailerQuality.HQVP8
+                                    If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQVP8) Then
+                                        tLink = YT.VideoLinks(Enums.TrailerQuality.SQVP8).URL
+                                    End If
                                 Case Enums.TrailerQuality.SQMP4
                                     If YT.VideoLinks.ContainsKey(Enums.TrailerQuality.SQFLV) Then
                                         tLink = YT.VideoLinks(Enums.TrailerQuality.SQFLV).URL
                                     End If
                                 Case Enums.TrailerQuality.SQFLV
+                                    tLink = String.Empty
+                                Case Enums.TrailerQuality.SQVP8
                                     tLink = String.Empty
                             End Select
                         End If
@@ -181,23 +201,12 @@ Public Class Trailers
 
     Public Function GetTrailers(ByVal ImdbID As String, Optional ByVal BreakAfterFound As Boolean = True) As List(Of String)
         Me._ImdbID = ImdbID
-        Dim tCount As Integer = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerSiteCount", "0"))
-        For iTrailer = 0 To tCount - 1
-            If BreakAfterFound AndAlso _TrailerList.Count > 0 Then
-                Exit For
-            End If
-            Try
-                If AdvancedSettings.GetBooleanSetting(String.Concat("TrailerSite", iTrailer.ToString), False) Then
-                    Select Case iTrailer                        
-                        Case Enums.TrailerPages.TMDB
-                            Me.GetTMDBTrailer()
-                        Case Enums.TrailerPages.IMDB
-                            Me.GetImdbTrailer()
-                    End Select
-                End If
-            Catch
-            End Try
-        Next
+        If AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", False) Then
+            Me.GetImdbTrailer()
+        End If
+        If AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", False) Then
+            Me.GetTMDBTrailer()
+        End If
 
         Return Me._TrailerList
     End Function
@@ -228,53 +237,15 @@ Public Class Trailers
         End If
     End Function
 
-    Private Sub GetImdbTrailer()
-        Dim TrailerNumber As Integer = 0
-        Dim Links As MatchCollection
-        Dim trailerPage As String
-        Dim trailerUrl As String
-        Dim Link As Match
-        Dim currPage As Integer = 0
+    Private Sub GetIMDBTrailer()
+        Dim IMDB As New IMDB.Scraper        
+        IMDB.IMDBURL = AdvancedSettings.GetSetting("IMDBURL", "akas.imdb.com")
+        Dim results As List(Of String) = IMDB.GetTrailers(_ImdbID)
 
-        Me.GetImdbTrailerPage()
+        Me._TrailerList.AddRange(results)
 
-        If Not String.IsNullOrEmpty(_ImdbTrailerPage) Then
-            Link = Regex.Match(_ImdbTrailerPage, "of [0-9]{1,3}")
-
-            If Link.Success Then
-                TrailerNumber = Convert.ToInt32(Link.Value.Substring(3))
-
-                If TrailerNumber > 0 Then
-                    currPage = Convert.ToInt32(Math.Ceiling(TrailerNumber / 10))
-
-                    For i As Integer = 1 To currPage
-                        If Not i = 1 Then
-                            _ImdbTrailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/title/tt", _ImdbID, "/videogallery/content_type-Trailer?page=", i))
-                        End If
-
-                        Links = Regex.Matches(_ImdbTrailerPage, "/vi[0-9]+/")
-
-                        For Each m As Match In Links
-                            trailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/video/screenplay", m.Value, "player"))
-
-                            trailerUrl = Web.HttpUtility.UrlDecode(Regex.Match(trailerPage, "http.+flv").Value)
-
-                            If Not String.IsNullOrEmpty(trailerUrl) AndAlso WebPage.IsValidURL(trailerUrl) Then
-                                Me._TrailerList.Add(trailerUrl)
-                            End If
-                        Next
-                    Next
-                End If
-            End If
-        End If
+        IMDB = Nothing
     End Sub
-
-    Private Function GetImdbTrailerPage() As Boolean
-        _ImdbTrailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/title/tt", _ImdbID, "/videogallery/content_type-Trailer"))
-        If _ImdbTrailerPage.ToLower.Contains("page not found") Then
-            _ImdbTrailerPage = String.Empty
-        End If
-    End Function
 
     Private Sub GetTMDBTrailer()
         Dim TMDB As New TMDB.Scraper

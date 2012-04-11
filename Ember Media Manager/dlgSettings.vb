@@ -2697,10 +2697,14 @@ Public Class dlgSettings
     Private Sub LoadTrailerQualities()
         Dim items As New Dictionary(Of String, Enums.TrailerQuality)
         items.Add("1080p", Enums.TrailerQuality.HD1080p)
+        items.Add("1080p (VP8)", Enums.TrailerQuality.HD1080pVP8)
         items.Add("720p", Enums.TrailerQuality.HD720p)
+        items.Add("720p (VP8)", Enums.TrailerQuality.HD720pVP8)
         items.Add("SQ (MP4)", Enums.TrailerQuality.SQMP4)
         items.Add("HQ (FLV)", Enums.TrailerQuality.HQFLV)
+        items.Add("HQ (VP8)", Enums.TrailerQuality.HQVP8)
         items.Add("SQ (FLV)", Enums.TrailerQuality.SQFLV)
+        items.Add("SQ (VP8)", Enums.TrailerQuality.SQVP8)
         Me.cbTrailerQuality.DataSource = items.ToList
         Me.cbTrailerQuality.DisplayMember = "Key"
         Me.cbTrailerQuality.ValueMember = "Value"

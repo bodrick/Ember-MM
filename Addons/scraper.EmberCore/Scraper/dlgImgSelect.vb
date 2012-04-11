@@ -1002,11 +1002,11 @@ Public Class dlgImgSelect
 
     Private Sub pbImage_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
-            If Me.DLType = Enums.ImageType.Fanart OrElse Not IsTMDBURL(DirectCast(sender, PictureBox).Tag.ToString) Then
-                ModulesManager.Instance.RuntimeObjects.InvokeOpenImageViewer(DirectCast(sender, PictureBox).Image)
-            Else
-                PreviewImage()
-            End If
+            'If Me.DLType = Enums.ImageType.Fanart OrElse Not IsTMDBURL(DirectCast(sender, PictureBox).Tag.ToString) Then
+            'ModulesManager.Instance.RuntimeObjects.InvokeOpenImageViewer(DirectCast(sender, PictureBox).Image)
+            'Else
+            PreviewImage()
+            'End If
         Catch
         End Try
     End Sub

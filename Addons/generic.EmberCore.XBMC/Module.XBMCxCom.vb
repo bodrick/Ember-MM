@@ -27,10 +27,10 @@ Imports EmberAPI
 Public Class XBMCxCom
     Implements Interfaces.EmberExternalModule
 
-    #Region "Fields"
+#Region "Fields"
 
-    Private  WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
-    Private  WithEvents MyTrayMenu As New System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
+    Private WithEvents MyTrayMenu As New System.Windows.Forms.ToolStripMenuItem
     Private _enabled As Boolean = False
     Private _MySettings As New MySettings
     Private _name As String = "XBMC Controller"
@@ -39,9 +39,9 @@ Public Class XBMCxCom
     Private RunQueue As New Queue(Of Structures.DBMovie)
     Private _httpTimeOut As Integer = 10000
     Private _sendNotification As Boolean = False
-    #End Region 'Fields
+#End Region 'Fields
 
-    #Region "Events"
+#Region "Events"
 
     Public Event GenericEvent(ByVal mType As EmberAPI.Enums.ModuleEventType, ByRef _params As System.Collections.Generic.List(Of Object)) Implements EmberAPI.Interfaces.EmberExternalModule.GenericEvent
 
@@ -49,9 +49,9 @@ Public Class XBMCxCom
 
     Public Event ModuleSettingsChanged() Implements Interfaces.EmberExternalModule.ModuleSettingsChanged
 
-    #End Region 'Events
+#End Region 'Events
 
-    #Region "Properties"
+#Region "Properties"
 
     Public Property Enabled() As Boolean Implements EmberAPI.Interfaces.EmberExternalModule.Enabled
         Get
@@ -86,9 +86,9 @@ Public Class XBMCxCom
         End Get
     End Property
 
-    #End Region 'Properties
+#End Region 'Properties
 
-    #Region "Methods"
+#Region "Methods"
 
     Public Sub Init(ByVal sAssemblyName As String) Implements EmberAPI.Interfaces.EmberExternalModule.Init
         '_MySettings.XComs.AddRange(Master.eSettings.XBMCComs)
@@ -111,7 +111,7 @@ Public Class XBMCxCom
         SPanel.Type = Master.eLang.GetString(802, "Modules", True)
         SPanel.ImageIndex = If(Me._enabled, 9, 10)
         SPanel.Order = 100
-        SPanel.Panel = Me._setup.pnlSettings()
+        SPanel.Panel = Me._setup.pnlSettings
         AddHandler _setup.ModuleEnabledChanged, AddressOf Handle_SetupChanged
         AddHandler _setup.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
         Return SPanel
@@ -216,6 +216,7 @@ Public Class XBMCxCom
                         String.Format("c15=""{0}"",", StringEscape(DBMovie.Movie.Director)), _
                         String.Format("c16=""{0}"",", StringEscape(DBMovie.Movie.OriginalTitle)), _
                         String.Format("c18=""{0}"",", StringEscape(DBMovie.Movie.Studio)), _
+                        String.Format("c19=""{0}"",", StringEscape(DBMovie.Movie.Trailer)), _
                         String.Format("c21=""{0}""", StringEscape(DBMovie.Movie.Country)), _
                         String.Format(" Where idMovie ={0}", id.ToString))
                         str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))

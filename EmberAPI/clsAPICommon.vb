@@ -587,19 +587,17 @@ Public Class Enums
         Text = 3
     End Enum
 
-    Public Enum TrailerPages As Integer
-        ' ALLHTPC = 0 Site no longer exists
-        TMDB = 1
-        IMDB = 2
-    End Enum
-
     Public Enum TrailerQuality As Integer
         HD1080p = 0
-        HD720p = 1
-        SQMP4 = 2
-        HQFLV = 3
-        SQFLV = 4
-        OTHERS = 5
+        HD1080pVP8 = 1
+        HD720p = 2
+        HD720pVP8 = 3
+        SQMP4 = 4
+        HQFLV = 5
+        HQVP8 = 6
+        SQFLV = 7
+        SQVP8 = 8
+        OTHERS = 9
     End Enum
 
     Public Enum ImageType As Integer
