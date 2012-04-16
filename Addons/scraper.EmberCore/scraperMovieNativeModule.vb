@@ -383,10 +383,13 @@ Public Class EmberNativeScraperModule
         If Master.GlobalScrapeMod.Trailer AndAlso MySettings.DownloadTrailers Then
             tURL = Trailer.DownloadSingleTrailer(DBMovie.Filename, DBMovie.Movie.IMDBID, DBMovie.isSingle, DBMovie.Movie.Trailer)
             If Not String.IsNullOrEmpty(tURL) Then
-                If tURL.Substring(0, 7) = "http://" Then
-                    DBMovie.Movie.Trailer = tURL
-                    'doSave = True
-                ElseIf tURL.Substring(0, 9) = "plugin://" Then
+                If tURL.Substring(0, 22) = "http://www.youtube.com" Then
+                    If AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False) Then
+                        DBMovie.Movie.Trailer = Replace(tURL, "http://www.youtube.com/watch?v=", "plugin://plugin.video.youtube/?action=play_video&videoid=")
+                    Else
+                        DBMovie.Movie.Trailer = tURL
+                    End If
+                ElseIf tURL.Substring(0, 7) = "http://" Then
                     DBMovie.Movie.Trailer = tURL
                 Else
                     DBMovie.TrailerPath = tURL
