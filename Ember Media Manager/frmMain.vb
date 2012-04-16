@@ -6379,6 +6379,8 @@ doCancel:
                     ' If Not String.IsNullOrEmpty(tURL) AndAlso tURL.Contains("://") Then
                     If Not String.IsNullOrEmpty(tURL) AndAlso tURL.Substring(0, 7) = "http://" Then
                         Master.currMovie.Movie.Trailer = tURL
+                    ElseIf Not String.IsNullOrEmpty(tURL) AndAlso tURL.Substring(0, 9) = "plugin://" Then
+                        Master.currMovie.Movie.Trailer = tURL
                     End If
                 End If
 
