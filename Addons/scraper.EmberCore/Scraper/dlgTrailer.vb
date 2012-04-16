@@ -47,7 +47,11 @@ Public Class dlgTrailer
         Me.sPath = _sPath
 
         If MyBase.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
-            Return Me.tURL
+            If AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False) Then
+                Return Replace(Me.tURL, "http://www.youtube.com/watch?v=", "plugin://plugin.video.youtube/?action=play_video&videoid=")
+            Else
+                Return Me.tURL
+            End If
         Else
             Return String.Empty
         End If
