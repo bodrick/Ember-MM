@@ -173,8 +173,6 @@ Namespace TMDB
                                 If Trailers.Count > 0 AndAlso Not String.IsNullOrEmpty(Trailers(0).Value) Then
                                     If Trailers(0).Value.ToLower.IndexOf("youtube.com") > 0 Then
                                         If AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False) Then
-                                            Return Replace(Trailers(0).Value, "http://www.youtube.com/watch?v=", "plugin://plugin.video.youtube/?action=play_video&videoid=")
-                                        Else
                                             Return Trailers(0).Value
                                         End If
                                     End If
