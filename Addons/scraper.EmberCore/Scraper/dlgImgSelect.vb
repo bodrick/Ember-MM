@@ -366,7 +366,7 @@ Public Class dlgImgSelect
         'Only download the posters themselves that match the cover criteria for display purposes, no need to download them all.
         Dim posters As MediaContainers.Image()
         If Me.DLType = Enums.ImageType.Fanart Then
-            posters = TMDBPosters.Where(Function(s) s.Description = "thumb").ToArray()
+            posters = TMDBPosters.Where(Function(s) s.Description = "original").ToArray()
         Else
             posters = TMDBPosters.Where(Function(s) s.Description = "cover").ToArray()
         End If
