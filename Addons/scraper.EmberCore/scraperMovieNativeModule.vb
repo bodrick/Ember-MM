@@ -179,6 +179,7 @@ Public Class EmberNativeScraperModule
         _setupPost.chkUseTMDB.Checked = MySettings.UseTMDB
         _setupPost.chkUseIMPA.Checked = MySettings.UseIMPA
         _setupPost.chkUseMPDB.Checked = MySettings.UseMPDB
+        _setupPost.cbManualETSize.Text = MySettings.ManualETSize
         _setupPost.txtTimeout.Text = MySettings.TrailerTimeout.ToString
         _setupPost.chkDownloadTrailer.Checked = MySettings.DownloadTrailers
         _setupPost.CheckTrailer()
@@ -289,6 +290,7 @@ Public Class EmberNativeScraperModule
         MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
         MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
         MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
+        MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "original"))
 
         ConfigScrapeModifier.DoSearch = True
         ConfigScrapeModifier.Meta = True
@@ -456,6 +458,7 @@ Public Class EmberNativeScraperModule
         AdvancedSettings.SetBooleanSetting("UseIMPA", MySettings.UseIMPA)
         AdvancedSettings.SetBooleanSetting("UseMPDB", MySettings.UseMPDB)
         AdvancedSettings.SetBooleanSetting("UseTMDB", MySettings.UseTMDB)
+        AdvancedSettings.SetSetting("ManualETSize", MySettings.ManualETSize.ToString)
         AdvancedSettings.SetBooleanSetting("UseIMDBTrailer", MySettings.UseIMDBTrailer)
         AdvancedSettings.SetBooleanSetting("UseTMDBTrailer", MySettings.UseTMDBTrailer)
         AdvancedSettings.SetBooleanSetting("UseTMDBTrailerXBMC", MySettings.UseTMDBTrailerXBMC)
@@ -474,6 +477,7 @@ Public Class EmberNativeScraperModule
         MySettings.UseTMDB = _setupPost.chkUseTMDB.Checked
         MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
         MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
+        MySettings.ManualETSize = _setupPost.cbManualETSize.Text
         ConfigScrapeModifier.Poster = _setupPost.chkScrapePoster.Checked
         ConfigScrapeModifier.Fanart = _setupPost.chkScrapeFanart.Checked
         SaveSettings()
@@ -673,6 +677,7 @@ Public Class EmberNativeScraperModule
         Dim UseTMDBTrailer As Boolean
         Dim UseIMDBTrailer As Boolean
         Dim UseTMDBTrailerXBMC As Boolean
+        Dim ManualETSize As String
 #End Region 'Fields
 
     End Structure
