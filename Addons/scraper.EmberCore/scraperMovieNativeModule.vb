@@ -1,4 +1,4 @@
-﻿' ################################################################################
+' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -173,12 +173,14 @@ Public Class EmberNativeScraperModule
         _setupPost.cbEnabled.Checked = _PostScraperEnabled
         _setupPost.chkTrailerIMDB.Checked = MySettings.UseIMDBTrailer
         _setupPost.chkTrailerTMDB.Checked = MySettings.UseTMDBTrailer
+        _setupPost.cbTrailerTMDBPref.Text = MySettings.UseTMDBTrailerPref
         _setupPost.chkTrailerTMDBXBMC.Checked = MySettings.UseTMDBTrailerXBMC
         _setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
         _setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
         _setupPost.chkUseTMDB.Checked = MySettings.UseTMDB
         _setupPost.chkUseIMPA.Checked = MySettings.UseIMPA
         _setupPost.chkUseMPDB.Checked = MySettings.UseMPDB
+        _setupPost.cbManualETSize.Text = MySettings.ManualETSize
         _setupPost.txtTimeout.Text = MySettings.TrailerTimeout.ToString
         _setupPost.chkDownloadTrailer.Checked = MySettings.DownloadTrailers
         _setupPost.CheckTrailer()
@@ -289,6 +291,8 @@ Public Class EmberNativeScraperModule
         MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
         MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
         MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
+        MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "original"))
+        MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
 
         ConfigScrapeModifier.DoSearch = True
         ConfigScrapeModifier.Meta = True
@@ -460,13 +464,16 @@ Public Class EmberNativeScraperModule
         AdvancedSettings.SetBooleanSetting("UseTMDBTrailer", MySettings.UseTMDBTrailer)
         AdvancedSettings.SetBooleanSetting("UseTMDBTrailerXBMC", MySettings.UseTMDBTrailerXBMC)
 
+        AdvancedSettings.SetSetting("ManualETSize", MySettings.ManualETSize.ToString)
+        AdvancedSettings.SetSetting("UseTMDBTrailerPref", MySettings.UseTMDBTrailerPref.ToString)
+
         AdvancedSettings.SetBooleanSetting("DoPoster", ConfigScrapeModifier.Poster)
         AdvancedSettings.SetBooleanSetting("DoFanart", ConfigScrapeModifier.Fanart)
         'AdvancedSettings.SetBooleanSetting("DoTrailer", ConfigScrapeModifier.Trailer)
     End Sub
 
     Sub SaveSetupPostScraper(ByVal DoDispose As Boolean) Implements Interfaces.EmberMovieScraperModule.SaveSetupPostScraper
-        MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked        
+        MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked
         MySettings.UseIMDBTrailer = _setupPost.chkTrailerIMDB.Checked
         MySettings.UseTMDBTrailer = _setupPost.chkTrailerTMDB.Checked
         MySettings.UseTMDBTrailerXBMC = _setupPost.chkTrailerTMDBXBMC.Checked
@@ -474,6 +481,8 @@ Public Class EmberNativeScraperModule
         MySettings.UseTMDB = _setupPost.chkUseTMDB.Checked
         MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
         MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
+        MySettings.ManualETSize = _setupPost.cbManualETSize.Text
+        MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
         ConfigScrapeModifier.Poster = _setupPost.chkScrapePoster.Checked
         ConfigScrapeModifier.Fanart = _setupPost.chkScrapeFanart.Checked
         SaveSettings()
@@ -673,6 +682,8 @@ Public Class EmberNativeScraperModule
         Dim UseTMDBTrailer As Boolean
         Dim UseIMDBTrailer As Boolean
         Dim UseTMDBTrailerXBMC As Boolean
+        Dim ManualETSize As String
+        Dim UseTMDBTrailerPref As String
 #End Region 'Fields
 
     End Structure
