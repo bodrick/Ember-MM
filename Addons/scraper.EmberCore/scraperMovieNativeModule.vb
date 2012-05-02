@@ -291,7 +291,7 @@ Public Class EmberNativeScraperModule
         MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
         MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
         MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
-        MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "original"))
+        MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "thumb"))
         MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
 
         ConfigScrapeModifier.DoSearch = True
