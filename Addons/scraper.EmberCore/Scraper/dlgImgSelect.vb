@@ -364,7 +364,7 @@ Public Class dlgImgSelect
         Dim savePath As String = String.Empty
         Dim extrathumbSize As String = String.Empty
 
-        extrathumbSize = AdvancedSettings.GetSetting("ManualETSize", "original")
+        extrathumbSize = AdvancedSettings.GetSetting("ManualETSize", "thumb")
 
         'Only download the posters themselves that match the cover criteria for display purposes, no need to download them all.
         Dim posters As MediaContainers.Image()
