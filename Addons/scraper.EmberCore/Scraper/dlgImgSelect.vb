@@ -885,6 +885,9 @@ Public Class dlgImgSelect
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         Try
             Dim tmpPathPlus As String = String.Empty
+            Dim extrathumbSize As String
+
+            extrathumbSize = AdvancedSettings.GetSetting("ManualETSize", "thumb")
 
             If DLType = Enums.ImageType.Fanart Then
                 tmpPathPlus = Path.Combine(Master.TempPath, "fanart.jpg")
@@ -913,21 +916,37 @@ Public Class dlgImgSelect
                         If Master.eSettings.UseImgCache Then
                             tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(original)_(url=", Me.rbXLarge.Tag, ").jpg")))
                         Else
-                            Me.tmpImage.FromWeb(Me.rbXLarge.Tag.ToString)
+                            If extrathumbSize = "original" And DLType = Enums.ImageType.Fanart Then
+                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
+                            Else
+                                Me.tmpImage.FromWeb(Me.rbXLarge.Tag.ToString)
+                            End If
                         End If
                     Case Me.rbLarge.Checked
                         If Master.eSettings.UseImgCache Then
                             Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))
                         Else
-                            Me.tmpImage.FromWeb(Me.rbLarge.Tag.ToString)
+                            If extrathumbSize = "w1280" And DLType = Enums.ImageType.Fanart Or Not DLType = Enums.ImageType.Fanart Then
+                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
+                            Else
+                                Me.tmpImage.FromWeb(Me.rbLarge.Tag.ToString)
+                            End If
                         End If
                     Case Me.rbMedium.Checked
-                        Me.tmpImage.Image = Me.pbImage(selIndex).Image
-                    Case Me.rbSmall.Checked
-                        If Master.eSettings.UseImgCache Then
-                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
+                        If extrathumbSize = "poster" And DLType = Enums.ImageType.Fanart Then
+                            Me.tmpImage.Image = Me.pbImage(selIndex).Image
                         Else
-                            Me.tmpImage.FromWeb(Me.rbSmall.Tag.ToString)
+                            Me.tmpImage.FromWeb(Me.rbMedium.Tag.ToString)
+                        End If
+                    Case Me.rbSmall.Checked
+                            If Master.eSettings.UseImgCache Then
+                                Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
+                        Else
+                            If extrathumbSize = "thumb" And DLType = Enums.ImageType.Fanart Then
+                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
+                            Else
+                                Me.tmpImage.FromWeb(Me.rbSmall.Tag.ToString)
+                            End If
                         End If
                 End Select
 
