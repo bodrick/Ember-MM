@@ -1886,6 +1886,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkShowBannerJPG_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkShowBannerJPG.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkShowPosterTBN_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkShowPosterTBN.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -2400,6 +2404,7 @@ Public Class dlgSettings
             Me.chkShowFolderJPG.Checked = Master.eSettings.ShowFolderJPG
             Me.chkShowPosterTBN.Checked = Master.eSettings.ShowPosterTBN
             Me.chkShowPosterJPG.Checked = Master.eSettings.ShowPosterJPG
+            Me.chkShowBannerJPG.Checked = Master.eSettings.ShowBannerJPG
             Me.chkShowFanartJPG.Checked = Master.eSettings.ShowFanartJPG
             Me.chkShowDashFanart.Checked = Master.eSettings.ShowDashFanart
             Me.chkShowDotFanart.Checked = Master.eSettings.ShowDotFanart
@@ -3494,6 +3499,7 @@ Public Class dlgSettings
             Master.eSettings.ShowFolderJPG = Me.chkShowFolderJPG.Checked
             Master.eSettings.ShowPosterTBN = Me.chkShowPosterTBN.Checked
             Master.eSettings.ShowPosterJPG = Me.chkShowPosterJPG.Checked
+            Master.eSettings.ShowBannerJPG = Me.chkShowBannerJPG.Checked
             Master.eSettings.ShowFanartJPG = Me.chkShowFanartJPG.Checked
             Master.eSettings.ShowDashFanart = Me.chkShowDashFanart.Checked
             Master.eSettings.ShowDotFanart = Me.chkShowDotFanart.Checked

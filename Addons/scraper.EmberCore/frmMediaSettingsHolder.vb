@@ -1,4 +1,4 @@
-﻿' ################################################################################
+' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -77,6 +77,7 @@ Public Class frmMediaSettingsHolder
 
     Private Sub chkTrailerTMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailerTMDB.CheckedChanged
         chkTrailerTMDBXBMC.Enabled = chkTrailerTMDB.Checked
+        cbTrailerTMDBPref.Enabled = chkTrailerTMDB.Checked
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
@@ -106,6 +107,7 @@ Public Class frmMediaSettingsHolder
     End Sub
 
     Private Sub chkUseTMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseTMDB.CheckedChanged
+        cbManualETSize.Enabled = chkUseTMDB.Checked
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
@@ -146,6 +148,14 @@ Public Class frmMediaSettingsHolder
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
-#End Region 'Methods
+    Private Sub cbManualETSize_SelectedIndexChanged(ByVal sender As System.Object, e As System.EventArgs) Handles cbManualETSize.SelectedIndexChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
+    Private Sub cbTrailerTMDBPref_SelectedIndexChanged(ByVal sender As System.Object, e As System.EventArgs) Handles cbTrailerTMDBPref.SelectedIndexChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
+#End Region 'Methods
+    
 End Class

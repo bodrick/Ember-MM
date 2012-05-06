@@ -1,4 +1,4 @@
-﻿' ################################################################################
+' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -127,6 +127,9 @@ Namespace TMDB
         Public Function GetTrailers(ByVal imdbID As String) As String
             Dim xmlTMDB As XDocument
             Dim sHTTP As New HTTP
+            Dim tLang As String
+
+            tLang = AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en")
 
             If bwTMDB.CancellationPending Then Return Nothing
             Try
@@ -150,32 +153,39 @@ Namespace TMDB
                     If tmdbNode.Count > 0 Then
                         If Not tmdbNode(0).Value = "Your query didn't return any results." Then
                             Dim movieID As String = xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<id>.Value
+                            Dim i As Integer
 
-                            sHTTP = New HTTP
-                            ApiXML = sHTTP.DownloadData(String.Format("http://api.themoviedb.org/2.1/Movie.getInfo/en/xml/{0}/{1}", APIKey, movieID))
-                            sHTTP = Nothing
 
-                            If Not String.IsNullOrEmpty(ApiXML) Then
+                            For i = 0 To 1 Step 1
+                                sHTTP = New HTTP
+                                ApiXML = sHTTP.DownloadData(String.Format("http://api.themoviedb.org/2.1/Movie.getInfo/{0}/xml/{1}/{2}", tLang, APIKey, movieID))
+                                sHTTP = Nothing
 
-                                Try
-                                    xmlTMDB = XDocument.Parse(ApiXML)
-                                Catch
-                                    Return String.Empty
-                                End Try
+                                If Not String.IsNullOrEmpty(ApiXML) Then
 
-                                If bwTMDB.WorkerReportsProgress Then
-                                    bwTMDB.ReportProgress(2)
-                                End If
+                                    Try
+                                        xmlTMDB = XDocument.Parse(ApiXML)
+                                    Catch
+                                        Return String.Empty
+                                    End Try
 
-                                If bwTMDB.CancellationPending Then Return Nothing
+                                    If bwTMDB.WorkerReportsProgress Then
+                                        bwTMDB.ReportProgress(2)
+                                    End If
 
-                                Dim Trailers = From tNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie> Select tNode.<trailer>
-                                If Trailers.Count > 0 AndAlso Not String.IsNullOrEmpty(Trailers(0).Value) Then
-                                    If Trailers(0).Value.ToLower.IndexOf("youtube.com") > 0 Then
+                                    If bwTMDB.CancellationPending Then Return Nothing
+
+                                    Dim Trailers = From tNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie> Select tNode.<trailer>
+                                    If Trailers.Count > 0 AndAlso Not String.IsNullOrEmpty(Trailers(0).Value) Then
+                                        If Trailers(0).Value.ToLower.IndexOf("youtube.com") > 0 Then
                                             Return Trailers(0).Value
+                                            i += 1
+                                        End If
+                                    Else
+                                        tLang = "en"
                                     End If
                                 End If
-                            End If
+                            Next
                         End If
                     End If
                 End If
@@ -231,4 +241,3 @@ Namespace TMDB
     End Class
 
 End Namespace
-

@@ -1,4 +1,4 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmMediaSettingsHolder
     Inherits System.Windows.Forms.Form
 
@@ -27,6 +27,8 @@ Partial Class frmMediaSettingsHolder
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.cbManualETSize = New System.Windows.Forms.ComboBox()
         Me.grpSaveFanart = New System.Windows.Forms.GroupBox()
         Me.optFanartFolderExtraFanart = New System.Windows.Forms.RadioButton()
         Me.optFanartFolderExtraThumbs = New System.Windows.Forms.RadioButton()
@@ -37,6 +39,9 @@ Partial Class frmMediaSettingsHolder
         Me.chkScrapePoster = New System.Windows.Forms.CheckBox()
         Me.chkScrapeFanart = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.cbTrailerTMDBPref = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.chkDownloadTrailer = New System.Windows.Forms.CheckBox()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.txtTimeout = New System.Windows.Forms.TextBox()
@@ -52,9 +57,11 @@ Partial Class frmMediaSettingsHolder
         Me.pnlSettings.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.grpSaveFanart.SuspendLayout()
         Me.GroupBox9.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.SuspendLayout()
@@ -97,6 +104,7 @@ Partial Class frmMediaSettingsHolder
         '
         'GroupBox3
         '
+        Me.GroupBox3.Controls.Add(Me.GroupBox4)
         Me.GroupBox3.Controls.Add(Me.grpSaveFanart)
         Me.GroupBox3.Controls.Add(Me.GroupBox9)
         Me.GroupBox3.Controls.Add(Me.chkScrapePoster)
@@ -108,6 +116,28 @@ Partial Class frmMediaSettingsHolder
         Me.GroupBox3.TabIndex = 93
         Me.GroupBox3.TabStop = False
         Me.GroupBox3.Text = "Images"
+        '
+        'GroupBox4
+        '
+        Me.GroupBox4.Controls.Add(Me.cbManualETSize)
+        Me.GroupBox4.Location = New System.Drawing.Point(374, 11)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(160, 80)
+        Me.GroupBox4.TabIndex = 89
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "TMDB Extrathumbs Size:"
+        '
+        'cbManualETSize
+        '
+        Me.cbManualETSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbManualETSize.Enabled = False
+        Me.cbManualETSize.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbManualETSize.FormattingEnabled = True
+        Me.cbManualETSize.Items.AddRange(New Object() {"original", "w1280", "poster", "thumb"})
+        Me.cbManualETSize.Location = New System.Drawing.Point(21, 35)
+        Me.cbManualETSize.Name = "cbManualETSize"
+        Me.cbManualETSize.Size = New System.Drawing.Size(121, 21)
+        Me.cbManualETSize.TabIndex = 0
         '
         'grpSaveFanart
         '
@@ -151,7 +181,7 @@ Partial Class frmMediaSettingsHolder
         Me.GroupBox9.Controls.Add(Me.chkUseTMDB)
         Me.GroupBox9.Controls.Add(Me.chkUseIMPA)
         Me.GroupBox9.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox9.Location = New System.Drawing.Point(250, 11)
+        Me.GroupBox9.Location = New System.Drawing.Point(165, 11)
         Me.GroupBox9.Name = "GroupBox9"
         Me.GroupBox9.Size = New System.Drawing.Size(160, 80)
         Me.GroupBox9.TabIndex = 82
@@ -220,6 +250,7 @@ Partial Class frmMediaSettingsHolder
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.GroupBox5)
         Me.GroupBox1.Controls.Add(Me.chkDownloadTrailer)
         Me.GroupBox1.Controls.Add(Me.Label23)
         Me.GroupBox1.Controls.Add(Me.txtTimeout)
@@ -232,6 +263,40 @@ Partial Class frmMediaSettingsHolder
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Trailers"
         Me.GroupBox1.UseCompatibleTextRendering = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.cbTrailerTMDBPref)
+        Me.GroupBox5.Controls.Add(Me.Label2)
+        Me.GroupBox5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GroupBox5.Location = New System.Drawing.Point(374, 12)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(161, 94)
+        Me.GroupBox5.TabIndex = 92
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "Youtube/TMDB Trailer:"
+        '
+        'cbTrailerTMDBPref
+        '
+        Me.cbTrailerTMDBPref.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbTrailerTMDBPref.Enabled = False
+        Me.cbTrailerTMDBPref.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.cbTrailerTMDBPref.FormattingEnabled = True
+        Me.cbTrailerTMDBPref.Items.AddRange(New Object() {"bg", "cs", "da", "de", "el", "en", "es", "fi", "fr", "he", "hu", "it", "nb", "nl", "no", "pl", "pt", "ru", "sk", "sv", "ta", "tr", "uk", "vi", "xx", "zh"})
+        Me.cbTrailerTMDBPref.Location = New System.Drawing.Point(21, 51)
+        Me.cbTrailerTMDBPref.Name = "cbTrailerTMDBPref"
+        Me.cbTrailerTMDBPref.Size = New System.Drawing.Size(121, 21)
+        Me.cbTrailerTMDBPref.TabIndex = 1
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.Label2.Location = New System.Drawing.Point(26, 26)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(111, 13)
+        Me.Label2.TabIndex = 0
+        Me.Label2.Text = "Preferred Language:"
         '
         'chkDownloadTrailer
         '
@@ -269,7 +334,7 @@ Partial Class frmMediaSettingsHolder
         Me.GroupBox2.Controls.Add(Me.chkTrailerIMDB)
         Me.GroupBox2.Controls.Add(Me.chkTrailerTMDB)
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.GroupBox2.Location = New System.Drawing.Point(151, 12)
+        Me.GroupBox2.Location = New System.Drawing.Point(165, 12)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(161, 94)
         Me.GroupBox2.TabIndex = 83
@@ -381,11 +446,14 @@ Partial Class frmMediaSettingsHolder
         Me.pnlSettings.ResumeLayout(False)
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
         Me.grpSaveFanart.ResumeLayout(False)
         Me.grpSaveFanart.PerformLayout()
         Me.GroupBox9.ResumeLayout(False)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        Me.GroupBox5.ResumeLayout(False)
+        Me.GroupBox5.PerformLayout()
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -419,5 +487,10 @@ Partial Class frmMediaSettingsHolder
     Friend WithEvents chkTrailerIMDB As System.Windows.Forms.CheckBox
     Friend WithEvents chkTrailerTMDB As System.Windows.Forms.CheckBox
     Friend WithEvents chkTrailerTMDBXBMC As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents cbManualETSize As System.Windows.Forms.ComboBox
+    Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+    Friend WithEvents cbTrailerTMDBPref As System.Windows.Forms.ComboBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class
