@@ -362,8 +362,8 @@ Public Class AdvancedSettings
         End If
 
         If Not loadSingle Then
-            SetSetting("CheckStackMarkers", "\|?((cd|dvd|part|dis[ck])([0-9]))", "*EmberAPP", True)
-            SetSetting("DeleteStackMarkers", "\|?((cd|dvd|part|dis[ck])([0-9]))", "*EmberAPP", True)
+            SetSetting("CheckStackMarkers", "\|?\-*\.*((cd|dvd|part|dis[ck])([0-9]))", "*EmberAPP", True)
+            SetSetting("DeleteStackMarkers", "\|?\-*\.*((cd|dvd|part|dis[ck])([0-9]))", "*EmberAPP", True)
             SetBooleanSetting("DisableMultiPartMedia", False)
 
             SetSetting("SubtitleExtension", ".*\.(sst|srt|sub|ssa|aqt|smi|sami|jss|mpl|rt|idx|ass)$", "*EmberAPP", True)

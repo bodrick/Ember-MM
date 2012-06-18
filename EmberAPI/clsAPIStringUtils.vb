@@ -40,7 +40,7 @@ Public Class StringUtils
     Public Shared Function CleanStackingMarkers(ByVal sPath As String, Optional ByVal Asterisk As Boolean = False) As String
         If AdvancedSettings.GetBooleanSetting("DisableMultiPartMedia", False) Then Return sPath
         If String.IsNullOrEmpty(sPath) Then Return String.Empty
-        Dim sReturn As String = Regex.Replace(sPath, AdvancedSettings.GetSetting("DeleteStackMarkers", "\|?((cd|dvd|part|dis[ck])([0-9]))"), If(Asterisk, "*", " "), RegexOptions.IgnoreCase).Trim
+        Dim sReturn As String = Regex.Replace(sPath, AdvancedSettings.GetSetting("DeleteStackMarkers", "\|?\-*\.*((cd|dvd|part|dis[ck])([0-9]))"), If(Asterisk, "*", " "), RegexOptions.IgnoreCase).Trim
         If Not sReturn = sPath Then
             Return Regex.Replace(sReturn, "\s\s(\s+)?", " ").Trim
         Else
@@ -305,9 +305,9 @@ Public Class StringUtils
         If AdvancedSettings.GetBooleanSetting("DisableMultiPartMedia", False) Then Return False
         Dim bReturn As Boolean = False
         If VTS Then
-            bReturn = Regex.IsMatch(sName, AdvancedSettings.GetSetting("CheckStackMarkers", "\|?((cd|dvd|part|dis[ck])([0-9]))"), RegexOptions.IgnoreCase) OrElse Regex.IsMatch(sName, "^vts_[0-9]+_[0-9]+", RegexOptions.IgnoreCase)
+            bReturn = Regex.IsMatch(sName, AdvancedSettings.GetSetting("CheckStackMarkers", "\|?\-*\.*((cd|dvd|part|dis[ck])([0-9]))"), RegexOptions.IgnoreCase) OrElse Regex.IsMatch(sName, "^vts_[0-9]+_[0-9]+", RegexOptions.IgnoreCase)
         Else
-            bReturn = Regex.IsMatch(sName, AdvancedSettings.GetSetting("CheckStackMarkers", "\|?((cd|dvd|part|dis[ck])([0-9]))"), RegexOptions.IgnoreCase)
+            bReturn = Regex.IsMatch(sName, AdvancedSettings.GetSetting("CheckStackMarkers", "\|?\-*\.*((cd|dvd|part|dis[ck])([0-9]))"), RegexOptions.IgnoreCase)
         End If
         Return bReturn
     End Function
