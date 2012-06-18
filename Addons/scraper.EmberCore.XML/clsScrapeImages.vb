@@ -20,7 +20,6 @@
 
 Imports System.Drawing.Imaging
 Imports System.IO
-Imports System.Text.RegularExpressions
 Imports EmberAPI
 
 Public Class ScrapeImages
@@ -30,7 +29,6 @@ Public Class ScrapeImages
     Public Shared Sub GetPreferredFAasET(ByVal thumbs As List(Of XMLScraper.MediaTags.Thumbnail), ByVal IMDBID As String, ByVal sPath As String)
         Dim _Image As Image
 
-        Dim tmpListTMDB As New List(Of MediaContainers.Image)
         Dim ETHashes As New List(Of String)
 
         Dim CachePath As String = String.Concat(Master.TempPath, Path.DirectorySeparatorChar, IMDBID, Path.DirectorySeparatorChar, "fanart")
@@ -80,7 +78,6 @@ Public Class ScrapeImages
                 If thumbs.Count > 0 Then
 
                     'setup fanart for nfo
-                    Dim thumbLink As String = String.Empty
                     For Each miFanart As XMLScraper.MediaTags.Thumbnail In thumbs
                         Dim Fanart As New Images
                         Fanart.FromWeb(miFanart.Url)
@@ -104,7 +101,7 @@ Public Class ScrapeImages
                     Directory.CreateDirectory(CachePath)
                 End If
 
-                Dim savePath As String = String.Empty
+                Dim savePath As String
                 For Each miFanart As XMLScraper.MediaTags.Thumbnail In thumbs
                     If Master.eSettings.AutoETSize = Enums.FanartSize.Lrg Then
                         Dim Fanart As New Images
@@ -121,17 +118,14 @@ Public Class ScrapeImages
                     'Me.Clear()
                 Next
 
-                _Image = Nothing
                 FileUtils.Delete.DeleteDirectory(CachePath)
-
             End If
         End If
     End Sub
 
     Public Shared Sub SaveFAasET(ByVal faPath As String, ByVal inPath As String)
-        Dim iMod As Integer = 0
-        Dim iVal As Integer = 1
-        Dim extraPath As String = String.Empty
+        Dim iMod, iVal As Integer        
+        Dim extraPath As String
 
         If Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isVideoTS(inPath) Then
             extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName, "extrathumbs")

@@ -30,8 +30,6 @@ Public Class AddonItem
     Public Event NeedsRestart()
 
     Private _enabled As Boolean = True
-
-    Private _id As Integer
     Private _addonname As String
     Private _author As String
     Private _summary As String
@@ -40,20 +38,13 @@ Public Class AddonItem
     Private _version As Single
     Private _mineversion As Single
     Private _maxeversion As Single
-    Private _filelist As Generic.SortedList(Of String, String)
+    Private _filelist As SortedList(Of String, String)
     Private _owned As Boolean
     Private _installed As Single
 
     Private _downloads As Integer = -1
 
-    Public Property ID() As Integer
-        Get
-            Return Me._id
-        End Get
-        Set(ByVal value As Integer)
-            Me._id = value
-        End Set
-    End Property
+    Public Property ID As Integer        
 
     Public Property AddonName() As String
         Get

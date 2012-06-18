@@ -20,10 +20,6 @@
 
 Imports System
 Imports System.IO
-Imports System.Net
-Imports System.Text
-Imports System.Text.RegularExpressions
-Imports System.Xml
 Imports EmberAPI
 
 Public Class Trailers
@@ -51,7 +47,7 @@ Public Class Trailers
 #Region "Methods"
 
     Public Sub Cancel()
-        Me.WebPage.Cancel()
+        WebPage.Cancel()
     End Sub
 
     Public Sub DeleteTrailers(ByVal sPath As String, ByVal NewTrailer As String)
@@ -86,7 +82,7 @@ Public Class Trailers
                         If Not String.IsNullOrEmpty(tURL) Then
                             'delete any other trailer if enabled in settings and download successful
                             If Master.eSettings.DeleteAllTrailers Then
-                                Me.DeleteTrailers(sPath, tURL)
+                                DeleteTrailers(sPath, tURL)
                             End If
                         End If
                     End If
@@ -110,7 +106,7 @@ Public Class Trailers
             If Not String.IsNullOrEmpty(tURL) Then
                 'delete any other trailer if enabled in settings and download successful
                 If Master.eSettings.DeleteAllTrailers Then
-                    Me.DeleteTrailers(sPath, tURL)
+                    DeleteTrailers(sPath, tURL)
                 End If
             End If
         End If
