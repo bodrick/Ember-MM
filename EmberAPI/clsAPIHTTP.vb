@@ -95,6 +95,7 @@ Public Class HTTP
             Me.wrRequest = DirectCast(WebRequest.Create(URL), HttpWebRequest)
             Me.wrRequest.Timeout = 20000
             Me.wrRequest.Headers.Add("Accept-Encoding", "gzip,deflate")
+            Me.wrRequest.KeepAlive = False
 
             If Not String.IsNullOrEmpty(Master.eSettings.ProxyURI) AndAlso Master.eSettings.ProxyPort >= 0 Then
                 Dim wProxy As New WebProxy(Master.eSettings.ProxyURI, Master.eSettings.ProxyPort)
