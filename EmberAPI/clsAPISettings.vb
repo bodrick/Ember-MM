@@ -1,4 +1,4 @@
-' ################################################################################
+﻿' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -293,7 +293,6 @@ Public Class Settings
     Private _showpostercol As Boolean
     Private _showposterheight As Integer
     Private _showposterjpg As Boolean
-    Private _showbannerjpg As Boolean
     Private _showposterQuality As Integer
     Private _showpostersize As Enums.PosterSize
     Private _showpostertbn As Boolean
@@ -2732,15 +2731,6 @@ Public Class Settings
         End Set
     End Property
 
-    Public Property ShowBannerJPG() As Boolean
-        Get
-            Return Me._showbannerjpg
-        End Get
-        Set(ByVal value As Boolean)
-            Me._showbannerjpg = value
-        End Set
-    End Property
-
     Public Property ShowPosterQuality() As Integer
         Get
             Return Me._showposterQuality
@@ -3409,7 +3399,6 @@ Public Class Settings
         Me._showjpg = False
         Me._showpostertbn = False
         Me._showposterjpg = False
-        Me._showbannerjpg = False
         Me._showfanartjpg = True
         Me._showdashfanart = False
         Me._showdotfanart = False
