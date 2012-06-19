@@ -362,21 +362,6 @@ Public Class dlgImgSelect
         '\\
         Dim thumbLink As String = String.Empty
         Dim savePath As String = String.Empty
-
-        'Only download the posters themselves that match the cover criteria for display purposes, no need to download them all.
-        Dim posters As MediaContainers.Image()
-        If Me.DLType = Enums.ImageType.Fanart Then
-            posters = TMDBPosters.Where(Function(s) s.Description = "thumb").ToArray()
-                            Me.tmpImage.FromWeb(Me.rbXLarge.Tag.ToString)
-                        End If
-                            Me.tmpImage.FromWeb(Me.rbLarge.Tag.ToString)
-                        End If
-                        Me.tmpImage.Image = Me.pbImage(selIndex).Image
-                        If Master.eSettings.UseImgCache Then
-                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
-                            Me.tmpImage.FromWeb(Me.rbSmall.Tag.ToString)
-                        End If
-' ################################################################################
         Dim extrathumbSize As String = String.Empty
 
         extrathumbSize = AdvancedSettings.GetSetting("ManualETSize", "thumb")
@@ -954,8 +939,8 @@ Public Class dlgImgSelect
                             Me.tmpImage.FromWeb(Me.rbMedium.Tag.ToString)
                         End If
                     Case Me.rbSmall.Checked
-                            If Master.eSettings.UseImgCache Then
-                                Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
+                        If Master.eSettings.UseImgCache Then
+                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
                         Else
                             If extrathumbSize = "thumb" And DLType = Enums.ImageType.Fanart Then
                                 Me.tmpImage.Image = Me.pbImage(selIndex).Image
@@ -1189,13 +1174,13 @@ Public Class dlgImgSelect
             rbMedium.Checked = False
             rbSmall.Checked = False
             rbSmall.Enabled = False
-            If Me.DLType = Enums.ImageType.Fanart Then                
+            If Me.DLType = Enums.ImageType.Fanart Then
                 rbLarge.Text = "w1280"
-                rbMedium.Text = "poster"                
+                rbMedium.Text = "poster"
                 rbSmall.Text = "thumb"
-            Else                                
-                rbLarge.Text = Master.eLang.GetString(48, "Cover")                
-                rbMedium.Text = Master.eLang.GetString(49, "Medium")                
+            Else
+                rbLarge.Text = Master.eLang.GetString(48, "Cover")
+                rbMedium.Text = Master.eLang.GetString(49, "Medium")
                 rbSmall.Text = Master.eLang.GetString(50, "Small")
             End If
 

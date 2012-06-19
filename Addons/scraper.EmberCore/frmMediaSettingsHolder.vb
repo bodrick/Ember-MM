@@ -107,8 +107,8 @@ Public Class frmMediaSettingsHolder
     End Sub
 
     Private Sub chkUseTMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseTMDB.CheckedChanged
-cbManualETSize.Enabled = chkUseTMDB.Checked
-                RaiseEvent ModuleSettingsChanged()
+        cbManualETSize.Enabled = chkUseTMDB.Checked
+        RaiseEvent ModuleSettingsChanged()
     End Sub
 
     Public Sub New()
@@ -155,5 +155,7 @@ cbManualETSize.Enabled = chkUseTMDB.Checked
     Private Sub cbTrailerTMDBPref_SelectedIndexChanged(ByVal sender As System.Object, e As System.EventArgs) Handles cbTrailerTMDBPref.SelectedIndexChanged
         RaiseEvent ModuleSettingsChanged()
     End Sub
-    
+
+#End Region 'Methods
+
 End Class
