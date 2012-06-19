@@ -1,5 +1,5 @@
-﻿<<<<<<< HEAD
-ï»¿' ################################################################################
+﻿
+' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -622,7 +622,6 @@ Public Class EmberNativeScraperModule
                 Else
                     DBMovie.ListTitle = StringUtils.FilterName(Path.GetFileNameWithoutExtension(DBMovie.Filename))
                 End If
-            End If
             If Not OldTitle = DBMovie.Movie.Title OrElse String.IsNullOrEmpty(DBMovie.Movie.SortTitle) Then DBMovie.Movie.SortTitle = DBMovie.ListTitle
         End If
 
@@ -1373,5 +1372,4 @@ Public Class EmberNativeScraperModule
 
 #End Region 'Nested Types
 
->>>>>>> 7b18e82e3cd9a888872bc06060a552fce2f10e8d
 End Class
