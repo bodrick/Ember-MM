@@ -1691,6 +1691,18 @@ Public Class Database
                 Dim parLanguage As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parLanguage", DbType.String, 0, "Language")
                 Dim parOrdering As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parOrdering", DbType.Int16, 0, "Ordering")
 
+                With _TVShowDB.TVShow
+                    parTVDB.Value = .ID
+                    parTitle.Value = .Title
+                    parEpisodeGuide.Value = .EpisodeGuideURL
+                    parPlot.Value = .Plot
+                    parGenre.Value = .Genre
+                    parPremiered.Value = .Premiered
+                    parStudio.Value = .Studio
+                    parMPAA.Value = .MPAA
+                    parRating.Value = .Rating
+                End With
+
                 ' First let's save it to NFO, even because we will need the NFO path
                 If ToNfo Then NFO.SaveTVShowToNFO(_TVShowDB)
 
@@ -1710,17 +1722,7 @@ Public Class Database
                 parLanguage.Value = If(String.IsNullOrEmpty(_TVShowDB.ShowLanguage), "en", _TVShowDB.ShowLanguage)
                 parOrdering.Value = _TVShowDB.Ordering
 
-                With _TVShowDB.TVShow
-                    parTVDB.Value = .ID
-                    parTitle.Value = .Title
-                    parEpisodeGuide.Value = .EpisodeGuideURL
-                    parPlot.Value = .Plot
-                    parGenre.Value = .Genre
-                    parPremiered.Value = .Premiered
-                    parStudio.Value = .Studio
-                    parMPAA.Value = .MPAA
-                    parRating.Value = .Rating
-                End With
+
 
                 If IsNew Then
                     If Master.eSettings.MarkNewShows Then
