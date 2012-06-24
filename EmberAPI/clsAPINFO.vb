@@ -664,6 +664,14 @@ Public Class NFO
                 End If
             End Try
 
+            Try
+                Dim params As New List(Of Object)(New Object() {xmlShow})
+                Dim doContinue As Boolean = True
+                ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.OnTVShowNFORead, params, doContinue, False)
+
+            Catch ex As Exception
+            End Try
+
             If Not IsNothing(xmlSer) Then
                 xmlSer = Nothing
             End If
@@ -936,6 +944,14 @@ Public Class NFO
         '//
         ' Serialize MediaContainers.TVShow to an NFO
         '\\
+
+        Try
+            Dim params As New List(Of Object)(New Object() {tvShowToSave})
+            Dim doContinue As Boolean = True
+            ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.OnTVShowNFOSave, params, doContinue, False)
+            If Not doContinue Then Return
+        Catch ex As Exception
+        End Try
 
         Try
             If Not String.IsNullOrEmpty(tvShowToSave.ShowPath) Then
