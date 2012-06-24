@@ -531,6 +531,8 @@ Public Class Enums
         TVImageNaming = 18
         MovieImageNaming = 19
         SyncModuleSettings = 20
+        OnTVShowNFOSave = 21
+        OnTVShowNFORead = 22
     End Enum
 
     Public Enum MovieScraperEventType As Integer
