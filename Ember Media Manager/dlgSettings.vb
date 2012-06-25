@@ -454,23 +454,6 @@ Public Class dlgSettings
         Me.ClearRegex()
     End Sub
 
-    Private Sub btnDLTrans_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDLTrans.Click
-        Using dAddons As New dlgAddons
-            If dAddons.ShowDialog = Windows.Forms.DialogResult.OK Then
-                Me.LoadIntLangs()
-                Me.cbIntLang.SelectedItem = Master.eSettings.Language
-
-                Me.LoadThemes()
-                Me.cbMovieTheme.SelectedItem = Master.eSettings.MovieTheme
-                Me.cbTVShowTheme.SelectedItem = Master.eSettings.TVShowTheme
-                Me.cbEpTheme.SelectedItem = Master.eSettings.TVEpTheme
-            End If
-            If dAddons.NeedsRestart Then
-                sResult.NeedsRestart = True
-            End If
-        End Using
-    End Sub
-
     Private Sub btnDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDown.Click
         Try
             If Me.lstFilters.Items.Count > 0 AndAlso Not IsNothing(Me.lstFilters.SelectedItem) AndAlso Me.lstFilters.SelectedIndex < (Me.lstFilters.Items.Count - 1) Then
@@ -3836,7 +3819,6 @@ Public Class dlgSettings
         Me.Label35.Text = String.Concat(Master.eLang.GetString(620, "Movie Theme"), ":")
         Me.Label1.Text = String.Concat(Master.eLang.GetString(666, "TV Show Theme"), ":")
         Me.Label3.Text = String.Concat(Master.eLang.GetString(667, "Episode Theme"), ":")
-        Me.btnDLTrans.Text = Master.eLang.GetString(443, "Download Addons")
         Me.GroupBox28.Text = Master.eLang.GetString(625, "Defaults by File Type")
         Me.gbTVMIDefaults.Text = Me.gbTVMIDefaults.Text
         Me.Label34.Text = Master.eLang.GetString(626, "File Type")

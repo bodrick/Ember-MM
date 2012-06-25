@@ -40,7 +40,7 @@
     <NoWarn>42353,42354,42355</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
-    <WarningsAsErrors>41998,41999,42004,42016,42017,42018,42019,42020,42021,42022,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109</WarningsAsErrors>    
+    <WarningsAsErrors>41998,41999,42004,42016,42017,42018,42019,42020,42021,42022,42024,42025,42026,42029,42030,42031,42032,42036,42099,42104,42105,42106,42107,42108,42109</WarningsAsErrors>
     <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
     <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.vb</CodeAnalysisModuleSuppressionsFile>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -95,12 +95,6 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="clsTheming.vb" />
-    <Compile Include="ctlAddonItem.Designer.vb">
-      <DependentUpon>ctlAddonItem.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ctlAddonItem.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="dlgAbout.Designer.vb">
       <DependentUpon>dlgAbout.vb</DependentUpon>
     </Compile>
@@ -111,36 +105,6 @@
       <DependentUpon>dlgAddEditActor.vb</DependentUpon>
     </Compile>
     <Compile Include="dlgAddEditActor.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dlgAddEditAddon.Designer.vb">
-      <DependentUpon>dlgAddEditAddon.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dlgAddEditAddon.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dlgAddonFile.Designer.vb">
-      <DependentUpon>dlgAddonFile.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dlgAddonFile.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dlgAddonFiles.Designer.vb">
-      <DependentUpon>dlgAddonFiles.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dlgAddonFiles.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dlgAddons.Designer.vb">
-      <DependentUpon>dlgAddons.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dlgAddons.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="dlgDeleteAddon.Designer.vb">
-      <DependentUpon>dlgDeleteAddon.vb</DependentUpon>
-    </Compile>
-    <Compile Include="dlgDeleteAddon.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dlgDeleteConfirm.Designer.vb">
@@ -310,30 +274,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ctlAddonItem.resx">
-      <DependentUpon>ctlAddonItem.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="dlgAbout.resx">
       <DependentUpon>dlgAbout.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="dlgAddEditActor.resx">
       <DependentUpon>dlgAddEditActor.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dlgAddEditAddon.resx">
-      <DependentUpon>dlgAddEditAddon.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dlgAddonFile.resx">
-      <DependentUpon>dlgAddonFile.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dlgAddonFiles.resx">
-      <DependentUpon>dlgAddonFiles.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dlgAddons.resx">
-      <DependentUpon>dlgAddons.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="dlgDeleteAddon.resx">
-      <DependentUpon>dlgDeleteAddon.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="dlgDeleteConfirm.resx">
       <DependentUpon>dlgDeleteConfirm.vb</DependentUpon>
@@ -385,6 +331,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dlgSettings.resx">
       <DependentUpon>dlgSettings.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="dlgSortFiles.resx">
       <DependentUpon>dlgSortFiles.vb</DependentUpon>
@@ -419,6 +366,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

@@ -94,7 +94,6 @@
     <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clsAddons.vb" />
     <Compile Include="clsAdvancedSettings.vb" />
     <Compile Include="clsAPICommon.vb" />
     <Compile Include="clsAPIDatabase.vb" />

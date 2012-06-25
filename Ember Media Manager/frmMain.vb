@@ -5702,17 +5702,7 @@ doCancel:
                                 Me.Visible = True
                             End If
                         End If
-                        If Master.eSettings.CheckUpdates AndAlso Not CloseApp Then
-                            If EmberAddons.CheckUpdates() > 0 Then
-                                Dim s As String = vbCrLf
-                                For Each a As EmberAddons.Addon In EmberAddons.AddonList
-                                    s = String.Concat(s, vbCrLf, a.Name)
-                                Next
-                                fLoading.Hide()
-                                MsgBox(String.Format("New Version(s) for following Installed Addon(s){0}", s), MsgBoxStyle.OkOnly, "Addon check")
-                            End If
-                        End If
-
+                        
                         Master.DB.LoadMovieSourcesFromDB()
                         Master.DB.LoadTVSourcesFromDB()
                         fLoading.SetLoadingMesg("Setting menus...")

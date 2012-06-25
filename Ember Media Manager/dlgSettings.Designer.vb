@@ -48,7 +48,6 @@ Partial Class dlgSettings
         Me.Label1 = New System.Windows.Forms.Label()
         Me.cbMovieTheme = New System.Windows.Forms.ComboBox()
         Me.Label35 = New System.Windows.Forms.Label()
-        Me.btnDLTrans = New System.Windows.Forms.Button()
         Me.Label32 = New System.Windows.Forms.Label()
         Me.cbIntLang = New System.Windows.Forms.ComboBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
@@ -281,6 +280,8 @@ Partial Class dlgSettings
         Me.btnEditTVSource = New System.Windows.Forms.Button()
         Me.btnRemTVSource = New System.Windows.Forms.Button()
         Me.gbTVNaming = New System.Windows.Forms.GroupBox()
+        Me.gbShowBanner = New System.Windows.Forms.GroupBox()
+        Me.chkShowBannerJPG = New System.Windows.Forms.CheckBox()
         Me.gbAllSeasonPoster = New System.Windows.Forms.GroupBox()
         Me.chkSeasonAllJPG = New System.Windows.Forms.CheckBox()
         Me.chkSeasonAllTBN = New System.Windows.Forms.CheckBox()
@@ -310,7 +311,6 @@ Partial Class dlgSettings
         Me.chkShowJPG = New System.Windows.Forms.CheckBox()
         Me.chkShowTBN = New System.Windows.Forms.CheckBox()
         Me.chkShowPosterJPG = New System.Windows.Forms.CheckBox()
-        Me.chkShowBannerJPG = New System.Windows.Forms.CheckBox()
         Me.chkShowPosterTBN = New System.Windows.Forms.CheckBox()
         Me.chkShowFolderJPG = New System.Windows.Forms.CheckBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -597,7 +597,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.gbShowBanner = New System.Windows.Forms.GroupBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -646,6 +645,7 @@ Partial Class dlgSettings
         Me.TabPage3.SuspendLayout()
         Me.gbMiscTVSourceOpts.SuspendLayout()
         Me.gbTVNaming.SuspendLayout()
+        Me.gbShowBanner.SuspendLayout()
         Me.gbAllSeasonPoster.SuspendLayout()
         Me.gbEpisodeFanart.SuspendLayout()
         Me.gbEpisodePosters.SuspendLayout()
@@ -704,7 +704,6 @@ Partial Class dlgSettings
         Me.gbHelp.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        Me.gbShowBanner.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox4
@@ -912,19 +911,6 @@ Partial Class dlgSettings
         Me.Label35.Size = New System.Drawing.Size(77, 13)
         Me.Label35.TabIndex = 20
         Me.Label35.Text = "Movie Theme:"
-        '
-        'btnDLTrans
-        '
-        Me.btnDLTrans.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnDLTrans.Image = CType(resources.GetObject("btnDLTrans.Image"), System.Drawing.Image)
-        Me.btnDLTrans.ImageAlign = System.Drawing.ContentAlignment.TopCenter
-        Me.btnDLTrans.Location = New System.Drawing.Point(17, 266)
-        Me.btnDLTrans.Name = "btnDLTrans"
-        Me.btnDLTrans.Size = New System.Drawing.Size(162, 68)
-        Me.btnDLTrans.TabIndex = 18
-        Me.btnDLTrans.Text = "Download Addons"
-        Me.btnDLTrans.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-        Me.btnDLTrans.UseVisualStyleBackColor = True
         '
         'Label32
         '
@@ -1219,7 +1205,8 @@ Partial Class dlgSettings
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(155, 68)
         Me.Label25.TabIndex = 0
-        Me.Label25.Text = "WARNING: Using the Expert Mode Cleaner could potentially delete wanted files. Take care when using this tool."
+        Me.Label25.Text = "WARNING: Using the Expert Mode Cleaner could potentially delete wanted files. Tak" & _
+    "e care when using this tool."
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox12
@@ -2338,7 +2325,6 @@ Partial Class dlgSettings
         '
         Me.gbInterface.Controls.Add(Me.GroupBox29)
         Me.gbInterface.Controls.Add(Me.Label32)
-        Me.gbInterface.Controls.Add(Me.btnDLTrans)
         Me.gbInterface.Controls.Add(Me.cbIntLang)
         Me.gbInterface.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbInterface.Location = New System.Drawing.Point(7, 3)
@@ -3521,6 +3507,27 @@ Partial Class dlgSettings
         Me.gbTVNaming.TabIndex = 6
         Me.gbTVNaming.TabStop = False
         Me.gbTVNaming.Text = "File Naming"
+        '
+        'gbShowBanner
+        '
+        Me.gbShowBanner.Controls.Add(Me.chkShowBannerJPG)
+        Me.gbShowBanner.Location = New System.Drawing.Point(292, 150)
+        Me.gbShowBanner.Name = "gbShowBanner"
+        Me.gbShowBanner.Size = New System.Drawing.Size(140, 71)
+        Me.gbShowBanner.TabIndex = 9
+        Me.gbShowBanner.TabStop = False
+        Me.gbShowBanner.Text = "Show Banner"
+        '
+        'chkShowBannerJPG
+        '
+        Me.chkShowBannerJPG.AutoSize = True
+        Me.chkShowBannerJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.chkShowBannerJPG.Location = New System.Drawing.Point(6, 15)
+        Me.chkShowBannerJPG.Name = "chkShowBannerJPG"
+        Me.chkShowBannerJPG.Size = New System.Drawing.Size(83, 17)
+        Me.chkShowBannerJPG.TabIndex = 0
+        Me.chkShowBannerJPG.Text = "banner.jpg"
+        Me.chkShowBannerJPG.UseVisualStyleBackColor = True
         '
         'gbAllSeasonPoster
         '
@@ -7048,27 +7055,6 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 77
         '
-        'gbShowBanner
-        '
-        Me.gbShowBanner.Controls.Add(Me.chkShowBannerJPG)
-        Me.gbShowBanner.Location = New System.Drawing.Point(292, 150)
-        Me.gbShowBanner.Name = "gbShowBanner"
-        Me.gbShowBanner.Size = New System.Drawing.Size(140, 71)
-        Me.gbShowBanner.TabIndex = 9
-        Me.gbShowBanner.TabStop = False
-        Me.gbShowBanner.Text = "Show Banner"
-        '
-        'chkShowBannerJPG
-        '
-        Me.chkShowBannerJPG.AutoSize = True
-        Me.chkShowBannerJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.chkShowBannerJPG.Location = New System.Drawing.Point(6, 15)
-        Me.chkShowBannerJPG.Name = "chkShowBannerJPG"
-        Me.chkShowBannerJPG.Size = New System.Drawing.Size(83, 17)
-        Me.chkShowBannerJPG.TabIndex = 0
-        Me.chkShowBannerJPG.Text = "banner.jpg"
-        Me.chkShowBannerJPG.UseVisualStyleBackColor = True
-        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -7180,6 +7166,8 @@ Partial Class dlgSettings
         Me.gbMiscTVSourceOpts.ResumeLayout(False)
         Me.gbMiscTVSourceOpts.PerformLayout()
         Me.gbTVNaming.ResumeLayout(False)
+        Me.gbShowBanner.ResumeLayout(False)
+        Me.gbShowBanner.PerformLayout()
         Me.gbAllSeasonPoster.ResumeLayout(False)
         Me.gbAllSeasonPoster.PerformLayout()
         Me.gbEpisodeFanart.ResumeLayout(False)
@@ -7270,8 +7258,6 @@ Partial Class dlgSettings
         Me.gbHelp.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
-        Me.gbShowBanner.ResumeLayout(False)
-        Me.gbShowBanner.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -7453,7 +7439,6 @@ Partial Class dlgSettings
     Friend WithEvents chkMissingNFO As System.Windows.Forms.CheckBox
     Friend WithEvents chkMissingFanart As System.Windows.Forms.CheckBox
     Friend WithEvents chkMissingPoster As System.Windows.Forms.CheckBox
-    Friend WithEvents btnDLTrans As System.Windows.Forms.Button
     Friend WithEvents cbAutoETSize As System.Windows.Forms.ComboBox
     Friend WithEvents chkAutoETSize As System.Windows.Forms.CheckBox
     Friend WithEvents Label35 As System.Windows.Forms.Label
