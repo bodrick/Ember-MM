@@ -1289,6 +1289,7 @@ Namespace MediaContainers
         Private _studio As String
         Private _plot As String
         Private _actors As New List(Of Person)
+        Private _boxeeTvDb As String
 
 #End Region 'Fields
 
@@ -1333,6 +1334,23 @@ Namespace MediaContainers
         Public ReadOnly Property IDSpecified() As Boolean
             Get
                 Return Not String.IsNullOrEmpty(Me._id)
+            End Get
+        End Property
+
+        <XmlElement("boxeeTvDb")> _
+        Public Property BoxeeTvDb() As String
+            Get
+                Return Me._boxeeTvDb
+            End Get
+            Set(ByVal value As String)
+                If IsNumeric(value) Then Me._boxeeTvDb = value
+            End Set
+        End Property
+
+        <XmlIgnore()> _
+        Public ReadOnly Property BoxeeIDSpecified() As Boolean
+            Get
+                Return Not String.IsNullOrEmpty(Me._boxeeTvDb)
             End Get
         End Property
 
@@ -1501,6 +1519,7 @@ Namespace MediaContainers
         Public Sub Clear()
             _title = String.Empty
             _id = String.Empty
+            _boxeeTvDb = String.Empty
             _rating = String.Empty
             _episodeguideurl = String.Empty
             _plot = String.Empty
@@ -1510,6 +1529,14 @@ Namespace MediaContainers
             _premiered = String.Empty
             _studio = String.Empty
             _actors.Clear()
+        End Sub
+
+        Public Sub BlankId()
+            Me._id = Nothing
+        End Sub
+
+        Public Sub BlankBoxeeId()
+            Me._boxeeTvDb = Nothing
         End Sub
 
 #End Region 'Methods
