@@ -320,10 +320,12 @@ Public Class Settings
     Private _tvflaglang As String
     Private _tvignorelastscan As Boolean
     Private _tvmetadatapertype As List(Of MetadataPerType)
+    Private _tvruntimemask As String
     Private _tvscanordermodify As Boolean
     Private _tvshowregexes As List(Of TVShowRegEx)
     Private _tvshowtheme As String
     Private _tvupdatetime As Enums.TVUpdateTime
+    Private _tvusemiduration As Boolean
     Private _updatertrailers As Boolean
     Private _updatertrailersnodownload As Boolean
     Private _usecertformpaa As Boolean
@@ -2984,6 +2986,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property TVRuntimeMask() As String
+        Get
+            Return Me._tvruntimemask
+        End Get
+        Set(ByVal value As String)
+            Me._tvruntimemask = value
+        End Set
+    End Property
+
     Public Property TVScanOrderModify() As Boolean
         Get
             Return Me._tvscanordermodify
@@ -3017,6 +3028,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Enums.TVUpdateTime)
             Me._tvupdatetime = value
+        End Set
+    End Property
+
+    Public Property TVUseMIDuration() As Boolean
+        Get
+            Return Me._tvusemiduration
+        End Get
+        Set(ByVal value As Boolean)
+            Me._tvusemiduration = value
         End Set
     End Property
 

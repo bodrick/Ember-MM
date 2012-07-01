@@ -1203,6 +1203,15 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkUseTVMIDuration_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseMIDuration.CheckedChanged, chkUseTVMIDuration.CheckedChanged
+        Me.txtTVRuntimeFormat.Enabled = Me.chkUseTVMIDuration.Checked
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub txtTVRuntimeFormat_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtRuntimeFormat.TextChanged, txtTVRuntimeFormat.TextChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkEpLockTitle_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkEpLockTitle.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -2004,6 +2013,8 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+
+
     Private Sub chkVideoTSParent_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Me.SetApplyButton(True)
         Me.sResult.NeedsUpdate = True
@@ -2300,6 +2311,9 @@ Public Class dlgSettings
             Me.chkUseMIDuration.Checked = Master.eSettings.UseMIDuration
             Me.txtRuntimeFormat.Enabled = Master.eSettings.UseMIDuration
             Me.txtRuntimeFormat.Text = Master.eSettings.RuntimeMask
+            Me.chkUseTVMIDuration.Checked = Master.eSettings.TVUseMIDuration
+            Me.txtTVRuntimeFormat.Enabled = Master.eSettings.TVUseMIDuration
+            Me.txtTVRuntimeFormat.Text = Master.eSettings.TVRuntimeMask
             Me.chkUseImgCache.Checked = Master.eSettings.UseImgCache
             Me.chkUseImgCacheUpdaters.Checked = Master.eSettings.UseImgCacheUpdaters
             Me.chkPersistImgCache.Checked = Master.eSettings.PersistImgCache
@@ -3368,6 +3382,8 @@ Public Class dlgSettings
             End If
             Master.eSettings.UseMIDuration = Me.chkUseMIDuration.Checked
             Master.eSettings.RuntimeMask = Me.txtRuntimeFormat.Text
+            Master.eSettings.TVUseMIDuration = Me.chkUseTVMIDuration.Checked
+            Master.eSettings.TVRuntimeMask = Me.txtTVRuntimeFormat.Text
             Master.eSettings.UseImgCache = Me.chkUseImgCache.Checked
             Master.eSettings.UseImgCacheUpdaters = Me.chkUseImgCacheUpdaters.Checked
             Master.eSettings.PersistImgCache = Me.chkPersistImgCache.Checked

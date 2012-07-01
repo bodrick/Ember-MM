@@ -281,6 +281,8 @@ Partial Class dlgSettings
         Me.btnEditTVSource = New System.Windows.Forms.Button()
         Me.btnRemTVSource = New System.Windows.Forms.Button()
         Me.gbTVNaming = New System.Windows.Forms.GroupBox()
+        Me.gbShowBanner = New System.Windows.Forms.GroupBox()
+        Me.chkShowBannerJPG = New System.Windows.Forms.CheckBox()
         Me.gbAllSeasonPoster = New System.Windows.Forms.GroupBox()
         Me.chkSeasonAllJPG = New System.Windows.Forms.CheckBox()
         Me.chkSeasonAllTBN = New System.Windows.Forms.CheckBox()
@@ -310,7 +312,6 @@ Partial Class dlgSettings
         Me.chkShowJPG = New System.Windows.Forms.CheckBox()
         Me.chkShowTBN = New System.Windows.Forms.CheckBox()
         Me.chkShowPosterJPG = New System.Windows.Forms.CheckBox()
-        Me.chkShowBannerJPG = New System.Windows.Forms.CheckBox()
         Me.chkShowPosterTBN = New System.Windows.Forms.CheckBox()
         Me.chkShowFolderJPG = New System.Windows.Forms.CheckBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
@@ -493,6 +494,9 @@ Partial Class dlgSettings
         Me.chkScraperEpEpisode = New System.Windows.Forms.CheckBox()
         Me.chkScraperEpSeason = New System.Windows.Forms.CheckBox()
         Me.GroupBox33 = New System.Windows.Forms.GroupBox()
+        Me.GroupBox11 = New System.Windows.Forms.GroupBox()
+        Me.txtTVRuntimeFormat = New System.Windows.Forms.TextBox()
+        Me.chkUseTVMIDuration = New System.Windows.Forms.CheckBox()
         Me.gbEpLocks = New System.Windows.Forms.GroupBox()
         Me.chkEpLockTitle = New System.Windows.Forms.CheckBox()
         Me.chkEpLockRating = New System.Windows.Forms.CheckBox()
@@ -597,7 +601,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.gbShowBanner = New System.Windows.Forms.GroupBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -646,6 +649,7 @@ Partial Class dlgSettings
         Me.TabPage3.SuspendLayout()
         Me.gbMiscTVSourceOpts.SuspendLayout()
         Me.gbTVNaming.SuspendLayout()
+        Me.gbShowBanner.SuspendLayout()
         Me.gbAllSeasonPoster.SuspendLayout()
         Me.gbEpisodeFanart.SuspendLayout()
         Me.gbEpisodePosters.SuspendLayout()
@@ -688,6 +692,7 @@ Partial Class dlgSettings
         Me.GroupBox35.SuspendLayout()
         Me.GroupBox34.SuspendLayout()
         Me.GroupBox33.SuspendLayout()
+        Me.GroupBox11.SuspendLayout()
         Me.gbEpLocks.SuspendLayout()
         Me.gbShowLocks.SuspendLayout()
         Me.GroupBox31.SuspendLayout()
@@ -704,7 +709,6 @@ Partial Class dlgSettings
         Me.gbHelp.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel2.SuspendLayout()
-        Me.gbShowBanner.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox4
@@ -1219,7 +1223,8 @@ Partial Class dlgSettings
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(155, 68)
         Me.Label25.TabIndex = 0
-        Me.Label25.Text = "WARNING: Using the Expert Mode Cleaner could potentially delete wanted files. Take care when using this tool."
+        Me.Label25.Text = "WARNING: Using the Expert Mode Cleaner could potentially delete wanted files. Tak" & _
+            "e care when using this tool."
         Me.Label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'GroupBox12
@@ -3522,6 +3527,27 @@ Partial Class dlgSettings
         Me.gbTVNaming.TabStop = False
         Me.gbTVNaming.Text = "File Naming"
         '
+        'gbShowBanner
+        '
+        Me.gbShowBanner.Controls.Add(Me.chkShowBannerJPG)
+        Me.gbShowBanner.Location = New System.Drawing.Point(292, 150)
+        Me.gbShowBanner.Name = "gbShowBanner"
+        Me.gbShowBanner.Size = New System.Drawing.Size(140, 71)
+        Me.gbShowBanner.TabIndex = 9
+        Me.gbShowBanner.TabStop = False
+        Me.gbShowBanner.Text = "Show Banner"
+        '
+        'chkShowBannerJPG
+        '
+        Me.chkShowBannerJPG.AutoSize = True
+        Me.chkShowBannerJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!)
+        Me.chkShowBannerJPG.Location = New System.Drawing.Point(6, 15)
+        Me.chkShowBannerJPG.Name = "chkShowBannerJPG"
+        Me.chkShowBannerJPG.Size = New System.Drawing.Size(83, 17)
+        Me.chkShowBannerJPG.TabIndex = 0
+        Me.chkShowBannerJPG.Text = "banner.jpg"
+        Me.chkShowBannerJPG.UseVisualStyleBackColor = True
+        '
         'gbAllSeasonPoster
         '
         Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllJPG)
@@ -5619,6 +5645,7 @@ Partial Class dlgSettings
         'pnlTVScraper
         '
         Me.pnlTVScraper.BackColor = System.Drawing.Color.White
+        Me.pnlTVScraper.Controls.Add(Me.GroupBox11)
         Me.pnlTVScraper.Controls.Add(Me.GroupBox32)
         Me.pnlTVScraper.Controls.Add(Me.GroupBox33)
         Me.pnlTVScraper.Controls.Add(Me.GroupBox31)
@@ -5866,10 +5893,41 @@ Partial Class dlgSettings
         Me.GroupBox33.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox33.Location = New System.Drawing.Point(208, 6)
         Me.GroupBox33.Name = "GroupBox33"
-        Me.GroupBox33.Size = New System.Drawing.Size(191, 243)
+        Me.GroupBox33.Size = New System.Drawing.Size(191, 181)
         Me.GroupBox33.TabIndex = 68
         Me.GroupBox33.TabStop = False
         Me.GroupBox33.Text = "Global Locks"
+        '
+        'GroupBox11
+        '
+        Me.GroupBox11.Controls.Add(Me.txtTVRuntimeFormat)
+        Me.GroupBox11.Controls.Add(Me.chkUseTVMIDuration)
+        Me.GroupBox11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.GroupBox11.Location = New System.Drawing.Point(208, 186)
+        Me.GroupBox11.Name = "GroupBox11"
+        Me.GroupBox11.Size = New System.Drawing.Size(191, 62)
+        Me.GroupBox11.TabIndex = 70
+        Me.GroupBox11.TabStop = False
+        Me.GroupBox11.Text = "Duration Format"
+        '
+        'txtTVRuntimeFormat
+        '
+        Me.txtTVRuntimeFormat.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtTVRuntimeFormat.Location = New System.Drawing.Point(5, 34)
+        Me.txtTVRuntimeFormat.Name = "txtTVRuntimeFormat"
+        Me.txtTVRuntimeFormat.Size = New System.Drawing.Size(181, 22)
+        Me.txtTVRuntimeFormat.TabIndex = 22
+        '
+        'chkUseTVMIDuration
+        '
+        Me.chkUseTVMIDuration.AutoSize = True
+        Me.chkUseTVMIDuration.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkUseTVMIDuration.Location = New System.Drawing.Point(7, 14)
+        Me.chkUseTVMIDuration.Name = "chkUseTVMIDuration"
+        Me.chkUseTVMIDuration.Size = New System.Drawing.Size(158, 17)
+        Me.chkUseTVMIDuration.TabIndex = 8
+        Me.chkUseTVMIDuration.Text = "Use Duration for Runtime"
+        Me.chkUseTVMIDuration.UseVisualStyleBackColor = True
         '
         'gbEpLocks
         '
@@ -5877,7 +5935,7 @@ Partial Class dlgSettings
         Me.gbEpLocks.Controls.Add(Me.chkEpLockRating)
         Me.gbEpLocks.Controls.Add(Me.chkEpLockPlot)
         Me.gbEpLocks.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbEpLocks.Location = New System.Drawing.Point(5, 112)
+        Me.gbEpLocks.Location = New System.Drawing.Point(5, 110)
         Me.gbEpLocks.Name = "gbEpLocks"
         Me.gbEpLocks.Size = New System.Drawing.Size(181, 66)
         Me.gbEpLocks.TabIndex = 9
@@ -7048,27 +7106,6 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 77
         '
-        'gbShowBanner
-        '
-        Me.gbShowBanner.Controls.Add(Me.chkShowBannerJPG)
-        Me.gbShowBanner.Location = New System.Drawing.Point(292, 150)
-        Me.gbShowBanner.Name = "gbShowBanner"
-        Me.gbShowBanner.Size = New System.Drawing.Size(140, 71)
-        Me.gbShowBanner.TabIndex = 9
-        Me.gbShowBanner.TabStop = False
-        Me.gbShowBanner.Text = "Show Banner"
-        '
-        'chkShowBannerJPG
-        '
-        Me.chkShowBannerJPG.AutoSize = True
-        Me.chkShowBannerJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!)
-        Me.chkShowBannerJPG.Location = New System.Drawing.Point(6, 15)
-        Me.chkShowBannerJPG.Name = "chkShowBannerJPG"
-        Me.chkShowBannerJPG.Size = New System.Drawing.Size(83, 17)
-        Me.chkShowBannerJPG.TabIndex = 0
-        Me.chkShowBannerJPG.Text = "banner.jpg"
-        Me.chkShowBannerJPG.UseVisualStyleBackColor = True
-        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -7076,6 +7113,7 @@ Partial Class dlgSettings
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(894, 629)
+        Me.Controls.Add(Me.pnlTVScraper)
         Me.Controls.Add(Me.pnlTVSources)
         Me.Controls.Add(Me.pnlScraper)
         Me.Controls.Add(Me.Panel2)
@@ -7093,9 +7131,8 @@ Partial Class dlgSettings
         Me.Controls.Add(Me.pnlTVImages)
         Me.Controls.Add(Me.pnlExtensions)
         Me.Controls.Add(Me.pnlXBMCCom)
-        Me.Controls.Add(Me.pnlMain)
-        Me.Controls.Add(Me.pnlTVScraper)
         Me.Controls.Add(Me.pnlShows)
+        Me.Controls.Add(Me.pnlMain)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -7180,6 +7217,8 @@ Partial Class dlgSettings
         Me.gbMiscTVSourceOpts.ResumeLayout(False)
         Me.gbMiscTVSourceOpts.PerformLayout()
         Me.gbTVNaming.ResumeLayout(False)
+        Me.gbShowBanner.ResumeLayout(False)
+        Me.gbShowBanner.PerformLayout()
         Me.gbAllSeasonPoster.ResumeLayout(False)
         Me.gbAllSeasonPoster.PerformLayout()
         Me.gbEpisodeFanart.ResumeLayout(False)
@@ -7245,6 +7284,8 @@ Partial Class dlgSettings
         Me.GroupBox35.ResumeLayout(False)
         Me.GroupBox34.ResumeLayout(False)
         Me.GroupBox33.ResumeLayout(False)
+        Me.GroupBox11.ResumeLayout(False)
+        Me.GroupBox11.PerformLayout()
         Me.gbEpLocks.ResumeLayout(False)
         Me.gbShowLocks.ResumeLayout(False)
         Me.GroupBox31.ResumeLayout(False)
@@ -7270,8 +7311,6 @@ Partial Class dlgSettings
         Me.gbHelp.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel2.ResumeLayout(False)
-        Me.gbShowBanner.ResumeLayout(False)
-        Me.gbShowBanner.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -7844,4 +7883,7 @@ Partial Class dlgSettings
     Friend WithEvents chkPosterOnly As System.Windows.Forms.CheckBox
     Friend WithEvents gbShowBanner As System.Windows.Forms.GroupBox
     Friend WithEvents chkShowBannerJPG As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox11 As System.Windows.Forms.GroupBox
+    Friend WithEvents txtTVRuntimeFormat As System.Windows.Forms.TextBox
+    Friend WithEvents chkUseTVMIDuration As System.Windows.Forms.CheckBox
 End Class
