@@ -42,11 +42,11 @@ Public Class Database
         End Get
     End Property
 
-    Public ReadOnly Property JobsDBConn() As SQLiteConnection
-        Get
-            Return _jobsDBConn
-        End Get
-    End Property
+    'Public ReadOnly Property JobsDBConn() As SQLiteConnection
+    '    Get
+    '        Return _jobsDBConn
+    '    End Get
+    'End Property
 
 #End Region
 
@@ -220,14 +220,14 @@ Public Class Database
 
     Public Sub Close()
         CloseDatabase(_mediaDBConn)
-        CloseDatabase(_jobsDBConn)
+        'CloseDatabase(_jobsDBConn)
 
         If Not IsNothing(_mediaDBConn) Then
             _mediaDBConn = Nothing
         End If
-        If Not IsNothing(_jobsDBConn) Then
-            _jobsDBConn = Nothing
-        End If
+        'If Not IsNothing(_jobsDBConn) Then
+        '    _jobsDBConn = Nothing
+        'End If
     End Sub
 
     Protected Sub CloseDatabase(ByRef connection As SQLiteConnection)
@@ -251,7 +251,7 @@ Public Class Database
 
     Public Function Connect() As Boolean
         Dim newDatabase = ConnectMediaDB()
-        ConnectJobsDB()
+        'ConnectJobsDB()
         Return newDatabase
     End Function
 
