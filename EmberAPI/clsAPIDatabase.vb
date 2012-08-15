@@ -235,17 +235,19 @@ Public Class Database
             Return
         End If
 
-        Try
-            Using command As SQLiteCommand = connection.CreateCommand()
-                command.CommandText = "VACUUM;"
-                command.ExecuteNonQuery()
-            End Using
+        Using command As SQLiteCommand = connection.CreateCommand()
+            command.CommandText = "VACUUM;"
+            command.ExecuteNonQuery()
+        End Using
 
+        Try
             connection.Close()
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.ToString, _
                                         ex.StackTrace, _
                                         "There was a problem closing the media database.")
+        Finally
+            connection.Dispose()
         End Try
     End Sub
 
