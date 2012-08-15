@@ -313,7 +313,7 @@ Public Class dlgExportMovies
             ' Clean up Movies List if any
             _movies.Clear()
             ' Load nfo movies using path from DB
-            Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                 Dim _tmpMovie As New Structures.DBMovie
                 Dim _ID As Integer
                 Dim iProg As Integer = 0

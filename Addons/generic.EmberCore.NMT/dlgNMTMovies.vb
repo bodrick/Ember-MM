@@ -812,7 +812,7 @@ Public Class dlgNMTMovies
 
     Private Function GetMovieFileInfo(ByVal MovieID As String) As MediaInfo.Fileinfo
         Dim fi As New MediaInfo.Fileinfo
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = String.Concat("SELECT * FROM MoviesVStreams WHERE MovieID = ", MovieID, ";")
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 Dim video As MediaInfo.Video
@@ -831,7 +831,7 @@ Public Class dlgNMTMovies
             End Using
         End Using
 
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = String.Concat("SELECT * FROM MoviesAStreams WHERE MovieID = ", MovieID, ";")
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 Dim audio As MediaInfo.Audio
@@ -845,7 +845,7 @@ Public Class dlgNMTMovies
                 End While
             End Using
         End Using
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = String.Concat("SELECT * FROM MoviesSubs WHERE MovieID = ", MovieID, ";")
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 Dim subtitle As MediaInfo.Subtitle

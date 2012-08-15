@@ -874,7 +874,7 @@ Public Class Functions
     ''' </summary>
     Public Shared Sub GetListOfSources()
         Master.SourcesList.Clear()
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = "SELECT sources.Path FROM sources;"
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 While SQLreader.Read
