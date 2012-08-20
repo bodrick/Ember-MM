@@ -386,7 +386,7 @@ Namespace MediaContainers
         Private _certification As String
         Private _genres As New List(Of String)
         Private _studio As String
-        Private _director As String
+        Private _directors As New List(Of String)
         Private _credits As String
         Private _tagline As String
         Private _outline As String
@@ -716,19 +716,36 @@ Namespace MediaContainers
         End Property
 
         <XmlElement("director")> _
-        Public Property Director() As String
+        Public Property Directors() As List(Of String)
             Get
-                Return Me._director
+                Return _directors
             End Get
-            Set(ByVal value As String)
-                Me._director = value
+            Set(ByVal value As List(Of String))
+                If IsNothing(value) Then
+                    _directors.Clear()
+                Else
+                    _directors = value
+                End If
             End Set
         End Property
 
+        <Obsolete("This property is depreciated. Use Movie.Directors [List(Of String)] instead.")> _
+        <XmlIgnore()> _
+        Public Property Director() As String
+            Get
+                Return String.Join(" / ", _directors.ToArray)
+            End Get
+            Set(ByVal value As String)
+                _directors.Clear()
+                AddDirector(value)
+            End Set
+        End Property
+
+        <Obsolete("This property is depreciated. Use 'Movie.Directors.Count > 0' instead.")> _
         <XmlIgnore()> _
         Public ReadOnly Property DirectorSpecified() As Boolean
             Get
-                Return Not String.IsNullOrEmpty(Me._director)
+                Return (_directors.Count > 0)
             End Get
         End Property
 
@@ -1091,6 +1108,25 @@ Namespace MediaContainers
             End If
         End Sub
 
+        Public Sub AddDirector(ByVal value As String)
+            If String.IsNullOrEmpty(value) Then Return
+
+            If value.Contains("/") Then
+                Dim values As String() = value.Split(New [Char]() {"/"c})
+                For Each director As String In values
+                    director = director.Trim
+                    If Not _directors.Contains(director) And Not value = "See more" Then
+                        _directors.Add(director)
+                    End If
+                Next
+            Else
+                value = value.Trim
+                If Not _directors.Contains(value) And Not value = "See more" Then
+                    _directors.Add(value.Trim)
+                End If
+            End If
+        End Sub
+
         Public Sub Clear()
             'Me._imdbid = String.Empty
             Me._title = String.Empty
@@ -1112,7 +1148,7 @@ Namespace MediaContainers
             Me._runtime = String.Empty
             Me._releaseDate = String.Empty
             Me._studio = String.Empty
-            Me._director = String.Empty
+            Me._directors.Clear()
             Me._credits = String.Empty
             Me._playcount = String.Empty
             Me._watched = String.Empty
