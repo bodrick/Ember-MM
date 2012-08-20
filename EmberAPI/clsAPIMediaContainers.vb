@@ -384,8 +384,7 @@ Namespace MediaContainers
         Private _votes As String
         Private _mpaa As String
         Private _certification As String
-        Private _genre As String
-        Private _genrelist As New List(Of String)
+        Private _genres As New List(Of String)
         Private _studio As String
         Private _director As String
         Private _credits As String
@@ -655,31 +654,47 @@ Namespace MediaContainers
         End Property
 
         <XmlElement("genre")> _
-        Public Property LGenre() As List(Of String)
+        Public Property Genres() As List(Of String)
             Get
-                Return Me._genrelist
+                Return _genres
             End Get
             Set(ByVal value As List(Of String))
-                Me._genrelist = value
+                If IsNothing(value) Then
+                    _genres.Clear()
+                Else
+                    _genres = value
+                End If
             End Set
         End Property
 
+        <Obsolete("This property is depreciated. Use Movie.Genres.Count instead.")> _
+        <XmlIgnore()> _
+        Public Property LGenre() As List(Of String)
+            Get
+                Return Genres
+            End Get
+            Set(ByVal value As List(Of String))
+                Genres = value
+            End Set
+        End Property
+
+        <Obsolete("This property is depreciated. Use 'Movie.Genres.Count > 0' instead.")> _
         <XmlIgnore()> _
         Public ReadOnly Property LGenreSpecified() As Boolean
             Get
-                Return Not String.IsNullOrEmpty(Me._genre)
+                Return (_genres.Count > 0)
             End Get
         End Property
 
+        <Obsolete("This property is depreciated. Use Movie.Genres [List(Of String)] instead.")> _
         <XmlIgnore()> _
         Public Property Genre() As String
             Get
-                Return Me._genre
+                Return String.Join(" / ", _genres.ToArray)
             End Get
             Set(ByVal value As String)
-                Me._genre = value
-                Me._genrelist.Clear()
-                Me._genrelist.Add(value)
+                _genres.Clear()
+                AddGenre(value)
             End Set
         End Property
 
@@ -1058,6 +1073,24 @@ Namespace MediaContainers
             Sets.Add(New [Set] With {.Set = SetName, .Order = If(Order > 0, Order.ToString, String.Empty)})
         End Sub
 
+        Public Sub AddGenre(ByVal value As String)
+            If String.IsNullOrEmpty(value) Then Return
+
+            If value.Contains("/") Then
+                Dim values As String() = value.Split(New [Char]() {"/"c})
+                For Each genre As String In values
+                    genre = genre.Trim
+                    If Not _genres.Contains(genre) Then
+                        _genres.Add(genre)
+                    End If
+                Next
+            Else
+                If Not _genres.Contains(value) Then
+                    _genres.Add(value.Trim)
+                End If
+            End If
+        End Sub
+
         Public Sub Clear()
             'Me._imdbid = String.Empty
             Me._title = String.Empty
@@ -1075,8 +1108,7 @@ Namespace MediaContainers
             Me._tagline = String.Empty
             Me._trailer = String.Empty
             Me._certification = String.Empty
-            Me._genre = String.Empty
-            Me._genrelist = New List(Of String)
+            Me._genres.Clear()
             Me._runtime = String.Empty
             Me._releaseDate = String.Empty
             Me._studio = String.Empty
@@ -1282,8 +1314,7 @@ Namespace MediaContainers
         Private _id As String
         Private _episodeguideurl As String
         Private _rating As String
-        Private _genre As String
-        Private _genrelist As New List(Of String)
+        Private _genres As New List(Of String)
         Private _mpaa As String
         Private _premiered As String
         Private _studio As String
@@ -1389,31 +1420,47 @@ Namespace MediaContainers
         End Property
 
         <XmlElement("genre")> _
-        Public Property LGenre() As List(Of String)
+        Public Property Genres() As List(Of String)
             Get
-                Return Me._genrelist
+                Return _genres
             End Get
             Set(ByVal value As List(Of String))
-                Me._genrelist = value
+                If IsNothing(value) Then
+                    _genres.Clear()
+                Else
+                    _genres = value
+                End If
             End Set
         End Property
 
+        <Obsolete("This property is depreciated. Use TVShow.Genres.Count instead.")> _
+        <XmlIgnore()> _
+        Public Property LGenre() As List(Of String)
+            Get
+                Return Genres
+            End Get
+            Set(ByVal value As List(Of String))
+                Genres = value
+            End Set
+        End Property
+
+        <Obsolete("This property is depreciated. Use 'TVShow.Genres.Count > 0' instead.")> _
         <XmlIgnore()> _
         Public ReadOnly Property LGenreSpecified() As Boolean
             Get
-                Return Not String.IsNullOrEmpty(Me._genre)
+                Return (_genres.Count > 0)
             End Get
         End Property
 
+        <Obsolete("This property is depreciated. Use TVShow.Genres [List(Of String)] instead.")> _
         <XmlIgnore()> _
         Public Property Genre() As String
             Get
-                Return Me._genre
+                Return String.Join(" / ", _genres.ToArray)
             End Get
             Set(ByVal value As String)
-                Me._genre = value
-                Me._genrelist.Clear()
-                Me._genrelist.Add(value)
+                _genres.Clear()
+                AddGenre(value)
             End Set
         End Property
 
@@ -1516,6 +1563,24 @@ Namespace MediaContainers
 
 #Region "Methods"
 
+        Public Sub AddGenre(ByVal value As String)
+            If String.IsNullOrEmpty(value) Then Return
+
+            If value.Contains("/") Then
+                Dim values As String() = value.Split(New [Char]() {"/"c})
+                For Each genre As String In values
+                    genre = genre.Trim
+                    If Not _genres.Contains(genre) Then
+                        _genres.Add(genre)
+                    End If
+                Next
+            Else
+                If Not _genres.Contains(value) Then
+                    _genres.Add(value.Trim)
+                End If
+            End If
+        End Sub
+
         Public Sub Clear()
             _title = String.Empty
             _id = String.Empty
@@ -1524,8 +1589,7 @@ Namespace MediaContainers
             _episodeguideurl = String.Empty
             _plot = String.Empty
             _mpaa = String.Empty
-            _genre = String.Empty
-            _genrelist = New List(Of String)
+            _genres.Clear()
             _premiered = String.Empty
             _studio = String.Empty
             _actors.Clear()
