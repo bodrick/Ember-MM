@@ -540,7 +540,7 @@ mPlot:
                                 Select Writer = Web.HttpUtility.HtmlDecode(String.Concat(DirectCast(M, Match).Groups("name").ToString, If(FullCrew, " (writer)", String.Empty)))
 
                         If q.Count > 0 Then
-                            IMDBMovie.Credits = Strings.Join(q.ToArray, " / ").Trim
+                            IMDBMovie.OldCredits = Strings.Join(q.ToArray, " / ").Trim
                         End If
                     End If
                 End If
@@ -569,7 +569,7 @@ mPlot:
                                 Select Producer = Web.HttpUtility.HtmlDecode(String.Concat(P1.Groups("name").ToString, " (producer)"))
 
                                 If Pr.Count > 0 Then
-                                    IMDBMovie.Credits = String.Concat(IMDBMovie.Credits, " / ", Strings.Join(Pr.ToArray, " / ").Trim)
+                                    IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Pr.ToArray, " / ").Trim)
                                 End If
                             End If
 
@@ -581,7 +581,7 @@ mPlot:
                                 Select Musician = Web.HttpUtility.HtmlDecode(String.Concat(M1.Groups("name").ToString, " (music by)"))
 
                                 If Mu.Count > 0 Then
-                                    IMDBMovie.Credits = String.Concat(IMDBMovie.Credits, " / ", Strings.Join(Mu.ToArray, " / ").Trim)
+                                    IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Mu.ToArray, " / ").Trim)
                                 End If
                             End If
 
@@ -599,7 +599,7 @@ mPlot:
                                      Where Not String.IsNullOrEmpty(DirectCast(P1, Match).Groups("name").ToString) _
                                      Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString)
                             If Ps.Count > 0 Then
-                                IMDBMovie.Credits = String.Concat(IMDBMovie.Credits, " / ", Strings.Join(Ps.ToArray, " / ").Trim)
+                                IMDBMovie.OldCredits = String.Concat(IMDBMovie.OldCredits, " / ", Strings.Join(Ps.ToArray, " / ").Trim)
                             End If
                         End If
                     End If

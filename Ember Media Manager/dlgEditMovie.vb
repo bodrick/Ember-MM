@@ -644,8 +644,8 @@ Public Class dlgEditMovie
                     .txtDirector.Text = Master.currMovie.Movie.Director
                 End If
 
-                If Not String.IsNullOrEmpty(Master.currMovie.Movie.Credits) Then
-                    .txtCredits.Text = Master.currMovie.Movie.Credits
+                If Not String.IsNullOrEmpty(Master.currMovie.Movie.OldCredits) Then
+                    .txtCredits.Text = Master.currMovie.Movie.OldCredits
                 End If
 
 
@@ -1225,7 +1225,7 @@ Public Class dlgEditMovie
                 Master.currMovie.Movie.Rating = .tmpRating
                 Master.currMovie.Movie.Runtime = .txtRuntime.Text.Trim
                 Master.currMovie.Movie.ReleaseDate = .txtReleaseDate.Text.Trim
-                Master.currMovie.Movie.Credits = .txtCredits.Text.Trim
+                Master.currMovie.Movie.OldCredits = .txtCredits.Text.Trim
                 Master.currMovie.Movie.Trailer = .txtTrailer.Text.Trim
                 Master.currMovie.Movie.Studio = .txtStudio.Text.Trim
 
