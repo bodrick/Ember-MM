@@ -387,7 +387,7 @@ Namespace MediaContainers
         Private _genres As New List(Of String)
         Private _studio As String
         Private _directors As New List(Of String)
-        Private _credits As String
+        Private _credits As New List(Of String)
         Private _tagline As String
         Private _outline As String
         Private _plot As String
@@ -750,19 +750,36 @@ Namespace MediaContainers
         End Property
 
         <XmlElement("credits")> _
-        Public Property Credits() As String
+        Public Property Credits() As List(Of String)
             Get
-                Return Me._credits
+                Return _credits
             End Get
-            Set(ByVal value As String)
-                Me._credits = value
+            Set(ByVal value As List(Of String))
+                If IsNothing(value) Then
+                    _credits.Clear()
+                Else
+                    _credits = value
+                End If
             End Set
         End Property
 
+        <Obsolete("This property is depreciated. Use Movie.Genres [List(Of String)] instead.")> _
+        <XmlIgnore()> _
+        Public Property OldCredits() As String
+            Get
+                Return String.Join(" / ", _credits.ToArray)
+            End Get
+            Set(ByVal value As String)
+                _credits.Clear()
+                AddCredit(value)
+            End Set
+        End Property
+
+        <Obsolete("This property is depreciated. Use 'Movie.Credits.Count > 0' instead.")> _
         <XmlIgnore()> _
         Public ReadOnly Property CreditsSpecified() As Boolean
             Get
-                Return Not String.IsNullOrEmpty(Me._credits)
+                Return (_credits.Count > 0)
             End Get
         End Property
 
@@ -1127,6 +1144,25 @@ Namespace MediaContainers
             End If
         End Sub
 
+        Public Sub AddCredit(ByVal value As String)
+            If String.IsNullOrEmpty(value) Then Return
+
+            If value.Contains("/") Then
+                Dim values As String() = value.Split(New [Char]() {"/"c})
+                For Each credit As String In values
+                    credit = credit.Trim
+                    If Not _credits.Contains(credit) And Not value = "See more" Then
+                        _credits.Add(credit)
+                    End If
+                Next
+            Else
+                value = value.Trim
+                If Not _credits.Contains(value) And Not value = "See more" Then
+                    _credits.Add(value.Trim)
+                End If
+            End If
+        End Sub
+
         Public Sub Clear()
             'Me._imdbid = String.Empty
             Me._title = String.Empty
@@ -1149,7 +1185,7 @@ Namespace MediaContainers
             Me._releaseDate = String.Empty
             Me._studio = String.Empty
             Me._directors.Clear()
-            Me._credits = String.Empty
+            Me._credits.Clear()
             Me._playcount = String.Empty
             Me._watched = String.Empty
             Me._thumb.Clear()

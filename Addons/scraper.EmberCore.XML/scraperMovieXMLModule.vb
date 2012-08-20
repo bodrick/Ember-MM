@@ -392,7 +392,7 @@ Public Class EmberXMLScraperModule
         End If
         If Options.bCountry Then DBMovie.Movie.Country = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Country.ToArray(), " / "))
         If Options.bVotes Then DBMovie.Movie.Votes = lMediaTag.Votes.ToString
-        If Options.bWriters Then DBMovie.Movie.Credits = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Writers.ToArray, " / "))
+        If Options.bWriters Then DBMovie.Movie.OldCredits = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Writers.ToArray, " / "))
         If Options.bYear Then DBMovie.Movie.Year = lMediaTag.Year.ToString
         DBMovie.Movie.PlayCount = lMediaTag.PlayCount.ToString
         DBMovie.Movie.ID = If(String.IsNullOrEmpty(lMediaTag.ID), DBMovie.Movie.ID, lMediaTag.ID)
