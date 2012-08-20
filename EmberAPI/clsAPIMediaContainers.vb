@@ -378,8 +378,7 @@ Namespace MediaContainers
         Private _year As String
         Private _releaseDate As String
         Private _top250 As String
-        Private _country As String
-        Private _countrylist As New List(Of String)
+        Private _countries As New List(Of String)
         Private _rating As String
         Private _votes As String
         Private _mpaa As String
@@ -557,31 +556,48 @@ Namespace MediaContainers
         End Property
 
         <XmlElement("country")> _
-        Public Property LCountry() As List(Of String)
+        Public Property Countries() As List(Of String)
             Get
-                Return Me._countrylist
+                Return _countries
             End Get
             Set(ByVal value As List(Of String))
-                Me._countrylist = value
+                If IsNothing(value) Then
+                    _countries.Clear()
+                Else
+                    _countries = value
+                End If
             End Set
         End Property
 
+        <Obsolete("This property is depreciated. Use Movie.Countries instead.")> _
+        <XmlIgnore()> _
+        Public Property LCountry() As List(Of String)
+            Get
+                Return Countries
+            End Get
+            Set(ByVal value As List(Of String))
+                Countries = value
+            End Set
+        End Property
+
+        <Obsolete("This property is depreciated. Use 'Movie.Country.Count > 0' instead.")> _
         <XmlIgnore()> _
         Public ReadOnly Property LCountrySpecified() As Boolean
             Get
-                Return Not String.IsNullOrEmpty(Me._country)
+                Return (_countries.Count > 0)
             End Get
         End Property
 
+
+        <Obsolete("This property is depreciated. Use Movie.Countries [List(Of String)] instead.")> _
         <XmlIgnore()> _
         Public Property Country() As String
             Get
-                Return Me._country
+                Return String.Join(" / ", _countries.ToArray)
             End Get
             Set(ByVal value As String)
-                Me._country = value
-                Me._countrylist.Clear()
-                Me._countrylist.Add(value)
+                _countries.Clear()
+                AddCountry(value)
             End Set
         End Property
 
@@ -1163,6 +1179,26 @@ Namespace MediaContainers
             End If
         End Sub
 
+        Public Sub AddCountry(ByVal value As String)
+            If String.IsNullOrEmpty(value) Then Return
+
+            If value.Contains("/") Then
+                Dim values As String() = value.Split(New [Char]() {"/"c})
+                For Each country As String In values
+                    country = country.Trim
+                    If Not _countries.Contains(country) Then
+                        _countries.Add(country)
+                    End If
+                Next
+            Else
+                value = value.Trim
+                If Not _countries.Contains(value) Then
+                    _countries.Add(value.Trim)
+                End If
+            End If
+        End Sub
+
+
         Public Sub Clear()
             'Me._imdbid = String.Empty
             Me._title = String.Empty
@@ -1173,8 +1209,7 @@ Namespace MediaContainers
             Me._votes = String.Empty
             Me._mpaa = String.Empty
             Me._top250 = String.Empty
-            Me._country = String.Empty
-            Me._countrylist = New List(Of String)
+            Me._countries.Clear()
             Me._outline = String.Empty
             Me._plot = String.Empty
             Me._tagline = String.Empty
