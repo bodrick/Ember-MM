@@ -60,6 +60,8 @@ namespace Ember.Plugins
                 string className = null;
                 try
                 {
+                    if (node.Attributes["class"] == null)
+                        throw new PluginSectionHandler.InvalidConfigException();
                     className = node.Attributes["class"].Value;
                     if (string.IsNullOrEmpty(className)) continue;
 
@@ -68,23 +70,35 @@ namespace Ember.Plugins
                         log.Debug(string.Format("Load Plug-in :: ClassName = {0}", className));
 #endif
 
-                    object pluginObject = Activator.CreateInstance(Type.GetType(className));
+                    Type pluginType = Type.GetType(className);
+                    if (pluginType == null)
+                        throw new PluginSectionHandler.UnknownClassException();
+                    object pluginObject = Activator.CreateInstance(pluginType);
                     if (pluginObject == null || !(pluginObject is IPlugin)) continue;
 
                     IPlugin plugin = (IPlugin)pluginObject;
                     plugins.Add(plugin);
                 }
+                catch (PluginSectionHandler.InvalidConfigException)
+                {
+                    if (log.IsErrorEnabled)
+                        log.Error("Load Plug-in :: Plug-in configuration error. No class type found for plug-in.");
+                }
+                catch (PluginSectionHandler.UnknownClassException)
+                {
+                    if (log.IsErrorEnabled)
+                    {
+                        string[] classSplit = className.Split(',');
+                        log.ErrorFormat(
+                            "Load Plug-in :: Plug-in configuration error. Unable to load plugin class. [Assembly={1}; Class={0}]",
+                            classSplit[0].TrimStart(), classSplit[1]);
+                        log.Error("Load Plug-in :: Check the plug-in entry and that it's located in the Modules directory.");
+                    }
+                }
                 catch (Exception ex)
                 {
-                    if (log.IsErrorEnabled) {
-                        string mesg;
-                        if (className == null)
-                            mesg = "Plug-in configuration error.";
-                        else
-                            mesg = String.Format("Unable to load plug-in {0}", className);
-
-                        log.Error(mesg, ex);
-                    }
+                    if (log.IsErrorEnabled)
+                        log.Error("Load Plug-in :: Plug-in configuration error.", ex);
                 }
             }
 
@@ -93,5 +107,12 @@ namespace Ember.Plugins
 
         #endregion
 
+
+        #region PluginSectionHandler.InvalidConfigException
+
+        private class InvalidConfigException : Exception { }
+        private class UnknownClassException : Exception { }
+
+        #endregion PluginSectionHandler.InvalidConfigException
     }
 }
