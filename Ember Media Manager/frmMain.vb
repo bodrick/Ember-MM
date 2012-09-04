@@ -25,10 +25,12 @@ Imports System.Linq
 Imports System.Reflection
 Imports System.Text.RegularExpressions
 Imports EmberAPI
+Imports Ember.Plugins
 
 Public Class frmMain
 
 #Region "Fields"
+    Private pluginManager As PluginManager
     Private fLoading As New frmSplash
 
     Friend WithEvents bwCleanDB As New System.ComponentModel.BackgroundWorker
@@ -5269,6 +5271,10 @@ doCancel:
             End If
             If Not Me.WindowState = FormWindowState.Minimized Then Master.eSettings.Save()
 
+            If Not IsNothing(pluginManager) And Not pluginManager.IsDisposed Then
+                ' Release any resources held by the plug-in manager or the loaded plug-ins.
+                pluginManager.Dispose()
+            End If
         Catch ex As Exception
             ' If we got here, then some of the above not run. Application.Exit can not be used. 
             ' Because Exit will dispose object that are in use by BackgroundWorkers
@@ -5338,6 +5344,8 @@ doCancel:
             ' Add our handlers, load settings, set form colors, and try to load movies at startup
             '\\
             fLoading.SetLoadingMesg("Loading modules...")
+            pluginManager = New PluginManager()
+
             'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
             'ExternalModulesManager = New ModulesManager
             ModulesManager.Instance.RuntimeObjects.MenuMediaList = Me.mnuMediaList
