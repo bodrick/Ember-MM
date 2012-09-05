@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Ember.Plugins.Scraper
 {
+    /// <summary>
+    /// The main interface for calling movie scraper plug-ins.
+    /// </summary>
     public class MovieScraperManager
         : IMovieInfoScraper, IMovieImageScraper
     {
@@ -31,6 +34,11 @@ namespace Ember.Plugins.Scraper
 
         #region IMovieInfoScraper
 
+        /// <summary>
+        /// Scrapes the movie info.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
         public PluginActionResult ScrapeMovieInfo(MovieInfoScraperActionContext context)
         {
             if (context == null)

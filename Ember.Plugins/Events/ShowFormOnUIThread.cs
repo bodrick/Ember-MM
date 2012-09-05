@@ -8,7 +8,7 @@ namespace Ember.Plugins.Events
     /// A delegate to show a form on the UI thread.
     /// </summary>
     /// <param name="sender">The plugin making the call.</param>
-    /// <param name="e">The <see cref="Ember.Plugins.ShowFormOnUIThreadEventArgs"/> instance containing the event data.</param>
+    /// <param name="e">The <see cref="Ember.Plugins.Events.ShowFormOnUIThreadEventArgs"/> instance containing the event data.</param>
     public delegate void ShowFormOnUIThreadHandler(object sender, ShowFormOnUIThreadEventArgs e);
 
     /// <summary>

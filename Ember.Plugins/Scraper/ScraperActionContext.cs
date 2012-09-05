@@ -6,11 +6,21 @@
     /// </summary>
     public enum ScrapeType
     {
+        /// <summary>
+        /// A manual scraped.
+        /// </summary>
         Manual,
+
+        /// <summary>
+        /// An automatic scrape.
+        /// </summary>
         Automatic,
     }
 
 
+    /// <summary>
+    /// Context for scraper actions.
+    /// </summary>
     public class ScraperActionContext
         : PluginActionContext
     {

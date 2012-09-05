@@ -10,11 +10,30 @@ namespace Ember.Plugins
     /// </summary>
     public enum PluginType
     {
+        /// <summary>
+        /// An unknown plug-in.
+        /// </summary>
         Unknown,
-        Scraper_MovieInfo,  // Implements Scraper.IMovieInfoScraper
-        Scraper_MovieImage, // Implements Scraper.IMovieImageScraper
-        Scraper_TVInfo,     // Implements Scraper.ITVInfoScraper
-        Scraper_TVImage,    // Implements Scraper.ITVImageScraper
+
+        /// <summary>
+        /// A plug-in that implements Scraper.IMovieInfoScraper
+        /// </summary>
+        Scraper_MovieInfo,
+
+        /// <summary>
+        /// A plug-in that implements Scraper.IMovieImageScraper
+        /// </summary>
+        Scraper_MovieImage,
+
+        /// <summary>
+        /// A plug-in that implements Scraper.ITVInfoScraper
+        /// </summary>
+        Scraper_TVInfo,
+
+        /// <summary>
+        /// A plug-in that implements Scraper.ITVImageScraper
+        /// </summary>
+        Scraper_TVImage,
     }
 
     /// <summary>
