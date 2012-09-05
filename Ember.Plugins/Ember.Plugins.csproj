@@ -71,6 +71,7 @@
     <Compile Include="Scraper\ITVInfoScraper.cs" />
     <Compile Include="Scraper\MovieScraperManager.cs" />
     <Compile Include="Scraper\ScraperActionContext.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
