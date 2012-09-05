@@ -477,6 +477,10 @@
       <Project>{9496C697-5AFD-4813-AEDC-AF33FACEADF0}</Project>
       <Name>Ember.Plugins</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ember.Resources\Ember.Resources.csproj">
+      <Project>{1AD1C274-0AB0-48BF-8122-3B3EBE8A52E6}</Project>
+      <Name>Ember.Resources</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmberAPI\EmberAPI.vbproj">
       <Project>{208AA35E-C6AE-4D2D-A9DD-B6EFD19A4279}</Project>
       <Name>EmberAPI</Name>
