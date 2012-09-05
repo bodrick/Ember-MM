@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dummy\DummyPlugin.cs" />
+    <Compile Include="Ember\EmberWorkAroundPlugin.cs" />
     <Compile Include="Events\MovieScraper.cs" />
     <Compile Include="Events\ShowFormOnUIThread.cs" />
     <Compile Include="IPlugin.cs" />
