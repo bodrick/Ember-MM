@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace Ember.Plugins
 {
@@ -19,6 +20,16 @@ namespace Ember.Plugins
     public class PluginManager
         : IDisposable
     {
+
+        #region Events
+
+        /// <summary>
+        /// Occurs when a plugin wants to show a form on the UI thread.
+        /// </summary>
+        public event Events.ShowFormOnUIThreadHandler ShowFormOnUIThread;
+
+        #endregion Events
+
 
         #region Fields
 
@@ -52,7 +63,6 @@ namespace Ember.Plugins
         /// </summary>
         public PluginManager()
         {
-            LoadPlugins();
         }
 
         #endregion Constructor
@@ -63,7 +73,7 @@ namespace Ember.Plugins
         /// <summary>
         /// Loads and initialise plug-ins listed in the configuration file.
         /// </summary>
-        private void LoadPlugins()
+        public void LoadPlugins()
         {
             // Plug-ins loaded by Ember.Plugins.PluginSectionHandler
             List<IPlugin> loaded = (List<IPlugin>)ConfigurationManager.GetSection("plugins");
@@ -119,6 +129,18 @@ namespace Ember.Plugins
             }
         }
 
+        /// <summary>
+        /// Show a form on the UI thread.
+        /// </summary>
+        /// <param name="plugin">The plugin making the call.</param>
+        /// <param name="form">The form to show.</param>
+        /// <param name="asDialog">if set to <c>true</c> as show as a dialog.</param>
+        public void ShowForm(IPlugin plugin, Form form, bool asDialog)
+        {
+            if (ShowFormOnUIThread != null)
+                ShowFormOnUIThread(plugin, new Events.ShowFormOnUIThreadEventArgs(form, asDialog));
+        }
+
         #endregion
 
 
@@ -164,6 +186,9 @@ namespace Ember.Plugins
                         disposable.Dispose();
                     }
                     plugins.Remove(plugin);
+
+                    foreach (Delegate d in ShowFormOnUIThread.GetInvocationList())
+                        ShowFormOnUIThread -= (Events.ShowFormOnUIThreadHandler)d;
                 }
             }
 

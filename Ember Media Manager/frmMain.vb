@@ -5273,6 +5273,7 @@ doCancel:
 
             If Not IsNothing(pluginManager) And Not pluginManager.IsDisposed Then
                 ' Release any resources held by the plug-in manager or the loaded plug-ins.
+                RemoveHandler pluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
                 pluginManager.Dispose()
             End If
         Catch ex As Exception
@@ -5282,6 +5283,25 @@ doCancel:
             ' "Collection was modified; enumeration operation may not execute."
             ' Application.Exit()
         End Try
+    End Sub
+
+    ''' <summary>
+    ''' Shows a form on UI thread.
+    ''' </summary>
+    ''' <param name="sender">The sender.</param>
+    ''' <param name="e">The <see cref="Ember.Plugins.ShowFormOnUIThreadEventArgs" /> instance containing the event data.</param>
+    Private Sub ShowFormOnUIThread(sender As Object, e As Events.ShowFormOnUIThreadEventArgs)
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New Events.ShowFormOnUIThreadHandler(AddressOf ShowFormOnUIThread), _
+                      New Object() {sender, e})
+            Return
+        End If
+
+        If e.AsDialog Then
+            e.Form.ShowDialog(Me)
+        Else
+            e.Form.Show(Me)
+        End If
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -5345,6 +5365,8 @@ doCancel:
             '\\
             fLoading.SetLoadingMesg("Loading modules...")
             pluginManager = New PluginManager()
+            AddHandler pluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
+            pluginManager.LoadPlugins()
 
             'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
             'ExternalModulesManager = New ModulesManager

@@ -45,12 +45,14 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ShowFormOnUIThread.cs" />
     <Compile Include="IPlugin.cs" />
     <Compile Include="PluginBase.cs" />
     <Compile Include="PluginManager.cs" />
