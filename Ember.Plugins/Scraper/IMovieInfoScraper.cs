@@ -2,6 +2,7 @@
 
 namespace Ember.Plugins.Scraper
 {
+
     /// <summary>
     /// Defines a movie information scraper.
     /// </summary>

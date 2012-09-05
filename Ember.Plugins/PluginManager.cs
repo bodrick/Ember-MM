@@ -140,14 +140,6 @@ namespace Ember.Plugins
                 catch (SettingsPropertyNotFoundException) { }
 
                 PluginManager.EmberPlugin ePlugin = new PluginManager.EmberPlugin(plugin, enabled, order);
-                if (PluginType.Unknown.Equals(ePlugin.Type))
-                {
-                    if (log.IsWarnEnabled)
-                        log.WarnFormat(
-                            "Load Plug-in :: Unknown plug-in. [{0}]",
-                            plugin.GetType().Name);
-                    continue;
-                }
                 if (plugins.Contains(ePlugin))
                 {
 #if DEBUG
@@ -228,6 +220,8 @@ namespace Ember.Plugins
                 disposed = true;
 
                 // Free other state (managed objects).
+                movieScraper.Dispose();
+
                 foreach (PluginManager.EmberPlugin plugin in plugins)
                 {
                     if (plugin.Plugin is IDisposable)

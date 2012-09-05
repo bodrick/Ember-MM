@@ -9,8 +9,18 @@ namespace Ember.Plugins.Scraper
     /// The main interface for calling movie scraper plug-ins.
     /// </summary>
     public class MovieScraperManager
-        : IMovieInfoScraper, IMovieImageScraper
+        : IDisposable, IMovieInfoScraper, IMovieImageScraper
     {
+
+        /// <summary>
+        /// Occurs before a movie is scraped.
+        /// </summary>
+        public event Events.PreMovieInfoScraperActionHandler PreMovieInfoScrape;
+
+        /// <summary>
+        /// Occurs after a movie is scraped.
+        /// </summary>
+        public event Events.PostMovieInfoScraperActionHandler PostMovieInfoScrape;
 
         #region Fields
 
@@ -46,6 +56,9 @@ namespace Ember.Plugins.Scraper
             if (manager.Plugins.Count == 0)
                 return new PluginActionResult();
 
+            if (PreMovieInfoScrape != null)
+                context = PreMovieInfoScrape(context);
+
             PluginActionResult result = null;
 
             foreach (IMovieInfoScraper plugin in manager.Plugins
@@ -60,10 +73,84 @@ namespace Ember.Plugins.Scraper
             if (result == null)
                 result = new PluginActionResult();
 
+            if (PostMovieInfoScrape != null)
+                result = PostMovieInfoScrape(result);
+
             return result;
         }
 
         #endregion IMovieInfoScraper
+
+
+        #region IDisposable
+
+        #region Fields
+
+        private bool disposed = false;
+
+        #endregion
+
+
+        #region Properties
+
+        /// <summary>
+        /// Gets a value indicating whether the plug-in manager has been disposed of.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance has been disposed of; otherwise, <c>false</c>.
+        /// </value>
+        public bool IsDisposed
+        {
+            get { return disposed; }
+        }
+
+        #endregion Properties
+
+
+        #region Methods
+
+        /// <summary>
+        /// Releases resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                disposed = true;
+
+                // Free other state (managed objects).
+                foreach (Delegate d in PreMovieInfoScrape.GetInvocationList())
+                    PreMovieInfoScrape -= (Events.PreMovieInfoScraperActionHandler)d;
+                foreach (Delegate d in PostMovieInfoScrape.GetInvocationList())
+                    PostMovieInfoScrape -= (Events.PostMovieInfoScraperActionHandler)d;
+            }
+
+            // Free your own state (unmanaged objects).
+            // Set large fields to null.
+        }
+
+        /// <summary>
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// <see cref="PluginManager"/> is reclaimed by garbage collection.
+        /// </summary>
+        ~MovieScraperManager()
+        {
+            Dispose(false);
+        }
+
+        #endregion Methods
+
+        #endregion IDisposable
 
     }
 }
