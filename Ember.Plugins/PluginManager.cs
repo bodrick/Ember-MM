@@ -8,6 +8,7 @@ namespace Ember.Plugins
 {
     public enum PluginType
     {
+        Unknown,
         Scraper_MovieInfo,
         Scraper_MovieImage,
         Scraper_TVInfo,
@@ -80,40 +81,37 @@ namespace Ember.Plugins
             if (loaded == null || loaded.Count == 0)
                 return;
 
-            PluginManager.PluginComparer comparer = new PluginManager.PluginComparer();
             foreach (IPlugin plugin in loaded)
             {
-                PluginType type;
                 bool enabled = true;
+                int order = 0;
 
-                if (plugin is Scraper.IMovieInfoScraper)
-                    type = PluginType.Scraper_MovieInfo;
-                else if (plugin is Scraper.IMovieImageScraper)
-                    type = PluginType.Scraper_MovieImage;
-                else if (plugin is Scraper.ITVInfoScraper)
-                    type = PluginType.Scraper_TVInfo;
-                else if (plugin is Scraper.ITVImageScraper)
-                    type = PluginType.Scraper_TVImage;
-                else
-                {
-                    if (log.IsWarnEnabled)
-                        log.WarnFormat(
-                            "Load Plug-in :: Unknown plug-in {0}",
-                            plugin.GetType().Name);
-                    continue;
-                }
-
+                string pluginProp = plugin.AssemblyName.Replace('.', '_');
                 try
                 {
-                    string enabledProp = String.Format("Plugin__{0}__Enabled",
-                        plugin.AssemblyName.Replace('.', '_'));
-                    object value = Settings[enabledProp];
+                    string prop = String.Format("Plugin__{0}__Enabled", pluginProp);
+                    object value = Settings[prop];
                     enabled = Convert.ToBoolean(value);
                 }
                 catch (SettingsPropertyNotFoundException) { }
+                try
+                {
+                    string prop = String.Format("Plugin__{0}__Order", pluginProp);
+                    object value = Settings[prop];
+                    order = Convert.ToInt32(value);
+                }
+                catch (SettingsPropertyNotFoundException) { }
 
-                PluginManager.EmberPlugin ePlugin = new PluginManager.EmberPlugin(plugin, type, enabled);
-                if (plugins.Contains(ePlugin, comparer))
+                PluginManager.EmberPlugin ePlugin = new PluginManager.EmberPlugin(plugin, enabled, order);
+                if (PluginType.Unknown.Equals(ePlugin.Type))
+                {
+                    if (log.IsWarnEnabled)
+                        log.WarnFormat(
+                            "Load Plug-in :: Unknown plug-in. [{0}]",
+                            plugin.GetType().Name);
+                    continue;
+                }
+                if (plugins.Contains(ePlugin))
                 {
 #if DEBUG
                     if (log.IsDebugEnabled)
@@ -127,6 +125,8 @@ namespace Ember.Plugins
                 plugins.Add(ePlugin);
                 ePlugin.Plugin.InitPlugin(this);
             }
+
+            plugins.Sort();
         }
 
         /// <summary>
@@ -209,6 +209,7 @@ namespace Ember.Plugins
         #region PluginManager.EmberPlugin
 
         public class EmberPlugin
+            : IComparable<EmberPlugin>, IEquatable<EmberPlugin>
         {
 
             #region Fields
@@ -216,6 +217,7 @@ namespace Ember.Plugins
             private IPlugin plugin;
             private PluginType type;
             private bool enabled;
+            private int order;
 
             #endregion Fields
 
@@ -237,49 +239,65 @@ namespace Ember.Plugins
                 set { enabled = value; }
             }
 
+            public int Order
+            {
+                get { return order; }
+                set { order = value; }
+            }
+
             #endregion Properties
 
             #region Constructor
 
-            public EmberPlugin(IPlugin plugin, PluginType type, bool enabled)
+            public EmberPlugin(IPlugin plugin, bool enabled, int order)
             {
                 if (plugin == null)
                     throw new ArgumentNullException("plugin");
 
                 this.plugin = plugin;
-                this.type = type;
                 this.enabled = enabled;
+                this.order = order;
+
+                if (plugin is Scraper.IMovieInfoScraper)
+                    this.type = PluginType.Scraper_MovieInfo;
+                else if (plugin is Scraper.IMovieImageScraper)
+                    this.type = PluginType.Scraper_MovieImage;
+                else if (plugin is Scraper.ITVInfoScraper)
+                    this.type = PluginType.Scraper_TVInfo;
+                else if (plugin is Scraper.ITVImageScraper)
+                    this.type = PluginType.Scraper_TVImage;
+                else
+                    this.type = PluginType.Unknown;
             }
 
             #endregion Constructor
 
-        }
+            #region IComparable<EmberPlugin>
 
-        private class PluginComparer
-            : IEqualityComparer<EmberPlugin>
-        {
-
-            #region IEqualityComparer<Plugin>
-
-            public bool Equals(EmberPlugin x, EmberPlugin y)
+            public int CompareTo(EmberPlugin other)
             {
-                if (Object.ReferenceEquals(x, y)) return true;
-
-                if (Object.ReferenceEquals(x, null) || Object.ReferenceEquals(y, null))
-                    return false;
-
-                return x.Plugin.GetType() == y.Plugin.GetType();
-            }
-
-            public int GetHashCode(EmberPlugin plugin)
-            {
-                if (Object.ReferenceEquals(plugin, null))
+                if (other == null)
                     return 0;
 
-                return plugin.Plugin.GetHashCode();
+                return this.Order.CompareTo(other.Order);
             }
 
-            #endregion IEqualityComparer<Plugin>
+            #endregion IComparable<EmberPlugin>
+
+            #region IEquatable<EmberPlugin>
+
+            public bool Equals(EmberPlugin other)
+            {
+                if (Object.ReferenceEquals(this, other))
+                    return true;
+
+                if (Object.ReferenceEquals(other, null))
+                    return false;
+
+                return this.Plugin.GetType() == other.Plugin.GetType();
+            }
+
+            #endregion IEquatable<EmberPlugin>
 
         }
 
