@@ -26,6 +26,7 @@ Imports System.Reflection
 Imports System.Text.RegularExpressions
 Imports EmberAPI
 Imports Ember.Plugins
+Imports Ember.Plugins.Scraper
 
 Public Class frmMain
 
@@ -1206,7 +1207,35 @@ Public Class frmMain
                 dScrapeRow = dRow
                 Dim DBScrapeMovie As Structures.DBMovie = Master.DB.LoadMovieFromDB(Convert.ToInt64(dRow.Item(0)))
                 ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.BeforeEditMovie, Nothing, DBScrapeMovie)
-                If Not ModulesManager.Instance.MovieScrapeOnly(DBScrapeMovie, Args.scrapeType, Args.Options) Then
+
+
+                '' BEGIN Plug-in Manager
+
+                ' Convert Args.scrapeType into something that the plug-in will understand.
+                Dim ask As Boolean = False
+                Dim scrapeType As Ember.Plugins.Scraper.ScrapeType = scrapeType.Automatic
+                Select Case Args.scrapeType
+                    Case Enums.ScrapeType.SingleScrape
+                        ask = True
+                        scrapeType = Scraper.ScrapeType.Manual
+
+                    Case Enums.ScrapeType.FullAsk, _
+                        Enums.ScrapeType.NewAsk, _
+                        Enums.ScrapeType.UpdateAsk, _
+                        Enums.ScrapeType.FilterAsk, _
+                        Enums.ScrapeType.MarkAsk
+                        ask = True
+                End Select
+
+                Dim context As New MovieInfoScraperActionContext(DBScrapeMovie, scrapeType, ask, Args.Options)
+                Dim result As PluginActionResult = pluginManager.MovieScraper.ScrapeMovieInfo(context)
+                If Not (result.Cancelled Or IsNothing(result.Result)) Then
+                    DBScrapeMovie = CType(result.Result, Structures.DBMovie)
+
+                    '' END Plug-in Manager
+
+
+                    'If Not ModulesManager.Instance.MovieScrapeOnly(DBScrapeMovie, Args.scrapeType, Args.Options) Then
                     If Master.eSettings.ScanMediaInfo AndAlso Master.GlobalScrapeMod.Meta Then
                         MediaInfo.UpdateMediaInfo(DBScrapeMovie)
                     End If
