@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Events\ShowFormOnUIThread.cs" />
     <Compile Include="IPlugin.cs" />
+    <Compile Include="PluginActionContext.cs" />
+    <Compile Include="PluginActionResult.cs" />
     <Compile Include="PluginBase.cs" />
     <Compile Include="PluginManager.cs" />
     <Compile Include="PluginSectionHandler.cs" />
@@ -67,6 +69,8 @@
     <Compile Include="Scraper\IMovieInfoScraper.cs" />
     <Compile Include="Scraper\ITVImageScraper.cs" />
     <Compile Include="Scraper\ITVInfoScraper.cs" />
+    <Compile Include="Scraper\MovieScraperManager.cs" />
+    <Compile Include="Scraper\ScraperActionContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -77,6 +81,12 @@
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmberAPI\EmberAPI.vbproj">
+      <Project>{208AA35E-C6AE-4D2D-A9DD-B6EFD19A4279}</Project>
+      <Name>EmberAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

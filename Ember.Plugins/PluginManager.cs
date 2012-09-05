@@ -40,6 +40,7 @@ namespace Ember.Plugins
             System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         private List<PluginManager.EmberPlugin> plugins = new List<PluginManager.EmberPlugin>();
+        private Scraper.MovieScraperManager movieScraper;
 
         #endregion
 
@@ -62,6 +63,14 @@ namespace Ember.Plugins
             get { return Properties.Settings.Default; }
         }
 
+        /// <summary>
+        /// Gets the movie scraper.
+        /// </summary>
+        public Scraper.MovieScraperManager MovieScraper
+        {
+            get { return movieScraper; }
+        }
+
         #endregion Properties
 
 
@@ -72,6 +81,7 @@ namespace Ember.Plugins
         /// </summary>
         public PluginManager()
         {
+            movieScraper = new Scraper.MovieScraperManager(this);
         }
 
         #endregion Constructor
