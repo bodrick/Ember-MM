@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Ember.Plugins
 {
+    /// <summary>
+    /// The type of plug-in.
+    /// </summary>
     public enum PluginType
     {
         Unknown,
-        Scraper_MovieInfo,
-        Scraper_MovieImage,
-        Scraper_TVInfo,
-        Scraper_TVImage,
+        Scraper_MovieInfo,  // Implements Scraper.IMovieInfoScraper
+        Scraper_MovieImage, // Implements Scraper.IMovieImageScraper
+        Scraper_TVInfo,     // Implements Scraper.ITVInfoScraper
+        Scraper_TVImage,    // Implements Scraper.ITVImageScraper
     }
 
     /// <summary>
@@ -44,11 +46,17 @@ namespace Ember.Plugins
 
         #region Properties
 
+        /// <summary>
+        /// Gets the loaded plug-ins.
+        /// </summary>
         public List<PluginManager.EmberPlugin> Plugins
         {
             get { return plugins; }
         }
 
+        /// <summary>
+        /// Gets the Ember.Plugins settings.
+        /// </summary>
         public Properties.Settings Settings
         {
             get { return Properties.Settings.Default; }
@@ -155,6 +163,12 @@ namespace Ember.Plugins
 
         #region Properties
 
+        /// <summary>
+        /// Gets a value indicating whether the plug-in manager has been disposed of.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance has been disposed of; otherwise, <c>false</c>.
+        /// </value>
         public bool IsDisposed
         {
             get { return disposed; }
@@ -165,12 +179,19 @@ namespace Ember.Plugins
 
         #region Methods
 
+        /// <summary>
+        /// Releases any resources used by the plug-in manager or the loaded plug-ins that implement IDisposable.
+        /// </summary>
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -196,6 +217,10 @@ namespace Ember.Plugins
             // Set large fields to null.
         }
 
+        /// <summary>
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// <see cref="PluginManager"/> is reclaimed by garbage collection.
+        /// </summary>
         ~PluginManager()
         {
             Dispose(false);
@@ -206,8 +231,11 @@ namespace Ember.Plugins
         #endregion IDisposable
 
 
-        #region PluginManager.EmberPlugin
+        #region Class PluginManager.EmberPlugin
 
+        /// <summary>
+        /// A container for a plug-in.
+        /// </summary>
         public class EmberPlugin
             : IComparable<EmberPlugin>, IEquatable<EmberPlugin>
         {
@@ -223,22 +251,40 @@ namespace Ember.Plugins
 
             #region Properties
 
+            /// <summary>
+            /// Gets the plug-in.
+            /// </summary>
             public IPlugin Plugin
             {
                 get { return plugin; }
             }
 
+            /// <summary>
+            /// Gets the type of plug-in.
+            /// </summary>
             public PluginType Type
             {
                 get { return type; }
             }
 
+            /// <summary>
+            /// Gets or sets a value indicating whether this <see cref="EmberPlugin"/> is enabled.
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if enabled; otherwise, <c>false</c>.
+            /// </value>
             public bool Enabled
             {
                 get { return enabled; }
                 set { enabled = value; }
             }
 
+            /// <summary>
+            /// Gets or sets the order this plug-in is called.
+            /// </summary>
+            /// <value>
+            /// The order this plug-in is called..
+            /// </value>
             public int Order
             {
                 get { return order; }
@@ -249,6 +295,12 @@ namespace Ember.Plugins
 
             #region Constructor
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="EmberPlugin"/> class.
+            /// </summary>
+            /// <param name="plugin">The plug-in.</param>
+            /// <param name="enabled">if set to <c>true</c> the plug-in is enabled.</param>
+            /// <param name="order">The order this plug-in is called.</param>
             public EmberPlugin(IPlugin plugin, bool enabled, int order)
             {
                 if (plugin == null)
@@ -274,6 +326,21 @@ namespace Ember.Plugins
 
             #region IComparable<EmberPlugin>
 
+            /// <summary>
+            /// Compares the current object with another object of the same type.
+            /// </summary>
+            /// <param name="other">An object to compare with this object.</param>
+            /// <returns>
+            /// A 32-bit signed integer that indicates the relative order of the objects being compared. The return value has the following meanings:
+            /// Value
+            /// Meaning
+            /// Less than zero
+            /// This object is less than the <paramref name="other"/> parameter.
+            /// Zero
+            /// This object is equal to <paramref name="other"/>.
+            /// Greater than zero
+            /// This object is greater than <paramref name="other"/>.
+            /// </returns>
             public int CompareTo(EmberPlugin other)
             {
                 if (other == null)
@@ -286,6 +353,13 @@ namespace Ember.Plugins
 
             #region IEquatable<EmberPlugin>
 
+            /// <summary>
+            /// Indicates whether the current object is equal to another object of the same type.
+            /// </summary>
+            /// <param name="other">An object to compare with this object.</param>
+            /// <returns>
+            /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            /// </returns>
             public bool Equals(EmberPlugin other)
             {
                 if (Object.ReferenceEquals(this, other))
@@ -301,7 +375,7 @@ namespace Ember.Plugins
 
         }
 
-        #endregion PluginManager.Plugin
+        #endregion Class PluginManager.Plugin
 
     }
 }

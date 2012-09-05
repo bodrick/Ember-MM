@@ -108,11 +108,11 @@ namespace Ember.Plugins
         #endregion
 
 
-        #region PluginSectionHandler.InvalidConfigException
+        #region PluginSectionHandler Exceptions
 
         private class InvalidConfigException : Exception { }
         private class UnknownClassException : Exception { }
 
-        #endregion PluginSectionHandler.InvalidConfigException
+        #endregion PluginSectionHandler Exceptions
     }
 }
