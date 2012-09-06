@@ -1261,7 +1261,12 @@ Public Class frmMain
                         MovieScraperEvent(Enums.MovieScraperEventType.ListTitle, NewTitle)
                         MovieScraperEvent(Enums.MovieScraperEventType.SortTitle, DBScrapeMovie.Movie.SortTitle)
 
-                        Dim didEts As Interfaces.ModuleResult = ModulesManager.Instance.MoviePostScrapeOnly(DBScrapeMovie, Args.scrapeType)
+                        'Dim didEts As Interfaces.ModuleResult = ModulesManager.Instance.MoviePostScrapeOnly(DBScrapeMovie, Args.scrapeType)
+                        Dim imgContext As New MovieImageScraperActionContext(DBScrapeMovie, ImageScrapeType.Poster, scrapeType, context.AskIfMultipleResults)
+                        PluginManager.MovieScraper.ScrapeMovieImage(imgContext)
+                        imgContext = New MovieImageScraperActionContext(DBScrapeMovie, ImageScrapeType.Fanart, scrapeType, context.AskIfMultipleResults)
+                        PluginManager.MovieScraper.ScrapeMovieImage(imgContext)
+
 
                         If bwMovieScraper.CancellationPending Then Exit For
 
