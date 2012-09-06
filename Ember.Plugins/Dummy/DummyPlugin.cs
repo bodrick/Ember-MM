@@ -37,6 +37,8 @@ namespace Ember.Plugins.Dummy
 
             manager.MovieScraper.PreMovieInfoScrape += PreMovieInfoScraperAction;
             manager.MovieScraper.PostMovieInfoScrape += PostMovieInfoScraperAction;
+            manager.MovieScraper.PreMovieImageScrape += PreMovieImageScraperAction;
+            manager.MovieScraper.PostMovieImageScrape += PostMovieImageScraperAction;
         }
 
         #endregion Methods
@@ -59,6 +61,22 @@ namespace Ember.Plugins.Dummy
         {
             if (log.IsDebugEnabled)
                 log.Debug("PostMovieInfoScraperAction[Dummy]");
+            return result;
+        }
+
+        private MovieImageScraperActionContext PreMovieImageScraperAction(
+            MovieImageScraperActionContext context)
+        {
+            if (log.IsDebugEnabled)
+                log.Debug("PreMovieImageScraperAction[Dummy]");
+            return context;
+        }
+
+        private PluginActionResult PostMovieImageScraperAction(
+            PluginActionResult result)
+        {
+            if (log.IsDebugEnabled)
+                log.Debug("PostMovieImageScraperAction[Dummy]");
             return result;
         }
 

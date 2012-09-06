@@ -69,6 +69,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Scraper\Exceptions.cs" />
+    <Compile Include="Scraper\ImageScrapeActionContext.cs" />
     <Compile Include="Scraper\IMovieImageScraper.cs" />
     <Compile Include="Scraper\IMovieInfoScraper.cs" />
     <Compile Include="Scraper\ITVImageScraper.cs" />

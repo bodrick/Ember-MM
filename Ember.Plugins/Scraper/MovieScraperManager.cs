@@ -12,15 +12,30 @@ namespace Ember.Plugins.Scraper
         : IDisposable, IMovieInfoScraper, IMovieImageScraper
     {
 
+        #region Events
+
         /// <summary>
-        /// Occurs before a movie is scraped.
+        /// Occurs before movie information is scraped.
         /// </summary>
         public event Events.PreMovieInfoScraperActionHandler PreMovieInfoScrape;
 
         /// <summary>
-        /// Occurs after a movie is scraped.
+        /// Occurs after movie information is scraped.
         /// </summary>
         public event Events.PostMovieInfoScraperActionHandler PostMovieInfoScrape;
+
+        /// <summary>
+        /// Occurs before movie poster is scraped.
+        /// </summary>
+        public event Events.PreMovieImageScraperActionHandler PreMovieImageScrape;
+
+        /// <summary>
+        /// Occurs after movie poster is scraped.
+        /// </summary>
+        public event Events.PostMovieImageScraperActionHandler PostMovieImageScrape;
+
+        #endregion Events
+
 
         #region Fields
 
@@ -62,7 +77,7 @@ namespace Ember.Plugins.Scraper
             PluginActionResult result = null;
 
             foreach (IMovieInfoScraper plugin in manager.Plugins
-                .Where(p => p.Enabled && p is IMovieInfoScraper)
+                .Where(p => p.Enabled && p.Plugin is IMovieInfoScraper)
                 .OrderBy(p => p.Order)
                 .Select(p => p.Plugin))
             {
@@ -82,6 +97,46 @@ namespace Ember.Plugins.Scraper
         #endregion IMovieInfoScraper
 
 
+        #region IMovieImageScraper
+
+        /// <summary>
+        /// Scrapes the movie posters.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <returns></returns>
+        public PluginActionResult ScrapeMovieImage(MovieImageScraperActionContext context)
+        {
+            if (context == null)
+                throw new ArgumentNullException("context");
+            if (manager.Plugins.Count == 0)
+                return new PluginActionResult();
+
+            if (PreMovieImageScrape != null)
+                context = PreMovieImageScrape(context);
+
+            PluginActionResult result = null;
+
+            foreach (IMovieImageScraper plugin in manager.Plugins
+                .Where(p => p.Enabled && p.Plugin is IMovieImageScraper)
+                .OrderBy(p => p.Order)
+                .Select(p => p.Plugin))
+            {
+                result = plugin.ScrapeMovieImage(context);
+                if (result != null && result.BreakChain) break;
+            }
+
+            if (result == null)
+                result = new PluginActionResult();
+
+            if (PostMovieImageScrape != null)
+                result = PostMovieImageScrape(result);
+
+            return result;
+        }
+
+        #endregion IMovieImageScraper
+
+        
         #region IDisposable
 
         #region Fields
