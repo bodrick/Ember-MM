@@ -6,37 +6,6 @@ using System.Windows.Forms;
 namespace Ember.Plugins
 {
     /// <summary>
-    /// The type of plug-in.
-    /// </summary>
-    public enum PluginType
-    {
-        /// <summary>
-        /// An unknown plug-in.
-        /// </summary>
-        Unknown,
-
-        /// <summary>
-        /// A plug-in that implements Scraper.IMovieInfoScraper
-        /// </summary>
-        Scraper_MovieInfo,
-
-        /// <summary>
-        /// A plug-in that implements Scraper.IMovieImageScraper
-        /// </summary>
-        Scraper_MovieImage,
-
-        /// <summary>
-        /// A plug-in that implements Scraper.ITVInfoScraper
-        /// </summary>
-        Scraper_TVInfo,
-
-        /// <summary>
-        /// A plug-in that implements Scraper.ITVImageScraper
-        /// </summary>
-        Scraper_TVImage,
-    }
-
-    /// <summary>
     /// The plug-in manager for Ember Media Manager.
     /// </summary>
     public class PluginManager
@@ -266,7 +235,6 @@ namespace Ember.Plugins
             #region Fields
 
             private IPlugin plugin;
-            private PluginType type;
             private bool enabled;
             private int order;
 
@@ -280,14 +248,6 @@ namespace Ember.Plugins
             public IPlugin Plugin
             {
                 get { return plugin; }
-            }
-
-            /// <summary>
-            /// Gets the type of plug-in.
-            /// </summary>
-            public PluginType Type
-            {
-                get { return type; }
             }
 
             /// <summary>
@@ -332,17 +292,6 @@ namespace Ember.Plugins
                 this.plugin = plugin;
                 this.enabled = enabled;
                 this.order = order;
-
-                if (plugin is Scraper.IMovieInfoScraper)
-                    this.type = PluginType.Scraper_MovieInfo;
-                else if (plugin is Scraper.IMovieImageScraper)
-                    this.type = PluginType.Scraper_MovieImage;
-                else if (plugin is Scraper.ITVInfoScraper)
-                    this.type = PluginType.Scraper_TVInfo;
-                else if (plugin is Scraper.ITVImageScraper)
-                    this.type = PluginType.Scraper_TVImage;
-                else
-                    this.type = PluginType.Unknown;
             }
 
             #endregion Constructor

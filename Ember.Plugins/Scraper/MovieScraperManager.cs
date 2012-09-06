@@ -62,7 +62,7 @@ namespace Ember.Plugins.Scraper
             PluginActionResult result = null;
 
             foreach (IMovieInfoScraper plugin in manager.Plugins
-                .Where(p => PluginType.Scraper_MovieInfo.Equals(p.Type))
+                .Where(p => p.Enabled && p is IMovieInfoScraper)
                 .OrderBy(p => p.Order)
                 .Select(p => p.Plugin))
             {
