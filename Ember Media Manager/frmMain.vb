@@ -31,7 +31,7 @@ Imports Ember.Plugins.Scraper
 Public Class frmMain
 
 #Region "Fields"
-    Private pluginManager As PluginManager
+    Private plugin_manager As PluginManager
     Private fLoading As New frmSplash
 
     Friend WithEvents bwCleanDB As New System.ComponentModel.BackgroundWorker
@@ -130,6 +130,15 @@ Public Class frmMain
 #End Region 'Delegates
 
 #Region "Properties"
+
+    Public Property PluginManager As PluginManager
+        Get
+            Return plugin_manager
+        End Get
+        Private Set(value As PluginManager)
+            plugin_manager = value
+        End Set
+    End Property
 
     Public Property GenrePanelColor() As Color
         Get
@@ -1228,7 +1237,7 @@ Public Class frmMain
                 End Select
 
                 Dim context As New MovieInfoScraperActionContext(DBScrapeMovie, scrapeType, ask, Args.Options)
-                Dim result As PluginActionResult = pluginManager.MovieScraper.ScrapeMovieInfo(context)
+                Dim result As PluginActionResult = PluginManager.MovieScraper.ScrapeMovieInfo(context)
                 If Not (result.Cancelled Or IsNothing(result.Result)) Then
                     DBScrapeMovie = CType(result.Result, Structures.DBMovie)
 
@@ -1979,7 +1988,7 @@ doCancel:
 
             Me.SetControlsEnabled(False)
 
-            Using dEditMovie As New dlgEditMovie
+            Using dEditMovie As New dlgEditMovie(Me)
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -2978,7 +2987,7 @@ doCancel:
             Dim ID As Integer = Convert.ToInt32(Me.dgvMediaList.Item(0, indX).Value)
             Master.currMovie = Master.DB.LoadMovieFromDB(ID)
 
-            Using dEditMovie As New dlgEditMovie
+            Using dEditMovie As New dlgEditMovie(Me)
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -3166,7 +3175,7 @@ doCancel:
                 Master.currMovie = Master.DB.LoadMovieFromDB(ID)
                 Me.SetStatus(Master.currMovie.Filename)
 
-                Using dEditMovie As New dlgEditMovie
+                Using dEditMovie As New dlgEditMovie(Me)
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
@@ -5300,10 +5309,10 @@ doCancel:
             End If
             If Not Me.WindowState = FormWindowState.Minimized Then Master.eSettings.Save()
 
-            If Not IsNothing(pluginManager) And Not pluginManager.IsDisposed Then
+            If Not IsNothing(PluginManager) Then
                 ' Release any resources held by the plug-in manager or the loaded plug-ins.
-                RemoveHandler pluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
-                pluginManager.Dispose()
+                RemoveHandler PluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
+                PluginManager.Dispose()
             End If
         Catch ex As Exception
             ' If we got here, then some of the above not run. Application.Exit can not be used. 
@@ -5393,9 +5402,9 @@ doCancel:
             ' Add our handlers, load settings, set form colors, and try to load movies at startup
             '\\
             fLoading.SetLoadingMesg("Loading modules...")
-            pluginManager = New PluginManager()
-            AddHandler pluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
-            pluginManager.LoadPlugins()
+            PluginManager = New PluginManager()
+            AddHandler PluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
+            PluginManager.LoadPlugins()
 
             'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
             'ExternalModulesManager = New ModulesManager
@@ -6463,7 +6472,7 @@ doCancel:
                 Me.tslLoading.Text = Master.eLang.GetString(576, "Verifying Movie Details:")
                 Application.DoEvents()
 
-                Using dEditMovie As New dlgEditMovie
+                Using dEditMovie As New dlgEditMovie(Me)
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
