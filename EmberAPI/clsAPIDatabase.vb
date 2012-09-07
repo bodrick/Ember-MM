@@ -566,7 +566,7 @@ Public Class Database
                         If Not DBNull.Value.Equals(SQLreader("ReleaseDate")) Then .ReleaseDate = SQLreader("ReleaseDate").ToString
                         If Not DBNull.Value.Equals(SQLreader("Studio")) Then .Studio = SQLreader("Studio").ToString
                         If Not DBNull.Value.Equals(SQLreader("Director")) Then .Director = SQLreader("Director").ToString
-                        If Not DBNull.Value.Equals(SQLreader("Credits")) Then .Credits = SQLreader("Credits").ToString
+                        If Not DBNull.Value.Equals(SQLreader("Credits")) Then .OldCredits = SQLreader("Credits").ToString
                         If Not DBNull.Value.Equals(SQLreader("PlayCount")) Then .PlayCount = SQLreader("PlayCount").ToString
                         If Not DBNull.Value.Equals(SQLreader("Watched")) Then .Watched = SQLreader("Watched").ToString
                         If Not DBNull.Value.Equals(SQLreader("FanartURL")) AndAlso Not Master.eSettings.NoSaveImagesToNfo Then .Fanart.URL = SQLreader("FanartURL").ToString
@@ -1156,7 +1156,7 @@ Public Class Database
                 parRuntime.Value = _movieDB.Movie.Runtime
                 parReleaseDate.Value = _movieDB.Movie.ReleaseDate
                 parDirector.Value = _movieDB.Movie.Director
-                parCredits.Value = _movieDB.Movie.Credits
+                parCredits.Value = _movieDB.Movie.OldCredits
                 parPlaycount.Value = _movieDB.Movie.PlayCount
                 parWatched.Value = _movieDB.Movie.Watched
                 parTrailer.Value = _movieDB.Movie.Trailer
