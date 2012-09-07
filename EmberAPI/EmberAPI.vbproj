@@ -188,6 +188,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\puzzle.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\JobsDatabaseSQL_v1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MediaDatabaseSQL_v1.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

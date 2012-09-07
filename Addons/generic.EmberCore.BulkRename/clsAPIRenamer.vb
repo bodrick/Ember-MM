@@ -38,7 +38,7 @@ Public Class FileFolderRenamer
         Dim mePath As String = String.Concat(Functions.AppPath, "Images", Path.DirectorySeparatorChar, "Flags")
 
         _movies.Clear()
-        Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+        Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLNewcommand.CommandText = String.Concat("SELECT Path FROM Sources;")
             Using SQLReader As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                 While SQLReader.Read
@@ -276,7 +276,7 @@ Public Class FileFolderRenamer
         MovieFile.FileSource = _tmpMovie.FileSource
         MovieFile.Country = _tmpMovie.Movie.Country
         Dim mFolders As New List(Of String)
-        Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+        Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLNewcommand.CommandText = String.Concat("SELECT Path FROM Sources;")
             Using SQLReader As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                 While SQLReader.Read

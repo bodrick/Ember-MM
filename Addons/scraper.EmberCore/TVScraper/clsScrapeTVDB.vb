@@ -188,7 +188,7 @@ Public Class Scraper
                 tmpTVDBShow.Show = Master.DB.LoadTVFullShowFromDB(_ID)
                 tmpTVDBShow.AllSeason = Master.DB.LoadTVAllSeasonFromDB(_ID)
 
-                Using SQLCount As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLCount As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     If OnlySeason = 999 Then
                         SQLCount.CommandText = String.Concat("SELECT COUNT(ID) AS eCount FROM TVEps WHERE TVShowID = ", _ID, " AND Missing = 0;")
                     Else
@@ -196,7 +196,7 @@ Public Class Scraper
                     End If
                     Using SQLRCount As SQLite.SQLiteDataReader = SQLCount.ExecuteReader
                         If Convert.ToInt32(SQLRCount("eCount")) > 0 Then
-                            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                                 If OnlySeason = 999 Then
                                     SQLCommand.CommandText = String.Concat("SELECT ID, Lock FROM TVEps WHERE TVShowID = ", _ID, " AND Missing = 0;")
                                 Else
@@ -818,10 +818,10 @@ Public Class Scraper
 
             Me.bwTVDB.ReportProgress(tmpTVDBShow.Episodes.Count, "max")
 
-            Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 If Master.eSettings.DisplayMissingEpisodes Then
                     'clear old missing episode from db
-                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         SQLCommand.CommandText = String.Concat("DELETE FROM TVEps WHERE Missing = 1 AND TVShowID = ", Master.currShow.ShowID, ";")
                         SQLCommand.ExecuteNonQuery()
                     End Using
