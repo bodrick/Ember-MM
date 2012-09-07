@@ -355,7 +355,7 @@ Public Class frmMain
         Try
             Dim dRow = From drvRow In dtMedia.Rows Where Convert.ToInt32(DirectCast(drvRow, DataRow).Item(0)) = iID Select drvRow
 
-            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                 SQLcommand.CommandText = String.Concat("SELECT mark, SortTitle FROM movies WHERE id = ", iID, ";")
                 Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                     DirectCast(dRow(0), DataRow).Item(11) = Convert.ToBoolean(SQLreader("mark"))
@@ -371,7 +371,7 @@ Public Class frmMain
         Try
             Dim dRow = From drvRow In dtShows.Rows Where Convert.ToInt32(DirectCast(drvRow, DataRow).Item(0)) = iID Select drvRow
 
-            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                 SQLcommand.CommandText = String.Concat("SELECT Ordering FROM TVShows WHERE id = ", iID, ";")
                 Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                     DirectCast(dRow(0), DataRow).Item(23) = Convert.ToInt32(SQLreader("Ordering"))
@@ -390,8 +390,8 @@ Public Class frmMain
 
     Private Sub AddGenreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AddGenreToolStripMenuItem.Click
         Try
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parGenre As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parGenre", DbType.String, 0, "Genre")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE movies SET Genre = (?) WHERE id = (?);"
@@ -410,7 +410,7 @@ Public Class frmMain
                 SQLtransaction.Commit()
             End Using
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 For Each sRow As DataGridViewRow In Me.dgvMediaList.SelectedRows
                     Me.RefreshMovie(Convert.ToInt64(sRow.Cells(0).Value), True, False, True)
                 Next
@@ -575,8 +575,8 @@ Public Class frmMain
     Private Sub btnMarkAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMarkAll.Click
         Try
             Dim MarkAll As Boolean = Not btnMarkAll.Text = Master.eLang.GetString(105, "Unmark All")
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parMark As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMark", DbType.Boolean, 0, "mark")
                     SQLcommand.CommandText = "UPDATE movies SET mark = (?);"
                     parMark.Value = MarkAll
@@ -1294,7 +1294,7 @@ Public Class frmMain
         Dim scrapeMovie As Structures.DBMovie
         Dim iCount As Integer = 0
         Dim Args As Arguments = DirectCast(e.Argument, Arguments)
-        Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+        Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
 
             Try
                 If Me.dtMedia.Rows.Count > 0 Then
@@ -1404,7 +1404,7 @@ doCancel:
             MovieIDs.Add(Convert.ToInt64(sRow.Item(0)), sRow.Item(3).ToString)
         Next
 
-        Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+        Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
             For Each KVP As KeyValuePair(Of Long, String) In MovieIDs
                 Try
                     If Me.bwMovieScraper.CancellationPending Then Return
@@ -2022,7 +2022,7 @@ doCancel:
             End If
 
             If doOpen Then
-                Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     For Each sRow As DataGridViewRow In Me.dgvTVEpisodes.SelectedRows
                         SQLCommand.CommandText = String.Concat("SELECT TVEpPath FROM TVEpPaths WHERE ID = ", sRow.Cells(9).Value.ToString, ";")
                         ePath = SQLCommand.ExecuteScalar.ToString
@@ -2060,8 +2060,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parLock As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parLock", DbType.Boolean, 0, "lock")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE TVShows SET lock = (?) WHERE id = (?);"
@@ -2085,7 +2085,7 @@ doCancel:
                 Next
 
                 If LockCount = 0 OrElse NotLockCount = 0 Then
-                    Using SQLSeacommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLSeacommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         Dim parSeaLock As SQLite.SQLiteParameter = SQLSeacommand.Parameters.Add("parSeaLock", DbType.Boolean, 0, "lock")
                         Dim parSeaID As SQLite.SQLiteParameter = SQLSeacommand.Parameters.Add("parSeaID", DbType.Int32, 0, "TVShowID")
                         Dim parSeason As SQLite.SQLiteParameter = SQLSeacommand.Parameters.Add("parSeason", DbType.Int32, 0, "Season")
@@ -2125,8 +2125,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parLock As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parLock", DbType.Boolean, 0, "mark")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "TVShowID")
                     Dim parSeason As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parSeason", DbType.Int32, 0, "Season")
@@ -2138,7 +2138,7 @@ doCancel:
                         SQLcommand.ExecuteNonQuery()
                         sRow.Cells(7).Value = parLock.Value
 
-                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parELock As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parELock", DbType.Boolean, 0, "mark")
                             Dim parEID As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parEID", DbType.Int32, 0, "TVShowID")
                             Dim parESeason As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parESeason", DbType.Int32, 0, "Season")
@@ -2179,8 +2179,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parLock As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parLock", DbType.Boolean, 0, "lock")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE TVShows SET lock = (?) WHERE id = (?);"
@@ -2190,7 +2190,7 @@ doCancel:
                         SQLcommand.ExecuteNonQuery()
                         sRow.Cells(10).Value = parLock.Value
 
-                        Using SQLSeaCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLSeaCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parSeaLock As SQLite.SQLiteParameter = SQLSeaCommand.Parameters.Add("parSeaLock", DbType.Boolean, 0, "lock")
                             Dim parSeaID As SQLite.SQLiteParameter = SQLSeaCommand.Parameters.Add("parSeaID", DbType.Int32, 0, "TVShowID")
                             SQLSeaCommand.CommandText = "UPDATE TVSeason SET lock = (?) WHERE TVShowID = (?);"
@@ -2203,7 +2203,7 @@ doCancel:
                             Next
                         End Using
 
-                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parELock As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parELock", DbType.Boolean, 0, "lock")
                             Dim parEID As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parEID", DbType.Int32, 0, "TVShowID")
                             SQLECommand.CommandText = "UPDATE TVEps SET lock = (?) WHERE TVShowID = (?);"
@@ -2243,8 +2243,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parLock As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parLock", DbType.Boolean, 0, "lock")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE movies SET lock = (?) WHERE id = (?);"
@@ -2285,8 +2285,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parMark As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMark", DbType.Boolean, 0, "mark")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE TVEps SET mark = (?) WHERE id = (?);"
@@ -2310,7 +2310,7 @@ doCancel:
                 Next
 
                 If MarkCount = 0 OrElse NotMarkCount = 0 Then
-                    Using SQLSeacommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLSeacommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         Dim parSeaMark As SQLite.SQLiteParameter = SQLSeacommand.Parameters.Add("parSeaMark", DbType.Boolean, 0, "Mark")
                         Dim parSeaID As SQLite.SQLiteParameter = SQLSeacommand.Parameters.Add("parSeaID", DbType.Int32, 0, "TVShowID")
                         Dim parSeason As SQLite.SQLiteParameter = SQLSeacommand.Parameters.Add("parSeason", DbType.Int32, 0, "Season")
@@ -2350,8 +2350,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parMark As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMark", DbType.Boolean, 0, "mark")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "TVShowID")
                     Dim parSeason As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parSeason", DbType.Int32, 0, "Season")
@@ -2363,7 +2363,7 @@ doCancel:
                         SQLcommand.ExecuteNonQuery()
                         sRow.Cells(8).Value = parMark.Value
 
-                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parEMark As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parEMark", DbType.Boolean, 0, "mark")
                             Dim parEID As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parEID", DbType.Int32, 0, "TVShowID")
                             Dim parESeason As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parESeason", DbType.Int32, 0, "Season")
@@ -2404,8 +2404,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parMark As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMark", DbType.Boolean, 0, "mark")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE TVShows SET mark = (?) WHERE id = (?);"
@@ -2415,7 +2415,7 @@ doCancel:
                         SQLcommand.ExecuteNonQuery()
                         sRow.Cells(6).Value = parMark.Value
 
-                        Using SQLSeaCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLSeaCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parSeaMark As SQLite.SQLiteParameter = SQLSeaCommand.Parameters.Add("parSeaMark", DbType.Boolean, 0, "mark")
                             Dim parSeaID As SQLite.SQLiteParameter = SQLSeaCommand.Parameters.Add("parSeaID", DbType.Int32, 0, "TVShowID")
                             SQLSeaCommand.CommandText = "UPDATE TVSeason SET mark = (?) WHERE TVShowID = (?);"
@@ -2428,7 +2428,7 @@ doCancel:
                             Next
                         End Using
 
-                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLECommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parEMark As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parEMark", DbType.Boolean, 0, "mark")
                             Dim parEID As SQLite.SQLiteParameter = SQLECommand.Parameters.Add("parEID", DbType.Int32, 0, "TVShowID")
                             SQLECommand.CommandText = "UPDATE TVEps SET mark = (?) WHERE TVShowID = (?);"
@@ -2468,8 +2468,8 @@ doCancel:
                 Next
             End If
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parMark As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMark", DbType.Boolean, 0, "mark")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE movies SET mark = (?) WHERE id = (?);"
@@ -2534,7 +2534,7 @@ doCancel:
             Dim doFill As Boolean = False
             Dim tFill As Boolean = False
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 For Each sRow As DataGridViewRow In Me.dgvTVEpisodes.SelectedRows
                     tFill = Me.RefreshEpisode(Convert.ToInt64(sRow.Cells(0).Value), True)
                     If tFill Then doFill = True
@@ -2566,12 +2566,12 @@ doCancel:
         Dim tFill As Boolean = False
 
         If Me.dgvTVSeasons.SelectedRows.Count > 0 Then
-            Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 For Each sRow As DataGridViewRow In Me.dgvTVSeasons.SelectedRows
 
                     doFill = Me.RefreshSeason(Convert.ToInt32(sRow.Cells(0).Value), Convert.ToInt32(sRow.Cells(2).Value), True)
 
-                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         SQLCommand.CommandText = String.Concat("SELECT ID FROM TVEps WHERE TVShowID = ", sRow.Cells(0).Value, " AND Season = ", sRow.Cells(2).Value, " AND Missing = 0;")
                         Using SQLReader As SQLite.SQLiteDataReader = SQLCommand.ExecuteReader
                             While SQLReader.Read
@@ -2607,7 +2607,7 @@ doCancel:
             Dim tFill As Boolean = False
 
             If Me.dgvTVShows.SelectedRows.Count > 1 Then
-                Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+                Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                     For Each sRow As DataGridViewRow In Me.dgvTVShows.SelectedRows
                         tFill = Me.RefreshShow(Convert.ToInt64(sRow.Cells(0).Value), True, True, False, True)
                         If tFill Then doFill = True
@@ -2634,7 +2634,7 @@ doCancel:
     Private Sub cmnuRemoveSeasonFromDB_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles cmnuRemoveSeasonFromDB.Click
         Me.ClearInfo(False)
 
-        Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+        Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
             For Each sRow As DataGridViewRow In Me.dgvTVSeasons.SelectedRows
                 Master.DB.DeleteTVSeasonFromDB(Convert.ToInt32(sRow.Cells(0).Value), Convert.ToInt32(sRow.Cells(2).Value), True)
             Next
@@ -2649,7 +2649,7 @@ doCancel:
     Private Sub cmnuRemoveTVEp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmnuRemoveTVEp.Click
         Me.ClearInfo(False)
 
-        Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+        Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
             For Each sRow As DataGridViewRow In Me.dgvTVEpisodes.SelectedRows
                 Master.DB.DeleteTVEpFromDB(Convert.ToInt32(sRow.Cells(0).Value), True, False, True)
             Next
@@ -2673,7 +2673,7 @@ doCancel:
     Private Sub cmnuRemoveTVShow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmnuRemoveTVShow.Click
         Me.ClearInfo()
 
-        Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+        Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
             For Each sRow As DataGridViewRow In Me.dgvTVShows.SelectedRows
                 Master.DB.DeleteTVShowFromDB(Convert.ToInt32(sRow.Cells(0).Value), True)
             Next
@@ -4147,8 +4147,8 @@ doCancel:
     Private Sub DoTitleCheck()
         Try
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = "UPDATE movies SET OutOfTolerance = (?) WHERE ID = (?);"
                     Dim parOutOfTolerance As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parOutOfTolerance", DbType.Boolean, 0, "OutOfTolerance")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "ID")
@@ -5702,7 +5702,7 @@ doCancel:
                                 Me.Visible = True
                             End If
                         End If
-                        
+
                         Master.DB.LoadMovieSourcesFromDB()
                         Master.DB.LoadTVSourcesFromDB()
                         fLoading.SetLoadingMesg("Setting menus...")
@@ -7043,7 +7043,7 @@ doCancel:
 
         Try
             Dim SQLtransaction As SQLite.SQLiteTransaction = Nothing
-            If Not BatchMode Then SQLtransaction = Master.DB.BeginTransaction
+            If Not BatchMode Then SQLtransaction = Master.DB.MediaDBConn.BeginTransaction()
 
             tmpSeasonDb = Master.DB.LoadTVSeasonFromDB(ShowID, Season, True)
 
@@ -7094,7 +7094,7 @@ doCancel:
             Me.tspbLoading.Style = ProgressBarStyle.Continuous
             Me.tspbLoading.Value = 0
 
-            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                 SQLCommand.CommandText = String.Concat("SELECT COUNT(ID) AS COUNT FROM TVEps WHERE TVShowID = ", ID, " AND Missing = 0;")
                 Me.tspbLoading.Maximum = Convert.ToInt32(SQLCommand.ExecuteScalar) + 1
             End Using
@@ -7112,7 +7112,7 @@ doCancel:
 
         Try
             Dim SQLtransaction As SQLite.SQLiteTransaction = Nothing
-            If Not BatchMode Then SQLtransaction = Master.DB.BeginTransaction
+            If Not BatchMode Then SQLtransaction = Master.DB.MediaDBConn.BeginTransaction()
 
             tmpShowDb = Master.DB.LoadTVFullShowFromDB(ID)
 
@@ -7169,7 +7169,7 @@ doCancel:
                 End If
 
                 If WithEpisodes Then
-                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         SQLCommand.CommandText = String.Concat("SELECT ID FROM TVEps WHERE TVShowID = ", ID, " AND Missing = 0;")
                         Using SQLReader As SQLite.SQLiteDataReader = SQLCommand.ExecuteReader
                             While SQLReader.Read
@@ -7218,7 +7218,7 @@ doCancel:
 
             Dim doBatch As Boolean = Not Me.dgvMediaList.SelectedRows.Count = 1
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 For Each sRow As DataGridViewRow In Me.dgvMediaList.SelectedRows
                     tFill = Me.RefreshMovie(Convert.ToInt64(sRow.Cells(0).Value), doBatch)
                     If tFill Then doFill = True
@@ -7252,8 +7252,8 @@ doCancel:
 
     Private Sub RemoveGenreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RemoveGenreToolStripMenuItem.Click
         Try
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parGenre As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parGenre", DbType.String, 0, "Genre")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE movies SET Genre = (?) WHERE id = (?);"
@@ -7268,7 +7268,7 @@ doCancel:
                 SQLtransaction.Commit()
             End Using
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 For Each sRow As DataGridViewRow In Me.dgvMediaList.SelectedRows
                     Me.RefreshMovie(Convert.ToInt64(sRow.Cells(0).Value), True, False, True)
                 Next
@@ -7646,8 +7646,8 @@ doCancel:
 
     Private Sub SetGenreToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SetGenreToolStripMenuItem.Click
         Try
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     Dim parGenre As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parGenre", DbType.String, 0, "Genre")
                     Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
                     SQLcommand.CommandText = "UPDATE movies SET Genre = (?) WHERE id = (?);"
@@ -7660,7 +7660,7 @@ doCancel:
                 SQLtransaction.Commit()
             End Using
 
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
                 For Each sRow As DataGridViewRow In Me.dgvMediaList.SelectedRows
                     Me.RefreshMovie(Convert.ToInt64(sRow.Cells(0).Value), True, False, True)
                 Next
@@ -7747,7 +7747,7 @@ doCancel:
                 Me.mnuFilterAutoTrailer.Enabled = TrailerAllowed
                 Me.mnuFilterAskTrailer.Enabled = TrailerAllowed
 
-                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLNewcommand.CommandText = String.Concat("SELECT COUNT(id) AS mcount FROM movies WHERE mark = 1;")
                     Using SQLcount As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                         If Convert.ToInt32(SQLcount("mcount")) > 0 Then
@@ -7760,7 +7760,7 @@ doCancel:
 
                 Me.mnuMoviesUpdate.DropDownItems.Clear()
                 Me.cmnuTrayIconUpdateMovies.DropDownItems.Clear()
-                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLNewcommand.CommandText = "SELECT COUNT(ID) AS cID FROM Sources;"
                     If Convert.ToInt32(SQLNewcommand.ExecuteScalar) > 1 Then
                         mnuItem = Me.mnuMoviesUpdate.DropDownItems.Add(Master.eLang.GetString(649, "Update All"), Nothing, New System.EventHandler(AddressOf SourceSubClick))
@@ -7781,7 +7781,7 @@ doCancel:
 
                 Me.mnuTVShowUpdate.DropDownItems.Clear()
                 Me.cmnuTrayIconUpdateTV.DropDownItems.Clear()
-                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLNewcommand.CommandText = "SELECT COUNT(ID) AS cID FROM TVSources;"
                     If Convert.ToInt32(SQLNewcommand.ExecuteScalar) > 1 Then
                         mnuItem = Me.mnuTVShowUpdate.DropDownItems.Add(Master.eLang.GetString(649, "Update All"), Nothing, New System.EventHandler(AddressOf TVSourceSubClick))
@@ -7810,7 +7810,7 @@ doCancel:
                 If ReloadFilters Then
 
                     clbFilterSource.Items.Clear()
-                    Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         SQLNewcommand.CommandText = String.Concat("SELECT Name FROM Sources;")
                         Using SQLReader As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                             While SQLReader.Read
@@ -7882,8 +7882,8 @@ doCancel:
         If Not dresult.DidCancel Then
 
             If Not Master.eSettings.DisplayMissingEpisodes Then
-                Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                    Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         SQLCommand.CommandText = "DELETE FROM TVEps WHERE Missing = 1"
                         SQLCommand.ExecuteNonQuery()
 
@@ -7985,7 +7985,7 @@ doCancel:
         Dim ShowCount As Integer = 0
         Dim EpCount As Integer = 0
 
-        Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+        Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLCommand.CommandText = "SELECT COUNT(ID) AS COUNT FROM TVShows"
             ShowCount = Convert.ToInt32(SQLCommand.ExecuteScalar)
 

@@ -69,7 +69,7 @@ Public Class dlgTVSource
             If String.IsNullOrEmpty(Me.txtSourceName.Text) Then
                 pbValid.Image = My.Resources.invalid
             Else
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = String.Concat("SELECT ID FROM TVSources WHERE Name LIKE """, Me.txtSourceName.Text.Trim, """ AND ID != ", Me._id, ";")
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         If Not String.IsNullOrEmpty(SQLreader("ID").ToString) Then
@@ -94,7 +94,7 @@ Public Class dlgTVSource
         Me.SetUp()
         Try
             If Me._id >= 0 Then
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = String.Concat("SELECT * FROM TVSources WHERE ID = ", Me._id, ";")
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         Me.txtSourceName.Text = SQLreader("Name").ToString
@@ -114,8 +114,8 @@ Public Class dlgTVSource
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         Try
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     If Me._id >= 0 Then
                         SQLcommand.CommandText = String.Concat("UPDATE TVSources SET name = (?), path = (?) WHERE ID =", Me._id, ";")
                     Else

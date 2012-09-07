@@ -288,7 +288,7 @@ Public Class dlgOfflineHolder
             End If
 
             If cbSources.SelectedIndex >= 0 Then
-                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLNewcommand.CommandText = String.Concat("SELECT Path FROM Sources WHERE Name = """, cbSources.SelectedItem.ToString, """;")
                     Using SQLReader As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                         If SQLReader.Read Then
@@ -511,7 +511,7 @@ Public Class dlgOfflineHolder
             End Using
 
             'load all the movie folders from settings
-            Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                 SQLNewcommand.CommandText = String.Concat("SELECT Name FROM Sources;")
                 Using SQLReader As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                     While SQLReader.Read
