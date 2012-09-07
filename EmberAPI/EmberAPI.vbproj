@@ -13,8 +13,8 @@
     <AssemblyName>EmberAPI</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
@@ -65,8 +65,13 @@
     <CodeAnalysisRuleDirectories>;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SQLite, Version=1.0.81.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\System.Data.SQLite.1.0.81.0\lib\net20\System.Data.SQLite.dll</HintPath>
@@ -78,7 +83,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -94,6 +98,9 @@
     <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actor.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="clsAdvancedSettings.vb" />
     <Compile Include="clsAPICommon.vb" />
     <Compile Include="clsAPIDatabase.vb" />
@@ -124,35 +131,126 @@
     <Compile Include="dlgVersions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="EmberFile.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmberMMModel.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmberMMModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmberMMModel.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmberMMModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EmberMMModel.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExcludeDir.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExcludeFile.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExcludeFilesInFolder.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesActor.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesAStream.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesFanart.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesPoster.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesSet.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesSub.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MoviesVStream.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Movy.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="OrigPath.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Set.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Source.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVAStream.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVEp.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVEpActor.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVEpPath.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVSeason.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVShow.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVShowActor.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVSource.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVSub.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TVVStream.vb">
+      <DependentUpon>EmberMMModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="dlgVersions.resx">
       <DependentUpon>dlgVersions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
-      <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="EmberMMModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EmberMMModel.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <None Include="EmberMMModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EmberMMModel.Context.vb</LastGenOutput>
+    </None>
+    <None Include="EmberMMModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EmberMMModel.vb</LastGenOutput>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -165,28 +263,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\defaultgenre.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\defaultscreen.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\defaultsound.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\haslanguage.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\missing.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\overlay.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\overlay2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\puzzle.png" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

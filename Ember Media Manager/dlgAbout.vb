@@ -1,4 +1,4 @@
-﻿Imports EmberAPI
+﻿Imports EmberMediaManger.API
 
 ' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
@@ -37,8 +37,8 @@ Public NotInheritable Class dlgAbout
     End Sub
 
     Private Sub frmAbout_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim iBackground As New Bitmap(Me.picDisplay.Width, Me.picDisplay.Height)
-        Dim iLogo As New Bitmap(My.Resources.Logo)
+        Dim iBackground As New Bitmap(picDisplay.Width, picDisplay.Height)
+        Dim iLogo As New Bitmap(My.Resources.Modules.img_Logo)
         For xPix As Integer = 0 To iLogo.Width - 1
             For yPix As Integer = 0 To iLogo.Height - 1
                 Dim clr As Color = iLogo.GetPixel(xPix, yPix)
@@ -51,17 +51,17 @@ Public NotInheritable Class dlgAbout
 
         Using g As Graphics = Graphics.FromImage(iBackground)
             g.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-            Dim DrawRect As New Rectangle(0, 0, picDisplay.ClientSize.Width, Convert.ToInt32(picDisplay.ClientSize.Height * 0.735))
-            g.FillRectangle(New Drawing2D.LinearGradientBrush(DrawRect, Color.FromArgb(255, 200, 200, 255), Color.FromArgb(255, 250, 250, 250), Drawing2D.LinearGradientMode.Vertical), DrawRect)
-            DrawRect = New Rectangle(0, Convert.ToInt32(picDisplay.ClientSize.Height * 0.735), picDisplay.ClientSize.Width, Convert.ToInt32(picDisplay.ClientSize.Height * 0.265))
-            g.FillRectangle(New Drawing2D.LinearGradientBrush(DrawRect, Color.White, Color.FromArgb(255, 230, 230, 230), Drawing2D.LinearGradientMode.Vertical), DrawRect)
-            Dim x As Integer = Convert.ToInt32((picDisplay.Width - My.Resources.Logo.Width) / 2)
-            Dim y As Integer = Convert.ToInt32((picDisplay.Height - My.Resources.Logo.Height) / 2)
-            g.DrawImage(iLogo, x, y, My.Resources.Logo.Width, My.Resources.Logo.Height)
-            Me.picDisplay.BackgroundImage = iBackground
+            Dim drawRect As New Rectangle(0, 0, picDisplay.ClientSize.Width, Convert.ToInt32(picDisplay.ClientSize.Height * 0.735))
+            g.FillRectangle(New Drawing2D.LinearGradientBrush(drawRect, Color.FromArgb(255, 200, 200, 255), Color.FromArgb(255, 250, 250, 250), Drawing2D.LinearGradientMode.Vertical), drawRect)
+            drawRect = New Rectangle(0, Convert.ToInt32(picDisplay.ClientSize.Height * 0.735), picDisplay.ClientSize.Width, Convert.ToInt32(picDisplay.ClientSize.Height * 0.265))
+            g.FillRectangle(New Drawing2D.LinearGradientBrush(drawRect, Color.White, Color.FromArgb(255, 230, 230, 230), Drawing2D.LinearGradientMode.Vertical), drawRect)
+            Dim x As Integer = Convert.ToInt32((picDisplay.Width - My.Resources.Modules.img_Logo.Width) / 2)
+            Dim y As Integer = Convert.ToInt32((picDisplay.Height - My.Resources.Modules.img_Logo.Height) / 2)
+            g.DrawImage(iLogo, x, y, My.Resources.Modules.img_Logo.Width, My.Resources.Modules.img_Logo.Height)
+            picDisplay.BackgroundImage = iBackground
         End Using
 
-        Me.Text = "About Ember Media Manager"
+        Text = Languages.About_Ember_Media_Manager
 
         ' Optimize Painting.
         SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.DoubleBuffer Or _
@@ -157,11 +157,11 @@ Public NotInheritable Class dlgAbout
         CredList.Add(New CredLine With {.Text = String.Empty})
         CredList.Add(New CredLine With {.Text = "See the GNU General Public License for more details."})
 
-        PicY = Me.picDisplay.ClientSize.Height
+        PicY = picDisplay.ClientSize.Height
     End Sub
 
     Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub pbFFMPEG_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pbFFMPEG.Click
@@ -171,10 +171,10 @@ Public NotInheritable Class dlgAbout
                 nProc.Start()
             End Using
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.ffmpeg.org/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.ffmpeg.org/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -183,10 +183,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://www.imdb.com/")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.imdb.com/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.imdb.com/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -195,10 +195,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://www.impawards.com/")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.impawards.com/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.impawards.com/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -207,10 +207,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://mediainfo.sourceforge.net")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://mediainfo.sourceforge.net"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://mediainfo.sourceforge.net"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -219,10 +219,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://www.moviepostersdb.com/")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.moviepostersdb.com/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.moviepostersdb.com/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -231,10 +231,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://www.themoviedb.org/")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.themoviedb.org/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.themoviedb.org/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -243,10 +243,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://www.xbmc.org/")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.xbmc.org/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.xbmc.org/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -255,10 +255,10 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://www.youtube.com/")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://www.youtube.com/"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://www.youtube.com/"
+                explorer.Start()
             End Using
         End If
     End Sub
@@ -267,35 +267,35 @@ Public NotInheritable Class dlgAbout
         If Master.isWindows Then
             Process.Start("http://ember.purplepig.net")
         Else
-            Using Explorer As New Process
-                Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "http://ember.purplepig.net"
-                Explorer.Start()
+            Using explorer As New Process
+                explorer.StartInfo.FileName = "xdg-open"
+                explorer.StartInfo.Arguments = "http://ember.purplepig.net"
+                explorer.Start()
             End Using
         End If
     End Sub
 
     Private Sub picDisplay_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles picDisplay.Paint
-        Dim CurrentX As Single, CurrentY As Single, FontMod As Single = 0
+        Dim currentX As Single, currentY As Single, fontMod As Single = 0
 
         For i As Integer = 0 To CredList.Count - 1
 
-            CurrentY = PicY + FontMod
-            FontMod += CredList(i).Font.Size + 5
+            currentY = PicY + fontMod
+            fontMod += CredList(i).Font.Size + 5
 
-            CurrentX = (Me.picDisplay.ClientSize.Width - e.Graphics.MeasureString(CredList(i).Text, CredList(i).Font).Width) / 2
+            currentX = (picDisplay.ClientSize.Width - e.Graphics.MeasureString(CredList(i).Text, CredList(i).Font).Width) / 2
 
-            If i = CredList.Count - 1 AndAlso CurrentY < -25 Then PicY = Me.picDisplay.ClientSize.Height
+            If i = CredList.Count - 1 AndAlso currentY < -25 Then PicY = picDisplay.ClientSize.Height
 
-            e.Graphics.DrawString(CredList(i).Text, CredList(i).Font, Brushes.Black, CurrentX, CurrentY)
+            e.Graphics.DrawString(CredList(i).Text, CredList(i).Font, Brushes.Black, currentX, currentY)
 
         Next
 
         PicY -= 1
 
-        System.Threading.Thread.Sleep(30)
+        Threading.Thread.Sleep(30)
 
-        Me.picDisplay.Invalidate()
+        picDisplay.Invalidate()
     End Sub
 
 #End Region 'Methods
@@ -303,13 +303,6 @@ Public NotInheritable Class dlgAbout
 #Region "Nested Types"
 
     Friend Class CredLine
-
-#Region "Fields"
-
-        Private _font As Font
-        Private _text As String
-
-#End Region 'Fields
 
 #Region "Constructors"
 
@@ -322,30 +315,15 @@ Public NotInheritable Class dlgAbout
 #Region "Properties"
 
         Public Property Font() As Font
-            Get
-                Return _font
-            End Get
-            Set(ByVal value As Font)
-                _font = value
-            End Set
-        End Property
-
         Public Property Text() As String
-            Get
-                Return _text
-            End Get
-            Set(ByVal value As String)
-                _text = value
-            End Set
-        End Property
 
 #End Region 'Properties
 
 #Region "Methods"
 
         Public Sub Clear()
-            _text = String.Empty
-            _font = New Font("Microsoft Sans Serif", 11, FontStyle.Bold)
+            _Text = String.Empty
+            _Font = New Font("Microsoft Sans Serif", 11, FontStyle.Bold)
         End Sub
 
 #End Region 'Methods

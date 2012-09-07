@@ -19,7 +19,7 @@
 ' ################################################################################
 
 Imports System.IO
-Imports EmberAPI
+Imports EmberMediaManger.API
 
 Public Class dlgWizard
 
@@ -218,21 +218,23 @@ Public Class dlgWizard
         Dim lvItem As ListViewItem
 
         lvMovies.Items.Clear()
-        Master.DB.LoadMovieSourcesFromDB()
-        For Each s As Structures.MovieSource In Master.MovieSources
-            lvItem = New ListViewItem(s.id)
+        Master.MovieSources.Clear()
+        Master.MovieSources.AddRange(Classes.Database.GetMovieSources())
+        For Each s As Model.Source In Master.MovieSources
+            lvItem = New ListViewItem(s.ID)
             lvItem.SubItems.Add(s.Name)
-            lvItem.SubItems.Add(s.Path)
+            lvItem.SubItems.Add(s.path)
             lvItem.SubItems.Add(If(s.Recursive, "Yes", "No"))
-            lvItem.SubItems.Add(If(s.UseFolderName, "Yes", "No"))
-            lvItem.SubItems.Add(If(s.IsSingle, "Yes", "No"))
+            lvItem.SubItems.Add(If(s.Foldername, "Yes", "No"))
+            lvItem.SubItems.Add(If(s.Single, "Yes", "No"))
             lvMovies.Items.Add(lvItem)
         Next
     End Sub
 
     Private Sub RefreshTVSources()
         Dim lvItem As ListViewItem
-        Master.DB.LoadTVSourcesFromDB()
+        Master.TVSources.Clear()
+        Master.TVSources.AddRange(Classes.Database.GetTVSources())
         lvTVSources.Items.Clear()
         Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
             SQLcommand.CommandText = "SELECT * FROM TVSources;"
@@ -407,8 +409,8 @@ Public Class dlgWizard
     End Sub
 
     Private Sub btnTVLanguageFetch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTVLanguageFetch.Click
-        Me.tLangList.Clear()
-        Me.tLangList.AddRange(ModulesManager.Instance.TVGetLangs(Master.eSettings.TVDBMirror))
+        'Me.tLangList.Clear()
+        'Me.tLangList.AddRange(ModulesManager.Instance.TVGetLangs(Master.eSettings.TVDBMirror))
         Me.cbTVLanguage.Items.AddRange((From lLang In tLangList Select lLang.LongLang).ToArray)
 
         If Me.cbTVLanguage.Items.Count > 0 Then

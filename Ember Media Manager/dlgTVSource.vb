@@ -20,7 +20,7 @@
 
 Imports System.IO
 Imports System.Text.RegularExpressions
-Imports EmberAPI
+Imports EmberMediaManger.API
 
 Public Class dlgTVSource
 
@@ -67,15 +67,15 @@ Public Class dlgTVSource
 
         Try
             If String.IsNullOrEmpty(Me.txtSourceName.Text) Then
-                pbValid.Image = My.Resources.invalid
+                pbValid.Image = My.Resources.Modules.btn_Remove
             Else
                 Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
                     SQLcommand.CommandText = String.Concat("SELECT ID FROM TVSources WHERE Name LIKE """, Me.txtSourceName.Text.Trim, """ AND ID != ", Me._id, ";")
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         If Not String.IsNullOrEmpty(SQLreader("ID").ToString) Then
-                            pbValid.Image = My.Resources.invalid
+                            pbValid.Image = My.Resources.Modules.btn_Remove
                         Else
-                            pbValid.Image = My.Resources.valid
+                            pbValid.Image = My.Resources.Modules.small_icon_Tick
                             isValid = True
                         End If
                     End Using
@@ -160,7 +160,7 @@ Public Class dlgTVSource
             Me.tmrPath.Enabled = True
         Else
             If String.IsNullOrEmpty(txtSourceName.Text) OrElse Me.autoName Then
-                Me.txtSourceName.Text = FileUtils.Common.GetDirectory(Me.txtSourcePath.Text)
+                Me.txtSourceName.Text = FileUtils.GetDirectory(Me.txtSourcePath.Text)
                 Me.autoName = True
             End If
             Me.prevPathText = Me.currPathText

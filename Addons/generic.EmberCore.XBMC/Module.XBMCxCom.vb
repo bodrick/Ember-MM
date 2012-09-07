@@ -186,7 +186,7 @@ Public Class XBMCxCom
                             cmd = String.Concat("update files set ", _
                                 String.Format("playCount =""{0}"" ", StringEscape(If(IsNumeric(DBMovie.Movie.PlayCount), DBMovie.Movie.PlayCount, "0"))), _
                                 String.Format(" Where idFile ={0}", idfile))
-                            str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
+                            str = String.Format("command=execvideodatabase({0})", Uri.EscapeDataString(cmd))
                             ret = SendCmd(s, str)
                             If Not ret.Contains("Exec Done") Then
                                 Master.eLog.WriteToErrorLog("Unable to Update XBMC PlayCount", cmd, "Error")
@@ -197,7 +197,7 @@ Public Class XBMCxCom
                         cmd = String.Concat("update movie set ", _
                             String.Format("c01 =""{0}"" ", StringEscape(DBMovie.Movie.Plot)), _
                             String.Format(" Where idMovie ={0}", id))
-                        str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
+                        str = String.Format("command=execvideodatabase({0})", Uri.EscapeDataString(cmd))
                         ret = SendCmd(s, str)
                         If Not ret.Contains("Exec Done") Then
                             Master.eLog.WriteToErrorLog("Unable to Update XBMC Info - Plot", cmd, "Error")
@@ -219,7 +219,7 @@ Public Class XBMCxCom
                         String.Format("c19=""{0}"",", StringEscape(DBMovie.Movie.Trailer)), _
                         String.Format("c21=""{0}""", StringEscape(DBMovie.Movie.Country)), _
                         String.Format(" Where idMovie ={0}", id.ToString))
-                        str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
+                        str = String.Format("command=execvideodatabase({0})", Uri.EscapeDataString(cmd))
                         ret = SendCmd(s, str)
                         If Not ret.Contains("Exec Done") Then
                             Master.eLog.WriteToErrorLog("Unable to Update XBMC Info", cmd, "Error")

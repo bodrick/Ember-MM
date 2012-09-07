@@ -286,7 +286,7 @@ Namespace XMLScraper
                     Return Nothing
                 End If
 
-                Me._parser.setBuffer(1, Web.HttpUtility.UrlEncode(Me._primary, System.Text.Encoding.GetEncoding("ISO-8859-1")))
+                Me._parser.setBuffer(1, Uri.EscapeDataString(Me._primary))
 
                 If Not String.IsNullOrEmpty(Me._secondary) Then
                     Me._parser.setBuffer(2, UrlInfo.UrlEncode(Me._secondary))

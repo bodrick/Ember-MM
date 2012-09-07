@@ -204,11 +204,11 @@ Namespace XMLScraper
             End Function
 
             Public Shared Function UrlDecode(ByVal strHTML As String) As String
-                Return System.Web.HttpUtility.UrlDecode(strHTML)
+                Return Uri.UnescapeDataString(strHTML)
             End Function
 
             Public Shared Function UrlEncode(ByVal strHTML As String) As String
-                Return System.Web.HttpUtility.UrlEncode(strHTML)
+                Return Uri.EscapeDataString(strHTML)
             End Function
 
             Public Sub Clear()

@@ -461,9 +461,8 @@ Public Class Database
     End Sub
 
     Public Sub FillTVSeasonFromDB(ByRef _TVDB As Structures.DBTV, ByVal iSeason As Integer)
-        Dim _tmpTVDB As New Structures.DBTV
-        _tmpTVDB = LoadTVSeasonFromDB(_TVDB.ShowID, iSeason, False)
-
+        Dim _tmpTVDB As Structures.DBTV = LoadTVSeasonFromDB(_TVDB.ShowID, iSeason, False)
+        
         _TVDB.IsLockSeason = _tmpTVDB.IsLockSeason
         _TVDB.IsMarkSeason = _tmpTVDB.IsMarkSeason
         _TVDB.SeasonPosterPath = _tmpTVDB.SeasonPosterPath
@@ -475,8 +474,7 @@ Public Class Database
     ''' </summary>
     ''' <param name="_TVDB">Structures.DBTV container to fill</param>
     Public Sub FillTVShowFromDB(ByRef _TVDB As Structures.DBTV)
-        Dim _tmpTVDB As New Structures.DBTV
-        _tmpTVDB = LoadTVShowFromDB(_TVDB.ShowID)
+        Dim _tmpTVDB As Structures.DBTV = LoadTVShowFromDB(_TVDB.ShowID)
 
         _TVDB.IsLockShow = _tmpTVDB.IsLockShow
         _TVDB.IsMarkShow = _tmpTVDB.IsMarkShow
@@ -493,7 +491,7 @@ Public Class Database
 
     Public Function GetMoviePaths() As List(Of String)
         Dim tList As New List(Of String)
-        Dim mPath As String = String.Empty
+        Dim mPath As String
 
         Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
             SQLcommand.CommandText = "SELECT Movies.MoviePath FROM Movies;"
@@ -1004,21 +1002,11 @@ Public Class Database
 
     Public Function CheckEssentials() As Boolean
         Dim needUpdate As Boolean = False
-        Dim lhttp As New HTTP
-        If Not File.Exists(Path.Combine(Functions.AppPath, "Media.emm")) Then
-            lhttp.DownloadFile(String.Format("http://pcjco.dommel.be/emm-r/{0}/commands_base.xml", If(Functions.IsBetaEnabled(), "updatesbeta", "updates")), Path.Combine(Functions.AppPath, "InstallTasks.xml"), False, "other")
-        End If
         Master.DB.Connect()
-        If File.Exists(Path.Combine(Functions.AppPath, "InstallTasks.xml")) Then
-            Master.DB.PatchDatabase("InstallTasks.xml")
-            File.Delete(Path.Combine(Functions.AppPath, "InstallTasks.xml"))
+        If Not File.Exists(Path.Combine(Functions.AppPath, "Media.emm")) Then
+            Master.DB.PatchDatabase("CreateDB.xml")
             needUpdate = True
-        End If
-        If File.Exists(Path.Combine(Functions.AppPath, "UpdateTasks.xml")) Then
-            Master.DB.PatchDatabase("UpdateTasks.xml")
-            File.Delete(Path.Combine(Functions.AppPath, "UpdateTasks.xml"))
-            needUpdate = True
-        End If
+        End If        
         Return needUpdate
     End Function
 
@@ -1870,84 +1858,6 @@ Public Class Database
             End Using
             Master.DB.SQLcnJobLog.Close()
         Catch ex As Exception
-        End Try
-    End Sub
-
-    Public Function IsAddonInstalled(ByVal AddonID As Integer) As Single
-        Try
-            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
-                SQLCommand.CommandText = String.Concat("SELECT Version FROM Addons WHERE AddonID = ", AddonID, ";")
-                Dim tES As Object = SQLCommand.ExecuteScalar
-                If Not IsNothing(tES) Then
-                    Dim tSing As Single = 0
-                    If Single.TryParse(tES.ToString, tSing) Then
-                        Return tSing
-                    End If
-                End If
-            End Using
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
-        Return 0
-    End Function
-
-    Public Function UninstallAddon(ByVal AddonID As Integer) As Boolean
-        Dim needRestart As Boolean = False
-        Try
-            Dim _cmds As Containers.InstallCommands = Containers.InstallCommands.Load(Path.Combine(Functions.AppPath, "InstallTasks.xml"))
-            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
-                SQLCommand.CommandText = String.Concat("SELECT FilePath FROM AddonFiles WHERE AddonID = ", AddonID, ";")
-                Using SQLReader As SQLite.SQLiteDataReader = SQLCommand.ExecuteReader
-                    While SQLReader.Read
-                        Try
-                            File.Delete(SQLReader("FilePath").ToString)
-                        Catch
-                            _cmds.Command.Add(New Containers.InstallCommand With {.CommandType = "FILE.Delete", .CommandExecute = SQLReader("FilePath").ToString})
-                            needRestart = True
-                        End Try
-                    End While
-                    If needRestart Then _cmds.Save(Path.Combine(Functions.AppPath, "InstallTasks.xml"))
-                End Using
-                SQLCommand.CommandText = String.Concat("DELETE FROM Addons WHERE AddonID = ", AddonID, ";")
-                SQLCommand.ExecuteNonQuery()
-                SQLCommand.CommandText = String.Concat("DELETE FROM AddonFiles WHERE AddonID = ", AddonID, ";")
-                SQLCommand.ExecuteNonQuery()
-            End Using
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
-        Return Not needRestart
-    End Function
-
-    Public Sub SaveAddonToDB(ByVal Addon As Containers.Addon)
-        Try
-            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
-                SQLCommand.CommandText = String.Concat("INSERT OR REPLACE INTO Addons (", _
-                        "AddonID, Version) VALUES (?,?);")
-                Dim parAddonID As SQLite.SQLiteParameter = SQLCommand.Parameters.Add("parAddonID", DbType.Int32, 0, "AddonID")
-                Dim parVersion As SQLite.SQLiteParameter = SQLCommand.Parameters.Add("parVersion", DbType.String, 0, "Version")
-
-                parAddonID.Value = Addon.ID
-                parVersion.Value = Addon.Version.ToString
-
-                SQLCommand.ExecuteNonQuery()
-
-                SQLCommand.CommandText = String.Concat("DELETE FROM AddonFiles WHERE AddonID = ", Addon.ID, ";")
-                SQLCommand.ExecuteNonQuery()
-
-                Using SQLFileCommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
-                    SQLFileCommand.CommandText = String.Concat("INSERT INTO AddonFiles (AddonID, FilePath) VALUES (?,?);")
-                    Dim parFileAddonID As SQLite.SQLiteParameter = SQLFileCommand.Parameters.Add("parFileAddonID", DbType.Int32, 0, "AddonID")
-                    Dim parFilePath As SQLite.SQLiteParameter = SQLFileCommand.Parameters.Add("parFilePath", DbType.String, 0, "FilePath")
-                    parFileAddonID.Value = Addon.ID
-                    For Each fFile As KeyValuePair(Of String, String) In Addon.Files
-                        parFilePath.Value = Path.Combine(Functions.AppPath, fFile.Key.Replace("/", Path.DirectorySeparatorChar))
-                        SQLFileCommand.ExecuteNonQuery()
-                    Next
-                End Using
-            End Using
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
     End Sub
 

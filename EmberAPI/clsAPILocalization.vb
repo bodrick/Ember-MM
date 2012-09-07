@@ -19,10 +19,7 @@
 ' ################################################################################
 
 Imports System.IO
-Imports System.IO.IsolatedStorage
-Imports System.Xml
 Imports System.Xml.Linq
-Imports System.Xml.Serialization
 Imports System.Text
 
 Public Class Localization

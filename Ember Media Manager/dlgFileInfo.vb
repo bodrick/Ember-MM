@@ -1,4 +1,4 @@
-﻿Imports EmberAPI
+﻿Imports EmberMediaManger.API
 
 ' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
@@ -66,9 +66,9 @@ Public Class dlgFileInfo
                     If Not stream Is Nothing Then
                         If Not SettingDefaults Then
                             If _isEpisode Then
-                                Master.currShow.TVEp.FileInfo = _FileInfo
+                                Master.currShow.FileInfo = _FileInfo
                             Else
-                                Master.currMovie.Movie.FileInfo = _FileInfo
+                                Master.currMovie.FileInfo = _FileInfo
                             End If
                         End If
                         If cbStreamType.SelectedItem.ToString = Master.eLang.GetString(595, "Video Stream") Then
@@ -82,9 +82,10 @@ Public Class dlgFileInfo
                         End If
                         If Cancel_Button.Visible = True AndAlso Not SettingDefaults Then 'Only Save imediatly when running stand alone
                             If _isEpisode Then
-                                Master.DB.SaveTVEpToDB(Master.currShow, False, False, False, True)
+                                Classes.Database.SaveTVEp(Master.currShow, EntityState.Modified)
+                                'Save NFO
                             Else
-                                Master.DB.SaveMovieToDB(Master.currMovie, False, False, True)
+                                Classes.Database.SaveMovie(Master.currMovie, EntityState.Modified)
                             End If
                         End If
                         NeedToRefresh = True
@@ -93,7 +94,7 @@ Public Class dlgFileInfo
                 End Using
             End If
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
         End Try
     End Sub
 
@@ -103,9 +104,9 @@ Public Class dlgFileInfo
 
     Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
         If NeedToRefresh Then
-            Me.DialogResult = System.Windows.Forms.DialogResult.OK
+            Me.DialogResult = Windows.Forms.DialogResult.OK
         Else
-            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = Windows.Forms.DialogResult.Cancel
         End If
         Me.Close()
     End Sub
@@ -125,9 +126,9 @@ Public Class dlgFileInfo
                 Dim i As ListViewItem = lvStreams.SelectedItems(0)
                 If Not SettingDefaults Then
                     If _isEpisode Then
-                        Master.currShow.TVEp.FileInfo = _FileInfo
+                        Master.currShow.FileInfo = _FileInfo
                     Else
-                        Master.currMovie.Movie.FileInfo = _FileInfo
+                        Master.currMovie.FileInfo = _FileInfo
                     End If
                 End If
                 If i.Tag.ToString = Master.eLang.GetString(595, "Video Stream") Then
@@ -141,23 +142,24 @@ Public Class dlgFileInfo
                 End If
                 If Cancel_Button.Visible = True AndAlso Not SettingDefaults Then 'Only Save imediatly when running stand alone
                     If _isEpisode Then
-                        Master.DB.SaveTVEpToDB(Master.currShow, False, False, False, True)
+                        Classes.Database.SaveTVEp(Master.currShow, EntityState.Modified)
+                        'Save NFO
                     Else
-                        Master.DB.SaveMovieToDB(Master.currMovie, False, False, True)
+                        Classes.Database.SaveMovie(Master.currMovie, EntityState.Modified)
                     End If
                 End If
                 NeedToRefresh = True
                 LoadInfo()
             End If
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
         End Try
     End Sub
 
     Private Sub dlgFileInfo_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         SetUp()
         If Not SettingDefaults Then
-            _FileInfo = If(_isEpisode, Master.currShow.TVEp.FileInfo, Master.currMovie.Movie.FileInfo)
+            _FileInfo = If(_isEpisode, Master.currShow.FileInfo, Master.currMovie.FileInfo)
         End If
         LoadInfo()
     End Sub
@@ -175,9 +177,9 @@ Public Class dlgFileInfo
                     If Not stream Is Nothing Then
                         If Not SettingDefaults Then
                             If _isEpisode Then
-                                Master.currShow.TVEp.FileInfo = _FileInfo
+                                Master.currShow.FileInfo = _FileInfo
                             Else
-                                Master.currMovie.Movie.FileInfo = _FileInfo
+                                Master.currMovie.FileInfo = _FileInfo
                             End If
                         End If
                         If i.Tag.ToString = Master.eLang.GetString(595, "Video Stream") Then
@@ -191,9 +193,10 @@ Public Class dlgFileInfo
                         End If
                         If Cancel_Button.Visible = True AndAlso Not SettingDefaults Then 'Only Save imediatly when running stand alone
                             If _isEpisode Then
-                                Master.DB.SaveTVEpToDB(Master.currShow, False, False, False, True)
+                                Classes.Database.SaveTVEp(Master.currShow, EntityState.Modified)
+                                'Save NFO
                             Else
-                                Master.DB.SaveMovieToDB(Master.currMovie, False, False, True)
+                                Classes.Database.SaveMovie(Master.currMovie, EntityState.Modified)
                             End If
                         End If
                         NeedToRefresh = True
@@ -202,7 +205,7 @@ Public Class dlgFileInfo
                 End Using
             End If
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
         End Try
     End Sub
 
@@ -313,7 +316,7 @@ Public Class dlgFileInfo
                 Next
             End If
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
         End Try
     End Sub
 

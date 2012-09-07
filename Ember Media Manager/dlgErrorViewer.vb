@@ -21,7 +21,7 @@
 Imports System.IO
 Imports System.Text
 Imports System.Net
-Imports EmberAPI
+Imports EmberMediaManger.API
 
 Public Class dlgErrorViewer
 

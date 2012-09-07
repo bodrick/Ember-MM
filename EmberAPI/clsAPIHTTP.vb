@@ -20,9 +20,10 @@
 
 Imports System.IO
 Imports System.IO.Compression
-Imports System.Text
 Imports System.Net
 Imports System.Drawing
+Imports System.Collections.Specialized
+Imports System.Text.RegularExpressions
 
 Public Class HTTP
 
@@ -385,6 +386,15 @@ Public Class HTTP
         Me.dThread.IsBackground = True
         Me.dThread.Start()
     End Sub
+
+    Public Shared Function ParseQueryString(input As String) As NameValueCollection
+        Dim returnData As New NameValueCollection
+        Dim r As String = "(?m)^\s*(?'name'\w+)\s*=\s*(?'value'.*)\s*(?=\r?$)"
+        For Each m As Match In Regex.Matches(input, r)
+            returnData.Add(m.Groups("name").Value, m.Groups("value").Value)
+        Next
+        Return returnData
+    End Function
 
 #End Region 'Methods
 End Class

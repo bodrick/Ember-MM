@@ -109,16 +109,16 @@ Public Class dlgSearchResults
         Try
             If Not lMediaTag Is Nothing Then
                 'Dim idx As Integer = Convert.ToInt32(Me.tvResults.SelectedNode.Tag)
-                lblTitle.Text = Web.HttpUtility.HtmlDecode(lMediaTag.Title)
+                lblTitle.Text = Uri.UnescapeDataString(lMediaTag.Title)
                 lblYear.Text = lMediaTag.Year.ToString
                 If Not lMediaTag.Directors Is Nothing Then
-                    lblDirector.Text = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Directors.ToArray(), " / "))
+                    lblDirector.Text = Uri.UnescapeDataString(Strings.Join(lMediaTag.Directors.ToArray(), " / "))
                 Else
                     lblDirector.Text = String.Empty
                 End If
-                txtOutline.Text = Web.HttpUtility.HtmlDecode(lMediaTag.Outline)
+                txtOutline.Text = Uri.UnescapeDataString(lMediaTag.Outline)
                 If Not lMediaTag.Genres Is Nothing Then
-                    lblGenre.Text = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Genres.ToArray(), " / "))
+                    lblGenre.Text = Uri.UnescapeDataString(Strings.Join(lMediaTag.Genres.ToArray(), " / "))
                 Else
                     lblGenre.Text = String.Empty
                 End If
@@ -131,7 +131,7 @@ Public Class dlgSearchResults
                         Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
                     End Try
                 End If
-                lblTagline.Text = Web.HttpUtility.HtmlDecode(lMediaTag.Tagline)
+                lblTagline.Text = Uri.UnescapeDataString(lMediaTag.Tagline)
                 ControlsVisible(True)
             End If
         Catch ex As Exception
@@ -220,7 +220,7 @@ Public Class dlgSearchResults
             Dim selNode As New TreeNode
 
             For c = 0 To mList.Count - 1
-                Dim title As String = Web.HttpUtility.HtmlDecode(mList(c).Title)
+                Dim title As String = Uri.UnescapeDataString(mList(c).Title)
                 Me.tvResults.Nodes.Add(New TreeNode() With {.Tag = c, .Text = String.Concat(title, If(Not String.IsNullOrEmpty(mList(c).Year.ToString), String.Format(" ({0})", mList(c).Year), String.Empty))})
             Next
 

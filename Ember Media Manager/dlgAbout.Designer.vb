@@ -26,6 +26,7 @@ Partial Class dlgAbout
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgAbout))
         Me.OKButton = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.picDisplay = New System.Windows.Forms.PictureBox()
         Me.pbYouTube = New System.Windows.Forms.PictureBox()
         Me.pbXBMC = New System.Windows.Forms.PictureBox()
         Me.pbMPDB = New System.Windows.Forms.PictureBox()
@@ -34,8 +35,8 @@ Partial Class dlgAbout
         Me.pbIMDB = New System.Windows.Forms.PictureBox()
         Me.pbIMPA = New System.Windows.Forms.PictureBox()
         Me.pbTMDB = New System.Windows.Forms.PictureBox()
-        Me.picDisplay = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
+        CType(Me.picDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbYouTube, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbXBMC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbMPDB, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,7 +45,6 @@ Partial Class dlgAbout
         CType(Me.pbIMDB, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbIMPA, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbTMDB, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.picDisplay, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'OKButton
@@ -75,94 +75,6 @@ Partial Class dlgAbout
         Me.Panel1.Size = New System.Drawing.Size(422, 114)
         Me.Panel1.TabIndex = 8
         '
-        'pbYouTube
-        '
-        Me.pbYouTube.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbYouTube.Image = CType(resources.GetObject("pbYouTube.Image"), System.Drawing.Image)
-        Me.pbYouTube.Location = New System.Drawing.Point(3, 71)
-        Me.pbYouTube.Name = "pbYouTube"
-        Me.pbYouTube.Size = New System.Drawing.Size(91, 38)
-        Me.pbYouTube.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbYouTube.TabIndex = 17
-        Me.pbYouTube.TabStop = False
-        '
-        'pbXBMC
-        '
-        Me.pbXBMC.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbXBMC.Image = CType(resources.GetObject("pbXBMC.Image"), System.Drawing.Image)
-        Me.pbXBMC.Location = New System.Drawing.Point(3, 3)
-        Me.pbXBMC.Name = "pbXBMC"
-        Me.pbXBMC.Size = New System.Drawing.Size(133, 25)
-        Me.pbXBMC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbXBMC.TabIndex = 16
-        Me.pbXBMC.TabStop = False
-        '
-        'pbMPDB
-        '
-        Me.pbMPDB.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbMPDB.Image = CType(resources.GetObject("pbMPDB.Image"), System.Drawing.Image)
-        Me.pbMPDB.Location = New System.Drawing.Point(326, 31)
-        Me.pbMPDB.Name = "pbMPDB"
-        Me.pbMPDB.Size = New System.Drawing.Size(91, 38)
-        Me.pbMPDB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbMPDB.TabIndex = 15
-        Me.pbMPDB.TabStop = False
-        '
-        'pbFFMPEG
-        '
-        Me.pbFFMPEG.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbFFMPEG.Image = CType(resources.GetObject("pbFFMPEG.Image"), System.Drawing.Image)
-        Me.pbFFMPEG.Location = New System.Drawing.Point(293, 2)
-        Me.pbFFMPEG.Name = "pbFFMPEG"
-        Me.pbFFMPEG.Size = New System.Drawing.Size(124, 26)
-        Me.pbFFMPEG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbFFMPEG.TabIndex = 14
-        Me.pbFFMPEG.TabStop = False
-        '
-        'pbMI
-        '
-        Me.pbMI.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbMI.Image = CType(resources.GetObject("pbMI.Image"), System.Drawing.Image)
-        Me.pbMI.Location = New System.Drawing.Point(326, 71)
-        Me.pbMI.Name = "pbMI"
-        Me.pbMI.Size = New System.Drawing.Size(91, 38)
-        Me.pbMI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbMI.TabIndex = 13
-        Me.pbMI.TabStop = False
-        '
-        'pbIMDB
-        '
-        Me.pbIMDB.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbIMDB.Image = CType(resources.GetObject("pbIMDB.Image"), System.Drawing.Image)
-        Me.pbIMDB.Location = New System.Drawing.Point(159, 31)
-        Me.pbIMDB.Name = "pbIMDB"
-        Me.pbIMDB.Size = New System.Drawing.Size(91, 38)
-        Me.pbIMDB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbIMDB.TabIndex = 11
-        Me.pbIMDB.TabStop = False
-        '
-        'pbIMPA
-        '
-        Me.pbIMPA.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbIMPA.Image = CType(resources.GetObject("pbIMPA.Image"), System.Drawing.Image)
-        Me.pbIMPA.Location = New System.Drawing.Point(3, 31)
-        Me.pbIMPA.Name = "pbIMPA"
-        Me.pbIMPA.Size = New System.Drawing.Size(91, 38)
-        Me.pbIMPA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.pbIMPA.TabIndex = 10
-        Me.pbIMPA.TabStop = False
-        '
-        'pbTMDB
-        '
-        Me.pbTMDB.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.pbTMDB.Image = CType(resources.GetObject("pbTMDB.Image"), System.Drawing.Image)
-        Me.pbTMDB.Location = New System.Drawing.Point(142, 4)
-        Me.pbTMDB.Name = "pbTMDB"
-        Me.pbTMDB.Size = New System.Drawing.Size(145, 23)
-        Me.pbTMDB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-        Me.pbTMDB.TabIndex = 8
-        Me.pbTMDB.TabStop = False
-        '
         'picDisplay
         '
         Me.picDisplay.BackColor = System.Drawing.Color.Transparent
@@ -177,6 +89,94 @@ Partial Class dlgAbout
         Me.picDisplay.Size = New System.Drawing.Size(423, 213)
         Me.picDisplay.TabIndex = 10
         Me.picDisplay.TabStop = False
+        '
+        'pbYouTube
+        '
+        Me.pbYouTube.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbYouTube.Image = Global.EmberMediaManger.My.Resources.Modules.logo_YouTube
+        Me.pbYouTube.Location = New System.Drawing.Point(3, 71)
+        Me.pbYouTube.Name = "pbYouTube"
+        Me.pbYouTube.Size = New System.Drawing.Size(91, 38)
+        Me.pbYouTube.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbYouTube.TabIndex = 17
+        Me.pbYouTube.TabStop = False
+        '
+        'pbXBMC
+        '
+        Me.pbXBMC.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbXBMC.Image = Global.EmberMediaManger.My.Resources.Modules.logo_XBMC
+        Me.pbXBMC.Location = New System.Drawing.Point(3, 3)
+        Me.pbXBMC.Name = "pbXBMC"
+        Me.pbXBMC.Size = New System.Drawing.Size(133, 25)
+        Me.pbXBMC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbXBMC.TabIndex = 16
+        Me.pbXBMC.TabStop = False
+        '
+        'pbMPDB
+        '
+        Me.pbMPDB.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbMPDB.Image = Global.EmberMediaManger.My.Resources.Modules.logo_MPDB
+        Me.pbMPDB.Location = New System.Drawing.Point(326, 31)
+        Me.pbMPDB.Name = "pbMPDB"
+        Me.pbMPDB.Size = New System.Drawing.Size(91, 38)
+        Me.pbMPDB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbMPDB.TabIndex = 15
+        Me.pbMPDB.TabStop = False
+        '
+        'pbFFMPEG
+        '
+        Me.pbFFMPEG.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbFFMPEG.Image = Global.EmberMediaManger.My.Resources.Modules.logo_FFMPEG
+        Me.pbFFMPEG.Location = New System.Drawing.Point(293, 2)
+        Me.pbFFMPEG.Name = "pbFFMPEG"
+        Me.pbFFMPEG.Size = New System.Drawing.Size(124, 26)
+        Me.pbFFMPEG.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbFFMPEG.TabIndex = 14
+        Me.pbFFMPEG.TabStop = False
+        '
+        'pbMI
+        '
+        Me.pbMI.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbMI.Image = Global.EmberMediaManger.My.Resources.Modules.logo_MediaInfo
+        Me.pbMI.Location = New System.Drawing.Point(326, 71)
+        Me.pbMI.Name = "pbMI"
+        Me.pbMI.Size = New System.Drawing.Size(91, 38)
+        Me.pbMI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbMI.TabIndex = 13
+        Me.pbMI.TabStop = False
+        '
+        'pbIMDB
+        '
+        Me.pbIMDB.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbIMDB.Image = Global.EmberMediaManger.My.Resources.Modules.logo_IMDB
+        Me.pbIMDB.Location = New System.Drawing.Point(159, 31)
+        Me.pbIMDB.Name = "pbIMDB"
+        Me.pbIMDB.Size = New System.Drawing.Size(91, 38)
+        Me.pbIMDB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbIMDB.TabIndex = 11
+        Me.pbIMDB.TabStop = False
+        '
+        'pbIMPA
+        '
+        Me.pbIMPA.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbIMPA.Image = Global.EmberMediaManger.My.Resources.Modules.logo_IMPA
+        Me.pbIMPA.Location = New System.Drawing.Point(3, 31)
+        Me.pbIMPA.Name = "pbIMPA"
+        Me.pbIMPA.Size = New System.Drawing.Size(91, 38)
+        Me.pbIMPA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.pbIMPA.TabIndex = 10
+        Me.pbIMPA.TabStop = False
+        '
+        'pbTMDB
+        '
+        Me.pbTMDB.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.pbTMDB.Image = Global.EmberMediaManger.My.Resources.Modules.logo_TMDB
+        Me.pbTMDB.Location = New System.Drawing.Point(142, 4)
+        Me.pbTMDB.Name = "pbTMDB"
+        Me.pbTMDB.Size = New System.Drawing.Size(145, 23)
+        Me.pbTMDB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+        Me.pbTMDB.TabIndex = 8
+        Me.pbTMDB.TabStop = False
         '
         'dlgAbout
         '
@@ -200,6 +200,7 @@ Partial Class dlgAbout
         Me.Text = "About Ember Media Manager"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.picDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbYouTube, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbXBMC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbMPDB, System.ComponentModel.ISupportInitialize).EndInit()
@@ -208,7 +209,6 @@ Partial Class dlgAbout
         CType(Me.pbIMDB, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbIMPA, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbTMDB, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.picDisplay, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

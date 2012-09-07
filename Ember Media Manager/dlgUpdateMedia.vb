@@ -18,8 +18,7 @@
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
 
-Imports System.IO
-Imports EmberAPI
+Imports EmberMediaManger.API
 
 Public Class dlgUpdateMedia
 

@@ -1,4 +1,4 @@
-﻿Imports EmberAPI
+﻿Imports EmberMediaManger.API
 
 ' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
@@ -24,14 +24,14 @@ Public Class dlgStudioSelect
 
 #Region "Fields"
 
-    Private _CurrMovie As Structures.DBMovie = Nothing
+    Private _CurrMovie As Model.Movie = Nothing
     Private _studio As String = String.Empty
 
 #End Region 'Fields
 
 #Region "Methods"
 
-    Public Overloads Function ShowDialog(ByVal CurrMovie As Structures.DBMovie) As String
+    Public Overloads Function ShowDialog(ByVal CurrMovie As Model.Movie) As String
         '//
         ' Overload to pass data
         '\\
@@ -56,7 +56,7 @@ Public Class dlgStudioSelect
         'DBMovie.Movie = New MediaContainers.Movie
         'DBMovie.Movie.IMDBID = Me._MovieId
         Dim alStudio As List(Of String) = ModulesManager.Instance.GetMovieStudio(_CurrMovie)
-        If alStudio.Count = 0 Then alStudio.Add(_CurrMovie.Movie.Studio)
+        If alStudio.Count = 0 Then alStudio.Add(_CurrMovie.Studio)
         For i As Integer = 0 To alStudio.Count - 1
             ilStudios.Images.Add(alStudio(i).ToString, APIXML.GetStudioImage(alStudio(i).ToString))
             lvStudios.Items.Add(alStudio(i).ToString, i)

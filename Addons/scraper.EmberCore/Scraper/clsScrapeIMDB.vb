@@ -172,7 +172,7 @@ Namespace IMDB
                 Dim OriginalTitle As String = Regex.Match(HTML, MOVIE_TITLE_PATTERN).ToString
                 If Options.bTitle Then
                     Dim oldOTitle As String = IMDBMovie.OriginalTitle
-                    IMDBMovie.OriginalTitle = CleanTitle(Web.HttpUtility.HtmlDecode(Regex.Match(OriginalTitle, ".*(?=\s\(\d+.*?\))").ToString)).Trim
+                    IMDBMovie.OriginalTitle = CleanTitle(Uri.UnescapeDataString(Regex.Match(OriginalTitle, ".*(?=\s\(\d+.*?\))").ToString)).Trim
                     If String.IsNullOrEmpty(IMDBMovie.Title) OrElse Not Master.eSettings.LockTitle Then
                         If Not String.IsNullOrEmpty(ofdbTitle) Then
                             IMDBMovie.Title = ofdbTitle.Trim
@@ -208,7 +208,7 @@ Namespace IMDB
 
                     W = If(D > 0, HTML.IndexOf("</div", D), 0)
 
-                    IMDBMovie.MPAA = If(D > 0 AndAlso W > 0, Web.HttpUtility.HtmlDecode(HTML.Substring(D, W - D).Remove(0, 26)).Trim(), String.Empty)
+                    IMDBMovie.MPAA = If(D > 0 AndAlso W > 0, Uri.UnescapeDataString(HTML.Substring(D, W - D).Remove(0, 26)).Trim(), String.Empty)
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing
@@ -315,9 +315,9 @@ Namespace IMDB
                                 Let m1 = Regex.Match(Regex.Match(M.ToString, TD_PATTERN_1).ToString, HREF_PATTERN) _
                                 Let m2 = Regex.Match(M.ToString, TD_PATTERN_2).ToString _
                                 Let m3 = Regex.Match(Regex.Match(M.ToString, TD_PATTERN_3).ToString, IMG_PATTERN) _
-                                Select New MediaContainers.Person(Web.HttpUtility.HtmlDecode(m1.Groups("name").ToString.Trim), _
-                                Web.HttpUtility.HtmlDecode(m2.ToString.Trim), _
-                                If(m3.Groups("thumb").ToString.IndexOf("addtiny") > 0 OrElse m3.Groups("thumb").ToString.IndexOf("no_photo") > 0, String.Empty, Strings.Replace(Web.HttpUtility.HtmlDecode(m3.Groups("thumb").ToString.Trim), _
+                                Select New MediaContainers.Person(Uri.UnescapeDataString(m1.Groups("name").ToString.Trim), _
+                                Uri.UnescapeDataString(m2.ToString.Trim), _
+                                If(m3.Groups("thumb").ToString.IndexOf("addtiny") > 0 OrElse m3.Groups("thumb").ToString.IndexOf("no_photo") > 0, String.Empty, Strings.Replace(Uri.UnescapeDataString(m3.Groups("thumb").ToString.Trim), _
                                 "._SY30_SX23_.jpg", "._SY275_SX400_.jpg"))) Take If(Master.eSettings.ActorLimit > 0, Master.eSettings.ActorLimit, 999999)
 
                     If Master.eSettings.CastImagesOnly Then
@@ -352,7 +352,7 @@ Namespace IMDB
                     Dim TagLineEnd As Integer = If(lHtmlIndexOf > 0, lHtmlIndexOf, 0)
                     If D > 0 Then W = If(TagLineEnd > 0, TagLineEnd, HTML.IndexOf("</div>", D))
 
-                    IMDBMovie.Tagline = If(D > 0 AndAlso W > 0, Web.HttpUtility.HtmlDecode(HTML.Substring(D, W - D).Replace("<h5>Tagline:</h5>", String.Empty).Split(vbCrLf.ToCharArray)(1)).Trim, String.Empty)
+                    IMDBMovie.Tagline = If(D > 0 AndAlso W > 0, Uri.UnescapeDataString(HTML.Substring(D, W - D).Replace("<h5>Tagline:</h5>", String.Empty).Split(vbCrLf.ToCharArray)(1)).Trim, String.Empty)
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing
@@ -366,7 +366,7 @@ Namespace IMDB
                         'get only the first director's name
                         Dim rDir As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN)
                         Dim Dir = From M In rDir Where Not DirectCast(M, Match).Groups("name").ToString.Contains("more") _
-                                  Select Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString)
+                                  Select Uri.UnescapeDataString(DirectCast(M, Match).Groups("name").ToString)
 
                         If Dir.Count > 0 Then
                             IMDBMovie.Director = Strings.Join(Dir.ToArray, " / ").Trim
@@ -386,7 +386,7 @@ Namespace IMDB
                         'get only the first country's name
                         Dim rCou As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN)
                         Dim Cou = From M In rCou Where Not DirectCast(M, Match).Groups("name").ToString.Contains("more") _
-                                  Select Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString)
+                                  Select Uri.UnescapeDataString(DirectCast(M, Match).Groups("name").ToString)
 
                         If Cou.Count > 0 Then
                             IMDBMovie.Country = Strings.Join(Cou.ToArray, " / ").Trim
@@ -411,7 +411,7 @@ Namespace IMDB
                                 Dim rGenres As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN)
 
                                 Dim Gen = From M In rGenres _
-                                          Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString) Where Not N.Contains("more") Take If(Master.eSettings.GenreLimit > 0, Master.eSettings.GenreLimit, 999999)
+                                          Select N = Uri.UnescapeDataString(DirectCast(M, Match).Groups("name").ToString) Where Not N.Contains("more") Take If(Master.eSettings.GenreLimit > 0, Master.eSettings.GenreLimit, 999999)
                                 If Gen.Count > 0 Then
                                     'force splitting of /ed genres
                                     IMDBMovie.Genre = Strings.Join(Gen.ToArray, "/").Trim.Replace("/", " / ").Trim
@@ -454,7 +454,7 @@ Namespace IMDB
                             End If
                             Dim PlotOutline As String = HTML.Substring(D, W - D).Remove(0, 26)
 
-                            PlotOutline = Web.HttpUtility.HtmlDecode(If(PlotOutline.Contains("is empty") OrElse PlotOutline.Contains("View full synopsis") _
+                            PlotOutline = Uri.UnescapeDataString(If(PlotOutline.Contains("is empty") OrElse PlotOutline.Contains("View full synopsis") _
                                                , String.Empty, PlotOutline.Replace("|", String.Empty).Replace("&raquo;", String.Empty)).Trim)
                             'check if outline has links to other IMDB entry
                             If Not String.IsNullOrEmpty(PlotOutline) Then
@@ -487,7 +487,7 @@ mPlot:
                             For Each rMatch As Match In Regex.Matches(FullPlot, HREF_PATTERN_4)
                                 FullPlot = FullPlot.Replace(rMatch.Value, rMatch.Groups("text").Value.Trim)
                             Next
-                            IMDBMovie.Plot = Web.HttpUtility.HtmlDecode(FullPlot.Replace("|", String.Empty)).Trim
+                            IMDBMovie.Plot = Uri.UnescapeDataString(FullPlot.Replace("|", String.Empty)).Trim
                         End If
 
                     End If
@@ -500,7 +500,7 @@ mPlot:
                 If bwIMDB.CancellationPending Then Return Nothing
 
                 'Get the movie duration
-                If Options.bRuntime Then IMDBMovie.Runtime = Web.HttpUtility.HtmlDecode(Regex.Match(HTML, "<h5>Runtime:</h5>[^0-9]*([^<]*)").Groups(1).Value.Trim)
+                If Options.bRuntime Then IMDBMovie.Runtime = Uri.UnescapeDataString(Regex.Match(HTML, "<h5>Runtime:</h5>[^0-9]*([^<]*)").Groups(1).Value.Trim)
 
                 'Get Production Studio
                 If Options.bStudio AndAlso (String.IsNullOrEmpty(IMDBMovie.Studio) OrElse Not Master.eSettings.LockStudio) Then
@@ -512,14 +512,14 @@ mPlot:
                             'only get the first one
                             Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
                                      Where Not DirectCast(P1, Match).Groups("name").ToString = String.Empty _
-                                     Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString) Take 1
+                                     Select Studio = Uri.UnescapeDataString(DirectCast(P1, Match).Groups("name").ToString) Take 1
                             IMDBMovie.Studio = Ps(0).ToString.Trim
                         End If
                     Else
                         D = HTML.IndexOf("<h5>Company:</h5>")
                         If D > 0 Then W = HTML.IndexOf("</div>", D)
                         If D > 0 AndAlso W > 0 Then
-                            IMDBMovie.Studio = Web.HttpUtility.HtmlDecode(Regex.Match(HTML.Substring(D, W - D), HREF_PATTERN).Groups("name").ToString.Trim)
+                            IMDBMovie.Studio = Uri.UnescapeDataString(Regex.Match(HTML.Substring(D, W - D), HREF_PATTERN).Groups("name").ToString.Trim)
                         End If
                     End If
                 End If
@@ -537,7 +537,7 @@ mPlot:
                                 AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim = "(more)" _
                                 AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim = "WGA" _
                                 AndAlso Not DirectCast(M, Match).Groups("name").ToString.Trim.Contains("see more") _
-                                Select Writer = Web.HttpUtility.HtmlDecode(String.Concat(DirectCast(M, Match).Groups("name").ToString, If(FullCrew, " (writer)", String.Empty)))
+                                Select Writer = Uri.UnescapeDataString(String.Concat(DirectCast(M, Match).Groups("name").ToString, If(FullCrew, " (writer)", String.Empty)))
 
                         If q.Count > 0 Then
                             IMDBMovie.Credits = Strings.Join(q.ToArray, " / ").Trim
@@ -566,7 +566,7 @@ mPlot:
                                 Where Not Po.ToString.Contains(String.Concat("http://", IMDBURL, "/Glossary/")) _
                                 Let P1 = Regex.Match(Po.ToString, HREF_PATTERN_2) _
                                 Where Not String.IsNullOrEmpty(P1.Groups("name").ToString) _
-                                Select Producer = Web.HttpUtility.HtmlDecode(String.Concat(P1.Groups("name").ToString, " (producer)"))
+                                Select Producer = Uri.UnescapeDataString(String.Concat(P1.Groups("name").ToString, " (producer)"))
 
                                 If Pr.Count > 0 Then
                                     IMDBMovie.Credits = String.Concat(IMDBMovie.Credits, " / ", Strings.Join(Pr.ToArray, " / ").Trim)
@@ -578,7 +578,7 @@ mPlot:
                                 Dim Mu = From Mo In Regex.Matches(M.ToString, "<td\svalign=""top"">(.*?)</td>") _
                                 Let M1 = Regex.Match(Mo.ToString, HREF_PATTERN) _
                                 Where Not String.IsNullOrEmpty(M1.Groups("name").ToString) _
-                                Select Musician = Web.HttpUtility.HtmlDecode(String.Concat(M1.Groups("name").ToString, " (music by)"))
+                                Select Musician = Uri.UnescapeDataString(String.Concat(M1.Groups("name").ToString, " (music by)"))
 
                                 If Mu.Count > 0 Then
                                     IMDBMovie.Credits = String.Concat(IMDBMovie.Credits, " / ", Strings.Join(Mu.ToArray, " / ").Trim)
@@ -597,7 +597,7 @@ mPlot:
                         If D > 0 AndAlso W > 0 Then
                             Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
                                      Where Not String.IsNullOrEmpty(DirectCast(P1, Match).Groups("name").ToString) _
-                                     Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString)
+                                     Select Studio = Uri.UnescapeDataString(DirectCast(P1, Match).Groups("name").ToString)
                             If Ps.Count > 0 Then
                                 IMDBMovie.Credits = String.Concat(IMDBMovie.Credits, " / ", Strings.Join(Ps.ToArray, " / ").Trim)
                             End If
@@ -625,7 +625,7 @@ mPlot:
             If D > 0 AndAlso W > 0 Then
                 Dim Ps = From P1 In Regex.Matches(HTML.Substring(D, W - D), HREF_PATTERN) _
                          Where Not DirectCast(P1, Match).Groups("name").ToString = String.Empty _
-                         Select Studio = Web.HttpUtility.HtmlDecode(DirectCast(P1, Match).Groups("name").ToString)
+                         Select Studio = Uri.UnescapeDataString(DirectCast(P1, Match).Groups("name").ToString)
                 alStudio.AddRange(Ps.ToArray)
             End If
 
@@ -813,7 +813,7 @@ mPlot:
                     If rTitles.Count > 0 Then
                         For i As Integer = 1 To rTitles.Count - 1 Step 2
                             If rTitles(i).Value.ToString.Contains(Master.eSettings.ForceTitle) AndAlso Not rTitles(i).Value.ToString.Contains(String.Concat(Master.eSettings.ForceTitle, " (working title)")) AndAlso Not rTitles(i).Value.ToString.Contains(String.Concat(Master.eSettings.ForceTitle, " (fake working title)")) Then
-                                fTitle = CleanTitle(Web.HttpUtility.HtmlDecode(rTitles(i - 1).Groups("title").Value.ToString.Trim))
+                                fTitle = CleanTitle(Uri.UnescapeDataString(rTitles(i - 1).Groups("title").Value.ToString.Trim))
                                 Exit For
                             End If
                         Next
@@ -839,7 +839,7 @@ mPlot:
                 Dim R As New MovieSearchResults
 
                 Dim sHTTP As New HTTP
-                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?s=all&q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&x=0&y=0"))
+                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?s=all&q=", Uri.EscapeDataString(sMovie), "&x=0&y=0"))
                 Dim rUri As String = sHTTP.ResponseUri
                 sHTTP = Nothing
 
@@ -860,7 +860,7 @@ mPlot:
                 Dim qPopular = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                                Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
                                Select New MediaContainers.Movie(GetMovieID(DirectCast(Mtr, Match).Groups("url").ToString), _
-                                                Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString), Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
+                                                Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString), Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
 
                 R.PopularTitles = qPopular.ToList
 mPartial:
@@ -873,7 +873,7 @@ mPartial:
                 Dim qpartial = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                     Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
                     Select New MediaContainers.Movie(GetMovieID(DirectCast(Mtr, Match).Groups("url").ToString), _
-                                     Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString), Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
+                                     Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString), Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
 
                 R.PartialMatches = qpartial.ToList
 mApprox:
@@ -888,7 +888,7 @@ mApprox:
                 Dim qApprox = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                     Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
                     Select New MediaContainers.Movie(GetMovieID(DirectCast(Mtr, Match).Groups("url").ToString), _
-                                     Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString), Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
+                                     Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString), Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
 
                 If Not IsNothing(R.PartialMatches) Then
                     R.PartialMatches = R.PartialMatches.Union(qApprox.ToList).ToList
@@ -908,7 +908,7 @@ mExact:
                 Dim qExact = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                                Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
                                Select New MediaContainers.Movie(GetMovieID(DirectCast(Mtr, Match).Groups("url").ToString), _
-                            Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString.ToString), Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Web.HttpUtility.HtmlDecode(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
+                            Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString.ToString), Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("year").ToString), StringUtils.ComputeLevenshtein(StringUtils.FilterYear(sMovie).ToLower, StringUtils.FilterYear(Uri.UnescapeDataString(DirectCast(Mtr, Match).Groups("name").ToString)).ToLower))
 
                 R.ExactMatches = qExact.ToList
 
@@ -960,7 +960,7 @@ mResult:
                             For Each value As String In linksCollection
                                 If value.Contains("screenplay") Then
                                     trailerPage = WebPage.DownloadData(String.Concat("http://", IMDBURL, "/video/", value, "player"))
-                                    trailerUrl = Web.HttpUtility.UrlDecode(Regex.Match(trailerPage, "http.+mp4").Value)
+                                    trailerUrl = Uri.UnescapeDataString(Regex.Match(trailerPage, "http.+mp4").Value)
                                     If Not String.IsNullOrEmpty(trailerUrl) AndAlso WebPage.IsValidURL(trailerUrl) Then
                                         TrailerList.Add(trailerUrl)
                                     End If

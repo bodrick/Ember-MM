@@ -19,8 +19,7 @@
 ' ################################################################################
 
 Imports System.IO
-Imports System.Text.RegularExpressions
-Imports EmberAPI
+Imports EmberMediaManger.API
 
 Public Class dlgImgManual
 
@@ -45,7 +44,7 @@ Public Class dlgImgManual
 
     Private Sub btnPreview_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPreview.Click
         Try
-            tImage.FromWeb(Me.txtURL.Text)
+            tImage.Image = Classes.Http.DownloadImage(txtURL.Text)
 
             If Not IsNothing(tImage.Image) Then
 
@@ -96,7 +95,7 @@ Public Class dlgImgManual
             End If
 
             If IsNothing(tImage.Image) Then
-                tImage.FromWeb(Me.txtURL.Text)
+                tImage.Image = Classes.Http.DownloadImage(txtURL.Text)
             End If
 
             If Not IsNothing(tImage.Image) Then

@@ -23,7 +23,7 @@ Imports System.Text.RegularExpressions
 Imports System.Xml
 Imports System.Xml.Schema
 Imports System.Text
-Imports EmberAPI
+Imports EmberMediaManger.API
 
 Public Class dlgManualEdit
 

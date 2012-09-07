@@ -1,0 +1,1057 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EmberMediaModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="EmberMediaModelStoreContainer">
+          <EntitySet Name="Actors" EntityType="EmberMediaModel.Store.Actors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="EmberFiles" EntityType="EmberMediaModel.Store.EmberFiles" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ExcludeDir" EntityType="EmberMediaModel.Store.ExcludeDir" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ExcludeFiles" EntityType="EmberMediaModel.Store.ExcludeFiles" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="ExcludeFilesInFolders" EntityType="EmberMediaModel.Store.ExcludeFilesInFolders" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Movies" EntityType="EmberMediaModel.Store.Movies" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesActors" EntityType="EmberMediaModel.Store.MoviesActors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesAStreams" EntityType="EmberMediaModel.Store.MoviesAStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesFanart" EntityType="EmberMediaModel.Store.MoviesFanart" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesPosters" EntityType="EmberMediaModel.Store.MoviesPosters" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesSets" EntityType="EmberMediaModel.Store.MoviesSets" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesSubs" EntityType="EmberMediaModel.Store.MoviesSubs" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="MoviesVStreams" EntityType="EmberMediaModel.Store.MoviesVStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="OrigPaths" EntityType="EmberMediaModel.Store.OrigPaths" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Sets" EntityType="EmberMediaModel.Store.Sets" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Sources" EntityType="EmberMediaModel.Store.Sources" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVAStreams" EntityType="EmberMediaModel.Store.TVAStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVEpActors" EntityType="EmberMediaModel.Store.TVEpActors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVEpPaths" EntityType="EmberMediaModel.Store.TVEpPaths" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVEps" EntityType="EmberMediaModel.Store.TVEps" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVSeason" EntityType="EmberMediaModel.Store.TVSeason" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVShowActors" EntityType="EmberMediaModel.Store.TVShowActors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVShows" EntityType="EmberMediaModel.Store.TVShows" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVSources" EntityType="EmberMediaModel.Store.TVSources" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVSubs" EntityType="EmberMediaModel.Store.TVSubs" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="TVVStreams" EntityType="EmberMediaModel.Store.TVVStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+        <EntityType Name="Actors">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+          <Property Name="thumb" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="EmberFiles">
+          <Key>
+            <PropertyRef Name="OrigPath" />
+            <PropertyRef Name="Filename" />
+          </Key>
+          <Property Name="OrigPath" Type="nvarchar" Nullable="false" />
+          <Property Name="EmberPath" Type="nvarchar" Nullable="false" />
+          <Property Name="Filename" Type="nvarchar" Nullable="false" />
+          <Property Name="Hash" Type="nvarchar" Nullable="false" />
+          <Property Name="Platform" Type="nvarchar" Nullable="false" />
+          <Property Name="UseFile" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExcludeDir">
+          <Key>
+            <PropertyRef Name="Dirname" />
+          </Key>
+          <Property Name="Dirname" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExcludeFiles">
+          <Key>
+            <PropertyRef Name="Filename" />
+          </Key>
+          <Property Name="Filename" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExcludeFilesInFolders">
+          <Key>
+            <PropertyRef Name="Filename" />
+            <PropertyRef Name="EmberPath" />
+          </Key>
+          <Property Name="Filename" Type="nvarchar" Nullable="false" />
+          <Property Name="EmberPath" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" />
+          <Property Name="MoviePath" Type="nvarchar" />
+          <Property Name="Type" Type="bit" />
+          <Property Name="ListTitle" Type="nvarchar" />
+          <Property Name="HasPoster" Type="bit" />
+          <Property Name="HasFanart" Type="bit" />
+          <Property Name="HasNfo" Type="bit" />
+          <Property Name="HasTrailer" Type="bit" />
+          <Property Name="HasSub" Type="bit" />
+          <Property Name="HasExtra" Type="bit" />
+          <Property Name="New" Type="bit" />
+          <Property Name="Mark" Type="bit" />
+          <Property Name="Source" Type="nvarchar" />
+          <Property Name="Imdb" Type="nvarchar" />
+          <Property Name="Lock" Type="bit" />
+          <Property Name="Title" Type="nvarchar" />
+          <Property Name="OriginalTitle" Type="nvarchar" />
+          <Property Name="Year" Type="nvarchar" />
+          <Property Name="Rating" Type="nvarchar" />
+          <Property Name="Votes" Type="nvarchar" />
+          <Property Name="MPAA" Type="nvarchar" />
+          <Property Name="Top250" Type="nvarchar" />
+          <Property Name="Country" Type="nvarchar" />
+          <Property Name="Outline" Type="nvarchar" />
+          <Property Name="Plot" Type="nvarchar" />
+          <Property Name="Tagline" Type="nvarchar" />
+          <Property Name="Certification" Type="nvarchar" />
+          <Property Name="Genre" Type="nvarchar" />
+          <Property Name="Studio" Type="nvarchar" />
+          <Property Name="Runtime" Type="nvarchar" />
+          <Property Name="ReleaseDate" Type="nvarchar" />
+          <Property Name="Director" Type="nvarchar" />
+          <Property Name="Credits" Type="nvarchar" />
+          <Property Name="Playcount" Type="nvarchar" />
+          <Property Name="Watched" Type="nvarchar" />
+          <Property Name="Trailer" Type="nvarchar" />
+          <Property Name="PosterPath" Type="nvarchar" />
+          <Property Name="FanartPath" Type="nvarchar" />
+          <Property Name="ExtraPath" Type="nvarchar" />
+          <Property Name="NfoPath" Type="nvarchar" />
+          <Property Name="TrailerPath" Type="nvarchar" />
+          <Property Name="SubPath" Type="nvarchar" />
+          <Property Name="FanartURL" Type="nvarchar" />
+          <Property Name="UseFolder" Type="bit" />
+          <Property Name="OutOfTolerance" Type="bit" />
+          <Property Name="FileSource" Type="nvarchar" />
+          <Property Name="NeedsSave" Type="bit" />
+          <Property Name="SortTitle" Type="nvarchar" />
+          <Property Name="DateAdd" Type="integer" />
+        </EntityType>
+        <EntityType Name="MoviesActors">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="ActorName" />
+          </Key>
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="ActorName" Type="nvarchar" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="MoviesAStreams">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="StreamID" Type="integer" Nullable="false" />
+          <Property Name="Audio_Language" Type="nvarchar" />
+          <Property Name="Audio_LongLanguage" Type="nvarchar" />
+          <Property Name="Audio_Codec" Type="nvarchar" />
+          <Property Name="Audio_Channel" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="MoviesFanart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="preview" Type="nvarchar" />
+          <Property Name="thumbs" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="MoviesPosters">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="thumbs" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="MoviesSets">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="SetName" />
+          </Key>
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="SetName" Type="nvarchar" Nullable="false" />
+          <Property Name="SetOrder" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoviesSubs">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="StreamID" Type="integer" Nullable="false" />
+          <Property Name="Subs_Language" Type="nvarchar" />
+          <Property Name="Subs_LongLanguage" Type="nvarchar" />
+          <Property Name="Subs_Type" Type="nvarchar" />
+          <Property Name="Subs_Path" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="MoviesVStreams">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="MovieID" Type="integer" Nullable="false" />
+          <Property Name="StreamID" Type="integer" Nullable="false" />
+          <Property Name="Video_Width" Type="nvarchar" />
+          <Property Name="Video_Height" Type="nvarchar" />
+          <Property Name="Video_Codec" Type="nvarchar" />
+          <Property Name="Video_Duration" Type="nvarchar" />
+          <Property Name="Video_ScanType" Type="nvarchar" />
+          <Property Name="Video_AspectDisplayRatio" Type="nvarchar" />
+          <Property Name="Video_Language" Type="nvarchar" />
+          <Property Name="Video_LongLanguage" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="OrigPaths">
+          <Key>
+            <PropertyRef Name="OrigPath" />
+            <PropertyRef Name="Platform" />
+          </Key>
+          <Property Name="OrigPath" Type="nvarchar" Nullable="false" />
+          <Property Name="EmberPath" Type="nvarchar" Nullable="false" />
+          <Property Name="Platform" Type="nvarchar" Nullable="false" />
+          <Property Name="Recursive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sets">
+          <Key>
+            <PropertyRef Name="SetName" />
+          </Key>
+          <Property Name="SetName" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sources">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+          <Property Name="path" Type="nvarchar" Nullable="false" />
+          <Property Name="Recursive" Type="bit" Nullable="false" />
+          <Property Name="Foldername" Type="bit" Nullable="false" />
+          <Property Name="Single" Type="bit" Nullable="false" />
+          <Property Name="LastScan" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVAStreams">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="TVEpID" Type="integer" Nullable="false" />
+          <Property Name="StreamID" Type="integer" Nullable="false" />
+          <Property Name="Audio_Language" Type="nvarchar" />
+          <Property Name="Audio_LongLanguage" Type="nvarchar" />
+          <Property Name="Audio_Codec" Type="nvarchar" />
+          <Property Name="Audio_Channel" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="TVEpActors">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="ActorName" />
+          </Key>
+          <Property Name="TVEpID" Type="integer" Nullable="false" />
+          <Property Name="ActorName" Type="nvarchar" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="TVEpPaths">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TVEpPath" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVEps">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TVShowID" Type="integer" Nullable="false" />
+          <Property Name="Episode" Type="integer" />
+          <Property Name="Title" Type="nvarchar" />
+          <Property Name="HasPoster" Type="bit" Nullable="false" />
+          <Property Name="HasFanart" Type="bit" Nullable="false" />
+          <Property Name="HasNfo" Type="bit" Nullable="false" />
+          <Property Name="New" Type="bit" />
+          <Property Name="Mark" Type="bit" Nullable="false" />
+          <Property Name="TVEpPathID" Type="integer" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" Nullable="false" />
+          <Property Name="Lock" Type="bit" Nullable="false" />
+          <Property Name="Season" Type="integer" />
+          <Property Name="Rating" Type="nvarchar" />
+          <Property Name="Plot" Type="nvarchar" />
+          <Property Name="Aired" Type="nvarchar" />
+          <Property Name="Director" Type="nvarchar" />
+          <Property Name="Credits" Type="nvarchar" />
+          <Property Name="PosterPath" Type="nvarchar" />
+          <Property Name="FanartPath" Type="nvarchar" />
+          <Property Name="NfoPath" Type="nvarchar" />
+          <Property Name="NeedsSave" Type="bit" Nullable="false" />
+          <Property Name="Missing" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVSeason">
+          <Key>
+            <PropertyRef Name="TVShowID" />
+            <PropertyRef Name="Season" />
+          </Key>
+          <Property Name="TVShowID" Type="integer" Nullable="false" />
+          <Property Name="SeasonText" Type="nvarchar" />
+          <Property Name="Season" Type="integer" Nullable="false" />
+          <Property Name="HasPoster" Type="bit" Nullable="false" />
+          <Property Name="HasFanart" Type="bit" Nullable="false" />
+          <Property Name="PosterPath" Type="nvarchar" />
+          <Property Name="FanartPath" Type="nvarchar" />
+          <Property Name="Lock" Type="bit" Nullable="false" />
+          <Property Name="Mark" Type="bit" Nullable="false" />
+          <Property Name="New" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVShowActors">
+          <Key>
+            <PropertyRef Name="TVShowID" />
+            <PropertyRef Name="ActorName" />
+          </Key>
+          <Property Name="TVShowID" Type="integer" Nullable="false" />
+          <Property Name="ActorName" Type="nvarchar" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="TVShows">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" />
+          <Property Name="HasPoster" Type="bit" Nullable="false" />
+          <Property Name="HasFanart" Type="bit" Nullable="false" />
+          <Property Name="HasNfo" Type="bit" Nullable="false" />
+          <Property Name="New" Type="bit" />
+          <Property Name="Mark" Type="bit" Nullable="false" />
+          <Property Name="TVShowPath" Type="nvarchar" Nullable="false" />
+          <Property Name="Source" Type="nvarchar" Nullable="false" />
+          <Property Name="TVDB" Type="nvarchar" />
+          <Property Name="Lock" Type="bit" Nullable="false" />
+          <Property Name="EpisodeGuide" Type="nvarchar" />
+          <Property Name="Plot" Type="nvarchar" />
+          <Property Name="Genre" Type="nvarchar" />
+          <Property Name="Premiered" Type="nvarchar" />
+          <Property Name="Studio" Type="nvarchar" />
+          <Property Name="MPAA" Type="nvarchar" />
+          <Property Name="Rating" Type="nvarchar" />
+          <Property Name="PosterPath" Type="nvarchar" />
+          <Property Name="FanartPath" Type="nvarchar" />
+          <Property Name="NfoPath" Type="nvarchar" />
+          <Property Name="NeedsSave" Type="bit" Nullable="false" />
+          <Property Name="Language" Type="nvarchar" />
+          <Property Name="Ordering" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVSources">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+          <Property Name="path" Type="nvarchar" Nullable="false" />
+          <Property Name="LastScan" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVSubs">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="TVEpID" Type="integer" Nullable="false" />
+          <Property Name="StreamID" Type="integer" Nullable="false" />
+          <Property Name="Subs_Language" Type="nvarchar" />
+          <Property Name="Subs_LongLanguage" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="TVVStreams">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="TVEpID" Type="integer" Nullable="false" />
+          <Property Name="StreamID" Type="integer" Nullable="false" />
+          <Property Name="Video_Width" Type="nvarchar" />
+          <Property Name="Video_Height" Type="nvarchar" />
+          <Property Name="Video_Codec" Type="nvarchar" />
+          <Property Name="Video_Duration" Type="nvarchar" />
+          <Property Name="Video_ScanType" Type="nvarchar" />
+          <Property Name="Video_AspectDisplayRatio" Type="nvarchar" />
+          <Property Name="Video_Language" Type="nvarchar" />
+          <Property Name="Video_LongLanguage" Type="nvarchar" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EmberMediaModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="EmberMediaEntities">
+          <EntitySet Name="Actors" EntityType="EmberMediaModel.Actor" />
+          <EntitySet Name="EmberFiles" EntityType="EmberMediaModel.EmberFile" />
+          <EntitySet Name="ExcludeDirs" EntityType="EmberMediaModel.ExcludeDir" />
+          <EntitySet Name="ExcludeFiles" EntityType="EmberMediaModel.ExcludeFile" />
+          <EntitySet Name="ExcludeFilesInFolders" EntityType="EmberMediaModel.ExcludeFilesInFolder" />
+          <EntitySet Name="Movies" EntityType="EmberMediaModel.Movy" />
+          <EntitySet Name="MoviesActors" EntityType="EmberMediaModel.MoviesActor" />
+          <EntitySet Name="MoviesAStreams" EntityType="EmberMediaModel.MoviesAStream" />
+          <EntitySet Name="MoviesFanarts" EntityType="EmberMediaModel.MoviesFanart" />
+          <EntitySet Name="MoviesPosters" EntityType="EmberMediaModel.MoviesPoster" />
+          <EntitySet Name="MoviesSets" EntityType="EmberMediaModel.MoviesSet" />
+          <EntitySet Name="MoviesSubs" EntityType="EmberMediaModel.MoviesSub" />
+          <EntitySet Name="MoviesVStreams" EntityType="EmberMediaModel.MoviesVStream" />
+          <EntitySet Name="OrigPaths" EntityType="EmberMediaModel.OrigPath" />
+          <EntitySet Name="Sets" EntityType="EmberMediaModel.Set" />
+          <EntitySet Name="Sources" EntityType="EmberMediaModel.Source" />
+          <EntitySet Name="TVAStreams" EntityType="EmberMediaModel.TVAStream" />
+          <EntitySet Name="TVEpActors" EntityType="EmberMediaModel.TVEpActor" />
+          <EntitySet Name="TVEpPaths" EntityType="EmberMediaModel.TVEpPath" />
+          <EntitySet Name="TVEps" EntityType="EmberMediaModel.TVEp" />
+          <EntitySet Name="TVSeasons" EntityType="EmberMediaModel.TVSeason" />
+          <EntitySet Name="TVShowActors" EntityType="EmberMediaModel.TVShowActor" />
+          <EntitySet Name="TVShows" EntityType="EmberMediaModel.TVShow" />
+          <EntitySet Name="TVSources" EntityType="EmberMediaModel.TVSource" />
+          <EntitySet Name="TVSubs" EntityType="EmberMediaModel.TVSub" />
+          <EntitySet Name="TVVStreams" EntityType="EmberMediaModel.TVVStream" />
+        </EntityContainer>
+        <EntityType Name="Actor">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="thumb" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="EmberFile">
+          <Key>
+            <PropertyRef Name="OrigPath" />
+            <PropertyRef Name="Filename" />
+          </Key>
+          <Property Name="OrigPath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="EmberPath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Filename" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Hash" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Platform" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="UseFile" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExcludeDir">
+          <Key>
+            <PropertyRef Name="Dirname" />
+          </Key>
+          <Property Name="Dirname" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ExcludeFile">
+          <Key>
+            <PropertyRef Name="Filename" />
+          </Key>
+          <Property Name="Filename" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="ExcludeFilesInFolder">
+          <Key>
+            <PropertyRef Name="Filename" />
+            <PropertyRef Name="EmberPath" />
+          </Key>
+          <Property Name="Filename" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="EmberPath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Movy">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" />
+          <Property Name="MoviePath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Type" Type="Boolean" />
+          <Property Name="ListTitle" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="HasPoster" Type="Boolean" />
+          <Property Name="HasFanart" Type="Boolean" />
+          <Property Name="HasNfo" Type="Boolean" />
+          <Property Name="HasTrailer" Type="Boolean" />
+          <Property Name="HasSub" Type="Boolean" />
+          <Property Name="HasExtra" Type="Boolean" />
+          <Property Name="New" Type="Boolean" />
+          <Property Name="Mark" Type="Boolean" />
+          <Property Name="Source" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Imdb" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Lock" Type="Boolean" />
+          <Property Name="Title" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="OriginalTitle" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Year" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Rating" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Votes" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="MPAA" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Top250" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Outline" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Plot" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Tagline" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Certification" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Genre" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Studio" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Runtime" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="ReleaseDate" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Director" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Credits" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Playcount" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Watched" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Trailer" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PosterPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="FanartPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="ExtraPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NfoPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="TrailerPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="SubPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="FanartURL" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="UseFolder" Type="Boolean" />
+          <Property Name="OutOfTolerance" Type="Boolean" />
+          <Property Name="FileSource" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NeedsSave" Type="Boolean" />
+          <Property Name="SortTitle" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="DateAdd" Type="Int64" />
+        </EntityType>
+        <EntityType Name="MoviesActor">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="ActorName" />
+          </Key>
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="ActorName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MoviesAStream">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="StreamID" Type="Int64" Nullable="false" />
+          <Property Name="Audio_Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Audio_LongLanguage" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Audio_Codec" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Audio_Channel" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MoviesFanart">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="preview" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="thumbs" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MoviesPoster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="thumbs" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MoviesSet">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="SetName" />
+          </Key>
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="SetName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="SetOrder" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MoviesSub">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="StreamID" Type="Int64" Nullable="false" />
+          <Property Name="Subs_Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Subs_LongLanguage" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Subs_Type" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Subs_Path" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MoviesVStream">
+          <Key>
+            <PropertyRef Name="MovieID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="MovieID" Type="Int64" Nullable="false" />
+          <Property Name="StreamID" Type="Int64" Nullable="false" />
+          <Property Name="Video_Width" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Height" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Codec" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Duration" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_ScanType" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_AspectDisplayRatio" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_LongLanguage" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OrigPath">
+          <Key>
+            <PropertyRef Name="OrigPath1" />
+            <PropertyRef Name="Platform" />
+          </Key>
+          <Property Name="OrigPath1" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="EmberPath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Platform" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Recursive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Set">
+          <Key>
+            <PropertyRef Name="SetName" />
+          </Key>
+          <Property Name="SetName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Source">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Recursive" Type="Boolean" Nullable="false" />
+          <Property Name="Foldername" Type="Boolean" Nullable="false" />
+          <Property Name="Single" Type="Boolean" Nullable="false" />
+          <Property Name="LastScan" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVAStream">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="TVEpID" Type="Int64" Nullable="false" />
+          <Property Name="StreamID" Type="Int64" Nullable="false" />
+          <Property Name="Audio_Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Audio_LongLanguage" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Audio_Codec" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Audio_Channel" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVEpActor">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="ActorName" />
+          </Key>
+          <Property Name="TVEpID" Type="Int64" Nullable="false" />
+          <Property Name="ActorName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVEpPath">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="TVEpPath1" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVEp">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="TVShowID" Type="Int64" Nullable="false" />
+          <Property Name="Episode" Type="Int64" />
+          <Property Name="Title" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="HasPoster" Type="Boolean" Nullable="false" />
+          <Property Name="HasFanart" Type="Boolean" Nullable="false" />
+          <Property Name="HasNfo" Type="Boolean" Nullable="false" />
+          <Property Name="New" Type="Boolean" />
+          <Property Name="Mark" Type="Boolean" Nullable="false" />
+          <Property Name="TVEpPathID" Type="Int64" Nullable="false" />
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Lock" Type="Boolean" Nullable="false" />
+          <Property Name="Season" Type="Int64" />
+          <Property Name="Rating" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Plot" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Aired" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Director" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Credits" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PosterPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="FanartPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NfoPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NeedsSave" Type="Boolean" Nullable="false" />
+          <Property Name="Missing" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVSeason">
+          <Key>
+            <PropertyRef Name="TVShowID" />
+            <PropertyRef Name="Season" />
+          </Key>
+          <Property Name="TVShowID" Type="Int64" Nullable="false" />
+          <Property Name="SeasonText" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Season" Type="Int64" Nullable="false" />
+          <Property Name="HasPoster" Type="Boolean" Nullable="false" />
+          <Property Name="HasFanart" Type="Boolean" Nullable="false" />
+          <Property Name="PosterPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="FanartPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Lock" Type="Boolean" Nullable="false" />
+          <Property Name="Mark" Type="Boolean" Nullable="false" />
+          <Property Name="NewSeason" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVShowActor">
+          <Key>
+            <PropertyRef Name="TVShowID" />
+            <PropertyRef Name="ActorName" />
+          </Key>
+          <Property Name="TVShowID" Type="Int64" Nullable="false" />
+          <Property Name="ActorName" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Role" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVShow">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Title" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="HasPoster" Type="Boolean" Nullable="false" />
+          <Property Name="HasFanart" Type="Boolean" Nullable="false" />
+          <Property Name="HasNfo" Type="Boolean" Nullable="false" />
+          <Property Name="New" Type="Boolean" />
+          <Property Name="Mark" Type="Boolean" Nullable="false" />
+          <Property Name="TVShowPath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Source" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="TVDB" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Lock" Type="Boolean" Nullable="false" />
+          <Property Name="EpisodeGuide" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Plot" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Genre" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Premiered" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Studio" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="MPAA" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Rating" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="PosterPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="FanartPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NfoPath" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="NeedsSave" Type="Boolean" Nullable="false" />
+          <Property Name="Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Ordering" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TVSource">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="path" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="LastScan" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVSub">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="TVEpID" Type="Int64" Nullable="false" />
+          <Property Name="StreamID" Type="Int64" Nullable="false" />
+          <Property Name="Subs_Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Subs_LongLanguage" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TVVStream">
+          <Key>
+            <PropertyRef Name="TVEpID" />
+            <PropertyRef Name="StreamID" />
+          </Key>
+          <Property Name="TVEpID" Type="Int64" Nullable="false" />
+          <Property Name="StreamID" Type="Int64" Nullable="false" />
+          <Property Name="Video_Width" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Height" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Codec" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Duration" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_ScanType" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_AspectDisplayRatio" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_Language" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Video_LongLanguage" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EmberMediaModelStoreContainer" CdmEntityContainer="EmberMediaEntities">
+          <EntitySetMapping Name="Actors"><EntityTypeMapping TypeName="EmberMediaModel.Actor"><MappingFragment StoreEntitySet="Actors">
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="thumb" ColumnName="thumb" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="EmberFiles"><EntityTypeMapping TypeName="EmberMediaModel.EmberFile"><MappingFragment StoreEntitySet="EmberFiles">
+            <ScalarProperty Name="OrigPath" ColumnName="OrigPath" />
+            <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
+            <ScalarProperty Name="Filename" ColumnName="Filename" />
+            <ScalarProperty Name="Hash" ColumnName="Hash" />
+            <ScalarProperty Name="Platform" ColumnName="Platform" />
+            <ScalarProperty Name="UseFile" ColumnName="UseFile" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ExcludeDirs"><EntityTypeMapping TypeName="EmberMediaModel.ExcludeDir"><MappingFragment StoreEntitySet="ExcludeDir">
+            <ScalarProperty Name="Dirname" ColumnName="Dirname" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ExcludeFiles"><EntityTypeMapping TypeName="EmberMediaModel.ExcludeFile"><MappingFragment StoreEntitySet="ExcludeFiles">
+            <ScalarProperty Name="Filename" ColumnName="Filename" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="ExcludeFilesInFolders"><EntityTypeMapping TypeName="EmberMediaModel.ExcludeFilesInFolder"><MappingFragment StoreEntitySet="ExcludeFilesInFolders">
+            <ScalarProperty Name="Filename" ColumnName="Filename" />
+            <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Movies"><EntityTypeMapping TypeName="EmberMediaModel.Movy"><MappingFragment StoreEntitySet="Movies">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="MoviePath" ColumnName="MoviePath" />
+            <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="ListTitle" ColumnName="ListTitle" />
+            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+            <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
+            <ScalarProperty Name="HasTrailer" ColumnName="HasTrailer" />
+            <ScalarProperty Name="HasSub" ColumnName="HasSub" />
+            <ScalarProperty Name="HasExtra" ColumnName="HasExtra" />
+            <ScalarProperty Name="New" ColumnName="New" />
+            <ScalarProperty Name="Mark" ColumnName="Mark" />
+            <ScalarProperty Name="Source" ColumnName="Source" />
+            <ScalarProperty Name="Imdb" ColumnName="Imdb" />
+            <ScalarProperty Name="Lock" ColumnName="Lock" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="OriginalTitle" ColumnName="OriginalTitle" />
+            <ScalarProperty Name="Year" ColumnName="Year" />
+            <ScalarProperty Name="Rating" ColumnName="Rating" />
+            <ScalarProperty Name="Votes" ColumnName="Votes" />
+            <ScalarProperty Name="MPAA" ColumnName="MPAA" />
+            <ScalarProperty Name="Top250" ColumnName="Top250" />
+            <ScalarProperty Name="Country" ColumnName="Country" />
+            <ScalarProperty Name="Outline" ColumnName="Outline" />
+            <ScalarProperty Name="Plot" ColumnName="Plot" />
+            <ScalarProperty Name="Tagline" ColumnName="Tagline" />
+            <ScalarProperty Name="Certification" ColumnName="Certification" />
+            <ScalarProperty Name="Genre" ColumnName="Genre" />
+            <ScalarProperty Name="Studio" ColumnName="Studio" />
+            <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+            <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+            <ScalarProperty Name="Director" ColumnName="Director" />
+            <ScalarProperty Name="Credits" ColumnName="Credits" />
+            <ScalarProperty Name="Playcount" ColumnName="Playcount" />
+            <ScalarProperty Name="Watched" ColumnName="Watched" />
+            <ScalarProperty Name="Trailer" ColumnName="Trailer" />
+            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+            <ScalarProperty Name="ExtraPath" ColumnName="ExtraPath" />
+            <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
+            <ScalarProperty Name="TrailerPath" ColumnName="TrailerPath" />
+            <ScalarProperty Name="SubPath" ColumnName="SubPath" />
+            <ScalarProperty Name="FanartURL" ColumnName="FanartURL" />
+            <ScalarProperty Name="UseFolder" ColumnName="UseFolder" />
+            <ScalarProperty Name="OutOfTolerance" ColumnName="OutOfTolerance" />
+            <ScalarProperty Name="FileSource" ColumnName="FileSource" />
+            <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
+            <ScalarProperty Name="SortTitle" ColumnName="SortTitle" />
+            <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesActors"><EntityTypeMapping TypeName="EmberMediaModel.MoviesActor"><MappingFragment StoreEntitySet="MoviesActors">
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+            <ScalarProperty Name="Role" ColumnName="Role" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesAStreams"><EntityTypeMapping TypeName="EmberMediaModel.MoviesAStream"><MappingFragment StoreEntitySet="MoviesAStreams">
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+            <ScalarProperty Name="Audio_Language" ColumnName="Audio_Language" />
+            <ScalarProperty Name="Audio_LongLanguage" ColumnName="Audio_LongLanguage" />
+            <ScalarProperty Name="Audio_Codec" ColumnName="Audio_Codec" />
+            <ScalarProperty Name="Audio_Channel" ColumnName="Audio_Channel" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesFanarts"><EntityTypeMapping TypeName="EmberMediaModel.MoviesFanart"><MappingFragment StoreEntitySet="MoviesFanart">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="preview" ColumnName="preview" />
+            <ScalarProperty Name="thumbs" ColumnName="thumbs" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesPosters"><EntityTypeMapping TypeName="EmberMediaModel.MoviesPoster"><MappingFragment StoreEntitySet="MoviesPosters">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="thumbs" ColumnName="thumbs" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesSets"><EntityTypeMapping TypeName="EmberMediaModel.MoviesSet"><MappingFragment StoreEntitySet="MoviesSets">
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="SetName" ColumnName="SetName" />
+            <ScalarProperty Name="SetOrder" ColumnName="SetOrder" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesSubs"><EntityTypeMapping TypeName="EmberMediaModel.MoviesSub"><MappingFragment StoreEntitySet="MoviesSubs">
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+            <ScalarProperty Name="Subs_Language" ColumnName="Subs_Language" />
+            <ScalarProperty Name="Subs_LongLanguage" ColumnName="Subs_LongLanguage" />
+            <ScalarProperty Name="Subs_Type" ColumnName="Subs_Type" />
+            <ScalarProperty Name="Subs_Path" ColumnName="Subs_Path" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="MoviesVStreams"><EntityTypeMapping TypeName="EmberMediaModel.MoviesVStream"><MappingFragment StoreEntitySet="MoviesVStreams">
+            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+            <ScalarProperty Name="Video_Width" ColumnName="Video_Width" />
+            <ScalarProperty Name="Video_Height" ColumnName="Video_Height" />
+            <ScalarProperty Name="Video_Codec" ColumnName="Video_Codec" />
+            <ScalarProperty Name="Video_Duration" ColumnName="Video_Duration" />
+            <ScalarProperty Name="Video_ScanType" ColumnName="Video_ScanType" />
+            <ScalarProperty Name="Video_AspectDisplayRatio" ColumnName="Video_AspectDisplayRatio" />
+            <ScalarProperty Name="Video_Language" ColumnName="Video_Language" />
+            <ScalarProperty Name="Video_LongLanguage" ColumnName="Video_LongLanguage" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="OrigPaths"><EntityTypeMapping TypeName="EmberMediaModel.OrigPath"><MappingFragment StoreEntitySet="OrigPaths">
+            <ScalarProperty Name="OrigPath1" ColumnName="OrigPath" />
+            <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
+            <ScalarProperty Name="Platform" ColumnName="Platform" />
+            <ScalarProperty Name="Recursive" ColumnName="Recursive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sets"><EntityTypeMapping TypeName="EmberMediaModel.Set"><MappingFragment StoreEntitySet="Sets">
+            <ScalarProperty Name="SetName" ColumnName="SetName" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sources"><EntityTypeMapping TypeName="EmberMediaModel.Source"><MappingFragment StoreEntitySet="Sources">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="path" ColumnName="path" />
+            <ScalarProperty Name="Recursive" ColumnName="Recursive" />
+            <ScalarProperty Name="Foldername" ColumnName="Foldername" />
+            <ScalarProperty Name="Single" ColumnName="Single" />
+            <ScalarProperty Name="LastScan" ColumnName="LastScan" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVAStreams"><EntityTypeMapping TypeName="EmberMediaModel.TVAStream"><MappingFragment StoreEntitySet="TVAStreams">
+            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+            <ScalarProperty Name="Audio_Language" ColumnName="Audio_Language" />
+            <ScalarProperty Name="Audio_LongLanguage" ColumnName="Audio_LongLanguage" />
+            <ScalarProperty Name="Audio_Codec" ColumnName="Audio_Codec" />
+            <ScalarProperty Name="Audio_Channel" ColumnName="Audio_Channel" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVEpActors"><EntityTypeMapping TypeName="EmberMediaModel.TVEpActor"><MappingFragment StoreEntitySet="TVEpActors">
+            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+            <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+            <ScalarProperty Name="Role" ColumnName="Role" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVEpPaths"><EntityTypeMapping TypeName="EmberMediaModel.TVEpPath"><MappingFragment StoreEntitySet="TVEpPaths">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="TVEpPath1" ColumnName="TVEpPath" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVEps"><EntityTypeMapping TypeName="EmberMediaModel.TVEp"><MappingFragment StoreEntitySet="TVEps">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
+            <ScalarProperty Name="Episode" ColumnName="Episode" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+            <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
+            <ScalarProperty Name="New" ColumnName="New" />
+            <ScalarProperty Name="Mark" ColumnName="Mark" />
+            <ScalarProperty Name="TVEpPathID" ColumnName="TVEpPathID" />
+            <ScalarProperty Name="Source" ColumnName="Source" />
+            <ScalarProperty Name="Lock" ColumnName="Lock" />
+            <ScalarProperty Name="Season" ColumnName="Season" />
+            <ScalarProperty Name="Rating" ColumnName="Rating" />
+            <ScalarProperty Name="Plot" ColumnName="Plot" />
+            <ScalarProperty Name="Aired" ColumnName="Aired" />
+            <ScalarProperty Name="Director" ColumnName="Director" />
+            <ScalarProperty Name="Credits" ColumnName="Credits" />
+            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+            <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
+            <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
+            <ScalarProperty Name="Missing" ColumnName="Missing" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVSeasons"><EntityTypeMapping TypeName="EmberMediaModel.TVSeason"><MappingFragment StoreEntitySet="TVSeason">
+            <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
+            <ScalarProperty Name="SeasonText" ColumnName="SeasonText" />
+            <ScalarProperty Name="Season" ColumnName="Season" />
+            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+            <ScalarProperty Name="Lock" ColumnName="Lock" />
+            <ScalarProperty Name="Mark" ColumnName="Mark" />
+            <ScalarProperty Name="NewSeason" ColumnName="New" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVShowActors"><EntityTypeMapping TypeName="EmberMediaModel.TVShowActor"><MappingFragment StoreEntitySet="TVShowActors">
+            <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
+            <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+            <ScalarProperty Name="Role" ColumnName="Role" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVShows"><EntityTypeMapping TypeName="EmberMediaModel.TVShow"><MappingFragment StoreEntitySet="TVShows">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+            <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
+            <ScalarProperty Name="New" ColumnName="New" />
+            <ScalarProperty Name="Mark" ColumnName="Mark" />
+            <ScalarProperty Name="TVShowPath" ColumnName="TVShowPath" />
+            <ScalarProperty Name="Source" ColumnName="Source" />
+            <ScalarProperty Name="TVDB" ColumnName="TVDB" />
+            <ScalarProperty Name="Lock" ColumnName="Lock" />
+            <ScalarProperty Name="EpisodeGuide" ColumnName="EpisodeGuide" />
+            <ScalarProperty Name="Plot" ColumnName="Plot" />
+            <ScalarProperty Name="Genre" ColumnName="Genre" />
+            <ScalarProperty Name="Premiered" ColumnName="Premiered" />
+            <ScalarProperty Name="Studio" ColumnName="Studio" />
+            <ScalarProperty Name="MPAA" ColumnName="MPAA" />
+            <ScalarProperty Name="Rating" ColumnName="Rating" />
+            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+            <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
+            <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
+            <ScalarProperty Name="Language" ColumnName="Language" />
+            <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVSources"><EntityTypeMapping TypeName="EmberMediaModel.TVSource"><MappingFragment StoreEntitySet="TVSources">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="path" ColumnName="path" />
+            <ScalarProperty Name="LastScan" ColumnName="LastScan" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVSubs"><EntityTypeMapping TypeName="EmberMediaModel.TVSub"><MappingFragment StoreEntitySet="TVSubs">
+            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+            <ScalarProperty Name="Subs_Language" ColumnName="Subs_Language" />
+            <ScalarProperty Name="Subs_LongLanguage" ColumnName="Subs_LongLanguage" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TVVStreams"><EntityTypeMapping TypeName="EmberMediaModel.TVVStream"><MappingFragment StoreEntitySet="TVVStreams">
+            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+            <ScalarProperty Name="Video_Width" ColumnName="Video_Width" />
+            <ScalarProperty Name="Video_Height" ColumnName="Video_Height" />
+            <ScalarProperty Name="Video_Codec" ColumnName="Video_Codec" />
+            <ScalarProperty Name="Video_Duration" ColumnName="Video_Duration" />
+            <ScalarProperty Name="Video_ScanType" ColumnName="Video_ScanType" />
+            <ScalarProperty Name="Video_AspectDisplayRatio" ColumnName="Video_AspectDisplayRatio" />
+            <ScalarProperty Name="Video_Language" ColumnName="Video_Language" />
+            <ScalarProperty Name="Video_LongLanguage" ColumnName="Video_LongLanguage" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="EmberMMModel">
+        <EntityTypeShape EntityType="EmberMediaModel.Actor" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.EmberFile" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.ExcludeDir" Width="1.5" PointX="0.75" PointY="3.75" Height="1.211080729166667" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.ExcludeFile" Width="1.5" PointX="2.75" PointY="3.75" Height="1.2110807291666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.ExcludeFilesInFolder" Width="1.5" PointX="4.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.Movy" Width="1.5" PointX="4.75" PointY="3.75" Height="10.441549479166667" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesActor" Width="1.5" PointX="0.75" PointY="5.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesAStream" Width="1.5" PointX="6.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesFanart" Width="1.5" PointX="6.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesPoster" Width="1.5" PointX="6.75" PointY="6.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesSet" Width="1.5" PointX="8.75" PointY="0.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesSub" Width="1.5" PointX="0.75" PointY="8.75" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.MoviesVStream" Width="1.5" PointX="8.75" PointY="3.75" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.OrigPath" Width="1.5" PointX="8.75" PointY="7.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.Set" Width="1.5" PointX="10.75" PointY="0.75" Height="1.2110807291666674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.Source" Width="1.5" PointX="10.75" PointY="2.75" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVAStream" Width="1.5" PointX="10.75" PointY="6.75" Height="2.1725878906250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVEpActor" Width="1.5" PointX="6.75" PointY="10.75" Height="1.5956835937500031" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVEpPath" Width="1.5" PointX="8.75" PointY="10.75" Height="1.4033821614583388" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVEp" Width="1.5" PointX="10.75" PointY="9.75" Height="5.4417122395833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVSeason" Width="1.5" PointX="0.75" PointY="11.75" Height="2.9417936197916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVShowActor" Width="1.5" PointX="12.75" PointY="0.75" Height="1.5956835937500067" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVShow" Width="1.5" PointX="12.75" PointY="3.75" Height="5.63401367187501" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVSource" Width="1.5" PointX="12.75" PointY="10.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVSub" Width="1.5" PointX="6.75" PointY="13.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.TVVStream" Width="1.5" PointX="12.75" PointY="13.75" Height="2.9417936197916674" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

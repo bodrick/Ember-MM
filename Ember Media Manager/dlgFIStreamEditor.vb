@@ -18,8 +18,8 @@
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
 
-Imports System.Text.RegularExpressions
-Imports EmberAPI
+Imports EmberMediaManger.API
+Imports System.Globalization
 
 Public Class dlgFIStreamEditor
 
@@ -43,8 +43,8 @@ Public Class dlgFIStreamEditor
             If stream_type = Master.eLang.GetString(595, "Video Stream") Then
                 GroupBox1.Visible = True
                 cbVideoCodec.Items.AddRange((From vCo In APIXML.lFlags Where vCo.Type = APIXML.FlagType.VideoCodec AndAlso Not vCo.Name = "defaultscreen" Select vCo.Name).ToArray)
-                Dim xShortLang = Localization.ISOLangGetLanguagesList.ToArray
-                cbVideoLanguage.Items.AddRange(xShortLang.ToArray)
+                Dim xShortLang = CultureInfo.GetCultures(CultureTypes.NeutralCultures).Select(Function(f) f.NativeName)
+                cbVideoLanguage.Items.AddRange(xShortLang)
                 If Not movie Is Nothing Then
                     cbVideoCodec.Text = movie.StreamDetails.Video(idx).Codec
                     txtARatio.Text = movie.StreamDetails.Video(idx).Aspect
@@ -62,8 +62,8 @@ Public Class dlgFIStreamEditor
             If stream_type = Master.eLang.GetString(596, "Audio Stream") Then
                 GroupBox2.Visible = True
                 cbAudioCodec.Items.AddRange((From aCo In APIXML.lFlags Where aCo.Type = APIXML.FlagType.AudioCodec AndAlso Not aCo.Name = "defaultaudio" Select aCo.Name).ToArray)
-                Dim xShortLang = Localization.ISOLangGetLanguagesList.ToArray
-                cbAudioLanguage.Items.AddRange(xShortLang.ToArray)
+                Dim xShortLang = CultureInfo.GetCultures(CultureTypes.NeutralCultures).Select(Function(f) f.NativeName)
+                cbAudioLanguage.Items.AddRange(xShortLang)
                 cbAudioChannels.Items.AddRange(New String() {"8", "7", "6", "2", "1"})
                 If Not movie Is Nothing Then
                     cbAudioCodec.Text = movie.StreamDetails.Audio(idx).Codec
@@ -73,8 +73,8 @@ Public Class dlgFIStreamEditor
             End If
             If stream_type = Master.eLang.GetString(597, "Subtitle Stream") Then
                 GroupBox3.Visible = True
-                Dim xShortLang = Localization.ISOLangGetLanguagesList.ToArray
-                cbSubsLanguage.Items.AddRange(xShortLang.ToArray)
+                Dim xShortLang = CultureInfo.GetCultures(CultureTypes.NeutralCultures).Select(Function(f) f.NativeName)
+                cbSubsLanguage.Items.AddRange(xShortLang)
                 If Not movie Is Nothing Then
                     cbSubsLanguage.Text = movie.StreamDetails.Subtitle(idx).LongLanguage
                     If movie.StreamDetails.Subtitle(idx).SubsType = "Embedded" Then

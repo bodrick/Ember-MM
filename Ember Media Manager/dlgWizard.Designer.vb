@@ -449,7 +449,7 @@ Partial Class dlgWizard
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.White
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.PictureBox1.Image = Global.Ember_Media_Manager.My.Resources.Resources.Wizard
+        Me.PictureBox1.Image = My.Resources.Modules.img_Wizard
         Me.PictureBox1.Location = New System.Drawing.Point(3, 7)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(157, 353)

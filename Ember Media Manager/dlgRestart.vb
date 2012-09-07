@@ -1,5 +1,4 @@
-﻿Imports System.Windows.Forms
-Imports EmberAPI
+﻿Imports EmberMediaManger.API
 
 Public Class dlgRestart
 
