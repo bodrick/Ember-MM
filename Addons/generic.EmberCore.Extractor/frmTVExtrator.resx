@@ -121,8 +121,8 @@
   <data name="btnFrameSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK8wAA
-        CvMB7xUV9QAADMtJREFUaEPtWmlwVtUZPqJWayEsVgUhgSRkIWQlG4EkZCP7HnYElEVWWay2toMoI/o5
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK8gAA
+        CvIBPVL3EQAADMtJREFUaEPtWmlwVtUZPqJWayEsVgUhgSRkIWQlG4EkZCP7HnYElEVWWay2toMoI/o5
         Y6l+dqbWjtYpIAVEQRaVylJBQXBBgYAatLIIaEcQEDA/Om+f5733fPngImhmnA4zdeaZc/Pde973ed7l
         nHMvGhExVzKuaPIM/P8F/K/LL5CBb09/ayzOnjlrjhw5Yv723F+vmTP7d8U1leX3jx0z+uGVK1bMW7ly
         5bwVGH8KrFq1at7CBQvmDa6vfbimovzBe2fNrFm8aOENO7ZvNyeOnzAnvzlpvjnxjcIGLnBB0hbN3zWb
@@ -183,8 +183,8 @@
   <data name="btnFrameLoad.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK8wAA
-        CvMB7xUV9QAADHxJREFUaEPtWQd0lUUWHlEhgYAoqLT03nsvpPfeGwmBSBAUEQhEUCkGCEV3lRWFgOij
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK8gAA
+        CvIBPVL3EQAADHxJREFUaEPtWQd0lUUWHlEhgYAoqLT03nsvpPfeGwmBSBAUEQhEUCkGCEV3lRWFgOij
         hF5eDA8DhKwENRCwwKqISHHdlV4kbFxd7n538v5n3m4gq9lzPJzDO+c7/5/5Z+6938y9d+5MBBGJuxl3
         tfE88fcI/N7ud28F7q1AN7OgdKFvTp7U4dQ334iTJ06It1ZUixXLl/d8Ycb0zKKCvNdSkxJWZ6QmqzLT
         UlXZGemq3MwMVX52lqogN1tVmJ+rKiosUI0cUagaVTxCVTqyWPXEqBLVmNGjJPid2/gb9+G+PIbHsgyW
