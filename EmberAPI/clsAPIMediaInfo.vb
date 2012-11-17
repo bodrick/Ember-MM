@@ -338,13 +338,21 @@ Public Class MediaInfo
         If Not String.IsNullOrEmpty(sFormat) Then
             Select Case sFormat.ToLower
                 Case "dts", "a_dts"
-                    Select Case sProfile.ToUpper
-                        Case "MA"   'master audio
-                            sFormat = "dtsma"
-                        Case "HRA"   'high resolution
-                            sFormat = "dtshr"
-                    End Select
+                    If sProfile.ToUpper.Contains("MA") Then
+                        sFormat = "dtshd_ma" 'Master Audio
+                    ElseIf sProfile.ToUpper.Contains("HRA") Then
+                        sFormat = "dtshd_hra" 'high resolution
+                    End If
+                    'Select Case sProfile.ToUpper
+                    '    Case "MA"   'master audio
+                    '        sFormat = "dtsma"
+                    '    Case "HRA"   'high resolution
+                    '        sFormat = "dtshr"
+                    'End Select
             End Select
+            If sFormat.ToLower.Contains("truehd") Then
+                sFormat = "truehd" 'Dolby TrueHD
+            End If
             Return AdvancedSettings.GetSetting(String.Concat("AudioFormatConvert:", sFormat.ToLower), sFormat.ToLower)
             'Return sFormat
         Else
