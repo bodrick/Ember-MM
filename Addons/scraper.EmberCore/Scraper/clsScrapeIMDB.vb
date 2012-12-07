@@ -92,7 +92,7 @@ Namespace IMDB
         Private Const IMDB_ID_REGEX As String = "tt\d\d\d\d\d\d\d"
         Private Const IMG_PATTERN As String = "<img src=""(?<thumb>.*?)"" width=""\d{1,3}"" height=""\d{1,3}"" border="".{1,3}"">"
         Private Const MOVIE_TITLE_PATTERN As String = "(?<=<(title)>).*(?=<\/\1>)"
-        Private Const TABLE_PATTERN As String = "<table.*?>(.*?)</table>"
+        Private Const TABLE_PATTERN As String = "<table.*?>\n?(.*?)</table>"
         Private Const TD_PATTERN_1 As String = "<td\sclass=""nm"">(.*?)</td>"
         Private Const TD_PATTERN_2 As String = "(?<=<td\sclass=""char"">)(.*?)(?=</td>)(\s\(.*?\))?"
         Private Const TD_PATTERN_3 As String = "<td\sclass=""hs"">(.*?)</td>"
@@ -851,7 +851,7 @@ mPlot:
                     Return R
                 End If
 
-                D = HTML.IndexOf("<b>Popular Titles</b>")
+                D = HTML.IndexOf("<table class=""findList"">")
                 If D <= 0 Then GoTo mPartial
                 W = HTML.IndexOf("</table>", D) + 8
 

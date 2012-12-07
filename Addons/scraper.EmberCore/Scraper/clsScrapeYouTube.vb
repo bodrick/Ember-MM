@@ -151,61 +151,69 @@ Namespace YouTube
                 Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map=(.*?)\\u0026amp;", RegexOptions.IgnoreCase)
                 If fmtMatch.Success Then
                     Dim FormatMap As String = fmtMatch.Groups(1).Value
+                    Dim decoded As String = Web.HttpUtility.UrlDecode(FormatMap) & "," ' append comma for easier regex
 
-                    Dim Formats As String() = Web.HttpUtility.UrlDecode(FormatMap).Split(Convert.ToChar(","))
-                    For Each fmt As String In Formats
-                        Dim Splitter As String() = {"url=", "&itag="}
-                        Dim FormatElements As String() = fmt.Split(Splitter, StringSplitOptions.RemoveEmptyEntries)
+                    Dim pattern As String = "itag=(\d+)&url=(.*?),"
+                    Dim rgx As New Regex(pattern, RegexOptions.Singleline)
+                    Dim matches As MatchCollection = rgx.Matches(decoded)
+                    If matches.Count > 0 Then
 
-                        Dim Link As New VideoLinkItem
+                        For Each fmt As Match In matches
+                            Dim groups As GroupCollection = fmt.Groups
+                            Dim Link As New VideoLinkItem
 
-                        Select Case FormatElements(1).Trim
-                            Case "18"
-                                Link.Description = "SQ (MP4)"
-                                Link.FormatQuality = Enums.TrailerQuality.SQMP4
-                            Case "22"
-                                Link.Description = "720p"
-                                Link.FormatQuality = Enums.TrailerQuality.HD720p
-                            Case "34"
-                                Link.Description = "SQ (FLV)"
-                                Link.FormatQuality = Enums.TrailerQuality.SQFLV
-                            Case "35"
-                                Link.Description = "HQ (FLV)"
-                                Link.FormatQuality = Enums.TrailerQuality.HQFLV
-                            Case "37"
-                                Link.Description = "1080p"
-                                Link.FormatQuality = Enums.TrailerQuality.HD1080p
-                            Case "46"
-                                Link.Description = "1080p (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.HD1080pVP8
-                            Case "45"
-                                Link.Description = "720p (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.HD720pVP8
-                            Case "44"
-                                Link.Description = "HQ (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.HQVP8
-                            Case "43"
-                                Link.Description = "SQ (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.SQVP8
-                            Case Else
-                                Link.Description = "Other"
-                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
-                                'Continue For
-                        End Select
+                            'Console.WriteLine("itag: " + groups.Item(1).Value)
+                            'Console.WriteLine("url: " + groups.Item(2).Value)
+                            Select Case groups.Item(1).Value
+                                Case "18"
+                                    Link.Description = "SQ (MP4)"
+                                    Link.FormatQuality = Enums.TrailerQuality.SQMP4
+                                Case "22"
+                                    Link.Description = "720p"
+                                    Link.FormatQuality = Enums.TrailerQuality.HD720p
+                                Case "34"
+                                    Link.Description = "SQ (FLV)"
+                                    Link.FormatQuality = Enums.TrailerQuality.SQFLV
+                                Case "35"
+                                    Link.Description = "HQ (FLV)"
+                                    Link.FormatQuality = Enums.TrailerQuality.HQFLV
+                                Case "37"
+                                    Link.Description = "1080p"
+                                    Link.FormatQuality = Enums.TrailerQuality.HD1080p
+                                Case "46"
+                                    Link.Description = "1080p (VP8)"
+                                    Link.FormatQuality = Enums.TrailerQuality.HD1080pVP8
+                                Case "45"
+                                    Link.Description = "720p (VP8)"
+                                    Link.FormatQuality = Enums.TrailerQuality.HD720pVP8
+                                Case "44"
+                                    Link.Description = "HQ (VP8)"
+                                    Link.FormatQuality = Enums.TrailerQuality.HQVP8
+                                Case "43"
+                                    Link.Description = "SQ (VP8)"
+                                    Link.FormatQuality = Enums.TrailerQuality.SQVP8
+                                Case Else
+                                    Link.Description = "Other"
+                                    Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                                    'Continue For
+                            End Select
 
-                        Link.URL = Web.HttpUtility.UrlDecode(FormatElements(0)) & "&title=" & VideoTitle
+                            Link.URL = Web.HttpUtility.UrlDecode(groups.Item(2).Value) & Web.HttpUtility.UrlEncode("&title=" & VideoTitle)
+                            Link.URL = Link.URL.Replace("sig=", "signature=") ' sig= returns HTTP 403
 
-                        If bwYT.CancellationPending Then Return DownloadLinks
+                            If bwYT.CancellationPending Then Return DownloadLinks
 
-                        If Not String.IsNullOrEmpty(Link.URL) AndAlso sHTTP.IsValidURL(Link.URL) Then
-                            DownloadLinks.Add(Link)
-                        End If
+                            If Not String.IsNullOrEmpty(Link.URL) AndAlso sHTTP.IsValidURL(Link.URL) Then
+                                DownloadLinks.Add(Link)
+                            End If
 
-                        If bwYT.CancellationPending Then Return DownloadLinks
+                            If bwYT.CancellationPending Then Return DownloadLinks
 
-                    Next
+                        Next
+
+                    End If
+
                 End If
-
                 Return DownloadLinks
 
             Catch ex As Exception
@@ -277,4 +285,3 @@ Namespace YouTube
     End Class
 
 End Namespace
-
