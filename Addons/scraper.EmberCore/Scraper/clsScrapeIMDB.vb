@@ -92,7 +92,7 @@ Namespace IMDB
         Private Const IMDB_ID_REGEX As String = "tt\d\d\d\d\d\d\d"
         Private Const IMG_PATTERN As String = "<img src=""(?<thumb>.*?)"" width=""\d{1,3}"" height=""\d{1,3}"" border="".{1,3}"">"
         Private Const MOVIE_TITLE_PATTERN As String = "(?<=<(title)>).*(?=<\/\1>)"
-        Private Const TABLE_PATTERN As String = "<table.*?>(.*?)</table>"
+        Private Const TABLE_PATTERN As String = "<table.*?>\n?(.*?)</table>"
         Private Const TD_PATTERN_1 As String = "<td\sclass=""nm"">(.*?)</td>"
         Private Const TD_PATTERN_2 As String = "(?<=<td\sclass=""char"">)(.*?)(?=</td>)(\s\(.*?\))?"
         Private Const TD_PATTERN_3 As String = "<td\sclass=""hs"">(.*?)</td>"
@@ -839,7 +839,9 @@ mPlot:
                 Dim R As New MovieSearchResults
 
                 Dim sHTTP As New HTTP
-                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?s=all&q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&x=0&y=0"))
+                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&s=all"))
+                Dim HTMLm As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&s=tt&ttype=ft&ref_=fn_ft"))
+                Dim HTMLe As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&s=tt&ttype=ft&exact=true&ref_=fn_tt_ex"))
                 Dim rUri As String = sHTTP.ResponseUri
                 sHTTP = Nothing
 
@@ -851,7 +853,7 @@ mPlot:
                     Return R
                 End If
 
-                D = HTML.IndexOf("<b>Popular Titles</b>")
+                D = HTML.IndexOf("</a>Titles</h3>")
                 If D <= 0 Then GoTo mPartial
                 W = HTML.IndexOf("</table>", D) + 8
 
@@ -865,11 +867,11 @@ mPlot:
                 R.PopularTitles = qPopular.ToList
 mPartial:
 
-                D = HTML.IndexOf("Titles (Partial Matches)")
+                D = HTMLm.IndexOf("</a>Titles</h3>")
                 If D <= 0 Then GoTo mApprox
-                W = HTML.IndexOf("</table>", D) + 8
+                W = HTMLm.IndexOf("</table>", D) + 8
 
-                Table = Regex.Match(HTML.Substring(D, W - D), TABLE_PATTERN).ToString
+                Table = Regex.Match(HTMLm.Substring(D, W - D), TABLE_PATTERN).ToString
                 Dim qpartial = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                     Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
                     Select New MediaContainers.Movie(GetMovieID(DirectCast(Mtr, Match).Groups("url").ToString), _
@@ -898,12 +900,12 @@ mApprox:
 
 mExact:
 
-                D = HTML.IndexOf("Titles (Exact Matches)")
+                D = HTMLe.IndexOf("</a>Titles</h3>")
                 If D <= 0 Then GoTo mResult
-                W = HTML.IndexOf("</table>", D) + 8
+                W = HTMLe.IndexOf("</table>", D) + 8
 
                 Table = String.Empty
-                Table = Regex.Match(HTML.Substring(D, W - D), TABLE_PATTERN).ToString
+                Table = Regex.Match(HTMLe.Substring(D, W - D), TABLE_PATTERN).ToString
 
                 Dim qExact = From Mtr In Regex.Matches(Table, TITLE_PATTERN) _
                                Where Not DirectCast(Mtr, Match).Groups("name").ToString.Contains("<img") AndAlso Not DirectCast(Mtr, Match).Groups("type").ToString.Contains("VG") _
