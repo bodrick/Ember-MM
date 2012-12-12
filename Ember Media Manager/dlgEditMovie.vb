@@ -29,6 +29,7 @@ Public Class dlgEditMovie
 
     Friend WithEvents bwThumbs As New System.ComponentModel.BackgroundWorker
 
+    Private MainForm As frmMain
     Private CachePath As String = String.Empty
     Private DeleteList As New List(Of String)
     Private ExtraIndex As Integer = 0
@@ -45,6 +46,18 @@ Public Class dlgEditMovie
     Private tmpRating As String = String.Empty
 
 #End Region 'Fields
+
+#Region "Constructor"
+
+    Public Sub New(MainForm As frmMain)
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+        Me.MainForm = MainForm
+    End Sub
+
+#End Region 'Constructor
 
 #Region "Methods"
 

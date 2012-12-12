@@ -33,6 +33,8 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scraper.EmberCore", "Addons
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scraper.EmberCore.XML", "Addons\scraper.EmberCore.XML\scraper.EmberCore.XML.vbproj", "{E567C031-1F7B-4637-9B3A-806988DE50CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ember.Plugins", "Ember.Plugins\Ember.Plugins.csproj", "{9496C697-5AFD-4813-AEDC-AF33FACEADF0}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8564C91B-7F49-482F-A4B3-C3D7E818648F}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -106,6 +108,10 @@ Global
 		{E567C031-1F7B-4637-9B3A-806988DE50CF}.Debug|x86.Build.0 = Debug|x86
 		{E567C031-1F7B-4637-9B3A-806988DE50CF}.Release|x86.ActiveCfg = Release|x86
 		{E567C031-1F7B-4637-9B3A-806988DE50CF}.Release|x86.Build.0 = Release|x86
+		{9496C697-5AFD-4813-AEDC-AF33FACEADF0}.Debug|x86.ActiveCfg = Debug|x86
+		{9496C697-5AFD-4813-AEDC-AF33FACEADF0}.Debug|x86.Build.0 = Debug|x86
+		{9496C697-5AFD-4813-AEDC-AF33FACEADF0}.Release|x86.ActiveCfg = Release|x86
+		{9496C697-5AFD-4813-AEDC-AF33FACEADF0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

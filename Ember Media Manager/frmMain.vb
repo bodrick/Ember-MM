@@ -25,10 +25,13 @@ Imports System.Linq
 Imports System.Reflection
 Imports System.Text.RegularExpressions
 Imports EmberAPI
+Imports Ember.Plugins
+Imports Ember.Plugins.Scraper
 
 Public Class frmMain
 
 #Region "Fields"
+    Private plugin_manager As PluginManager
     Private fLoading As New frmSplash
 
     Friend WithEvents bwCleanDB As New System.ComponentModel.BackgroundWorker
@@ -127,6 +130,15 @@ Public Class frmMain
 #End Region 'Delegates
 
 #Region "Properties"
+
+    Public Property PluginManager As PluginManager
+        Get
+            Return plugin_manager
+        End Get
+        Private Set(value As PluginManager)
+            plugin_manager = value
+        End Set
+    End Property
 
     Public Property GenrePanelColor() As Color
         Get
@@ -1204,7 +1216,35 @@ Public Class frmMain
                 dScrapeRow = dRow
                 Dim DBScrapeMovie As Structures.DBMovie = Master.DB.LoadMovieFromDB(Convert.ToInt64(dRow.Item(0)))
                 ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.BeforeEditMovie, Nothing, DBScrapeMovie)
-                If Not ModulesManager.Instance.MovieScrapeOnly(DBScrapeMovie, Args.scrapeType, Args.Options) Then
+
+
+                '' BEGIN Plug-in Manager
+
+                ' Convert Args.scrapeType into something that the plug-in will understand.
+                Dim ask As Boolean = False
+                Dim scrapeType As Ember.Plugins.Scraper.ScrapeType = scrapeType.Automatic
+                Select Case Args.scrapeType
+                    Case Enums.ScrapeType.SingleScrape
+                        ask = True
+                        scrapeType = Scraper.ScrapeType.Manual
+
+                    Case Enums.ScrapeType.FullAsk, _
+                        Enums.ScrapeType.NewAsk, _
+                        Enums.ScrapeType.UpdateAsk, _
+                        Enums.ScrapeType.FilterAsk, _
+                        Enums.ScrapeType.MarkAsk
+                        ask = True
+                End Select
+
+                Dim context As New MovieInfoScraperActionContext(DBScrapeMovie, scrapeType, ask, Args.Options)
+                Dim result As PluginActionResult = PluginManager.MovieScraper.ScrapeMovieInfo(context)
+                If Not (result.Cancelled Or IsNothing(result.Result)) Then
+                    DBScrapeMovie = CType(result.Result, Structures.DBMovie)
+
+                    '' END Plug-in Manager
+
+
+                    'If Not ModulesManager.Instance.MovieScrapeOnly(DBScrapeMovie, Args.scrapeType, Args.Options) Then
                     If Master.eSettings.ScanMediaInfo AndAlso Master.GlobalScrapeMod.Meta Then
                         MediaInfo.UpdateMediaInfo(DBScrapeMovie)
                     End If
@@ -1221,7 +1261,12 @@ Public Class frmMain
                         MovieScraperEvent(Enums.MovieScraperEventType.ListTitle, NewTitle)
                         MovieScraperEvent(Enums.MovieScraperEventType.SortTitle, DBScrapeMovie.Movie.SortTitle)
 
-                        Dim didEts As Interfaces.ModuleResult = ModulesManager.Instance.MoviePostScrapeOnly(DBScrapeMovie, Args.scrapeType)
+                        'Dim didEts As Interfaces.ModuleResult = ModulesManager.Instance.MoviePostScrapeOnly(DBScrapeMovie, Args.scrapeType)
+                        Dim imgContext As New MovieImageScraperActionContext(DBScrapeMovie, ImageScrapeType.Poster, scrapeType, context.AskIfMultipleResults)
+                        PluginManager.MovieScraper.ScrapeMovieImage(imgContext)
+                        imgContext = New MovieImageScraperActionContext(DBScrapeMovie, ImageScrapeType.Fanart, scrapeType, context.AskIfMultipleResults)
+                        PluginManager.MovieScraper.ScrapeMovieImage(imgContext)
+
 
                         If bwMovieScraper.CancellationPending Then Exit For
 
@@ -1948,7 +1993,7 @@ doCancel:
 
             Me.SetControlsEnabled(False)
 
-            Using dEditMovie As New dlgEditMovie
+            Using dEditMovie As New dlgEditMovie(Me)
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -2947,7 +2992,7 @@ doCancel:
             Dim ID As Integer = Convert.ToInt32(Me.dgvMediaList.Item(0, indX).Value)
             Master.currMovie = Master.DB.LoadMovieFromDB(ID)
 
-            Using dEditMovie As New dlgEditMovie
+            Using dEditMovie As New dlgEditMovie(Me)
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -3135,7 +3180,7 @@ doCancel:
                 Master.currMovie = Master.DB.LoadMovieFromDB(ID)
                 Me.SetStatus(Master.currMovie.Filename)
 
-                Using dEditMovie As New dlgEditMovie
+                Using dEditMovie As New dlgEditMovie(Me)
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
@@ -5269,6 +5314,11 @@ doCancel:
             End If
             If Not Me.WindowState = FormWindowState.Minimized Then Master.eSettings.Save()
 
+            If Not IsNothing(PluginManager) Then
+                ' Release any resources held by the plug-in manager or the loaded plug-ins.
+                RemoveHandler PluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
+                PluginManager.Dispose()
+            End If
         Catch ex As Exception
             ' If we got here, then some of the above not run. Application.Exit can not be used. 
             ' Because Exit will dispose object that are in use by BackgroundWorkers
@@ -5276,6 +5326,25 @@ doCancel:
             ' "Collection was modified; enumeration operation may not execute."
             ' Application.Exit()
         End Try
+    End Sub
+
+    ''' <summary>
+    ''' Shows a form on UI thread.
+    ''' </summary>
+    ''' <param name="sender">The sender.</param>
+    ''' <param name="e">The <see cref="Ember.Plugins.ShowFormOnUIThreadEventArgs" /> instance containing the event data.</param>
+    Private Sub ShowFormOnUIThread(sender As Object, e As Events.ShowFormOnUIThreadEventArgs)
+        If (Me.InvokeRequired) Then
+            Me.Invoke(New Events.ShowFormOnUIThreadHandler(AddressOf ShowFormOnUIThread), _
+                      New Object() {sender, e})
+            Return
+        End If
+
+        If e.AsDialog Then
+            e.Form.ShowDialog(Me)
+        Else
+            e.Form.Show(Me)
+        End If
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -5338,6 +5407,10 @@ doCancel:
             ' Add our handlers, load settings, set form colors, and try to load movies at startup
             '\\
             fLoading.SetLoadingMesg("Loading modules...")
+            PluginManager = New PluginManager()
+            AddHandler PluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
+            PluginManager.LoadPlugins()
+
             'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
             'ExternalModulesManager = New ModulesManager
             ModulesManager.Instance.RuntimeObjects.MenuMediaList = Me.mnuMediaList
@@ -6404,7 +6477,7 @@ doCancel:
                 Me.tslLoading.Text = Master.eLang.GetString(576, "Verifying Movie Details:")
                 Application.DoEvents()
 
-                Using dEditMovie As New dlgEditMovie
+                Using dEditMovie As New dlgEditMovie(Me)
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
