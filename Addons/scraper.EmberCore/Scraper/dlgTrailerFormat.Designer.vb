@@ -22,14 +22,14 @@ Partial Class dlgTrailerFormat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.OK_Button = New System.Windows.Forms.Button
-        Me.Cancel_Button = New System.Windows.Forms.Button
-        Me.lstFormats = New System.Windows.Forms.ListBox
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.pnlStatus = New System.Windows.Forms.Panel
-        Me.lblStatus = New System.Windows.Forms.Label
-        Me.pbStatus = New System.Windows.Forms.ProgressBar
-        Me.Panel1 = New System.Windows.Forms.Panel
+        Me.OK_Button = New System.Windows.Forms.Button()
+        Me.Cancel_Button = New System.Windows.Forms.Button()
+        Me.lstFormats = New System.Windows.Forms.ListBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.pnlStatus = New System.Windows.Forms.Panel()
+        Me.lblStatus = New System.Windows.Forms.Label()
+        Me.pbStatus = New System.Windows.Forms.ProgressBar()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.GroupBox1.SuspendLayout()
         Me.pnlStatus.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -60,18 +60,18 @@ Partial Class dlgTrailerFormat
         Me.lstFormats.Enabled = False
         Me.lstFormats.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.lstFormats.FormattingEnabled = True
-        Me.lstFormats.Location = New System.Drawing.Point(17, 19)
+        Me.lstFormats.Location = New System.Drawing.Point(6, 19)
         Me.lstFormats.Name = "lstFormats"
-        Me.lstFormats.Size = New System.Drawing.Size(78, 69)
+        Me.lstFormats.Size = New System.Drawing.Size(177, 69)
         Me.lstFormats.TabIndex = 3
         '
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.lstFormats)
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox1.Location = New System.Drawing.Point(53, 2)
+        Me.GroupBox1.Location = New System.Drawing.Point(17, 2)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(114, 100)
+        Me.GroupBox1.Size = New System.Drawing.Size(189, 100)
         Me.GroupBox1.TabIndex = 4
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Available Formats"
