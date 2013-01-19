@@ -2489,7 +2489,7 @@ Public Class dlgSettings
 
     Private Sub frmSettings_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-			Me.Size=New Size(899, 658)
+			Me.Size = New Size(899, 658)
 			Functions.PNLDoubleBuffer(Me.pnlMain)
             Me.SetUp()
             Me.AddPanels()
