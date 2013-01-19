@@ -2080,7 +2080,8 @@ Public Class dlgSettings
 
         For Each pPanel As Containers.SettingsPanel In SettingsPanels.Where(Function(s) s.Type = sType AndAlso String.IsNullOrEmpty(s.Parent)).OrderBy(Function(s) s.Order)
             pNode = New TreeNode(pPanel.Text, pPanel.ImageIndex, pPanel.ImageIndex)
-            pNode.Name = pPanel.Name
+			pNode.Name = pPanel.Name
+			pPanel.Panel.Visible = False
             For Each cPanel As Containers.SettingsPanel In SettingsPanels.Where(Function(p) p.Type = sType AndAlso p.Parent = pNode.Name).OrderBy(Function(s) s.Order)
                 cNode = New TreeNode(cPanel.Text, cPanel.ImageIndex, cPanel.ImageIndex)
                 cNode.Name = cPanel.Name
@@ -2488,7 +2489,8 @@ Public Class dlgSettings
 
     Private Sub frmSettings_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Try
-            Functions.PNLDoubleBuffer(Me.pnlMain)
+			Me.Size=New Size(899, 658)
+			Functions.PNLDoubleBuffer(Me.pnlMain)
             Me.SetUp()
             Me.AddPanels()
             Me.AddButtons()
@@ -4230,8 +4232,9 @@ Public Class dlgSettings
 
         Me.currPanel = Me.SettingsPanels.FirstOrDefault(Function(p) p.Name = tvSettings.SelectedNode.Name).Panel
         Me.currPanel.Location = New Point(0, 0)
-        Me.pnlMain.Controls.Add(Me.currPanel)
-        Me.currPanel.Visible = True
+		Me.pnlMain.Controls.Add(Me.currPanel)
+		Me.currPanel.BringToFront()
+		Me.currPanel.Visible = True
         Me.pnlMain.Refresh()
     End Sub
 

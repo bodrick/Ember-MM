@@ -640,6 +640,7 @@ Partial Class dlgSettings
 		Me.GroupBox15.SuspendLayout()
 		Me.GroupBox23.SuspendLayout()
 		Me.GroupBox24.SuspendLayout()
+		Me.pnlTVSources.SuspendLayout()
 		Me.TabControl2.SuspendLayout()
 		Me.TabPage3.SuspendLayout()
 		Me.gbMiscTVSourceOpts.SuspendLayout()
@@ -662,6 +663,7 @@ Partial Class dlgSettings
 		Me.gbTVMisc.SuspendLayout()
 		Me.gbEpFilter.SuspendLayout()
 		Me.gbShowFilter.SuspendLayout()
+		Me.pnlTVImages.SuspendLayout()
 		Me.TabControl3.SuspendLayout()
 		Me.TabPage5.SuspendLayout()
 		Me.gbAllSPosterOpts.SuspendLayout()
@@ -2238,7 +2240,7 @@ Partial Class dlgSettings
 		Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
-		Me.pnlTop.Size = New System.Drawing.Size(893, 64)
+		Me.pnlTop.Size = New System.Drawing.Size(1768, 64)
 		Me.pnlTop.TabIndex = 57
 		'
 		'Label2
@@ -2313,7 +2315,7 @@ Partial Class dlgSettings
 		Me.pnlGeneral.BackColor = System.Drawing.Color.White
 		Me.pnlGeneral.Controls.Add(Me.gbInterface)
 		Me.pnlGeneral.Controls.Add(Me.GroupBox4)
-		Me.pnlGeneral.Location = New System.Drawing.Point(251, 146)
+		Me.pnlGeneral.Location = New System.Drawing.Point(744, 637)
 		Me.pnlGeneral.Name = "pnlGeneral"
 		Me.pnlGeneral.Size = New System.Drawing.Size(617, 400)
 		Me.pnlGeneral.TabIndex = 7
@@ -2336,7 +2338,7 @@ Partial Class dlgSettings
 		'
 		Me.pnlXBMCCom.BackColor = System.Drawing.Color.White
 		Me.pnlXBMCCom.Controls.Add(Me.gbProxy)
-		Me.pnlXBMCCom.Location = New System.Drawing.Point(251, 146)
+		Me.pnlXBMCCom.Location = New System.Drawing.Point(832, 625)
 		Me.pnlXBMCCom.Name = "pnlXBMCCom"
 		Me.pnlXBMCCom.Size = New System.Drawing.Size(617, 400)
 		Me.pnlXBMCCom.TabIndex = 10
@@ -2502,7 +2504,7 @@ Partial Class dlgSettings
 		Me.pnlMovies.Controls.Add(Me.GroupBox27)
 		Me.pnlMovies.Controls.Add(Me.GroupBox12)
 		Me.pnlMovies.Controls.Add(Me.GroupBox2)
-		Me.pnlMovies.Location = New System.Drawing.Point(251, 146)
+		Me.pnlMovies.Location = New System.Drawing.Point(1159, 571)
 		Me.pnlMovies.Name = "pnlMovies"
 		Me.pnlMovies.Size = New System.Drawing.Size(617, 400)
 		Me.pnlMovies.TabIndex = 8
@@ -2773,7 +2775,7 @@ Partial Class dlgSettings
 		Me.pnlExtensions.Controls.Add(Me.GroupBox22)
 		Me.pnlExtensions.Controls.Add(Me.GroupBox3)
 		Me.pnlExtensions.Controls.Add(Me.GroupBox18)
-		Me.pnlExtensions.Location = New System.Drawing.Point(251, 146)
+		Me.pnlExtensions.Location = New System.Drawing.Point(128, 726)
 		Me.pnlExtensions.Name = "pnlExtensions"
 		Me.pnlExtensions.Size = New System.Drawing.Size(617, 400)
 		Me.pnlExtensions.TabIndex = 13
@@ -2901,7 +2903,7 @@ Partial Class dlgSettings
 		Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
 		Me.pnlSources.Controls.Add(Me.GroupBox8)
 		Me.pnlSources.Controls.Add(Me.GroupBox16)
-		Me.pnlSources.Location = New System.Drawing.Point(251, 146)
+		Me.pnlSources.Location = New System.Drawing.Point(550, 660)
 		Me.pnlSources.Name = "pnlSources"
 		Me.pnlSources.Size = New System.Drawing.Size(617, 402)
 		Me.pnlSources.TabIndex = 15
@@ -3049,7 +3051,7 @@ Partial Class dlgSettings
 		Me.pnlImages.Controls.Add(Me.GroupBox14)
 		Me.pnlImages.Controls.Add(Me.GroupBox23)
 		Me.pnlImages.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.pnlImages.Location = New System.Drawing.Point(251, 146)
+		Me.pnlImages.Location = New System.Drawing.Point(9, 749)
 		Me.pnlImages.Name = "pnlImages"
 		Me.pnlImages.Size = New System.Drawing.Size(617, 408)
 		Me.pnlImages.TabIndex = 14
@@ -3307,7 +3309,8 @@ Partial Class dlgSettings
 		'pnlTVSources
 		'
 		Me.pnlTVSources.BackColor = System.Drawing.Color.White
-		Me.pnlTVSources.Location = New System.Drawing.Point(251, 146)
+		Me.pnlTVSources.Controls.Add(Me.TabControl3)
+		Me.pnlTVSources.Location = New System.Drawing.Point(909, 615)
 		Me.pnlTVSources.Name = "pnlTVSources"
 		Me.pnlTVSources.Size = New System.Drawing.Size(617, 400)
 		Me.pnlTVSources.TabIndex = 17
@@ -3318,7 +3321,7 @@ Partial Class dlgSettings
 		Me.TabControl2.Controls.Add(Me.TabPage3)
 		Me.TabControl2.Controls.Add(Me.TabPage4)
 		Me.TabControl2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.TabControl2.Location = New System.Drawing.Point(251, 146)
+		Me.TabControl2.Location = New System.Drawing.Point(5, 5)
 		Me.TabControl2.Name = "TabControl2"
 		Me.TabControl2.SelectedIndex = 0
 		Me.TabControl2.Size = New System.Drawing.Size(612, 392)
@@ -4139,7 +4142,7 @@ Partial Class dlgSettings
 		Me.pnlShows.Controls.Add(Me.gbTVMisc)
 		Me.pnlShows.Controls.Add(Me.gbEpFilter)
 		Me.pnlShows.Controls.Add(Me.gbShowFilter)
-		Me.pnlShows.Location = New System.Drawing.Point(251, 146)
+		Me.pnlShows.Location = New System.Drawing.Point(315, 705)
 		Me.pnlShows.Name = "pnlShows"
 		Me.pnlShows.Size = New System.Drawing.Size(617, 400)
 		Me.pnlShows.TabIndex = 5
@@ -4561,7 +4564,8 @@ Partial Class dlgSettings
 		'pnlTVImages
 		'
 		Me.pnlTVImages.BackColor = System.Drawing.Color.White
-		Me.pnlTVImages.Location = New System.Drawing.Point(251, 146)
+		Me.pnlTVImages.Controls.Add(Me.TabControl2)
+		Me.pnlTVImages.Location = New System.Drawing.Point(1041, 591)
 		Me.pnlTVImages.Name = "pnlTVImages"
 		Me.pnlTVImages.Size = New System.Drawing.Size(617, 402)
 		Me.pnlTVImages.TabIndex = 11
@@ -4574,7 +4578,7 @@ Partial Class dlgSettings
 		Me.TabControl3.Controls.Add(Me.TabPage7)
 		Me.TabControl3.Controls.Add(Me.TabPage8)
 		Me.TabControl3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.TabControl3.Location = New System.Drawing.Point(251, 146)
+		Me.TabControl3.Location = New System.Drawing.Point(4, 5)
 		Me.TabControl3.Name = "TabControl3"
 		Me.TabControl3.SelectedIndex = 0
 		Me.TabControl3.Size = New System.Drawing.Size(609, 397)
@@ -5625,7 +5629,7 @@ Partial Class dlgSettings
 		Me.pnlTVScraper.Controls.Add(Me.GroupBox33)
 		Me.pnlTVScraper.Controls.Add(Me.GroupBox31)
 		Me.pnlTVScraper.Controls.Add(Me.gbTVScraperOptions)
-		Me.pnlTVScraper.Location = New System.Drawing.Point(251, 146)
+		Me.pnlTVScraper.Location = New System.Drawing.Point(454, 686)
 		Me.pnlTVScraper.Name = "pnlTVScraper"
 		Me.pnlTVScraper.Size = New System.Drawing.Size(617, 400)
 		Me.pnlTVScraper.TabIndex = 12
@@ -6980,7 +6984,7 @@ Partial Class dlgSettings
 		Me.pnlScraper.Controls.Add(Me.gbOptions)
 		Me.pnlScraper.Controls.Add(Me.GroupBox1)
 		Me.pnlScraper.Controls.Add(Me.GroupBox26)
-		Me.pnlScraper.Location = New System.Drawing.Point(251, 146)
+		Me.pnlScraper.Location = New System.Drawing.Point(649, 648)
 		Me.pnlScraper.Name = "pnlScraper"
 		Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
 		Me.pnlScraper.TabIndex = 16
@@ -6994,7 +6998,7 @@ Partial Class dlgSettings
 		Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
 		Me.ToolStrip1.Location = New System.Drawing.Point(0, 64)
 		Me.ToolStrip1.Name = "ToolStrip1"
-		Me.ToolStrip1.Size = New System.Drawing.Size(893, 25)
+		Me.ToolStrip1.Size = New System.Drawing.Size(1768, 25)
 		Me.ToolStrip1.Stretch = True
 		Me.ToolStrip1.TabIndex = 74
 		Me.ToolStrip1.Text = "ToolStrip1"
@@ -7004,7 +7008,7 @@ Partial Class dlgSettings
 		Me.pnlMain.AutoScroll = True
 		Me.pnlMain.BackColor = System.Drawing.Color.White
 		Me.pnlMain.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-		Me.pnlMain.Location = New System.Drawing.Point(251, 146)
+		Me.pnlMain.Location = New System.Drawing.Point(251, 148)
 		Me.pnlMain.Name = "pnlMain"
 		Me.pnlMain.Size = New System.Drawing.Size(636, 402)
 		Me.pnlMain.TabIndex = 6
@@ -7056,14 +7060,12 @@ Partial Class dlgSettings
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
 		Me.CancelButton = Me.btnCancel
-		Me.ClientSize = New System.Drawing.Size(893, 630)
-		Me.Controls.Add(Me.pnlMain)
-		Me.Controls.Add(Me.TabControl3)
+		Me.ClientSize = New System.Drawing.Size(1768, 1184)
+		Me.Controls.Add(Me.pnlMovies)
 		Me.Controls.Add(Me.pnlTVImages)
+		Me.Controls.Add(Me.pnlMain)
 		Me.Controls.Add(Me.pnlTVSources)
 		Me.Controls.Add(Me.pnlXBMCCom)
-		Me.Controls.Add(Me.pnlMovies)
-		Me.Controls.Add(Me.TabControl2)
 		Me.Controls.Add(Me.pnlGeneral)
 		Me.Controls.Add(Me.pnlScraper)
 		Me.Controls.Add(Me.Panel2)
@@ -7158,6 +7160,7 @@ Partial Class dlgSettings
 		Me.GroupBox23.PerformLayout()
 		Me.GroupBox24.ResumeLayout(False)
 		Me.GroupBox24.PerformLayout()
+		Me.pnlTVSources.ResumeLayout(False)
 		Me.TabControl2.ResumeLayout(False)
 		Me.TabPage3.ResumeLayout(False)
 		Me.gbMiscTVSourceOpts.ResumeLayout(False)
@@ -7197,6 +7200,7 @@ Partial Class dlgSettings
 		Me.gbEpFilter.PerformLayout()
 		Me.gbShowFilter.ResumeLayout(False)
 		Me.gbShowFilter.PerformLayout()
+		Me.pnlTVImages.ResumeLayout(False)
 		Me.TabControl3.ResumeLayout(False)
 		Me.TabPage5.ResumeLayout(False)
 		Me.gbAllSPosterOpts.ResumeLayout(False)
