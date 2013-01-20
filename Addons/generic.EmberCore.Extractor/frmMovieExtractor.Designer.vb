@@ -112,7 +112,7 @@ Partial Class frmMovieExtractor
 		Me.btnFrameSave.Location = New System.Drawing.Point(735, 361)
 		Me.btnFrameSave.Name = "btnFrameSave"
 		Me.btnFrameSave.Size = New System.Drawing.Size(96, 83)
-		Me.btnFrameSave.TabIndex = 2
+		Me.btnFrameSave.TabIndex = 5
 		Me.btnFrameSave.Text = "Save Extrathumb"
 		Me.btnFrameSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter
 		Me.btnFrameSave.UseVisualStyleBackColor = True
@@ -126,7 +126,7 @@ Partial Class frmMovieExtractor
 		Me.pnlFrameProgress.Location = New System.Drawing.Point(241, 173)
 		Me.pnlFrameProgress.Name = "pnlFrameProgress"
 		Me.pnlFrameProgress.Size = New System.Drawing.Size(252, 51)
-		Me.pnlFrameProgress.TabIndex = 5
+		Me.pnlFrameProgress.TabIndex = 2
 		Me.pnlFrameProgress.Visible = False
 		'
 		'Label3

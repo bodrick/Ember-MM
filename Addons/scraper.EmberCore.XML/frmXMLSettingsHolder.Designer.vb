@@ -148,7 +148,7 @@ Partial Class frmXMLSettingsHolder
 		Me.gbOptions.Location = New System.Drawing.Point(10, 240)
 		Me.gbOptions.Name = "gbOptions"
 		Me.gbOptions.Size = New System.Drawing.Size(591, 111)
-		Me.gbOptions.TabIndex = 6
+		Me.gbOptions.TabIndex = 7
 		Me.gbOptions.TabStop = False
 		Me.gbOptions.Text = "Scraper Fields"
 		'
@@ -445,7 +445,7 @@ Partial Class frmXMLSettingsHolder
 		Me.lblLanguage.Location = New System.Drawing.Point(433, 84)
 		Me.lblLanguage.Name = "lblLanguage"
 		Me.lblLanguage.Size = New System.Drawing.Size(177, 15)
-		Me.lblLanguage.TabIndex = 7
+		Me.lblLanguage.TabIndex = 6
 		Me.lblLanguage.Text = "Language"
 		Me.lblLanguage.TextAlign = System.Drawing.ContentAlignment.TopCenter
 		'

@@ -210,7 +210,7 @@ Partial Class dlgXBMCHost
 		Me.dgvSources.ShowEditingIcon = False
 		Me.dgvSources.ShowRowErrors = False
 		Me.dgvSources.Size = New System.Drawing.Size(440, 150)
-		Me.dgvSources.TabIndex = 13
+		Me.dgvSources.TabIndex = 14
 		'
 		'Column1
 		'

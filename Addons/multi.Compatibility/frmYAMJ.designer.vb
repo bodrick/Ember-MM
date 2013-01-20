@@ -74,7 +74,7 @@ Partial Class frmYAMJ
 		Me.chkYAMJCompatibleTVImages.Location = New System.Drawing.Point(13, 125)
 		Me.chkYAMJCompatibleTVImages.Name = "chkYAMJCompatibleTVImages"
 		Me.chkYAMJCompatibleTVImages.Size = New System.Drawing.Size(211, 17)
-		Me.chkYAMJCompatibleTVImages.TabIndex = 5
+		Me.chkYAMJCompatibleTVImages.TabIndex = 6
 		Me.chkYAMJCompatibleTVImages.Text = "YAMJ Compatible TV Images Naming"
 		Me.chkYAMJCompatibleTVImages.UseVisualStyleBackColor = True
 		'
@@ -90,7 +90,7 @@ Partial Class frmYAMJ
 		Me.gbImages.Location = New System.Drawing.Point(6, 126)
 		Me.gbImages.Name = "gbImages"
 		Me.gbImages.Size = New System.Drawing.Size(594, 114)
-		Me.gbImages.TabIndex = 6
+		Me.gbImages.TabIndex = 5
 		Me.gbImages.TabStop = False
 		'
 		'chkAllSeasonPoster

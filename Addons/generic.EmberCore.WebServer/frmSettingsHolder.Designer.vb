@@ -59,7 +59,7 @@ Partial Class frmSettingsHolder
 		Me.pnlSettings.Location = New System.Drawing.Point(3, 12)
 		Me.pnlSettings.Name = "pnlSettings"
 		Me.pnlSettings.Size = New System.Drawing.Size(617, 327)
-		Me.pnlSettings.TabIndex = 83
+		Me.pnlSettings.TabIndex = 0
 		'
 		'txtPort
 		'

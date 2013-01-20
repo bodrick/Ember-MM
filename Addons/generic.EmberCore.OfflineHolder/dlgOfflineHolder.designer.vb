@@ -139,7 +139,7 @@ Partial Class dlgOfflineHolder
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(734, 64)
-		Me.pnlTop.TabIndex = 58
+		Me.pnlTop.TabIndex = 3
 		'
 		'Label2
 		'
@@ -150,7 +150,7 @@ Partial Class dlgOfflineHolder
 		Me.Label2.Location = New System.Drawing.Point(64, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(102, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Add Offline movie"
 		'
 		'Label4
@@ -162,7 +162,7 @@ Partial Class dlgOfflineHolder
 		Me.Label4.Location = New System.Drawing.Point(61, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(280, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "Offline Media Manager"
 		'
 		'PictureBox1
@@ -323,7 +323,7 @@ Partial Class dlgOfflineHolder
 		Me.btnTextColor.Location = New System.Drawing.Point(337, 320)
 		Me.btnTextColor.Name = "btnTextColor"
 		Me.btnTextColor.Size = New System.Drawing.Size(24, 22)
-		Me.btnTextColor.TabIndex = 5
+		Me.btnTextColor.TabIndex = 7
 		Me.btnTextColor.UseVisualStyleBackColor = False
 		'
 		'Label1
@@ -332,7 +332,7 @@ Partial Class dlgOfflineHolder
 		Me.Label1.Location = New System.Drawing.Point(235, 325)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(100, 13)
-		Me.Label1.TabIndex = 3
+		Me.Label1.TabIndex = 6
 		Me.Label1.Text = "Text Color:"
 		Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -366,7 +366,7 @@ Partial Class dlgOfflineHolder
 		Me.GroupBox1.Location = New System.Drawing.Point(332, 3)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(371, 437)
-		Me.GroupBox1.TabIndex = 8
+		Me.GroupBox1.TabIndex = 7
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Preview"
 		'
@@ -377,7 +377,7 @@ Partial Class dlgOfflineHolder
 		Me.Label6.Location = New System.Drawing.Point(6, 343)
 		Me.Label6.Name = "Label6"
 		Me.Label6.Size = New System.Drawing.Size(148, 13)
-		Me.Label6.TabIndex = 7
+		Me.Label6.TabIndex = 2
 		Me.Label6.Text = "Place Holder Video Format:"
 		'
 		'cbFormat
@@ -389,7 +389,7 @@ Partial Class dlgOfflineHolder
 		Me.cbFormat.Location = New System.Drawing.Point(156, 338)
 		Me.cbFormat.Name = "cbFormat"
 		Me.cbFormat.Size = New System.Drawing.Size(73, 21)
-		Me.cbFormat.TabIndex = 8
+		Me.cbFormat.TabIndex = 3
 		'
 		'chkBackground
 		'
@@ -445,7 +445,7 @@ Partial Class dlgOfflineHolder
 		Me.btnFont.Location = New System.Drawing.Point(258, 345)
 		Me.btnFont.Name = "btnFont"
 		Me.btnFont.Size = New System.Drawing.Size(104, 23)
-		Me.btnFont.TabIndex = 6
+		Me.btnFont.TabIndex = 8
 		Me.btnFont.Text = "Select Font..."
 		Me.btnFont.UseVisualStyleBackColor = True
 		'
@@ -455,7 +455,7 @@ Partial Class dlgOfflineHolder
 		Me.txtTop.Location = New System.Drawing.Point(325, 295)
 		Me.txtTop.Name = "txtTop"
 		Me.txtTop.Size = New System.Drawing.Size(36, 22)
-		Me.txtTop.TabIndex = 4
+		Me.txtTop.TabIndex = 5
 		Me.txtTop.Text = "470"
 		Me.txtTop.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
 		'
@@ -465,7 +465,7 @@ Partial Class dlgOfflineHolder
 		Me.Label3.Location = New System.Drawing.Point(238, 297)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(88, 13)
-		Me.Label3.TabIndex = 2
+		Me.Label3.TabIndex = 4
 		Me.Label3.Text = "Tagline Top:"
 		Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -498,7 +498,7 @@ Partial Class dlgOfflineHolder
 		Me.tbTagLine.RightToLeft = System.Windows.Forms.RightToLeft.Yes
 		Me.tbTagLine.RightToLeftLayout = True
 		Me.tbTagLine.Size = New System.Drawing.Size(45, 281)
-		Me.tbTagLine.TabIndex = 0
+		Me.tbTagLine.TabIndex = 8
 		Me.tbTagLine.TickStyle = System.Windows.Forms.TickStyle.None
 		'
 		'tmrNameWait

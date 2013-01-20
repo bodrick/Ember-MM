@@ -117,7 +117,7 @@ Partial Class dlgBulkRenamer
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(992, 64)
-		Me.pnlTop.TabIndex = 58
+		Me.pnlTop.TabIndex = 14
 		'
 		'Label2
 		'
@@ -128,7 +128,7 @@ Partial Class dlgBulkRenamer
 		Me.Label2.Location = New System.Drawing.Point(64, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(136, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Rename movies and files"
 		'
 		'Label4
@@ -140,7 +140,7 @@ Partial Class dlgBulkRenamer
 		Me.Label4.Location = New System.Drawing.Point(61, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(174, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "Bulk Renamer"
 		'
 		'PictureBox1
@@ -184,7 +184,7 @@ Partial Class dlgBulkRenamer
 		Me.lblCompiling.Location = New System.Drawing.Point(3, 12)
 		Me.lblCompiling.Name = "lblCompiling"
 		Me.lblCompiling.Size = New System.Drawing.Size(186, 20)
-		Me.lblCompiling.TabIndex = 1
+		Me.lblCompiling.TabIndex = 0
 		Me.lblCompiling.Text = "Compiling Movie List..."
 		Me.lblCompiling.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		Me.lblCompiling.Visible = False
@@ -195,7 +195,7 @@ Partial Class dlgBulkRenamer
 		Me.lblFile.Location = New System.Drawing.Point(6, 57)
 		Me.lblFile.Name = "lblFile"
 		Me.lblFile.Size = New System.Drawing.Size(390, 13)
-		Me.lblFile.TabIndex = 0
+		Me.lblFile.TabIndex = 1
 		Me.lblFile.Text = "File ..."
 		'
 		'lblCanceling
@@ -296,7 +296,7 @@ Partial Class dlgBulkRenamer
 		Me.lblFolderPattern.Location = New System.Drawing.Point(12, 401)
 		Me.lblFolderPattern.Name = "lblFolderPattern"
 		Me.lblFolderPattern.Size = New System.Drawing.Size(298, 13)
-		Me.lblFolderPattern.TabIndex = 3
+		Me.lblFolderPattern.TabIndex = 4
 		Me.lblFolderPattern.Text = "Folder Pattern (for Single movie in Folder)"
 		Me.lblFolderPattern.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -306,7 +306,7 @@ Partial Class dlgBulkRenamer
 		Me.lblFilePattern.Location = New System.Drawing.Point(522, 401)
 		Me.lblFilePattern.Name = "lblFilePattern"
 		Me.lblFilePattern.Size = New System.Drawing.Size(140, 13)
-		Me.lblFilePattern.TabIndex = 5
+		Me.lblFilePattern.TabIndex = 7
 		Me.lblFilePattern.Text = "File Pattern"
 		Me.lblFilePattern.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -316,7 +316,7 @@ Partial Class dlgBulkRenamer
 		Me.txtFile.Location = New System.Drawing.Point(668, 398)
 		Me.txtFile.Name = "txtFile"
 		Me.txtFile.Size = New System.Drawing.Size(224, 22)
-		Me.txtFile.TabIndex = 10
+		Me.txtFile.TabIndex = 8
 		Me.txtFile.Text = "$T"
 		'
 		'txtFolder
@@ -325,7 +325,7 @@ Partial Class dlgBulkRenamer
 		Me.txtFolder.Location = New System.Drawing.Point(316, 398)
 		Me.txtFolder.Name = "txtFolder"
 		Me.txtFolder.Size = New System.Drawing.Size(200, 22)
-		Me.txtFolder.TabIndex = 4
+		Me.txtFolder.TabIndex = 5
 		Me.txtFolder.Text = "$T ($Y)"
 		'
 		'txtFolderNotSingle
@@ -334,7 +334,7 @@ Partial Class dlgBulkRenamer
 		Me.txtFolderNotSingle.Location = New System.Drawing.Point(316, 424)
 		Me.txtFolderNotSingle.Name = "txtFolderNotSingle"
 		Me.txtFolderNotSingle.Size = New System.Drawing.Size(200, 22)
-		Me.txtFolderNotSingle.TabIndex = 8
+		Me.txtFolderNotSingle.TabIndex = 11
 		Me.txtFolderNotSingle.Text = "$D"
 		'
 		'Label1
@@ -343,7 +343,7 @@ Partial Class dlgBulkRenamer
 		Me.Label1.Location = New System.Drawing.Point(12, 427)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(296, 13)
-		Me.Label1.TabIndex = 7
+		Me.Label1.TabIndex = 10
 		Me.Label1.Text = "Folder Pattern (for Multiple movies in Folder)"
 		Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -354,7 +354,7 @@ Partial Class dlgBulkRenamer
 		Me.chkRenamedOnly.Location = New System.Drawing.Point(668, 424)
 		Me.chkRenamedOnly.Name = "chkRenamedOnly"
 		Me.chkRenamedOnly.Size = New System.Drawing.Size(244, 17)
-		Me.chkRenamedOnly.TabIndex = 12
+		Me.chkRenamedOnly.TabIndex = 13
 		Me.chkRenamedOnly.Text = "Display Only Movies That Will Be Renamed"
 		Me.chkRenamedOnly.UseVisualStyleBackColor = True
 		'
@@ -373,7 +373,7 @@ Partial Class dlgBulkRenamer
 		Me.Button2.Location = New System.Drawing.Point(895, 398)
 		Me.Button2.Name = "Button2"
 		Me.Button2.Size = New System.Drawing.Size(17, 19)
-		Me.Button2.TabIndex = 11
+		Me.Button2.TabIndex = 9
 		Me.Button2.UseVisualStyleBackColor = True
 		'
 		'Button3
@@ -382,7 +382,7 @@ Partial Class dlgBulkRenamer
 		Me.Button3.Location = New System.Drawing.Point(517, 427)
 		Me.Button3.Name = "Button3"
 		Me.Button3.Size = New System.Drawing.Size(17, 19)
-		Me.Button3.TabIndex = 9
+		Me.Button3.TabIndex = 12
 		Me.Button3.UseVisualStyleBackColor = True
 		'
 		'dlgBulkRenamer
