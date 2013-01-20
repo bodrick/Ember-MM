@@ -48,7 +48,7 @@ Partial Class frmSettingsHolder
 		Me.ListView1.Location = New System.Drawing.Point(7, 44)
 		Me.ListView1.Name = "ListView1"
 		Me.ListView1.Size = New System.Drawing.Size(491, 216)
-		Me.ListView1.TabIndex = 0
+		Me.ListView1.TabIndex = 1
 		Me.ListView1.UseCompatibleStateImageBehavior = False
 		Me.ListView1.View = System.Windows.Forms.View.Details
 		'
@@ -67,7 +67,7 @@ Partial Class frmSettingsHolder
 		Me.Label3.Location = New System.Drawing.Point(10, 296)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(45, 13)
-		Me.Label3.TabIndex = 4
+		Me.Label3.TabIndex = 5
 		Me.Label3.Text = "Name"
 		Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopRight
 		'
@@ -76,7 +76,7 @@ Partial Class frmSettingsHolder
 		Me.Label4.Location = New System.Drawing.Point(175, 296)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(65, 13)
-		Me.Label4.TabIndex = 6
+		Me.Label4.TabIndex = 7
 		Me.Label4.Text = "Path"
 		Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopRight
 		'
@@ -85,14 +85,14 @@ Partial Class frmSettingsHolder
 		Me.TextBox1.Location = New System.Drawing.Point(61, 293)
 		Me.TextBox1.Name = "TextBox1"
 		Me.TextBox1.Size = New System.Drawing.Size(108, 22)
-		Me.TextBox1.TabIndex = 5
+		Me.TextBox1.TabIndex = 6
 		'
 		'TextBox2
 		'
 		Me.TextBox2.Location = New System.Drawing.Point(246, 293)
 		Me.TextBox2.Name = "TextBox2"
 		Me.TextBox2.Size = New System.Drawing.Size(222, 22)
-		Me.TextBox2.TabIndex = 7
+		Me.TextBox2.TabIndex = 8
 		'
 		'Button4
 		'
@@ -100,7 +100,7 @@ Partial Class frmSettingsHolder
 		Me.Button4.Margin = New System.Windows.Forms.Padding(0)
 		Me.Button4.Name = "Button4"
 		Me.Button4.Size = New System.Drawing.Size(24, 20)
-		Me.Button4.TabIndex = 8
+		Me.Button4.TabIndex = 9
 		Me.Button4.Text = "..."
 		Me.Button4.TextAlign = System.Drawing.ContentAlignment.TopCenter
 		Me.Button4.UseVisualStyleBackColor = True
@@ -112,7 +112,7 @@ Partial Class frmSettingsHolder
 		Me.btnRemoveSet.Location = New System.Drawing.Point(89, 262)
 		Me.btnRemoveSet.Name = "btnRemoveSet"
 		Me.btnRemoveSet.Size = New System.Drawing.Size(23, 23)
-		Me.btnRemoveSet.TabIndex = 3
+		Me.btnRemoveSet.TabIndex = 4
 		Me.btnRemoveSet.UseVisualStyleBackColor = True
 		'
 		'btnEditSet
@@ -123,7 +123,7 @@ Partial Class frmSettingsHolder
 		Me.btnEditSet.Location = New System.Drawing.Point(60, 262)
 		Me.btnEditSet.Name = "btnEditSet"
 		Me.btnEditSet.Size = New System.Drawing.Size(23, 23)
-		Me.btnEditSet.TabIndex = 2
+		Me.btnEditSet.TabIndex = 3
 		Me.btnEditSet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnEditSet.UseVisualStyleBackColor = True
 		'
@@ -135,7 +135,7 @@ Partial Class frmSettingsHolder
 		Me.btnNewSet.Location = New System.Drawing.Point(12, 262)
 		Me.btnNewSet.Name = "btnNewSet"
 		Me.btnNewSet.Size = New System.Drawing.Size(23, 23)
-		Me.btnNewSet.TabIndex = 1
+		Me.btnNewSet.TabIndex = 2
 		Me.btnNewSet.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnNewSet.UseVisualStyleBackColor = True
 		'
@@ -147,7 +147,7 @@ Partial Class frmSettingsHolder
 		Me.Panel1.Location = New System.Drawing.Point(0, 0)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(617, 25)
-		Me.Panel1.TabIndex = 82
+		Me.Panel1.TabIndex = 0
 		'
 		'cbEnabled
 		'

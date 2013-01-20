@@ -114,7 +114,7 @@ Partial Class dlgSearchResults
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(643, 64)
-		Me.pnlTop.TabIndex = 57
+		Me.pnlTop.TabIndex = 16
 		'
 		'Label2
 		'
@@ -125,7 +125,7 @@ Partial Class dlgSearchResults
 		Me.Label2.Location = New System.Drawing.Point(61, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(276, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "View details of each result to find the proper movie."
 		'
 		'pbScraperLogo
@@ -147,7 +147,7 @@ Partial Class dlgSearchResults
 		Me.Label1.Location = New System.Drawing.Point(58, 3)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(257, 32)
-		Me.Label1.TabIndex = 1
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Movie Search Results"
 		'
 		'PictureBox1

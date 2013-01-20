@@ -51,7 +51,7 @@ Partial Class frmSettingsHolder
 		Me.pnlSettings.Location = New System.Drawing.Point(13, 15)
 		Me.pnlSettings.Name = "pnlSettings"
 		Me.pnlSettings.Size = New System.Drawing.Size(617, 327)
-		Me.pnlSettings.TabIndex = 84
+		Me.pnlSettings.TabIndex = 0
 		'
 		'Label1
 		'
@@ -59,7 +59,7 @@ Partial Class frmSettingsHolder
 		Me.Label1.Location = New System.Drawing.Point(224, 54)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(372, 263)
-		Me.Label1.TabIndex = 4
+		Me.Label1.TabIndex = 3
 		Me.Label1.Text = "Label1"
 		'
 		'gbRenamerPatterns
@@ -74,7 +74,7 @@ Partial Class frmSettingsHolder
 		Me.gbRenamerPatterns.Location = New System.Drawing.Point(21, 54)
 		Me.gbRenamerPatterns.Name = "gbRenamerPatterns"
 		Me.gbRenamerPatterns.Size = New System.Drawing.Size(197, 191)
-		Me.gbRenamerPatterns.TabIndex = 2
+		Me.gbRenamerPatterns.TabIndex = 1
 		Me.gbRenamerPatterns.TabStop = False
 		Me.gbRenamerPatterns.Text = "Default Renaming Patterns"
 		'
@@ -144,7 +144,7 @@ Partial Class frmSettingsHolder
 		Me.chkBulkRenamer.Location = New System.Drawing.Point(391, 31)
 		Me.chkBulkRenamer.Name = "chkBulkRenamer"
 		Me.chkBulkRenamer.Size = New System.Drawing.Size(160, 17)
-		Me.chkBulkRenamer.TabIndex = 3
+		Me.chkBulkRenamer.TabIndex = 2
 		Me.chkBulkRenamer.Text = "Enable Bulk Renamer Tool"
 		Me.chkBulkRenamer.UseVisualStyleBackColor = True
 		'

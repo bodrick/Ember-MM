@@ -89,7 +89,7 @@ Partial Class frmInfoSettingsHolder
 		Me.GroupBox30.Location = New System.Drawing.Point(8, 40)
 		Me.GroupBox30.Name = "GroupBox30"
 		Me.GroupBox30.Size = New System.Drawing.Size(213, 69)
-		Me.GroupBox30.TabIndex = 0
+		Me.GroupBox30.TabIndex = 1
 		Me.GroupBox30.TabStop = False
 		Me.GroupBox30.Text = "IMDB"
 		'
@@ -121,7 +121,7 @@ Partial Class frmInfoSettingsHolder
 		Me.GroupBox15.Location = New System.Drawing.Point(8, 114)
 		Me.GroupBox15.Name = "GroupBox15"
 		Me.GroupBox15.Size = New System.Drawing.Size(213, 87)
-		Me.GroupBox15.TabIndex = 1
+		Me.GroupBox15.TabIndex = 2
 		Me.GroupBox15.TabStop = False
 		Me.GroupBox15.Text = "OFDB (German)"
 		'
@@ -241,7 +241,7 @@ Partial Class frmInfoSettingsHolder
 		Me.Label1.Location = New System.Drawing.Point(37, 337)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(225, 31)
-		Me.Label1.TabIndex = 3
+		Me.Label1.TabIndex = 4
 		Me.Label1.Text = "These settings are specific to this module." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please refer to the global settings " & _
 		  "for more options."
 		Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -287,7 +287,7 @@ Partial Class frmInfoSettingsHolder
 		Me.gbOptions.Location = New System.Drawing.Point(227, 40)
 		Me.gbOptions.Name = "gbOptions"
 		Me.gbOptions.Size = New System.Drawing.Size(387, 161)
-		Me.gbOptions.TabIndex = 2
+		Me.gbOptions.TabIndex = 3
 		Me.gbOptions.TabStop = False
 		Me.gbOptions.Text = "Scraper Fields"
 		'

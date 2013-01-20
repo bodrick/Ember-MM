@@ -291,7 +291,7 @@ Partial Class dlgImgSelect
 		Me.chkThumb.Location = New System.Drawing.Point(231, 8)
 		Me.chkThumb.Name = "chkThumb"
 		Me.chkThumb.Size = New System.Drawing.Size(111, 17)
-		Me.chkThumb.TabIndex = 2
+		Me.chkThumb.TabIndex = 1
 		Me.chkThumb.Text = "Check All Thumb"
 		Me.chkThumb.UseVisualStyleBackColor = True
 		'
@@ -301,7 +301,7 @@ Partial Class dlgImgSelect
 		Me.chkMid.Location = New System.Drawing.Point(131, 8)
 		Me.chkMid.Name = "chkMid"
 		Me.chkMid.Size = New System.Drawing.Size(96, 17)
-		Me.chkMid.TabIndex = 1
+		Me.chkMid.TabIndex = 0
 		Me.chkMid.Text = "Check All Mid"
 		Me.chkMid.UseVisualStyleBackColor = True
 		'

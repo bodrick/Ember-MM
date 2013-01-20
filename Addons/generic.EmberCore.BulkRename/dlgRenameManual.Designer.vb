@@ -155,7 +155,7 @@ Partial Class dlgRenameManual
 		Me.pnlStatus.Location = New System.Drawing.Point(67, 19)
 		Me.pnlStatus.Name = "pnlStatus"
 		Me.pnlStatus.Size = New System.Drawing.Size(321, 59)
-		Me.pnlStatus.TabIndex = 2
+		Me.pnlStatus.TabIndex = 6
 		Me.pnlStatus.Visible = False
 		'
 		'Label3

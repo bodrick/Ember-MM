@@ -67,7 +67,7 @@ Partial Class dlgTVBulkRenamer
 		'ToolStripSeparator1
 		'
 		Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-		Me.ToolStripSeparator1.Size = New System.Drawing.Size(157, 6)
+		Me.ToolStripSeparator1.Size = New System.Drawing.Size(170, 6)
 		'
 		'chkRenamedOnly
 		'
@@ -76,7 +76,7 @@ Partial Class dlgTVBulkRenamer
 		Me.chkRenamedOnly.Location = New System.Drawing.Point(668, 442)
 		Me.chkRenamedOnly.Name = "chkRenamedOnly"
 		Me.chkRenamedOnly.Size = New System.Drawing.Size(231, 17)
-		Me.chkRenamedOnly.TabIndex = 10
+		Me.chkRenamedOnly.TabIndex = 9
 		Me.chkRenamedOnly.Text = "Display Only Files That Will Be Renamed"
 		Me.chkRenamedOnly.UseVisualStyleBackColor = True
 		'
@@ -86,13 +86,13 @@ Partial Class dlgTVBulkRenamer
 		Me.txtFolder.Location = New System.Drawing.Point(316, 416)
 		Me.txtFolder.Name = "txtFolder"
 		Me.txtFolder.Size = New System.Drawing.Size(200, 22)
-		Me.txtFolder.TabIndex = 5
+		Me.txtFolder.TabIndex = 4
 		Me.txtFolder.Text = "$T ($Y)"
 		'
 		'tsmLockAll
 		'
 		Me.tsmLockAll.Name = "tsmLockAll"
-		Me.tsmLockAll.Size = New System.Drawing.Size(160, 22)
+		Me.tsmLockAll.Size = New System.Drawing.Size(173, 22)
 		Me.tsmLockAll.Text = "Lock All"
 		'
 		'lblFolderPattern
@@ -101,7 +101,7 @@ Partial Class dlgTVBulkRenamer
 		Me.lblFolderPattern.Location = New System.Drawing.Point(12, 419)
 		Me.lblFolderPattern.Name = "lblFolderPattern"
 		Me.lblFolderPattern.Size = New System.Drawing.Size(298, 13)
-		Me.lblFolderPattern.TabIndex = 4
+		Me.lblFolderPattern.TabIndex = 3
 		Me.lblFolderPattern.Text = "Folder Pattern"
 		Me.lblFolderPattern.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -111,14 +111,14 @@ Partial Class dlgTVBulkRenamer
 		Me.lblFilePattern.Location = New System.Drawing.Point(522, 419)
 		Me.lblFilePattern.Name = "lblFilePattern"
 		Me.lblFilePattern.Size = New System.Drawing.Size(140, 13)
-		Me.lblFilePattern.TabIndex = 7
+		Me.lblFilePattern.TabIndex = 6
 		Me.lblFilePattern.Text = "File Pattern"
 		Me.lblFilePattern.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
 		'tsmUnlockAll
 		'
 		Me.tsmUnlockAll.Name = "tsmUnlockAll"
-		Me.tsmUnlockAll.Size = New System.Drawing.Size(160, 22)
+		Me.tsmUnlockAll.Size = New System.Drawing.Size(173, 22)
 		Me.tsmUnlockAll.Text = "Unlock All"
 		'
 		'txtFile
@@ -127,7 +127,7 @@ Partial Class dlgTVBulkRenamer
 		Me.txtFile.Location = New System.Drawing.Point(668, 416)
 		Me.txtFile.Name = "txtFile"
 		Me.txtFile.Size = New System.Drawing.Size(224, 22)
-		Me.txtFile.TabIndex = 8
+		Me.txtFile.TabIndex = 7
 		Me.txtFile.Text = "$T"
 		'
 		'tsmLockMovie
@@ -169,7 +169,7 @@ Partial Class dlgTVBulkRenamer
 		Me.Label2.Location = New System.Drawing.Point(64, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(149, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Rename TV Shows and files"
 		'
 		'pnlTop
@@ -183,7 +183,7 @@ Partial Class dlgTVBulkRenamer
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(1000, 64)
-		Me.pnlTop.TabIndex = 82
+		Me.pnlTop.TabIndex = 10
 		'
 		'Label4
 		'
@@ -194,7 +194,7 @@ Partial Class dlgTVBulkRenamer
 		Me.Label4.Location = New System.Drawing.Point(61, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(211, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "TV Bulk Renamer"
 		'
 		'PictureBox1
@@ -216,7 +216,7 @@ Partial Class dlgTVBulkRenamer
 		Me.Close_Button.Location = New System.Drawing.Point(898, 463)
 		Me.Close_Button.Name = "Close_Button"
 		Me.Close_Button.Size = New System.Drawing.Size(80, 23)
-		Me.Close_Button.TabIndex = 0
+		Me.Close_Button.TabIndex = 1
 		Me.Close_Button.Text = "Close"
 		'
 		'pnlCancel
@@ -231,7 +231,7 @@ Partial Class dlgTVBulkRenamer
 		Me.pnlCancel.Location = New System.Drawing.Point(295, 214)
 		Me.pnlCancel.Name = "pnlCancel"
 		Me.pnlCancel.Size = New System.Drawing.Size(403, 76)
-		Me.pnlCancel.TabIndex = 3
+		Me.pnlCancel.TabIndex = 11
 		Me.pnlCancel.Visible = False
 		'
 		'pbCompile
@@ -299,7 +299,7 @@ Partial Class dlgTVBulkRenamer
 		Me.Rename_Button.Location = New System.Drawing.Point(812, 463)
 		Me.Rename_Button.Name = "Rename_Button"
 		Me.Rename_Button.Size = New System.Drawing.Size(80, 23)
-		Me.Rename_Button.TabIndex = 1
+		Me.Rename_Button.TabIndex = 0
 		Me.Rename_Button.Text = "Rename"
 		'
 		'Button2
@@ -308,7 +308,7 @@ Partial Class dlgTVBulkRenamer
 		Me.Button2.Location = New System.Drawing.Point(895, 416)
 		Me.Button2.Name = "Button2"
 		Me.Button2.Size = New System.Drawing.Size(17, 19)
-		Me.Button2.TabIndex = 9
+		Me.Button2.TabIndex = 8
 		Me.Button2.UseVisualStyleBackColor = True
 		'
 		'Button1
@@ -317,7 +317,7 @@ Partial Class dlgTVBulkRenamer
 		Me.Button1.Location = New System.Drawing.Point(517, 418)
 		Me.Button1.Name = "Button1"
 		Me.Button1.Size = New System.Drawing.Size(17, 19)
-		Me.Button1.TabIndex = 6
+		Me.Button1.TabIndex = 5
 		Me.Button1.UseVisualStyleBackColor = True
 		'
 		'dlgTVBulkRenamer

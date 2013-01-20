@@ -40,7 +40,7 @@ Partial Class frmBoxee
 		Me.pnlSettings.Location = New System.Drawing.Point(12, 12)
 		Me.pnlSettings.Name = "pnlSettings"
 		Me.pnlSettings.Size = New System.Drawing.Size(617, 327)
-		Me.pnlSettings.TabIndex = 85
+		Me.pnlSettings.TabIndex = 0
 		'
 		'GroupBox1
 		'

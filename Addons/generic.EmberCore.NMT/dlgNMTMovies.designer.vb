@@ -38,13 +38,13 @@ Partial Class dlgNMTMovies
     Private Sub InitializeComponent()
 		Me.components = New System.ComponentModel.Container()
 		Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgNMTMovies))
-		Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-		Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-		Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-		Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-		Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-		Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-		Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+		Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
 		Me.Close_Button = New System.Windows.Forms.Button()
 		Me.Label2 = New System.Windows.Forms.Label()
 		Me.pnlCancel = New System.Windows.Forms.Panel()
@@ -228,7 +228,7 @@ Partial Class dlgNMTMovies
 		Me.Panel2.Location = New System.Drawing.Point(7, 292)
 		Me.Panel2.Name = "Panel2"
 		Me.Panel2.Size = New System.Drawing.Size(692, 102)
-		Me.Panel2.TabIndex = 78
+		Me.Panel2.TabIndex = 13
 		'
 		'gbHelp
 		'
@@ -279,15 +279,15 @@ Partial Class dlgNMTMovies
 		Me.dgvSources.ShowCellToolTips = False
 		Me.dgvSources.ShowRowErrors = False
 		Me.dgvSources.Size = New System.Drawing.Size(472, 168)
-		Me.dgvSources.TabIndex = 8
+		Me.dgvSources.TabIndex = 9
 		'
 		'export
 		'
-		DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-		DataGridViewCellStyle1.NullValue = False
-		DataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White
-		DataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black
-		Me.export.DefaultCellStyle = DataGridViewCellStyle1
+		DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+		DataGridViewCellStyle8.NullValue = False
+		DataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.White
+		DataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black
+		Me.export.DefaultCellStyle = DataGridViewCellStyle8
 		Me.export.FillWeight = 20.0!
 		Me.export.HeaderText = ""
 		Me.export.Name = "export"
@@ -295,9 +295,9 @@ Partial Class dlgNMTMovies
 		'
 		'EmberSource
 		'
-		DataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White
-		DataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black
-		Me.EmberSource.DefaultCellStyle = DataGridViewCellStyle2
+		DataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White
+		DataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black
+		Me.EmberSource.DefaultCellStyle = DataGridViewCellStyle9
 		Me.EmberSource.FillWeight = 130.0!
 		Me.EmberSource.HeaderText = "Ember Source"
 		Me.EmberSource.Name = "EmberSource"
@@ -313,8 +313,8 @@ Partial Class dlgNMTMovies
 		'
 		'Value
 		'
-		DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-		Me.Value.DefaultCellStyle = DataGridViewCellStyle3
+		DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+		Me.Value.DefaultCellStyle = DataGridViewCellStyle10
 		Me.Value.FillWeight = 280.0!
 		Me.Value.HeaderText = "NMT Path"
 		Me.Value.Name = "Value"
@@ -351,9 +351,9 @@ Partial Class dlgNMTMovies
 		'
 		'Setting
 		'
-		DataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White
-		DataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black
-		Me.Setting.DefaultCellStyle = DataGridViewCellStyle4
+		DataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White
+		DataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black
+		Me.Setting.DefaultCellStyle = DataGridViewCellStyle11
 		Me.Setting.FillWeight = 145.0!
 		Me.Setting.HeaderText = "Setting"
 		Me.Setting.Name = "Setting"
@@ -362,8 +362,8 @@ Partial Class dlgNMTMovies
 		'
 		'DataGridViewComboBoxColumn1
 		'
-		DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-		Me.DataGridViewComboBoxColumn1.DefaultCellStyle = DataGridViewCellStyle5
+		DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+		Me.DataGridViewComboBoxColumn1.DefaultCellStyle = DataGridViewCellStyle12
 		Me.DataGridViewComboBoxColumn1.FillWeight = 180.0!
 		Me.DataGridViewComboBoxColumn1.HeaderText = "Value"
 		Me.DataGridViewComboBoxColumn1.Name = "DataGridViewComboBoxColumn1"
@@ -381,7 +381,7 @@ Partial Class dlgNMTMovies
 		Me.lblTemplateInfo.Location = New System.Drawing.Point(458, 3)
 		Me.lblTemplateInfo.Name = "lblTemplateInfo"
 		Me.lblTemplateInfo.Size = New System.Drawing.Size(384, 72)
-		Me.lblTemplateInfo.TabIndex = 9
+		Me.lblTemplateInfo.TabIndex = 7
 		'
 		'btnBrowse
 		'
@@ -412,7 +412,7 @@ Partial Class dlgNMTMovies
 		Me.TabControl1.Name = "TabControl1"
 		Me.TabControl1.SelectedIndex = 0
 		Me.TabControl1.Size = New System.Drawing.Size(357, 194)
-		Me.TabControl1.TabIndex = 7
+		Me.TabControl1.TabIndex = 8
 		'
 		'TabPage2
 		'
@@ -448,9 +448,9 @@ Partial Class dlgNMTMovies
 		'
 		'DataGridViewTextBoxColumn1
 		'
-		DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White
-		DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black
-		Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle6
+		DataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White
+		DataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.Black
+		Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle13
 		Me.DataGridViewTextBoxColumn1.FillWeight = 225.0!
 		Me.DataGridViewTextBoxColumn1.HeaderText = "Property"
 		Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
@@ -459,8 +459,8 @@ Partial Class dlgNMTMovies
 		'
 		'DataGridViewTextBoxColumn2
 		'
-		DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-		Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle7
+		DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+		Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle14
 		Me.DataGridViewTextBoxColumn2.HeaderText = "Value"
 		Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
 		Me.DataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
@@ -524,7 +524,7 @@ Partial Class dlgNMTMovies
 		Me.chHighPriority.Location = New System.Drawing.Point(705, 346)
 		Me.chHighPriority.Name = "chHighPriority"
 		Me.chHighPriority.Size = New System.Drawing.Size(129, 18)
-		Me.chHighPriority.TabIndex = 13
+		Me.chHighPriority.TabIndex = 14
 		Me.chHighPriority.Text = "High Priority"
 		Me.chHighPriority.UseVisualStyleBackColor = True
 		'

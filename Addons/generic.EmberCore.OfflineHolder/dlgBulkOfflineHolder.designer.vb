@@ -80,7 +80,7 @@ Partial Class dlgBulkOfflineHolder
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(643, 64)
-		Me.pnlTop.TabIndex = 58
+		Me.pnlTop.TabIndex = 3
 		'
 		'Label2
 		'
@@ -91,7 +91,7 @@ Partial Class dlgBulkOfflineHolder
 		Me.Label2.Location = New System.Drawing.Point(64, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(102, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Add Offline movie"
 		'
 		'Label4
@@ -103,7 +103,7 @@ Partial Class dlgBulkOfflineHolder
 		Me.Label4.Location = New System.Drawing.Point(61, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(344, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "Bulk Offline Media Manager "
 		'
 		'PictureBox1
