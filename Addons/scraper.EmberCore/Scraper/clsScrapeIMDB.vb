@@ -318,7 +318,7 @@ Namespace IMDB
                                 Select New MediaContainers.Person(Web.HttpUtility.HtmlDecode(m1.Groups("name").ToString.Trim), _
                                 Web.HttpUtility.HtmlDecode(m2.ToString.Trim), _
                                 If(m3.Groups("thumb").ToString.IndexOf("addtiny") > 0 OrElse m3.Groups("thumb").ToString.IndexOf("no_photo") > 0, String.Empty, Strings.Replace(Web.HttpUtility.HtmlDecode(m3.Groups("thumb").ToString.Trim), _
-                                "._SY30_SX23_.jpg", "._SY275_SX400_.jpg"))) Take If(Master.eSettings.ActorLimit > 0, Master.eSettings.ActorLimit, 999999)
+                                "._SX23_SY30_.jpg", "._SY275_SX400_.jpg"))) Take If(Master.eSettings.ActorLimit > 0, Master.eSettings.ActorLimit, 999999)
 
                     If Master.eSettings.CastImagesOnly Then
                         Cast1 = Cast1.Where(Function(p As MediaContainers.Person) (Not String.IsNullOrEmpty(p.Thumb)))
