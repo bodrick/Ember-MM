@@ -136,6 +136,7 @@ Public Class Images
 
             Delete(Path.Combine(tPath, "season-all.tbn"))
             Delete(Path.Combine(tPath, "season-all.jpg"))
+            Delete(Path.Combine(tPath, "season-all-poster.jpg"))
 
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -274,10 +275,11 @@ Public Class Images
 
             If mShow.TVEp.Season = 0 Then
                 Delete(Path.Combine(mShow.ShowPath, "season-specials.tbn"))
-                Delete(Path.Combine(mShow.ShowPath, "season-specials.tbn"))
+                Delete(Path.Combine(mShow.ShowPath, "season-specials-poster.tbn"))
             Else
                 Delete(Path.Combine(mShow.ShowPath, String.Format("season{0}.tbn", mShow.TVEp.Season)))
                 Delete(Path.Combine(mShow.ShowPath, String.Format("season{0}.tbn", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0")))))
+                Delete(Path.Combine(mShow.ShowPath, String.Format("season{0}-poster.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0")))))
             End If
 
         Catch ex As Exception
@@ -474,6 +476,14 @@ Public Class Images
                 End If
             End If
 
+            If Master.eSettings.SeasonAllPoster Then
+                pPath = Path.Combine(mShow.ShowPath, "season-all-poster.jpg")
+                If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteAllSPoster) Then
+                    Save(pPath, Master.eSettings.AllSPosterQuality)
+                    strReturn = pPath
+                End If
+            End If
+
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
@@ -562,6 +572,14 @@ Public Class Images
 
             If Master.eSettings.EpisodeTBN Then
                 pPath = String.Concat(FileUtils.Common.RemoveExtFromPath(mShow.Filename), ".tbn")
+                If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteEpPoster) Then
+                    Save(pPath, Master.eSettings.EpPosterQuality)
+                    strReturn = pPath
+                End If
+            End If
+
+            If Master.eSettings.EpisodeDashThumbJPG Then
+                pPath = String.Concat(FileUtils.Common.RemoveExtFromPath(mShow.Filename), "-thumb.jpg")
                 If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteEpPoster) Then
                     Save(pPath, Master.eSettings.EpPosterQuality)
                     strReturn = pPath
@@ -978,6 +996,18 @@ Public Class Images
                     pPath = Path.Combine(mShow.ShowPath, "season-specials.tbn")
                 Else
                     pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}.tbn", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
+                End If
+                If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonPoster) Then
+                    Save(pPath, Master.eSettings.SeasonPosterQuality)
+                    strReturn = pPath
+                End If
+            End If
+
+            If Master.eSettings.SeasonXXDashPosterJPG Then
+                If mShow.TVEp.Season = 0 Then
+                    pPath = Path.Combine(mShow.ShowPath, "season-specials-poster.jpg")
+                Else
+                    pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}-poster.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
                 End If
                 If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonPoster) Then
                     Save(pPath, Master.eSettings.SeasonPosterQuality)

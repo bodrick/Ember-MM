@@ -182,6 +182,11 @@ Public Class Scanner
                 Episode.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
+            If String.IsNullOrEmpty(Episode.Poster) AndAlso Master.eSettings.EpisodeDashThumbJPG Then
+                fName = String.Concat(tmpName, "-thumb.jpg")
+                Episode.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+            End If
+
             If Master.eSettings.EpisodeDashFanart Then
                 fName = String.Concat(tmpName, "-fanart.jpg")
                 Episode.Fanart = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
@@ -389,6 +394,7 @@ Public Class Scanner
             End Try
 
             If lFiles.Count > 0 Then
+
                 If Master.eSettings.SeasonX OrElse Master.eSettings.SeasonXX Then
                     If sSeason = 0 Then
                         fName = Path.Combine(SeasonPath, "season-specials.tbn")
@@ -399,8 +405,18 @@ Public Class Scanner
                             fName = Path.Combine(SeasonPath, String.Format("season{0}.tbn", sSeason.ToString))
                         End If
                     End If
-                    TVDB.SeasonPosterPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                 End If
+
+                If Master.eSettings.SeasonXXDashPosterJPG Then
+                    If sSeason = 0 Then
+                        fName = Path.Combine(SeasonPath, "season-specials-poster.jpg")
+                    Else
+                        If Master.eSettings.SeasonXXDashPosterJPG Then
+                            fName = Path.Combine(SeasonPath, String.Format("season{0}-poster.jpg", sSeason.ToString.PadLeft(2, Convert.ToChar("0"))))
+                        End If
+                    End If
+                End If
+                TVDB.SeasonPosterPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
             If bInside AndAlso ((Master.eSettings.SeasonPosterTBN OrElse Master.eSettings.SeasonPosterJPG OrElse _
@@ -490,6 +506,11 @@ Public Class Scanner
 
             If Master.eSettings.SeasonAllTBN Then
                 fName = Path.Combine(parPath, "season-all.tbn")
+                tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+            End If
+
+            If Master.eSettings.SeasonAllPoster Then
+                fName = Path.Combine(parPath, "season-all-poster.jpg")
                 tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 

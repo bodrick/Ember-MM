@@ -1166,6 +1166,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkEpisodeDashThumbJPG_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkEpisodeDashThumbJPG.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkEpisodeNfoCol_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkEpisodeNfoCol.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -1757,6 +1761,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkSeasonAllPoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonAllPoster.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkSeasonDashFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonDashFanart.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -1802,6 +1810,10 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkSeasonXXTBN_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonXXTBN.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkSeasonXXDashPosterJPG_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonXXDashPosterJPG.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2382,6 +2394,7 @@ Public Class dlgSettings
             Me.cbRatingRegion.Text = Master.eSettings.ShowRatingRegion
             Me.chkSeasonAllTBN.Checked = Master.eSettings.SeasonAllTBN
             Me.chkSeasonAllJPG.Checked = Master.eSettings.SeasonAllJPG
+            Me.chkSeasonAllPoster.Checked = Master.eSettings.SeasonAllPoster
             Me.chkShowTBN.Checked = Master.eSettings.ShowTBN
             Me.chkShowJPG.Checked = Master.eSettings.ShowJPG
             Me.chkShowFolderJPG.Checked = Master.eSettings.ShowFolderJPG
@@ -2393,6 +2406,7 @@ Public Class dlgSettings
             Me.chkShowDotFanart.Checked = Master.eSettings.ShowDotFanart
             Me.chkSeasonXXTBN.Checked = Master.eSettings.SeasonXX
             Me.chkSeasonXTBN.Checked = Master.eSettings.SeasonX
+            Me.chkSeasonXXDashPosterJPG.Checked = Master.eSettings.SeasonXXDashPosterJPG
             Me.chkSeasonPosterTBN.Checked = Master.eSettings.SeasonPosterTBN
             Me.chkSeasonPosterJPG.Checked = Master.eSettings.SeasonPosterJPG
             Me.chkSeasonNameTBN.Checked = Master.eSettings.SeasonNameTBN
@@ -2403,6 +2417,7 @@ Public Class dlgSettings
             Me.chkSeasonDotFanart.Checked = Master.eSettings.SeasonDotFanart
             Me.chkEpisodeTBN.Checked = Master.eSettings.EpisodeTBN
             Me.chkEpisodeJPG.Checked = Master.eSettings.EpisodeJPG
+            Me.chkEpisodeDashThumbJPG.Checked = Master.eSettings.EpisodeDashThumbJPG
             Me.chkEpisodeDashFanart.Checked = Master.eSettings.EpisodeDashFanart
             Me.chkEpisodeDotFanart.Checked = Master.eSettings.EpisodeDotFanart
             Me.chkShowPosterCol.Checked = Master.eSettings.ShowPosterCol
@@ -3477,6 +3492,7 @@ Public Class dlgSettings
             End If
             Master.eSettings.SeasonAllTBN = Me.chkSeasonAllTBN.Checked
             Master.eSettings.SeasonAllJPG = Me.chkSeasonAllJPG.Checked
+            Master.eSettings.SeasonAllPoster = Me.chkSeasonAllPoster.Checked
             Master.eSettings.ShowTBN = Me.chkShowTBN.Checked
             Master.eSettings.ShowJPG = Me.chkShowJPG.Checked
             Master.eSettings.ShowFolderJPG = Me.chkShowFolderJPG.Checked
@@ -3488,6 +3504,7 @@ Public Class dlgSettings
             Master.eSettings.ShowDotFanart = Me.chkShowDotFanart.Checked
             Master.eSettings.SeasonXX = Me.chkSeasonXXTBN.Checked
             Master.eSettings.SeasonX = Me.chkSeasonXTBN.Checked
+            Master.eSettings.SeasonXXDashPosterJPG = Me.chkSeasonXXDashPosterJPG.Checked
             Master.eSettings.SeasonPosterTBN = Me.chkSeasonPosterTBN.Checked
             Master.eSettings.SeasonPosterJPG = Me.chkSeasonPosterJPG.Checked
             Master.eSettings.SeasonNameTBN = Me.chkSeasonNameTBN.Checked
@@ -3498,6 +3515,7 @@ Public Class dlgSettings
             Master.eSettings.SeasonDotFanart = Me.chkSeasonDotFanart.Checked
             Master.eSettings.EpisodeTBN = Me.chkEpisodeTBN.Checked
             Master.eSettings.EpisodeJPG = Me.chkEpisodeJPG.Checked
+            Master.eSettings.EpisodeDashThumbJPG = Me.chkEpisodeDashThumbJPG.Checked
             Master.eSettings.EpisodeDashFanart = Me.chkEpisodeDashFanart.Checked
             Master.eSettings.EpisodeDotFanart = Me.chkEpisodeDotFanart.Checked
             Master.eSettings.ShowPosterCol = Me.chkShowPosterCol.Checked
