@@ -19,10 +19,10 @@
 ' ################################################################################
 
 Imports System.Globalization
+Imports System.IO
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports System.Drawing
-Imports System.Net
 
 Public Class StringUtils
 
@@ -80,12 +80,12 @@ Public Class StringUtils
 
         Dim i As Integer = 0
         While i <= n
-            d(i, 0) = Math.Max(Threading.Interlocked.Increment(i), i - 1)
+            d(i, 0) = System.Math.Max(System.Threading.Interlocked.Increment(i), i - 1)
         End While
 
         Dim j As Integer = 0
         While j <= m
-            d(0, j) = Math.Max(Threading.Interlocked.Increment(j), j - 1)
+            d(0, j) = System.Math.Max(System.Threading.Interlocked.Increment(j), j - 1)
         End While
 
         Dim cost As Integer = 0
@@ -102,9 +102,9 @@ Public Class StringUtils
     Public Shared Function Decode(ByVal encText As String) As String
         Try
             Dim dByte() As Byte
-            dByte = Convert.FromBase64String(encText)
+            dByte = System.Convert.FromBase64String(encText)
             Dim decText As String
-            decText = Encoding.ASCII.GetString(dByte)
+            decText = System.Text.Encoding.ASCII.GetString(dByte)
             Return decText
         Catch
         End Try
@@ -114,9 +114,9 @@ Public Class StringUtils
     Public Shared Function Encode(ByVal decText As String) As String
         Dim eByte() As Byte
         ReDim eByte(decText.Length)
-        eByte = Encoding.ASCII.GetBytes(decText)
+        eByte = System.Text.Encoding.ASCII.GetBytes(decText)
         Dim encText As String
-        encText = Convert.ToBase64String(eByte)
+        encText = System.Convert.ToBase64String(eByte)
         Return encText
     End Function
 
@@ -139,10 +139,10 @@ Public Class StringUtils
                         If String.IsNullOrEmpty(movieName) Then Return String.Empty
 
                         If Str.IndexOf("[->]") > 0 Then
-                            strSplit = Split(Str, "[->]")
-                            movieName = Replace(movieName, Regex.Match(movieName, strSplit.First).ToString, strSplit.Last)
+                            strSplit = Strings.Split(Str, "[->]")
+                            movieName = Strings.Replace(movieName, Regex.Match(movieName, strSplit.First).ToString, strSplit.Last)
                         Else
-                            movieName = Replace(movieName, Regex.Match(movieName, Str).ToString, String.Empty)
+                            movieName = Strings.Replace(movieName, Regex.Match(movieName, Str).ToString, String.Empty)
                         End If
                     Next
                 End If
@@ -201,17 +201,17 @@ Public Class StringUtils
                     If String.IsNullOrEmpty(TVEpName) Then Return String.Empty
 
                     If Str.IndexOf("[->]") > 0 Then
-                        strSplit = Split(Str, "[->]")
-                        TVEpName = Replace(TVEpName, Regex.Match(TVEpName, strSplit.First).ToString, strSplit.Last)
+                        strSplit = Strings.Split(Str, "[->]")
+                        TVEpName = Strings.Replace(TVEpName, Regex.Match(TVEpName, strSplit.First).ToString, strSplit.Last)
                     Else
-                        TVEpName = Replace(TVEpName, Regex.Match(TVEpName, Str).ToString, String.Empty)
+                        TVEpName = Strings.Replace(TVEpName, Regex.Match(TVEpName, Str).ToString, String.Empty)
                     End If
 
                 Next
             End If
 
             'remove the show name from the episode name
-            If Not String.IsNullOrEmpty(TVShowName) Then TVEpName = Replace(TVEpName, TVShowName, String.Empty, 1, -1, CompareMethod.Text)
+            If Not String.IsNullOrEmpty(TVShowName) Then TVEpName = Strings.Replace(TVEpName, TVShowName, String.Empty, 1, -1, CompareMethod.Text)
 
             'Convert String To Proper Case
             If Master.eSettings.EpProperCase AndAlso doExtras Then
@@ -246,10 +246,10 @@ Public Class StringUtils
                     If String.IsNullOrEmpty(TVShowName) Then Return String.Empty
 
                     If Str.IndexOf("[->]") > 0 Then
-                        strSplit = Split(Str, "[->]")
-                        TVShowName = Replace(TVShowName, Regex.Match(TVShowName, strSplit.First).ToString, strSplit.Last)
+                        strSplit = Strings.Split(Str, "[->]")
+                        TVShowName = Strings.Replace(TVShowName, Regex.Match(TVShowName, strSplit.First).ToString, strSplit.Last)
                     Else
-                        TVShowName = Replace(TVShowName, Regex.Match(TVShowName, Str).ToString, String.Empty)
+                        TVShowName = Strings.Replace(TVShowName, Regex.Match(TVShowName, Str).ToString, String.Empty)
                     End If
                 Next
             End If
@@ -285,7 +285,7 @@ Public Class StringUtils
     End Function
 
     Public Shared Function HtmlEncode(ByVal stext As String) As String
-        Dim chars = WebUtility.HtmlEncode(stext).ToCharArray()
+        Dim chars = Web.HttpUtility.HtmlEncode(stext).ToCharArray()
         Dim result As StringBuilder = New StringBuilder(stext.Length + Convert.ToInt16(stext.Length * 0.1))
 
         For Each c As Char In chars

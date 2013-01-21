@@ -351,32 +351,32 @@ Public Class EmberXMLScraperModule
         If Options.bCert Then
             If Not String.IsNullOrEmpty(Master.eSettings.CertificationLang) Then
                 DBMovie.Movie.Certification = (lMediaTag.Certifications.FirstOrDefault(Function(y) y.StartsWith(Master.eSettings.CertificationLang)))
-                If Not DBMovie.Movie.Certification Is Nothing AndAlso DBMovie.Movie.Certification.IndexOf("(") >= 0 Then DBMovie.Movie.Certification = Uri.UnescapeDataString(DBMovie.Movie.Certification.Substring(0, DBMovie.Movie.Certification.IndexOf("(")))
+                If Not DBMovie.Movie.Certification Is Nothing AndAlso DBMovie.Movie.Certification.IndexOf("(") >= 0 Then DBMovie.Movie.Certification = Web.HttpUtility.HtmlDecode(DBMovie.Movie.Certification.Substring(0, DBMovie.Movie.Certification.IndexOf("(")))
             Else
-                DBMovie.Movie.Certification = Uri.UnescapeDataString(Strings.Join(lMediaTag.Certifications.ToArray(), " / "))
+                DBMovie.Movie.Certification = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Certifications.ToArray(), " / "))
             End If
         End If
-        If Options.bDirector Then DBMovie.Movie.Director = Uri.UnescapeDataString(Strings.Join(lMediaTag.Directors.ToArray(), " / "))
-        If Options.bGenre AndAlso Not Master.eSettings.LockGenre Then DBMovie.Movie.Genre = Uri.UnescapeDataString(Strings.Join(lMediaTag.Genres.ToArray(), " / "))
-        If Options.bMPAA Then DBMovie.Movie.MPAA = Uri.UnescapeDataString(lMediaTag.MPAA)
+        If Options.bDirector Then DBMovie.Movie.Director = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Directors.ToArray(), " / "))
+        If Options.bGenre AndAlso Not Master.eSettings.LockGenre Then DBMovie.Movie.Genre = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Genres.ToArray(), " / "))
+        If Options.bMPAA Then DBMovie.Movie.MPAA = Web.HttpUtility.HtmlDecode(lMediaTag.MPAA)
         If Options.bPlot Then
             If Not String.IsNullOrEmpty(lMediaTag.Plot) Then
-                DBMovie.Movie.Plot = Uri.UnescapeDataString(lMediaTag.Plot)
+                DBMovie.Movie.Plot = Web.HttpUtility.HtmlDecode(lMediaTag.Plot)
             ElseIf Master.eSettings.OutlineForPlot Then
-                DBMovie.Movie.Plot = Uri.UnescapeDataString(lMediaTag.Outline)
+                DBMovie.Movie.Plot = Web.HttpUtility.HtmlDecode(lMediaTag.Outline)
             End If
         End If
-        If Options.bOutline AndAlso Not Master.eSettings.LockOutline Then DBMovie.Movie.Outline = Uri.UnescapeDataString(lMediaTag.Outline)
+        If Options.bOutline AndAlso Not Master.eSettings.LockOutline Then DBMovie.Movie.Outline = Web.HttpUtility.HtmlDecode(lMediaTag.Outline)
         If Options.bRelease Then DBMovie.Movie.ReleaseDate = lMediaTag.Premiered
-        If Options.bRating AndAlso Not Master.eSettings.LockRating Then DBMovie.Movie.Rating = Uri.UnescapeDataString(lMediaTag.Rating.ToString)
+        If Options.bRating AndAlso Not Master.eSettings.LockRating Then DBMovie.Movie.Rating = Web.HttpUtility.HtmlDecode(lMediaTag.Rating.ToString)
         If Options.bRuntime Then DBMovie.Movie.Runtime = lMediaTag.Runtime
         'DBMovie.Movie.Sets = lMediaTag.Sets
-        If Options.bStudio AndAlso Not Master.eSettings.LockStudio Then DBMovie.Movie.Studio = Uri.UnescapeDataString(lMediaTag.Studio)
-        If Options.bTagline AndAlso Not Master.eSettings.LockTagline Then DBMovie.Movie.Tagline = Uri.UnescapeDataString(lMediaTag.Tagline)
+        If Options.bStudio AndAlso Not Master.eSettings.LockStudio Then DBMovie.Movie.Studio = Web.HttpUtility.HtmlDecode(lMediaTag.Studio)
+        If Options.bTagline AndAlso Not Master.eSettings.LockTagline Then DBMovie.Movie.Tagline = Web.HttpUtility.HtmlDecode(lMediaTag.Tagline)
         If Options.bTitle AndAlso Not Master.eSettings.LockTitle Then
-            DBMovie.Movie.Title = Uri.UnescapeDataString(lMediaTag.Title)
+            DBMovie.Movie.Title = Web.HttpUtility.HtmlDecode(lMediaTag.Title)
             Dim oldOTitle As String = DBMovie.Movie.OriginalTitle
-            DBMovie.Movie.OriginalTitle = Uri.UnescapeDataString(lMediaTag.OriginalTitle)
+            DBMovie.Movie.OriginalTitle = Web.HttpUtility.HtmlDecode(lMediaTag.OriginalTitle)
             If String.IsNullOrEmpty(DBMovie.Movie.Title) OrElse Not Master.eSettings.LockTitle Then
                 If String.IsNullOrEmpty(oldOTitle) OrElse Not oldOTitle = DBMovie.Movie.OriginalTitle Then
                     DBMovie.Movie.SortTitle = String.Empty
@@ -390,9 +390,9 @@ Public Class EmberXMLScraperModule
                 DBMovie.Movie.Top250 = String.Empty
             End If
         End If
-        If Options.bCountry Then DBMovie.Movie.Country = Uri.UnescapeDataString(Strings.Join(lMediaTag.Country.ToArray(), " / "))
+        If Options.bCountry Then DBMovie.Movie.Country = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Country.ToArray(), " / "))
         If Options.bVotes Then DBMovie.Movie.Votes = lMediaTag.Votes.ToString
-        If Options.bWriters Then DBMovie.Movie.Credits = Uri.UnescapeDataString(Strings.Join(lMediaTag.Writers.ToArray, " / "))
+        If Options.bWriters Then DBMovie.Movie.OldCredits = Web.HttpUtility.HtmlDecode(Strings.Join(lMediaTag.Writers.ToArray, " / "))
         If Options.bYear Then DBMovie.Movie.Year = lMediaTag.Year.ToString
         DBMovie.Movie.PlayCount = lMediaTag.PlayCount.ToString
         DBMovie.Movie.ID = If(String.IsNullOrEmpty(lMediaTag.ID), DBMovie.Movie.ID, lMediaTag.ID)
@@ -400,8 +400,8 @@ Public Class EmberXMLScraperModule
             DBMovie.Movie.Actors.Clear()
             For Each p As XMLScraper.MediaTags.PersonTag In lMediaTag.Actors
                 Dim person As New MediaContainers.Person
-                person.Name = Uri.UnescapeDataString(p.Name)
-                person.Role = Uri.UnescapeDataString(p.Role)
+                person.Name = Web.HttpUtility.HtmlDecode(p.Name)
+                person.Role = Web.HttpUtility.HtmlDecode(p.Role)
                 person.Thumb = p.Thumb.Thumb
                 DBMovie.Movie.Actors.Add(person)
             Next

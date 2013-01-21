@@ -18,7 +18,7 @@
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
 
-Imports EmberMediaManger.API
+Imports EmberAPI
 
 Namespace My
 
@@ -33,7 +33,7 @@ Namespace My
             Try                
                 Functions.TestMediaInfoDLL()
             Catch ex As Exception
-                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
+                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")                
             End Try
         End Sub
 
@@ -43,7 +43,7 @@ Namespace My
         Private Sub MyApplication_StartupNextInstance(ByVal sender As Object, ByVal e As Microsoft.VisualBasic.ApplicationServices.StartupNextInstanceEventArgs) Handles Me.StartupNextInstance
             Dim Args() As String = Environment.GetCommandLineArgs
             If Args.Count = 1 Then
-                MsgBox(Languages.Ember_Media_Manager_is_already_running, MsgBoxStyle.OkOnly, Languages.Ember_Media_Manager)
+                MsgBox("Ember Media Manager is already running.", MsgBoxStyle.OkOnly, "Ember Media Manager")
                 End
             End If
         End Sub
@@ -52,8 +52,8 @@ Namespace My
         ''' Basic wrapper for unhandled exceptions
         ''' </summary>
         Private Sub MyApplication_UnhandledException(ByVal sender As Object, ByVal e As Microsoft.VisualBasic.ApplicationServices.UnhandledExceptionEventArgs) Handles Me.UnhandledException
-            MsgBox(e.Exception.Message, MsgBoxStyle.OkOnly, Languages.Ember_Media_Manager)
-            Application.Log.WriteException(e.Exception, TraceEventType.Critical, Languages.Unhandled_Exception)
+            MsgBox(e.Exception.Message, MsgBoxStyle.OkOnly, "Ember Media Manager")
+            My.Application.Log.WriteException(e.Exception, TraceEventType.Critical, "Unhandled Exception.")
         End Sub
 
 #End Region 'Methods

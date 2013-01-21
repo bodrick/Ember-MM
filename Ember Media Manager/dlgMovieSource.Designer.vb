@@ -165,7 +165,7 @@ Partial Class dlgMovieSource
         '
         'pbValid
         '
-        Me.pbValid.Image = My.Resources.Modules.btn_Remove
+        Me.pbValid.Image = Global.Ember_Media_Manager.My.Resources.Resources.invalid
         Me.pbValid.Location = New System.Drawing.Point(148, 28)
         Me.pbValid.Name = "pbValid"
         Me.pbValid.Size = New System.Drawing.Size(16, 16)

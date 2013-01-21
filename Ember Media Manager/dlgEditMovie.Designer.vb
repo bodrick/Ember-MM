@@ -22,120 +22,120 @@ Partial Class dlgEditMovie
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
+        Me.components = New System.ComponentModel.Container
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgEditMovie))
-        Me.OK_Button = New System.Windows.Forms.Button()
-        Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.pnlTop = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.lvActors = New BrightIdeasSoftware.ObjectListView()
-        Me.olvcName = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.olvcRole = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.olvcThumb = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.txtOriginalTitle = New System.Windows.Forms.TextBox()
-        Me.lblOriginalTitle = New System.Windows.Forms.Label()
-        Me.txtCountry = New System.Windows.Forms.TextBox()
-        Me.lblCountry = New System.Windows.Forms.Label()
-        Me.txtFileSource = New System.Windows.Forms.TextBox()
-        Me.lblFileSource = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.txtSortTitle = New System.Windows.Forms.TextBox()
-        Me.lblLocalTrailer = New System.Windows.Forms.Label()
-        Me.btnPlayTrailer = New System.Windows.Forms.Button()
-        Me.btnDLTrailer = New System.Windows.Forms.Button()
-        Me.lbGenre = New System.Windows.Forms.CheckedListBox()
-        Me.btnStudio = New System.Windows.Forms.Button()
-        Me.lblStudio = New System.Windows.Forms.Label()
-        Me.txtStudio = New System.Windows.Forms.TextBox()
-        Me.lblTrailer = New System.Windows.Forms.Label()
-        Me.txtTrailer = New System.Windows.Forms.TextBox()
-        Me.txtReleaseDate = New System.Windows.Forms.TextBox()
-        Me.lblReleaseDate = New System.Windows.Forms.Label()
-        Me.lblCredits = New System.Windows.Forms.Label()
-        Me.txtCredits = New System.Windows.Forms.TextBox()
-        Me.lblCerts = New System.Windows.Forms.Label()
-        Me.txtCerts = New System.Windows.Forms.TextBox()
-        Me.lblRuntime = New System.Windows.Forms.Label()
-        Me.txtRuntime = New System.Windows.Forms.TextBox()
-        Me.lblMPAADesc = New System.Windows.Forms.Label()
-        Me.txtMPAADesc = New System.Windows.Forms.TextBox()
-        Me.btnEditActor = New System.Windows.Forms.Button()
-        Me.btnAddActor = New System.Windows.Forms.Button()
-        Me.btnManual = New System.Windows.Forms.Button()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.lblActors = New System.Windows.Forms.Label()
-        Me.lbMPAA = New System.Windows.Forms.ListBox()
-        Me.lblGenre = New System.Windows.Forms.Label()
-        Me.lblMPAA = New System.Windows.Forms.Label()
-        Me.lblDirector = New System.Windows.Forms.Label()
-        Me.txtDirector = New System.Windows.Forms.TextBox()
-        Me.txtTop250 = New System.Windows.Forms.TextBox()
-        Me.lblTop250 = New System.Windows.Forms.Label()
-        Me.lblPlot = New System.Windows.Forms.Label()
-        Me.txtPlot = New System.Windows.Forms.TextBox()
-        Me.lblOutline = New System.Windows.Forms.Label()
-        Me.txtOutline = New System.Windows.Forms.TextBox()
-        Me.lblTagline = New System.Windows.Forms.Label()
-        Me.txtTagline = New System.Windows.Forms.TextBox()
-        Me.pbStar5 = New System.Windows.Forms.PictureBox()
-        Me.pbStar4 = New System.Windows.Forms.PictureBox()
-        Me.pbStar3 = New System.Windows.Forms.PictureBox()
-        Me.pbStar2 = New System.Windows.Forms.PictureBox()
-        Me.pbStar1 = New System.Windows.Forms.PictureBox()
-        Me.txtVotes = New System.Windows.Forms.TextBox()
-        Me.lblVotes = New System.Windows.Forms.Label()
-        Me.lblRating = New System.Windows.Forms.Label()
-        Me.mtxtYear = New System.Windows.Forms.MaskedTextBox()
-        Me.lblYear = New System.Windows.Forms.Label()
-        Me.lblTitle = New System.Windows.Forms.Label()
-        Me.txtTitle = New System.Windows.Forms.TextBox()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.btnSetPosterDL = New System.Windows.Forms.Button()
-        Me.btnRemovePoster = New System.Windows.Forms.Button()
-        Me.lblPosterSize = New System.Windows.Forms.Label()
-        Me.btnSetPosterScrape = New System.Windows.Forms.Button()
-        Me.btnSetPoster = New System.Windows.Forms.Button()
-        Me.pbPoster = New System.Windows.Forms.PictureBox()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.btnSetFanartDL = New System.Windows.Forms.Button()
-        Me.btnRemoveFanart = New System.Windows.Forms.Button()
-        Me.lblFanartSize = New System.Windows.Forms.Label()
-        Me.btnSetFanartScrape = New System.Windows.Forms.Button()
-        Me.btnSetFanart = New System.Windows.Forms.Button()
-        Me.pbFanart = New System.Windows.Forms.PictureBox()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.pnlETQueue = New System.Windows.Forms.Panel()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.btnTransferNow = New System.Windows.Forms.Button()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnSetAsFanart = New System.Windows.Forms.Button()
-        Me.btnThumbsRefresh = New System.Windows.Forms.Button()
-        Me.btnRemoveThumb = New System.Windows.Forms.Button()
-        Me.btnDown = New System.Windows.Forms.Button()
-        Me.btnUp = New System.Windows.Forms.Button()
-        Me.lvThumbs = New System.Windows.Forms.ListView()
+        Me.OK_Button = New System.Windows.Forms.Button
+        Me.Cancel_Button = New System.Windows.Forms.Button
+        Me.pnlTop = New System.Windows.Forms.Panel
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.TabControl1 = New System.Windows.Forms.TabControl
+        Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.txtCountry = New System.Windows.Forms.TextBox
+        Me.lblCountry = New System.Windows.Forms.Label
+        Me.txtFileSource = New System.Windows.Forms.TextBox
+        Me.lblFileSource = New System.Windows.Forms.Label
+        Me.btnActorDown = New System.Windows.Forms.Button
+        Me.btnActorUp = New System.Windows.Forms.Button
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtSortTitle = New System.Windows.Forms.TextBox
+        Me.lblLocalTrailer = New System.Windows.Forms.Label
+        Me.btnPlayTrailer = New System.Windows.Forms.Button
+        Me.btnDLTrailer = New System.Windows.Forms.Button
+        Me.lbGenre = New System.Windows.Forms.CheckedListBox
+        Me.btnStudio = New System.Windows.Forms.Button
+        Me.lblStudio = New System.Windows.Forms.Label
+        Me.txtStudio = New System.Windows.Forms.TextBox
+        Me.lblTrailer = New System.Windows.Forms.Label
+        Me.txtTrailer = New System.Windows.Forms.TextBox
+        Me.txtReleaseDate = New System.Windows.Forms.TextBox
+        Me.lblReleaseDate = New System.Windows.Forms.Label
+        Me.lblCredits = New System.Windows.Forms.Label
+        Me.txtCredits = New System.Windows.Forms.TextBox
+        Me.lblCerts = New System.Windows.Forms.Label
+        Me.txtCerts = New System.Windows.Forms.TextBox
+        Me.lblRuntime = New System.Windows.Forms.Label
+        Me.txtRuntime = New System.Windows.Forms.TextBox
+        Me.lblMPAADesc = New System.Windows.Forms.Label
+        Me.txtMPAADesc = New System.Windows.Forms.TextBox
+        Me.btnEditActor = New System.Windows.Forms.Button
+        Me.btnAddActor = New System.Windows.Forms.Button
+        Me.btnManual = New System.Windows.Forms.Button
+        Me.btnRemove = New System.Windows.Forms.Button
+        Me.lblActors = New System.Windows.Forms.Label
+        Me.lvActors = New System.Windows.Forms.ListView
+        Me.colName = New System.Windows.Forms.ColumnHeader
+        Me.colRole = New System.Windows.Forms.ColumnHeader
+        Me.colThumb = New System.Windows.Forms.ColumnHeader
+        Me.lbMPAA = New System.Windows.Forms.ListBox
+        Me.lblGenre = New System.Windows.Forms.Label
+        Me.lblMPAA = New System.Windows.Forms.Label
+        Me.lblDirector = New System.Windows.Forms.Label
+        Me.txtDirector = New System.Windows.Forms.TextBox
+        Me.txtTop250 = New System.Windows.Forms.TextBox
+        Me.lblTop250 = New System.Windows.Forms.Label
+        Me.lblPlot = New System.Windows.Forms.Label
+        Me.txtPlot = New System.Windows.Forms.TextBox
+        Me.lblOutline = New System.Windows.Forms.Label
+        Me.txtOutline = New System.Windows.Forms.TextBox
+        Me.lblTagline = New System.Windows.Forms.Label
+        Me.txtTagline = New System.Windows.Forms.TextBox
+        Me.pbStar5 = New System.Windows.Forms.PictureBox
+        Me.pbStar4 = New System.Windows.Forms.PictureBox
+        Me.pbStar3 = New System.Windows.Forms.PictureBox
+        Me.pbStar2 = New System.Windows.Forms.PictureBox
+        Me.pbStar1 = New System.Windows.Forms.PictureBox
+        Me.txtVotes = New System.Windows.Forms.TextBox
+        Me.lblVotes = New System.Windows.Forms.Label
+        Me.lblRating = New System.Windows.Forms.Label
+        Me.mtxtYear = New System.Windows.Forms.MaskedTextBox
+        Me.lblYear = New System.Windows.Forms.Label
+        Me.lblTitle = New System.Windows.Forms.Label
+        Me.txtTitle = New System.Windows.Forms.TextBox
+        Me.TabPage2 = New System.Windows.Forms.TabPage
+        Me.btnSetPosterDL = New System.Windows.Forms.Button
+        Me.btnRemovePoster = New System.Windows.Forms.Button
+        Me.lblPosterSize = New System.Windows.Forms.Label
+        Me.btnSetPosterScrape = New System.Windows.Forms.Button
+        Me.btnSetPoster = New System.Windows.Forms.Button
+        Me.pbPoster = New System.Windows.Forms.PictureBox
+        Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.btnSetFanartDL = New System.Windows.Forms.Button
+        Me.btnRemoveFanart = New System.Windows.Forms.Button
+        Me.lblFanartSize = New System.Windows.Forms.Label
+        Me.btnSetFanartScrape = New System.Windows.Forms.Button
+        Me.btnSetFanart = New System.Windows.Forms.Button
+        Me.pbFanart = New System.Windows.Forms.PictureBox
+        Me.TabPage5 = New System.Windows.Forms.TabPage
+        Me.pnlETQueue = New System.Windows.Forms.Panel
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.btnTransferNow = New System.Windows.Forms.Button
+        Me.Panel1 = New System.Windows.Forms.Panel
+        Me.btnSetAsFanart = New System.Windows.Forms.Button
+        Me.btnThumbsRefresh = New System.Windows.Forms.Button
+        Me.btnRemoveThumb = New System.Windows.Forms.Button
+        Me.btnDown = New System.Windows.Forms.Button
+        Me.btnUp = New System.Windows.Forms.Button
+        Me.lvThumbs = New System.Windows.Forms.ListView
         Me.ilThumbs = New System.Windows.Forms.ImageList(Me.components)
-        Me.pbExtraThumbs = New System.Windows.Forms.PictureBox()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.pnlFrameExtrator = New System.Windows.Forms.Panel()
-        Me.MovieExtractorPanel = New EmberMediaManger.MovieExtractor()
-        Me.TabPage6 = New System.Windows.Forms.TabPage()
-        Me.pnlFileInfo = New System.Windows.Forms.Panel()
-        Me.ofdImage = New System.Windows.Forms.OpenFileDialog()
-        Me.chkMark = New System.Windows.Forms.CheckBox()
+        Me.pbExtraThumbs = New System.Windows.Forms.PictureBox
+        Me.TabPage4 = New System.Windows.Forms.TabPage
+        Me.pnlFrameExtrator = New System.Windows.Forms.Panel
+        Me.TabPage6 = New System.Windows.Forms.TabPage
+        Me.pnlFileInfo = New System.Windows.Forms.Panel
+        Me.ofdImage = New System.Windows.Forms.OpenFileDialog
+        Me.chkMark = New System.Windows.Forms.CheckBox
+        Me.btnRescrape = New System.Windows.Forms.Button
+        Me.btnChangeMovie = New System.Windows.Forms.Button
+        Me.btnClearCache = New System.Windows.Forms.Button
         Me.DelayTimer = New System.Windows.Forms.Timer(Me.components)
-        Me.btnClearCache = New System.Windows.Forms.Button()
-        Me.btnChangeMovie = New System.Windows.Forms.Button()
-        Me.btnRescrape = New System.Windows.Forms.Button()
+        Me.lblOriginalTitle = New System.Windows.Forms.Label
+        Me.txtOriginalTitle = New System.Windows.Forms.TextBox
         Me.pnlTop.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        CType(Me.lvActors, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStar5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStar4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStar3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,7 +150,6 @@ Partial Class dlgEditMovie
         Me.Panel1.SuspendLayout()
         CType(Me.pbExtraThumbs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
-        Me.pnlFrameExtrator.SuspendLayout()
         Me.TabPage6.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -238,13 +237,14 @@ Partial Class dlgEditMovie
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.lvActors)
         Me.TabPage1.Controls.Add(Me.txtOriginalTitle)
         Me.TabPage1.Controls.Add(Me.lblOriginalTitle)
         Me.TabPage1.Controls.Add(Me.txtCountry)
         Me.TabPage1.Controls.Add(Me.lblCountry)
         Me.TabPage1.Controls.Add(Me.txtFileSource)
         Me.TabPage1.Controls.Add(Me.lblFileSource)
+        Me.TabPage1.Controls.Add(Me.btnActorDown)
+        Me.TabPage1.Controls.Add(Me.btnActorUp)
         Me.TabPage1.Controls.Add(Me.Label6)
         Me.TabPage1.Controls.Add(Me.txtSortTitle)
         Me.TabPage1.Controls.Add(Me.lblLocalTrailer)
@@ -271,6 +271,7 @@ Partial Class dlgEditMovie
         Me.TabPage1.Controls.Add(Me.btnManual)
         Me.TabPage1.Controls.Add(Me.btnRemove)
         Me.TabPage1.Controls.Add(Me.lblActors)
+        Me.TabPage1.Controls.Add(Me.lvActors)
         Me.TabPage1.Controls.Add(Me.lbMPAA)
         Me.TabPage1.Controls.Add(Me.lblGenre)
         Me.TabPage1.Controls.Add(Me.lblMPAA)
@@ -303,59 +304,6 @@ Partial Class dlgEditMovie
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Details"
         Me.TabPage1.UseVisualStyleBackColor = True
-        '
-        'lvActors
-        '
-        Me.lvActors.AllColumns.Add(Me.olvcName)
-        Me.lvActors.AllColumns.Add(Me.olvcRole)
-        Me.lvActors.AllColumns.Add(Me.olvcThumb)
-        Me.lvActors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.olvcName, Me.olvcRole, Me.olvcThumb})
-        Me.lvActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lvActors.FullRowSelect = True
-        Me.lvActors.Location = New System.Drawing.Point(217, 155)
-        Me.lvActors.Name = "lvActors"
-        Me.lvActors.ShowGroups = False
-        Me.lvActors.Size = New System.Drawing.Size(408, 147)
-        Me.lvActors.TabIndex = 120
-        Me.lvActors.UseCompatibleStateImageBehavior = False
-        Me.lvActors.View = System.Windows.Forms.View.Details
-        '
-        'olvcName
-        '
-        Me.olvcName.AspectName = "ActorName"
-        Me.olvcName.Text = "Name"
-        Me.olvcName.Width = 123
-        '
-        'olvcRole
-        '
-        Me.olvcRole.AspectName = "Role"
-        Me.olvcRole.Text = "Role"
-        Me.olvcRole.Width = 113
-        '
-        'olvcThumb
-        '
-        Me.olvcThumb.AspectName = "Actor.thumb"
-        Me.olvcThumb.FillsFreeSpace = True
-        Me.olvcThumb.Text = "Thumb"
-        '
-        'txtOriginalTitle
-        '
-        Me.txtOriginalTitle.BackColor = System.Drawing.SystemColors.Window
-        Me.txtOriginalTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.txtOriginalTitle.Location = New System.Drawing.Point(7, 63)
-        Me.txtOriginalTitle.Name = "txtOriginalTitle"
-        Me.txtOriginalTitle.Size = New System.Drawing.Size(192, 22)
-        Me.txtOriginalTitle.TabIndex = 119
-        '
-        'lblOriginalTitle
-        '
-        Me.lblOriginalTitle.AutoSize = True
-        Me.lblOriginalTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.lblOriginalTitle.Location = New System.Drawing.Point(5, 47)
-        Me.lblOriginalTitle.Name = "lblOriginalTitle"
-        Me.lblOriginalTitle.Size = New System.Drawing.Size(76, 13)
-        Me.lblOriginalTitle.TabIndex = 118
-        Me.lblOriginalTitle.Text = "Original Title:"
         '
         'txtCountry
         '
@@ -395,6 +343,24 @@ Partial Class dlgEditMovie
         Me.lblFileSource.TabIndex = 114
         Me.lblFileSource.Text = "Video Source:"
         '
+        'btnActorDown
+        '
+        Me.btnActorDown.Image = CType(resources.GetObject("btnActorDown.Image"), System.Drawing.Image)
+        Me.btnActorDown.Location = New System.Drawing.Point(430, 304)
+        Me.btnActorDown.Name = "btnActorDown"
+        Me.btnActorDown.Size = New System.Drawing.Size(23, 23)
+        Me.btnActorDown.TabIndex = 113
+        Me.btnActorDown.UseVisualStyleBackColor = True
+        '
+        'btnActorUp
+        '
+        Me.btnActorUp.Image = CType(resources.GetObject("btnActorUp.Image"), System.Drawing.Image)
+        Me.btnActorUp.Location = New System.Drawing.Point(406, 304)
+        Me.btnActorUp.Name = "btnActorUp"
+        Me.btnActorUp.Size = New System.Drawing.Size(23, 23)
+        Me.btnActorUp.TabIndex = 112
+        Me.btnActorUp.UseVisualStyleBackColor = True
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -429,7 +395,7 @@ Partial Class dlgEditMovie
         'btnPlayTrailer
         '
         Me.btnPlayTrailer.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnPlayTrailer.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Play
+        Me.btnPlayTrailer.Image = Global.Ember_Media_Manager.My.Resources.Resources.Play_Icon
         Me.btnPlayTrailer.Location = New System.Drawing.Point(579, 423)
         Me.btnPlayTrailer.Name = "btnPlayTrailer"
         Me.btnPlayTrailer.Size = New System.Drawing.Size(23, 23)
@@ -438,7 +404,7 @@ Partial Class dlgEditMovie
         '
         'btnDLTrailer
         '
-        Me.btnDLTrailer.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Add
+        Me.btnDLTrailer.Image = CType(resources.GetObject("btnDLTrailer.Image"), System.Drawing.Image)
         Me.btnDLTrailer.Location = New System.Drawing.Point(602, 423)
         Me.btnDLTrailer.Name = "btnDLTrailer"
         Me.btnDLTrailer.Size = New System.Drawing.Size(23, 23)
@@ -461,7 +427,7 @@ Partial Class dlgEditMovie
         '
         'btnStudio
         '
-        Me.btnStudio.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Home
+        Me.btnStudio.Image = CType(resources.GetObject("btnStudio.Image"), System.Drawing.Image)
         Me.btnStudio.Location = New System.Drawing.Point(805, 343)
         Me.btnStudio.Name = "btnStudio"
         Me.btnStudio.Size = New System.Drawing.Size(23, 23)
@@ -604,7 +570,7 @@ Partial Class dlgEditMovie
         '
         'btnEditActor
         '
-        Me.btnEditActor.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Edit
+        Me.btnEditActor.Image = CType(resources.GetObject("btnEditActor.Image"), System.Drawing.Image)
         Me.btnEditActor.Location = New System.Drawing.Point(246, 303)
         Me.btnEditActor.Name = "btnEditActor"
         Me.btnEditActor.Size = New System.Drawing.Size(23, 23)
@@ -613,7 +579,7 @@ Partial Class dlgEditMovie
         '
         'btnAddActor
         '
-        Me.btnAddActor.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Add
+        Me.btnAddActor.Image = CType(resources.GetObject("btnAddActor.Image"), System.Drawing.Image)
         Me.btnAddActor.Location = New System.Drawing.Point(217, 303)
         Me.btnAddActor.Name = "btnAddActor"
         Me.btnAddActor.Size = New System.Drawing.Size(23, 23)
@@ -632,7 +598,7 @@ Partial Class dlgEditMovie
         '
         'btnRemove
         '
-        Me.btnRemove.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Remove
+        Me.btnRemove.Image = CType(resources.GetObject("btnRemove.Image"), System.Drawing.Image)
         Me.btnRemove.Location = New System.Drawing.Point(602, 303)
         Me.btnRemove.Name = "btnRemove"
         Me.btnRemove.Size = New System.Drawing.Size(23, 23)
@@ -648,6 +614,35 @@ Partial Class dlgEditMovie
         Me.lblActors.Size = New System.Drawing.Size(43, 13)
         Me.lblActors.TabIndex = 83
         Me.lblActors.Text = "Actors:"
+        '
+        'lvActors
+        '
+        Me.lvActors.BackColor = System.Drawing.SystemColors.Window
+        Me.lvActors.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lvActors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colName, Me.colRole, Me.colThumb})
+        Me.lvActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lvActors.FullRowSelect = True
+        Me.lvActors.Location = New System.Drawing.Point(217, 155)
+        Me.lvActors.Name = "lvActors"
+        Me.lvActors.Size = New System.Drawing.Size(408, 147)
+        Me.lvActors.TabIndex = 11
+        Me.lvActors.UseCompatibleStateImageBehavior = False
+        Me.lvActors.View = System.Windows.Forms.View.Details
+        '
+        'colName
+        '
+        Me.colName.Text = "Name"
+        Me.colName.Width = 110
+        '
+        'colRole
+        '
+        Me.colRole.Text = "Role"
+        Me.colRole.Width = 100
+        '
+        'colThumb
+        '
+        Me.colThumb.Text = "Thumb"
+        Me.colThumb.Width = 174
         '
         'lbMPAA
         '
@@ -907,7 +902,7 @@ Partial Class dlgEditMovie
         'btnSetPosterDL
         '
         Me.btnSetPosterDL.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnSetPosterDL.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Download_large
+        Me.btnSetPosterDL.Image = CType(resources.GetObject("btnSetPosterDL.Image"), System.Drawing.Image)
         Me.btnSetPosterDL.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSetPosterDL.Location = New System.Drawing.Point(735, 180)
         Me.btnSetPosterDL.Name = "btnSetPosterDL"
@@ -920,7 +915,7 @@ Partial Class dlgEditMovie
         'btnRemovePoster
         '
         Me.btnRemovePoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnRemovePoster.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Remove_large
+        Me.btnRemovePoster.Image = CType(resources.GetObject("btnRemovePoster.Image"), System.Drawing.Image)
         Me.btnRemovePoster.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnRemovePoster.Location = New System.Drawing.Point(735, 363)
         Me.btnRemovePoster.Name = "btnRemovePoster"
@@ -944,7 +939,7 @@ Partial Class dlgEditMovie
         'btnSetPosterScrape
         '
         Me.btnSetPosterScrape.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnSetPosterScrape.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Remote_large
+        Me.btnSetPosterScrape.Image = CType(resources.GetObject("btnSetPosterScrape.Image"), System.Drawing.Image)
         Me.btnSetPosterScrape.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSetPosterScrape.Location = New System.Drawing.Point(735, 93)
         Me.btnSetPosterScrape.Name = "btnSetPosterScrape"
@@ -957,7 +952,7 @@ Partial Class dlgEditMovie
         'btnSetPoster
         '
         Me.btnSetPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnSetPoster.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Sources_large
+        Me.btnSetPoster.Image = CType(resources.GetObject("btnSetPoster.Image"), System.Drawing.Image)
         Me.btnSetPoster.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSetPoster.Location = New System.Drawing.Point(735, 6)
         Me.btnSetPoster.Name = "btnSetPoster"
@@ -996,7 +991,7 @@ Partial Class dlgEditMovie
         'btnSetFanartDL
         '
         Me.btnSetFanartDL.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnSetFanartDL.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Download_large
+        Me.btnSetFanartDL.Image = CType(resources.GetObject("btnSetFanartDL.Image"), System.Drawing.Image)
         Me.btnSetFanartDL.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSetFanartDL.Location = New System.Drawing.Point(735, 180)
         Me.btnSetFanartDL.Name = "btnSetFanartDL"
@@ -1009,7 +1004,7 @@ Partial Class dlgEditMovie
         'btnRemoveFanart
         '
         Me.btnRemoveFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnRemoveFanart.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Remove_large
+        Me.btnRemoveFanart.Image = CType(resources.GetObject("btnRemoveFanart.Image"), System.Drawing.Image)
         Me.btnRemoveFanart.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnRemoveFanart.Location = New System.Drawing.Point(735, 363)
         Me.btnRemoveFanart.Name = "btnRemoveFanart"
@@ -1033,7 +1028,7 @@ Partial Class dlgEditMovie
         'btnSetFanartScrape
         '
         Me.btnSetFanartScrape.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnSetFanartScrape.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Remote_large
+        Me.btnSetFanartScrape.Image = CType(resources.GetObject("btnSetFanartScrape.Image"), System.Drawing.Image)
         Me.btnSetFanartScrape.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSetFanartScrape.Location = New System.Drawing.Point(735, 93)
         Me.btnSetFanartScrape.Name = "btnSetFanartScrape"
@@ -1046,7 +1041,7 @@ Partial Class dlgEditMovie
         'btnSetFanart
         '
         Me.btnSetFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnSetFanart.Image = Global.EmberMediaManger.My.Resources.Modules.btn_Sources_large
+        Me.btnSetFanart.Image = CType(resources.GetObject("btnSetFanart.Image"), System.Drawing.Image)
         Me.btnSetFanart.ImageAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnSetFanart.Location = New System.Drawing.Point(735, 6)
         Me.btnSetFanart.Name = "btnSetFanart"
@@ -1225,20 +1220,10 @@ Partial Class dlgEditMovie
         '
         'pnlFrameExtrator
         '
-        Me.pnlFrameExtrator.Controls.Add(Me.MovieExtractorPanel)
         Me.pnlFrameExtrator.Location = New System.Drawing.Point(0, 0)
         Me.pnlFrameExtrator.Name = "pnlFrameExtrator"
         Me.pnlFrameExtrator.Size = New System.Drawing.Size(834, 452)
         Me.pnlFrameExtrator.TabIndex = 0
-        '
-        'MovieExtractorPanel
-        '
-        Me.MovieExtractorPanel.CurrentMovie = Nothing
-        Me.MovieExtractorPanel.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MovieExtractorPanel.Location = New System.Drawing.Point(0, 0)
-        Me.MovieExtractorPanel.Name = "MovieExtractorPanel"
-        Me.MovieExtractorPanel.Size = New System.Drawing.Size(843, 455)
-        Me.MovieExtractorPanel.TabIndex = 0
         '
         'TabPage6
         '
@@ -1269,9 +1254,31 @@ Partial Class dlgEditMovie
         Me.chkMark.Text = "Mark Movie"
         Me.chkMark.UseVisualStyleBackColor = True
         '
-        'DelayTimer
+        'btnRescrape
         '
-        Me.DelayTimer.Interval = 250
+        Me.btnRescrape.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.btnRescrape.Image = CType(resources.GetObject("btnRescrape.Image"), System.Drawing.Image)
+        Me.btnRescrape.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnRescrape.Location = New System.Drawing.Point(310, 554)
+        Me.btnRescrape.Name = "btnRescrape"
+        Me.btnRescrape.Size = New System.Drawing.Size(98, 23)
+        Me.btnRescrape.TabIndex = 58
+        Me.btnRescrape.Text = "Re-scrape"
+        Me.btnRescrape.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnRescrape.UseVisualStyleBackColor = True
+        '
+        'btnChangeMovie
+        '
+        Me.btnChangeMovie.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.btnChangeMovie.Image = CType(resources.GetObject("btnChangeMovie.Image"), System.Drawing.Image)
+        Me.btnChangeMovie.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnChangeMovie.Location = New System.Drawing.Point(429, 554)
+        Me.btnChangeMovie.Name = "btnChangeMovie"
+        Me.btnChangeMovie.Size = New System.Drawing.Size(107, 23)
+        Me.btnChangeMovie.TabIndex = 59
+        Me.btnChangeMovie.Text = "Change Movie"
+        Me.btnChangeMovie.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.btnChangeMovie.UseVisualStyleBackColor = True
         '
         'btnClearCache
         '
@@ -1287,31 +1294,28 @@ Partial Class dlgEditMovie
         Me.btnClearCache.UseVisualStyleBackColor = True
         Me.btnClearCache.Visible = False
         '
-        'btnChangeMovie
+        'DelayTimer
         '
-        Me.btnChangeMovie.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnChangeMovie.Image = CType(resources.GetObject("btnChangeMovie.Image"), System.Drawing.Image)
-        Me.btnChangeMovie.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnChangeMovie.Location = New System.Drawing.Point(429, 554)
-        Me.btnChangeMovie.Name = "btnChangeMovie"
-        Me.btnChangeMovie.Size = New System.Drawing.Size(107, 23)
-        Me.btnChangeMovie.TabIndex = 59
-        Me.btnChangeMovie.Text = "Change Movie"
-        Me.btnChangeMovie.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnChangeMovie.UseVisualStyleBackColor = True
+        Me.DelayTimer.Interval = 250
         '
-        'btnRescrape
+        'lblOriginalTitle
         '
-        Me.btnRescrape.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.btnRescrape.Image = CType(resources.GetObject("btnRescrape.Image"), System.Drawing.Image)
-        Me.btnRescrape.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnRescrape.Location = New System.Drawing.Point(310, 554)
-        Me.btnRescrape.Name = "btnRescrape"
-        Me.btnRescrape.Size = New System.Drawing.Size(98, 23)
-        Me.btnRescrape.TabIndex = 58
-        Me.btnRescrape.Text = "Re-scrape"
-        Me.btnRescrape.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.btnRescrape.UseVisualStyleBackColor = True
+        Me.lblOriginalTitle.AutoSize = True
+        Me.lblOriginalTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.lblOriginalTitle.Location = New System.Drawing.Point(5, 47)
+        Me.lblOriginalTitle.Name = "lblOriginalTitle"
+        Me.lblOriginalTitle.Size = New System.Drawing.Size(76, 13)
+        Me.lblOriginalTitle.TabIndex = 118
+        Me.lblOriginalTitle.Text = "Original Title:"
+        '
+        'txtOriginalTitle
+        '
+        Me.txtOriginalTitle.BackColor = System.Drawing.SystemColors.Window
+        Me.txtOriginalTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.txtOriginalTitle.Location = New System.Drawing.Point(7, 63)
+        Me.txtOriginalTitle.Name = "txtOriginalTitle"
+        Me.txtOriginalTitle.Size = New System.Drawing.Size(192, 22)
+        Me.txtOriginalTitle.TabIndex = 119
         '
         'dlgEditMovie
         '
@@ -1342,7 +1346,6 @@ Partial Class dlgEditMovie
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        CType(Me.lvActors, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStar5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStar4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStar3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1357,7 +1360,6 @@ Partial Class dlgEditMovie
         Me.Panel1.ResumeLayout(False)
         CType(Me.pbExtraThumbs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
-        Me.pnlFrameExtrator.ResumeLayout(False)
         Me.TabPage6.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1378,6 +1380,10 @@ Partial Class dlgEditMovie
     Friend WithEvents btnManual As System.Windows.Forms.Button
     Friend WithEvents btnRemove As System.Windows.Forms.Button
     Friend WithEvents lblActors As System.Windows.Forms.Label
+    Friend WithEvents lvActors As System.Windows.Forms.ListView
+    Friend WithEvents colName As System.Windows.Forms.ColumnHeader
+    Friend WithEvents colRole As System.Windows.Forms.ColumnHeader
+    Friend WithEvents colThumb As System.Windows.Forms.ColumnHeader
     Friend WithEvents lbMPAA As System.Windows.Forms.ListBox
     Friend WithEvents lblGenre As System.Windows.Forms.Label
     Friend WithEvents lblMPAA As System.Windows.Forms.Label
@@ -1458,6 +1464,8 @@ Partial Class dlgEditMovie
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents txtSortTitle As System.Windows.Forms.TextBox
     Friend WithEvents DelayTimer As System.Windows.Forms.Timer
+    Friend WithEvents btnActorDown As System.Windows.Forms.Button
+    Friend WithEvents btnActorUp As System.Windows.Forms.Button
     Friend WithEvents pnlFrameExtrator As System.Windows.Forms.Panel
     Friend WithEvents txtFileSource As System.Windows.Forms.TextBox
     Friend WithEvents lblFileSource As System.Windows.Forms.Label
@@ -1465,10 +1473,5 @@ Partial Class dlgEditMovie
     Friend WithEvents txtCountry As System.Windows.Forms.TextBox
     Friend WithEvents txtOriginalTitle As System.Windows.Forms.TextBox
     Friend WithEvents lblOriginalTitle As System.Windows.Forms.Label
-    Friend WithEvents lvActors As BrightIdeasSoftware.ObjectListView
-    Friend WithEvents olvcName As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents olvcRole As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents olvcThumb As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents MovieExtractorPanel As EmberMediaManger.MovieExtractor
 
 End Class

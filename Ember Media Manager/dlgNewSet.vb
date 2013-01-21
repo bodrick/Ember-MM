@@ -1,4 +1,4 @@
-﻿Imports EmberMediaManger.API
+﻿Imports EmberAPI
 
 ' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #

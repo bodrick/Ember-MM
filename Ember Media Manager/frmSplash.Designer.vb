@@ -57,7 +57,7 @@ Partial Class frmSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.BackgroundImage = My.Resources.Modules.img_SplashScreen
+        Me.BackgroundImage = Global.Ember_Media_Manager.My.Resources.Resources.EmberSplashScreen
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.ClientSize = New System.Drawing.Size(373, 373)
         Me.ControlBox = False

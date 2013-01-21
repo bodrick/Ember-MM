@@ -20,7 +20,7 @@
 
 Imports System.IO
 Imports System.Text.RegularExpressions
-Imports EmberMediaManger.API
+Imports EmberAPI
 
 Public Class dlgTVSource
 
@@ -67,15 +67,15 @@ Public Class dlgTVSource
 
         Try
             If String.IsNullOrEmpty(Me.txtSourceName.Text) Then
-                pbValid.Image = My.Resources.Modules.btn_Remove
+                pbValid.Image = My.Resources.invalid
             Else
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = String.Concat("SELECT ID FROM TVSources WHERE Name LIKE """, Me.txtSourceName.Text.Trim, """ AND ID != ", Me._id, ";")
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         If Not String.IsNullOrEmpty(SQLreader("ID").ToString) Then
-                            pbValid.Image = My.Resources.Modules.btn_Remove
+                            pbValid.Image = My.Resources.invalid
                         Else
-                            pbValid.Image = My.Resources.Modules.small_icon_Tick
+                            pbValid.Image = My.Resources.valid
                             isValid = True
                         End If
                     End Using
@@ -94,7 +94,7 @@ Public Class dlgTVSource
         Me.SetUp()
         Try
             If Me._id >= 0 Then
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = String.Concat("SELECT * FROM TVSources WHERE ID = ", Me._id, ";")
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         Me.txtSourceName.Text = SQLreader("Name").ToString
@@ -114,8 +114,8 @@ Public Class dlgTVSource
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         Try
-            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+            Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     If Me._id >= 0 Then
                         SQLcommand.CommandText = String.Concat("UPDATE TVSources SET name = (?), path = (?) WHERE ID =", Me._id, ";")
                     Else
@@ -160,7 +160,7 @@ Public Class dlgTVSource
             Me.tmrPath.Enabled = True
         Else
             If String.IsNullOrEmpty(txtSourceName.Text) OrElse Me.autoName Then
-                Me.txtSourceName.Text = FileUtils.GetDirectory(Me.txtSourcePath.Text)
+                Me.txtSourceName.Text = FileUtils.Common.GetDirectory(Me.txtSourcePath.Text)
                 Me.autoName = True
             End If
             Me.prevPathText = Me.currPathText

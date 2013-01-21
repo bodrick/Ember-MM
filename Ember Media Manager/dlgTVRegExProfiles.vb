@@ -1,7 +1,7 @@
-﻿
+﻿Imports System.Windows.Forms
 Imports System.IO
 Imports System.Xml.Serialization
-Imports EmberMediaManger.API
+Imports EmberAPI
 
 Public Class dlgTVRegExProfiles
     Public ShowRegex As New List(Of Settings.TVShowRegEx)

@@ -61,7 +61,7 @@ Public Class clsServer
             mySocket.Close()
             Return
         End If
-        sRequest = Uri.UnescapeDataString(sbuffer.Substring(0, iStartPos - 1))
+        sRequest = Web.HttpUtility.UrlDecode(sbuffer.Substring(0, iStartPos - 1))
         sRequest.Replace("\\", "/")
         Dim sMimeType As String = String.Empty
         'If ((sRequest.IndexOf(".") < 1) AndAlso (Not sRequest.EndsWith("/"))) Then
@@ -70,7 +70,7 @@ Public Class clsServer
         iStartPos = sRequest.LastIndexOf("/") + 1
         sRequestedFile = sRequest.Substring(iStartPos)
         If sRequest.IndexOf("?") >= 0 Then
-            qscoll = HTTP.ParseQueryString(sRequest.Substring(sRequest.IndexOf("?") + 1))
+            qscoll = Web.HttpUtility.ParseQueryString(sRequest.Substring(sRequest.IndexOf("?") + 1))
             sRequestedFile = sRequest.Substring(iStartPos, sRequest.IndexOf("?") - iStartPos)
         End If
         If sRequest.Contains("<$RELOAD_DB>") Then

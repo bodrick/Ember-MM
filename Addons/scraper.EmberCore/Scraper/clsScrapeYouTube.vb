@@ -152,7 +152,7 @@ Namespace YouTube
                 If fmtMatch.Success Then
                     Dim FormatMap As String = fmtMatch.Groups(1).Value
 
-                    Dim Formats As String() = Uri.EscapeDataString(FormatMap).Split(Convert.ToChar(","))
+                    Dim Formats As String() = Web.HttpUtility.UrlDecode(FormatMap).Split(Convert.ToChar(","))
                     For Each fmt As String In Formats
                         Dim Splitter As String() = {"url=", "&itag="}
                         Dim FormatElements As String() = fmt.Split(Splitter, StringSplitOptions.RemoveEmptyEntries)
@@ -193,7 +193,7 @@ Namespace YouTube
                                 'Continue For
                         End Select
 
-                        Link.URL = Uri.UnescapeDataString(FormatElements(0)) & "&title=" & VideoTitle
+                        Link.URL = Web.HttpUtility.UrlDecode(FormatElements(0)) & "&title=" & VideoTitle
 
                         If bwYT.CancellationPending Then Return DownloadLinks
 

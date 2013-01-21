@@ -19,13 +19,14 @@
 ' ################################################################################
 
 Imports System.IO
-Imports EmberMediaManger.API
+Imports System.Text.RegularExpressions
+Imports EmberAPI
 
 Public Class dlgSortFiles
 
 #Region "Fields"
 
-    Private fSorter As New FileSorter
+    Private fSorter As New FileUtils.FileSorter
     Private _hitgo As Boolean = False
 
 #End Region 'Fields

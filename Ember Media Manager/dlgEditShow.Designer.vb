@@ -23,70 +23,71 @@ Partial Class dlgEditShow
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgEditShow))
-        Me.pnlTop = New System.Windows.Forms.Panel()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.TabControl1 = New System.Windows.Forms.TabControl()
-        Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.lvActors = New BrightIdeasSoftware.ObjectListView()
-        Me.olvcName = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.olvcRole = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.olvcThumb = CType(New BrightIdeasSoftware.OLVColumn(), BrightIdeasSoftware.OLVColumn)
-        Me.txtPremiered = New System.Windows.Forms.TextBox()
-        Me.lbGenre = New System.Windows.Forms.CheckedListBox()
-        Me.lblStudio = New System.Windows.Forms.Label()
-        Me.txtStudio = New System.Windows.Forms.TextBox()
-        Me.btnEditActor = New System.Windows.Forms.Button()
-        Me.btnAddActor = New System.Windows.Forms.Button()
-        Me.btnManual = New System.Windows.Forms.Button()
-        Me.btnRemove = New System.Windows.Forms.Button()
-        Me.lblActors = New System.Windows.Forms.Label()
-        Me.lbMPAA = New System.Windows.Forms.ListBox()
-        Me.lblGenre = New System.Windows.Forms.Label()
-        Me.lblMPAA = New System.Windows.Forms.Label()
-        Me.lblPlot = New System.Windows.Forms.Label()
-        Me.txtPlot = New System.Windows.Forms.TextBox()
-        Me.pbStar5 = New System.Windows.Forms.PictureBox()
-        Me.pbStar4 = New System.Windows.Forms.PictureBox()
-        Me.pbStar3 = New System.Windows.Forms.PictureBox()
-        Me.pbStar2 = New System.Windows.Forms.PictureBox()
-        Me.pbStar1 = New System.Windows.Forms.PictureBox()
-        Me.lblRating = New System.Windows.Forms.Label()
-        Me.lblPremiered = New System.Windows.Forms.Label()
-        Me.lblTitle = New System.Windows.Forms.Label()
-        Me.txtTitle = New System.Windows.Forms.TextBox()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.btnSetPosterDL = New System.Windows.Forms.Button()
-        Me.btnRemovePoster = New System.Windows.Forms.Button()
-        Me.lblPosterSize = New System.Windows.Forms.Label()
-        Me.btnSetPosterScrape = New System.Windows.Forms.Button()
-        Me.btnSetPoster = New System.Windows.Forms.Button()
-        Me.pbPoster = New System.Windows.Forms.PictureBox()
-        Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.btnSetFanartDL = New System.Windows.Forms.Button()
-        Me.btnRemoveFanart = New System.Windows.Forms.Button()
-        Me.lblFanartSize = New System.Windows.Forms.Label()
-        Me.btnSetFanartScrape = New System.Windows.Forms.Button()
-        Me.btnSetFanart = New System.Windows.Forms.Button()
-        Me.pbFanart = New System.Windows.Forms.PictureBox()
-        Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.lblASSize = New System.Windows.Forms.Label()
-        Me.btnASPosterChangeDL = New System.Windows.Forms.Button()
-        Me.btnASPosterRemove = New System.Windows.Forms.Button()
-        Me.btnASChangePosterScrape = New System.Windows.Forms.Button()
-        Me.btnASChangePoster = New System.Windows.Forms.Button()
-        Me.pbASPoster = New System.Windows.Forms.PictureBox()
-        Me.Cancel_Button = New System.Windows.Forms.Button()
-        Me.OK_Button = New System.Windows.Forms.Button()
-        Me.ofdImage = New System.Windows.Forms.OpenFileDialog()
-        Me.cbOrdering = New System.Windows.Forms.ComboBox()
-        Me.lblOrdering = New System.Windows.Forms.Label()
+        Me.pnlTop = New System.Windows.Forms.Panel
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.TabControl1 = New System.Windows.Forms.TabControl
+        Me.TabPage1 = New System.Windows.Forms.TabPage
+        Me.btnActorDown = New System.Windows.Forms.Button
+        Me.btnActorUp = New System.Windows.Forms.Button
+        Me.txtPremiered = New System.Windows.Forms.TextBox
+        Me.lbGenre = New System.Windows.Forms.CheckedListBox
+        Me.lblStudio = New System.Windows.Forms.Label
+        Me.txtStudio = New System.Windows.Forms.TextBox
+        Me.btnEditActor = New System.Windows.Forms.Button
+        Me.btnAddActor = New System.Windows.Forms.Button
+        Me.btnManual = New System.Windows.Forms.Button
+        Me.btnRemove = New System.Windows.Forms.Button
+        Me.lblActors = New System.Windows.Forms.Label
+        Me.lvActors = New System.Windows.Forms.ListView
+        Me.colName = New System.Windows.Forms.ColumnHeader
+        Me.colRole = New System.Windows.Forms.ColumnHeader
+        Me.colThumb = New System.Windows.Forms.ColumnHeader
+        Me.lbMPAA = New System.Windows.Forms.ListBox
+        Me.lblGenre = New System.Windows.Forms.Label
+        Me.lblMPAA = New System.Windows.Forms.Label
+        Me.lblPlot = New System.Windows.Forms.Label
+        Me.txtPlot = New System.Windows.Forms.TextBox
+        Me.pbStar5 = New System.Windows.Forms.PictureBox
+        Me.pbStar4 = New System.Windows.Forms.PictureBox
+        Me.pbStar3 = New System.Windows.Forms.PictureBox
+        Me.pbStar2 = New System.Windows.Forms.PictureBox
+        Me.pbStar1 = New System.Windows.Forms.PictureBox
+        Me.lblRating = New System.Windows.Forms.Label
+        Me.lblPremiered = New System.Windows.Forms.Label
+        Me.lblTitle = New System.Windows.Forms.Label
+        Me.txtTitle = New System.Windows.Forms.TextBox
+        Me.TabPage2 = New System.Windows.Forms.TabPage
+        Me.btnSetPosterDL = New System.Windows.Forms.Button
+        Me.btnRemovePoster = New System.Windows.Forms.Button
+        Me.lblPosterSize = New System.Windows.Forms.Label
+        Me.btnSetPosterScrape = New System.Windows.Forms.Button
+        Me.btnSetPoster = New System.Windows.Forms.Button
+        Me.pbPoster = New System.Windows.Forms.PictureBox
+        Me.TabPage3 = New System.Windows.Forms.TabPage
+        Me.btnSetFanartDL = New System.Windows.Forms.Button
+        Me.btnRemoveFanart = New System.Windows.Forms.Button
+        Me.lblFanartSize = New System.Windows.Forms.Label
+        Me.btnSetFanartScrape = New System.Windows.Forms.Button
+        Me.btnSetFanart = New System.Windows.Forms.Button
+        Me.pbFanart = New System.Windows.Forms.PictureBox
+        Me.TabPage4 = New System.Windows.Forms.TabPage
+        Me.lblASSize = New System.Windows.Forms.Label
+        Me.btnASPosterChangeDL = New System.Windows.Forms.Button
+        Me.btnASPosterRemove = New System.Windows.Forms.Button
+        Me.btnASChangePosterScrape = New System.Windows.Forms.Button
+        Me.btnASChangePoster = New System.Windows.Forms.Button
+        Me.pbASPoster = New System.Windows.Forms.PictureBox
+        Me.Cancel_Button = New System.Windows.Forms.Button
+        Me.OK_Button = New System.Windows.Forms.Button
+        Me.ofdImage = New System.Windows.Forms.OpenFileDialog
+        Me.cbOrdering = New System.Windows.Forms.ComboBox
+        Me.lblOrdering = New System.Windows.Forms.Label
         Me.pnlTop.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        CType(Me.lvActors, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStar5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStar4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.pbStar3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,7 +164,8 @@ Partial Class dlgEditShow
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.lvActors)
+        Me.TabPage1.Controls.Add(Me.btnActorDown)
+        Me.TabPage1.Controls.Add(Me.btnActorUp)
         Me.TabPage1.Controls.Add(Me.txtPremiered)
         Me.TabPage1.Controls.Add(Me.lbGenre)
         Me.TabPage1.Controls.Add(Me.lblStudio)
@@ -173,6 +175,7 @@ Partial Class dlgEditShow
         Me.TabPage1.Controls.Add(Me.btnManual)
         Me.TabPage1.Controls.Add(Me.btnRemove)
         Me.TabPage1.Controls.Add(Me.lblActors)
+        Me.TabPage1.Controls.Add(Me.lvActors)
         Me.TabPage1.Controls.Add(Me.lbMPAA)
         Me.TabPage1.Controls.Add(Me.lblGenre)
         Me.TabPage1.Controls.Add(Me.lblMPAA)
@@ -195,39 +198,23 @@ Partial Class dlgEditShow
         Me.TabPage1.Text = "Details"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'lvActors
+        'btnActorDown
         '
-        Me.lvActors.AllColumns.Add(Me.olvcName)
-        Me.lvActors.AllColumns.Add(Me.olvcRole)
-        Me.lvActors.AllColumns.Add(Me.olvcThumb)
-        Me.lvActors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.olvcName, Me.olvcRole, Me.olvcThumb})
-        Me.lvActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lvActors.FullRowSelect = True
-        Me.lvActors.Location = New System.Drawing.Point(217, 155)
-        Me.lvActors.Name = "lvActors"
-        Me.lvActors.ShowGroups = False
-        Me.lvActors.Size = New System.Drawing.Size(408, 259)
-        Me.lvActors.TabIndex = 116
-        Me.lvActors.UseCompatibleStateImageBehavior = False
-        Me.lvActors.View = System.Windows.Forms.View.Details
+        Me.btnActorDown.Image = CType(resources.GetObject("btnActorDown.Image"), System.Drawing.Image)
+        Me.btnActorDown.Location = New System.Drawing.Point(434, 420)
+        Me.btnActorDown.Name = "btnActorDown"
+        Me.btnActorDown.Size = New System.Drawing.Size(23, 23)
+        Me.btnActorDown.TabIndex = 115
+        Me.btnActorDown.UseVisualStyleBackColor = True
         '
-        'olvcName
+        'btnActorUp
         '
-        Me.olvcName.AspectName = "ActorName"
-        Me.olvcName.Text = "Name"
-        Me.olvcName.Width = 150
-        '
-        'olvcRole
-        '
-        Me.olvcRole.AspectName = "Role"
-        Me.olvcRole.Text = "Role"
-        Me.olvcRole.Width = 150
-        '
-        'olvcThumb
-        '
-        Me.olvcThumb.AspectName = "Actor.thumb"
-        Me.olvcThumb.FillsFreeSpace = True
-        Me.olvcThumb.Text = "Thumb"
+        Me.btnActorUp.Image = CType(resources.GetObject("btnActorUp.Image"), System.Drawing.Image)
+        Me.btnActorUp.Location = New System.Drawing.Point(410, 420)
+        Me.btnActorUp.Name = "btnActorUp"
+        Me.btnActorUp.Size = New System.Drawing.Size(23, 23)
+        Me.btnActorUp.TabIndex = 114
+        Me.btnActorUp.UseVisualStyleBackColor = True
         '
         'txtPremiered
         '
@@ -313,6 +300,33 @@ Partial Class dlgEditShow
         Me.lblActors.Size = New System.Drawing.Size(43, 13)
         Me.lblActors.TabIndex = 83
         Me.lblActors.Text = "Actors:"
+        '
+        'lvActors
+        '
+        Me.lvActors.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.colName, Me.colRole, Me.colThumb})
+        Me.lvActors.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lvActors.FullRowSelect = True
+        Me.lvActors.Location = New System.Drawing.Point(217, 155)
+        Me.lvActors.Name = "lvActors"
+        Me.lvActors.Size = New System.Drawing.Size(408, 259)
+        Me.lvActors.TabIndex = 11
+        Me.lvActors.UseCompatibleStateImageBehavior = False
+        Me.lvActors.View = System.Windows.Forms.View.Details
+        '
+        'colName
+        '
+        Me.colName.Text = "Name"
+        Me.colName.Width = 110
+        '
+        'colRole
+        '
+        Me.colRole.Text = "Role"
+        Me.colRole.Width = 100
+        '
+        'colThumb
+        '
+        Me.colThumb.Text = "Thumb"
+        Me.colThumb.Width = 174
         '
         'lbMPAA
         '
@@ -773,7 +787,6 @@ Partial Class dlgEditShow
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
-        CType(Me.lvActors, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStar5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStar4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.pbStar3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -803,6 +816,10 @@ Partial Class dlgEditShow
     Friend WithEvents btnManual As System.Windows.Forms.Button
     Friend WithEvents btnRemove As System.Windows.Forms.Button
     Friend WithEvents lblActors As System.Windows.Forms.Label
+    Friend WithEvents lvActors As System.Windows.Forms.ListView
+    Friend WithEvents colName As System.Windows.Forms.ColumnHeader
+    Friend WithEvents colRole As System.Windows.Forms.ColumnHeader
+    Friend WithEvents colThumb As System.Windows.Forms.ColumnHeader
     Friend WithEvents lbMPAA As System.Windows.Forms.ListBox
     Friend WithEvents lblGenre As System.Windows.Forms.Label
     Friend WithEvents lblMPAA As System.Windows.Forms.Label
@@ -835,6 +852,8 @@ Partial Class dlgEditShow
     Friend WithEvents OK_Button As System.Windows.Forms.Button
     Friend WithEvents txtPremiered As System.Windows.Forms.TextBox
     Friend WithEvents ofdImage As System.Windows.Forms.OpenFileDialog
+    Friend WithEvents btnActorDown As System.Windows.Forms.Button
+    Friend WithEvents btnActorUp As System.Windows.Forms.Button
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
     Friend WithEvents lblASSize As System.Windows.Forms.Label
     Friend WithEvents btnASPosterChangeDL As System.Windows.Forms.Button
@@ -844,9 +863,5 @@ Partial Class dlgEditShow
     Friend WithEvents pbASPoster As System.Windows.Forms.PictureBox
     Friend WithEvents cbOrdering As System.Windows.Forms.ComboBox
     Friend WithEvents lblOrdering As System.Windows.Forms.Label
-    Friend WithEvents lvActors As BrightIdeasSoftware.ObjectListView
-    Friend WithEvents olvcName As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents olvcRole As BrightIdeasSoftware.OLVColumn
-    Friend WithEvents olvcThumb As BrightIdeasSoftware.OLVColumn
 
 End Class

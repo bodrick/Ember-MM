@@ -136,15 +136,15 @@ Public Class ProccessPages
                             Case "<$MOVIE_FILE>"
                                 Dim mSourcePath As String = Master.MovieSources.FirstOrDefault(Function(y) y.Name = mSourceName).Path
                                 Dim mSourceID As String = Master.MovieSources.FirstOrDefault(Function(y) y.Name = mSourceName).id
-                                row = row.Replace("<$MOVIE_FILE>", String.Concat("<$MSOURCE>", "/", mSourceID, Uri.EscapeDataString(_curMovie.Item("Filename").ToString.Substring(mSourcePath.Length).Replace(Path.DirectorySeparatorChar, "/"))))
+                                row = row.Replace("<$MOVIE_FILE>", String.Concat("<$MSOURCE>", "/", mSourceID, Web.HttpUtility.UrlEncode(_curMovie.Item("Filename").ToString.Substring(mSourcePath.Length).Replace(Path.DirectorySeparatorChar, "/"))))
                             Case "<$MPOSTER_FILE>"
                                 Dim mSourcePath As String = Master.MovieSources.FirstOrDefault(Function(y) y.Name = mSourceName).Path
                                 Dim mSourceID As String = Master.MovieSources.FirstOrDefault(Function(y) y.Name = mSourceName).id
-                                If Not String.IsNullOrEmpty(_curMovie.Item("PosterPath").ToString) Then row = row.Replace("<$MPOSTER_FILE>", String.Concat("<$MSOURCE>", "/", mSourceID, Uri.EscapeDataString(_curMovie.Item("PosterPath").ToString.Substring(mSourcePath.Length).Replace(Path.DirectorySeparatorChar, "/"))))
+                                If Not String.IsNullOrEmpty(_curMovie.Item("PosterPath").ToString) Then row = row.Replace("<$MPOSTER_FILE>", String.Concat("<$MSOURCE>", "/", mSourceID, Web.HttpUtility.UrlEncode(_curMovie.Item("PosterPath").ToString.Substring(mSourcePath.Length).Replace(Path.DirectorySeparatorChar, "/"))))
                             Case "<$MFANART_FILE>"
                                 Dim mSourcePath As String = Master.MovieSources.FirstOrDefault(Function(y) y.Name = mSourceName).Path
                                 Dim mSourceID As String = Master.MovieSources.FirstOrDefault(Function(y) y.Name = mSourceName).id
-                                If Not String.IsNullOrEmpty(_curMovie.Item("FanartPath").ToString) Then row = row.Replace("<$MFANART_FILE>", String.Concat("<$MSOURCE>", "/", mSourceID, Uri.EscapeDataString(_curMovie.Item("FanartPath").ToString.Substring(mSourcePath.Length).Replace(Path.DirectorySeparatorChar, "/"))))
+                                If Not String.IsNullOrEmpty(_curMovie.Item("FanartPath").ToString) Then row = row.Replace("<$MFANART_FILE>", String.Concat("<$MSOURCE>", "/", mSourceID, Web.HttpUtility.UrlEncode(_curMovie.Item("FanartPath").ToString.Substring(mSourcePath.Length).Replace(Path.DirectorySeparatorChar, "/"))))
                             Case "<$MOVIENAME>"
                                 If Not String.IsNullOrEmpty(_curMovie.Item("Title").ToString) Then
                                     row = row.Replace("<$MOVIENAME>", StringUtils.HtmlEncode(_curMovie.Item("Title").ToString))
@@ -428,7 +428,7 @@ Public Class ProccessPages
     End Function
     Private Function GetMovieFileInfo(ByVal MovieID As String) As MediaInfo.Fileinfo
         Dim fi As New MediaInfo.Fileinfo
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = String.Concat("SELECT * FROM MoviesVStreams WHERE MovieID = ", MovieID, ";")
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 Dim video As MediaInfo.Video
@@ -447,7 +447,7 @@ Public Class ProccessPages
             End Using
         End Using
 
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = String.Concat("SELECT * FROM MoviesAStreams WHERE MovieID = ", MovieID, ";")
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 Dim audio As MediaInfo.Audio
@@ -461,7 +461,7 @@ Public Class ProccessPages
                 End While
             End Using
         End Using
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.SQLcn.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = String.Concat("SELECT * FROM MoviesSubs WHERE MovieID = ", MovieID, ";")
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 Dim subtitle As MediaInfo.Subtitle

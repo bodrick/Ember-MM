@@ -266,7 +266,7 @@ Namespace XMLScraper
                 End If
 
                 If bUrlEncode Then
-                    strToProcess = Uri.EscapeDataString(strToProcess)
+                    strToProcess = HttpUtility.UrlEncode(strToProcess)
                 End If
 
                 strToProcess = strToProcess.Replace("&", "&amp;")

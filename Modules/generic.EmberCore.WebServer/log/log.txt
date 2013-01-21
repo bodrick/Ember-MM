@@ -1,5 +1,0 @@
-10/29/2011 1:53 PM: Ember WebServer started
-10/29/2011 1:54 PM: Ember WebServer started
-11/3/2011 4:21 PM: Ember WebServer started
-11/25/2011 9:59 AM: Ember WebServer started
-11/25/2011 1:43 PM: Ember WebServer stopped

@@ -19,7 +19,7 @@
 ' ################################################################################
 
 Imports System.IO
-Imports EmberMediaManger.API
+Imports EmberAPI
 
 Public Class dlgWizard
 
@@ -218,25 +218,23 @@ Public Class dlgWizard
         Dim lvItem As ListViewItem
 
         lvMovies.Items.Clear()
-        Master.MovieSources.Clear()
-        Master.MovieSources.AddRange(Classes.Database.GetMovieSources())
-        For Each s As Model.Source In Master.MovieSources
-            lvItem = New ListViewItem(s.ID)
+        Master.DB.LoadMovieSourcesFromDB()
+        For Each s As Structures.MovieSource In Master.MovieSources
+            lvItem = New ListViewItem(s.id)
             lvItem.SubItems.Add(s.Name)
-            lvItem.SubItems.Add(s.path)
+            lvItem.SubItems.Add(s.Path)
             lvItem.SubItems.Add(If(s.Recursive, "Yes", "No"))
-            lvItem.SubItems.Add(If(s.Foldername, "Yes", "No"))
-            lvItem.SubItems.Add(If(s.Single, "Yes", "No"))
+            lvItem.SubItems.Add(If(s.UseFolderName, "Yes", "No"))
+            lvItem.SubItems.Add(If(s.IsSingle, "Yes", "No"))
             lvMovies.Items.Add(lvItem)
         Next
     End Sub
 
     Private Sub RefreshTVSources()
         Dim lvItem As ListViewItem
-        Master.TVSources.Clear()
-        Master.TVSources.AddRange(Classes.Database.GetTVSources())
+        Master.DB.LoadTVSourcesFromDB()
         lvTVSources.Items.Clear()
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLcommand.CommandText = "SELECT * FROM TVSources;"
             Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                 While SQLreader.Read
@@ -255,8 +253,8 @@ Public Class dlgWizard
                 If MsgBox(Master.eLang.GetString(418, "Are you sure you want to remove the selected sources? This will remove the movies from these sources from the Ember database."), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, Master.eLang.GetString(104, "Are You Sure?")) = MsgBoxResult.Yes Then
                     Me.lvMovies.BeginUpdate()
 
-                    Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parSource As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parSource", DbType.String, 0, "source")
                             While Me.lvMovies.SelectedItems.Count > 0
                                 parSource.Value = lvMovies.SelectedItems(0).SubItems(1).Text
@@ -286,8 +284,8 @@ Public Class dlgWizard
                 If MsgBox(Master.eLang.GetString(418, "Are you sure you want to remove the selected sources? This will remove the TV Shows from these sources from the Ember database."), MsgBoxStyle.Question Or MsgBoxStyle.YesNo, Master.eLang.GetString(104, "Are You Sure?")) = MsgBoxResult.Yes Then
                     Me.lvTVSources.BeginUpdate()
 
-                    Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                    Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             Dim parSource As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parSource", DbType.String, 0, "source")
                             While Me.lvTVSources.SelectedItems.Count > 0
                                 parSource.Value = lvTVSources.SelectedItems(0).SubItems(1).Text
@@ -409,8 +407,8 @@ Public Class dlgWizard
     End Sub
 
     Private Sub btnTVLanguageFetch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTVLanguageFetch.Click
-        'Me.tLangList.Clear()
-        'Me.tLangList.AddRange(ModulesManager.Instance.TVGetLangs(Master.eSettings.TVDBMirror))
+        Me.tLangList.Clear()
+        Me.tLangList.AddRange(ModulesManager.Instance.TVGetLangs(Master.eSettings.TVDBMirror))
         Me.cbTVLanguage.Items.AddRange((From lLang In tLangList Select lLang.LongLang).ToArray)
 
         If Me.cbTVLanguage.Items.Count > 0 Then

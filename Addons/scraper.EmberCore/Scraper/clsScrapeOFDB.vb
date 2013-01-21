@@ -129,7 +129,7 @@ Public Class OFDB
                     W = tmpHTML.IndexOf("</b></b><br><br>")
                     If W > 0 Then
                         B = tmpHTML.IndexOf("</font></p>", W + 16)
-                        FullPlot = Uri.UnescapeDataString(tmpHTML.Substring(W + 16, B - (W + 16)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
+                        FullPlot = Web.HttpUtility.HtmlDecode(tmpHTML.Substring(W + 16, B - (W + 16)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
                     End If
                 End If
             End If
@@ -153,7 +153,7 @@ Public Class OFDB
                 If Not String.IsNullOrEmpty(Html) Then
                     'title
                     If String.IsNullOrEmpty(OFDBMovie.Title) OrElse Not Master.eSettings.LockTitle Then
-                        Dim OFDBTitle As String = CleanTitle(Uri.UnescapeDataString(Regex.Match(HTML, "<td width=""99\%""><h2><font face=""Arial,Helvetica,sans-serif"" size=""3""><b>([^<]+)</b></font></h2></td>").Groups(1).Value.ToString))
+                        Dim OFDBTitle As String = CleanTitle(Web.HttpUtility.HtmlDecode(Regex.Match(Html, "<td width=""99\%""><h2><font face=""Arial,Helvetica,sans-serif"" size=""3""><b>([^<]+)</b></font></h2></td>").Groups(1).Value.ToString))
                         _title = OFDBTitle
                     End If
 
@@ -166,7 +166,7 @@ Public Class OFDB
 
                         If D > 0 Then
                             W = Html.IndexOf("<a href=""", D + 14)
-                            _outline = Uri.UnescapeDataString(HTML.Substring(D + 14, W - (D + 14)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
+                            _outline = Web.HttpUtility.HtmlDecode(HTML.Substring(D + 14, W - (D + 14)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
                         End If
                     End If
 
@@ -199,7 +199,7 @@ Public Class OFDB
                             If W > 0 Then
                                 Dim rGenres As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), "<a.*?href=[""'](?<url>.*?)[""'].*?>(?<name>.*?)</a>")
                                 Dim Gen = From M In rGenres _
-                                      Select N = Uri.UnescapeDataString(DirectCast(M, Match).Groups("name").ToString)
+                                      Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString)
                                 If Gen.Count > 0 Then
                                     Dim tGenre As String = Strings.Join(Gen.ToArray, "/").Trim
                                     _genre = Strings.Join(tGenre.Split(Convert.ToChar("/")), " / ").Trim

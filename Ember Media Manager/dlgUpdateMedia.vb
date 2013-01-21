@@ -18,7 +18,8 @@
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
 
-Imports EmberMediaManger.API
+Imports System.IO
+Imports EmberAPI
 
 Public Class dlgUpdateMedia
 
@@ -93,7 +94,7 @@ Public Class dlgUpdateMedia
     End Sub
 
     Private Sub CheckNewAndMark()
-        Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+        Using SQLNewcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
             SQLNewcommand.CommandText = String.Concat("SELECT COUNT(id) AS ncount FROM movies WHERE new = 1;")
             Using SQLcount As SQLite.SQLiteDataReader = SQLNewcommand.ExecuteReader()
                 rbUpdateModifier_New.Enabled = Convert.ToInt32(SQLcount("ncount")) > 0

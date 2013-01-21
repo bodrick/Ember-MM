@@ -1,4 +1,4 @@
-﻿Imports EmberMediaManger.API
+﻿Imports EmberAPI
 
 ' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
@@ -33,7 +33,7 @@ Public Class dlgDeleteConfirm
 #Region "Methods"
 
     Public Overloads Function ShowDialog(ByVal ItemsToDelete As Dictionary(Of Long, Long), ByVal DelType As Enums.DelType) As System.Windows.Forms.DialogResult
-        _deltype = DelType
+        Me._deltype = DelType
         Populate_FileList(ItemsToDelete)
         Return MyBase.ShowDialog
     End Function
@@ -45,7 +45,7 @@ Public Class dlgDeleteConfirm
             NewNode.ImageKey = "FILE"
             NewNode.SelectedImageKey = "FILE"
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
             Throw
         End Try
     End Sub
@@ -69,7 +69,7 @@ Public Class dlgDeleteConfirm
                 AddFileNode(NewNode, item)
             Next
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
             Throw
         End Try
     End Sub
@@ -90,9 +90,9 @@ Public Class dlgDeleteConfirm
             With tvwFiles
                 If .Nodes.Count = 0 Then Return False
 
-                Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.BeginTransaction 'Only on Batch Mode
+                Using SQLtransaction As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction() 'Only on Batch Mode
                     For Each ItemParentNode As TreeNode In .Nodes
-                        Select Case _deltype
+                        Select Case Me._deltype
                             Case Enums.DelType.Movies
                                 Master.DB.DeleteFromDB(Convert.ToInt64(ItemParentNode.Tag), True)
                             Case Enums.DelType.Shows
@@ -135,7 +135,7 @@ Public Class dlgDeleteConfirm
             End With
             Return result
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
     End Function
 
@@ -145,9 +145,9 @@ Public Class dlgDeleteConfirm
 
     Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
         If DeleteSelectedItems() Then
-            DialogResult = System.Windows.Forms.DialogResult.OK
+            Me.DialogResult = System.Windows.Forms.DialogResult.OK
         Else
-            DialogResult = System.Windows.Forms.DialogResult.Cancel
+            Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
         End If
         Me.Close()
     End Sub
@@ -155,7 +155,7 @@ Public Class dlgDeleteConfirm
     Private Sub Populate_FileList(ByVal ItemsToDelete As Dictionary(Of Long, Long))
         Dim hadError As Boolean = False
         Dim ePath As String = String.Empty
-        Dim fDeleter As New FileUtils
+        Dim fDeleter As New FileUtils.Delete
         Dim ItemsList As New List(Of IO.FileSystemInfo)
         Dim ItemParentNode As New TreeNode
 
@@ -164,11 +164,11 @@ Public Class dlgDeleteConfirm
 
                 Select Case Me._deltype
                     Case Enums.DelType.Movies
-                        Dim mMovie As Model.Movie
+                        Dim mMovie As New Structures.DBMovie
 
-                        For Each MovieId As Integer In ItemsToDelete.Keys
+                        For Each MovieId As Long In ItemsToDelete.Keys
                             hadError = False
-                            mMovie = Classes.Database.GetMovie(MovieId)
+                            mMovie = Master.DB.LoadMovieFromDB(MovieId)
 
                             ItemParentNode = .Nodes.Add(mMovie.ID.ToString, mMovie.ListTitle)
                             ItemParentNode.ImageKey = "MOVIE"
@@ -201,20 +201,20 @@ Public Class dlgDeleteConfirm
                             If hadError Then .Nodes.Remove(ItemParentNode)
                         Next
                     Case Enums.DelType.Shows
-                        Dim tShow As Model.TVShow
+                        Dim tShow As New Structures.DBTV
 
                         For Each ShowID As Long In ItemsToDelete.Keys
                             hadError = False
 
-                            tShow = Classes.Database.GetTVShow(ShowID)
+                            tShow = Master.DB.LoadTVShowFromDB(ShowID)
 
-                            ItemParentNode = .Nodes.Add(ShowID.ToString, tShow.Title)
+                            ItemParentNode = .Nodes.Add(ShowID.ToString, tShow.TVShow.Title)
                             ItemParentNode.ImageKey = "MOVIE"
                             ItemParentNode.SelectedImageKey = "MOVIE"
-                            ItemParentNode.Tag = tShow.TVDB
+                            ItemParentNode.Tag = tShow.ShowID
 
                             Try
-                                AddFolderNode(ItemParentNode, New IO.DirectoryInfo(tShow.TVShowPath))
+                                AddFolderNode(ItemParentNode, New IO.DirectoryInfo(tShow.ShowPath))
                             Catch
                                 .Nodes.Remove(ItemParentNode)
                             End Try
@@ -222,11 +222,11 @@ Public Class dlgDeleteConfirm
                     Case Enums.DelType.Seasons
                         Dim tSeason As New Structures.DBTV
 
-                        Using SQLDelCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLDelCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             For Each Season As KeyValuePair(Of Long, Long) In ItemsToDelete
                                 hadError = False
 
-                                'tSeason = Classes.Database.LoadTVShowSeason(Season.Value, Convert.ToInt32(Season.Key), True)
+                                tSeason = Master.DB.LoadTVSeasonFromDB(Season.Value, Convert.ToInt32(Season.Key), True)
                                 ItemParentNode = .Nodes.Add(Season.Key.ToString, String.Format("{0} - {1}", tSeason.TVShow.Title, tSeason.TVEp.Season))
                                 ItemParentNode.ImageKey = "MOVIE"
                                 ItemParentNode.SelectedImageKey = "MOVIE"
@@ -235,7 +235,7 @@ Public Class dlgDeleteConfirm
                                 SQLDelCommand.CommandText = String.Concat("SELECT ID, TVEpPathID FROM TVEps WHERE TVShowID = ", Season.Value, " AND Season = ", Season.Key, ";")
                                 Using SQLDelReader As SQLite.SQLiteDataReader = SQLDelCommand.ExecuteReader
                                     While SQLDelReader.Read
-                                        Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                                        Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                                             SQLCommand.CommandText = String.Concat("SELECT TVEpPath FROM TVEpPaths WHERE ID = ", SQLDelReader("TVEpPathID"), ";")
                                             Using SQLReader As SQLite.SQLiteDataReader = SQLCommand.ExecuteReader
                                                 If SQLReader.HasRows Then
@@ -286,11 +286,11 @@ Public Class dlgDeleteConfirm
                     Case Enums.DelType.Episodes
                         Dim tEp As New Structures.DBTV
 
-                        Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                        Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                             For Each Ep As Long In ItemsToDelete.Keys
                                 hadError = False
 
-                                'tEp = Master.DB.LoadTVEpFromDB(Ep, True)
+                                tEp = Master.DB.LoadTVEpFromDB(Ep, True)
                                 ItemParentNode = .Nodes.Add(Ep.ToString, tEp.TVEp.Title)
                                 ItemParentNode.ImageKey = "MOVIE"
                                 ItemParentNode.SelectedImageKey = "MOVIE"
@@ -325,7 +325,7 @@ Public Class dlgDeleteConfirm
 
             End With
         Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, Languages._Error)
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
     End Sub
 

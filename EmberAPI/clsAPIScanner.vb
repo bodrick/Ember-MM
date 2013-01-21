@@ -1022,8 +1022,8 @@ Public Class Scanner
 
             If Args.Scan.Movies Then
                 Me.MoviePaths = Master.DB.GetMoviePaths
-                Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                    Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                    Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         If Not String.IsNullOrEmpty(Args.SourceName) Then
                             SQLcommand.CommandText = String.Format("SELECT * FROM sources WHERE Name = ""{0}"";", Args.SourceName)
                         Else
@@ -1031,7 +1031,7 @@ Public Class Scanner
                         End If
 
                         Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
-                            Using SQLUpdatecommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                            Using SQLUpdatecommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                                 SQLUpdatecommand.CommandText = "UPDATE sources SET LastScan = (?) WHERE ID = (?);"
                                 Dim parLastScan As SQLite.SQLiteParameter = SQLUpdatecommand.Parameters.Add("parLastScan", DbType.String, 0, "LastScan")
                                 Dim parID As SQLite.SQLiteParameter = SQLUpdatecommand.Parameters.Add("parID", DbType.Int32, 0, "ID")
@@ -1069,7 +1069,7 @@ Public Class Scanner
                 bwPrelim.ReportProgress(2, New ProgressValue With {.Type = -1, .Message = String.Empty})
 
                 htTVShows.Clear()
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = "SELECT ID, TVShowPath FROM TVShows;"
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         While SQLreader.Read
@@ -1083,7 +1083,7 @@ Public Class Scanner
                 End Using
 
                 TVPaths.Clear()
-                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                     SQLcommand.CommandText = "SELECT TVEpPath FROM TVEpPaths;"
                     Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
                         While SQLreader.Read
@@ -1096,8 +1096,8 @@ Public Class Scanner
                     End Using
                 End Using
 
-                Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.BeginTransaction
-                    Using SQLcommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                Using SQLTrans As SQLite.SQLiteTransaction = Master.DB.MediaDBConn.BeginTransaction()
+                    Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                         If Not String.IsNullOrEmpty(Args.SourceName) Then
                             SQLcommand.CommandText = String.Format("SELECT * FROM TVSources WHERE Name = ""{0}"";", Args.SourceName)
                         Else
@@ -1105,7 +1105,7 @@ Public Class Scanner
                         End If
 
                         Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
-                            Using SQLUpdatecommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                            Using SQLUpdatecommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                                 SQLUpdatecommand.CommandText = "UPDATE TVSources SET LastScan = (?) WHERE ID = (?);"
                                 Dim parLastScan As SQLite.SQLiteParameter = SQLUpdatecommand.Parameters.Add("parLastScan", DbType.String, 0, "LastScan")
                                 Dim parID As SQLite.SQLiteParameter = SQLUpdatecommand.Parameters.Add("parID", DbType.Int32, 0, "ID")
@@ -1209,7 +1209,7 @@ Public Class Scanner
                             tmpTVDB.IsLockSeason = False
                             tmpTVDB.IsMarkSeason = False
 
-                            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.CreateCommand
+                            Using SQLCommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                                 SQLCommand.CommandText = String.Concat("SELECT MIN(Episode) AS MinE FROM TVEps WHERE TVShowID = ", tmpTVDB.ShowID, ";")
                                 tRes = SQLCommand.ExecuteScalar
                                 If Not TypeOf tRes Is DBNull Then

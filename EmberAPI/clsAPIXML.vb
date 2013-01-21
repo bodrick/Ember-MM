@@ -20,7 +20,10 @@
 
 Imports System
 Imports System.IO
+Imports System.Text
 Imports System.Text.RegularExpressions
+Imports System.Xml
+Imports System.Xml.Serialization
 Imports System.Drawing
 Imports System.Xml.Linq
 
