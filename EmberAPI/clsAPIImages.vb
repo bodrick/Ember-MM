@@ -275,7 +275,8 @@ Public Class Images
 
             If mShow.TVEp.Season = 0 Then
                 Delete(Path.Combine(mShow.ShowPath, "season-specials.tbn"))
-                Delete(Path.Combine(mShow.ShowPath, "season-specials-poster.tbn"))
+                Delete(Path.Combine(mShow.ShowPath, "season-specials.jpg"))
+                Delete(Path.Combine(mShow.ShowPath, "season-specials-poster.jpg"))
             Else
                 Delete(Path.Combine(mShow.ShowPath, String.Format("season{0}.tbn", mShow.TVEp.Season)))
                 Delete(Path.Combine(mShow.ShowPath, String.Format("season{0}.tbn", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0")))))
