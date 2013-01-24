@@ -596,7 +596,7 @@ Public Class dlgImgSelect
     End Sub
 
     Private Function IsTMDBURL(ByVal sURL As String) As Boolean
-        If sURL.ToLower.Contains("themoviedb.org") OrElse sURL.ToLower.Contains("cf1.imgobject.com") OrElse sURL.ToLower.Contains("cf2.imgobject.com") Then
+        If sURL.ToLower.Contains("themoviedb.org") OrElse sURL.ToLower.Contains("d3gtl9l2a4fn1j.cloudfront.net") OrElse sURL.ToLower.Contains("cf1.imgobject.com") OrElse sURL.ToLower.Contains("cf2.imgobject.com") Then
             Return True
         Else
             Return False
