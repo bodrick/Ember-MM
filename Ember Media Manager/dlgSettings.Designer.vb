@@ -290,6 +290,7 @@ Partial Class dlgSettings
         Me.chkEpisodeDotFanart = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeDashFanart = New System.Windows.Forms.CheckBox()
         Me.gbEpisodePosters = New System.Windows.Forms.GroupBox()
+        Me.chkEpisodeDashThumbJPG = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeJPG = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeTBN = New System.Windows.Forms.CheckBox()
         Me.gbSeasonFanart = New System.Windows.Forms.GroupBox()
@@ -599,7 +600,8 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.chkEpisodeDashThumbJPG = New System.Windows.Forms.CheckBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.chkSeasonXXDashFanartJPG = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -3332,6 +3334,7 @@ Partial Class dlgSettings
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Label8)
         Me.TabPage3.Controls.Add(Me.lvTVSources)
         Me.TabPage3.Controls.Add(Me.gbMiscTVSourceOpts)
         Me.TabPage3.Controls.Add(Me.btnAddTVSource)
@@ -3385,7 +3388,7 @@ Partial Class dlgSettings
         Me.gbMiscTVSourceOpts.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbMiscTVSourceOpts.Location = New System.Drawing.Point(6, 110)
         Me.gbMiscTVSourceOpts.Name = "gbMiscTVSourceOpts"
-        Me.gbMiscTVSourceOpts.Size = New System.Drawing.Size(151, 253)
+        Me.gbMiscTVSourceOpts.Size = New System.Drawing.Size(151, 188)
         Me.gbMiscTVSourceOpts.TabIndex = 5
         Me.gbMiscTVSourceOpts.TabStop = False
         Me.gbMiscTVSourceOpts.Text = "Miscellaneous Options"
@@ -3550,6 +3553,7 @@ Partial Class dlgSettings
         '
         Me.chkSeasonAllPoster.AutoSize = True
         Me.chkSeasonAllPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSeasonAllPoster.ForeColor = System.Drawing.SystemColors.Highlight
         Me.chkSeasonAllPoster.Location = New System.Drawing.Point(6, 49)
         Me.chkSeasonAllPoster.Name = "chkSeasonAllPoster"
         Me.chkSeasonAllPoster.Size = New System.Drawing.Size(135, 17)
@@ -3626,6 +3630,18 @@ Partial Class dlgSettings
         Me.gbEpisodePosters.TabStop = False
         Me.gbEpisodePosters.Text = "Episode Posters"
         '
+        'chkEpisodeDashThumbJPG
+        '
+        Me.chkEpisodeDashThumbJPG.AutoSize = True
+        Me.chkEpisodeDashThumbJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkEpisodeDashThumbJPG.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.chkEpisodeDashThumbJPG.Location = New System.Drawing.Point(5, 49)
+        Me.chkEpisodeDashThumbJPG.Name = "chkEpisodeDashThumbJPG"
+        Me.chkEpisodeDashThumbJPG.Size = New System.Drawing.Size(141, 17)
+        Me.chkEpisodeDashThumbJPG.TabIndex = 2
+        Me.chkEpisodeDashThumbJPG.Text = "<episode>-thumb.jpg"
+        Me.chkEpisodeDashThumbJPG.UseVisualStyleBackColor = True
+        '
         'chkEpisodeJPG
         '
         Me.chkEpisodeJPG.AutoSize = True
@@ -3650,13 +3666,14 @@ Partial Class dlgSettings
         '
         'gbSeasonFanart
         '
+        Me.gbSeasonFanart.Controls.Add(Me.chkSeasonXXDashFanartJPG)
         Me.gbSeasonFanart.Controls.Add(Me.chkSeasonDotFanart)
         Me.gbSeasonFanart.Controls.Add(Me.chkSeasonDashFanart)
         Me.gbSeasonFanart.Controls.Add(Me.chkSeasonFanartJPG)
         Me.gbSeasonFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbSeasonFanart.Location = New System.Drawing.Point(143, 174)
+        Me.gbSeasonFanart.Location = New System.Drawing.Point(143, 168)
         Me.gbSeasonFanart.Name = "gbSeasonFanart"
-        Me.gbSeasonFanart.Size = New System.Drawing.Size(145, 69)
+        Me.gbSeasonFanart.Size = New System.Drawing.Size(145, 81)
         Me.gbSeasonFanart.TabIndex = 3
         Me.gbSeasonFanart.TabStop = False
         Me.gbSeasonFanart.Text = "Season Fanart"
@@ -3716,6 +3733,7 @@ Partial Class dlgSettings
         '
         Me.chkSeasonXXDashPosterJPG.AutoSize = True
         Me.chkSeasonXXDashPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSeasonXXDashPosterJPG.ForeColor = System.Drawing.SystemColors.Highlight
         Me.chkSeasonXXDashPosterJPG.Location = New System.Drawing.Point(6, 48)
         Me.chkSeasonXXDashPosterJPG.Name = "chkSeasonXXDashPosterJPG"
         Me.chkSeasonXXDashPosterJPG.Size = New System.Drawing.Size(131, 17)
@@ -3839,6 +3857,7 @@ Partial Class dlgSettings
         '
         Me.chkShowFanartJPG.AutoSize = True
         Me.chkShowFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkShowFanartJPG.ForeColor = System.Drawing.SystemColors.Highlight
         Me.chkShowFanartJPG.Location = New System.Drawing.Point(6, 19)
         Me.chkShowFanartJPG.Name = "chkShowFanartJPG"
         Me.chkShowFanartJPG.Size = New System.Drawing.Size(77, 17)
@@ -3887,6 +3906,7 @@ Partial Class dlgSettings
         '
         Me.chkShowPosterJPG.AutoSize = True
         Me.chkShowPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkShowPosterJPG.ForeColor = System.Drawing.SystemColors.Highlight
         Me.chkShowPosterJPG.Location = New System.Drawing.Point(6, 64)
         Me.chkShowPosterJPG.Name = "chkShowPosterJPG"
         Me.chkShowPosterJPG.Size = New System.Drawing.Size(79, 17)
@@ -7084,16 +7104,27 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 77
         '
-        'chkEpisodeDashThumbJPG
+        'Label8
         '
-        Me.chkEpisodeDashThumbJPG.AutoSize = True
-        Me.chkEpisodeDashThumbJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkEpisodeDashThumbJPG.Location = New System.Drawing.Point(5, 49)
-        Me.chkEpisodeDashThumbJPG.Name = "chkEpisodeDashThumbJPG"
-        Me.chkEpisodeDashThumbJPG.Size = New System.Drawing.Size(141, 17)
-        Me.chkEpisodeDashThumbJPG.TabIndex = 2
-        Me.chkEpisodeDashThumbJPG.Text = "<episode>-thumb.jpg"
-        Me.chkEpisodeDashThumbJPG.UseVisualStyleBackColor = True
+        Me.Label8.AutoSize = True
+        Me.Label8.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.Label8.Location = New System.Drawing.Point(31, 319)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(96, 26)
+        Me.Label8.TabIndex = 7
+        Me.Label8.Text = "Settings for" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "XBMC 12 (Frodo)"
+        '
+        'chkSeasonXXDashFanartJPG
+        '
+        Me.chkSeasonXXDashFanartJPG.AutoSize = True
+        Me.chkSeasonXXDashFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSeasonXXDashFanartJPG.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.chkSeasonXXDashFanartJPG.Location = New System.Drawing.Point(6, 62)
+        Me.chkSeasonXXDashFanartJPG.Name = "chkSeasonXXDashFanartJPG"
+        Me.chkSeasonXXDashFanartJPG.Size = New System.Drawing.Size(129, 17)
+        Me.chkSeasonXXDashFanartJPG.TabIndex = 3
+        Me.chkSeasonXXDashFanartJPG.Text = "seasonXX-fanart.jpg"
+        Me.chkSeasonXXDashFanartJPG.UseVisualStyleBackColor = True
         '
         'dlgSettings
         '
@@ -7203,6 +7234,7 @@ Partial Class dlgSettings
         Me.pnlTVSources.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.gbMiscTVSourceOpts.ResumeLayout(False)
         Me.gbMiscTVSourceOpts.PerformLayout()
         Me.gbTVNaming.ResumeLayout(False)
@@ -7872,4 +7904,6 @@ Partial Class dlgSettings
     Friend WithEvents chkSeasonAllPoster As System.Windows.Forms.CheckBox
     Friend WithEvents chkSeasonXXDashPosterJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpisodeDashThumbJPG As System.Windows.Forms.CheckBox
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents chkSeasonXXDashFanartJPG As System.Windows.Forms.CheckBox
 End Class

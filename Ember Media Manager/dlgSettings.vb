@@ -1769,6 +1769,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkSeasonXXDashFanartJPG_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonXXDashFanartJPG.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkSeasonDotFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonDotFanart.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -2414,6 +2418,7 @@ Public Class dlgSettings
             Me.chkSeasonFolderJPG.Checked = Master.eSettings.SeasonFolderJPG
             Me.chkSeasonFanartJPG.Checked = Master.eSettings.SeasonFanartJPG
             Me.chkSeasonDashFanart.Checked = Master.eSettings.SeasonDashFanart
+            Me.chkSeasonXXDashFanartJPG.Checked = Master.eSettings.SeasonXXDashFanartJPG
             Me.chkSeasonDotFanart.Checked = Master.eSettings.SeasonDotFanart
             Me.chkEpisodeTBN.Checked = Master.eSettings.EpisodeTBN
             Me.chkEpisodeJPG.Checked = Master.eSettings.EpisodeJPG
@@ -3512,6 +3517,7 @@ Public Class dlgSettings
             Master.eSettings.SeasonFolderJPG = Me.chkSeasonFolderJPG.Checked
             Master.eSettings.SeasonFanartJPG = Me.chkSeasonFanartJPG.Checked
             Master.eSettings.SeasonDashFanart = Me.chkSeasonDashFanart.Checked
+            Master.eSettings.SeasonXXDashFanartJPG = Me.chkSeasonXXDashFanartJPG.Checked
             Master.eSettings.SeasonDotFanart = Me.chkSeasonDotFanart.Checked
             Master.eSettings.EpisodeTBN = Me.chkEpisodeTBN.Checked
             Master.eSettings.EpisodeJPG = Me.chkEpisodeJPG.Checked

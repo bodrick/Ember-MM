@@ -842,7 +842,7 @@ Public Class Images
         Try
             Dim pPath As String = String.Empty
 
-            If Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart Then
+            If Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonXXDashFanartJPG OrElse Master.eSettings.SeasonDotFanart Then
                 If Master.eSettings.ResizeSeasonFanart AndAlso (_image.Width > Master.eSettings.SeasonFanartWidth OrElse _image.Height > Master.eSettings.SeasonFanartHeight) Then
                     ImageUtils.ResizeImage(_image, Master.eSettings.SeasonFanartWidth, Master.eSettings.SeasonFanartHeight)
                 End If
@@ -885,14 +885,26 @@ Public Class Images
                         End If
                     End If
 
-                    If Master.eSettings.SeasonFanartJPG Then
-                        pPath = Path.Combine(tPath, "Fanart.jpg")
+                    If Master.eSettings.SeasonXXDashFanartJPG Then
+                        If mShow.TVEp.Season = 0 Then
+                            pPath = Path.Combine(mShow.ShowPath, "season-specials-fanart.jpg")
+                        Else
+                            pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}-fanart.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
+                        End If
                         If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
                             Save(pPath, Master.eSettings.SeasonFanartQuality)
                             strReturn = pPath
                         End If
                     End If
-                End If
+
+                        If Master.eSettings.SeasonFanartJPG Then
+                            pPath = Path.Combine(tPath, "Fanart.jpg")
+                            If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+                                Save(pPath, Master.eSettings.SeasonFanartQuality)
+                                strReturn = pPath
+                            End If
+                        End If
+                    End If
             End If
 
         Catch ex As Exception

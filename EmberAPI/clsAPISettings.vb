@@ -251,6 +251,7 @@ Public Class Settings
     Private _seasonalltbn As Boolean
     Private _seasonallposter As Boolean
     Private _seasondashfanart As Boolean
+    Private _seasonxxdashfanartjpg As Boolean
     Private _seasondotfanart As Boolean
     Private _seasonfanartcol As Boolean
     Private _seasonfanartheight As Integer
@@ -2402,6 +2403,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property SeasonXXDashFanartJPG() As Boolean
+        Get
+            Return Me._seasonxxdashfanartjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._seasonxxdashfanartjpg = value
+        End Set
+    End Property
+
     Public Property SeasonDotFanart() As Boolean
         Get
             Return Me._seasondotfanart
@@ -3454,6 +3464,7 @@ Public Class Settings
         Me._seasonfolderjpg = False
         Me._seasonfanartjpg = False
         Me._seasondashfanart = False
+        Me._seasonxxdashfanartjpg = False
         Me._seasondotfanart = False
         Me._episodetbn = True
         Me._episodejpg = False
@@ -3557,7 +3568,7 @@ Public Class Settings
     End Sub
 
     Public Function SeasonFanartEnabled() As Boolean
-        Return Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart
+        Return Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart OrElse Master.eSettings.SeasonXXDashFanartJPG
     End Function
 
     Public Sub SetDefaultsForLists(ByVal Type As Enums.DefaultType, ByVal Force As Boolean)

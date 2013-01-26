@@ -193,7 +193,7 @@ Public Class Scanner
             End If
 
             If String.IsNullOrEmpty(Episode.Fanart) AndAlso Master.eSettings.EpisodeDotFanart Then
-                fName = String.Concat(tmpName, "-fanart.jpg")
+                fName = String.Concat(tmpName, ".fanart.jpg")
                 Episode.Fanart = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
@@ -373,8 +373,10 @@ Public Class Scanner
 
     Public Sub GetSeasonImages(ByRef TVDB As Structures.DBTV, ByVal sSeason As Integer)
         Dim SeasonPath As String = String.Empty
+        Dim ShowPath As String = TVDB.ShowPath
         Dim bInside As Boolean = False
         Dim lFiles As New List(Of String)
+        Dim pFiles As New List(Of String)
         Dim fName As String = String.Empty
 
         TVDB.SeasonPosterPath = String.Empty
@@ -390,11 +392,11 @@ Public Class Scanner
 
             Try
                 lFiles.AddRange(Directory.GetFiles(SeasonPath, "season*.tbn"))
+                pFiles.AddRange(Directory.GetFiles(ShowPath, "season*-poster.jpg"))
             Catch
             End Try
 
             If lFiles.Count > 0 Then
-
                 If Master.eSettings.SeasonX OrElse Master.eSettings.SeasonXX Then
                     If sSeason = 0 Then
                         fName = Path.Combine(SeasonPath, "season-specials.tbn")
@@ -405,30 +407,34 @@ Public Class Scanner
                             fName = Path.Combine(SeasonPath, String.Format("season{0}.tbn", sSeason.ToString))
                         End If
                     End If
+                    TVDB.SeasonPosterPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                 End If
+            End If
 
+            If pFiles.Count > 0 Then
                 If Master.eSettings.SeasonXXDashPosterJPG Then
                     If sSeason = 0 Then
-                        fName = Path.Combine(SeasonPath, "season-specials-poster.jpg")
+                        fName = Path.Combine(ShowPath, "season-specials-poster.jpg")
                     Else
-                        If Master.eSettings.SeasonXXDashPosterJPG Then
-                            fName = Path.Combine(SeasonPath, String.Format("season{0}-poster.jpg", sSeason.ToString.PadLeft(2, Convert.ToChar("0"))))
-                        End If
+                        fName = Path.Combine(ShowPath, String.Format("season{0}-poster.jpg", sSeason.ToString.PadLeft(2, Convert.ToChar("0"))))
                     End If
+                    TVDB.SeasonPosterPath = pFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                 End If
-                TVDB.SeasonPosterPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
             If bInside AndAlso ((Master.eSettings.SeasonPosterTBN OrElse Master.eSettings.SeasonPosterJPG OrElse _
-                                Master.eSettings.SeasonNameTBN OrElse Master.eSettings.SeasonNameJPG OrElse _
+                                Master.eSettings.SeasonNameTBN OrElse Master.eSettings.SeasonNameJPG OrElse Master.eSettings.SeasonXXDashPosterJPG OrElse _
                                 Master.eSettings.SeasonFolderJPG AndAlso String.IsNullOrEmpty(TVDB.SeasonPosterPath)) OrElse _
-                                (Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse _
+                                (Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonXXDashFanartJPG OrElse _
                                  Master.eSettings.SeasonDotFanart AndAlso String.IsNullOrEmpty(TVDB.SeasonFanartPath))) Then
                 SeasonPath = Directory.GetParent(TVDB.Filename).FullName
 
                 lFiles.Clear()
+                pFiles.Clear()
+
                 Try
                     lFiles.AddRange(Directory.GetFiles(Directory.GetParent(TVDB.Filename).FullName))
+                    pFiles.AddRange(Directory.GetFiles(ShowPath, "season*-fanart.jpg"))
                 Catch
                 End Try
 
@@ -468,6 +474,15 @@ Public Class Scanner
                     If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso Master.eSettings.SeasonDashFanart Then
                         fName = Path.Combine(SeasonPath, String.Concat(Directory.GetParent(TVDB.Filename).Name, "-fanart.jpg"))
                         TVDB.SeasonFanartPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+                    End If
+
+                    If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso Master.eSettings.SeasonXXDashFanartJPG Then
+                        If sSeason = 0 Then
+                            fName = Path.Combine(ShowPath, "season-specials-fanart.jpg")
+                        Else
+                            fName = Path.Combine(ShowPath, String.Format("season{0}-fanart.jpg", sSeason.ToString.PadLeft(2, Convert.ToChar("0"))))
+                        End If
+                        TVDB.SeasonFanartPath = pFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                     End If
 
                     If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso Master.eSettings.SeasonDotFanart Then
