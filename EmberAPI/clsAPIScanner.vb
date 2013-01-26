@@ -297,15 +297,19 @@ Public Class Scanner
                                 OrElse (Master.eSettings.FolderJPG AndAlso fFile.ToLower = Path.Combine(parPath, "folder.jpg"))) _
                         OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso _
                                 ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.tbn")) _
-                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.jpg")))) _
+                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.jpg")) _
+                                OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts-poster.jpg"))) _
                         OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso _
                                 ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "index.tbn")) _
-                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index.jpg")))) _
+                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index.jpg")) _
+                                OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index-poster.jpg"))))) _
                         OrElse ((Not Movie.isSingle OrElse isYAMJ OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso _
                                 (((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".tbn")) _
                                 OrElse ((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".tbn")) _
                                 OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".jpg")) _
-                                OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".jpg")))) Then
+                                OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, "-poster.jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, "-poster.jpg")))) Then
                         Movie.Poster = fFile
                         Continue For
                     End If
@@ -524,7 +528,7 @@ Public Class Scanner
                 tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
-            If Master.eSettings.SeasonAllPoster Then
+            If Master.eSettings.SeasonAllPosterJPG Then
                 fName = Path.Combine(parPath, "season-all-poster.jpg")
                 tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If

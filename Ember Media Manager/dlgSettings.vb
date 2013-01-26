@@ -850,6 +850,55 @@ Public Class dlgSettings
         End Try
     End Sub
 
+    Private Sub btnMovieFrodo_Click(sender As Object, e As EventArgs) Handles btnMovieFrodo.Click
+        Me.chkFanartJPG.Checked = False
+        Me.chkFolderJPG.Checked = False
+        Me.chkMovieJPG.Checked = False
+        Me.chkMovieNameDashPosterJPG.Checked = True
+        Me.chkMovieNameDotFanartJPG.Checked = False
+        Me.chkMovieNameFanartJPG.Checked = True
+        Me.chkMovieNameJPG.Checked = False
+        Me.chkMovieNameNFO.Checked = True
+        Me.chkMovieNameTBN.Checked = False
+        Me.chkMovieNFO.Checked = False
+        Me.chkMovieTBN.Checked = False
+        Me.chkPosterJPG.Checked = False
+        Me.chkPosterTBN.Checked = False
+        Me.rbDashTrailer.Checked = True
+    End Sub
+
+    Private Sub btnTVShowFrodo_Click(sender As Object, e As EventArgs) Handles btnTVShowFrodo.Click
+        Me.chkEpisodeDashFanart.Checked = False
+        Me.chkEpisodeDashThumbJPG.Checked = True
+        Me.chkEpisodeDotFanart.Checked = False
+        Me.chkEpisodeJPG.Checked = False
+        Me.chkEpisodeTBN.Checked = False
+        Me.chkSeasonAllJPG.Checked = False
+        Me.chkSeasonAllPosterJPG.Checked = True
+        Me.chkSeasonAllTBN.Checked = False
+        Me.chkSeasonDashFanart.Checked = False
+        Me.chkSeasonDotFanart.Checked = False
+        Me.chkSeasonFanartJPG.Checked = False
+        Me.chkSeasonFolderJPG.Checked = False
+        Me.chkSeasonNameJPG.Checked = False
+        Me.chkSeasonNameTBN.Checked = False
+        Me.chkSeasonPosterJPG.Checked = False
+        Me.chkSeasonPosterTBN.Checked = False
+        Me.chkSeasonXTBN.Checked = False
+        Me.chkSeasonXXDashFanartJPG.Checked = True
+        Me.chkSeasonXXDashPosterJPG.Checked = True
+        Me.chkSeasonXXTBN.Checked = False
+        'Me.chkShowBannerJPG.Checked = True (banners not implemented at time)
+        Me.chkShowDashFanart.Checked = False
+        Me.chkShowDotFanart.Checked = False
+        Me.chkShowFanartJPG.Checked = True
+        Me.chkShowFolderJPG.Checked = False
+        Me.chkShowJPG.Checked = False
+        Me.chkShowPosterJPG.Checked = True
+        Me.chkShowPosterTBN.Checked = False
+        Me.chkShowTBN.Checked = False
+    End Sub
+
     Private Sub cbAutoETSize_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbAutoETSize.SelectedIndexChanged
         Me.SetApplyButton(True)
     End Sub
@@ -1367,6 +1416,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkMovieNameDashPosterJPG_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkMovieNameDashPosterJPG.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkMovieNameMultiOnly_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkMovieNameMultiOnly.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -1761,7 +1814,7 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
-    Private Sub chkSeasonAllPoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonAllPoster.CheckedChanged
+    Private Sub chkSeasonAllPosterJPG_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSeasonAllPosterJPG.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2212,6 +2265,7 @@ Public Class dlgSettings
             Me.chkMovieNameTBN.Checked = Master.eSettings.MovieNameTBN
             Me.chkMovieJPG.Checked = Master.eSettings.MovieJPG
             Me.chkMovieNameJPG.Checked = Master.eSettings.MovieNameJPG
+            Me.chkMovieNameDashPosterJPG.Checked = Master.eSettings.MovieNameDashPosterJPG
             Me.chkPosterTBN.Checked = Master.eSettings.PosterTBN
             Me.chkPosterJPG.Checked = Master.eSettings.PosterJPG
             Me.chkFolderJPG.Checked = Master.eSettings.FolderJPG
@@ -2398,7 +2452,7 @@ Public Class dlgSettings
             Me.cbRatingRegion.Text = Master.eSettings.ShowRatingRegion
             Me.chkSeasonAllTBN.Checked = Master.eSettings.SeasonAllTBN
             Me.chkSeasonAllJPG.Checked = Master.eSettings.SeasonAllJPG
-            Me.chkSeasonAllPoster.Checked = Master.eSettings.SeasonAllPoster
+            Me.chkSeasonAllPosterJPG.Checked = Master.eSettings.SeasonAllPosterJPG
             Me.chkShowTBN.Checked = Master.eSettings.ShowTBN
             Me.chkShowJPG.Checked = Master.eSettings.ShowJPG
             Me.chkShowFolderJPG.Checked = Master.eSettings.ShowFolderJPG
@@ -3303,6 +3357,7 @@ Public Class dlgSettings
             Master.eSettings.MovieNameTBN = Me.chkMovieNameTBN.Checked
             Master.eSettings.MovieJPG = Me.chkMovieJPG.Checked
             Master.eSettings.MovieNameJPG = Me.chkMovieNameJPG.Checked
+            Master.eSettings.MovieNameDashPosterJPG = Me.chkMovieNameDashPosterJPG.Checked
             Master.eSettings.PosterTBN = Me.chkPosterTBN.Checked
             Master.eSettings.PosterJPG = Me.chkPosterJPG.Checked
             Master.eSettings.FolderJPG = Me.chkFolderJPG.Checked
@@ -3497,7 +3552,7 @@ Public Class dlgSettings
             End If
             Master.eSettings.SeasonAllTBN = Me.chkSeasonAllTBN.Checked
             Master.eSettings.SeasonAllJPG = Me.chkSeasonAllJPG.Checked
-            Master.eSettings.SeasonAllPoster = Me.chkSeasonAllPoster.Checked
+            Master.eSettings.SeasonAllPosterJPG = Me.chkSeasonAllPosterJPG.Checked
             Master.eSettings.ShowTBN = Me.chkShowTBN.Checked
             Master.eSettings.ShowJPG = Me.chkShowJPG.Checked
             Master.eSettings.ShowFolderJPG = Me.chkShowFolderJPG.Checked
