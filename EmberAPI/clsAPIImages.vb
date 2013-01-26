@@ -843,7 +843,7 @@ Public Class Images
     End Function
     Public Function SaveAsActorThumb(ByVal actor As MediaContainers.Person, ByVal fpath As String) As String
         Dim tPath As String = String.Empty
-        tPath = Path.Combine(Path.Combine(fpath, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".tbn"))
+        tPath = Path.Combine(Path.Combine(fpath, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
         If Not Directory.Exists(Path.Combine(fpath, ".actors")) Then Directory.CreateDirectory(Path.Combine(fpath, ".actors"))
         If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
             Save(tPath, Master.eSettings.PosterQuality)
