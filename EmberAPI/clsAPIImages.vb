@@ -230,6 +230,8 @@ Public Class Images
                         Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.jpg"))
                     ElseIf .MovieNameTBN Then
                         Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".tbn"))
+                    ElseIf .MovieNameDashPosterJPG Then
+                        Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), "-poster.jpg"))
                     ElseIf .MovieTBN Then
                         Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "movie.tbn"))
                     ElseIf .PosterTBN Then
@@ -248,6 +250,8 @@ Public Class Images
                         Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "poster.jpg"))
                     ElseIf .MovieNameTBN Then
                         Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".tbn"))
+                    ElseIf .MovieNameDashPosterJPG Then
+                        Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), "-poster.jpg"))
                     ElseIf .MovieTBN Then
                         Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "movie.tbn"))
                     ElseIf .PosterTBN Then
@@ -794,6 +798,8 @@ Public Class Images
                         pPath = String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, "\", "poster.jpg")
                     ElseIf .MovieNameTBN Then
                         pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name), ".tbn")
+                    ElseIf .MovieNameDashPosterJPG Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name), "-poster.jpg")
                     ElseIf .MovieTBN Then
                         pPath = String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, "\", "movie.tbn")
                     ElseIf .PosterTBN Then
@@ -819,6 +825,8 @@ Public Class Images
                         pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.jpg"))
                     ElseIf .MovieNameTBN Then
                         pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), ".tbn")
+                    ElseIf .MovieNameDashPosterJPG Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), "-poster.jpg")
                     ElseIf .MovieTBN Then
                         pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "movie.tbn"))
                     ElseIf .PosterTBN Then
