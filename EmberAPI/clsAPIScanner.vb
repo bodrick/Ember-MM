@@ -297,15 +297,19 @@ Public Class Scanner
                                 OrElse (Master.eSettings.FolderJPG AndAlso fFile.ToLower = Path.Combine(parPath, "folder.jpg"))) _
                         OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso _
                                 ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.tbn")) _
-                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.jpg")))) _
+                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.jpg")) _
+                                OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts-poster.jpg"))) _
                         OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso _
                                 ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "index.tbn")) _
-                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index.jpg")))) _
+                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index.jpg")) _
+                                OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index-poster.jpg"))))) _
                         OrElse ((Not Movie.isSingle OrElse isYAMJ OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso _
                                 (((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".tbn")) _
                                 OrElse ((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".tbn")) _
                                 OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".jpg")) _
-                                OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".jpg")))) Then
+                                OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, "-poster.jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, "-poster.jpg")))) Then
                         Movie.Poster = fFile
                         Continue For
                     End If
@@ -423,10 +427,11 @@ Public Class Scanner
             End If
 
             If bInside AndAlso ((Master.eSettings.SeasonPosterTBN OrElse Master.eSettings.SeasonPosterJPG OrElse _
-                                Master.eSettings.SeasonNameTBN OrElse Master.eSettings.SeasonNameJPG OrElse Master.eSettings.SeasonXXDashPosterJPG OrElse _
+                                Master.eSettings.SeasonNameTBN OrElse Master.eSettings.SeasonNameJPG OrElse _
                                 Master.eSettings.SeasonFolderJPG AndAlso String.IsNullOrEmpty(TVDB.SeasonPosterPath)) OrElse _
-                                (Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonXXDashFanartJPG OrElse _
+                                (Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse _
                                  Master.eSettings.SeasonDotFanart AndAlso String.IsNullOrEmpty(TVDB.SeasonFanartPath))) Then
+
                 SeasonPath = Directory.GetParent(TVDB.Filename).FullName
 
                 lFiles.Clear()
@@ -434,7 +439,6 @@ Public Class Scanner
 
                 Try
                     lFiles.AddRange(Directory.GetFiles(Directory.GetParent(TVDB.Filename).FullName))
-                    pFiles.AddRange(Directory.GetFiles(ShowPath, "season*-fanart.jpg"))
                 Catch
                 End Try
 
@@ -476,19 +480,31 @@ Public Class Scanner
                         TVDB.SeasonFanartPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                     End If
 
-                    If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso Master.eSettings.SeasonXXDashFanartJPG Then
-                        If sSeason = 0 Then
-                            fName = Path.Combine(ShowPath, "season-specials-fanart.jpg")
-                        Else
-                            fName = Path.Combine(ShowPath, String.Format("season{0}-fanart.jpg", sSeason.ToString.PadLeft(2, Convert.ToChar("0"))))
-                        End If
-                        TVDB.SeasonFanartPath = pFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
-                    End If
-
                     If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso Master.eSettings.SeasonDotFanart Then
                         fName = Path.Combine(SeasonPath, String.Concat(Directory.GetParent(TVDB.Filename).Name, ".fanart.jpg"))
                         TVDB.SeasonFanartPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                     End If
+                End If
+
+            Else
+
+                SeasonPath = Directory.GetParent(TVDB.Filename).FullName
+
+                lFiles.Clear()
+                pFiles.Clear()
+
+                Try
+                    pFiles.AddRange(Directory.GetFiles(ShowPath, "season*-fanart.jpg"))
+                Catch
+                End Try
+
+                If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso Master.eSettings.SeasonXXDashFanartJPG Then
+                    If sSeason = 0 Then
+                        fName = Path.Combine(ShowPath, "season-specials-fanart.jpg")
+                    Else
+                        fName = Path.Combine(ShowPath, String.Format("season{0}-fanart.jpg", sSeason.ToString.PadLeft(2, Convert.ToChar("0"))))
+                    End If
+                    TVDB.SeasonFanartPath = pFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                 End If
             End If
 
@@ -524,7 +540,7 @@ Public Class Scanner
                 tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
-            If Master.eSettings.SeasonAllPoster Then
+            If Master.eSettings.SeasonAllPosterJPG Then
                 fName = Path.Combine(parPath, "season-all-poster.jpg")
                 tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If

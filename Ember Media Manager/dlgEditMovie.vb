@@ -1222,7 +1222,12 @@ Public Class dlgEditMovie
                     End If
                 End If
 
-                Master.currMovie.Movie.Rating = .tmpRating
+                If Not .tmpRating.Trim = String.Empty AndAlso .tmpRating.Trim <> "0" Then
+                    Master.currMovie.Movie.Rating = .tmpRating
+                Else
+                    Master.currMovie.Movie.Rating = String.Empty
+                End If
+
                 Master.currMovie.Movie.Runtime = .txtRuntime.Text.Trim
                 Master.currMovie.Movie.ReleaseDate = .txtReleaseDate.Text.Trim
                 Master.currMovie.Movie.OldCredits = .txtCredits.Text.Trim

@@ -96,6 +96,7 @@ Partial Class dlgSettings
         Me.chkMovieFanartCol = New System.Windows.Forms.CheckBox()
         Me.chkMoviePosterCol = New System.Windows.Forms.CheckBox()
         Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+        Me.btnMovieFrodo = New System.Windows.Forms.Button()
         Me.chkMovieNameMultiOnly = New System.Windows.Forms.CheckBox()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
         Me.rbBracketTrailer = New System.Windows.Forms.RadioButton()
@@ -108,6 +109,7 @@ Partial Class dlgSettings
         Me.chkMovieNameFanartJPG = New System.Windows.Forms.CheckBox()
         Me.chkFanartJPG = New System.Windows.Forms.CheckBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+        Me.chkMovieNameDashPosterJPG = New System.Windows.Forms.CheckBox()
         Me.chkFolderJPG = New System.Windows.Forms.CheckBox()
         Me.chkPosterJPG = New System.Windows.Forms.CheckBox()
         Me.chkPosterTBN = New System.Windows.Forms.CheckBox()
@@ -265,6 +267,7 @@ Partial Class dlgSettings
         Me.pnlTVSources = New System.Windows.Forms.Panel()
         Me.TabControl2 = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.btnTVShowFrodo = New System.Windows.Forms.Button()
         Me.lvTVSources = New System.Windows.Forms.ListView()
         Me.ColumnHeader1 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -283,7 +286,7 @@ Partial Class dlgSettings
         Me.gbShowBanner = New System.Windows.Forms.GroupBox()
         Me.chkShowBannerJPG = New System.Windows.Forms.CheckBox()
         Me.gbAllSeasonPoster = New System.Windows.Forms.GroupBox()
-        Me.chkSeasonAllPoster = New System.Windows.Forms.CheckBox()
+        Me.chkSeasonAllPosterJPG = New System.Windows.Forms.CheckBox()
         Me.chkSeasonAllJPG = New System.Windows.Forms.CheckBox()
         Me.chkSeasonAllTBN = New System.Windows.Forms.CheckBox()
         Me.gbEpisodeFanart = New System.Windows.Forms.GroupBox()
@@ -294,6 +297,7 @@ Partial Class dlgSettings
         Me.chkEpisodeJPG = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeTBN = New System.Windows.Forms.CheckBox()
         Me.gbSeasonFanart = New System.Windows.Forms.GroupBox()
+        Me.chkSeasonXXDashFanartJPG = New System.Windows.Forms.CheckBox()
         Me.chkSeasonDotFanart = New System.Windows.Forms.CheckBox()
         Me.chkSeasonDashFanart = New System.Windows.Forms.CheckBox()
         Me.chkSeasonFanartJPG = New System.Windows.Forms.CheckBox()
@@ -600,8 +604,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.chkSeasonXXDashFanartJPG = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -1454,6 +1456,7 @@ Partial Class dlgSettings
         '
         'GroupBox8
         '
+        Me.GroupBox8.Controls.Add(Me.btnMovieFrodo)
         Me.GroupBox8.Controls.Add(Me.chkMovieNameMultiOnly)
         Me.GroupBox8.Controls.Add(Me.GroupBox21)
         Me.GroupBox8.Controls.Add(Me.GroupBox7)
@@ -1467,13 +1470,23 @@ Partial Class dlgSettings
         Me.GroupBox8.TabStop = False
         Me.GroupBox8.Text = "File Naming"
         '
+        'btnMovieFrodo
+        '
+        Me.btnMovieFrodo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.btnMovieFrodo.Location = New System.Drawing.Point(237, 29)
+        Me.btnMovieFrodo.Name = "btnMovieFrodo"
+        Me.btnMovieFrodo.Size = New System.Drawing.Size(116, 23)
+        Me.btnMovieFrodo.TabIndex = 6
+        Me.btnMovieFrodo.Text = "XBMC Frodo"
+        Me.btnMovieFrodo.UseVisualStyleBackColor = True
+        '
         'chkMovieNameMultiOnly
         '
         Me.chkMovieNameMultiOnly.CheckAlign = System.Drawing.ContentAlignment.TopLeft
         Me.chkMovieNameMultiOnly.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkMovieNameMultiOnly.Location = New System.Drawing.Point(195, 70)
+        Me.chkMovieNameMultiOnly.Location = New System.Drawing.Point(235, 58)
         Me.chkMovieNameMultiOnly.Name = "chkMovieNameMultiOnly"
-        Me.chkMovieNameMultiOnly.Size = New System.Drawing.Size(167, 43)
+        Me.chkMovieNameMultiOnly.Size = New System.Drawing.Size(125, 43)
         Me.chkMovieNameMultiOnly.TabIndex = 5
         Me.chkMovieNameMultiOnly.Text = "Use <movie> Only for Folders with Multiple Movies"
         Me.chkMovieNameMultiOnly.TextAlign = System.Drawing.ContentAlignment.TopLeft
@@ -1507,6 +1520,7 @@ Partial Class dlgSettings
         '
         Me.rbDashTrailer.AutoSize = True
         Me.rbDashTrailer.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.rbDashTrailer.ForeColor = System.Drawing.SystemColors.ControlText
         Me.rbDashTrailer.Location = New System.Drawing.Point(5, 17)
         Me.rbDashTrailer.Name = "rbDashTrailer"
         Me.rbDashTrailer.Size = New System.Drawing.Size(59, 17)
@@ -1531,6 +1545,7 @@ Partial Class dlgSettings
         '
         Me.chkMovieNameNFO.AutoSize = True
         Me.chkMovieNameNFO.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieNameNFO.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkMovieNameNFO.Location = New System.Drawing.Point(6, 34)
         Me.chkMovieNameNFO.Name = "chkMovieNameNFO"
         Me.chkMovieNameNFO.Size = New System.Drawing.Size(93, 17)
@@ -1577,6 +1592,7 @@ Partial Class dlgSettings
         '
         Me.chkMovieNameFanartJPG.AutoSize = True
         Me.chkMovieNameFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieNameFanartJPG.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkMovieNameFanartJPG.Location = New System.Drawing.Point(6, 35)
         Me.chkMovieNameFanartJPG.Name = "chkMovieNameFanartJPG"
         Me.chkMovieNameFanartJPG.Size = New System.Drawing.Size(127, 17)
@@ -1597,6 +1613,7 @@ Partial Class dlgSettings
         '
         'GroupBox5
         '
+        Me.GroupBox5.Controls.Add(Me.chkMovieNameDashPosterJPG)
         Me.GroupBox5.Controls.Add(Me.chkFolderJPG)
         Me.GroupBox5.Controls.Add(Me.chkPosterJPG)
         Me.GroupBox5.Controls.Add(Me.chkPosterTBN)
@@ -1607,10 +1624,22 @@ Partial Class dlgSettings
         Me.GroupBox5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox5.Location = New System.Drawing.Point(6, 17)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(185, 83)
+        Me.GroupBox5.Size = New System.Drawing.Size(221, 83)
         Me.GroupBox5.TabIndex = 0
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Posters"
+        '
+        'chkMovieNameDashPosterJPG
+        '
+        Me.chkMovieNameDashPosterJPG.AutoSize = True
+        Me.chkMovieNameDashPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieNameDashPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.chkMovieNameDashPosterJPG.Location = New System.Drawing.Point(85, 63)
+        Me.chkMovieNameDashPosterJPG.Name = "chkMovieNameDashPosterJPG"
+        Me.chkMovieNameDashPosterJPG.Size = New System.Drawing.Size(129, 17)
+        Me.chkMovieNameDashPosterJPG.TabIndex = 7
+        Me.chkMovieNameDashPosterJPG.Text = "<movie>-poster.jpg"
+        Me.chkMovieNameDashPosterJPG.UseVisualStyleBackColor = True
         '
         'chkFolderJPG
         '
@@ -3334,7 +3363,7 @@ Partial Class dlgSettings
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.Label8)
+        Me.TabPage3.Controls.Add(Me.btnTVShowFrodo)
         Me.TabPage3.Controls.Add(Me.lvTVSources)
         Me.TabPage3.Controls.Add(Me.gbMiscTVSourceOpts)
         Me.TabPage3.Controls.Add(Me.btnAddTVSource)
@@ -3348,6 +3377,16 @@ Partial Class dlgSettings
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "General"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'btnTVShowFrodo
+        '
+        Me.btnTVShowFrodo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.btnTVShowFrodo.Location = New System.Drawing.Point(22, 320)
+        Me.btnTVShowFrodo.Name = "btnTVShowFrodo"
+        Me.btnTVShowFrodo.Size = New System.Drawing.Size(116, 23)
+        Me.btnTVShowFrodo.TabIndex = 7
+        Me.btnTVShowFrodo.Text = "XBMC Frodo"
+        Me.btnTVShowFrodo.UseVisualStyleBackColor = True
         '
         'lvTVSources
         '
@@ -3538,7 +3577,7 @@ Partial Class dlgSettings
         '
         'gbAllSeasonPoster
         '
-        Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllPoster)
+        Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllPosterJPG)
         Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllJPG)
         Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllTBN)
         Me.gbAllSeasonPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
@@ -3549,17 +3588,17 @@ Partial Class dlgSettings
         Me.gbAllSeasonPoster.TabStop = False
         Me.gbAllSeasonPoster.Text = "All Season Posters"
         '
-        'chkSeasonAllPoster
+        'chkSeasonAllPosterJPG
         '
-        Me.chkSeasonAllPoster.AutoSize = True
-        Me.chkSeasonAllPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSeasonAllPoster.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.chkSeasonAllPoster.Location = New System.Drawing.Point(6, 49)
-        Me.chkSeasonAllPoster.Name = "chkSeasonAllPoster"
-        Me.chkSeasonAllPoster.Size = New System.Drawing.Size(135, 17)
-        Me.chkSeasonAllPoster.TabIndex = 2
-        Me.chkSeasonAllPoster.Text = "season-all-poster.jpg"
-        Me.chkSeasonAllPoster.UseVisualStyleBackColor = True
+        Me.chkSeasonAllPosterJPG.AutoSize = True
+        Me.chkSeasonAllPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSeasonAllPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.chkSeasonAllPosterJPG.Location = New System.Drawing.Point(6, 49)
+        Me.chkSeasonAllPosterJPG.Name = "chkSeasonAllPosterJPG"
+        Me.chkSeasonAllPosterJPG.Size = New System.Drawing.Size(135, 17)
+        Me.chkSeasonAllPosterJPG.TabIndex = 2
+        Me.chkSeasonAllPosterJPG.Text = "season-all-poster.jpg"
+        Me.chkSeasonAllPosterJPG.UseVisualStyleBackColor = True
         '
         'chkSeasonAllJPG
         '
@@ -3634,7 +3673,7 @@ Partial Class dlgSettings
         '
         Me.chkEpisodeDashThumbJPG.AutoSize = True
         Me.chkEpisodeDashThumbJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkEpisodeDashThumbJPG.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.chkEpisodeDashThumbJPG.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkEpisodeDashThumbJPG.Location = New System.Drawing.Point(5, 49)
         Me.chkEpisodeDashThumbJPG.Name = "chkEpisodeDashThumbJPG"
         Me.chkEpisodeDashThumbJPG.Size = New System.Drawing.Size(141, 17)
@@ -3677,6 +3716,18 @@ Partial Class dlgSettings
         Me.gbSeasonFanart.TabIndex = 3
         Me.gbSeasonFanart.TabStop = False
         Me.gbSeasonFanart.Text = "Season Fanart"
+        '
+        'chkSeasonXXDashFanartJPG
+        '
+        Me.chkSeasonXXDashFanartJPG.AutoSize = True
+        Me.chkSeasonXXDashFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSeasonXXDashFanartJPG.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.chkSeasonXXDashFanartJPG.Location = New System.Drawing.Point(6, 62)
+        Me.chkSeasonXXDashFanartJPG.Name = "chkSeasonXXDashFanartJPG"
+        Me.chkSeasonXXDashFanartJPG.Size = New System.Drawing.Size(129, 17)
+        Me.chkSeasonXXDashFanartJPG.TabIndex = 3
+        Me.chkSeasonXXDashFanartJPG.Text = "seasonXX-fanart.jpg"
+        Me.chkSeasonXXDashFanartJPG.UseVisualStyleBackColor = True
         '
         'chkSeasonDotFanart
         '
@@ -3733,7 +3784,7 @@ Partial Class dlgSettings
         '
         Me.chkSeasonXXDashPosterJPG.AutoSize = True
         Me.chkSeasonXXDashPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSeasonXXDashPosterJPG.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.chkSeasonXXDashPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkSeasonXXDashPosterJPG.Location = New System.Drawing.Point(6, 48)
         Me.chkSeasonXXDashPosterJPG.Name = "chkSeasonXXDashPosterJPG"
         Me.chkSeasonXXDashPosterJPG.Size = New System.Drawing.Size(131, 17)
@@ -3857,7 +3908,7 @@ Partial Class dlgSettings
         '
         Me.chkShowFanartJPG.AutoSize = True
         Me.chkShowFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowFanartJPG.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.chkShowFanartJPG.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkShowFanartJPG.Location = New System.Drawing.Point(6, 19)
         Me.chkShowFanartJPG.Name = "chkShowFanartJPG"
         Me.chkShowFanartJPG.Size = New System.Drawing.Size(77, 17)
@@ -3906,7 +3957,7 @@ Partial Class dlgSettings
         '
         Me.chkShowPosterJPG.AutoSize = True
         Me.chkShowPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkShowPosterJPG.ForeColor = System.Drawing.SystemColors.Highlight
+        Me.chkShowPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkShowPosterJPG.Location = New System.Drawing.Point(6, 64)
         Me.chkShowPosterJPG.Name = "chkShowPosterJPG"
         Me.chkShowPosterJPG.Size = New System.Drawing.Size(79, 17)
@@ -7104,28 +7155,6 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 77
         '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.Label8.Location = New System.Drawing.Point(31, 319)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(96, 26)
-        Me.Label8.TabIndex = 7
-        Me.Label8.Text = "Settings for" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "XBMC 12 (Frodo)"
-        '
-        'chkSeasonXXDashFanartJPG
-        '
-        Me.chkSeasonXXDashFanartJPG.AutoSize = True
-        Me.chkSeasonXXDashFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSeasonXXDashFanartJPG.ForeColor = System.Drawing.SystemColors.Highlight
-        Me.chkSeasonXXDashFanartJPG.Location = New System.Drawing.Point(6, 62)
-        Me.chkSeasonXXDashFanartJPG.Name = "chkSeasonXXDashFanartJPG"
-        Me.chkSeasonXXDashFanartJPG.Size = New System.Drawing.Size(129, 17)
-        Me.chkSeasonXXDashFanartJPG.TabIndex = 3
-        Me.chkSeasonXXDashFanartJPG.Text = "seasonXX-fanart.jpg"
-        Me.chkSeasonXXDashFanartJPG.UseVisualStyleBackColor = True
-        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -7134,6 +7163,8 @@ Partial Class dlgSettings
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(894, 629)
         Me.Controls.Add(Me.pnlTVSources)
+        Me.Controls.Add(Me.pnlImages)
+        Me.Controls.Add(Me.pnlSources)
         Me.Controls.Add(Me.pnlScraper)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.ToolStrip1)
@@ -7144,8 +7175,6 @@ Partial Class dlgSettings
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnApply)
         Me.Controls.Add(Me.btnOK)
-        Me.Controls.Add(Me.pnlImages)
-        Me.Controls.Add(Me.pnlSources)
         Me.Controls.Add(Me.pnlMovies)
         Me.Controls.Add(Me.pnlTVImages)
         Me.Controls.Add(Me.pnlExtensions)
@@ -7234,7 +7263,6 @@ Partial Class dlgSettings
         Me.pnlTVSources.ResumeLayout(False)
         Me.TabControl2.ResumeLayout(False)
         Me.TabPage3.ResumeLayout(False)
-        Me.TabPage3.PerformLayout()
         Me.gbMiscTVSourceOpts.ResumeLayout(False)
         Me.gbMiscTVSourceOpts.PerformLayout()
         Me.gbTVNaming.ResumeLayout(False)
@@ -7901,9 +7929,11 @@ Partial Class dlgSettings
     Friend WithEvents chkPosterOnly As System.Windows.Forms.CheckBox
     Friend WithEvents gbShowBanner As System.Windows.Forms.GroupBox
     Friend WithEvents chkShowBannerJPG As System.Windows.Forms.CheckBox
-    Friend WithEvents chkSeasonAllPoster As System.Windows.Forms.CheckBox
+    Friend WithEvents chkSeasonAllPosterJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkSeasonXXDashPosterJPG As System.Windows.Forms.CheckBox
     Friend WithEvents chkEpisodeDashThumbJPG As System.Windows.Forms.CheckBox
-    Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents chkSeasonXXDashFanartJPG As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMovieNameDashPosterJPG As System.Windows.Forms.CheckBox
+    Friend WithEvents btnMovieFrodo As System.Windows.Forms.Button
+    Friend WithEvents btnTVShowFrodo As System.Windows.Forms.Button
 End Class

@@ -282,7 +282,14 @@ Public Class NFO
         Dim nPath As String = String.Empty
 
         If Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isVideoTS(sPath) Then
-            nPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, Directory.GetParent(Directory.GetParent(sPath).FullName).Name), ".nfo")
+            If Master.eSettings.MovieNameNFO Then
+                nPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, Directory.GetParent(Directory.GetParent(sPath).FullName).Name), ".nfo")
+            ElseIf Master.eSettings.MovieNFO Then
+                nPath = String.Concat(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, "\", "movie.nfo")
+            Else
+                nPath = String.Concat(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, "\", "movie.nfo")
+            End If
+
             If File.Exists(nPath) Then
                 Return nPath
             Else
@@ -294,7 +301,14 @@ Public Class NFO
                 End If
             End If
         ElseIf Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isBDRip(sPath) Then
-            nPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName).Name), ".nfo")
+            If Master.eSettings.MovieNameNFO Then
+                nPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName).Name), ".nfo")
+            ElseIf Master.eSettings.MovieNFO Then
+                nPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName).FullName, "movie.nfo"))
+            Else
+                nPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName).FullName, "movie.nfo"))
+            End If
+
             If File.Exists(nPath) Then
                 Return nPath
             Else
@@ -703,7 +717,13 @@ Public Class NFO
                 Dim fAttWritable As Boolean = True
 
                 If Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isVideoTS(movieToSave.Filename) Then
-                    tPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName, Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).Name), ".nfo")
+                    If Master.eSettings.MovieNameNFO Then
+                        tPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName, Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).Name), ".nfo")
+                    ElseIf Master.eSettings.MovieNFO Then
+                        tPath = String.Concat(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName, "\", "movie.nfo")
+                    Else
+                        tPath = String.Concat(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName, "\", "movie.nfo")
+                    End If
 
                     If Not Master.eSettings.OverwriteNfo Then
                         RenameNonConfNfo(tPath, False)
@@ -729,7 +749,13 @@ Public Class NFO
                         If doesExist And fAttWritable Then File.SetAttributes(tPath, fAtt)
                     End If
                 ElseIf Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isBDRip(movieToSave.Filename) Then
-                    tPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName).Name), ".nfo")
+                    If Master.eSettings.MovieNameNFO Then
+                        tPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName).Name), ".nfo")
+                    ElseIf Master.eSettings.MovieNFO Then
+                        tPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName).FullName, "movie.nfo"))
+                    Else
+                        tPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName).FullName, "movie.nfo"))
+                    End If
 
                     If Not Master.eSettings.OverwriteNfo Then
                         RenameNonConfNfo(tPath, False)

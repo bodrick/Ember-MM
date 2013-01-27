@@ -169,6 +169,7 @@ Public Class Settings
     Private _movienamedotfanartjpg As Boolean
     Private _movienamefanartjpg As Boolean
     Private _movienamejpg As Boolean
+    Private _movienamedashposterjpg As Boolean
     Private _movienamemultionly As Boolean
     Private _movienamenfo As Boolean
     Private _movienametbn As Boolean
@@ -249,7 +250,7 @@ Public Class Settings
     Private _scrapershowtitle As Boolean
     Private _seasonalljpg As Boolean
     Private _seasonalltbn As Boolean
-    Private _seasonallposter As Boolean
+    Private _seasonallposterjpg As Boolean
     Private _seasondashfanart As Boolean
     Private _seasonxxdashfanartjpg As Boolean
     Private _seasondotfanart As Boolean
@@ -1602,6 +1603,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property MovieNameDashPosterJPG() As Boolean
+        Get
+            Return Me._movienamedashposterjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._movienamedashposterjpg = value
+        End Set
+    End Property
+
     Public Property MovieNameMultiOnly() As Boolean
         Get
             Return Me._movienamemultionly
@@ -2385,12 +2395,12 @@ Public Class Settings
         End Set
     End Property
 
-    Public Property SeasonAllPoster() As Boolean
+    Public Property SeasonAllPosterJPG() As Boolean
         Get
-            Return Me._seasonallposter
+            Return Me._seasonallposterjpg
         End Get
         Set(ByVal value As Boolean)
-            Me._seasonallposter = value
+            Me._seasonallposterjpg = value
         End Set
     End Property
 
@@ -3209,7 +3219,7 @@ Public Class Settings
 #Region "Methods"
 
     Public Function AllSeasonPosterEnabled() As Boolean
-        Return Me._seasonalltbn OrElse Me._seasonalljpg OrElse Me._seasonallposter
+        Return Me._seasonalltbn OrElse Me._seasonalljpg OrElse Me._seasonallposterjpg
     End Function
 
     Public Sub Clear()
@@ -3296,6 +3306,7 @@ Public Class Settings
         Me._movienametbn = True
         Me._moviejpg = False
         Me._movienamejpg = False
+        Me._movienamedashposterjpg = False
         Me._postertbn = False
         Me._posterjpg = False
         Me._folderjpg = False
@@ -3444,7 +3455,7 @@ Public Class Settings
         Me._tvshowregexes = New List(Of TVShowRegEx)
         Me._seasonalltbn = True
         Me._seasonalljpg = False
-        Me._seasonallposter = False
+        Me._seasonallposterjpg = False
         Me._showfolderjpg = True
         Me._showtbn = False
         Me._showjpg = False
