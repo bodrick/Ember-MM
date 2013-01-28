@@ -45,7 +45,7 @@ Partial Class dlgNewSet
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel1.Size = New System.Drawing.Size(146, 29)
-        Me.TableLayoutPanel1.TabIndex = 0
+        Me.TableLayoutPanel1.TabIndex = 1
         '
         'OK_Button
         '
@@ -94,7 +94,7 @@ Partial Class dlgNewSet
         Me.Panel1.Location = New System.Drawing.Point(2, 3)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(267, 52)
-        Me.Panel1.TabIndex = 3
+        Me.Panel1.TabIndex = 0
         '
         'dlgNewSet
         '

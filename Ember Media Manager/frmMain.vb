@@ -6510,6 +6510,14 @@ doCancel:
                 Me.tslLoading.Text = Master.eLang.GetString(132, "Scraping Media (Movies Missing Items - Auto):")
             Case Enums.ScrapeType.UpdateAsk
                 Me.tslLoading.Text = Master.eLang.GetString(133, "Scraping Media (Movies Missing Items - Ask):")
+            Case Enums.ScrapeType.NewAsk
+                Me.tslLoading.Text = Master.eLang.GetString(134, "Scraping Media (New Movies - Ask):")
+            Case Enums.ScrapeType.NewAuto
+                Me.tslLoading.Text = Master.eLang.GetString(135, "Scraping Media (New Movies - Auto):")
+            Case Enums.ScrapeType.MarkAsk
+                Me.tslLoading.Text = Master.eLang.GetString(136, "Scraping Media (Marked Movies - Ask):")
+            Case Enums.ScrapeType.MarkAuto
+                Me.tslLoading.Text = Master.eLang.GetString(137, "Scraping Media (Marked Movies - Auto):")
             Case Enums.ScrapeType.FilterAsk
                 Me.tslLoading.Text = Master.eLang.GetString(622, "Scraping Media (Current Filter - Ask):")
             Case Enums.ScrapeType.FilterAuto
