@@ -353,7 +353,7 @@ Public Class dlgIMDBSearchResults
 
                     'determine if we automatically start downloading info for selected node
                     If M.ExactMatches.Count > 0 Then
-                        'If M.ExactMatches.Count = 2 Then
+                        'If M.ExactMatches.Count = 1 Then
                         Me.tvResults.SelectedNode = selNode
                         'Else
                         'Me.tvResults.SelectedNode = Nothing
