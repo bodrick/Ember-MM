@@ -5396,6 +5396,9 @@ doCancel:
                             Case "-fullask"
                                 clScrapeType = Enums.ScrapeType.FullAsk
                                 clAsk = True
+                            Case "-fullskip"
+                                clScrapeType = Enums.ScrapeType.FullSkip
+                                clAsk = False
                             Case "-fullauto"
                                 clScrapeType = Enums.ScrapeType.FullAuto
                                 clAsk = False
@@ -5948,6 +5951,11 @@ doCancel:
     Private Sub mnuAllAskAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllAskAll.Click, mnuTrayAllAskAll.Click
         Functions.SetScraperMod(Enums.ModType.All, True)
         Me.MovieScrapeData(False, Enums.ScrapeType.FullAsk, Master.DefaultOptions)
+    End Sub
+
+    Private Sub mnuAllSkipAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllSkipAll.Click ', mnuTrayAllSkipAll.Click
+        Functions.SetScraperMod(Enums.ModType.All, True)
+        Me.MovieScrapeData(False, Enums.ScrapeType.FullSkip, Master.DefaultOptions)
     End Sub
 
     Private Sub mnuAllAskExtra_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllAskExtra.Click, mnuTrayAllAskExtra.Click
@@ -6504,12 +6512,22 @@ doCancel:
         Select Case sType
             Case Enums.ScrapeType.FullAsk
                 Me.tslLoading.Text = Master.eLang.GetString(127, "Scraping Media (All Movies - Ask):")
+            Case Enums.ScrapeType.FullSkip
+                Me.tslLoading.Text = Master.eLang.GetString(853, "Scraping Media (All Movies - Skip):")
             Case Enums.ScrapeType.FullAuto
                 Me.tslLoading.Text = Master.eLang.GetString(128, "Scraping Media (All Movies - Auto):")
             Case Enums.ScrapeType.UpdateAuto
                 Me.tslLoading.Text = Master.eLang.GetString(132, "Scraping Media (Movies Missing Items - Auto):")
             Case Enums.ScrapeType.UpdateAsk
                 Me.tslLoading.Text = Master.eLang.GetString(133, "Scraping Media (Movies Missing Items - Ask):")
+            Case Enums.ScrapeType.NewAsk
+                Me.tslLoading.Text = Master.eLang.GetString(134, "Scraping Media (New Movies - Ask):")
+            Case Enums.ScrapeType.NewAuto
+                Me.tslLoading.Text = Master.eLang.GetString(135, "Scraping Media (New Movies - Auto):")
+            Case Enums.ScrapeType.MarkAsk
+                Me.tslLoading.Text = Master.eLang.GetString(136, "Scraping Media (Marked Movies - Ask):")
+            Case Enums.ScrapeType.MarkAuto
+                Me.tslLoading.Text = Master.eLang.GetString(137, "Scraping Media (Marked Movies - Auto):")
             Case Enums.ScrapeType.FilterAsk
                 Me.tslLoading.Text = Master.eLang.GetString(622, "Scraping Media (Current Filter - Ask):")
             Case Enums.ScrapeType.FilterAuto
@@ -6999,7 +7017,7 @@ doCancel:
                     End If
                 End If
                 'Why on earth resave the movie if we just refreshed its data (causes issues with saving rescrapes_
-                'Master.DB.SaveMovieToDB(tmpMovieDb, False, BatchMode, ToNfo)
+                Master.DB.SaveMovieToDB(tmpMovieDb, False, BatchMode, ToNfo)
 
             Else
                 Master.DB.DeleteFromDB(ID, BatchMode)
@@ -8929,11 +8947,11 @@ doCancel:
     End Sub
 #End Region 'Methods
 
-    #Region "Nested Types"
+#Region "Nested Types"
 
     Private Structure Arguments
 
-        #Region "Fields"
+#Region "Fields"
 
         Dim ID As Integer
         Dim IsTV As Boolean
@@ -8946,13 +8964,13 @@ doCancel:
         Dim setEnabled As Boolean
         Dim TVShow As Structures.DBTV
 
-        #End Region 'Fields
+#End Region 'Fields
 
     End Structure
 
     Private Structure Results
 
-        #Region "Fields"
+#Region "Fields"
 
         Dim fileInfo As String
         Dim IsTV As Boolean
@@ -8964,11 +8982,11 @@ doCancel:
         Dim setEnabled As Boolean
         Dim TVShow As Structures.DBTV
 
-        #End Region 'Fields
+#End Region 'Fields
 
     End Structure
 
-    #End Region 'Nested Types
+#End Region 'Nested Types
 
 
     Private Sub tmrKeyBuffer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrKeyBuffer.Tick
