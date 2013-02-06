@@ -64,8 +64,8 @@ Public Class dlgWizard
         Select Case True
             Case Me.Panel1.Visible
                 Me.btnBack.Enabled = True
-                Me.Panel1.Visible = False
-                Me.Panel2.Visible = True
+				Me.Panel1.Visible = False
+				Me.Panel2.Visible = True
             Case Me.Panel2.Visible
                 Me.Panel2.Visible = False
                 Me.Panel3.Visible = True
@@ -403,8 +403,20 @@ Public Class dlgWizard
         Me.lblInsideSeason.Text = Master.eLang.GetString(834, "* Inside Season directory")
         Me.gbAllSeasonPoster.Text = Master.eLang.GetString(735, "All Season Posters")
         Me.Label10.Text = Master.eLang.GetString(113, "Now select the default language you would like Ember to look for when scraping TV Show items.")
-        Me.btnTVLanguageFetch.Text = Master.eLang.GetString(742, "Fetch Available Languages")
-    End Sub
+		Me.btnTVLanguageFetch.Text = Master.eLang.GetString(742, "Fetch Available Languages")
+		Me.Panel1.Location = New Point(166, 7)
+		Me.Panel1.Visible = True
+		Me.Panel2.Visible = False
+		Me.Panel3.Visible = False
+		Me.Panel4.Visible = False
+		Me.Panel5.Visible = False
+		Me.Panel6.Visible = False
+		Me.Panel2.Location = New Point(166, 7)
+		Me.Panel3.Location = New Point(166, 7)
+		Me.Panel4.Location = New Point(166, 7)
+		Me.Panel5.Location = New Point(166, 7)
+		Me.Panel6.Location = New Point(166, 7)
+	End Sub
 
     Private Sub btnTVLanguageFetch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTVLanguageFetch.Click
         Me.tLangList.Clear()
