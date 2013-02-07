@@ -61,6 +61,7 @@ Public Class dlgImgSelect
     Private _impaDone As Boolean = True
     Private _mpdbDone As Boolean = True
     Private _tmdbDone As Boolean = True
+	Private selURL As String = ""
 
 #End Region 'Fields
 
@@ -569,6 +570,7 @@ Public Class dlgImgSelect
             End If
 
             Me.selIndex = iIndex
+			Me.selURL = poster.URL
 
             Me.pnlSize.Visible = False
 
@@ -897,7 +899,7 @@ Public Class dlgImgSelect
 
             If Not IsNothing(Me.tmpImage.Image) Then
                 If isEdit Then
-                    Me.tmpImage.Save(tmpPathPlus)
+					Me.tmpImage.Save(tmpPathPlus, 100, selURL)
                     Results.ImagePath = tmpPathPlus
                 Else
                     If Me.DLType = Enums.ImageType.Fanart Then
@@ -952,7 +954,7 @@ Public Class dlgImgSelect
 
                 If Not IsNothing(Me.tmpImage.Image) Then
                     If isEdit Then
-                        Me.tmpImage.Save(tmpPathPlus)
+						Me.tmpImage.Save(tmpPathPlus, 100, selURL)
                         Results.ImagePath = tmpPathPlus
                     Else
                         If Me.DLType = Enums.ImageType.Fanart Then

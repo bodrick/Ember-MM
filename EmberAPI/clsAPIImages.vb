@@ -435,57 +435,81 @@ Public Class Images
         Me.Save(toPath)
     End Sub
 
-    Public Sub Save(ByVal sPath As String, Optional ByVal iQuality As Long = 0)
-        Try
-            If IsNothing(_image) Then Exit Sub
+	Public Sub Save(ByVal sPath As String, Optional ByVal iQuality As Long = 0, Optional ByVal sUrl As String = "")
+		Try
+			If IsNothing(_image) Then Exit Sub
 
-            Dim doesExist As Boolean = File.Exists(sPath)
-            Dim fAtt As New FileAttributes
-            Dim fAttWritable As Boolean = True
-            If Not String.IsNullOrEmpty(sPath) AndAlso (Not doesExist OrElse (Not CBool(File.GetAttributes(sPath) And FileAttributes.ReadOnly))) Then
-                If doesExist Then
-                    'get the current attributes to set them back after writing
-                    fAtt = File.GetAttributes(sPath)
-                    'set attributes to none for writing
-                    Try
-                        File.SetAttributes(sPath, FileAttributes.Normal)
-                    Catch ex As Exception
-                        fAttWritable = False
-                    End Try
-                End If
+			Dim doesExist As Boolean = File.Exists(sPath)
+			Dim fAtt As New FileAttributes
+			Dim fAttWritable As Boolean = True
+			If Not String.IsNullOrEmpty(sPath) AndAlso (Not doesExist OrElse (Not CBool(File.GetAttributes(sPath) And FileAttributes.ReadOnly))) Then
+				If doesExist Then
+					'get the current attributes to set them back after writing
+					fAtt = File.GetAttributes(sPath)
+					'set attributes to none for writing
+					Try
+						File.SetAttributes(sPath, FileAttributes.Normal)
+					Catch ex As Exception
+						fAttWritable = False
+					End Try
+				End If
 
-                Using msSave As New MemoryStream
-                    Dim retSave() As Byte
-                    Dim ICI As ImageCodecInfo = GetEncoderInfo(ImageFormat.Jpeg)
-                    Dim EncPars As EncoderParameters = New EncoderParameters(If(iQuality > 0, 2, 1))
+				If Not sUrl = "" Then
+					'TODO V3 API implementation to get ALL posters! http://docs.themoviedb.apiary.io/#configuration
+					'  GetsImagesFromTMDBv3("URL/MOVIEDID")
 
-                    EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
+					Dim stroriginalurl As String = sUrl
+					'Image Download from tmdb is special, need original size
+					If Not sUrl.Contains("impawards") AndAlso Not sUrl.Contains("movieposterdb") Then
+						'Always get original image...
+						'links to images (tmdb) have following structure:  'example: http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/x65b4vsFKYuA878pLN1mJiAsgIP.jpg
 
-                    If iQuality > 0 Then
-                        EncPars.Param(1) = New EncoderParameter(Encoder.Quality, iQuality)
-                    End If
+						Dim stringArray() As String = Split(stroriginalurl, "/")
+						If stringArray.Length > 4 Then
+							' stringArray(5) contains values like "w185","original", "w154"...-->size -> we want original!
+							stringArray(5) = "original"
+							stroriginalurl = Join(stringArray, "/")
+						End If
+					End If
 
-                    _image.Save(msSave, ICI, EncPars)
+					Dim webclient As New Net.WebClient
+					'Download image!
+					webclient.DownloadFile(stroriginalurl, sPath)
 
-                    retSave = msSave.ToArray
+				Else
+					Using msSave As New MemoryStream
+						Dim retSave() As Byte
+						Dim ICI As ImageCodecInfo = GetEncoderInfo(ImageFormat.Jpeg)
+						Dim EncPars As EncoderParameters = New EncoderParameters(If(iQuality > 0, 2, 1))
 
-                    'make sure directory exists
-                    Directory.CreateDirectory(Directory.GetParent(sPath).FullName)
-                    If sPath.Length <= 260 Then
-                        Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
-                            fs.Write(retSave, 0, retSave.Length)
-                            fs.Flush()
-                        End Using
-                    End If
-                    msSave.Flush()
-                End Using
+						EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
 
-                If doesExist And fAttWritable Then File.SetAttributes(sPath, fAtt)
-            End If
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
-    End Sub
+						If iQuality > 0 Then
+							EncPars.Param(1) = New EncoderParameter(Encoder.Quality, iQuality)
+						End If
+
+						_image.Save(msSave, ICI, EncPars)
+
+						retSave = msSave.ToArray
+
+						'make sure directory exists
+						Directory.CreateDirectory(Directory.GetParent(sPath).FullName)
+						If sPath.Length <= 260 Then
+							Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
+								fs.Write(retSave, 0, retSave.Length)
+								fs.Flush()
+							End Using
+						End If
+						msSave.Flush()
+					End Using
+				End If
+
+				If doesExist And fAttWritable Then File.SetAttributes(sPath, fAtt)
+			End If
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
 
     Public Function SaveAsAllSeasonPoster(ByVal mShow As Structures.DBTV) As String
         Dim strReturn As String = String.Empty
