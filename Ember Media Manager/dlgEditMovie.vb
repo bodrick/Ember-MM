@@ -1376,16 +1376,18 @@ Public Class dlgEditMovie
         End Try
     End Sub
 
-
-
     Private Sub TransferETs()
         Try
             If Directory.Exists(Path.Combine(Master.TempPath, "extrathumbs")) Then
                 Dim ePath As String = String.Empty
                 If Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isVideoTS(Master.currMovie.Filename) Then
                     ePath = Path.Combine(Directory.GetParent(Directory.GetParent(Master.currMovie.Filename).FullName).FullName, "extrathumbs")
+                    'ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isVideoTS(Master.currMovie.Filename) Then
+                    '    ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
                 ElseIf Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isBDRip(Master.currMovie.Filename) Then
                     ePath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Master.currMovie.Filename).FullName).FullName).FullName, "extrathumbs")
+                    'ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(Master.currMovie.Filename) Then
+                    '    ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
                 Else
                     ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
                 End If

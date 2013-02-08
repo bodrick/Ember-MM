@@ -339,6 +339,7 @@ Public Class Settings
     Private _validexts As List(Of String)
     Private _version As String
     Private _videotsparent As Boolean
+    Private _videotsparentxbmc As Boolean
     Private _windowloc As New Point
     Private _windowsize As New Size
     Private _windowstate As FormWindowState
@@ -3160,6 +3161,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property VideoTSParentXBMC() As Boolean
+        Get
+            Return Me._videotsparentxbmc
+        End Get
+        Set(ByVal value As Boolean)
+            Me._videotsparentxbmc = value
+        End Set
+    End Property
+
     Public Property WindowLoc() As Point
         Get
             Return Me._windowloc
@@ -3318,6 +3328,7 @@ Public Class Settings
         Me._movienamemultionly = False
         Me._dashtrailer = True
         Me._videotsparent = False
+        Me._videotsparentxbmc = False
         Me._lockplot = False
         Me._lockoutline = False
         Me._locktitle = False
