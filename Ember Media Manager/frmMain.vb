@@ -6402,7 +6402,7 @@ doCancel:
                     For Each act As MediaContainers.Person In Master.currMovie.Movie.Actors
                         Dim img As New Images
                         img.FromWeb(act.Thumb)
-                        img.SaveAsActorThumb(act, Directory.GetParent(Master.currMovie.Filename).FullName)
+                        img.SaveAsActorThumb(act, Directory.GetParent(Master.currMovie.Filename).FullName, Master.currMovie)
                     Next
                 End If
 
