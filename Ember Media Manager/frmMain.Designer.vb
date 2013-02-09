@@ -690,7 +690,7 @@ Partial Class frmMain
 		Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tslStatus, Me.tsSpring, Me.tslLoading, Me.tspbLoading})
 		Me.StatusStrip.Location = New System.Drawing.Point(0, 866)
 		Me.StatusStrip.Name = "StatusStrip"
-		Me.StatusStrip.Size = New System.Drawing.Size(1504, 22)
+		Me.StatusStrip.Size = New System.Drawing.Size(1485, 22)
 		Me.StatusStrip.TabIndex = 6
 		Me.StatusStrip.Text = "StatusStrip"
 		'
@@ -703,7 +703,7 @@ Partial Class frmMain
 		'tsSpring
 		'
 		Me.tsSpring.Name = "tsSpring"
-		Me.tsSpring.Size = New System.Drawing.Size(1489, 17)
+		Me.tsSpring.Size = New System.Drawing.Size(1470, 17)
 		Me.tsSpring.Spring = True
 		Me.tsSpring.Text = "  "
 		'
@@ -736,7 +736,7 @@ Partial Class frmMain
 		Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem, Me.DonateToolStripMenuItem, Me.ErrorToolStripMenuItem})
 		Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
 		Me.MenuStrip.Name = "MenuStrip"
-		Me.MenuStrip.Size = New System.Drawing.Size(1504, 24)
+		Me.MenuStrip.Size = New System.Drawing.Size(1485, 24)
 		Me.MenuStrip.TabIndex = 0
 		Me.MenuStrip.Text = "MenuStrip"
 		'
@@ -879,7 +879,7 @@ Partial Class frmMain
 		Me.scMain.Panel2.Controls.Add(Me.pbFanart)
 		Me.scMain.Panel2.Controls.Add(Me.tsMain)
 		Me.scMain.Panel2.Margin = New System.Windows.Forms.Padding(3)
-		Me.scMain.Size = New System.Drawing.Size(1504, 842)
+		Me.scMain.Size = New System.Drawing.Size(1485, 842)
 		Me.scMain.SplitterDistance = 364
 		Me.scMain.TabIndex = 7
 		Me.scMain.TabStop = False
@@ -2225,7 +2225,7 @@ Partial Class frmMain
 		Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlTop.Location = New System.Drawing.Point(0, 25)
 		Me.pnlTop.Name = "pnlTop"
-		Me.pnlTop.Size = New System.Drawing.Size(1136, 74)
+		Me.pnlTop.Size = New System.Drawing.Size(1117, 74)
 		Me.pnlTop.TabIndex = 9
 		Me.pnlTop.Visible = False
 		'
@@ -2253,7 +2253,7 @@ Partial Class frmMain
 		Me.pnlInfoIcons.Controls.Add(Me.pbResolution)
 		Me.pnlInfoIcons.Controls.Add(Me.pbChannels)
 		Me.pnlInfoIcons.Dock = System.Windows.Forms.DockStyle.Right
-		Me.pnlInfoIcons.Location = New System.Drawing.Point(744, 0)
+		Me.pnlInfoIcons.Location = New System.Drawing.Point(725, 0)
 		Me.pnlInfoIcons.Name = "pnlInfoIcons"
 		Me.pnlInfoIcons.Size = New System.Drawing.Size(390, 72)
 		Me.pnlInfoIcons.TabIndex = 31
@@ -2580,7 +2580,7 @@ Partial Class frmMain
 		Me.pnlInfoPanel.Dock = System.Windows.Forms.DockStyle.Bottom
 		Me.pnlInfoPanel.Location = New System.Drawing.Point(0, 500)
 		Me.pnlInfoPanel.Name = "pnlInfoPanel"
-		Me.pnlInfoPanel.Size = New System.Drawing.Size(1136, 342)
+		Me.pnlInfoPanel.Size = New System.Drawing.Size(1117, 342)
 		Me.pnlInfoPanel.TabIndex = 10
 		'
 		'txtCerts
@@ -2591,7 +2591,7 @@ Partial Class frmMain
 		Me.txtCerts.Location = New System.Drawing.Point(117, 208)
 		Me.txtCerts.Name = "txtCerts"
 		Me.txtCerts.ReadOnly = True
-		Me.txtCerts.Size = New System.Drawing.Size(700, 22)
+		Me.txtCerts.Size = New System.Drawing.Size(681, 22)
 		Me.txtCerts.TabIndex = 3
 		Me.txtCerts.TabStop = False
 		'
@@ -2605,7 +2605,7 @@ Partial Class frmMain
 		Me.lblCertsHeader.ForeColor = System.Drawing.SystemColors.HighlightText
 		Me.lblCertsHeader.Location = New System.Drawing.Point(117, 188)
 		Me.lblCertsHeader.Name = "lblCertsHeader"
-		Me.lblCertsHeader.Size = New System.Drawing.Size(700, 17)
+		Me.lblCertsHeader.Size = New System.Drawing.Size(681, 17)
 		Me.lblCertsHeader.TabIndex = 2
 		Me.lblCertsHeader.Text = "Certifications"
 		Me.lblCertsHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -2615,7 +2615,7 @@ Partial Class frmMain
 		Me.lblReleaseDate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.lblReleaseDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblReleaseDate.ForeColor = System.Drawing.Color.Black
-		Me.lblReleaseDate.Location = New System.Drawing.Point(651, 48)
+		Me.lblReleaseDate.Location = New System.Drawing.Point(632, 48)
 		Me.lblReleaseDate.Name = "lblReleaseDate"
 		Me.lblReleaseDate.Size = New System.Drawing.Size(105, 16)
 		Me.lblReleaseDate.TabIndex = 39
@@ -2628,7 +2628,7 @@ Partial Class frmMain
 		Me.lblReleaseDateHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.lblReleaseDateHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblReleaseDateHeader.ForeColor = System.Drawing.SystemColors.HighlightText
-		Me.lblReleaseDateHeader.Location = New System.Drawing.Point(651, 27)
+		Me.lblReleaseDateHeader.Location = New System.Drawing.Point(632, 27)
 		Me.lblReleaseDateHeader.Name = "lblReleaseDateHeader"
 		Me.lblReleaseDateHeader.Size = New System.Drawing.Size(105, 17)
 		Me.lblReleaseDateHeader.TabIndex = 38
@@ -2639,7 +2639,7 @@ Partial Class frmMain
 		'
 		Me.btnMid.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnMid.BackColor = System.Drawing.SystemColors.Control
-		Me.btnMid.Location = New System.Drawing.Point(1065, 1)
+		Me.btnMid.Location = New System.Drawing.Point(1046, 1)
 		Me.btnMid.Name = "btnMid"
 		Me.btnMid.Size = New System.Drawing.Size(30, 22)
 		Me.btnMid.TabIndex = 37
@@ -2652,7 +2652,7 @@ Partial Class frmMain
 		'
 		Me.pbMILoading.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.pbMILoading.Image = CType(resources.GetObject("pbMILoading.Image"), System.Drawing.Image)
-		Me.pbMILoading.Location = New System.Drawing.Point(967, 374)
+		Me.pbMILoading.Location = New System.Drawing.Point(948, 374)
 		Me.pbMILoading.Name = "pbMILoading"
 		Me.pbMILoading.Size = New System.Drawing.Size(41, 39)
 		Me.pbMILoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -2663,7 +2663,7 @@ Partial Class frmMain
 		'btnMetaDataRefresh
 		'
 		Me.btnMetaDataRefresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-		Me.btnMetaDataRefresh.Location = New System.Drawing.Point(1054, 278)
+		Me.btnMetaDataRefresh.Location = New System.Drawing.Point(1035, 278)
 		Me.btnMetaDataRefresh.Name = "btnMetaDataRefresh"
 		Me.btnMetaDataRefresh.Size = New System.Drawing.Size(75, 23)
 		Me.btnMetaDataRefresh.TabIndex = 9
@@ -2678,7 +2678,7 @@ Partial Class frmMain
 		Me.lblMetaDataHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.lblMetaDataHeader.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.lblMetaDataHeader.ForeColor = System.Drawing.SystemColors.HighlightText
-		Me.lblMetaDataHeader.Location = New System.Drawing.Point(830, 282)
+		Me.lblMetaDataHeader.Location = New System.Drawing.Point(811, 282)
 		Me.lblMetaDataHeader.Name = "lblMetaDataHeader"
 		Me.lblMetaDataHeader.Size = New System.Drawing.Size(294, 17)
 		Me.lblMetaDataHeader.TabIndex = 8
@@ -2692,7 +2692,7 @@ Partial Class frmMain
 		Me.txtMetaData.BorderStyle = System.Windows.Forms.BorderStyle.None
 		Me.txtMetaData.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.txtMetaData.ForeColor = System.Drawing.Color.Black
-		Me.txtMetaData.Location = New System.Drawing.Point(830, 303)
+		Me.txtMetaData.Location = New System.Drawing.Point(811, 303)
 		Me.txtMetaData.Multiline = True
 		Me.txtMetaData.Name = "txtMetaData"
 		Me.txtMetaData.ReadOnly = True
@@ -2705,7 +2705,7 @@ Partial Class frmMain
 		'
 		Me.btnPlay.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnPlay.Image = Global.Ember_Media_Manager.My.Resources.Resources.Play_Icon
-		Me.btnPlay.Location = New System.Drawing.Point(798, 254)
+		Me.btnPlay.Location = New System.Drawing.Point(779, 254)
 		Me.btnPlay.Name = "btnPlay"
 		Me.btnPlay.Size = New System.Drawing.Size(20, 20)
 		Me.btnPlay.TabIndex = 6
@@ -2720,7 +2720,7 @@ Partial Class frmMain
 		Me.txtFilePath.Location = New System.Drawing.Point(3, 254)
 		Me.txtFilePath.Name = "txtFilePath"
 		Me.txtFilePath.ReadOnly = True
-		Me.txtFilePath.Size = New System.Drawing.Size(792, 22)
+		Me.txtFilePath.Size = New System.Drawing.Size(773, 22)
 		Me.txtFilePath.TabIndex = 5
 		Me.txtFilePath.TabStop = False
 		'
@@ -2734,7 +2734,7 @@ Partial Class frmMain
 		Me.lblFilePathHeader.ForeColor = System.Drawing.SystemColors.HighlightText
 		Me.lblFilePathHeader.Location = New System.Drawing.Point(3, 234)
 		Me.lblFilePathHeader.Name = "lblFilePathHeader"
-		Me.lblFilePathHeader.Size = New System.Drawing.Size(814, 17)
+		Me.lblFilePathHeader.Size = New System.Drawing.Size(795, 17)
 		Me.lblFilePathHeader.TabIndex = 4
 		Me.lblFilePathHeader.Text = "File Path"
 		Me.lblFilePathHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -2770,7 +2770,7 @@ Partial Class frmMain
 		Me.lblDirector.ForeColor = System.Drawing.Color.Black
 		Me.lblDirector.Location = New System.Drawing.Point(3, 48)
 		Me.lblDirector.Name = "lblDirector"
-		Me.lblDirector.Size = New System.Drawing.Size(643, 16)
+		Me.lblDirector.Size = New System.Drawing.Size(624, 16)
 		Me.lblDirector.TabIndex = 27
 		Me.lblDirector.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 		'
@@ -2784,7 +2784,7 @@ Partial Class frmMain
 		Me.lblDirectorHeader.ForeColor = System.Drawing.SystemColors.HighlightText
 		Me.lblDirectorHeader.Location = New System.Drawing.Point(3, 27)
 		Me.lblDirectorHeader.Name = "lblDirectorHeader"
-		Me.lblDirectorHeader.Size = New System.Drawing.Size(642, 17)
+		Me.lblDirectorHeader.Size = New System.Drawing.Size(623, 17)
 		Me.lblDirectorHeader.TabIndex = 21
 		Me.lblDirectorHeader.Text = "Director"
 		Me.lblDirectorHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -2797,7 +2797,7 @@ Partial Class frmMain
 		Me.pnlActors.Controls.Add(Me.lstActors)
 		Me.pnlActors.Controls.Add(Me.pbActors)
 		Me.pnlActors.Controls.Add(Me.lblActorsHeader)
-		Me.pnlActors.Location = New System.Drawing.Point(829, 29)
+		Me.pnlActors.Location = New System.Drawing.Point(810, 29)
 		Me.pnlActors.Name = "pnlActors"
 		Me.pnlActors.Size = New System.Drawing.Size(302, 244)
 		Me.pnlActors.TabIndex = 19
@@ -2859,7 +2859,7 @@ Partial Class frmMain
 		Me.lblOutlineHeader.ForeColor = System.Drawing.SystemColors.HighlightText
 		Me.lblOutlineHeader.Location = New System.Drawing.Point(3, 81)
 		Me.lblOutlineHeader.Name = "lblOutlineHeader"
-		Me.lblOutlineHeader.Size = New System.Drawing.Size(814, 17)
+		Me.lblOutlineHeader.Size = New System.Drawing.Size(795, 17)
 		Me.lblOutlineHeader.TabIndex = 17
 		Me.lblOutlineHeader.Text = "Plot Outline"
 		Me.lblOutlineHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -2877,7 +2877,7 @@ Partial Class frmMain
 		Me.txtOutline.Name = "txtOutline"
 		Me.txtOutline.ReadOnly = True
 		Me.txtOutline.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.txtOutline.Size = New System.Drawing.Size(814, 78)
+		Me.txtOutline.Size = New System.Drawing.Size(795, 78)
 		Me.txtOutline.TabIndex = 16
 		Me.txtOutline.TabStop = False
 		'
@@ -2886,7 +2886,7 @@ Partial Class frmMain
 		Me.pnlTop250.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.pnlTop250.Controls.Add(Me.lblTop250)
 		Me.pnlTop250.Controls.Add(Me.pbTop250)
-		Me.pnlTop250.Location = New System.Drawing.Point(760, 27)
+		Me.pnlTop250.Location = New System.Drawing.Point(741, 27)
 		Me.pnlTop250.Name = "pnlTop250"
 		Me.pnlTop250.Size = New System.Drawing.Size(56, 48)
 		Me.pnlTop250.TabIndex = 15
@@ -2923,7 +2923,7 @@ Partial Class frmMain
 		Me.lblPlotHeader.ForeColor = System.Drawing.SystemColors.HighlightText
 		Me.lblPlotHeader.Location = New System.Drawing.Point(3, 282)
 		Me.lblPlotHeader.Name = "lblPlotHeader"
-		Me.lblPlotHeader.Size = New System.Drawing.Size(814, 17)
+		Me.lblPlotHeader.Size = New System.Drawing.Size(795, 17)
 		Me.lblPlotHeader.TabIndex = 6
 		Me.lblPlotHeader.Text = "Plot"
 		Me.lblPlotHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -2941,7 +2941,7 @@ Partial Class frmMain
 		Me.txtPlot.Name = "txtPlot"
 		Me.txtPlot.ReadOnly = True
 		Me.txtPlot.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-		Me.txtPlot.Size = New System.Drawing.Size(814, 184)
+		Me.txtPlot.Size = New System.Drawing.Size(795, 184)
 		Me.txtPlot.TabIndex = 7
 		Me.txtPlot.TabStop = False
 		'
@@ -2949,7 +2949,7 @@ Partial Class frmMain
 		'
 		Me.btnDown.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnDown.BackColor = System.Drawing.SystemColors.Control
-		Me.btnDown.Location = New System.Drawing.Point(1096, 1)
+		Me.btnDown.Location = New System.Drawing.Point(1077, 1)
 		Me.btnDown.Name = "btnDown"
 		Me.btnDown.Size = New System.Drawing.Size(30, 22)
 		Me.btnDown.TabIndex = 6
@@ -2963,7 +2963,7 @@ Partial Class frmMain
 		Me.btnUp.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
 		Me.btnUp.BackColor = System.Drawing.SystemColors.Control
 		Me.btnUp.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.btnUp.Location = New System.Drawing.Point(1033, 1)
+		Me.btnUp.Location = New System.Drawing.Point(1014, 1)
 		Me.btnUp.Name = "btnUp"
 		Me.btnUp.Size = New System.Drawing.Size(30, 22)
 		Me.btnUp.TabIndex = 1
@@ -2982,7 +2982,7 @@ Partial Class frmMain
 		Me.lblInfoPanelHeader.ForeColor = System.Drawing.SystemColors.HighlightText
 		Me.lblInfoPanelHeader.Location = New System.Drawing.Point(3, 3)
 		Me.lblInfoPanelHeader.Name = "lblInfoPanelHeader"
-		Me.lblInfoPanelHeader.Size = New System.Drawing.Size(1128, 17)
+		Me.lblInfoPanelHeader.Size = New System.Drawing.Size(1109, 17)
 		Me.lblInfoPanelHeader.TabIndex = 0
 		Me.lblInfoPanelHeader.Text = "Info"
 		Me.lblInfoPanelHeader.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -3049,7 +3049,7 @@ Partial Class frmMain
 		'
 		Me.pbFanart.Anchor = System.Windows.Forms.AnchorStyles.Top
 		Me.pbFanart.BackColor = System.Drawing.Color.DimGray
-		Me.pbFanart.Location = New System.Drawing.Point(220, 99)
+		Me.pbFanart.Location = New System.Drawing.Point(210, 99)
 		Me.pbFanart.Name = "pbFanart"
 		Me.pbFanart.Size = New System.Drawing.Size(696, 250)
 		Me.pbFanart.TabIndex = 1
@@ -3066,7 +3066,7 @@ Partial Class frmMain
 		Me.tsMain.Location = New System.Drawing.Point(0, 0)
 		Me.tsMain.Name = "tsMain"
 		Me.tsMain.Padding = New System.Windows.Forms.Padding(0)
-		Me.tsMain.Size = New System.Drawing.Size(1136, 25)
+		Me.tsMain.Size = New System.Drawing.Size(1117, 25)
 		Me.tsMain.Stretch = True
 		Me.tsMain.TabIndex = 6
 		'
@@ -4444,7 +4444,7 @@ Partial Class frmMain
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-		Me.ClientSize = New System.Drawing.Size(1504, 888)
+		Me.ClientSize = New System.Drawing.Size(1485, 888)
 		Me.Controls.Add(Me.pnlLoadingSettings)
 		Me.Controls.Add(Me.scMain)
 		Me.Controls.Add(Me.StatusStrip)

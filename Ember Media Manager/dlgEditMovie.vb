@@ -544,7 +544,7 @@ Public Class dlgEditMovie
             Me.LoadRatings()
             Dim params As New List(Of Object)(New Object() {New Panel})
             ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.MovieFrameExtrator, params, Nothing, True)
-            pnlFrameExtrator.Controls.Add(DirectCast(params(0), Panel))
+			pnlFrameExtrator.Controls.Add(DirectCast(params(0), Panel))
 
             Me.FillInfo()
 
@@ -1358,7 +1358,8 @@ Public Class dlgEditMovie
         Me.btnSetFanartDL.Text = Master.eLang.GetString(266, "Change Fanart (Download)")
         Me.Label6.Text = String.Concat(Master.eLang.GetString(642, "Sort Title"), ":")
         Me.lblOriginalTitle.Text = String.Concat(Master.eLang.GetString(302, "Original Title"), ":")
-        Me.lblFileSource.Text = Master.eLang.GetString(824, "Video Source:")
+		Me.lblFileSource.Text = Master.eLang.GetString(824, "Video Source:")
+		Me.TabPage6.Text = Master.eLang.GetString(866, "Metadata")
     End Sub
 
     Private Sub TabControl1_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles TabControl1.SelectedIndexChanged
