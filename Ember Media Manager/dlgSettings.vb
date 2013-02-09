@@ -4042,8 +4042,10 @@ Public Class dlgSettings
         Me.lblAllSPosterQ.Text = Me.Label24.Text
         Me.btnClearRegex.Text = Master.eLang.GetString(123, "Clear")
         Me.chkAskCheckboxScrape.Text = Master.eLang.GetString(852, "Ask On Click Scrape")
+		Me.btnMovieFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
+		Me.btnTVShowFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
 
-        Me.lvTVSources.Columns(1).Text = Master.eLang.GetString(232, "Name")
+		Me.lvTVSources.Columns(1).Text = Master.eLang.GetString(232, "Name")
         Me.lvTVSources.Columns(2).Text = Master.eLang.GetString(410, "Path")
 
         Me.lvShowRegex.Columns(1).Text = Master.eLang.GetString(696, "Show Regex")

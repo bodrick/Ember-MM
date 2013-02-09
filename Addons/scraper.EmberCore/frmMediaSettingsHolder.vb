@@ -133,8 +133,14 @@ Public Class frmMediaSettingsHolder
         Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
         Me.chkScrapePoster.Text = Master.eLang.GetString(101, "Get Posters")
         Me.chkScrapeFanart.Text = Master.eLang.GetString(102, "Get Fanart")
-        Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
-    End Sub
+		Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
+		Me.GroupBox3.Text = Master.eLang.GetString(467, "Images", True)
+		Me.GroupBox4.Text = Master.eLang.GetString(108, "TMDB Extrathumbs Size:")
+		Me.GroupBox1.Text = Master.eLang.GetString(109, "Trailers")
+		Me.GroupBox1.Text = Master.eLang.GetString(110, "Youtube/TMDB Trailer:")
+		Me.chkTrailerTMDBXBMC.Text = Master.eLang.GetString(111, "XBMC Format")
+		Me.Label2.Text = Master.eLang.GetString(112, "Preferred language")
+	End Sub
 
     Private Sub txtTimeout_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTimeout.TextChanged
         RaiseEvent ModuleSettingsChanged()
