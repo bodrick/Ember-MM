@@ -137,9 +137,10 @@ Public Class frmMediaSettingsHolder
 		Me.GroupBox3.Text = Master.eLang.GetString(467, "Images", True)
 		Me.GroupBox4.Text = Master.eLang.GetString(108, "TMDB Extrathumbs Size:")
 		Me.GroupBox1.Text = Master.eLang.GetString(109, "Trailers")
-		Me.GroupBox1.Text = Master.eLang.GetString(110, "Youtube/TMDB Trailer:")
+		Me.GroupBox5.Text = Master.eLang.GetString(110, "Youtube/TMDB Trailer:")
 		Me.chkTrailerTMDBXBMC.Text = Master.eLang.GetString(111, "XBMC Format")
 		Me.Label2.Text = Master.eLang.GetString(112, "Preferred language")
+		Me.grpSaveFanart.Text = Master.eLang.GetString(113, "Save Fanart In:")
 	End Sub
 
     Private Sub txtTimeout_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTimeout.TextChanged

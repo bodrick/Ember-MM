@@ -2274,7 +2274,7 @@ Partial Class dlgSettings
 		Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
-		Me.pnlTop.Size = New System.Drawing.Size(1890, 64)
+		Me.pnlTop.Size = New System.Drawing.Size(891, 64)
 		Me.pnlTop.TabIndex = 3
 		'
 		'Label2
@@ -4000,7 +4000,7 @@ Partial Class dlgSettings
 		Me.TabPage4.Location = New System.Drawing.Point(4, 22)
 		Me.TabPage4.Name = "TabPage4"
 		Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-		Me.TabPage4.Size = New System.Drawing.Size(604, 367)
+		Me.TabPage4.Size = New System.Drawing.Size(604, 366)
 		Me.TabPage4.TabIndex = 1
 		Me.TabPage4.Text = "Regex"
 		Me.TabPage4.UseVisualStyleBackColor = True
@@ -7098,7 +7098,7 @@ Partial Class dlgSettings
 		Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
 		Me.ToolStrip1.Location = New System.Drawing.Point(0, 64)
 		Me.ToolStrip1.Name = "ToolStrip1"
-		Me.ToolStrip1.Size = New System.Drawing.Size(1890, 25)
+		Me.ToolStrip1.Size = New System.Drawing.Size(891, 25)
 		Me.ToolStrip1.Stretch = True
 		Me.ToolStrip1.TabIndex = 4
 		Me.ToolStrip1.Text = "ToolStrip1"
@@ -7160,7 +7160,7 @@ Partial Class dlgSettings
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
 		Me.CancelButton = Me.btnCancel
-		Me.ClientSize = New System.Drawing.Size(1890, 1034)
+		Me.ClientSize = New System.Drawing.Size(891, 628)
 		Me.Controls.Add(Me.pnlGeneral)
 		Me.Controls.Add(Me.pnlTVSources)
 		Me.Controls.Add(Me.pnlImages)
