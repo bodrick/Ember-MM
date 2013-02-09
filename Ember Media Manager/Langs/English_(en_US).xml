@@ -853,4 +853,16 @@
   <string id="851">No Updates at this time</string>
   <string id="852">Ask On Click Scrape</string>
   <string id="853">Scraping Media (All Movies - Skip):</string>
+  <string id="854">Basic setup</string>
+  <string id="855">Creating default options...</string>
+  <string id="856">Loading modules...</string>
+  <string id="857">Creating GUI...</string>
+  <string id="858">Loading database...</string>
+  <string id="859">Running Module...</string>
+  <string id="860">Loading Media...</string>
+  <string id="861">Command Line Scraping...</string>
+  <string id="862">Loading translations...</string>
+  <string id="863">Positioning controls...</string>
+  <string id="864">Setting menus...</string>
+	<string id="865">Version {0}.{1}.{2}.{3}</string>
 </strings>

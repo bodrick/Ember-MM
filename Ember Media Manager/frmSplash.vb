@@ -39,17 +39,32 @@ Public Class frmSplash
             Exit Sub
         End If
 
-        LoadingMesg.Text = message
+		LoadingMesg.Text = message
+		Application.DoEvents()
     End Sub
 
-    Public Sub SetProgressBarStyle(style As ProgressBarStyle)
-        If (Me.InvokeRequired) Then
-            Me.Invoke(New DelegateTo_SetProgressBarStyle(AddressOf setProgressBarStyle))
-            Exit Sub
-        End If
+	Public Sub SetVersionMesg(message As String)
+		If (Me.InvokeRequired) Then
+			Me.Invoke(New DelegateTo_SetLoadingMesg(AddressOf SetVersionMesg))
+			Exit Sub
+		End If
+		VersionNumber.Text = System.String.Format(
+		 message,
+		 My.Application.Info.Version.Major,
+		 My.Application.Info.Version.Minor,
+		 My.Application.Info.Version.Build,
+		 My.Application.Info.Version.Revision)
+		Application.DoEvents()
+	End Sub
 
-        LoadingBar.Style = style
-    End Sub
+	Public Sub SetProgressBarStyle(style As ProgressBarStyle)
+		If (Me.InvokeRequired) Then
+			Me.Invoke(New DelegateTo_SetProgressBarStyle(AddressOf SetProgressBarStyle))
+			Exit Sub
+		End If
+
+		LoadingBar.Style = style
+	End Sub
 
     Public Sub SetProgressBarSize(size As Integer)
         If (Me.InvokeRequired) Then
@@ -89,14 +104,5 @@ Public Class frmSplash
     End Sub
 
 #End Region 'Methods
-
-    Private Sub frmSplash_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
-        VersionNumber.Text = System.String.Format(
-            VersionNumber.Text,
-            My.Application.Info.Version.Major,
-            My.Application.Info.Version.Minor,
-            My.Application.Info.Version.Build,
-            My.Application.Info.Version.Revision)
-    End Sub
 
 End Class
