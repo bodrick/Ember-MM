@@ -96,8 +96,8 @@ Public Class frmXMLSettingsHolder
 		Me.Label1.Text = Master.eLang.GetString(12, "Scraper")
 		Me.btnPopulate.Text = Master.eLang.GetString(13, "Populate scrapers")
 		Me.lblLanguage.Text = Master.eLang.GetString(610, "Language", True)
-		Me.dgvSettings.Columns(0).Name = Master.eLang.GetString(14, "Settings")
-		Me.dgvSettings.Columns(1).Name = Master.eLang.GetString(15, "Value")
+		Me.dgvSettings.Columns(0).HeaderText = Master.eLang.GetString(14, "Settings")
+		Me.dgvSettings.Columns(1).HeaderText = Master.eLang.GetString(15, "Value")
     End Sub
     Public Sub New()
         InitializeComponent()

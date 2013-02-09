@@ -40,7 +40,7 @@ Public Class genericMediaBrowser
         Me.fMediaBrowser.chkMyMovies.Checked = AdvancedSettings.GetBooleanSetting("MediaBrowserMyMovie", False)
         Me.fMediaBrowser.chkBackdrop.Checked = AdvancedSettings.GetBooleanSetting("MediaBrowserBackdrop", False)
         SPanel.Name = _name
-        SPanel.Text = Master.eLang.GetString(91, "MediaBrowser Compatibility")
+		SPanel.Text = Master.eLang.GetString(0, "MediaBrowser Compatibility")
         SPanel.Prefix = "MediaBrowser_"
         SPanel.Type = Master.eLang.GetString(802, "Modules", True)
         SPanel.ImageIndex = If(Me._enabled, 9, 10)

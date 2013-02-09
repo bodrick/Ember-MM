@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<string id="0">NMT Jukebox Builder</string>
 	<string id="1">Jukebox Builder</string>
 	<string id="2">Compiling Movie List...</string>
 	<string id="3">Canceling Compilation...</string>
@@ -42,4 +43,10 @@
 	<string id="40">When using external tools, run several instances for a faster build</string>
 	<string id="41">Click for more details</string>
 	<string id="42">Please Choose/Install a Template First</string>
+	<string id="43">Version</string>
+	<string id="44">Author</string>
+	<string id="45">Status</string>
+	<string id="46">Install</string>
+	<string id="47">Remove</string>
+	<string id="48">Details</string>
 </strings>
