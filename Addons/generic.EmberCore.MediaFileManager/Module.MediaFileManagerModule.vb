@@ -33,7 +33,8 @@ Public Class FileManagerExternalModule
 
     Friend WithEvents bwCopyDirectory As New System.ComponentModel.BackgroundWorker
 
-    Private eSettings As New Settings
+	Private _AssemblyName As String = String.Empty
+	Private eSettings As New Settings
     Private FolderSubMenus As New List(Of System.Windows.Forms.ToolStripMenuItem)
     Private MyMenu As New System.Windows.Forms.ToolStripMenuItem
     Private MyMenuSep As New System.Windows.Forms.ToolStripSeparator
@@ -257,10 +258,12 @@ Public Class FileManagerExternalModule
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
-    Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-        MyPath = Path.Combine(Functions.AppPath, "Modules")
-        Load()
-    End Sub
+	Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		MyPath = Path.Combine(Functions.AppPath, "Modules")
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+		Load()
+	End Sub
 
     Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Dim SPanel As New Containers.SettingsPanel

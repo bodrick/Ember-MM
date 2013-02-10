@@ -31,7 +31,8 @@ Public Class FrameExtrator
 
     Private WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
     Private WithEvents MyTrayMenu As New System.Windows.Forms.ToolStripMenuItem
-    Private _enabled As Boolean = False
+	Private _AssemblyName As String = String.Empty
+	Private _enabled As Boolean = False
     Private _name As String = "Frame Extractor"
     Private _setup As frmSettingsHolder
     Private frmTV As frmTVExtrator
@@ -88,8 +89,10 @@ Public Class FrameExtrator
 
 #Region "Methods"
 
-    Public Sub Init(ByVal sAssemblyName As String) Implements EmberAPI.Interfaces.EmberExternalModule.Init
-    End Sub
+	Public Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements EmberAPI.Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+	End Sub
 
     Public Function InjectSetup() As EmberAPI.Containers.SettingsPanel Implements EmberAPI.Interfaces.EmberExternalModule.InjectSetup
         Dim SPanel As New Containers.SettingsPanel

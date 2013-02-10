@@ -50,7 +50,8 @@ Class _Mimetypes
 
 #Region "Fields"
     Private _enabled As Boolean = False
-    Private _Name As String = "Web Server"
+	Private _AssemblyName As String = String.Empty
+	Private _Name As String = "Web Server"
     Private _setup As frmSettingsHolder
     Private DoStop As Boolean = False
     Private sBasePath As String
@@ -128,8 +129,10 @@ Class _Mimetypes
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
-    Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-    End Sub
+	Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+	End Sub
 
     Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Me._setup = New frmSettingsHolder

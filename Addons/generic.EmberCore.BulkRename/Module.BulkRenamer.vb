@@ -115,14 +115,15 @@ Public Class BulkRenamerModule
         End Select
         Return New Interfaces.ModuleResult With {.breakChain = False}
     End Function
-    Private Sub FolderSubMenuItemAuto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ctxMySubMenu1.Click
-        Cursor.Current = Cursors.WaitCursor
-        Dim indX As Integer = ModulesManager.Instance.RuntimeObjects.MediaList.SelectedRows(0).Index
-        Dim ID As Integer = Convert.ToInt32(ModulesManager.Instance.RuntimeObjects.MediaList.Item(0, indX).Value)
-        FileFolderRenamer.RenameSingle(Master.currMovie, MySettings.FoldersPattern, MySettings.FilesPattern, True, True, True)
-        RaiseEvent GenericEvent(Enums.ModuleEventType.RenameMovie, New List(Of Object)(New Object() {ID, indX}))
-        Cursor.Current = Cursors.Default
-    End Sub
+
+	Private Sub FolderSubMenuItemAuto_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ctxMySubMenu1.Click
+		Cursor.Current = Cursors.WaitCursor
+		Dim indX As Integer = ModulesManager.Instance.RuntimeObjects.MediaList.SelectedRows(0).Index
+		Dim ID As Integer = Convert.ToInt32(ModulesManager.Instance.RuntimeObjects.MediaList.Item(0, indX).Value)
+		FileFolderRenamer.RenameSingle(Master.currMovie, MySettings.FoldersPattern, MySettings.FilesPattern, True, True, True)
+		RaiseEvent GenericEvent(Enums.ModuleEventType.RenameMovie, New List(Of Object)(New Object() {ID, indX}))
+		Cursor.Current = Cursors.Default
+	End Sub
     Private Sub FolderSubMenuItemManual_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ctxMySubMenu2.Click
         Dim indX As Integer = ModulesManager.Instance.RuntimeObjects.MediaList.SelectedRows(0).Index
         Dim ID As Integer = Convert.ToInt32(ModulesManager.Instance.RuntimeObjects.MediaList.Item(0, indX).Value)
@@ -178,10 +179,11 @@ Public Class BulkRenamerModule
         RaiseEvent ModuleEnabledChanged(Me._Name, state, difforder)
     End Sub
 
-    Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-        _AssemblyName = sAssemblyName
-        LoadSettings()
-    End Sub
+	Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+		LoadSettings()
+	End Sub
 
     Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Dim SPanel As New Containers.SettingsPanel
@@ -259,7 +261,7 @@ Public Class BulkRenamerModule
         AdvancedSettings.SetBooleanSetting("GenericModule", MySettings.GenericModule)
     End Sub
 
-#End Region 'Methods
+#End Region	'Methods
 
 #Region "Nested Types"
 

@@ -163,9 +163,10 @@ Public Class Localization
     End Function
 
     Public Sub LoadAllLanguage(ByVal language As String)
-        htHelpStrings = New Hashtable
-        htHelpStrings.Clear()
-        htArrayStrings.Clear()
+		'htHelpStrings = New Hashtable
+		'htHelpStrings.Clear()
+		'htArrayStrings.Clear()
+		' removed to avoid double loading of strings. Now the strings are loaded in the init event. We leave this function to load any other possible localization that is bound to a library without init
         For Each s As String In ModulesManager.VersionList.Select(Function(m) m.AssemblyFileName).Distinct
             LoadLanguage(language, s.Replace(".dll", String.Empty))
         Next

@@ -51,7 +51,7 @@ Public Class Interfaces
 
 #Region "Methods"
 
-        Sub Init(ByVal sAssemblyName As String)
+		Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String)
 
         Function InjectSetup() As Containers.SettingsPanel
 
