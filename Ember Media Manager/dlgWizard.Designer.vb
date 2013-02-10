@@ -33,6 +33,7 @@ Partial Class dlgWizard
 		Me.Label2 = New System.Windows.Forms.Label()
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.Panel3 = New System.Windows.Forms.Panel()
+		Me.btnMovieFrodo = New System.Windows.Forms.Button()
 		Me.chkMovieNameMultiOnly = New System.Windows.Forms.CheckBox()
 		Me.GroupBox7 = New System.Windows.Forms.GroupBox()
 		Me.chkMovieNameNFO = New System.Windows.Forms.CheckBox()
@@ -79,21 +80,19 @@ Partial Class dlgWizard
 		Me.btnTVAddSource = New System.Windows.Forms.Button()
 		Me.Label9 = New System.Windows.Forms.Label()
 		Me.Panel5 = New System.Windows.Forms.Panel()
+		Me.btnTVShowFrodo = New System.Windows.Forms.Button()
 		Me.gbAllSeasonPoster = New System.Windows.Forms.GroupBox()
+		Me.chkSeasonAllPosterJPG = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonAllJPG = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonAllTBN = New System.Windows.Forms.CheckBox()
 		Me.lblInsideSeason = New System.Windows.Forms.Label()
-		Me.gbEpisodeFanart = New System.Windows.Forms.GroupBox()
-		Me.chkEpisodeDotFanart = New System.Windows.Forms.CheckBox()
-		Me.chkEpisodeDashFanart = New System.Windows.Forms.CheckBox()
-		Me.gbEpisodePosters = New System.Windows.Forms.GroupBox()
-		Me.chkEpisodeJPG = New System.Windows.Forms.CheckBox()
-		Me.chkEpisodeTBN = New System.Windows.Forms.CheckBox()
 		Me.gbSeasonFanart = New System.Windows.Forms.GroupBox()
+		Me.chkSeasonXXDashFanartJPG = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonDotFanart = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonDashFanart = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonFanartJPG = New System.Windows.Forms.CheckBox()
 		Me.gbSeasonPosters = New System.Windows.Forms.GroupBox()
+		Me.chkSeasonXXDashPosterJPG = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonFolderJPG = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonNameJPG = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonNameTBN = New System.Windows.Forms.CheckBox()
@@ -101,10 +100,17 @@ Partial Class dlgWizard
 		Me.chkSeasonPosterTBN = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonXTBN = New System.Windows.Forms.CheckBox()
 		Me.chkSeasonXXTBN = New System.Windows.Forms.CheckBox()
+		Me.gbEpisodePosters = New System.Windows.Forms.GroupBox()
+		Me.chkEpisodeDashThumbJPG = New System.Windows.Forms.CheckBox()
+		Me.chkEpisodeJPG = New System.Windows.Forms.CheckBox()
+		Me.chkEpisodeTBN = New System.Windows.Forms.CheckBox()
 		Me.gbShowFanart = New System.Windows.Forms.GroupBox()
 		Me.chkShowDotFanart = New System.Windows.Forms.CheckBox()
 		Me.chkShowDashFanart = New System.Windows.Forms.CheckBox()
 		Me.chkShowFanartJPG = New System.Windows.Forms.CheckBox()
+		Me.gbEpisodeFanart = New System.Windows.Forms.GroupBox()
+		Me.chkEpisodeDotFanart = New System.Windows.Forms.CheckBox()
+		Me.chkEpisodeDashFanart = New System.Windows.Forms.CheckBox()
 		Me.gbShowPosters = New System.Windows.Forms.GroupBox()
 		Me.chkShowJPG = New System.Windows.Forms.CheckBox()
 		Me.chkShowTBN = New System.Windows.Forms.CheckBox()
@@ -112,6 +118,10 @@ Partial Class dlgWizard
 		Me.chkShowPosterTBN = New System.Windows.Forms.CheckBox()
 		Me.chkShowFolderJPG = New System.Windows.Forms.CheckBox()
 		Me.Label11 = New System.Windows.Forms.Label()
+		Me.chkMovieNameDashPosterJPG = New System.Windows.Forms.CheckBox()
+		Me.GroupBox21 = New System.Windows.Forms.GroupBox()
+		Me.rbBracketTrailer = New System.Windows.Forms.RadioButton()
+		Me.rbDashTrailer = New System.Windows.Forms.RadioButton()
 		Me.Panel1.SuspendLayout()
 		Me.Panel3.SuspendLayout()
 		Me.GroupBox7.SuspendLayout()
@@ -123,12 +133,13 @@ Partial Class dlgWizard
 		Me.Panel4.SuspendLayout()
 		Me.Panel5.SuspendLayout()
 		Me.gbAllSeasonPoster.SuspendLayout()
-		Me.gbEpisodeFanart.SuspendLayout()
-		Me.gbEpisodePosters.SuspendLayout()
 		Me.gbSeasonFanart.SuspendLayout()
 		Me.gbSeasonPosters.SuspendLayout()
+		Me.gbEpisodePosters.SuspendLayout()
 		Me.gbShowFanart.SuspendLayout()
+		Me.gbEpisodeFanart.SuspendLayout()
 		Me.gbShowPosters.SuspendLayout()
+		Me.GroupBox21.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'OK_Button
@@ -228,7 +239,9 @@ Partial Class dlgWizard
 		'
 		Me.Panel3.BackColor = System.Drawing.Color.White
 		Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+		Me.Panel3.Controls.Add(Me.GroupBox21)
 		Me.Panel3.Controls.Add(Me.chkMovieNameMultiOnly)
+		Me.Panel3.Controls.Add(Me.btnMovieFrodo)
 		Me.Panel3.Controls.Add(Me.GroupBox7)
 		Me.Panel3.Controls.Add(Me.GroupBox6)
 		Me.Panel3.Controls.Add(Me.GroupBox5)
@@ -240,12 +253,22 @@ Partial Class dlgWizard
 		Me.Panel3.TabIndex = 6
 		Me.Panel3.Visible = False
 		'
+		'btnMovieFrodo
+		'
+		Me.btnMovieFrodo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.btnMovieFrodo.Location = New System.Drawing.Point(121, 219)
+		Me.btnMovieFrodo.Name = "btnMovieFrodo"
+		Me.btnMovieFrodo.Size = New System.Drawing.Size(91, 23)
+		Me.btnMovieFrodo.TabIndex = 6
+		Me.btnMovieFrodo.Text = "XBMC Frodo"
+		Me.btnMovieFrodo.UseVisualStyleBackColor = True
+		'
 		'chkMovieNameMultiOnly
 		'
 		Me.chkMovieNameMultiOnly.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkMovieNameMultiOnly.Location = New System.Drawing.Point(13, 237)
+		Me.chkMovieNameMultiOnly.Location = New System.Drawing.Point(121, 247)
 		Me.chkMovieNameMultiOnly.Name = "chkMovieNameMultiOnly"
-		Me.chkMovieNameMultiOnly.Size = New System.Drawing.Size(199, 42)
+		Me.chkMovieNameMultiOnly.Size = New System.Drawing.Size(236, 34)
 		Me.chkMovieNameMultiOnly.TabIndex = 3
 		Me.chkMovieNameMultiOnly.Text = "Use <movie> Only for Folders with Multiple Movies"
 		Me.chkMovieNameMultiOnly.UseVisualStyleBackColor = True
@@ -255,9 +278,9 @@ Partial Class dlgWizard
 		Me.GroupBox7.Controls.Add(Me.chkMovieNameNFO)
 		Me.GroupBox7.Controls.Add(Me.chkMovieNFO)
 		Me.GroupBox7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.GroupBox7.Location = New System.Drawing.Point(218, 203)
+		Me.GroupBox7.Location = New System.Drawing.Point(218, 187)
 		Me.GroupBox7.Name = "GroupBox7"
-		Me.GroupBox7.Size = New System.Drawing.Size(139, 61)
+		Me.GroupBox7.Size = New System.Drawing.Size(139, 54)
 		Me.GroupBox7.TabIndex = 4
 		Me.GroupBox7.TabStop = False
 		Me.GroupBox7.Text = "NFO"
@@ -266,7 +289,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieNameNFO.AutoSize = True
 		Me.chkMovieNameNFO.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieNameNFO.Location = New System.Drawing.Point(6, 41)
+		Me.chkMovieNameNFO.Location = New System.Drawing.Point(6, 34)
 		Me.chkMovieNameNFO.Name = "chkMovieNameNFO"
 		Me.chkMovieNameNFO.Size = New System.Drawing.Size(93, 17)
 		Me.chkMovieNameNFO.TabIndex = 1
@@ -292,7 +315,7 @@ Partial Class dlgWizard
 		Me.GroupBox6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
 		Me.GroupBox6.Location = New System.Drawing.Point(218, 111)
 		Me.GroupBox6.Name = "GroupBox6"
-		Me.GroupBox6.Size = New System.Drawing.Size(139, 86)
+		Me.GroupBox6.Size = New System.Drawing.Size(139, 70)
 		Me.GroupBox6.TabIndex = 2
 		Me.GroupBox6.TabStop = False
 		Me.GroupBox6.Text = "Fanart"
@@ -301,7 +324,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieNameDotFanartJPG.AutoSize = True
 		Me.chkMovieNameDotFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieNameDotFanartJPG.Location = New System.Drawing.Point(6, 63)
+		Me.chkMovieNameDotFanartJPG.Location = New System.Drawing.Point(6, 51)
 		Me.chkMovieNameDotFanartJPG.Name = "chkMovieNameDotFanartJPG"
 		Me.chkMovieNameDotFanartJPG.Size = New System.Drawing.Size(126, 17)
 		Me.chkMovieNameDotFanartJPG.TabIndex = 2
@@ -312,7 +335,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieNameFanartJPG.AutoSize = True
 		Me.chkMovieNameFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieNameFanartJPG.Location = New System.Drawing.Point(6, 42)
+		Me.chkMovieNameFanartJPG.Location = New System.Drawing.Point(6, 35)
 		Me.chkMovieNameFanartJPG.Name = "chkMovieNameFanartJPG"
 		Me.chkMovieNameFanartJPG.Size = New System.Drawing.Size(127, 17)
 		Me.chkMovieNameFanartJPG.TabIndex = 1
@@ -332,6 +355,7 @@ Partial Class dlgWizard
 		'
 		'GroupBox5
 		'
+		Me.GroupBox5.Controls.Add(Me.chkMovieNameDashPosterJPG)
 		Me.GroupBox5.Controls.Add(Me.chkFolderJPG)
 		Me.GroupBox5.Controls.Add(Me.chkPosterJPG)
 		Me.GroupBox5.Controls.Add(Me.chkPosterTBN)
@@ -342,7 +366,7 @@ Partial Class dlgWizard
 		Me.GroupBox5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
 		Me.GroupBox5.Location = New System.Drawing.Point(13, 111)
 		Me.GroupBox5.Name = "GroupBox5"
-		Me.GroupBox5.Size = New System.Drawing.Size(199, 126)
+		Me.GroupBox5.Size = New System.Drawing.Size(199, 104)
 		Me.GroupBox5.TabIndex = 1
 		Me.GroupBox5.TabStop = False
 		Me.GroupBox5.Text = "Posters"
@@ -351,7 +375,7 @@ Partial Class dlgWizard
 		'
 		Me.chkFolderJPG.AutoSize = True
 		Me.chkFolderJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkFolderJPG.Location = New System.Drawing.Point(10, 97)
+		Me.chkFolderJPG.Location = New System.Drawing.Point(10, 65)
 		Me.chkFolderJPG.Name = "chkFolderJPG"
 		Me.chkFolderJPG.Size = New System.Drawing.Size(77, 17)
 		Me.chkFolderJPG.TabIndex = 3
@@ -362,7 +386,7 @@ Partial Class dlgWizard
 		'
 		Me.chkPosterJPG.AutoSize = True
 		Me.chkPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkPosterJPG.Location = New System.Drawing.Point(101, 74)
+		Me.chkPosterJPG.Location = New System.Drawing.Point(100, 49)
 		Me.chkPosterJPG.Name = "chkPosterJPG"
 		Me.chkPosterJPG.Size = New System.Drawing.Size(79, 17)
 		Me.chkPosterJPG.TabIndex = 6
@@ -373,7 +397,7 @@ Partial Class dlgWizard
 		'
 		Me.chkPosterTBN.AutoSize = True
 		Me.chkPosterTBN.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkPosterTBN.Location = New System.Drawing.Point(10, 74)
+		Me.chkPosterTBN.Location = New System.Drawing.Point(10, 49)
 		Me.chkPosterTBN.Name = "chkPosterTBN"
 		Me.chkPosterTBN.Size = New System.Drawing.Size(80, 17)
 		Me.chkPosterTBN.TabIndex = 2
@@ -384,7 +408,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieNameJPG.AutoSize = True
 		Me.chkMovieNameJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieNameJPG.Location = New System.Drawing.Point(101, 51)
+		Me.chkMovieNameJPG.Location = New System.Drawing.Point(100, 33)
 		Me.chkMovieNameJPG.Name = "chkMovieNameJPG"
 		Me.chkMovieNameJPG.Size = New System.Drawing.Size(92, 17)
 		Me.chkMovieNameJPG.TabIndex = 5
@@ -395,7 +419,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieJPG.AutoSize = True
 		Me.chkMovieJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieJPG.Location = New System.Drawing.Point(10, 51)
+		Me.chkMovieJPG.Location = New System.Drawing.Point(10, 33)
 		Me.chkMovieJPG.Name = "chkMovieJPG"
 		Me.chkMovieJPG.Size = New System.Drawing.Size(76, 17)
 		Me.chkMovieJPG.TabIndex = 1
@@ -406,7 +430,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieNameTBN.AutoSize = True
 		Me.chkMovieNameTBN.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieNameTBN.Location = New System.Drawing.Point(101, 28)
+		Me.chkMovieNameTBN.Location = New System.Drawing.Point(100, 17)
 		Me.chkMovieNameTBN.Name = "chkMovieNameTBN"
 		Me.chkMovieNameTBN.Size = New System.Drawing.Size(93, 17)
 		Me.chkMovieNameTBN.TabIndex = 4
@@ -417,7 +441,7 @@ Partial Class dlgWizard
 		'
 		Me.chkMovieTBN.AutoSize = True
 		Me.chkMovieTBN.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.chkMovieTBN.Location = New System.Drawing.Point(10, 28)
+		Me.chkMovieTBN.Location = New System.Drawing.Point(10, 17)
 		Me.chkMovieTBN.Name = "chkMovieTBN"
 		Me.chkMovieTBN.Size = New System.Drawing.Size(77, 17)
 		Me.chkMovieTBN.TabIndex = 0
@@ -708,13 +732,14 @@ Partial Class dlgWizard
 		'
 		Me.Panel5.BackColor = System.Drawing.Color.White
 		Me.Panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+		Me.Panel5.Controls.Add(Me.btnTVShowFrodo)
 		Me.Panel5.Controls.Add(Me.gbAllSeasonPoster)
 		Me.Panel5.Controls.Add(Me.lblInsideSeason)
-		Me.Panel5.Controls.Add(Me.gbEpisodeFanart)
-		Me.Panel5.Controls.Add(Me.gbEpisodePosters)
 		Me.Panel5.Controls.Add(Me.gbSeasonFanart)
 		Me.Panel5.Controls.Add(Me.gbSeasonPosters)
+		Me.Panel5.Controls.Add(Me.gbEpisodePosters)
 		Me.Panel5.Controls.Add(Me.gbShowFanart)
+		Me.Panel5.Controls.Add(Me.gbEpisodeFanart)
 		Me.Panel5.Controls.Add(Me.gbShowPosters)
 		Me.Panel5.Controls.Add(Me.Label11)
 		Me.Panel5.Location = New System.Drawing.Point(566, 406)
@@ -723,23 +748,46 @@ Partial Class dlgWizard
 		Me.Panel5.TabIndex = 8
 		Me.Panel5.Visible = False
 		'
+		'btnTVShowFrodo
+		'
+		Me.btnTVShowFrodo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.btnTVShowFrodo.Location = New System.Drawing.Point(3, 170)
+		Me.btnTVShowFrodo.Name = "btnTVShowFrodo"
+		Me.btnTVShowFrodo.Size = New System.Drawing.Size(98, 32)
+		Me.btnTVShowFrodo.TabIndex = 9
+		Me.btnTVShowFrodo.Text = "XBMC Frodo"
+		Me.btnTVShowFrodo.UseVisualStyleBackColor = True
+		'
 		'gbAllSeasonPoster
 		'
+		Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllPosterJPG)
 		Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllJPG)
 		Me.gbAllSeasonPoster.Controls.Add(Me.chkSeasonAllTBN)
 		Me.gbAllSeasonPoster.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbAllSeasonPoster.Location = New System.Drawing.Point(3, 207)
+		Me.gbAllSeasonPoster.Location = New System.Drawing.Point(4, 207)
 		Me.gbAllSeasonPoster.Name = "gbAllSeasonPoster"
-		Me.gbAllSeasonPoster.Size = New System.Drawing.Size(221, 38)
+		Me.gbAllSeasonPoster.Size = New System.Drawing.Size(217, 54)
 		Me.gbAllSeasonPoster.TabIndex = 3
 		Me.gbAllSeasonPoster.TabStop = False
 		Me.gbAllSeasonPoster.Text = "All Season Posters"
+		'
+		'chkSeasonAllPosterJPG
+		'
+		Me.chkSeasonAllPosterJPG.AutoSize = True
+		Me.chkSeasonAllPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkSeasonAllPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
+		Me.chkSeasonAllPosterJPG.Location = New System.Drawing.Point(6, 16)
+		Me.chkSeasonAllPosterJPG.Name = "chkSeasonAllPosterJPG"
+		Me.chkSeasonAllPosterJPG.Size = New System.Drawing.Size(135, 17)
+		Me.chkSeasonAllPosterJPG.TabIndex = 7
+		Me.chkSeasonAllPosterJPG.Text = "season-all-poster.jpg"
+		Me.chkSeasonAllPosterJPG.UseVisualStyleBackColor = True
 		'
 		'chkSeasonAllJPG
 		'
 		Me.chkSeasonAllJPG.AutoSize = True
 		Me.chkSeasonAllJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkSeasonAllJPG.Location = New System.Drawing.Point(111, 18)
+		Me.chkSeasonAllJPG.Location = New System.Drawing.Point(6, 35)
 		Me.chkSeasonAllJPG.Name = "chkSeasonAllJPG"
 		Me.chkSeasonAllJPG.Size = New System.Drawing.Size(98, 17)
 		Me.chkSeasonAllJPG.TabIndex = 1
@@ -750,7 +798,7 @@ Partial Class dlgWizard
 		'
 		Me.chkSeasonAllTBN.AutoSize = True
 		Me.chkSeasonAllTBN.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkSeasonAllTBN.Location = New System.Drawing.Point(6, 18)
+		Me.chkSeasonAllTBN.Location = New System.Drawing.Point(112, 35)
 		Me.chkSeasonAllTBN.Name = "chkSeasonAllTBN"
 		Me.chkSeasonAllTBN.Size = New System.Drawing.Size(99, 17)
 		Me.chkSeasonAllTBN.TabIndex = 0
@@ -760,93 +808,38 @@ Partial Class dlgWizard
 		'lblInsideSeason
 		'
 		Me.lblInsideSeason.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.lblInsideSeason.Location = New System.Drawing.Point(227, 302)
+		Me.lblInsideSeason.Location = New System.Drawing.Point(232, 305)
 		Me.lblInsideSeason.Name = "lblInsideSeason"
 		Me.lblInsideSeason.Size = New System.Drawing.Size(144, 12)
 		Me.lblInsideSeason.TabIndex = 8
 		Me.lblInsideSeason.Text = " * Inside Season directory"
 		Me.lblInsideSeason.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
 		'
-		'gbEpisodeFanart
-		'
-		Me.gbEpisodeFanart.Controls.Add(Me.chkEpisodeDotFanart)
-		Me.gbEpisodeFanart.Controls.Add(Me.chkEpisodeDashFanart)
-		Me.gbEpisodeFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbEpisodeFanart.Location = New System.Drawing.Point(108, 245)
-		Me.gbEpisodeFanart.Name = "gbEpisodeFanart"
-		Me.gbEpisodeFanart.Size = New System.Drawing.Size(116, 52)
-		Me.gbEpisodeFanart.TabIndex = 5
-		Me.gbEpisodeFanart.TabStop = False
-		Me.gbEpisodeFanart.Text = "Episode Fanart"
-		'
-		'chkEpisodeDotFanart
-		'
-		Me.chkEpisodeDotFanart.AutoSize = True
-		Me.chkEpisodeDotFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkEpisodeDotFanart.Location = New System.Drawing.Point(5, 31)
-		Me.chkEpisodeDotFanart.Name = "chkEpisodeDotFanart"
-		Me.chkEpisodeDotFanart.Size = New System.Drawing.Size(109, 17)
-		Me.chkEpisodeDotFanart.TabIndex = 1
-		Me.chkEpisodeDotFanart.Text = "<ep>.fanart.jpg"
-		Me.chkEpisodeDotFanart.UseVisualStyleBackColor = True
-		'
-		'chkEpisodeDashFanart
-		'
-		Me.chkEpisodeDashFanart.AutoSize = True
-		Me.chkEpisodeDashFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkEpisodeDashFanart.Location = New System.Drawing.Point(5, 15)
-		Me.chkEpisodeDashFanart.Name = "chkEpisodeDashFanart"
-		Me.chkEpisodeDashFanart.Size = New System.Drawing.Size(110, 17)
-		Me.chkEpisodeDashFanart.TabIndex = 0
-		Me.chkEpisodeDashFanart.Text = "<ep>-fanart.jpg"
-		Me.chkEpisodeDashFanart.UseVisualStyleBackColor = True
-		'
-		'gbEpisodePosters
-		'
-		Me.gbEpisodePosters.Controls.Add(Me.chkEpisodeJPG)
-		Me.gbEpisodePosters.Controls.Add(Me.chkEpisodeTBN)
-		Me.gbEpisodePosters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbEpisodePosters.Location = New System.Drawing.Point(3, 245)
-		Me.gbEpisodePosters.Name = "gbEpisodePosters"
-		Me.gbEpisodePosters.Size = New System.Drawing.Size(103, 52)
-		Me.gbEpisodePosters.TabIndex = 4
-		Me.gbEpisodePosters.TabStop = False
-		Me.gbEpisodePosters.Text = "Episode Posters"
-		'
-		'chkEpisodeJPG
-		'
-		Me.chkEpisodeJPG.AutoSize = True
-		Me.chkEpisodeJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkEpisodeJPG.Location = New System.Drawing.Point(6, 31)
-		Me.chkEpisodeJPG.Name = "chkEpisodeJPG"
-		Me.chkEpisodeJPG.Size = New System.Drawing.Size(75, 17)
-		Me.chkEpisodeJPG.TabIndex = 1
-		Me.chkEpisodeJPG.Text = "<ep>.jpg"
-		Me.chkEpisodeJPG.UseVisualStyleBackColor = True
-		'
-		'chkEpisodeTBN
-		'
-		Me.chkEpisodeTBN.AutoSize = True
-		Me.chkEpisodeTBN.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkEpisodeTBN.Location = New System.Drawing.Point(6, 15)
-		Me.chkEpisodeTBN.Name = "chkEpisodeTBN"
-		Me.chkEpisodeTBN.Size = New System.Drawing.Size(76, 17)
-		Me.chkEpisodeTBN.TabIndex = 0
-		Me.chkEpisodeTBN.Text = "<ep>.tbn"
-		Me.chkEpisodeTBN.UseVisualStyleBackColor = True
-		'
 		'gbSeasonFanart
 		'
+		Me.gbSeasonFanart.Controls.Add(Me.chkSeasonXXDashFanartJPG)
 		Me.gbSeasonFanart.Controls.Add(Me.chkSeasonDotFanart)
 		Me.gbSeasonFanart.Controls.Add(Me.chkSeasonDashFanart)
 		Me.gbSeasonFanart.Controls.Add(Me.chkSeasonFanartJPG)
 		Me.gbSeasonFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbSeasonFanart.Location = New System.Drawing.Point(226, 226)
+		Me.gbSeasonFanart.Location = New System.Drawing.Point(226, 218)
 		Me.gbSeasonFanart.Name = "gbSeasonFanart"
-		Me.gbSeasonFanart.Size = New System.Drawing.Size(145, 71)
+		Me.gbSeasonFanart.Size = New System.Drawing.Size(145, 84)
 		Me.gbSeasonFanart.TabIndex = 7
 		Me.gbSeasonFanart.TabStop = False
 		Me.gbSeasonFanart.Text = "Season Fanart"
+		'
+		'chkSeasonXXDashFanartJPG
+		'
+		Me.chkSeasonXXDashFanartJPG.AutoSize = True
+		Me.chkSeasonXXDashFanartJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkSeasonXXDashFanartJPG.ForeColor = System.Drawing.SystemColors.ControlText
+		Me.chkSeasonXXDashFanartJPG.Location = New System.Drawing.Point(6, 64)
+		Me.chkSeasonXXDashFanartJPG.Name = "chkSeasonXXDashFanartJPG"
+		Me.chkSeasonXXDashFanartJPG.Size = New System.Drawing.Size(129, 17)
+		Me.chkSeasonXXDashFanartJPG.TabIndex = 4
+		Me.chkSeasonXXDashFanartJPG.Text = "seasonXX-fanart.jpg"
+		Me.chkSeasonXXDashFanartJPG.UseVisualStyleBackColor = True
 		'
 		'chkSeasonDotFanart
 		'
@@ -883,6 +876,7 @@ Partial Class dlgWizard
 		'
 		'gbSeasonPosters
 		'
+		Me.gbSeasonPosters.Controls.Add(Me.chkSeasonXXDashPosterJPG)
 		Me.gbSeasonPosters.Controls.Add(Me.chkSeasonFolderJPG)
 		Me.gbSeasonPosters.Controls.Add(Me.chkSeasonNameJPG)
 		Me.gbSeasonPosters.Controls.Add(Me.chkSeasonNameTBN)
@@ -891,12 +885,24 @@ Partial Class dlgWizard
 		Me.gbSeasonPosters.Controls.Add(Me.chkSeasonXTBN)
 		Me.gbSeasonPosters.Controls.Add(Me.chkSeasonXXTBN)
 		Me.gbSeasonPosters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbSeasonPosters.Location = New System.Drawing.Point(226, 89)
+		Me.gbSeasonPosters.Location = New System.Drawing.Point(233, 69)
 		Me.gbSeasonPosters.Name = "gbSeasonPosters"
-		Me.gbSeasonPosters.Size = New System.Drawing.Size(145, 130)
+		Me.gbSeasonPosters.Size = New System.Drawing.Size(138, 150)
 		Me.gbSeasonPosters.TabIndex = 6
 		Me.gbSeasonPosters.TabStop = False
 		Me.gbSeasonPosters.Text = "Season Posters"
+		'
+		'chkSeasonXXDashPosterJPG
+		'
+		Me.chkSeasonXXDashPosterJPG.AutoSize = True
+		Me.chkSeasonXXDashPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkSeasonXXDashPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
+		Me.chkSeasonXXDashPosterJPG.Location = New System.Drawing.Point(6, 128)
+		Me.chkSeasonXXDashPosterJPG.Name = "chkSeasonXXDashPosterJPG"
+		Me.chkSeasonXXDashPosterJPG.Size = New System.Drawing.Size(131, 17)
+		Me.chkSeasonXXDashPosterJPG.TabIndex = 7
+		Me.chkSeasonXXDashPosterJPG.Text = "seasonXX-poster.jpg"
+		Me.chkSeasonXXDashPosterJPG.UseVisualStyleBackColor = True
 		'
 		'chkSeasonFolderJPG
 		'
@@ -975,13 +981,60 @@ Partial Class dlgWizard
 		Me.chkSeasonXXTBN.Text = "seasonXX.tbn"
 		Me.chkSeasonXXTBN.UseVisualStyleBackColor = True
 		'
+		'gbEpisodePosters
+		'
+		Me.gbEpisodePosters.Controls.Add(Me.chkEpisodeDashThumbJPG)
+		Me.gbEpisodePosters.Controls.Add(Me.chkEpisodeJPG)
+		Me.gbEpisodePosters.Controls.Add(Me.chkEpisodeTBN)
+		Me.gbEpisodePosters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.gbEpisodePosters.Location = New System.Drawing.Point(105, 121)
+		Me.gbEpisodePosters.Name = "gbEpisodePosters"
+		Me.gbEpisodePosters.Size = New System.Drawing.Size(124, 70)
+		Me.gbEpisodePosters.TabIndex = 4
+		Me.gbEpisodePosters.TabStop = False
+		Me.gbEpisodePosters.Text = "Episode Posters"
+		'
+		'chkEpisodeDashThumbJPG
+		'
+		Me.chkEpisodeDashThumbJPG.AutoSize = True
+		Me.chkEpisodeDashThumbJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkEpisodeDashThumbJPG.ForeColor = System.Drawing.SystemColors.ControlText
+		Me.chkEpisodeDashThumbJPG.Location = New System.Drawing.Point(6, 49)
+		Me.chkEpisodeDashThumbJPG.Name = "chkEpisodeDashThumbJPG"
+		Me.chkEpisodeDashThumbJPG.Size = New System.Drawing.Size(113, 17)
+		Me.chkEpisodeDashThumbJPG.TabIndex = 3
+		Me.chkEpisodeDashThumbJPG.Text = "<ep>-thumb.jpg"
+		Me.chkEpisodeDashThumbJPG.UseVisualStyleBackColor = True
+		'
+		'chkEpisodeJPG
+		'
+		Me.chkEpisodeJPG.AutoSize = True
+		Me.chkEpisodeJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkEpisodeJPG.Location = New System.Drawing.Point(6, 31)
+		Me.chkEpisodeJPG.Name = "chkEpisodeJPG"
+		Me.chkEpisodeJPG.Size = New System.Drawing.Size(75, 17)
+		Me.chkEpisodeJPG.TabIndex = 1
+		Me.chkEpisodeJPG.Text = "<ep>.jpg"
+		Me.chkEpisodeJPG.UseVisualStyleBackColor = True
+		'
+		'chkEpisodeTBN
+		'
+		Me.chkEpisodeTBN.AutoSize = True
+		Me.chkEpisodeTBN.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkEpisodeTBN.Location = New System.Drawing.Point(6, 15)
+		Me.chkEpisodeTBN.Name = "chkEpisodeTBN"
+		Me.chkEpisodeTBN.Size = New System.Drawing.Size(76, 17)
+		Me.chkEpisodeTBN.TabIndex = 0
+		Me.chkEpisodeTBN.Text = "<ep>.tbn"
+		Me.chkEpisodeTBN.UseVisualStyleBackColor = True
+		'
 		'gbShowFanart
 		'
 		Me.gbShowFanart.Controls.Add(Me.chkShowDotFanart)
 		Me.gbShowFanart.Controls.Add(Me.chkShowDashFanart)
 		Me.gbShowFanart.Controls.Add(Me.chkShowFanartJPG)
 		Me.gbShowFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbShowFanart.Location = New System.Drawing.Point(3, 157)
+		Me.gbShowFanart.Location = New System.Drawing.Point(5, 265)
 		Me.gbShowFanart.Name = "gbShowFanart"
 		Me.gbShowFanart.Size = New System.Drawing.Size(221, 50)
 		Me.gbShowFanart.TabIndex = 2
@@ -1021,6 +1074,40 @@ Partial Class dlgWizard
 		Me.chkShowFanartJPG.Text = "fanart.jpg"
 		Me.chkShowFanartJPG.UseVisualStyleBackColor = True
 		'
+		'gbEpisodeFanart
+		'
+		Me.gbEpisodeFanart.Controls.Add(Me.chkEpisodeDotFanart)
+		Me.gbEpisodeFanart.Controls.Add(Me.chkEpisodeDashFanart)
+		Me.gbEpisodeFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.gbEpisodeFanart.Location = New System.Drawing.Point(105, 67)
+		Me.gbEpisodeFanart.Name = "gbEpisodeFanart"
+		Me.gbEpisodeFanart.Size = New System.Drawing.Size(124, 52)
+		Me.gbEpisodeFanart.TabIndex = 5
+		Me.gbEpisodeFanart.TabStop = False
+		Me.gbEpisodeFanart.Text = "Episode Fanart"
+		'
+		'chkEpisodeDotFanart
+		'
+		Me.chkEpisodeDotFanart.AutoSize = True
+		Me.chkEpisodeDotFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkEpisodeDotFanart.Location = New System.Drawing.Point(5, 31)
+		Me.chkEpisodeDotFanart.Name = "chkEpisodeDotFanart"
+		Me.chkEpisodeDotFanart.Size = New System.Drawing.Size(109, 17)
+		Me.chkEpisodeDotFanart.TabIndex = 1
+		Me.chkEpisodeDotFanart.Text = "<ep>.fanart.jpg"
+		Me.chkEpisodeDotFanart.UseVisualStyleBackColor = True
+		'
+		'chkEpisodeDashFanart
+		'
+		Me.chkEpisodeDashFanart.AutoSize = True
+		Me.chkEpisodeDashFanart.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkEpisodeDashFanart.Location = New System.Drawing.Point(5, 15)
+		Me.chkEpisodeDashFanart.Name = "chkEpisodeDashFanart"
+		Me.chkEpisodeDashFanart.Size = New System.Drawing.Size(110, 17)
+		Me.chkEpisodeDashFanart.TabIndex = 0
+		Me.chkEpisodeDashFanart.Text = "<ep>-fanart.jpg"
+		Me.chkEpisodeDashFanart.UseVisualStyleBackColor = True
+		'
 		'gbShowPosters
 		'
 		Me.gbShowPosters.Controls.Add(Me.chkShowJPG)
@@ -1029,9 +1116,9 @@ Partial Class dlgWizard
 		Me.gbShowPosters.Controls.Add(Me.chkShowPosterTBN)
 		Me.gbShowPosters.Controls.Add(Me.chkShowFolderJPG)
 		Me.gbShowPosters.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.gbShowPosters.Location = New System.Drawing.Point(3, 89)
+		Me.gbShowPosters.Location = New System.Drawing.Point(3, 67)
 		Me.gbShowPosters.Name = "gbShowPosters"
-		Me.gbShowPosters.Size = New System.Drawing.Size(221, 68)
+		Me.gbShowPosters.Size = New System.Drawing.Size(98, 98)
 		Me.gbShowPosters.TabIndex = 1
 		Me.gbShowPosters.TabStop = False
 		Me.gbShowPosters.Text = "Show Posters"
@@ -1062,7 +1149,7 @@ Partial Class dlgWizard
 		'
 		Me.chkShowPosterJPG.AutoSize = True
 		Me.chkShowPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkShowPosterJPG.Location = New System.Drawing.Point(102, 16)
+		Me.chkShowPosterJPG.Location = New System.Drawing.Point(6, 63)
 		Me.chkShowPosterJPG.Name = "chkShowPosterJPG"
 		Me.chkShowPosterJPG.Size = New System.Drawing.Size(79, 17)
 		Me.chkShowPosterJPG.TabIndex = 3
@@ -1084,7 +1171,7 @@ Partial Class dlgWizard
 		'
 		Me.chkShowFolderJPG.AutoSize = True
 		Me.chkShowFolderJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkShowFolderJPG.Location = New System.Drawing.Point(102, 32)
+		Me.chkShowFolderJPG.Location = New System.Drawing.Point(6, 79)
 		Me.chkShowFolderJPG.Name = "chkShowFolderJPG"
 		Me.chkShowFolderJPG.Size = New System.Drawing.Size(77, 17)
 		Me.chkShowFolderJPG.TabIndex = 4
@@ -1096,10 +1183,59 @@ Partial Class dlgWizard
 		Me.Label11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
 		Me.Label11.Location = New System.Drawing.Point(14, 4)
 		Me.Label11.Name = "Label11"
-		Me.Label11.Size = New System.Drawing.Size(341, 80)
+		Me.Label11.Size = New System.Drawing.Size(341, 58)
 		Me.Label11.TabIndex = 0
 		Me.Label11.Text = resources.GetString("Label11.Text")
 		Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+		'
+		'chkMovieNameDashPosterJPG
+		'
+		Me.chkMovieNameDashPosterJPG.AutoSize = True
+		Me.chkMovieNameDashPosterJPG.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.chkMovieNameDashPosterJPG.ForeColor = System.Drawing.SystemColors.ControlText
+		Me.chkMovieNameDashPosterJPG.Location = New System.Drawing.Point(10, 81)
+		Me.chkMovieNameDashPosterJPG.Name = "chkMovieNameDashPosterJPG"
+		Me.chkMovieNameDashPosterJPG.Size = New System.Drawing.Size(129, 17)
+		Me.chkMovieNameDashPosterJPG.TabIndex = 8
+		Me.chkMovieNameDashPosterJPG.Text = "<movie>-poster.jpg"
+		Me.chkMovieNameDashPosterJPG.UseVisualStyleBackColor = True
+		'
+		'GroupBox21
+		'
+		Me.GroupBox21.Controls.Add(Me.rbBracketTrailer)
+		Me.GroupBox21.Controls.Add(Me.rbDashTrailer)
+		Me.GroupBox21.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.GroupBox21.Location = New System.Drawing.Point(13, 218)
+		Me.GroupBox21.Name = "GroupBox21"
+		Me.GroupBox21.Size = New System.Drawing.Size(102, 59)
+		Me.GroupBox21.TabIndex = 7
+		Me.GroupBox21.TabStop = False
+		Me.GroupBox21.Text = "Trailer"
+		'
+		'rbBracketTrailer
+		'
+		Me.rbBracketTrailer.AutoSize = True
+		Me.rbBracketTrailer.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.rbBracketTrailer.Location = New System.Drawing.Point(10, 33)
+		Me.rbBracketTrailer.Name = "rbBracketTrailer"
+		Me.rbBracketTrailer.Size = New System.Drawing.Size(61, 17)
+		Me.rbBracketTrailer.TabIndex = 1
+		Me.rbBracketTrailer.TabStop = True
+		Me.rbBracketTrailer.Text = "[trailer]"
+		Me.rbBracketTrailer.UseVisualStyleBackColor = True
+		'
+		'rbDashTrailer
+		'
+		Me.rbDashTrailer.AutoSize = True
+		Me.rbDashTrailer.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.rbDashTrailer.ForeColor = System.Drawing.SystemColors.ControlText
+		Me.rbDashTrailer.Location = New System.Drawing.Point(10, 17)
+		Me.rbDashTrailer.Name = "rbDashTrailer"
+		Me.rbDashTrailer.Size = New System.Drawing.Size(59, 17)
+		Me.rbDashTrailer.TabIndex = 0
+		Me.rbDashTrailer.TabStop = True
+		Me.rbDashTrailer.Text = "-trailer"
+		Me.rbDashTrailer.UseVisualStyleBackColor = True
 		'
 		'dlgWizard
 		'
@@ -1145,18 +1281,20 @@ Partial Class dlgWizard
 		Me.Panel5.ResumeLayout(False)
 		Me.gbAllSeasonPoster.ResumeLayout(False)
 		Me.gbAllSeasonPoster.PerformLayout()
-		Me.gbEpisodeFanart.ResumeLayout(False)
-		Me.gbEpisodeFanart.PerformLayout()
-		Me.gbEpisodePosters.ResumeLayout(False)
-		Me.gbEpisodePosters.PerformLayout()
 		Me.gbSeasonFanart.ResumeLayout(False)
 		Me.gbSeasonFanart.PerformLayout()
 		Me.gbSeasonPosters.ResumeLayout(False)
 		Me.gbSeasonPosters.PerformLayout()
+		Me.gbEpisodePosters.ResumeLayout(False)
+		Me.gbEpisodePosters.PerformLayout()
 		Me.gbShowFanart.ResumeLayout(False)
 		Me.gbShowFanart.PerformLayout()
+		Me.gbEpisodeFanart.ResumeLayout(False)
+		Me.gbEpisodeFanart.PerformLayout()
 		Me.gbShowPosters.ResumeLayout(False)
 		Me.gbShowPosters.PerformLayout()
+		Me.GroupBox21.ResumeLayout(False)
+		Me.GroupBox21.PerformLayout()
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -1248,6 +1386,16 @@ Partial Class dlgWizard
     Friend WithEvents chkShowFolderJPG As System.Windows.Forms.CheckBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
     Friend WithEvents btnTVLanguageFetch As System.Windows.Forms.Button
-    Friend WithEvents cbTVLanguage As System.Windows.Forms.ComboBox
+	Friend WithEvents cbTVLanguage As System.Windows.Forms.ComboBox
+	Friend WithEvents btnTVShowFrodo As System.Windows.Forms.Button
+	Friend WithEvents chkEpisodeDashThumbJPG As System.Windows.Forms.CheckBox
+	Friend WithEvents chkSeasonAllPosterJPG As System.Windows.Forms.CheckBox
+	Friend WithEvents chkSeasonXXDashFanartJPG As System.Windows.Forms.CheckBox
+	Friend WithEvents chkSeasonXXDashPosterJPG As System.Windows.Forms.CheckBox
+	Friend WithEvents btnMovieFrodo As System.Windows.Forms.Button
+	Friend WithEvents chkMovieNameDashPosterJPG As System.Windows.Forms.CheckBox
+	Friend WithEvents GroupBox21 As System.Windows.Forms.GroupBox
+	Friend WithEvents rbBracketTrailer As System.Windows.Forms.RadioButton
+	Friend WithEvents rbDashTrailer As System.Windows.Forms.RadioButton
 
 End Class
