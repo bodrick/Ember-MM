@@ -5307,6 +5307,11 @@ doCancel:
                 InstallNewFiles("InstallTasks.xml")
             End If
 
+			'fLoading.SetLoadingMesg("Loading settings...")
+			fLoading.SetLoadingMesg(Master.eLang.GetString(484, "Loading settings..."))
+
+			Master.eSettings.Load()
+
 			' Force initialization of languages for main
 			Master.eLang.LoadAllLanguage(Master.eSettings.Language)
 			Master.eLang.LoadLanguage(Master.eSettings.Language, "")
@@ -5336,10 +5341,7 @@ doCancel:
             If Not Directory.Exists(sPath) Then
                 Directory.CreateDirectory(sPath)
             End If
-			'fLoading.SetLoadingMesg("Loading settings...")
-			fLoading.SetLoadingMesg(Master.eLang.GetString(484, "Loading settings..."))
 
-            Master.eSettings.Load()
 			'fLoading.SetLoadingMesg("Creating default options...")
 			fLoading.SetLoadingMesg(Master.eLang.GetString(855, "Creating default options..."))
 			Functions.CreateDefaultOptions()
