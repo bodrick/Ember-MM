@@ -2274,7 +2274,7 @@ Partial Class dlgSettings
 		Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
-		Me.pnlTop.Size = New System.Drawing.Size(891, 64)
+		Me.pnlTop.Size = New System.Drawing.Size(892, 64)
 		Me.pnlTop.TabIndex = 3
 		'
 		'Label2
@@ -2538,7 +2538,7 @@ Partial Class dlgSettings
 		Me.pnlMovies.Controls.Add(Me.GroupBox27)
 		Me.pnlMovies.Controls.Add(Me.GroupBox12)
 		Me.pnlMovies.Controls.Add(Me.GroupBox2)
-		Me.pnlMovies.Location = New System.Drawing.Point(1067, 636)
+		Me.pnlMovies.Location = New System.Drawing.Point(997, 642)
 		Me.pnlMovies.Name = "pnlMovies"
 		Me.pnlMovies.Size = New System.Drawing.Size(617, 400)
 		Me.pnlMovies.TabIndex = 15
@@ -2937,7 +2937,7 @@ Partial Class dlgSettings
 		Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
 		Me.pnlSources.Controls.Add(Me.GroupBox8)
 		Me.pnlSources.Controls.Add(Me.GroupBox16)
-		Me.pnlSources.Location = New System.Drawing.Point(1155, 594)
+		Me.pnlSources.Location = New System.Drawing.Point(1374, 513)
 		Me.pnlSources.Name = "pnlSources"
 		Me.pnlSources.Size = New System.Drawing.Size(617, 402)
 		Me.pnlSources.TabIndex = 13
@@ -3085,7 +3085,7 @@ Partial Class dlgSettings
 		Me.pnlImages.Controls.Add(Me.GroupBox14)
 		Me.pnlImages.Controls.Add(Me.GroupBox23)
 		Me.pnlImages.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.pnlImages.Location = New System.Drawing.Point(1223, 575)
+		Me.pnlImages.Location = New System.Drawing.Point(1181, 571)
 		Me.pnlImages.Name = "pnlImages"
 		Me.pnlImages.Size = New System.Drawing.Size(617, 408)
 		Me.pnlImages.TabIndex = 12
@@ -3344,7 +3344,7 @@ Partial Class dlgSettings
 		'
 		Me.pnlTVSources.BackColor = System.Drawing.Color.White
 		Me.pnlTVSources.Controls.Add(Me.TabControl2)
-		Me.pnlTVSources.Location = New System.Drawing.Point(1262, 550)
+		Me.pnlTVSources.Location = New System.Drawing.Point(1260, 560)
 		Me.pnlTVSources.Name = "pnlTVSources"
 		Me.pnlTVSources.Size = New System.Drawing.Size(617, 400)
 		Me.pnlTVSources.TabIndex = 11
@@ -4665,7 +4665,7 @@ Partial Class dlgSettings
 		'
 		Me.pnlTVImages.BackColor = System.Drawing.Color.White
 		Me.pnlTVImages.Controls.Add(Me.TabControl3)
-		Me.pnlTVImages.Location = New System.Drawing.Point(920, 670)
+		Me.pnlTVImages.Location = New System.Drawing.Point(913, 685)
 		Me.pnlTVImages.Name = "pnlTVImages"
 		Me.pnlTVImages.Size = New System.Drawing.Size(617, 402)
 		Me.pnlTVImages.TabIndex = 16
@@ -7084,7 +7084,7 @@ Partial Class dlgSettings
 		Me.pnlScraper.Controls.Add(Me.gbOptions)
 		Me.pnlScraper.Controls.Add(Me.GroupBox1)
 		Me.pnlScraper.Controls.Add(Me.GroupBox26)
-		Me.pnlScraper.Location = New System.Drawing.Point(1118, 614)
+		Me.pnlScraper.Location = New System.Drawing.Point(1065, 616)
 		Me.pnlScraper.Name = "pnlScraper"
 		Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
 		Me.pnlScraper.TabIndex = 14
@@ -7098,7 +7098,7 @@ Partial Class dlgSettings
 		Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
 		Me.ToolStrip1.Location = New System.Drawing.Point(0, 64)
 		Me.ToolStrip1.Name = "ToolStrip1"
-		Me.ToolStrip1.Size = New System.Drawing.Size(891, 25)
+		Me.ToolStrip1.Size = New System.Drawing.Size(892, 25)
 		Me.ToolStrip1.Stretch = True
 		Me.ToolStrip1.TabIndex = 4
 		Me.ToolStrip1.Text = "ToolStrip1"
@@ -7160,11 +7160,11 @@ Partial Class dlgSettings
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
 		Me.CancelButton = Me.btnCancel
-		Me.ClientSize = New System.Drawing.Size(891, 628)
+		Me.ClientSize = New System.Drawing.Size(892, 628)
+		Me.Controls.Add(Me.pnlSources)
 		Me.Controls.Add(Me.pnlGeneral)
 		Me.Controls.Add(Me.pnlTVSources)
 		Me.Controls.Add(Me.pnlImages)
-		Me.Controls.Add(Me.pnlSources)
 		Me.Controls.Add(Me.pnlScraper)
 		Me.Controls.Add(Me.Panel2)
 		Me.Controls.Add(Me.ToolStrip1)
