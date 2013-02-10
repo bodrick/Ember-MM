@@ -175,19 +175,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lang\generic.EmberCore.Notifications.English_%28en_US%29-Help.xml">
+    <Content Include="Langs\generic.EmberCore.Notifications.English_%28en_US%29-Help.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\generic.EmberCore.Notifications.English_%28en_US%29.xml">
+    <Content Include="Langs\generic.EmberCore.Notifications.English_%28en_US%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\generic.EmberCore.Notifications.German_%28de_DE%29-Help.xml">
+    <Content Include="Langs\generic.EmberCore.Notifications.German_%28de_DE%29-Help.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\generic.EmberCore.Notifications.German_%28de_DE%29.xml">
+    <Content Include="Langs\generic.EmberCore.Notifications.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\generic.EmberCore.Notifications.Português_%28pt-BR%29.xml">
+    <Content Include="Langs\generic.EmberCore.Notifications.Português_%28pt-BR%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -27,7 +27,8 @@ Public Class MovieExporterModule
 
     Private WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
     Private WithEvents MyTrayMenu As New System.Windows.Forms.ToolStripMenuItem
-    Private _enabled As Boolean = False
+	Private _AssemblyName As String = String.Empty
+	Private _enabled As Boolean = False
     Private _Name As String = "Movie List Exporter"
     Private _setup As frmSettingsHolder
 
@@ -120,8 +121,10 @@ Public Class MovieExporterModule
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
-    Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-    End Sub
+	Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+	End Sub
 
     Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Me._setup = New frmSettingsHolder

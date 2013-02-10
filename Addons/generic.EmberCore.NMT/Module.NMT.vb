@@ -29,7 +29,8 @@ Public Class NMTExporterModule
     Public Shared MinDesignVersion As Single = 1.2
 
 #Region "Fields"
-    Private WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
+	Private _AssemblyName As String = String.Empty
+	Private WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
     Private WithEvents MyTrayMenu As New System.Windows.Forms.ToolStripMenuItem
     Private _enabled As Boolean = False
     Private _Name As String = "NMT Jukebox Builder"
@@ -113,12 +114,12 @@ Public Class NMTExporterModule
     Sub Enable()
         Dim tsi As New ToolStripMenuItem
         MyMenu.Image = New Bitmap(My.Resources.icon)
-        MyMenu.Text = Master.eLang.GetString(15, "NMT Jukebox Builder")
+		MyMenu.Text = Master.eLang.GetString(0, "NMT Jukebox Builder")
         MyMenu.Tag = New Structures.ModulesMenus With {.IfNoMovies = True, .IfNoTVShow = True}
         tsi = DirectCast(ModulesManager.Instance.RuntimeObjects.TopMenu.Items("ToolsToolStripMenuItem"), ToolStripMenuItem)
         tsi.DropDownItems.Add(MyMenu)
         MyTrayMenu.Image = New Bitmap(My.Resources.icon)
-        MyTrayMenu.Text = Master.eLang.GetString(15, "NMT Jukebox Builder")
+		MyTrayMenu.Text = Master.eLang.GetString(0, "NMT Jukebox Builder")
         MyTrayMenu.Tag = New Structures.ModulesMenus With {.IfNoMovies = True, .IfNoTVShow = True}
         tsi = DirectCast(ModulesManager.Instance.RuntimeObjects.TrayMenu.Items("cmnuTrayIconTools"), ToolStripMenuItem)
         If Not tsi Is Nothing Then tsi.DropDownItems.Add(MyTrayMenu)
@@ -132,19 +133,21 @@ Public Class NMTExporterModule
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
-    Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-        sBasePath = Path.Combine(Path.Combine(Functions.AppPath, "Modules"), Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly.Location))
-        If Not Directory.Exists(sBasePath) Then
-            Directory.CreateDirectory(sBasePath)
-        End If
-        If Not Directory.Exists(Path.Combine(sBasePath, "Templates")) Then
-            Directory.CreateDirectory(Path.Combine(sBasePath, "Templates"))
-        End If
-        If Not Directory.Exists(Path.Combine(sBasePath, "Temp")) Then
-            Directory.CreateDirectory(Path.Combine(sBasePath, "Temp"))
-        End If
+	Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+		sBasePath = Path.Combine(Path.Combine(Functions.AppPath, "Modules"), Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetExecutingAssembly.Location))
+		If Not Directory.Exists(sBasePath) Then
+			Directory.CreateDirectory(sBasePath)
+		End If
+		If Not Directory.Exists(Path.Combine(sBasePath, "Templates")) Then
+			Directory.CreateDirectory(Path.Combine(sBasePath, "Templates"))
+		End If
+		If Not Directory.Exists(Path.Combine(sBasePath, "Temp")) Then
+			Directory.CreateDirectory(Path.Combine(sBasePath, "Temp"))
+		End If
 
-    End Sub
+	End Sub
 
     Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Me._setup = New frmSettingsHolder

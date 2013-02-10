@@ -31,4 +31,5 @@
 	<string id="28">Windows UNC/Linux/MacOS X</string>
 	<string id="29">XBMC Host</string>
 	<string id="30">Send Notifications</string>
+	<string id="31">Retrieve PlayCount from:</string>
 </strings>

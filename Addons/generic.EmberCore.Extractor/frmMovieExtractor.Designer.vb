@@ -65,7 +65,7 @@ Partial Class frmMovieExtractor
 		Me.GroupBox1.Controls.Add(Me.txtThumbCount)
 		Me.GroupBox1.Controls.Add(Me.Label5)
 		Me.GroupBox1.Controls.Add(Me.btnAutoGen)
-		Me.GroupBox1.Location = New System.Drawing.Point(733, 173)
+		Me.GroupBox1.Location = New System.Drawing.Point(734, 161)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(99, 100)
 		Me.GroupBox1.TabIndex = 1

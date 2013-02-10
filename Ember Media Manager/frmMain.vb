@@ -5310,7 +5310,7 @@ doCancel:
 			' Force initialization of languages for main
 			Master.eLang.LoadAllLanguage(Master.eSettings.Language)
 			Master.eLang.LoadLanguage(Master.eSettings.Language, "")
-			fLoading.SetVersionMesg(Master.eLang.GetString(855, "Version {0}.{1}.{2}.{3}"))
+			fLoading.SetVersionMesg(Master.eLang.GetString(865, "Version {0}.{1}.{2}.{3}"))
 
 			'fLoading.SetLoadingMesg("Basic setup...")
 			fLoading.SetLoadingMesg(Master.eLang.GetString(854, "Basic setup"))
@@ -8346,7 +8346,8 @@ doCancel:
                 .CheckUpdatesToolStripMenuItem.Text = Master.eLang.GetString(850, "&Check For Updates...")
                 .Label7.Text = Master.eLang.GetString(484, "Loading Settings...")
                 .cmnuRescrape.Text = Master.eLang.GetString(163, "(Re)Scrape Movie")
-                .ScrapingToolStripMenuItem.Text = Master.eLang.GetString(164, "(Re)Scrape Selected Movies")
+				.ScrapingToolStripMenuItem.Text = Master.eLang.GetString(164, "(Re)Scrape Selected Movies")
+				.WikiStripMenuItem.Text = Master.eLang.GetString(869, "EmberMM.com &Wiki...")
 
                 Dim TT As ToolTip = New System.Windows.Forms.ToolTip(.components)
                 .tsbAutoPilot.ToolTipText = Master.eLang.GetString(84, "Scrape/download data from the internet for multiple movies.")

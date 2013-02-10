@@ -176,13 +176,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lang\generic.EmberCore.NMT.English_%28en_US%29.xml">
+    <Content Include="Langs\generic.EmberCore.NMT.English_%28en_US%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\generic.EmberCore.NMT.German_%28de_DE%29.xml">
+    <Content Include="Langs\generic.EmberCore.NMT.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Lang\generic.EmberCore.NMT.Português_%28pt-BR%29.xml">
+    <Content Include="Langs\generic.EmberCore.NMT.Português_%28pt-BR%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Templates\1x1.png">

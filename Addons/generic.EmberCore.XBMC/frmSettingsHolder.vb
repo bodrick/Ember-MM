@@ -83,7 +83,7 @@ Public Class frmSettingsHolder
         InitializeComponent()
         Me.SetUp()
         chkRealTime.Checked = AdvancedSettings.GetBooleanSetting("XBMCSync", False)
-        chkPlayCount.Checked = AdvancedSettings.GetBooleanSetting("XBMCSyncPlayCount", False)
+		chkPlayCount.Checked = AdvancedSettings.GetBooleanSetting("XBMCSyncPlayCount", False)
     End Sub
 
     Private Sub lbXBMCCom_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles lbXBMCCom.KeyDown
@@ -116,7 +116,8 @@ Public Class frmSettingsHolder
         Me.btnRemoveCom.Text = Master.eLang.GetString(15, "Remove Selected")
         Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
         Me.chkRealTime.Text = Master.eLang.GetString(20, "Enable Real Time synchronization")
-        Me.chkNotification.Text = Master.eLang.GetString(30, "Send Notifications")
+		Me.chkNotification.Text = Master.eLang.GetString(30, "Send Notifications")
+		Me.chkPlayCount.Text = Master.eLang.GetString(31, "Retrieve PlayCount from:")
     End Sub
 
     Private Sub btnRemoveCom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveCom.Click
@@ -138,7 +139,4 @@ Public Class frmSettingsHolder
 
 #End Region 'Methods
 
-    Private Sub GroupBox11_Enter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GroupBox11.Enter
-
-    End Sub
 End Class

@@ -2274,7 +2274,7 @@ Partial Class dlgSettings
 		Me.pnlTop.Dock = System.Windows.Forms.DockStyle.Top
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
-		Me.pnlTop.Size = New System.Drawing.Size(894, 64)
+		Me.pnlTop.Size = New System.Drawing.Size(891, 64)
 		Me.pnlTop.TabIndex = 3
 		'
 		'Label2
@@ -2937,7 +2937,7 @@ Partial Class dlgSettings
 		Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
 		Me.pnlSources.Controls.Add(Me.GroupBox8)
 		Me.pnlSources.Controls.Add(Me.GroupBox16)
-		Me.pnlSources.Location = New System.Drawing.Point(1013, 662)
+		Me.pnlSources.Location = New System.Drawing.Point(1155, 594)
 		Me.pnlSources.Name = "pnlSources"
 		Me.pnlSources.Size = New System.Drawing.Size(617, 402)
 		Me.pnlSources.TabIndex = 13
@@ -3344,7 +3344,7 @@ Partial Class dlgSettings
 		'
 		Me.pnlTVSources.BackColor = System.Drawing.Color.White
 		Me.pnlTVSources.Controls.Add(Me.TabControl2)
-		Me.pnlTVSources.Location = New System.Drawing.Point(1269, 561)
+		Me.pnlTVSources.Location = New System.Drawing.Point(1262, 550)
 		Me.pnlTVSources.Name = "pnlTVSources"
 		Me.pnlTVSources.Size = New System.Drawing.Size(617, 400)
 		Me.pnlTVSources.TabIndex = 11
@@ -4665,7 +4665,7 @@ Partial Class dlgSettings
 		'
 		Me.pnlTVImages.BackColor = System.Drawing.Color.White
 		Me.pnlTVImages.Controls.Add(Me.TabControl3)
-		Me.pnlTVImages.Location = New System.Drawing.Point(933, 685)
+		Me.pnlTVImages.Location = New System.Drawing.Point(920, 670)
 		Me.pnlTVImages.Name = "pnlTVImages"
 		Me.pnlTVImages.Size = New System.Drawing.Size(617, 402)
 		Me.pnlTVImages.TabIndex = 16
@@ -7098,7 +7098,7 @@ Partial Class dlgSettings
 		Me.ToolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow
 		Me.ToolStrip1.Location = New System.Drawing.Point(0, 64)
 		Me.ToolStrip1.Name = "ToolStrip1"
-		Me.ToolStrip1.Size = New System.Drawing.Size(894, 25)
+		Me.ToolStrip1.Size = New System.Drawing.Size(891, 25)
 		Me.ToolStrip1.Stretch = True
 		Me.ToolStrip1.TabIndex = 4
 		Me.ToolStrip1.Text = "ToolStrip1"
@@ -7160,7 +7160,7 @@ Partial Class dlgSettings
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
 		Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
 		Me.CancelButton = Me.btnCancel
-		Me.ClientSize = New System.Drawing.Size(894, 629)
+		Me.ClientSize = New System.Drawing.Size(891, 628)
 		Me.Controls.Add(Me.pnlGeneral)
 		Me.Controls.Add(Me.pnlTVSources)
 		Me.Controls.Add(Me.pnlImages)

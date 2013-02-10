@@ -105,4 +105,13 @@
 	<string id="102">Get Fanart</string>
 	<string id="103">These settings are specific to this module.{0}Please refer to the global settings for more options.</string>
 	<string id="104">Ember Native Movie Scrapers</string>
+	<string id="105"></string>
+	<string id="106">IMDB</string>
+	<string id="107">OFDB (German)</string>
+	<string id="108">TMDB Extrathumbs Size:</string>
+	<string id="109">Trailers</string>
+	<string id="110">Youtube/TMDB Trailer:</string>
+	<string id="111">XBMC Format</string>
+	<string id="112">Preferred language</string>
+	<string id="113">Save Fanart In:</string>
 </strings>

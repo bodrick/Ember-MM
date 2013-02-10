@@ -31,7 +31,8 @@ Public Class XBMCxCom
 
     Private WithEvents MyMenu As New System.Windows.Forms.ToolStripMenuItem
     Private WithEvents MyTrayMenu As New System.Windows.Forms.ToolStripMenuItem
-    Private _enabled As Boolean = False
+	Private _AssemblyName As String = String.Empty
+	Private _enabled As Boolean = False
     Private _MySettings As New MySettings
     Private _name As String = "XBMC Controller"
     Private _setup As frmSettingsHolder
@@ -90,10 +91,12 @@ Public Class XBMCxCom
 
 #Region "Methods"
 
-    Public Sub Init(ByVal sAssemblyName As String) Implements EmberAPI.Interfaces.EmberExternalModule.Init
-        '_MySettings.XComs.AddRange(Master.eSettings.XBMCComs)
-        _MySettings = MySettings.Load
-    End Sub
+	Public Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements EmberAPI.Interfaces.EmberExternalModule.Init
+		'_MySettings.XComs.AddRange(Master.eSettings.XBMCComs)
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+		_MySettings = MySettings.Load
+	End Sub
 
     Public Function InjectSetup() As EmberAPI.Containers.SettingsPanel Implements EmberAPI.Interfaces.EmberExternalModule.InjectSetup
         _MySettings = MySettings.Load
@@ -149,109 +152,109 @@ Public Class XBMCxCom
         Return 0
     End Function
 
+	Private Sub bwRunUpdate_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwRunUpdate.DoWork
+		Dim files As List(Of String()) = Nothing
+		Dim str As String
+		Dim eSource As String = String.Empty
+		Try
+			_sendNotification = AdvancedSettings.GetBooleanSetting("XBMCNotifications", False)
+			_httpTimeOut = Convert.ToInt32(AdvancedSettings.GetSetting("HTTPTimeOut", "10000"))
+			Dim DBMovie As Structures.DBMovie '= DirectCast(e.Argument, Structures.DBMovie)
+			While RunQueue.Count > 0
+				DBMovie = RunQueue.Dequeue
+				eSource = Master.MovieSources.FirstOrDefault(Function(y) y.Name = DBMovie.Source).Path
+				For Each s As XBMCxCom.XBMCCom In _MySettings.XComs.Where(Function(y) y.RealTime)
+					If s.Paths.Count = 0 Then Continue For
+					Dim remoteSource As String = s.Paths(eSource).ToString
+					If Not eSource.EndsWith(Path.DirectorySeparatorChar) Then eSource = String.Concat(eSource, Path.DirectorySeparatorChar)
+					Dim remoteFullFilename As String = DBMovie.Filename.Replace(eSource, remoteSource)
+					remoteFullFilename = remoteFullFilename.Replace(Path.DirectorySeparatorChar, s.RemotePathSeparator)
+					Dim i As Integer = remoteFullFilename.LastIndexOf(s.RemotePathSeparator) + 1
+					Dim RemotePath As String = remoteFullFilename.Substring(0, i)
+					Dim RemoteFilename As String = remoteFullFilename.Substring(i)
+					Dim ret As String
+					Dim cmd As String
 
-    Private Sub bwRunUpdate_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwRunUpdate.DoWork
-        Dim files As List(Of String()) = Nothing
-        Dim str As String
-        Dim eSource As String = String.Empty
-        Try
-            _sendNotification = AdvancedSettings.GetBooleanSetting("XBMCNotifications", False)
-            _httpTimeOut = Convert.ToInt32(AdvancedSettings.GetSetting("HTTPTimeOut", "10000"))
-            Dim DBMovie As Structures.DBMovie '= DirectCast(e.Argument, Structures.DBMovie)
-            While RunQueue.Count > 0
-                DBMovie = RunQueue.Dequeue
-                eSource = Master.MovieSources.FirstOrDefault(Function(y) y.Name = DBMovie.Source).Path
-                For Each s As XBMCxCom.XBMCCom In _MySettings.XComs.Where(Function(y) y.RealTime)
-                    If s.Paths.Count = 0 Then Continue For
-                    Dim remoteSource As String = s.Paths(eSource).ToString
-                    If Not eSource.EndsWith(Path.DirectorySeparatorChar) Then eSource = String.Concat(eSource, Path.DirectorySeparatorChar)
-                    Dim remoteFullFilename As String = DBMovie.Filename.Replace(eSource, remoteSource)
-                    remoteFullFilename = remoteFullFilename.Replace(Path.DirectorySeparatorChar, s.RemotePathSeparator)
-                    Dim i As Integer = remoteFullFilename.LastIndexOf(s.RemotePathSeparator) + 1
-                    Dim RemotePath As String = remoteFullFilename.Substring(0, i)
-                    Dim RemoteFilename As String = remoteFullFilename.Substring(i)
-                    Dim ret As String
-                    Dim cmd As String
+					str = String.Format("command=queryvideodatabase(select movie.idMovie,files.idFile,path.strpath,files.strfilename,path.strcontent,path.strHash from movie inner join files on movie.idfile=files.idfile inner join path on files.idpath = path.idpath Where path.strpath=""{0}"" and files.strfilename=""{1}"")", RemotePath, RemoteFilename)
+					files = XBMCxCom.SplitResponse(XBMCxCom.SendCmd(s, str))
+					If files.Count = 1 AndAlso files(0).Count >= 6 Then
+						If _sendNotification Then
+							str = String.Format("command=ExecBuiltIn(Notification(EmberMM - Updating Movie,{0}))", DBMovie.Movie.Title)
+							ret = SendCmd(s, str)
+						End If
+						Dim id As String = files(0)(0)
+						Dim idfile As String = files(0)(1)
+						If AdvancedSettings.GetBooleanSetting("XBMCSyncPlayCount", False) AndAlso s.Name = AdvancedSettings.GetSetting("XBMCSyncPlayCountHost", "") Then
+							cmd = String.Concat("update files set ", _
+								String.Format("playCount =""{0}"" ", StringEscape(If(IsNumeric(DBMovie.Movie.PlayCount), DBMovie.Movie.PlayCount, "0"))), _
+								String.Format(" Where idFile ={0}", idfile))
+							str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
+							ret = SendCmd(s, str)
+							If Not ret.Contains("Exec Done") Then
+								Master.eLog.WriteToErrorLog("Unable to Update XBMC PlayCount", cmd, "Error")
+							End If
+						End If
 
-                    str = String.Format("command=queryvideodatabase(select movie.idMovie,files.idFile,path.strpath,files.strfilename,path.strcontent,path.strHash from movie inner join files on movie.idfile=files.idfile inner join path on files.idpath = path.idpath Where path.strpath=""{0}"" and files.strfilename=""{1}"")", RemotePath, RemoteFilename)
-                    files = XBMCxCom.SplitResponse(XBMCxCom.SendCmd(s, str))
-                    If files.Count = 1 AndAlso files(0).Count >= 6 Then
-                        If _sendNotification Then
-                            str = String.Format("command=ExecBuiltIn(Notification(EmberMM - Updating Movie,{0}))", DBMovie.Movie.Title)
-                            ret = SendCmd(s, str)
-                        End If
-                        Dim id As String = files(0)(0)
-                        Dim idfile As String = files(0)(1)
-                        If AdvancedSettings.GetBooleanSetting("XBMCSyncPlayCount", False) AndAlso s.Name = AdvancedSettings.GetSetting("XBMCSyncPlayCountHost", "") Then
-                            cmd = String.Concat("update files set ", _
-                                String.Format("playCount =""{0}"" ", StringEscape(If(IsNumeric(DBMovie.Movie.PlayCount), DBMovie.Movie.PlayCount, "0"))), _
-                                String.Format(" Where idFile ={0}", idfile))
-                            str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
-                            ret = SendCmd(s, str)
-                            If Not ret.Contains("Exec Done") Then
-                                Master.eLog.WriteToErrorLog("Unable to Update XBMC PlayCount", cmd, "Error")
-                            End If
-                        End If
+						' separated update so uri don't get too long
+						cmd = String.Concat("update movie set ", _
+							String.Format("c01 =""{0}"" ", StringEscape(DBMovie.Movie.Plot)), _
+							String.Format(" Where idMovie ={0}", id))
+						str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
+						ret = SendCmd(s, str)
+						If Not ret.Contains("Exec Done") Then
+							Master.eLog.WriteToErrorLog("Unable to Update XBMC Info - Plot", cmd, "Error")
+						End If
+						cmd = String.Concat("update movie set ", _
+						String.Format("c00=""{0}"",", StringEscape(DBMovie.Movie.Title)), _
+						String.Format("c02=""{0}"",", StringEscape(DBMovie.Movie.Outline)), _
+						String.Format("c03=""{0}"",", StringEscape(DBMovie.Movie.Tagline)), _
+						String.Format("c04=""{0}"",", StringEscape(DBMovie.Movie.Votes)), _
+						String.Format("c05=""{0}"",", StringEscape(DBMovie.Movie.Rating)), _
+						String.Format("c07=""{0}"",", StringEscape(DBMovie.Movie.Year)), _
+						String.Format("c09=""{0}"",", StringEscape(DBMovie.Movie.IMDBID)), _
+						String.Format("c11=""{0}"",", StringEscape(DBMovie.Movie.Runtime)), _
+						String.Format("c12=""{0}"",", StringEscape(DBMovie.Movie.MPAA)), _
+						String.Format("c14=""{0}"",", StringEscape(DBMovie.Movie.Genre)), _
+						String.Format("c15=""{0}"",", StringEscape(DBMovie.Movie.Director)), _
+						String.Format("c16=""{0}"",", StringEscape(DBMovie.Movie.OriginalTitle)), _
+						String.Format("c18=""{0}"",", StringEscape(DBMovie.Movie.Studio)), _
+						String.Format("c19=""{0}"",", StringEscape(DBMovie.Movie.Trailer)), _
+						String.Format("c21=""{0}""", StringEscape(DBMovie.Movie.Country)), _
+						String.Format(" Where idMovie ={0}", id.ToString))
+						str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
+						ret = SendCmd(s, str)
+						If Not ret.Contains("Exec Done") Then
+							Master.eLog.WriteToErrorLog("Unable to Update XBMC Info", cmd, "Error")
+						End If
+						Dim imagefile As String
+						Dim thumbpath As String
+						Dim hash As String = XBMCHash(remoteFullFilename)
+						If File.Exists(DBMovie.PosterPath) Then
+							imagefile = String.Concat(RemotePath, Path.GetFileName(DBMovie.PosterPath))
+							thumbpath = String.Format("special://profile/Thumbnails/Video/{0}/{1}", hash.Substring(0, 1), String.Concat(hash, ".tbn"))
+							str = String.Format("command=FileCopy({0};{1})", imagefile, thumbpath)
+							ret = SendCmd(s, str)
+							If Not ret.Contains("OK") Then
+								Master.eLog.WriteToErrorLog("Unable to Update XBMC Poster", str, "Error")
+							End If
+						End If
+						If File.Exists(DBMovie.FanartPath) Then
+							imagefile = String.Concat(RemotePath, Path.GetFileName(DBMovie.FanartPath))
+							thumbpath = String.Format("special://profile/Thumbnails/Video/Fanart/{0}", String.Concat(hash, ".tbn"))
+							str = String.Format("command=FileCopy({0};{1})", imagefile, thumbpath)
+							ret = SendCmd(s, str)
+							If Not ret.Contains("OK") Then
+								Master.eLog.WriteToErrorLog("Unable to Update XBMC Fanart", str, "Error")
+							End If
+						End If
+					End If
+				Next
+			End While
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
 
-                        ' separated update so uri don't get too long
-                        cmd = String.Concat("update movie set ", _
-                            String.Format("c01 =""{0}"" ", StringEscape(DBMovie.Movie.Plot)), _
-                            String.Format(" Where idMovie ={0}", id))
-                        str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
-                        ret = SendCmd(s, str)
-                        If Not ret.Contains("Exec Done") Then
-                            Master.eLog.WriteToErrorLog("Unable to Update XBMC Info - Plot", cmd, "Error")
-                        End If
-                        cmd = String.Concat("update movie set ", _
-                        String.Format("c00=""{0}"",", StringEscape(DBMovie.Movie.Title)), _
-                        String.Format("c02=""{0}"",", StringEscape(DBMovie.Movie.Outline)), _
-                        String.Format("c03=""{0}"",", StringEscape(DBMovie.Movie.Tagline)), _
-                        String.Format("c04=""{0}"",", StringEscape(DBMovie.Movie.Votes)), _
-                        String.Format("c05=""{0}"",", StringEscape(DBMovie.Movie.Rating)), _
-                        String.Format("c07=""{0}"",", StringEscape(DBMovie.Movie.Year)), _
-                        String.Format("c09=""{0}"",", StringEscape(DBMovie.Movie.IMDBID)), _
-                        String.Format("c11=""{0}"",", StringEscape(DBMovie.Movie.Runtime)), _
-                        String.Format("c12=""{0}"",", StringEscape(DBMovie.Movie.MPAA)), _
-                        String.Format("c14=""{0}"",", StringEscape(DBMovie.Movie.Genre)), _
-                        String.Format("c15=""{0}"",", StringEscape(DBMovie.Movie.Director)), _
-                        String.Format("c16=""{0}"",", StringEscape(DBMovie.Movie.OriginalTitle)), _
-                        String.Format("c18=""{0}"",", StringEscape(DBMovie.Movie.Studio)), _
-                        String.Format("c19=""{0}"",", StringEscape(DBMovie.Movie.Trailer)), _
-                        String.Format("c21=""{0}""", StringEscape(DBMovie.Movie.Country)), _
-                        String.Format(" Where idMovie ={0}", id.ToString))
-                        str = String.Format("command=execvideodatabase({0})", Web.HttpUtility.UrlEncode(cmd))
-                        ret = SendCmd(s, str)
-                        If Not ret.Contains("Exec Done") Then
-                            Master.eLog.WriteToErrorLog("Unable to Update XBMC Info", cmd, "Error")
-                        End If
-                        Dim imagefile As String
-                        Dim thumbpath As String
-                        Dim hash As String = XBMCHash(remoteFullFilename)
-                        If File.Exists(DBMovie.PosterPath) Then
-                            imagefile = String.Concat(RemotePath, Path.GetFileName(DBMovie.PosterPath))
-                            thumbpath = String.Format("special://profile/Thumbnails/Video/{0}/{1}", hash.Substring(0, 1), String.Concat(hash, ".tbn"))
-                            str = String.Format("command=FileCopy({0};{1})", imagefile, thumbpath)
-                            ret = SendCmd(s, str)
-                            If Not ret.Contains("OK") Then
-                                Master.eLog.WriteToErrorLog("Unable to Update XBMC Poster", str, "Error")
-                            End If
-                        End If
-                        If File.Exists(DBMovie.FanartPath) Then
-                            imagefile = String.Concat(RemotePath, Path.GetFileName(DBMovie.FanartPath))
-                            thumbpath = String.Format("special://profile/Thumbnails/Video/Fanart/{0}", String.Concat(hash, ".tbn"))
-                            str = String.Format("command=FileCopy({0};{1})", imagefile, thumbpath)
-                            ret = SendCmd(s, str)
-                            If Not ret.Contains("OK") Then
-                                Master.eLog.WriteToErrorLog("Unable to Update XBMC Fanart", str, "Error")
-                            End If
-                        End If
-                    End If
-                Next
-            End While
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
-    End Sub
     Public Function RunGeneric(ByVal mType As EmberAPI.Enums.ModuleEventType, ByRef _params As System.Collections.Generic.List(Of Object), ByRef _refparam As Object) As EmberAPI.Interfaces.ModuleResult Implements EmberAPI.Interfaces.EmberExternalModule.RunGeneric
         Select Case True
             Case mType = Enums.ModuleEventType.MovieSync AndAlso AdvancedSettings.GetBooleanSetting("XBMCSync", False)
@@ -272,10 +275,12 @@ Public Class XBMCxCom
                 Dim DBMovie As Structures.DBMovie = DirectCast(_refparam, Structures.DBMovie)
         End Select
 
-    End Function
+	End Function
+
     Function StringEscape(ByVal str As String) As String
         Return str.Replace("""", """""").Replace(";", ";;").Replace("&", "&&")
-    End Function
+	End Function
+
     Public Sub SaveSetup(ByVal DoDispose As Boolean) Implements EmberAPI.Interfaces.EmberExternalModule.SaveSetup
         Me.Enabled = _setup.cbEnabled.Checked
         _MySettings.XComs = _setup.XComs
@@ -303,7 +308,8 @@ Public Class XBMCxCom
             tsi.Visible = (tsi.DropDownItems.Count > 0)
         Catch ex As Exception
         End Try
-    End Sub
+	End Sub
+
     Sub Enable()
         Try
             _MySettings = MySettings.Load

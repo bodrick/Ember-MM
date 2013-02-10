@@ -864,5 +864,9 @@
   <string id="862">Loading translations...</string>
   <string id="863">Positioning controls...</string>
   <string id="864">Setting menus...</string>
-	<string id="865">Version {0}.{1}.{2}.{3}</string>
+  <string id="865">Version {0}.{1}.{2}.{3}</string>
+  <string id="866">Metadata</string>
+	<string id="867">XBMC Frodo</string>
+	<string id="868">Top 250</string>
+	<string id="869">EmberMM.com &amp;Wiki...</string>
 </strings>
