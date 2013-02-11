@@ -1948,7 +1948,7 @@ doCancel:
 
             Me.SetControlsEnabled(False)
 
-            Using dEditMovie As New dlgEditMovie
+            Using dEditMovie As New dlgEditMovie(Me)
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -2947,7 +2947,7 @@ doCancel:
             Dim ID As Integer = Convert.ToInt32(Me.dgvMediaList.Item(0, indX).Value)
             Master.currMovie = Master.DB.LoadMovieFromDB(ID)
 
-            Using dEditMovie As New dlgEditMovie
+            Using dEditMovie As New dlgEditMovie(Me)
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -3135,7 +3135,7 @@ doCancel:
                 Master.currMovie = Master.DB.LoadMovieFromDB(ID)
                 Me.SetStatus(Master.currMovie.Filename)
 
-                Using dEditMovie As New dlgEditMovie
+                Using dEditMovie As New dlgEditMovie(Me)
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
@@ -6437,7 +6437,7 @@ doCancel:
                 Me.tslLoading.Text = Master.eLang.GetString(576, "Verifying Movie Details:")
                 Application.DoEvents()
 
-                Using dEditMovie As New dlgEditMovie
+                Using dEditMovie As New dlgEditMovie(Me)
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK

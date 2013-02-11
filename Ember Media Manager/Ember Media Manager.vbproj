@@ -286,6 +286,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="dlgDeleteConfirm.resx">
       <DependentUpon>dlgDeleteConfirm.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="dlgEditEpisode.resx">
       <DependentUpon>dlgEditEpisode.vb</DependentUpon>
