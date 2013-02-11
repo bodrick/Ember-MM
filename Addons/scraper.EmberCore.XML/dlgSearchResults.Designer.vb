@@ -81,7 +81,7 @@ Partial Class dlgSearchResults
 		Me.tvResults.Location = New System.Drawing.Point(4, 96)
 		Me.tvResults.Name = "tvResults"
 		Me.tvResults.Size = New System.Drawing.Size(287, 299)
-		Me.tvResults.TabIndex = 4
+		Me.tvResults.TabIndex = 5
 		'
 		'lblTitle
 		'
@@ -89,7 +89,7 @@ Partial Class dlgSearchResults
 		Me.lblTitle.Location = New System.Drawing.Point(300, 71)
 		Me.lblTitle.Name = "lblTitle"
 		Me.lblTitle.Size = New System.Drawing.Size(337, 19)
-		Me.lblTitle.TabIndex = 5
+		Me.lblTitle.TabIndex = 6
 		Me.lblTitle.Text = "Title"
 		'
 		'lblYear
@@ -99,7 +99,7 @@ Partial Class dlgSearchResults
 		Me.lblYear.Location = New System.Drawing.Point(362, 112)
 		Me.lblYear.Name = "lblYear"
 		Me.lblYear.Size = New System.Drawing.Size(31, 13)
-		Me.lblYear.TabIndex = 8
+		Me.lblYear.TabIndex = 11
 		Me.lblYear.Text = "0000"
 		'
 		'pnlTop
@@ -114,7 +114,7 @@ Partial Class dlgSearchResults
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(643, 64)
-		Me.pnlTop.TabIndex = 57
+		Me.pnlTop.TabIndex = 2
 		'
 		'Label2
 		'
@@ -125,7 +125,7 @@ Partial Class dlgSearchResults
 		Me.Label2.Location = New System.Drawing.Point(61, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(276, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "View details of each result to find the proper movie."
 		'
 		'pbScraperLogo
@@ -147,7 +147,7 @@ Partial Class dlgSearchResults
 		Me.Label1.Location = New System.Drawing.Point(58, 3)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(257, 32)
-		Me.Label1.TabIndex = 1
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Movie Search Results"
 		'
 		'PictureBox1
@@ -168,7 +168,7 @@ Partial Class dlgSearchResults
 		Me.lblYearHeader.Location = New System.Drawing.Point(300, 112)
 		Me.lblYearHeader.Name = "lblYearHeader"
 		Me.lblYearHeader.Size = New System.Drawing.Size(33, 13)
-		Me.lblYearHeader.TabIndex = 7
+		Me.lblYearHeader.TabIndex = 8
 		Me.lblYearHeader.Text = "Year:"
 		'
 		'btnSearch
@@ -177,7 +177,7 @@ Partial Class dlgSearchResults
 		Me.btnSearch.Location = New System.Drawing.Point(271, 70)
 		Me.btnSearch.Name = "btnSearch"
 		Me.btnSearch.Size = New System.Drawing.Size(23, 23)
-		Me.btnSearch.TabIndex = 3
+		Me.btnSearch.TabIndex = 4
 		Me.btnSearch.UseVisualStyleBackColor = True
 		'
 		'txtSearch
@@ -185,7 +185,7 @@ Partial Class dlgSearchResults
 		Me.txtSearch.Location = New System.Drawing.Point(4, 71)
 		Me.txtSearch.Name = "txtSearch"
 		Me.txtSearch.Size = New System.Drawing.Size(261, 22)
-		Me.txtSearch.TabIndex = 2
+		Me.txtSearch.TabIndex = 3
 		'
 		'pnlLoading
 		'
@@ -196,7 +196,7 @@ Partial Class dlgSearchResults
 		Me.pnlLoading.Location = New System.Drawing.Point(365, 201)
 		Me.pnlLoading.Name = "pnlLoading"
 		Me.pnlLoading.Size = New System.Drawing.Size(200, 54)
-		Me.pnlLoading.TabIndex = 13
+		Me.pnlLoading.TabIndex = 16
 		'
 		'Label3
 		'
@@ -245,7 +245,7 @@ Partial Class dlgSearchResults
 		Me.lblDirector.Location = New System.Drawing.Point(362, 130)
 		Me.lblDirector.Name = "lblDirector"
 		Me.lblDirector.Size = New System.Drawing.Size(269, 16)
-		Me.lblDirector.TabIndex = 10
+		Me.lblDirector.TabIndex = 12
 		Me.lblDirector.Text = "Director"
 		Me.lblDirector.Visible = False
 		'
@@ -277,7 +277,7 @@ Partial Class dlgSearchResults
 		Me.lblGenreHeader.Location = New System.Drawing.Point(301, 152)
 		Me.lblGenreHeader.Name = "lblGenreHeader"
 		Me.lblGenreHeader.Size = New System.Drawing.Size(54, 13)
-		Me.lblGenreHeader.TabIndex = 11
+		Me.lblGenreHeader.TabIndex = 10
 		Me.lblGenreHeader.Text = "Genre(s):"
 		Me.lblGenreHeader.Visible = False
 		'
@@ -287,7 +287,7 @@ Partial Class dlgSearchResults
 		Me.lblGenre.Location = New System.Drawing.Point(363, 152)
 		Me.lblGenre.Name = "lblGenre"
 		Me.lblGenre.Size = New System.Drawing.Size(142, 46)
-		Me.lblGenre.TabIndex = 12
+		Me.lblGenre.TabIndex = 13
 		Me.lblGenre.Text = "Genre"
 		Me.lblGenre.Visible = False
 		'
@@ -297,7 +297,7 @@ Partial Class dlgSearchResults
 		Me.lblTagline.Location = New System.Drawing.Point(300, 90)
 		Me.lblTagline.Name = "lblTagline"
 		Me.lblTagline.Size = New System.Drawing.Size(340, 22)
-		Me.lblTagline.TabIndex = 6
+		Me.lblTagline.TabIndex = 7
 		Me.lblTagline.Text = "Tagline"
 		Me.lblTagline.Visible = False
 		'

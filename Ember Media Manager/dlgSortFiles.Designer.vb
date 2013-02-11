@@ -43,7 +43,7 @@ Partial Class dlgSortFiles
 		Me.Cancel_Button.Location = New System.Drawing.Point(351, 143)
 		Me.Cancel_Button.Name = "Cancel_Button"
 		Me.Cancel_Button.Size = New System.Drawing.Size(72, 23)
-		Me.Cancel_Button.TabIndex = 0
+		Me.Cancel_Button.TabIndex = 1
 		Me.Cancel_Button.Text = "Close"
 		'
 		'btnBrowse
@@ -52,7 +52,7 @@ Partial Class dlgSortFiles
 		Me.btnBrowse.Location = New System.Drawing.Point(383, 25)
 		Me.btnBrowse.Name = "btnBrowse"
 		Me.btnBrowse.Size = New System.Drawing.Size(37, 23)
-		Me.btnBrowse.TabIndex = 1
+		Me.btnBrowse.TabIndex = 2
 		Me.btnBrowse.Text = "..."
 		Me.btnBrowse.UseVisualStyleBackColor = True
 		'
@@ -62,7 +62,7 @@ Partial Class dlgSortFiles
 		Me.txtPath.Location = New System.Drawing.Point(9, 26)
 		Me.txtPath.Name = "txtPath"
 		Me.txtPath.Size = New System.Drawing.Size(365, 22)
-		Me.txtPath.TabIndex = 0
+		Me.txtPath.TabIndex = 1
 		'
 		'btnGo
 		'
@@ -70,7 +70,7 @@ Partial Class dlgSortFiles
 		Me.btnGo.Location = New System.Drawing.Point(12, 143)
 		Me.btnGo.Name = "btnGo"
 		Me.btnGo.Size = New System.Drawing.Size(72, 24)
-		Me.btnGo.TabIndex = 1
+		Me.btnGo.TabIndex = 0
 		Me.btnGo.Text = "Go"
 		Me.btnGo.UseVisualStyleBackColor = True
 		'
@@ -82,7 +82,7 @@ Partial Class dlgSortFiles
 		Me.GroupBox1.Location = New System.Drawing.Point(9, 52)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(411, 79)
-		Me.GroupBox1.TabIndex = 2
+		Me.GroupBox1.TabIndex = 3
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Status"
 		'
@@ -93,7 +93,7 @@ Partial Class dlgSortFiles
 		Me.lblStatus.Location = New System.Drawing.Point(6, 25)
 		Me.lblStatus.Name = "lblStatus"
 		Me.lblStatus.Size = New System.Drawing.Size(192, 13)
-		Me.lblStatus.TabIndex = 1
+		Me.lblStatus.TabIndex = 0
 		Me.lblStatus.Text = "Enter Path and Press ""Go"" to Begin."
 		'
 		'pbStatus
@@ -102,7 +102,7 @@ Partial Class dlgSortFiles
 		Me.pbStatus.Name = "pbStatus"
 		Me.pbStatus.Size = New System.Drawing.Size(399, 23)
 		Me.pbStatus.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-		Me.pbStatus.TabIndex = 0
+		Me.pbStatus.TabIndex = 1
 		'
 		'Label1
 		'
@@ -111,7 +111,7 @@ Partial Class dlgSortFiles
 		Me.Label1.Location = New System.Drawing.Point(6, 6)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(72, 13)
-		Me.Label1.TabIndex = 5
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Path to Sort:"
 		'
 		'fbdBrowse

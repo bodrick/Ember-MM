@@ -219,7 +219,13 @@ Public Class frmInfoSettingsHolder
         Me.chkCertification.Text = Master.eLang.GetString(722, "Certification", True)
         Me.Label2.Text = Master.eLang.GetString(168, "Scrape Order", True)
         Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
-        Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
+		Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
+		Me.chkCountry.Text = Master.eLang.GetString(301, "Country", True)
+		Me.chkFullCast.Text = Master.eLang.GetString(512, "Scrape Full Cast", True)
+		Me.chkFullCrew.Text = Master.eLang.GetString(513, "Scrape Full Crew", True)
+		Me.chkTop250.Text = Master.eLang.GetString(868, "Top250", True)
+		Me.GroupBox30.Text = Master.eLang.GetString(106, "IMDB")
+		Me.GroupBox15.Text = Master.eLang.GetString(107, "OFDB (German)")
     End Sub
 
     Private Sub txtIMDBURL_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtIMDBURL.TextChanged

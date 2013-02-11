@@ -152,7 +152,7 @@ Partial Class dlgRenameManual
 		Me.pnlStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.pnlStatus.Controls.Add(Me.Label3)
 		Me.pnlStatus.Controls.Add(Me.ProgressBar1)
-		Me.pnlStatus.Location = New System.Drawing.Point(67, 19)
+		Me.pnlStatus.Location = New System.Drawing.Point(52, 26)
 		Me.pnlStatus.Name = "pnlStatus"
 		Me.pnlStatus.Size = New System.Drawing.Size(321, 59)
 		Me.pnlStatus.TabIndex = 2

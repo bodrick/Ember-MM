@@ -65,7 +65,7 @@ Partial Class dlgEditSeason
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(854, 64)
-		Me.pnlTop.TabIndex = 57
+		Me.pnlTop.TabIndex = 2
 		'
 		'Label2
 		'
@@ -76,7 +76,7 @@ Partial Class dlgEditSeason
 		Me.Label2.Location = New System.Drawing.Point(61, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(209, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Edit the details for the selected season."
 		'
 		'Label1
@@ -88,7 +88,7 @@ Partial Class dlgEditSeason
 		Me.Label1.Location = New System.Drawing.Point(58, 3)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(146, 32)
-		Me.Label1.TabIndex = 1
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Edit Season"
 		'
 		'PictureBox1
@@ -111,7 +111,7 @@ Partial Class dlgEditSeason
 		Me.TabControl1.Name = "TabControl1"
 		Me.TabControl1.SelectedIndex = 0
 		Me.TabControl1.Size = New System.Drawing.Size(844, 478)
-		Me.TabControl1.TabIndex = 2
+		Me.TabControl1.TabIndex = 3
 		'
 		'TabPage2
 		'

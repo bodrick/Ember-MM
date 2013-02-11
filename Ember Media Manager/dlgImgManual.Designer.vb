@@ -77,7 +77,7 @@ Partial Class dlgImgManual
 		Me.txtURL.Location = New System.Drawing.Point(10, 22)
 		Me.txtURL.Name = "txtURL"
 		Me.txtURL.Size = New System.Drawing.Size(335, 22)
-		Me.txtURL.TabIndex = 0
+		Me.txtURL.TabIndex = 1
 		'
 		'btnPreview
 		'
@@ -88,7 +88,7 @@ Partial Class dlgImgManual
 		Me.btnPreview.Location = New System.Drawing.Point(351, 21)
 		Me.btnPreview.Name = "btnPreview"
 		Me.btnPreview.Size = New System.Drawing.Size(75, 23)
-		Me.btnPreview.TabIndex = 1
+		Me.btnPreview.TabIndex = 2
 		Me.btnPreview.Text = "Preview"
 		Me.btnPreview.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnPreview.UseVisualStyleBackColor = True
@@ -100,7 +100,7 @@ Partial Class dlgImgManual
 		Me.Label1.Location = New System.Drawing.Point(10, 6)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(110, 13)
-		Me.Label1.TabIndex = 6
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Enter URL to Image:"
 		'
 		'Panel1

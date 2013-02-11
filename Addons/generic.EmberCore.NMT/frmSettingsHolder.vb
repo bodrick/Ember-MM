@@ -196,8 +196,15 @@ Public Class frmSettingsHolder
     End Function
 
     Private Sub SetUp()
-        Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
-    End Sub
+		Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
+		Me.lstTemplates.Columns(0).Text = Master.eLang.GetString(4, "Template")
+		Me.lstTemplates.Columns(1).Text = Master.eLang.GetString(43, "Version")
+		Me.lstTemplates.Columns(2).Text = Master.eLang.GetString(44, "Author")
+		Me.lstTemplates.Columns(3).Text = Master.eLang.GetString(45, "Status")
+		Me.btnInstall.Text = Master.eLang.GetString(46, "Install")
+		Me.btnRemove.Text = Master.eLang.GetString(47, "Remove")
+		Me.GroupBox1.Text = Master.eLang.GetString(48, "Details")
+	End Sub
 
     Sub RemoveTemplate()
         If lstTemplates.SelectedItems.Count > 0 Then

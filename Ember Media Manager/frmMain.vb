@@ -25,13 +25,10 @@ Imports System.Linq
 Imports System.Reflection
 Imports System.Text.RegularExpressions
 Imports EmberAPI
-Imports Ember.Plugins
-Imports Ember.Plugins.Scraper
 
 Public Class frmMain
 
 #Region "Fields"
-    Private plugin_manager As PluginManager
     Private fLoading As New frmSplash
 
     Friend WithEvents bwCleanDB As New System.ComponentModel.BackgroundWorker
@@ -130,15 +127,6 @@ Public Class frmMain
 #End Region 'Delegates
 
 #Region "Properties"
-
-    Public Property PluginManager As PluginManager
-        Get
-            Return plugin_manager
-        End Get
-        Private Set(value As PluginManager)
-            plugin_manager = value
-        End Set
-    End Property
 
     Public Property GenrePanelColor() As Color
         Get
@@ -1216,35 +1204,7 @@ Public Class frmMain
                 dScrapeRow = dRow
                 Dim DBScrapeMovie As Structures.DBMovie = Master.DB.LoadMovieFromDB(Convert.ToInt64(dRow.Item(0)))
                 ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.BeforeEditMovie, Nothing, DBScrapeMovie)
-
-
-                '' BEGIN Plug-in Manager
-
-                ' Convert Args.scrapeType into something that the plug-in will understand.
-                Dim ask As Boolean = False
-                Dim scrapeType As Ember.Plugins.Scraper.ScrapeType = scrapeType.Automatic
-                Select Case Args.scrapeType
-                    Case Enums.ScrapeType.SingleScrape
-                        ask = True
-                        scrapeType = Scraper.ScrapeType.Manual
-
-                    Case Enums.ScrapeType.FullAsk, _
-                        Enums.ScrapeType.NewAsk, _
-                        Enums.ScrapeType.UpdateAsk, _
-                        Enums.ScrapeType.FilterAsk, _
-                        Enums.ScrapeType.MarkAsk
-                        ask = True
-                End Select
-
-                Dim context As New MovieInfoScraperActionContext(DBScrapeMovie, scrapeType, ask, Args.Options)
-                Dim result As PluginActionResult = PluginManager.MovieScraper.ScrapeMovieInfo(context)
-                If Not (result.Cancelled Or IsNothing(result.Result)) Then
-                    DBScrapeMovie = CType(result.Result, Structures.DBMovie)
-
-                    '' END Plug-in Manager
-
-
-                    'If Not ModulesManager.Instance.MovieScrapeOnly(DBScrapeMovie, Args.scrapeType, Args.Options) Then
+                If Not ModulesManager.Instance.MovieScrapeOnly(DBScrapeMovie, Args.scrapeType, Args.Options) Then
                     If Master.eSettings.ScanMediaInfo AndAlso Master.GlobalScrapeMod.Meta Then
                         MediaInfo.UpdateMediaInfo(DBScrapeMovie)
                     End If
@@ -1261,12 +1221,7 @@ Public Class frmMain
                         MovieScraperEvent(Enums.MovieScraperEventType.ListTitle, NewTitle)
                         MovieScraperEvent(Enums.MovieScraperEventType.SortTitle, DBScrapeMovie.Movie.SortTitle)
 
-                        'Dim didEts As Interfaces.ModuleResult = ModulesManager.Instance.MoviePostScrapeOnly(DBScrapeMovie, Args.scrapeType)
-                        Dim imgContext As New MovieImageScraperActionContext(DBScrapeMovie, ImageScrapeType.Poster, scrapeType, context.AskIfMultipleResults)
-                        PluginManager.MovieScraper.ScrapeMovieImage(imgContext)
-                        imgContext = New MovieImageScraperActionContext(DBScrapeMovie, ImageScrapeType.Fanart, scrapeType, context.AskIfMultipleResults)
-                        PluginManager.MovieScraper.ScrapeMovieImage(imgContext)
-
+                        Dim didEts As Interfaces.ModuleResult = ModulesManager.Instance.MoviePostScrapeOnly(DBScrapeMovie, Args.scrapeType)
 
                         If bwMovieScraper.CancellationPending Then Exit For
 
@@ -1993,7 +1948,7 @@ doCancel:
 
             Me.SetControlsEnabled(False)
 
-            Using dEditMovie As New dlgEditMovie(Me)
+            Using dEditMovie As New dlgEditMovie
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -2992,7 +2947,7 @@ doCancel:
             Dim ID As Integer = Convert.ToInt32(Me.dgvMediaList.Item(0, indX).Value)
             Master.currMovie = Master.DB.LoadMovieFromDB(ID)
 
-            Using dEditMovie As New dlgEditMovie(Me)
+            Using dEditMovie As New dlgEditMovie
                 AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                 Select Case dEditMovie.ShowDialog()
                     Case Windows.Forms.DialogResult.OK
@@ -3180,7 +3135,7 @@ doCancel:
                 Master.currMovie = Master.DB.LoadMovieFromDB(ID)
                 Me.SetStatus(Master.currMovie.Filename)
 
-                Using dEditMovie As New dlgEditMovie(Me)
+                Using dEditMovie As New dlgEditMovie
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
@@ -4271,7 +4226,8 @@ doCancel:
 
     Private Sub ExitToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExitToolStripMenuItem.Click, cmnuTrayIconExit.Click
         If isCL Then
-            fLoading.SetLoadingMesg("Canceling ...")
+			'fLoading.SetLoadingMesg("Canceling ...")
+			fLoading.SetLoadingMesg(Master.eLang.GetString(370, "Canceling Load..."))
             If Me.bwMovieScraper.IsBusy Then Me.bwMovieScraper.CancelAsync()
             If Me.bwRefreshMovies.IsBusy Then Me.bwRefreshMovies.CancelAsync()
             While Me.bwMovieScraper.IsBusy OrElse Me.bwRefreshMovies.IsBusy OrElse Me.bwMovieScraper.IsBusy
@@ -5314,11 +5270,6 @@ doCancel:
             End If
             If Not Me.WindowState = FormWindowState.Minimized Then Master.eSettings.Save()
 
-            If Not IsNothing(PluginManager) Then
-                ' Release any resources held by the plug-in manager or the loaded plug-ins.
-                RemoveHandler PluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
-                PluginManager.Dispose()
-            End If
         Catch ex As Exception
             ' If we got here, then some of the above not run. Application.Exit can not be used. 
             ' Because Exit will dispose object that are in use by BackgroundWorkers
@@ -5326,25 +5277,6 @@ doCancel:
             ' "Collection was modified; enumeration operation may not execute."
             ' Application.Exit()
         End Try
-    End Sub
-
-    ''' <summary>
-    ''' Shows a form on UI thread.
-    ''' </summary>
-    ''' <param name="sender">The sender.</param>
-    ''' <param name="e">The <see cref="Ember.Plugins.ShowFormOnUIThreadEventArgs" /> instance containing the event data.</param>
-    Private Sub ShowFormOnUIThread(sender As Object, e As Events.ShowFormOnUIThreadEventArgs)
-        If (Me.InvokeRequired) Then
-            Me.Invoke(New Events.ShowFormOnUIThreadHandler(AddressOf ShowFormOnUIThread), _
-                      New Object() {sender, e})
-            Return
-        End If
-
-        If e.AsDialog Then
-            e.Form.ShowDialog(Me)
-        Else
-            e.Form.Show(Me)
-        End If
     End Sub
 
     Private Sub frmMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -5369,14 +5301,24 @@ doCancel:
             End If
             fLoading.Show(Me)
             Application.DoEvents()
-
-            ' Run InstallTask to see if any pending file needs to install
+			' Run InstallTask to see if any pending file needs to install
             ' Do this before loading modules/themes/etc
             If File.Exists(Path.Combine(Functions.AppPath, "InstallTasks.xml")) Then
                 InstallNewFiles("InstallTasks.xml")
             End If
 
-            fLoading.SetLoadingMesg("Basic setup...")
+			'fLoading.SetLoadingMesg("Loading settings...")
+			fLoading.SetLoadingMesg(Master.eLang.GetString(484, "Loading settings..."))
+
+			Master.eSettings.Load()
+
+			' Force initialization of languages for main
+			Master.eLang.LoadAllLanguage(Master.eSettings.Language)
+			Master.eLang.LoadLanguage(Master.eSettings.Language, "")
+			fLoading.SetVersionMesg(Master.eLang.GetString(865, "Version {0}.{1}.{2}.{3}"))
+
+			'fLoading.SetLoadingMesg("Basic setup...")
+			fLoading.SetLoadingMesg(Master.eLang.GetString(854, "Basic setup"))
 
             Dim currentDomain As AppDomain = AppDomain.CurrentDomain
             ModulesManager.AssemblyList.Add(New ModulesManager.AssemblyListItem With {.AssemblyName = "EmberAPI", _
@@ -5399,19 +5341,16 @@ doCancel:
             If Not Directory.Exists(sPath) Then
                 Directory.CreateDirectory(sPath)
             End If
-            fLoading.SetLoadingMesg("Loading settings...")
-            Master.eSettings.Load()
-            fLoading.SetLoadingMesg("Creating default options...")
-            Functions.CreateDefaultOptions()
+
+			'fLoading.SetLoadingMesg("Creating default options...")
+			fLoading.SetLoadingMesg(Master.eLang.GetString(855, "Creating default options..."))
+			Functions.CreateDefaultOptions()
             '//
             ' Add our handlers, load settings, set form colors, and try to load movies at startup
             '\\
-            fLoading.SetLoadingMesg("Loading modules...")
-            PluginManager = New PluginManager()
-            AddHandler PluginManager.ShowFormOnUIThread, AddressOf ShowFormOnUIThread
-            PluginManager.LoadPlugins()
-
-            'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
+			'fLoading.SetLoadingMesg("Loading modules...")
+			fLoading.SetLoadingMesg(Master.eLang.GetString(856, "Loading modules..."))
+			'Setup/Load Modules Manager and set runtime objects (ember application) so they can be exposed to modules
             'ExternalModulesManager = New ModulesManager
             ModulesManager.Instance.RuntimeObjects.MenuMediaList = Me.mnuMediaList
             ModulesManager.Instance.RuntimeObjects.MenuTVShowList = Me.mnuShows
@@ -5423,8 +5362,11 @@ doCancel:
             ModulesManager.Instance.RuntimeObjects.DelegateOpenImageViewer(AddressOf OpenImageViewer)
             ModulesManager.Instance.LoadAllModules()
 
-            If Not isCL Then fLoading.SetLoadingMesg("Creating GUI...")
-            'setup some dummies so we don't get exceptions when resizing form/info panel
+			If Not isCL Then
+				'fLoading.SetLoadingMesg("Creating GUI...")
+				fLoading.SetLoadingMesg(Master.eLang.GetString(857, "Creating GUI..."))
+			End If
+			'setup some dummies so we don't get exceptions when resizing form/info panel
             ReDim Preserve Me.pnlGenre(0)
             ReDim Preserve Me.pbGenre(0)
             Me.pnlGenre(0) = New Panel()
@@ -5469,6 +5411,9 @@ doCancel:
                             Case "-fullask"
                                 clScrapeType = Enums.ScrapeType.FullAsk
                                 clAsk = True
+                            Case "-fullskip"
+                                clScrapeType = Enums.ScrapeType.FullSkip
+                                clAsk = False
                             Case "-fullauto"
                                 clScrapeType = Enums.ScrapeType.FullAuto
                                 clAsk = False
@@ -5562,15 +5507,17 @@ doCancel:
                     Next
                     If nowindow Then fLoading.Hide()
                     APIXML.CacheXMLs()
-                    fLoading.SetLoadingMesg("Loading database...")
-                    If Master.DB.CheckEssentials() Then
-                        Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
-                    End If
+					'fLoading.SetLoadingMesg("Loading database...")
+					fLoading.SetLoadingMesg(Master.eLang.GetString(858, "Loading database..."))
+					If Master.DB.CheckEssentials() Then
+						Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
+					End If
                     Master.DB.LoadMovieSourcesFromDB()
                     Master.DB.LoadTVSourcesFromDB()
                     If RunModule Then
                         fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
-                        fLoading.SetLoadingMesg("Running Module...")
+						'fLoading.SetLoadingMesg("Running Module...")
+						fLoading.SetLoadingMesg(Master.eLang.GetString(859, "Running Module..."))
                         Dim gModule As ModulesManager._externalGenericModuleClass = ModulesManager.Instance.externalProcessorModules.FirstOrDefault(Function(y) y.ProcessorModule.ModuleName = ModuleName)
                         If Not IsNothing(gModule) Then
                             gModule.ProcessorModule.RunGeneric(Enums.ModuleEventType.CommandLine, Nothing, Nothing)
@@ -5587,14 +5534,16 @@ doCancel:
                         If Functions.HasModifier AndAlso Not clScrapeType = Enums.ScrapeType.SingleScrape Then
                             Try
                                 fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
-                                fLoading.SetLoadingMesg("Loading Media...")
-                                LoadMedia(New Structures.Scans With {.Movies = True})
+								'fLoading.SetLoadingMesg("Loading Media...")
+								fLoading.SetLoadingMesg(Master.eLang.GetString(860, "Loading Media..."))
+								LoadMedia(New Structures.Scans With {.Movies = True})
                                 While Not Me.LoadingDone
                                     Application.DoEvents()
                                     Threading.Thread.Sleep(50)
                                 End While
                                 fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
-                                fLoading.SetLoadingMesg("Command Line Scraping...")
+								'fLoading.SetLoadingMesg("Command Line Scraping...")
+								fLoading.SetLoadingMesg(Master.eLang.GetString(861, "Command Line Scraping..."))
                                 MovieScrapeData(False, clScrapeType, Master.DefaultOptions)
                             Catch ex As Exception
                                 Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -5663,9 +5612,10 @@ doCancel:
                                         End If
                                         Master.tmpMovie = Master.currMovie.Movie
                                     End If
-                                    fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
-                                    fLoading.SetLoadingMesg("Command Line Scraping...")
-                                    MovieScrapeData(False, Enums.ScrapeType.SingleScrape, Master.DefaultOptions)
+									fLoading.SetProgressBarStyle(ProgressBarStyle.Marquee)
+									'fLoading.SetLoadingMesg("Command Line Scraping...")
+									fLoading.SetLoadingMesg(Master.eLang.GetString(861, "Command Line Scraping..."))
+									MovieScrapeData(False, Enums.ScrapeType.SingleScrape, Master.DefaultOptions)
                                 Else
                                     Me.ScraperDone = True
                                 End If
@@ -5701,14 +5651,16 @@ doCancel:
 
                     'End If
                     If Not CloseApp Then
-                        fLoading.SetLoadingMesg("Loading translations...")
-                        APIXML.CacheXMLs()
+						'fLoading.SetLoadingMesg("Loading translations...")
+						fLoading.SetLoadingMesg(Master.eLang.GetString(862, "Loading translations..."))
+						APIXML.CacheXMLs()
 
                         Me.SetUp(True)
                         Me.cbSearch.SelectedIndex = 0
 
-                        fLoading.SetLoadingMesg("Positioning controls...")
-                        Me.Location = Master.eSettings.WindowLoc
+						'fLoading.SetLoadingMesg("Positioning controls...")
+						fLoading.SetLoadingMesg(Master.eLang.GetString(863, "Positioning controls..."))
+						Me.Location = Master.eSettings.WindowLoc
                         Me.Size = Master.eSettings.WindowSize
                         Me.WindowState = Master.eSettings.WindowState
 
@@ -5754,31 +5706,34 @@ doCancel:
                         Me.ClearInfo()
 
                         Application.DoEvents()
-                        fLoading.SetLoadingMesg("Loading database...")
-                        If Master.eSettings.Version = String.Format("r{0}", My.Application.Info.Version.Revision) Then
-                            If Master.DB.CheckEssentials() Then
-                                Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
-                            End If
-                            Me.FillList(0)
-                            Me.Visible = True
-                        Else
-                            If Master.DB.CheckEssentials() Then
-                                Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
-                            End If
-                            If dlgWizard.ShowDialog = Windows.Forms.DialogResult.OK Then
-                                Application.DoEvents()
-                                Me.SetUp(False) 'just in case user changed languages
-                                Me.Visible = True
-                                Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
-                            Else
-                                Me.FillList(0)
-                                Me.Visible = True
-                            End If
-                        End If
+						'fLoading.SetLoadingMesg("Loading database...")
+						fLoading.SetLoadingMesg(Master.eLang.GetString(858, "Loading database..."))
+						If Master.eSettings.Version = String.Format("r{0}", My.Application.Info.Version.Revision) Then
+							If Master.DB.CheckEssentials() Then
+								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
+							End If
+							Me.FillList(0)
+							Me.Visible = True
+						Else
+							If Master.DB.CheckEssentials() Then
+								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
+							End If
+							If dlgWizard.ShowDialog = Windows.Forms.DialogResult.OK Then
+								Application.DoEvents()
+								Me.SetUp(False)	'just in case user changed languages
+								Me.Visible = True
+								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
+							Else
+								Me.FillList(0)
+								Me.Visible = True
+							End If
+						End If
 
                         Master.DB.LoadMovieSourcesFromDB()
                         Master.DB.LoadTVSourcesFromDB()
-                        fLoading.SetLoadingMesg("Setting menus...")
+						'fLoading.SetLoadingMesg("Setting menus...")
+						fLoading.SetLoadingMesg(Master.eLang.GetString(864, "Setting menus..."))
+
                         Me.SetMenus(True)
                         Functions.GetListOfSources()
                         Me.cmnuTrayIconExit.Enabled = True
@@ -6021,6 +5976,11 @@ doCancel:
     Private Sub mnuAllAskAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllAskAll.Click, mnuTrayAllAskAll.Click
         Functions.SetScraperMod(Enums.ModType.All, True)
         Me.MovieScrapeData(False, Enums.ScrapeType.FullAsk, Master.DefaultOptions)
+    End Sub
+
+    Private Sub mnuAllSkipAll_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllSkipAll.Click ', mnuTrayAllSkipAll.Click
+        Functions.SetScraperMod(Enums.ModType.All, True)
+        Me.MovieScrapeData(False, Enums.ScrapeType.FullSkip, Master.DefaultOptions)
     End Sub
 
     Private Sub mnuAllAskExtra_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuAllAskExtra.Click, mnuTrayAllAskExtra.Click
@@ -6477,7 +6437,7 @@ doCancel:
                 Me.tslLoading.Text = Master.eLang.GetString(576, "Verifying Movie Details:")
                 Application.DoEvents()
 
-                Using dEditMovie As New dlgEditMovie(Me)
+                Using dEditMovie As New dlgEditMovie
                     AddHandler ModulesManager.Instance.GenericEvent, AddressOf dEditMovie.GenericRunCallBack
                     Select Case dEditMovie.ShowDialog()
                         Case Windows.Forms.DialogResult.OK
@@ -6577,12 +6537,22 @@ doCancel:
         Select Case sType
             Case Enums.ScrapeType.FullAsk
                 Me.tslLoading.Text = Master.eLang.GetString(127, "Scraping Media (All Movies - Ask):")
+            Case Enums.ScrapeType.FullSkip
+                Me.tslLoading.Text = Master.eLang.GetString(853, "Scraping Media (All Movies - Skip):")
             Case Enums.ScrapeType.FullAuto
                 Me.tslLoading.Text = Master.eLang.GetString(128, "Scraping Media (All Movies - Auto):")
             Case Enums.ScrapeType.UpdateAuto
                 Me.tslLoading.Text = Master.eLang.GetString(132, "Scraping Media (Movies Missing Items - Auto):")
             Case Enums.ScrapeType.UpdateAsk
                 Me.tslLoading.Text = Master.eLang.GetString(133, "Scraping Media (Movies Missing Items - Ask):")
+            Case Enums.ScrapeType.NewAsk
+                Me.tslLoading.Text = Master.eLang.GetString(134, "Scraping Media (New Movies - Ask):")
+            Case Enums.ScrapeType.NewAuto
+                Me.tslLoading.Text = Master.eLang.GetString(135, "Scraping Media (New Movies - Auto):")
+            Case Enums.ScrapeType.MarkAsk
+                Me.tslLoading.Text = Master.eLang.GetString(136, "Scraping Media (Marked Movies - Ask):")
+            Case Enums.ScrapeType.MarkAuto
+                Me.tslLoading.Text = Master.eLang.GetString(137, "Scraping Media (Marked Movies - Auto):")
             Case Enums.ScrapeType.FilterAsk
                 Me.tslLoading.Text = Master.eLang.GetString(622, "Scraping Media (Current Filter - Ask):")
             Case Enums.ScrapeType.FilterAuto
@@ -7072,7 +7042,7 @@ doCancel:
                     End If
                 End If
                 'Why on earth resave the movie if we just refreshed its data (causes issues with saving rescrapes_
-                'Master.DB.SaveMovieToDB(tmpMovieDb, False, BatchMode, ToNfo)
+                Master.DB.SaveMovieToDB(tmpMovieDb, False, BatchMode, ToNfo)
 
             Else
                 Master.DB.DeleteFromDB(ID, BatchMode)
@@ -8378,7 +8348,8 @@ doCancel:
                 .CheckUpdatesToolStripMenuItem.Text = Master.eLang.GetString(850, "&Check For Updates...")
                 .Label7.Text = Master.eLang.GetString(484, "Loading Settings...")
                 .cmnuRescrape.Text = Master.eLang.GetString(163, "(Re)Scrape Movie")
-                .ScrapingToolStripMenuItem.Text = Master.eLang.GetString(164, "(Re)Scrape Selected Movies")
+				.ScrapingToolStripMenuItem.Text = Master.eLang.GetString(164, "(Re)Scrape Selected Movies")
+				.WikiStripMenuItem.Text = Master.eLang.GetString(869, "EmberMM.com &Wiki...")
 
                 Dim TT As ToolTip = New System.Windows.Forms.ToolTip(.components)
                 .tsbAutoPilot.ToolTipText = Master.eLang.GetString(84, "Scrape/download data from the internet for multiple movies.")
@@ -9002,11 +8973,11 @@ doCancel:
     End Sub
 #End Region 'Methods
 
-    #Region "Nested Types"
+#Region "Nested Types"
 
     Private Structure Arguments
 
-        #Region "Fields"
+#Region "Fields"
 
         Dim ID As Integer
         Dim IsTV As Boolean
@@ -9019,13 +8990,13 @@ doCancel:
         Dim setEnabled As Boolean
         Dim TVShow As Structures.DBTV
 
-        #End Region 'Fields
+#End Region 'Fields
 
     End Structure
 
     Private Structure Results
 
-        #Region "Fields"
+#Region "Fields"
 
         Dim fileInfo As String
         Dim IsTV As Boolean
@@ -9037,11 +9008,11 @@ doCancel:
         Dim setEnabled As Boolean
         Dim TVShow As Structures.DBTV
 
-        #End Region 'Fields
+#End Region 'Fields
 
     End Structure
 
-    #End Region 'Nested Types
+#End Region 'Nested Types
 
 
     Private Sub tmrKeyBuffer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrKeyBuffer.Tick

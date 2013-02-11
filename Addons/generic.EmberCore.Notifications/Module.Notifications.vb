@@ -30,6 +30,7 @@ Public Class NotificationsModule
     Private _enabled As Boolean = False
     Private _name As String = "Notifications"
     Private _setup As frmSettingsHolder
+	Private _AssemblyName As String = String.Empty
 
 #End Region 'Fields
 
@@ -76,9 +77,11 @@ Public Class NotificationsModule
 
 #Region "Methods"
 
-    Public Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-        LoadSettings()
-    End Sub
+	Public Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+		LoadSettings()
+	End Sub
 
     Public Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Dim SPanel As New Containers.SettingsPanel

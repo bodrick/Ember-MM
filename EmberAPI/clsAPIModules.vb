@@ -121,7 +121,7 @@ Public Class ModulesManager
         loadScrapersModules()
         loadTVScrapersModules()
         BuildVersionList()
-        Master.eLang.LoadAllLanguage(Master.eSettings.Language)
+		Master.eLang.LoadAllLanguage(Master.eSettings.Language)
     End Sub
 
     ''' <summary>
@@ -155,7 +155,7 @@ Public Class ModulesManager
                                 _externalProcessorModule.AssemblyFileName = Path.GetFileName(file)
                                 _externalProcessorModule.Type = ProcessorModule.ModuleType
                                 externalProcessorModules.Add(_externalProcessorModule)
-                                ProcessorModule.Init(_externalProcessorModule.AssemblyName)
+								ProcessorModule.Init(_externalProcessorModule.AssemblyName, Path.GetFileNameWithoutExtension(file))
                                 Dim found As Boolean = False
                                 For Each i In Master.eSettings.EmberModules
                                     If i.AssemblyName = _externalProcessorModule.AssemblyName Then

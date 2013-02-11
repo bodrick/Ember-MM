@@ -322,7 +322,7 @@ Partial Class dlgExportMovies
 		Me.pnlBG.Location = New System.Drawing.Point(0, 0)
 		Me.pnlBG.Name = "pnlBG"
 		Me.pnlBG.Size = New System.Drawing.Size(1035, 550)
-		Me.pnlBG.TabIndex = 4
+		Me.pnlBG.TabIndex = 2
 		'
 		'wbMovieList
 		'

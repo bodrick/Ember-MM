@@ -77,7 +77,7 @@ Partial Class dlgSetsManager
 		Me.GroupBox1.Location = New System.Drawing.Point(469, 69)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(226, 382)
-		Me.GroupBox1.TabIndex = 5
+		Me.GroupBox1.TabIndex = 4
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Movies"
 		'
@@ -114,7 +114,7 @@ Partial Class dlgSetsManager
 		Me.GroupBox2.Location = New System.Drawing.Point(5, 69)
 		Me.GroupBox2.Name = "GroupBox2"
 		Me.GroupBox2.Size = New System.Drawing.Size(226, 382)
-		Me.GroupBox2.TabIndex = 3
+		Me.GroupBox2.TabIndex = 2
 		Me.GroupBox2.TabStop = False
 		Me.GroupBox2.Text = "Sets"
 		'
@@ -174,7 +174,7 @@ Partial Class dlgSetsManager
 		Me.GroupBox3.Location = New System.Drawing.Point(237, 69)
 		Me.GroupBox3.Name = "GroupBox3"
 		Me.GroupBox3.Size = New System.Drawing.Size(226, 382)
-		Me.GroupBox3.TabIndex = 4
+		Me.GroupBox3.TabIndex = 3
 		Me.GroupBox3.TabStop = False
 		Me.GroupBox3.Text = "Movies In Set"
 		'
@@ -233,6 +233,7 @@ Partial Class dlgSetsManager
 		'
 		Me.pnlCancel.BackColor = System.Drawing.Color.White
 		Me.pnlCancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+		Me.pnlCancel.Controls.Add(Me.pnlSaving)
 		Me.pnlCancel.Controls.Add(Me.pbCompile)
 		Me.pnlCancel.Controls.Add(Me.lblCompiling)
 		Me.pnlCancel.Controls.Add(Me.lblFile)
@@ -241,7 +242,7 @@ Partial Class dlgSetsManager
 		Me.pnlCancel.Location = New System.Drawing.Point(150, 209)
 		Me.pnlCancel.Name = "pnlCancel"
 		Me.pnlCancel.Size = New System.Drawing.Size(403, 76)
-		Me.pnlCancel.TabIndex = 1
+		Me.pnlCancel.TabIndex = 4
 		Me.pnlCancel.Visible = False
 		'
 		'pbCompile
@@ -250,7 +251,7 @@ Partial Class dlgSetsManager
 		Me.pbCompile.Name = "pbCompile"
 		Me.pbCompile.Size = New System.Drawing.Size(388, 18)
 		Me.pbCompile.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-		Me.pbCompile.TabIndex = 5
+		Me.pbCompile.TabIndex = 3
 		'
 		'lblCompiling
 		'
@@ -258,7 +259,7 @@ Partial Class dlgSetsManager
 		Me.lblCompiling.Location = New System.Drawing.Point(3, 11)
 		Me.lblCompiling.Name = "lblCompiling"
 		Me.lblCompiling.Size = New System.Drawing.Size(203, 20)
-		Me.lblCompiling.TabIndex = 4
+		Me.lblCompiling.TabIndex = 0
 		Me.lblCompiling.Text = "Loading Movies and Sets..."
 		Me.lblCompiling.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		Me.lblCompiling.Visible = False
@@ -269,7 +270,7 @@ Partial Class dlgSetsManager
 		Me.lblFile.Location = New System.Drawing.Point(3, 57)
 		Me.lblFile.Name = "lblFile"
 		Me.lblFile.Size = New System.Drawing.Size(395, 13)
-		Me.lblFile.TabIndex = 3
+		Me.lblFile.TabIndex = 4
 		Me.lblFile.Text = "File ..."
 		'
 		'lblCanceling
@@ -292,7 +293,7 @@ Partial Class dlgSetsManager
 		Me.btnCancel.Location = New System.Drawing.Point(298, 3)
 		Me.btnCancel.Name = "btnCancel"
 		Me.btnCancel.Size = New System.Drawing.Size(100, 30)
-		Me.btnCancel.TabIndex = 0
+		Me.btnCancel.TabIndex = 2
 		Me.btnCancel.Text = "Cancel"
 		Me.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnCancel.UseVisualStyleBackColor = True
@@ -308,7 +309,7 @@ Partial Class dlgSetsManager
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(702, 64)
-		Me.pnlTop.TabIndex = 58
+		Me.pnlTop.TabIndex = 1
 		'
 		'Label2
 		'
@@ -319,7 +320,7 @@ Partial Class dlgSetsManager
 		Me.Label2.Location = New System.Drawing.Point(61, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(202, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Add and configure movie boxed sets."
 		'
 		'Label4
@@ -331,7 +332,7 @@ Partial Class dlgSetsManager
 		Me.Label4.Location = New System.Drawing.Point(58, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(170, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "Sets Manager"
 		'
 		'PictureBox1
@@ -351,10 +352,10 @@ Partial Class dlgSetsManager
 		Me.pnlSaving.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.pnlSaving.Controls.Add(Me.Label3)
 		Me.pnlSaving.Controls.Add(Me.ProgressBar1)
-		Me.pnlSaving.Location = New System.Drawing.Point(225, 216)
+		Me.pnlSaving.Location = New System.Drawing.Point(77, 12)
 		Me.pnlSaving.Name = "pnlSaving"
 		Me.pnlSaving.Size = New System.Drawing.Size(252, 51)
-		Me.pnlSaving.TabIndex = 2
+		Me.pnlSaving.TabIndex = 5
 		Me.pnlSaving.Visible = False
 		'
 		'Label3
@@ -364,7 +365,7 @@ Partial Class dlgSetsManager
 		Me.Label3.Location = New System.Drawing.Point(2, 7)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(51, 13)
-		Me.Label3.TabIndex = 1
+		Me.Label3.TabIndex = 0
 		Me.Label3.Text = "Saving..."
 		'
 		'ProgressBar1
@@ -374,7 +375,7 @@ Partial Class dlgSetsManager
 		Me.ProgressBar1.Name = "ProgressBar1"
 		Me.ProgressBar1.Size = New System.Drawing.Size(242, 16)
 		Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-		Me.ProgressBar1.TabIndex = 0
+		Me.ProgressBar1.TabIndex = 1
 		'
 		'dlgSetsManager
 		'
@@ -384,7 +385,6 @@ Partial Class dlgSetsManager
 		Me.CancelButton = Me.btnCancel
 		Me.ClientSize = New System.Drawing.Size(702, 482)
 		Me.ControlBox = False
-		Me.Controls.Add(Me.pnlSaving)
 		Me.Controls.Add(Me.pnlTop)
 		Me.Controls.Add(Me.OK_Button)
 		Me.Controls.Add(Me.pnlCancel)

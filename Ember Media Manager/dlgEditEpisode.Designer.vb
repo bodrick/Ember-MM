@@ -109,7 +109,7 @@ Partial Class dlgEditEpisode
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(854, 64)
-		Me.pnlTop.TabIndex = 57
+		Me.pnlTop.TabIndex = 2
 		'
 		'Label2
 		'
@@ -120,7 +120,7 @@ Partial Class dlgEditEpisode
 		Me.Label2.Location = New System.Drawing.Point(61, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(214, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Edit the details for the selected episode."
 		'
 		'Label1
@@ -132,7 +132,7 @@ Partial Class dlgEditEpisode
 		Me.Label1.Location = New System.Drawing.Point(58, 3)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(155, 32)
-		Me.Label1.TabIndex = 1
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Edit Episode"
 		'
 		'PictureBox1
@@ -160,7 +160,7 @@ Partial Class dlgEditEpisode
 		Me.TabControl1.Name = "TabControl1"
 		Me.TabControl1.SelectedIndex = 0
 		Me.TabControl1.Size = New System.Drawing.Size(844, 478)
-		Me.TabControl1.TabIndex = 2
+		Me.TabControl1.TabIndex = 3
 		'
 		'TabPage1
 		'
@@ -206,7 +206,7 @@ Partial Class dlgEditEpisode
 		Me.btnActorDown.Location = New System.Drawing.Point(328, 423)
 		Me.btnActorDown.Name = "btnActorDown"
 		Me.btnActorDown.Size = New System.Drawing.Size(23, 23)
-		Me.btnActorDown.TabIndex = 10
+		Me.btnActorDown.TabIndex = 20
 		Me.btnActorDown.UseVisualStyleBackColor = True
 		'
 		'btnActorUp
@@ -215,7 +215,7 @@ Partial Class dlgEditEpisode
 		Me.btnActorUp.Location = New System.Drawing.Point(304, 423)
 		Me.btnActorUp.Name = "btnActorUp"
 		Me.btnActorUp.Size = New System.Drawing.Size(23, 23)
-		Me.btnActorUp.TabIndex = 9
+		Me.btnActorUp.TabIndex = 19
 		Me.btnActorUp.UseVisualStyleBackColor = True
 		'
 		'txtAired
@@ -224,7 +224,7 @@ Partial Class dlgEditEpisode
 		Me.txtAired.Location = New System.Drawing.Point(111, 67)
 		Me.txtAired.Name = "txtAired"
 		Me.txtAired.Size = New System.Drawing.Size(88, 22)
-		Me.txtAired.TabIndex = 3
+		Me.txtAired.TabIndex = 9
 		'
 		'txtEpisode
 		'
@@ -232,7 +232,7 @@ Partial Class dlgEditEpisode
 		Me.txtEpisode.Location = New System.Drawing.Point(59, 67)
 		Me.txtEpisode.Name = "txtEpisode"
 		Me.txtEpisode.Size = New System.Drawing.Size(46, 22)
-		Me.txtEpisode.TabIndex = 2
+		Me.txtEpisode.TabIndex = 7
 		'
 		'lblEpisode
 		'
@@ -241,7 +241,7 @@ Partial Class dlgEditEpisode
 		Me.lblEpisode.Location = New System.Drawing.Point(59, 51)
 		Me.lblEpisode.Name = "lblEpisode"
 		Me.lblEpisode.Size = New System.Drawing.Size(51, 13)
-		Me.lblEpisode.TabIndex = 113
+		Me.lblEpisode.TabIndex = 6
 		Me.lblEpisode.Text = "Episode:"
 		'
 		'txtSeason
@@ -250,7 +250,7 @@ Partial Class dlgEditEpisode
 		Me.txtSeason.Location = New System.Drawing.Point(7, 67)
 		Me.txtSeason.Name = "txtSeason"
 		Me.txtSeason.Size = New System.Drawing.Size(46, 22)
-		Me.txtSeason.TabIndex = 1
+		Me.txtSeason.TabIndex = 5
 		'
 		'lblSeason
 		'
@@ -259,7 +259,7 @@ Partial Class dlgEditEpisode
 		Me.lblSeason.Location = New System.Drawing.Point(7, 51)
 		Me.lblSeason.Name = "lblSeason"
 		Me.lblSeason.Size = New System.Drawing.Size(47, 13)
-		Me.lblSeason.TabIndex = 112
+		Me.lblSeason.TabIndex = 4
 		Me.lblSeason.Text = "Season:"
 		'
 		'lblCredits
@@ -269,7 +269,7 @@ Partial Class dlgEditEpisode
 		Me.lblCredits.Location = New System.Drawing.Point(217, 139)
 		Me.lblCredits.Name = "lblCredits"
 		Me.lblCredits.Size = New System.Drawing.Size(46, 13)
-		Me.lblCredits.TabIndex = 95
+		Me.lblCredits.TabIndex = 13
 		Me.lblCredits.Text = "Credits:"
 		'
 		'txtCredits
@@ -286,7 +286,7 @@ Partial Class dlgEditEpisode
 		Me.btnEditActor.Location = New System.Drawing.Point(35, 423)
 		Me.btnEditActor.Name = "btnEditActor"
 		Me.btnEditActor.Size = New System.Drawing.Size(23, 23)
-		Me.btnEditActor.TabIndex = 8
+		Me.btnEditActor.TabIndex = 18
 		Me.btnEditActor.UseVisualStyleBackColor = True
 		'
 		'btnAddActor
@@ -295,7 +295,7 @@ Partial Class dlgEditEpisode
 		Me.btnAddActor.Location = New System.Drawing.Point(6, 423)
 		Me.btnAddActor.Name = "btnAddActor"
 		Me.btnAddActor.Size = New System.Drawing.Size(23, 23)
-		Me.btnAddActor.TabIndex = 7
+		Me.btnAddActor.TabIndex = 17
 		Me.btnAddActor.UseVisualStyleBackColor = True
 		'
 		'btnManual
@@ -304,7 +304,7 @@ Partial Class dlgEditEpisode
 		Me.btnManual.Location = New System.Drawing.Point(738, 423)
 		Me.btnManual.Name = "btnManual"
 		Me.btnManual.Size = New System.Drawing.Size(92, 23)
-		Me.btnManual.TabIndex = 12
+		Me.btnManual.TabIndex = 22
 		Me.btnManual.Text = "Manual Edit"
 		Me.btnManual.UseVisualStyleBackColor = True
 		'
@@ -314,7 +314,7 @@ Partial Class dlgEditEpisode
 		Me.btnRemove.Location = New System.Drawing.Point(602, 423)
 		Me.btnRemove.Name = "btnRemove"
 		Me.btnRemove.Size = New System.Drawing.Size(23, 23)
-		Me.btnRemove.TabIndex = 11
+		Me.btnRemove.TabIndex = 21
 		Me.btnRemove.UseVisualStyleBackColor = True
 		'
 		'lblActors
@@ -324,7 +324,7 @@ Partial Class dlgEditEpisode
 		Me.lblActors.Location = New System.Drawing.Point(7, 188)
 		Me.lblActors.Name = "lblActors"
 		Me.lblActors.Size = New System.Drawing.Size(43, 13)
-		Me.lblActors.TabIndex = 83
+		Me.lblActors.TabIndex = 15
 		Me.lblActors.Text = "Actors:"
 		'
 		'lvActors
@@ -335,7 +335,7 @@ Partial Class dlgEditEpisode
 		Me.lvActors.Location = New System.Drawing.Point(7, 204)
 		Me.lvActors.Name = "lvActors"
 		Me.lvActors.Size = New System.Drawing.Size(618, 213)
-		Me.lvActors.TabIndex = 6
+		Me.lvActors.TabIndex = 16
 		Me.lvActors.UseCompatibleStateImageBehavior = False
 		Me.lvActors.View = System.Windows.Forms.View.Details
 		'
@@ -361,7 +361,7 @@ Partial Class dlgEditEpisode
 		Me.lblDirector.Location = New System.Drawing.Point(7, 139)
 		Me.lblDirector.Name = "lblDirector"
 		Me.lblDirector.Size = New System.Drawing.Size(51, 13)
-		Me.lblDirector.TabIndex = 77
+		Me.lblDirector.TabIndex = 11
 		Me.lblDirector.Text = "Director:"
 		'
 		'txtDirector
@@ -370,7 +370,7 @@ Partial Class dlgEditEpisode
 		Me.txtDirector.Location = New System.Drawing.Point(7, 155)
 		Me.txtDirector.Name = "txtDirector"
 		Me.txtDirector.Size = New System.Drawing.Size(192, 22)
-		Me.txtDirector.TabIndex = 4
+		Me.txtDirector.TabIndex = 12
 		'
 		'lblPlot
 		'
@@ -379,7 +379,7 @@ Partial Class dlgEditEpisode
 		Me.lblPlot.Location = New System.Drawing.Point(217, 7)
 		Me.lblPlot.Name = "lblPlot"
 		Me.lblPlot.Size = New System.Drawing.Size(31, 13)
-		Me.lblPlot.TabIndex = 73
+		Me.lblPlot.TabIndex = 2
 		Me.lblPlot.Text = "Plot:"
 		'
 		'txtPlot
@@ -390,7 +390,7 @@ Partial Class dlgEditEpisode
 		Me.txtPlot.Multiline = True
 		Me.txtPlot.Name = "txtPlot"
 		Me.txtPlot.Size = New System.Drawing.Size(611, 108)
-		Me.txtPlot.TabIndex = 13
+		Me.txtPlot.TabIndex = 3
 		'
 		'pbStar5
 		'
@@ -439,7 +439,7 @@ Partial Class dlgEditEpisode
 		Me.lblRating.Location = New System.Drawing.Point(7, 94)
 		Me.lblRating.Name = "lblRating"
 		Me.lblRating.Size = New System.Drawing.Size(44, 13)
-		Me.lblRating.TabIndex = 60
+		Me.lblRating.TabIndex = 10
 		Me.lblRating.Text = "Rating:"
 		'
 		'lblAired
@@ -449,7 +449,7 @@ Partial Class dlgEditEpisode
 		Me.lblAired.Location = New System.Drawing.Point(111, 51)
 		Me.lblAired.Name = "lblAired"
 		Me.lblAired.Size = New System.Drawing.Size(38, 13)
-		Me.lblAired.TabIndex = 58
+		Me.lblAired.TabIndex = 8
 		Me.lblAired.Text = "Aired:"
 		'
 		'lblTitle
@@ -459,7 +459,7 @@ Partial Class dlgEditEpisode
 		Me.lblTitle.Location = New System.Drawing.Point(7, 7)
 		Me.lblTitle.Name = "lblTitle"
 		Me.lblTitle.Size = New System.Drawing.Size(32, 13)
-		Me.lblTitle.TabIndex = 57
+		Me.lblTitle.TabIndex = 0
 		Me.lblTitle.Text = "Title:"
 		'
 		'txtTitle
@@ -468,7 +468,7 @@ Partial Class dlgEditEpisode
 		Me.txtTitle.Location = New System.Drawing.Point(7, 26)
 		Me.txtTitle.Name = "txtTitle"
 		Me.txtTitle.Size = New System.Drawing.Size(192, 22)
-		Me.txtTitle.TabIndex = 0
+		Me.txtTitle.TabIndex = 1
 		'
 		'TabPage2
 		'
@@ -666,7 +666,7 @@ Partial Class dlgEditEpisode
 		Me.pnlFrameExtrator.Location = New System.Drawing.Point(1, 0)
 		Me.pnlFrameExtrator.Name = "pnlFrameExtrator"
 		Me.pnlFrameExtrator.Size = New System.Drawing.Size(834, 452)
-		Me.pnlFrameExtrator.TabIndex = 1
+		Me.pnlFrameExtrator.TabIndex = 0
 		'
 		'TabPage5
 		'

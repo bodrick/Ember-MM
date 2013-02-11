@@ -107,6 +107,7 @@ Partial Class dlgImgSelect
 		'
 		Me.pnlDLStatus.BackColor = System.Drawing.Color.White
 		Me.pnlDLStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+		Me.pnlDLStatus.Controls.Add(Me.pnlSinglePic)
 		Me.pnlDLStatus.Controls.Add(Me.pnlIMPA)
 		Me.pnlDLStatus.Location = New System.Drawing.Point(283, 176)
 		Me.pnlDLStatus.Name = "pnlDLStatus"
@@ -116,11 +117,10 @@ Partial Class dlgImgSelect
 		'
 		'pnlIMPA
 		'
-		Me.pnlIMPA.Controls.Add(Me.pnlSinglePic)
 		Me.pnlIMPA.Controls.Add(Me.lblDL2Status)
 		Me.pnlIMPA.Controls.Add(Me.lblDL2)
 		Me.pnlIMPA.Controls.Add(Me.pbDL2)
-		Me.pnlIMPA.Location = New System.Drawing.Point(0, 0)
+		Me.pnlIMPA.Location = New System.Drawing.Point(1, 3)
 		Me.pnlIMPA.Name = "pnlIMPA"
 		Me.pnlIMPA.Size = New System.Drawing.Size(321, 75)
 		Me.pnlIMPA.TabIndex = 6
@@ -131,7 +131,7 @@ Partial Class dlgImgSelect
 		Me.pnlSinglePic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
 		Me.pnlSinglePic.Controls.Add(Me.Label2)
 		Me.pnlSinglePic.Controls.Add(Me.ProgressBar1)
-		Me.pnlSinglePic.Location = New System.Drawing.Point(0, 1)
+		Me.pnlSinglePic.Location = New System.Drawing.Point(1, 3)
 		Me.pnlSinglePic.Name = "pnlSinglePic"
 		Me.pnlSinglePic.Size = New System.Drawing.Size(321, 75)
 		Me.pnlSinglePic.TabIndex = 0
@@ -169,7 +169,7 @@ Partial Class dlgImgSelect
 		Me.lblDL2.Location = New System.Drawing.Point(5, 10)
 		Me.lblDL2.Name = "lblDL2"
 		Me.lblDL2.Size = New System.Drawing.Size(310, 13)
-		Me.lblDL2.TabIndex = 7
+		Me.lblDL2.TabIndex = 0
 		Me.lblDL2.Text = "Performing Preliminary Tasks..."
 		'
 		'pbDL2
@@ -178,7 +178,7 @@ Partial Class dlgImgSelect
 		Me.pbDL2.Name = "pbDL2"
 		Me.pbDL2.Size = New System.Drawing.Size(309, 19)
 		Me.pbDL2.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-		Me.pbDL2.TabIndex = 6
+		Me.pbDL2.TabIndex = 2
 		'
 		'pnlBottomMain
 		'

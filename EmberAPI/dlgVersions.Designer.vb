@@ -46,7 +46,7 @@ Partial Class dlgVersions
 		Me.lstVersions.Location = New System.Drawing.Point(0, 0)
 		Me.lstVersions.Name = "lstVersions"
 		Me.lstVersions.Size = New System.Drawing.Size(417, 286)
-		Me.lstVersions.TabIndex = 1
+		Me.lstVersions.TabIndex = 2
 		Me.lstVersions.UseCompatibleStateImageBehavior = False
 		Me.lstVersions.View = System.Windows.Forms.View.Details
 		'
@@ -66,7 +66,7 @@ Partial Class dlgVersions
 		Me.btnCopy.Location = New System.Drawing.Point(0, 288)
 		Me.btnCopy.Name = "btnCopy"
 		Me.btnCopy.Size = New System.Drawing.Size(133, 23)
-		Me.btnCopy.TabIndex = 2
+		Me.btnCopy.TabIndex = 1
 		Me.btnCopy.Text = "Copy to Clipboard"
 		Me.btnCopy.UseVisualStyleBackColor = True
 		'

@@ -85,7 +85,7 @@ Partial Class dlgAddEditActor
 		Me.txtName.Location = New System.Drawing.Point(10, 22)
 		Me.txtName.Name = "txtName"
 		Me.txtName.Size = New System.Drawing.Size(174, 22)
-		Me.txtName.TabIndex = 0
+		Me.txtName.TabIndex = 1
 		'
 		'txtRole
 		'
@@ -93,7 +93,7 @@ Partial Class dlgAddEditActor
 		Me.txtRole.Location = New System.Drawing.Point(190, 22)
 		Me.txtRole.Name = "txtRole"
 		Me.txtRole.Size = New System.Drawing.Size(174, 22)
-		Me.txtRole.TabIndex = 1
+		Me.txtRole.TabIndex = 3
 		'
 		'txtThumb
 		'
@@ -101,7 +101,7 @@ Partial Class dlgAddEditActor
 		Me.txtThumb.Location = New System.Drawing.Point(10, 65)
 		Me.txtThumb.Name = "txtThumb"
 		Me.txtThumb.Size = New System.Drawing.Size(354, 22)
-		Me.txtThumb.TabIndex = 2
+		Me.txtThumb.TabIndex = 5
 		'
 		'lblName
 		'
@@ -110,7 +110,7 @@ Partial Class dlgAddEditActor
 		Me.lblName.Location = New System.Drawing.Point(8, 7)
 		Me.lblName.Name = "lblName"
 		Me.lblName.Size = New System.Drawing.Size(72, 13)
-		Me.lblName.TabIndex = 4
+		Me.lblName.TabIndex = 0
 		Me.lblName.Text = "Actor Name:"
 		'
 		'lblRole
@@ -120,7 +120,7 @@ Partial Class dlgAddEditActor
 		Me.lblRole.Location = New System.Drawing.Point(190, 8)
 		Me.lblRole.Name = "lblRole"
 		Me.lblRole.Size = New System.Drawing.Size(64, 13)
-		Me.lblRole.TabIndex = 5
+		Me.lblRole.TabIndex = 2
 		Me.lblRole.Text = "Actor Role:"
 		'
 		'lblThumb
@@ -130,7 +130,7 @@ Partial Class dlgAddEditActor
 		Me.lblThumb.Location = New System.Drawing.Point(8, 50)
 		Me.lblThumb.Name = "lblThumb"
 		Me.lblThumb.Size = New System.Drawing.Size(110, 13)
-		Me.lblThumb.TabIndex = 6
+		Me.lblThumb.TabIndex = 4
 		Me.lblThumb.Text = "Actor Thumb (URL):"
 		'
 		'pbActLoad
@@ -160,7 +160,7 @@ Partial Class dlgAddEditActor
 		Me.btnVerify.Location = New System.Drawing.Point(11, 176)
 		Me.btnVerify.Name = "btnVerify"
 		Me.btnVerify.Size = New System.Drawing.Size(114, 23)
-		Me.btnVerify.TabIndex = 3
+		Me.btnVerify.TabIndex = 6
 		Me.btnVerify.Text = "Verify Thumb URL"
 		Me.btnVerify.UseVisualStyleBackColor = True
 		'

@@ -134,7 +134,7 @@ Partial Class dlgNMTMovies
 		Me.pnlCancel.Location = New System.Drawing.Point(250, 137)
 		Me.pnlCancel.Name = "pnlCancel"
 		Me.pnlCancel.Size = New System.Drawing.Size(403, 76)
-		Me.pnlCancel.TabIndex = 10
+		Me.pnlCancel.TabIndex = 0
 		Me.pnlCancel.Visible = False
 		'
 		'btnCancel
@@ -228,7 +228,7 @@ Partial Class dlgNMTMovies
 		Me.Panel2.Location = New System.Drawing.Point(7, 292)
 		Me.Panel2.Name = "Panel2"
 		Me.Panel2.Size = New System.Drawing.Size(692, 102)
-		Me.Panel2.TabIndex = 78
+		Me.Panel2.TabIndex = 13
 		'
 		'gbHelp
 		'
@@ -279,7 +279,7 @@ Partial Class dlgNMTMovies
 		Me.dgvSources.ShowCellToolTips = False
 		Me.dgvSources.ShowRowErrors = False
 		Me.dgvSources.Size = New System.Drawing.Size(472, 168)
-		Me.dgvSources.TabIndex = 8
+		Me.dgvSources.TabIndex = 10
 		'
 		'export
 		'
@@ -381,7 +381,7 @@ Partial Class dlgNMTMovies
 		Me.lblTemplateInfo.Location = New System.Drawing.Point(458, 3)
 		Me.lblTemplateInfo.Name = "lblTemplateInfo"
 		Me.lblTemplateInfo.Size = New System.Drawing.Size(384, 72)
-		Me.lblTemplateInfo.TabIndex = 9
+		Me.lblTemplateInfo.TabIndex = 8
 		'
 		'btnBrowse
 		'
@@ -389,7 +389,7 @@ Partial Class dlgNMTMovies
 		Me.btnBrowse.Location = New System.Drawing.Point(283, 28)
 		Me.btnBrowse.Name = "btnBrowse"
 		Me.btnBrowse.Size = New System.Drawing.Size(26, 23)
-		Me.btnBrowse.TabIndex = 6
+		Me.btnBrowse.TabIndex = 7
 		Me.btnBrowse.Text = "..."
 		Me.btnBrowse.UseVisualStyleBackColor = True
 		'
@@ -412,7 +412,7 @@ Partial Class dlgNMTMovies
 		Me.TabControl1.Name = "TabControl1"
 		Me.TabControl1.SelectedIndex = 0
 		Me.TabControl1.Size = New System.Drawing.Size(357, 194)
-		Me.TabControl1.TabIndex = 7
+		Me.TabControl1.TabIndex = 9
 		'
 		'TabPage2
 		'
@@ -524,7 +524,7 @@ Partial Class dlgNMTMovies
 		Me.chHighPriority.Location = New System.Drawing.Point(705, 346)
 		Me.chHighPriority.Name = "chHighPriority"
 		Me.chHighPriority.Size = New System.Drawing.Size(129, 18)
-		Me.chHighPriority.TabIndex = 13
+		Me.chHighPriority.TabIndex = 14
 		Me.chHighPriority.Text = "High Priority"
 		Me.chHighPriority.UseVisualStyleBackColor = True
 		'

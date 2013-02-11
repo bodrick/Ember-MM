@@ -44,7 +44,7 @@ Partial Class dlgImgView
 		Me.pnlBG.Location = New System.Drawing.Point(0, 0)
 		Me.pnlBG.Name = "pnlBG"
 		Me.pnlBG.Size = New System.Drawing.Size(489, 361)
-		Me.pnlBG.TabIndex = 0
+		Me.pnlBG.TabIndex = 1
 		'
 		'pbCache
 		'

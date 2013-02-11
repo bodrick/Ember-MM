@@ -125,7 +125,7 @@ Partial Class dlgOfflineHolder
 		Me.CLOSE_Button.Location = New System.Drawing.Point(649, 518)
 		Me.CLOSE_Button.Name = "CLOSE_Button"
 		Me.CLOSE_Button.Size = New System.Drawing.Size(80, 23)
-		Me.CLOSE_Button.TabIndex = 0
+		Me.CLOSE_Button.TabIndex = 1
 		Me.CLOSE_Button.Text = "Close"
 		'
 		'pnlTop
@@ -139,7 +139,7 @@ Partial Class dlgOfflineHolder
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(734, 64)
-		Me.pnlTop.TabIndex = 58
+		Me.pnlTop.TabIndex = 2
 		'
 		'Label2
 		'
@@ -150,7 +150,7 @@ Partial Class dlgOfflineHolder
 		Me.Label2.Location = New System.Drawing.Point(64, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(102, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Add Offline movie"
 		'
 		'Label4
@@ -162,7 +162,7 @@ Partial Class dlgOfflineHolder
 		Me.Label4.Location = New System.Drawing.Point(61, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(280, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "Offline Media Manager"
 		'
 		'PictureBox1
@@ -280,7 +280,7 @@ Partial Class dlgOfflineHolder
 		Me.Create_Button.Location = New System.Drawing.Point(563, 518)
 		Me.Create_Button.Name = "Create_Button"
 		Me.Create_Button.Size = New System.Drawing.Size(80, 23)
-		Me.Create_Button.TabIndex = 1
+		Me.Create_Button.TabIndex = 0
 		Me.Create_Button.Text = "Create"
 		'
 		'chkUseFanart
@@ -332,7 +332,7 @@ Partial Class dlgOfflineHolder
 		Me.Label1.Location = New System.Drawing.Point(235, 325)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(100, 13)
-		Me.Label1.TabIndex = 3
+		Me.Label1.TabIndex = 4
 		Me.Label1.Text = "Text Color:"
 		Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -366,7 +366,7 @@ Partial Class dlgOfflineHolder
 		Me.GroupBox1.Location = New System.Drawing.Point(332, 3)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(371, 437)
-		Me.GroupBox1.TabIndex = 8
+		Me.GroupBox1.TabIndex = 7
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Preview"
 		'
@@ -455,7 +455,7 @@ Partial Class dlgOfflineHolder
 		Me.txtTop.Location = New System.Drawing.Point(325, 295)
 		Me.txtTop.Name = "txtTop"
 		Me.txtTop.Size = New System.Drawing.Size(36, 22)
-		Me.txtTop.TabIndex = 4
+		Me.txtTop.TabIndex = 3
 		Me.txtTop.Text = "470"
 		Me.txtTop.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
 		'
@@ -498,7 +498,7 @@ Partial Class dlgOfflineHolder
 		Me.tbTagLine.RightToLeft = System.Windows.Forms.RightToLeft.Yes
 		Me.tbTagLine.RightToLeftLayout = True
 		Me.tbTagLine.Size = New System.Drawing.Size(45, 281)
-		Me.tbTagLine.TabIndex = 0
+		Me.tbTagLine.TabIndex = 8
 		Me.tbTagLine.TickStyle = System.Windows.Forms.TickStyle.None
 		'
 		'tmrNameWait
@@ -520,7 +520,7 @@ Partial Class dlgOfflineHolder
 		Me.Panel1.Location = New System.Drawing.Point(4, 68)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(726, 446)
-		Me.Panel1.TabIndex = 2
+		Me.Panel1.TabIndex = 3
 		'
 		'dlgOfflineHolder
 		'

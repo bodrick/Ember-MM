@@ -40,7 +40,18 @@ Partial Class frmBoxee
 		Me.pnlSettings.Location = New System.Drawing.Point(12, 12)
 		Me.pnlSettings.Name = "pnlSettings"
 		Me.pnlSettings.Size = New System.Drawing.Size(617, 327)
-		Me.pnlSettings.TabIndex = 85
+		Me.pnlSettings.TabIndex = 0
+		'
+		'GroupBox1
+		'
+		Me.GroupBox1.Controls.Add(Me.chkBoxeeId)
+		Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.GroupBox1.Location = New System.Drawing.Point(10, 31)
+		Me.GroupBox1.Name = "GroupBox1"
+		Me.GroupBox1.Size = New System.Drawing.Size(604, 49)
+		Me.GroupBox1.TabIndex = 1
+		Me.GroupBox1.TabStop = False
+		Me.GroupBox1.Text = "TV Show Options"
 		'
 		'GroupBox1
 		'

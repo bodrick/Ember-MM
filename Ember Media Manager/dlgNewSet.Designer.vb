@@ -54,7 +54,7 @@ Partial Class dlgNewSet
 		Me.OK_Button.Location = New System.Drawing.Point(3, 3)
 		Me.OK_Button.Name = "OK_Button"
 		Me.OK_Button.Size = New System.Drawing.Size(67, 23)
-		Me.OK_Button.TabIndex = 1
+		Me.OK_Button.TabIndex = 0
 		Me.OK_Button.Text = "OK"
 		'
 		'Cancel_Button
@@ -74,7 +74,7 @@ Partial Class dlgNewSet
 		Me.txtSetName.Location = New System.Drawing.Point(10, 22)
 		Me.txtSetName.Name = "txtSetName"
 		Me.txtSetName.Size = New System.Drawing.Size(249, 22)
-		Me.txtSetName.TabIndex = 0
+		Me.txtSetName.TabIndex = 1
 		'
 		'Label1
 		'
@@ -83,7 +83,7 @@ Partial Class dlgNewSet
 		Me.Label1.Location = New System.Drawing.Point(8, 7)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(60, 13)
-		Me.Label1.TabIndex = 2
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Set Name:"
 		'
 		'Panel1

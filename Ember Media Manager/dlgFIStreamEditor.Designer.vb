@@ -116,7 +116,7 @@ Partial Class dlgFIStreamEditor
 		Me.GroupBox1.Location = New System.Drawing.Point(21, 7)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(191, 194)
-		Me.GroupBox1.TabIndex = 1
+		Me.GroupBox1.TabIndex = 0
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Video Streams"
 		Me.GroupBox1.Visible = False

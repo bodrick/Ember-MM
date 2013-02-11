@@ -73,7 +73,7 @@ Partial Class dlgMovieSource
 		Me.txtSourceName.Location = New System.Drawing.Point(12, 26)
 		Me.txtSourceName.Name = "txtSourceName"
 		Me.txtSourceName.Size = New System.Drawing.Size(130, 22)
-		Me.txtSourceName.TabIndex = 0
+		Me.txtSourceName.TabIndex = 1
 		'
 		'Label1
 		'
@@ -82,7 +82,7 @@ Partial Class dlgMovieSource
 		Me.Label1.Location = New System.Drawing.Point(10, 11)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(79, 13)
-		Me.Label1.TabIndex = 2
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Source Name:"
 		'
 		'Label2
@@ -92,7 +92,7 @@ Partial Class dlgMovieSource
 		Me.Label2.Location = New System.Drawing.Point(10, 83)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(72, 13)
-		Me.Label2.TabIndex = 4
+		Me.Label2.TabIndex = 2
 		Me.Label2.Text = "Source Path:"
 		'
 		'txtSourcePath
@@ -101,7 +101,7 @@ Partial Class dlgMovieSource
 		Me.txtSourcePath.Location = New System.Drawing.Point(12, 98)
 		Me.txtSourcePath.Name = "txtSourcePath"
 		Me.txtSourcePath.Size = New System.Drawing.Size(376, 22)
-		Me.txtSourcePath.TabIndex = 1
+		Me.txtSourcePath.TabIndex = 3
 		'
 		'btnBrowse
 		'
@@ -109,7 +109,7 @@ Partial Class dlgMovieSource
 		Me.btnBrowse.Location = New System.Drawing.Point(397, 97)
 		Me.btnBrowse.Name = "btnBrowse"
 		Me.btnBrowse.Size = New System.Drawing.Size(26, 23)
-		Me.btnBrowse.TabIndex = 2
+		Me.btnBrowse.TabIndex = 4
 		Me.btnBrowse.Text = "..."
 		Me.btnBrowse.UseVisualStyleBackColor = True
 		'
@@ -122,7 +122,7 @@ Partial Class dlgMovieSource
 		Me.GroupBox1.Location = New System.Drawing.Point(172, 5)
 		Me.GroupBox1.Name = "GroupBox1"
 		Me.GroupBox1.Size = New System.Drawing.Size(251, 85)
-		Me.GroupBox1.TabIndex = 6
+		Me.GroupBox1.TabIndex = 5
 		Me.GroupBox1.TabStop = False
 		Me.GroupBox1.Text = "Source Options"
 		'
@@ -198,7 +198,7 @@ Partial Class dlgMovieSource
 		Me.Label3.Location = New System.Drawing.Point(0, 138)
 		Me.Label3.Name = "Label3"
 		Me.Label3.Size = New System.Drawing.Size(268, 24)
-		Me.Label3.TabIndex = 0
+		Me.Label3.TabIndex = 3
 		Me.Label3.Text = "* This MUST be enabled to use extrathumbs and file naming options like movie.nfo," & _
 		  " fanart.jpg, etc."
 		Me.Label3.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -216,7 +216,7 @@ Partial Class dlgMovieSource
 		Me.Panel1.Location = New System.Drawing.Point(2, 3)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(436, 129)
-		Me.Panel1.TabIndex = 3
+		Me.Panel1.TabIndex = 2
 		'
 		'dlgMovieSource
 		'

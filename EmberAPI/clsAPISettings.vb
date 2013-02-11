@@ -84,6 +84,7 @@ Public Class Settings
     Private _episodedotfanart As Boolean
     Private _episodefanartcol As Boolean
     Private _episodejpg As Boolean
+    Private _episodedashthumbjpg As Boolean
     Private _episodenfocol As Boolean
     Private _episodepostercol As Boolean
     Private _episodetbn As Boolean
@@ -168,6 +169,7 @@ Public Class Settings
     Private _movienamedotfanartjpg As Boolean
     Private _movienamefanartjpg As Boolean
     Private _movienamejpg As Boolean
+    Private _movienamedashposterjpg As Boolean
     Private _movienamemultionly As Boolean
     Private _movienamenfo As Boolean
     Private _movienametbn As Boolean
@@ -248,7 +250,9 @@ Public Class Settings
     Private _scrapershowtitle As Boolean
     Private _seasonalljpg As Boolean
     Private _seasonalltbn As Boolean
+    Private _seasonallposterjpg As Boolean
     Private _seasondashfanart As Boolean
+    Private _seasonxxdashfanartjpg As Boolean
     Private _seasondotfanart As Boolean
     Private _seasonfanartcol As Boolean
     Private _seasonfanartheight As Integer
@@ -268,6 +272,7 @@ Public Class Settings
     Private _seasonposterwidth As Integer
     Private _seasonx As Boolean
     Private _seasonxx As Boolean
+    Private _seasonxxdashposterjpg As Boolean
     Private _sets As New List(Of String)
     Private _showbanner As Boolean
     Private _showbannertype As Enums.ShowBannerType
@@ -821,6 +826,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._episodejpg = value
+        End Set
+    End Property
+
+    Public Property EpisodeDashThumbJPG() As Boolean
+        Get
+            Return Me._episodedashthumbjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._episodedashthumbjpg = value
         End Set
     End Property
 
@@ -1586,6 +1600,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._movienamejpg = value
+        End Set
+    End Property
+
+    Public Property MovieNameDashPosterJPG() As Boolean
+        Get
+            Return Me._movienamedashposterjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._movienamedashposterjpg = value
         End Set
     End Property
 
@@ -2372,12 +2395,30 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property SeasonAllPosterJPG() As Boolean
+        Get
+            Return Me._seasonallposterjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._seasonallposterjpg = value
+        End Set
+    End Property
+
     Public Property SeasonDashFanart() As Boolean
         Get
             Return Me._seasondashfanart
         End Get
         Set(ByVal value As Boolean)
             Me._seasondashfanart = value
+        End Set
+    End Property
+
+    Public Property SeasonXXDashFanartJPG() As Boolean
+        Get
+            Return Me._seasonxxdashfanartjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._seasonxxdashfanartjpg = value
         End Set
     End Property
 
@@ -2531,6 +2572,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._seasonxx = value
+        End Set
+    End Property
+
+    Public Property SeasonXXDashPosterJPG() As Boolean
+        Get
+            Return Me._seasonxxdashposterjpg
+        End Get
+        Set(ByVal value As Boolean)
+            Me._seasonxxdashposterjpg = value
         End Set
     End Property
 
@@ -3169,7 +3219,7 @@ Public Class Settings
 #Region "Methods"
 
     Public Function AllSeasonPosterEnabled() As Boolean
-        Return Me._seasonalltbn OrElse Me._seasonalljpg
+        Return Me._seasonalltbn OrElse Me._seasonalljpg OrElse Me._seasonallposterjpg
     End Function
 
     Public Sub Clear()
@@ -3256,6 +3306,7 @@ Public Class Settings
         Me._movienametbn = True
         Me._moviejpg = False
         Me._movienamejpg = False
+        Me._movienamedashposterjpg = False
         Me._postertbn = False
         Me._posterjpg = False
         Me._folderjpg = False
@@ -3404,6 +3455,7 @@ Public Class Settings
         Me._tvshowregexes = New List(Of TVShowRegEx)
         Me._seasonalltbn = True
         Me._seasonalljpg = False
+        Me._seasonallposterjpg = False
         Me._showfolderjpg = True
         Me._showtbn = False
         Me._showjpg = False
@@ -3415,6 +3467,7 @@ Public Class Settings
         Me._showdotfanart = False
         Me._seasonxx = True
         Me._seasonx = False
+        Me._seasonxxdashposterjpg = False
         Me._seasonpostertbn = False
         Me._seasonposterjpg = False
         Me._seasonnametbn = False
@@ -3422,9 +3475,11 @@ Public Class Settings
         Me._seasonfolderjpg = False
         Me._seasonfanartjpg = False
         Me._seasondashfanart = False
+        Me._seasonxxdashfanartjpg = False
         Me._seasondotfanart = False
         Me._episodetbn = True
         Me._episodejpg = False
+        Me._episodedashthumbjpg = False
         Me._episodedashfanart = False
         Me._episodedotfanart = False
         Me._showpostercol = False
@@ -3524,7 +3579,7 @@ Public Class Settings
     End Sub
 
     Public Function SeasonFanartEnabled() As Boolean
-        Return Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart
+        Return Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart OrElse Master.eSettings.SeasonXXDashFanartJPG
     End Function
 
     Public Sub SetDefaultsForLists(ByVal Type As Enums.DefaultType, ByVal Force As Boolean)

@@ -64,7 +64,7 @@ Partial Class dlgNewVersion
 		Me.txtChangelog.ReadOnly = True
 		Me.txtChangelog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
 		Me.txtChangelog.Size = New System.Drawing.Size(515, 282)
-		Me.txtChangelog.TabIndex = 4
+		Me.txtChangelog.TabIndex = 2
 		'
 		'PictureBox1
 		'
@@ -82,7 +82,7 @@ Partial Class dlgNewVersion
 		Me.lblNew.Location = New System.Drawing.Point(247, 27)
 		Me.lblNew.Name = "lblNew"
 		Me.lblNew.Size = New System.Drawing.Size(277, 43)
-		Me.lblNew.TabIndex = 2
+		Me.lblNew.TabIndex = 3
 		Me.lblNew.Text = "Version r{0} is now available."
 		Me.lblNew.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		'
@@ -93,7 +93,7 @@ Partial Class dlgNewVersion
 		Me.llClick.Location = New System.Drawing.Point(5, 391)
 		Me.llClick.Name = "llClick"
 		Me.llClick.Size = New System.Drawing.Size(87, 21)
-		Me.llClick.TabIndex = 6
+		Me.llClick.TabIndex = 5
 		Me.llClick.TabStop = True
 		Me.llClick.Text = "Click Here"
 		'
@@ -128,7 +128,7 @@ Partial Class dlgNewVersion
 		Me.pnlUpgrade.Location = New System.Drawing.Point(60, 122)
 		Me.pnlUpgrade.Name = "pnlUpgrade"
 		Me.pnlUpgrade.Size = New System.Drawing.Size(400, 152)
-		Me.pnlUpgrade.TabIndex = 5
+		Me.pnlUpgrade.TabIndex = 4
 		Me.pnlUpgrade.Visible = False
 		'
 		'btnNo
@@ -137,7 +137,7 @@ Partial Class dlgNewVersion
 		Me.btnNo.Location = New System.Drawing.Point(201, 123)
 		Me.btnNo.Name = "btnNo"
 		Me.btnNo.Size = New System.Drawing.Size(58, 22)
-		Me.btnNo.TabIndex = 1
+		Me.btnNo.TabIndex = 4
 		Me.btnNo.Text = "NO"
 		Me.btnNo.UseVisualStyleBackColor = True
 		Me.btnNo.Visible = False
@@ -147,7 +147,7 @@ Partial Class dlgNewVersion
 		Me.btnYes.Location = New System.Drawing.Point(137, 123)
 		Me.btnYes.Name = "btnYes"
 		Me.btnYes.Size = New System.Drawing.Size(58, 22)
-		Me.btnYes.TabIndex = 0
+		Me.btnYes.TabIndex = 3
 		Me.btnYes.Text = "YES"
 		Me.btnYes.UseVisualStyleBackColor = True
 		Me.btnYes.Visible = False
@@ -158,7 +158,7 @@ Partial Class dlgNewVersion
 		Me.pbUpgrade.Name = "pbUpgrade"
 		Me.pbUpgrade.Size = New System.Drawing.Size(394, 13)
 		Me.pbUpgrade.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-		Me.pbUpgrade.TabIndex = 4
+		Me.pbUpgrade.TabIndex = 2
 		'
 		'lblStart
 		'
@@ -166,7 +166,7 @@ Partial Class dlgNewVersion
 		Me.lblStart.Location = New System.Drawing.Point(12, 11)
 		Me.lblStart.Name = "lblStart"
 		Me.lblStart.Size = New System.Drawing.Size(369, 23)
-		Me.lblStart.TabIndex = 2
+		Me.lblStart.TabIndex = 0
 		Me.lblStart.Text = "Preparing for upgrade ..."
 		Me.lblStart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		'
@@ -176,7 +176,7 @@ Partial Class dlgNewVersion
 		Me.lblUpgrade.Location = New System.Drawing.Point(3, 11)
 		Me.lblUpgrade.Name = "lblUpgrade"
 		Me.lblUpgrade.Size = New System.Drawing.Size(394, 109)
-		Me.lblUpgrade.TabIndex = 3
+		Me.lblUpgrade.TabIndex = 1
 		Me.lblUpgrade.Text = "TEXT"
 		Me.lblUpgrade.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		Me.lblUpgrade.Visible = False

@@ -67,7 +67,7 @@ Partial Class frmTVMediaSettingsHolder
 		Me.Panel1.Location = New System.Drawing.Point(0, 0)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(1125, 25)
-		Me.Panel1.TabIndex = 81
+		Me.Panel1.TabIndex = 0
 		'
 		'Label2
 		'
@@ -117,7 +117,7 @@ Partial Class frmTVMediaSettingsHolder
 		Me.Label1.Location = New System.Drawing.Point(37, 337)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(225, 31)
-		Me.Label1.TabIndex = 0
+		Me.Label1.TabIndex = 1
 		Me.Label1.Text = "These settings are specific to this module." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Please refer to the global settings " & _
 		  "for more options."
 		Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft

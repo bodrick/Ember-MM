@@ -162,7 +162,7 @@ Partial Class dlgUpdateMedia
 		Me.Label2.Location = New System.Drawing.Point(64, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(130, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Create a custom scraper"
 		'
 		'Label4
@@ -174,7 +174,7 @@ Partial Class dlgUpdateMedia
 		Me.Label4.Location = New System.Drawing.Point(61, 3)
 		Me.Label4.Name = "Label4"
 		Me.Label4.Size = New System.Drawing.Size(195, 32)
-		Me.Label4.TabIndex = 1
+		Me.Label4.TabIndex = 0
 		Me.Label4.Text = "Custom Scraper"
 		'
 		'PictureBox1
@@ -235,7 +235,7 @@ Partial Class dlgUpdateMedia
 		Me.rbUpdateModifier_New.Location = New System.Drawing.Point(6, 42)
 		Me.rbUpdateModifier_New.Name = "rbUpdateModifier_New"
 		Me.rbUpdateModifier_New.Size = New System.Drawing.Size(87, 17)
-		Me.rbUpdateModifier_New.TabIndex = 2
+		Me.rbUpdateModifier_New.TabIndex = 1
 		Me.rbUpdateModifier_New.Text = "New Movies"
 		Me.rbUpdateModifier_New.UseVisualStyleBackColor = True
 		'
@@ -246,7 +246,7 @@ Partial Class dlgUpdateMedia
 		Me.rbUpdateModifier_Missing.Location = New System.Drawing.Point(126, 20)
 		Me.rbUpdateModifier_Missing.Name = "rbUpdateModifier_Missing"
 		Me.rbUpdateModifier_Missing.Size = New System.Drawing.Size(134, 17)
-		Me.rbUpdateModifier_Missing.TabIndex = 1
+		Me.rbUpdateModifier_Missing.TabIndex = 2
 		Me.rbUpdateModifier_Missing.Text = "Movies Missing Items"
 		Me.rbUpdateModifier_Missing.UseVisualStyleBackColor = True
 		'
@@ -327,7 +327,7 @@ Partial Class dlgUpdateMedia
 		Me.chkExtraMod.Location = New System.Drawing.Point(135, 36)
 		Me.chkExtraMod.Name = "chkExtraMod"
 		Me.chkExtraMod.Size = New System.Drawing.Size(90, 17)
-		Me.chkExtraMod.TabIndex = 3
+		Me.chkExtraMod.TabIndex = 4
 		Me.chkExtraMod.Text = "Extrathumbs"
 		Me.chkExtraMod.UseVisualStyleBackColor = True
 		'
@@ -341,7 +341,7 @@ Partial Class dlgUpdateMedia
 		Me.chkMetaMod.Location = New System.Drawing.Point(135, 18)
 		Me.chkMetaMod.Name = "chkMetaMod"
 		Me.chkMetaMod.Size = New System.Drawing.Size(79, 17)
-		Me.chkMetaMod.TabIndex = 1
+		Me.chkMetaMod.TabIndex = 3
 		Me.chkMetaMod.Text = "Meta Data"
 		Me.chkMetaMod.UseVisualStyleBackColor = True
 		'
@@ -355,7 +355,7 @@ Partial Class dlgUpdateMedia
 		Me.chkFanartMod.Location = New System.Drawing.Point(14, 72)
 		Me.chkFanartMod.Name = "chkFanartMod"
 		Me.chkFanartMod.Size = New System.Drawing.Size(59, 17)
-		Me.chkFanartMod.TabIndex = 6
+		Me.chkFanartMod.TabIndex = 2
 		Me.chkFanartMod.Text = "Fanart"
 		Me.chkFanartMod.UseVisualStyleBackColor = True
 		'
@@ -369,7 +369,7 @@ Partial Class dlgUpdateMedia
 		Me.chkPosterMod.Location = New System.Drawing.Point(14, 54)
 		Me.chkPosterMod.Name = "chkPosterMod"
 		Me.chkPosterMod.Size = New System.Drawing.Size(58, 17)
-		Me.chkPosterMod.TabIndex = 4
+		Me.chkPosterMod.TabIndex = 2
 		Me.chkPosterMod.Text = "Poster"
 		Me.chkPosterMod.UseVisualStyleBackColor = True
 		'
@@ -383,7 +383,7 @@ Partial Class dlgUpdateMedia
 		Me.chkNFOMod.Location = New System.Drawing.Point(14, 36)
 		Me.chkNFOMod.Name = "chkNFOMod"
 		Me.chkNFOMod.Size = New System.Drawing.Size(49, 17)
-		Me.chkNFOMod.TabIndex = 2
+		Me.chkNFOMod.TabIndex = 1
 		Me.chkNFOMod.Text = "NFO"
 		Me.chkNFOMod.UseVisualStyleBackColor = True
 		'
@@ -738,7 +738,7 @@ Partial Class dlgUpdateMedia
 		Me.Panel1.Location = New System.Drawing.Point(4, 68)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(568, 262)
-		Me.Panel1.TabIndex = 2
+		Me.Panel1.TabIndex = 3
 		'
 		'dlgUpdateMedia
 		'

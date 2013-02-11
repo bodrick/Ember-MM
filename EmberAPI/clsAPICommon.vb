@@ -573,6 +573,7 @@ Public Class Enums
         FilterAuto = 11
         FilterAsk = 12
         CopyBD = 13
+        FullSkip = 14
         None = 99 ' 
     End Enum
 

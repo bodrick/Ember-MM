@@ -162,14 +162,16 @@ Public Class Localization
         End If
     End Function
 
-    Public Sub LoadAllLanguage(ByVal language As String)
-        htHelpStrings = New Hashtable
-        htHelpStrings.Clear()
-        htArrayStrings.Clear()
-        For Each s As String In ModulesManager.VersionList.Select(Function(m) m.AssemblyFileName).Distinct
-            LoadLanguage(language, s.Replace(".dll", String.Empty))
-        Next
-    End Sub
+	Public Sub LoadAllLanguage(ByVal language As String, Optional ByVal force As Boolean = False)
+		If force Then
+			htHelpStrings = New Hashtable
+			htHelpStrings.Clear()
+			htArrayStrings.Clear()
+		End If
+		For Each s As String In ModulesManager.VersionList.Select(Function(m) m.AssemblyFileName).Distinct
+			LoadLanguage(language, s.Replace(".dll", String.Empty))
+		Next
+	End Sub
 
     Public Sub LoadHelpStrings(ByVal hPath As String)
         Try

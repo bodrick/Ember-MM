@@ -61,7 +61,7 @@ Partial Class frmTVExtrator
 		Me.btnFrameSave.Location = New System.Drawing.Point(736, 363)
 		Me.btnFrameSave.Name = "btnFrameSave"
 		Me.btnFrameSave.Size = New System.Drawing.Size(96, 83)
-		Me.btnFrameSave.TabIndex = 1
+		Me.btnFrameSave.TabIndex = 3
 		Me.btnFrameSave.Text = "Save as Poster"
 		Me.btnFrameSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter
 		Me.btnFrameSave.UseVisualStyleBackColor = True
@@ -101,7 +101,7 @@ Partial Class frmTVExtrator
 		Me.lblTime.Location = New System.Drawing.Point(672, 423)
 		Me.lblTime.Name = "lblTime"
 		Me.lblTime.Size = New System.Drawing.Size(59, 23)
-		Me.lblTime.TabIndex = 3
+		Me.lblTime.TabIndex = 2
 		Me.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
 		'
 		'tbFrame
@@ -111,7 +111,7 @@ Partial Class frmTVExtrator
 		Me.tbFrame.Location = New System.Drawing.Point(7, 423)
 		Me.tbFrame.Name = "tbFrame"
 		Me.tbFrame.Size = New System.Drawing.Size(659, 45)
-		Me.tbFrame.TabIndex = 2
+		Me.tbFrame.TabIndex = 1
 		Me.tbFrame.TickStyle = System.Windows.Forms.TickStyle.None
 		'
 		'btnFrameLoad

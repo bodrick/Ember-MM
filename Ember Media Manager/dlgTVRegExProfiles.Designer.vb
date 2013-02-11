@@ -82,7 +82,7 @@ Partial Class dlgTVRegExProfiles
 		Me.lstProfiles.Location = New System.Drawing.Point(9, 7)
 		Me.lstProfiles.Name = "lstProfiles"
 		Me.lstProfiles.Size = New System.Drawing.Size(358, 130)
-		Me.lstProfiles.TabIndex = 1
+		Me.lstProfiles.TabIndex = 0
 		Me.lstProfiles.UseCompatibleStateImageBehavior = False
 		Me.lstProfiles.View = System.Windows.Forms.View.Details
 		'
@@ -107,7 +107,7 @@ Partial Class dlgTVRegExProfiles
 		Me.Label1.Location = New System.Drawing.Point(11, 140)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(136, 18)
-		Me.Label1.TabIndex = 3
+		Me.Label1.TabIndex = 1
 		Me.Label1.Text = "Description:"
 		'
 		'Panel1

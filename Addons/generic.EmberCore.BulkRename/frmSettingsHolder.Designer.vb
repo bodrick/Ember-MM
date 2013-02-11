@@ -74,7 +74,7 @@ Partial Class frmSettingsHolder
 		Me.gbRenamerPatterns.Location = New System.Drawing.Point(21, 54)
 		Me.gbRenamerPatterns.Name = "gbRenamerPatterns"
 		Me.gbRenamerPatterns.Size = New System.Drawing.Size(197, 191)
-		Me.gbRenamerPatterns.TabIndex = 2
+		Me.gbRenamerPatterns.TabIndex = 3
 		Me.gbRenamerPatterns.TabStop = False
 		Me.gbRenamerPatterns.Text = "Default Renaming Patterns"
 		'
@@ -144,7 +144,7 @@ Partial Class frmSettingsHolder
 		Me.chkBulkRenamer.Location = New System.Drawing.Point(391, 31)
 		Me.chkBulkRenamer.Name = "chkBulkRenamer"
 		Me.chkBulkRenamer.Size = New System.Drawing.Size(160, 17)
-		Me.chkBulkRenamer.TabIndex = 3
+		Me.chkBulkRenamer.TabIndex = 2
 		Me.chkBulkRenamer.Text = "Enable Bulk Renamer Tool"
 		Me.chkBulkRenamer.UseVisualStyleBackColor = True
 		'

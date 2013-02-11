@@ -148,7 +148,7 @@ Partial Class frmXMLSettingsHolder
 		Me.gbOptions.Location = New System.Drawing.Point(10, 240)
 		Me.gbOptions.Name = "gbOptions"
 		Me.gbOptions.Size = New System.Drawing.Size(591, 111)
-		Me.gbOptions.TabIndex = 6
+		Me.gbOptions.TabIndex = 7
 		Me.gbOptions.TabStop = False
 		Me.gbOptions.Text = "Scraper Fields"
 		'
@@ -159,7 +159,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkCertification.Location = New System.Drawing.Point(6, 70)
 		Me.chkCertification.Name = "chkCertification"
 		Me.chkCertification.Size = New System.Drawing.Size(89, 17)
-		Me.chkCertification.TabIndex = 3
+		Me.chkCertification.TabIndex = 2
 		Me.chkCertification.Text = "Certification"
 		Me.chkCertification.UseVisualStyleBackColor = True
 		'
@@ -170,7 +170,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkCountry.Location = New System.Drawing.Point(329, 87)
 		Me.chkCountry.Name = "chkCountry"
 		Me.chkCountry.Size = New System.Drawing.Size(67, 17)
-		Me.chkCountry.TabIndex = 19
+		Me.chkCountry.TabIndex = 18
 		Me.chkCountry.Text = "Country"
 		Me.chkCountry.UseVisualStyleBackColor = True
 		'
@@ -181,7 +181,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkTop250.Location = New System.Drawing.Point(329, 36)
 		Me.chkTop250.Name = "chkTop250"
 		Me.chkTop250.Size = New System.Drawing.Size(66, 17)
-		Me.chkTop250.TabIndex = 16
+		Me.chkTop250.TabIndex = 15
 		Me.chkTop250.Text = "Top 250"
 		Me.chkTop250.UseVisualStyleBackColor = True
 		'
@@ -193,7 +193,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkCrew.Location = New System.Drawing.Point(476, 36)
 		Me.chkCrew.Name = "chkCrew"
 		Me.chkCrew.Size = New System.Drawing.Size(85, 17)
-		Me.chkCrew.TabIndex = 21
+		Me.chkCrew.TabIndex = 20
 		Me.chkCrew.Text = "Other Crew"
 		Me.chkCrew.UseVisualStyleBackColor = True
 		'
@@ -205,7 +205,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkMusicBy.Location = New System.Drawing.Point(476, 53)
 		Me.chkMusicBy.Name = "chkMusicBy"
 		Me.chkMusicBy.Size = New System.Drawing.Size(71, 17)
-		Me.chkMusicBy.TabIndex = 22
+		Me.chkMusicBy.TabIndex = 21
 		Me.chkMusicBy.Text = "Music By"
 		Me.chkMusicBy.UseVisualStyleBackColor = True
 		'
@@ -216,7 +216,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkFullCrew.Location = New System.Drawing.Point(468, 19)
 		Me.chkFullCrew.Name = "chkFullCrew"
 		Me.chkFullCrew.Size = New System.Drawing.Size(111, 17)
-		Me.chkFullCrew.TabIndex = 20
+		Me.chkFullCrew.TabIndex = 19
 		Me.chkFullCrew.Text = "Scrape Full Crew"
 		Me.chkFullCrew.UseVisualStyleBackColor = True
 		'
@@ -227,7 +227,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkFullCast.Location = New System.Drawing.Point(329, 53)
 		Me.chkFullCast.Name = "chkFullCast"
 		Me.chkFullCast.Size = New System.Drawing.Size(107, 17)
-		Me.chkFullCast.TabIndex = 17
+		Me.chkFullCast.TabIndex = 16
 		Me.chkFullCast.Text = "Scrape Full Cast"
 		Me.chkFullCast.UseVisualStyleBackColor = True
 		'
@@ -239,7 +239,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkProducers.Location = New System.Drawing.Point(476, 70)
 		Me.chkProducers.Name = "chkProducers"
 		Me.chkProducers.Size = New System.Drawing.Size(77, 17)
-		Me.chkProducers.TabIndex = 23
+		Me.chkProducers.TabIndex = 22
 		Me.chkProducers.Text = "Producers"
 		Me.chkProducers.UseVisualStyleBackColor = True
 		'
@@ -250,7 +250,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkWriters.Location = New System.Drawing.Point(227, 87)
 		Me.chkWriters.Name = "chkWriters"
 		Me.chkWriters.Size = New System.Drawing.Size(63, 17)
-		Me.chkWriters.TabIndex = 14
+		Me.chkWriters.TabIndex = 13
 		Me.chkWriters.Text = "Writers"
 		Me.chkWriters.UseVisualStyleBackColor = True
 		'
@@ -261,7 +261,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkStudio.Location = New System.Drawing.Point(125, 70)
 		Me.chkStudio.Name = "chkStudio"
 		Me.chkStudio.Size = New System.Drawing.Size(60, 17)
-		Me.chkStudio.TabIndex = 8
+		Me.chkStudio.TabIndex = 7
 		Me.chkStudio.Text = "Studio"
 		Me.chkStudio.UseVisualStyleBackColor = True
 		'
@@ -272,7 +272,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkRuntime.Location = New System.Drawing.Point(125, 19)
 		Me.chkRuntime.Name = "chkRuntime"
 		Me.chkRuntime.Size = New System.Drawing.Size(69, 17)
-		Me.chkRuntime.TabIndex = 5
+		Me.chkRuntime.TabIndex = 4
 		Me.chkRuntime.Text = "Runtime"
 		Me.chkRuntime.UseVisualStyleBackColor = True
 		'
@@ -283,7 +283,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkPlot.Location = New System.Drawing.Point(227, 36)
 		Me.chkPlot.Name = "chkPlot"
 		Me.chkPlot.Size = New System.Drawing.Size(46, 17)
-		Me.chkPlot.TabIndex = 11
+		Me.chkPlot.TabIndex = 10
 		Me.chkPlot.Text = "Plot"
 		Me.chkPlot.UseVisualStyleBackColor = True
 		'
@@ -294,7 +294,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkOutline.Location = New System.Drawing.Point(227, 19)
 		Me.chkOutline.Name = "chkOutline"
 		Me.chkOutline.Size = New System.Drawing.Size(65, 17)
-		Me.chkOutline.TabIndex = 10
+		Me.chkOutline.TabIndex = 9
 		Me.chkOutline.Text = "Outline"
 		Me.chkOutline.UseVisualStyleBackColor = True
 		'
@@ -305,7 +305,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkGenre.Location = New System.Drawing.Point(329, 19)
 		Me.chkGenre.Name = "chkGenre"
 		Me.chkGenre.Size = New System.Drawing.Size(57, 17)
-		Me.chkGenre.TabIndex = 15
+		Me.chkGenre.TabIndex = 14
 		Me.chkGenre.Text = "Genre"
 		Me.chkGenre.UseVisualStyleBackColor = True
 		'
@@ -316,7 +316,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkDirector.Location = New System.Drawing.Point(227, 70)
 		Me.chkDirector.Name = "chkDirector"
 		Me.chkDirector.Size = New System.Drawing.Size(67, 17)
-		Me.chkDirector.TabIndex = 13
+		Me.chkDirector.TabIndex = 12
 		Me.chkDirector.Text = "Director"
 		Me.chkDirector.UseVisualStyleBackColor = True
 		'
@@ -327,7 +327,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkTagline.Location = New System.Drawing.Point(125, 87)
 		Me.chkTagline.Name = "chkTagline"
 		Me.chkTagline.Size = New System.Drawing.Size(63, 17)
-		Me.chkTagline.TabIndex = 9
+		Me.chkTagline.TabIndex = 8
 		Me.chkTagline.Text = "Tagline"
 		Me.chkTagline.UseVisualStyleBackColor = True
 		'
@@ -338,7 +338,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkCast.Location = New System.Drawing.Point(227, 53)
 		Me.chkCast.Name = "chkCast"
 		Me.chkCast.Size = New System.Drawing.Size(48, 17)
-		Me.chkCast.TabIndex = 12
+		Me.chkCast.TabIndex = 11
 		Me.chkCast.Text = "Cast"
 		Me.chkCast.UseVisualStyleBackColor = True
 		'
@@ -349,7 +349,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkVotes.Location = New System.Drawing.Point(125, 53)
 		Me.chkVotes.Name = "chkVotes"
 		Me.chkVotes.Size = New System.Drawing.Size(55, 17)
-		Me.chkVotes.TabIndex = 7
+		Me.chkVotes.TabIndex = 6
 		Me.chkVotes.Text = "Votes"
 		Me.chkVotes.UseVisualStyleBackColor = True
 		'
@@ -360,7 +360,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkTrailer.Location = New System.Drawing.Point(329, 70)
 		Me.chkTrailer.Name = "chkTrailer"
 		Me.chkTrailer.Size = New System.Drawing.Size(57, 17)
-		Me.chkTrailer.TabIndex = 18
+		Me.chkTrailer.TabIndex = 17
 		Me.chkTrailer.Text = "Trailer"
 		Me.chkTrailer.UseVisualStyleBackColor = True
 		'
@@ -371,7 +371,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkRating.Location = New System.Drawing.Point(125, 36)
 		Me.chkRating.Name = "chkRating"
 		Me.chkRating.Size = New System.Drawing.Size(60, 17)
-		Me.chkRating.TabIndex = 6
+		Me.chkRating.TabIndex = 5
 		Me.chkRating.Text = "Rating"
 		Me.chkRating.UseVisualStyleBackColor = True
 		'
@@ -382,7 +382,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkRelease.Location = New System.Drawing.Point(6, 87)
 		Me.chkRelease.Name = "chkRelease"
 		Me.chkRelease.Size = New System.Drawing.Size(92, 17)
-		Me.chkRelease.TabIndex = 4
+		Me.chkRelease.TabIndex = 3
 		Me.chkRelease.Text = "Release Date"
 		Me.chkRelease.UseVisualStyleBackColor = True
 		'
@@ -393,7 +393,7 @@ Partial Class frmXMLSettingsHolder
 		Me.chkMPAA.Location = New System.Drawing.Point(6, 53)
 		Me.chkMPAA.Name = "chkMPAA"
 		Me.chkMPAA.Size = New System.Drawing.Size(56, 17)
-		Me.chkMPAA.TabIndex = 2
+		Me.chkMPAA.TabIndex = 1
 		Me.chkMPAA.Text = "MPAA"
 		Me.chkMPAA.UseVisualStyleBackColor = True
 		'
@@ -445,7 +445,7 @@ Partial Class frmXMLSettingsHolder
 		Me.lblLanguage.Location = New System.Drawing.Point(433, 84)
 		Me.lblLanguage.Name = "lblLanguage"
 		Me.lblLanguage.Size = New System.Drawing.Size(177, 15)
-		Me.lblLanguage.TabIndex = 7
+		Me.lblLanguage.TabIndex = 6
 		Me.lblLanguage.Text = "Language"
 		Me.lblLanguage.TextAlign = System.Drawing.ContentAlignment.TopCenter
 		'

@@ -316,22 +316,6 @@ Public Class dlgIMDBSearchResults
                         selNode = TnP.FirstNode
                     End If
 
-                    If M.ExactMatches.Count > 0 Then
-                        M.ExactMatches.Sort()
-                        If M.PartialMatches.Count > 0 Then
-                            Me.tvResults.Nodes(TnP.Index).Collapse()
-                        End If
-                        TnP = New TreeNode(String.Format(Master.eLang.GetString(18, "Exact Matches ({0})"), M.ExactMatches.Count))
-                        For Each Movie As MediaContainers.Movie In M.ExactMatches
-                            TnP.Nodes.Add(New TreeNode() With {.Text = String.Concat(Movie.Title, If(Not String.IsNullOrEmpty(Movie.Year), String.Format(" ({0})", Movie.Year), String.Empty)), .Tag = Movie.IMDBID})
-                        Next
-                        TnP.Expand()
-                        Me.tvResults.Nodes.Add(TnP)
-
-                        selNode = TnP.FirstNode
-
-                    End If
-
                     If M.PopularTitles.Count > 0 Then
                         M.PopularTitles.Sort()
                         If M.PartialMatches.Count > 0 OrElse M.ExactMatches.Count > 0 Then
@@ -349,15 +333,31 @@ Public Class dlgIMDBSearchResults
 
                         selNode = TnP.FirstNode
                     End If
+
+                    If M.ExactMatches.Count > 0 Then
+                        M.ExactMatches.Sort()
+                        If M.PartialMatches.Count > 0 Then
+                            Me.tvResults.Nodes(TnP.Index).Collapse()
+                        End If
+                        TnP = New TreeNode(String.Format(Master.eLang.GetString(18, "Exact Matches ({0})"), M.ExactMatches.Count))
+                        For Each Movie As MediaContainers.Movie In M.ExactMatches
+                            TnP.Nodes.Add(New TreeNode() With {.Text = String.Concat(Movie.Title, If(Not String.IsNullOrEmpty(Movie.Year), String.Format(" ({0})", Movie.Year), String.Empty)), .Tag = Movie.IMDBID})
+                        Next
+                        TnP.Expand()
+                        Me.tvResults.Nodes.Add(TnP)
+
+                        selNode = TnP.FirstNode
+
+                    End If
                     Me._prevnode = -2
 
                     'determine if we automatically start downloading info for selected node
                     If M.ExactMatches.Count > 0 Then
-                        If M.ExactMatches.Count = 1 Then
-                    Me.tvResults.SelectedNode = selNode
-                        Else
-                            Me.tvResults.SelectedNode = Nothing
-                        End If
+                        'If M.ExactMatches.Count = 1 Then
+                        Me.tvResults.SelectedNode = selNode
+                        'Else
+                        'Me.tvResults.SelectedNode = Nothing
+                        'End If
                     Else
                         Me.tvResults.SelectedNode = Nothing
                     End If

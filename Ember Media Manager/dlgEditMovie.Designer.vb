@@ -183,7 +183,7 @@ Partial Class dlgEditMovie
 		Me.pnlTop.Location = New System.Drawing.Point(0, 0)
 		Me.pnlTop.Name = "pnlTop"
 		Me.pnlTop.Size = New System.Drawing.Size(854, 64)
-		Me.pnlTop.TabIndex = 56
+		Me.pnlTop.TabIndex = 2
 		'
 		'Label2
 		'
@@ -194,7 +194,7 @@ Partial Class dlgEditMovie
 		Me.Label2.Location = New System.Drawing.Point(61, 38)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(205, 13)
-		Me.Label2.TabIndex = 2
+		Me.Label2.TabIndex = 1
 		Me.Label2.Text = "Edit the details for the selected movie."
 		'
 		'Label1
@@ -206,7 +206,7 @@ Partial Class dlgEditMovie
 		Me.Label1.Location = New System.Drawing.Point(58, 3)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(137, 32)
-		Me.Label1.TabIndex = 1
+		Me.Label1.TabIndex = 0
 		Me.Label1.Text = "Edit Movie"
 		'
 		'PictureBox1
@@ -233,7 +233,7 @@ Partial Class dlgEditMovie
 		Me.TabControl1.Name = "TabControl1"
 		Me.TabControl1.SelectedIndex = 0
 		Me.TabControl1.Size = New System.Drawing.Size(844, 478)
-		Me.TabControl1.TabIndex = 2
+		Me.TabControl1.TabIndex = 3
 		'
 		'TabPage1
 		'
@@ -312,7 +312,7 @@ Partial Class dlgEditMovie
 		Me.txtOriginalTitle.Location = New System.Drawing.Point(7, 63)
 		Me.txtOriginalTitle.Name = "txtOriginalTitle"
 		Me.txtOriginalTitle.Size = New System.Drawing.Size(192, 22)
-		Me.txtOriginalTitle.TabIndex = 1
+		Me.txtOriginalTitle.TabIndex = 3
 		'
 		'lblOriginalTitle
 		'
@@ -321,7 +321,7 @@ Partial Class dlgEditMovie
 		Me.lblOriginalTitle.Location = New System.Drawing.Point(5, 47)
 		Me.lblOriginalTitle.Name = "lblOriginalTitle"
 		Me.lblOriginalTitle.Size = New System.Drawing.Size(76, 13)
-		Me.lblOriginalTitle.TabIndex = 118
+		Me.lblOriginalTitle.TabIndex = 2
 		Me.lblOriginalTitle.Text = "Original Title:"
 		'
 		'txtCountry
@@ -331,7 +331,7 @@ Partial Class dlgEditMovie
 		Me.txtCountry.Location = New System.Drawing.Point(8, 224)
 		Me.txtCountry.Name = "txtCountry"
 		Me.txtCountry.Size = New System.Drawing.Size(89, 22)
-		Me.txtCountry.TabIndex = 5
+		Me.txtCountry.TabIndex = 12
 		'
 		'lblCountry
 		'
@@ -340,7 +340,7 @@ Partial Class dlgEditMovie
 		Me.lblCountry.Location = New System.Drawing.Point(5, 209)
 		Me.lblCountry.Name = "lblCountry"
 		Me.lblCountry.Size = New System.Drawing.Size(52, 13)
-		Me.lblCountry.TabIndex = 116
+		Me.lblCountry.TabIndex = 11
 		Me.lblCountry.Text = "Country:"
 		'
 		'txtFileSource
@@ -350,7 +350,7 @@ Partial Class dlgEditMovie
 		Me.txtFileSource.Location = New System.Drawing.Point(636, 385)
 		Me.txtFileSource.Name = "txtFileSource"
 		Me.txtFileSource.Size = New System.Drawing.Size(167, 22)
-		Me.txtFileSource.TabIndex = 26
+		Me.txtFileSource.TabIndex = 48
 		'
 		'lblFileSource
 		'
@@ -359,7 +359,7 @@ Partial Class dlgEditMovie
 		Me.lblFileSource.Location = New System.Drawing.Point(633, 370)
 		Me.lblFileSource.Name = "lblFileSource"
 		Me.lblFileSource.Size = New System.Drawing.Size(78, 13)
-		Me.lblFileSource.TabIndex = 114
+		Me.lblFileSource.TabIndex = 47
 		Me.lblFileSource.Text = "Video Source:"
 		'
 		'btnActorDown
@@ -368,7 +368,7 @@ Partial Class dlgEditMovie
 		Me.btnActorDown.Location = New System.Drawing.Point(430, 304)
 		Me.btnActorDown.Name = "btnActorDown"
 		Me.btnActorDown.Size = New System.Drawing.Size(23, 23)
-		Me.btnActorDown.TabIndex = 18
+		Me.btnActorDown.TabIndex = 34
 		Me.btnActorDown.UseVisualStyleBackColor = True
 		'
 		'btnActorUp
@@ -377,7 +377,7 @@ Partial Class dlgEditMovie
 		Me.btnActorUp.Location = New System.Drawing.Point(406, 304)
 		Me.btnActorUp.Name = "btnActorUp"
 		Me.btnActorUp.Size = New System.Drawing.Size(23, 23)
-		Me.btnActorUp.TabIndex = 17
+		Me.btnActorUp.TabIndex = 33
 		Me.btnActorUp.UseVisualStyleBackColor = True
 		'
 		'Label6
@@ -387,7 +387,7 @@ Partial Class dlgEditMovie
 		Me.Label6.Location = New System.Drawing.Point(5, 87)
 		Me.Label6.Name = "Label6"
 		Me.Label6.Size = New System.Drawing.Size(56, 13)
-		Me.Label6.TabIndex = 111
+		Me.Label6.TabIndex = 4
 		Me.Label6.Text = "Sort Title:"
 		'
 		'txtSortTitle
@@ -397,7 +397,7 @@ Partial Class dlgEditMovie
 		Me.txtSortTitle.Location = New System.Drawing.Point(7, 102)
 		Me.txtSortTitle.Name = "txtSortTitle"
 		Me.txtSortTitle.Size = New System.Drawing.Size(192, 22)
-		Me.txtSortTitle.TabIndex = 2
+		Me.txtSortTitle.TabIndex = 5
 		'
 		'lblLocalTrailer
 		'
@@ -407,7 +407,7 @@ Partial Class dlgEditMovie
 		Me.lblLocalTrailer.Location = New System.Drawing.Point(487, 414)
 		Me.lblLocalTrailer.Name = "lblLocalTrailer"
 		Me.lblLocalTrailer.Size = New System.Drawing.Size(90, 9)
-		Me.lblLocalTrailer.TabIndex = 109
+		Me.lblLocalTrailer.TabIndex = 51
 		Me.lblLocalTrailer.Text = "Local Trailer Found"
 		Me.lblLocalTrailer.Visible = False
 		'
@@ -418,7 +418,7 @@ Partial Class dlgEditMovie
 		Me.btnPlayTrailer.Location = New System.Drawing.Point(579, 423)
 		Me.btnPlayTrailer.Name = "btnPlayTrailer"
 		Me.btnPlayTrailer.Size = New System.Drawing.Size(23, 23)
-		Me.btnPlayTrailer.TabIndex = 28
+		Me.btnPlayTrailer.TabIndex = 52
 		Me.btnPlayTrailer.UseVisualStyleBackColor = True
 		'
 		'btnDLTrailer
@@ -427,7 +427,7 @@ Partial Class dlgEditMovie
 		Me.btnDLTrailer.Location = New System.Drawing.Point(602, 423)
 		Me.btnDLTrailer.Name = "btnDLTrailer"
 		Me.btnDLTrailer.Size = New System.Drawing.Size(23, 23)
-		Me.btnDLTrailer.TabIndex = 29
+		Me.btnDLTrailer.TabIndex = 53
 		Me.btnDLTrailer.UseVisualStyleBackColor = True
 		'
 		'lbGenre
@@ -442,7 +442,7 @@ Partial Class dlgEditMovie
 		Me.lbGenre.Name = "lbGenre"
 		Me.lbGenre.Size = New System.Drawing.Size(192, 100)
 		Me.lbGenre.Sorted = True
-		Me.lbGenre.TabIndex = 11
+		Me.lbGenre.TabIndex = 24
 		'
 		'btnStudio
 		'
@@ -450,7 +450,7 @@ Partial Class dlgEditMovie
 		Me.btnStudio.Location = New System.Drawing.Point(805, 343)
 		Me.btnStudio.Name = "btnStudio"
 		Me.btnStudio.Size = New System.Drawing.Size(23, 23)
-		Me.btnStudio.TabIndex = 24
+		Me.btnStudio.TabIndex = 44
 		Me.btnStudio.UseVisualStyleBackColor = True
 		'
 		'lblStudio
@@ -460,7 +460,7 @@ Partial Class dlgEditMovie
 		Me.lblStudio.Location = New System.Drawing.Point(633, 330)
 		Me.lblStudio.Name = "lblStudio"
 		Me.lblStudio.Size = New System.Drawing.Size(44, 13)
-		Me.lblStudio.TabIndex = 101
+		Me.lblStudio.TabIndex = 42
 		Me.lblStudio.Text = "Studio:"
 		'
 		'txtStudio
@@ -470,7 +470,7 @@ Partial Class dlgEditMovie
 		Me.txtStudio.Location = New System.Drawing.Point(635, 345)
 		Me.txtStudio.Name = "txtStudio"
 		Me.txtStudio.Size = New System.Drawing.Size(167, 22)
-		Me.txtStudio.TabIndex = 23
+		Me.txtStudio.TabIndex = 43
 		'
 		'lblTrailer
 		'
@@ -479,7 +479,7 @@ Partial Class dlgEditMovie
 		Me.lblTrailer.Location = New System.Drawing.Point(215, 410)
 		Me.lblTrailer.Name = "lblTrailer"
 		Me.lblTrailer.Size = New System.Drawing.Size(66, 13)
-		Me.lblTrailer.TabIndex = 99
+		Me.lblTrailer.TabIndex = 49
 		Me.lblTrailer.Text = "Trailer URL:"
 		'
 		'txtTrailer
@@ -489,7 +489,7 @@ Partial Class dlgEditMovie
 		Me.txtTrailer.Location = New System.Drawing.Point(217, 425)
 		Me.txtTrailer.Name = "txtTrailer"
 		Me.txtTrailer.Size = New System.Drawing.Size(360, 22)
-		Me.txtTrailer.TabIndex = 27
+		Me.txtTrailer.TabIndex = 50
 		'
 		'txtReleaseDate
 		'
@@ -498,7 +498,7 @@ Partial Class dlgEditMovie
 		Me.txtReleaseDate.Location = New System.Drawing.Point(103, 224)
 		Me.txtReleaseDate.Name = "txtReleaseDate"
 		Me.txtReleaseDate.Size = New System.Drawing.Size(96, 22)
-		Me.txtReleaseDate.TabIndex = 6
+		Me.txtReleaseDate.TabIndex = 14
 		'
 		'lblReleaseDate
 		'
@@ -507,7 +507,7 @@ Partial Class dlgEditMovie
 		Me.lblReleaseDate.Location = New System.Drawing.Point(100, 209)
 		Me.lblReleaseDate.Name = "lblReleaseDate"
 		Me.lblReleaseDate.Size = New System.Drawing.Size(76, 13)
-		Me.lblReleaseDate.TabIndex = 96
+		Me.lblReleaseDate.TabIndex = 13
 		Me.lblReleaseDate.Text = "Release Date:"
 		'
 		'lblCredits
@@ -517,7 +517,7 @@ Partial Class dlgEditMovie
 		Me.lblCredits.Location = New System.Drawing.Point(215, 330)
 		Me.lblCredits.Name = "lblCredits"
 		Me.lblCredits.Size = New System.Drawing.Size(46, 13)
-		Me.lblCredits.TabIndex = 95
+		Me.lblCredits.TabIndex = 40
 		Me.lblCredits.Text = "Credits:"
 		'
 		'txtCredits
@@ -527,7 +527,7 @@ Partial Class dlgEditMovie
 		Me.txtCredits.Location = New System.Drawing.Point(217, 345)
 		Me.txtCredits.Name = "txtCredits"
 		Me.txtCredits.Size = New System.Drawing.Size(408, 22)
-		Me.txtCredits.TabIndex = 22
+		Me.txtCredits.TabIndex = 41
 		'
 		'lblCerts
 		'
@@ -536,7 +536,7 @@ Partial Class dlgEditMovie
 		Me.lblCerts.Location = New System.Drawing.Point(215, 370)
 		Me.lblCerts.Name = "lblCerts"
 		Me.lblCerts.Size = New System.Drawing.Size(86, 13)
-		Me.lblCerts.TabIndex = 93
+		Me.lblCerts.TabIndex = 45
 		Me.lblCerts.Text = "Certification(s):"
 		'
 		'txtCerts
@@ -546,7 +546,7 @@ Partial Class dlgEditMovie
 		Me.txtCerts.Location = New System.Drawing.Point(217, 385)
 		Me.txtCerts.Name = "txtCerts"
 		Me.txtCerts.Size = New System.Drawing.Size(408, 22)
-		Me.txtCerts.TabIndex = 25
+		Me.txtCerts.TabIndex = 46
 		'
 		'lblRuntime
 		'
@@ -555,7 +555,7 @@ Partial Class dlgEditMovie
 		Me.lblRuntime.Location = New System.Drawing.Point(5, 249)
 		Me.lblRuntime.Name = "lblRuntime"
 		Me.lblRuntime.Size = New System.Drawing.Size(54, 13)
-		Me.lblRuntime.TabIndex = 91
+		Me.lblRuntime.TabIndex = 15
 		Me.lblRuntime.Text = "Runtime:"
 		'
 		'txtRuntime
@@ -565,7 +565,7 @@ Partial Class dlgEditMovie
 		Me.txtRuntime.Location = New System.Drawing.Point(7, 264)
 		Me.txtRuntime.Name = "txtRuntime"
 		Me.txtRuntime.Size = New System.Drawing.Size(66, 22)
-		Me.txtRuntime.TabIndex = 7
+		Me.txtRuntime.TabIndex = 16
 		'
 		'lblMPAADesc
 		'
@@ -574,7 +574,7 @@ Partial Class dlgEditMovie
 		Me.lblMPAADesc.Location = New System.Drawing.Point(633, 245)
 		Me.lblMPAADesc.Name = "lblMPAADesc"
 		Me.lblMPAADesc.Size = New System.Drawing.Size(143, 13)
-		Me.lblMPAADesc.TabIndex = 89
+		Me.lblMPAADesc.TabIndex = 38
 		Me.lblMPAADesc.Text = "MPAA Rating Description:"
 		'
 		'txtMPAADesc
@@ -585,7 +585,7 @@ Partial Class dlgEditMovie
 		Me.txtMPAADesc.Multiline = True
 		Me.txtMPAADesc.Name = "txtMPAADesc"
 		Me.txtMPAADesc.Size = New System.Drawing.Size(193, 64)
-		Me.txtMPAADesc.TabIndex = 21
+		Me.txtMPAADesc.TabIndex = 39
 		'
 		'btnEditActor
 		'
@@ -593,7 +593,7 @@ Partial Class dlgEditMovie
 		Me.btnEditActor.Location = New System.Drawing.Point(246, 303)
 		Me.btnEditActor.Name = "btnEditActor"
 		Me.btnEditActor.Size = New System.Drawing.Size(23, 23)
-		Me.btnEditActor.TabIndex = 16
+		Me.btnEditActor.TabIndex = 32
 		Me.btnEditActor.UseVisualStyleBackColor = True
 		'
 		'btnAddActor
@@ -602,7 +602,7 @@ Partial Class dlgEditMovie
 		Me.btnAddActor.Location = New System.Drawing.Point(217, 303)
 		Me.btnAddActor.Name = "btnAddActor"
 		Me.btnAddActor.Size = New System.Drawing.Size(23, 23)
-		Me.btnAddActor.TabIndex = 15
+		Me.btnAddActor.TabIndex = 31
 		Me.btnAddActor.UseVisualStyleBackColor = True
 		'
 		'btnManual
@@ -611,7 +611,7 @@ Partial Class dlgEditMovie
 		Me.btnManual.Location = New System.Drawing.Point(738, 423)
 		Me.btnManual.Name = "btnManual"
 		Me.btnManual.Size = New System.Drawing.Size(92, 23)
-		Me.btnManual.TabIndex = 30
+		Me.btnManual.TabIndex = 54
 		Me.btnManual.Text = "Manual Edit"
 		Me.btnManual.UseVisualStyleBackColor = True
 		'
@@ -621,7 +621,7 @@ Partial Class dlgEditMovie
 		Me.btnRemove.Location = New System.Drawing.Point(602, 303)
 		Me.btnRemove.Name = "btnRemove"
 		Me.btnRemove.Size = New System.Drawing.Size(23, 23)
-		Me.btnRemove.TabIndex = 19
+		Me.btnRemove.TabIndex = 35
 		Me.btnRemove.UseVisualStyleBackColor = True
 		'
 		'lblActors
@@ -631,7 +631,7 @@ Partial Class dlgEditMovie
 		Me.lblActors.Location = New System.Drawing.Point(215, 141)
 		Me.lblActors.Name = "lblActors"
 		Me.lblActors.Size = New System.Drawing.Size(43, 13)
-		Me.lblActors.TabIndex = 83
+		Me.lblActors.TabIndex = 29
 		Me.lblActors.Text = "Actors:"
 		'
 		'lvActors
@@ -644,7 +644,7 @@ Partial Class dlgEditMovie
 		Me.lvActors.Location = New System.Drawing.Point(217, 155)
 		Me.lvActors.Name = "lvActors"
 		Me.lvActors.Size = New System.Drawing.Size(408, 147)
-		Me.lvActors.TabIndex = 14
+		Me.lvActors.TabIndex = 30
 		Me.lvActors.UseCompatibleStateImageBehavior = False
 		Me.lvActors.View = System.Windows.Forms.View.Details
 		'
@@ -672,7 +672,7 @@ Partial Class dlgEditMovie
 		Me.lbMPAA.Location = New System.Drawing.Point(635, 155)
 		Me.lbMPAA.Name = "lbMPAA"
 		Me.lbMPAA.Size = New System.Drawing.Size(193, 80)
-		Me.lbMPAA.TabIndex = 20
+		Me.lbMPAA.TabIndex = 37
 		'
 		'lblGenre
 		'
@@ -681,7 +681,7 @@ Partial Class dlgEditMovie
 		Me.lblGenre.Location = New System.Drawing.Point(5, 330)
 		Me.lblGenre.Name = "lblGenre"
 		Me.lblGenre.Size = New System.Drawing.Size(41, 13)
-		Me.lblGenre.TabIndex = 80
+		Me.lblGenre.TabIndex = 23
 		Me.lblGenre.Text = "Genre:"
 		'
 		'lblMPAA
@@ -691,7 +691,7 @@ Partial Class dlgEditMovie
 		Me.lblMPAA.Location = New System.Drawing.Point(633, 141)
 		Me.lblMPAA.Name = "lblMPAA"
 		Me.lblMPAA.Size = New System.Drawing.Size(81, 13)
-		Me.lblMPAA.TabIndex = 78
+		Me.lblMPAA.TabIndex = 36
 		Me.lblMPAA.Text = "MPAA Rating:"
 		'
 		'lblDirector
@@ -701,7 +701,7 @@ Partial Class dlgEditMovie
 		Me.lblDirector.Location = New System.Drawing.Point(5, 289)
 		Me.lblDirector.Name = "lblDirector"
 		Me.lblDirector.Size = New System.Drawing.Size(51, 13)
-		Me.lblDirector.TabIndex = 77
+		Me.lblDirector.TabIndex = 21
 		Me.lblDirector.Text = "Director:"
 		'
 		'txtDirector
@@ -711,7 +711,7 @@ Partial Class dlgEditMovie
 		Me.txtDirector.Location = New System.Drawing.Point(7, 304)
 		Me.txtDirector.Name = "txtDirector"
 		Me.txtDirector.Size = New System.Drawing.Size(192, 22)
-		Me.txtDirector.TabIndex = 10
+		Me.txtDirector.TabIndex = 22
 		'
 		'txtTop250
 		'
@@ -720,7 +720,7 @@ Partial Class dlgEditMovie
 		Me.txtTop250.Location = New System.Drawing.Point(156, 264)
 		Me.txtTop250.Name = "txtTop250"
 		Me.txtTop250.Size = New System.Drawing.Size(43, 22)
-		Me.txtTop250.TabIndex = 9
+		Me.txtTop250.TabIndex = 20
 		'
 		'lblTop250
 		'
@@ -729,7 +729,7 @@ Partial Class dlgEditMovie
 		Me.lblTop250.Location = New System.Drawing.Point(153, 249)
 		Me.lblTop250.Name = "lblTop250"
 		Me.lblTop250.Size = New System.Drawing.Size(51, 13)
-		Me.lblTop250.TabIndex = 74
+		Me.lblTop250.TabIndex = 19
 		Me.lblTop250.Text = "Top 250:"
 		'
 		'lblPlot
@@ -739,7 +739,7 @@ Partial Class dlgEditMovie
 		Me.lblPlot.Location = New System.Drawing.Point(441, 7)
 		Me.lblPlot.Name = "lblPlot"
 		Me.lblPlot.Size = New System.Drawing.Size(31, 13)
-		Me.lblPlot.TabIndex = 73
+		Me.lblPlot.TabIndex = 27
 		Me.lblPlot.Text = "Plot:"
 		'
 		'txtPlot
@@ -747,11 +747,11 @@ Partial Class dlgEditMovie
 		Me.txtPlot.AcceptsReturn = True
 		Me.txtPlot.BackColor = System.Drawing.SystemColors.Window
 		Me.txtPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.txtPlot.Location = New System.Drawing.Point(448, 26)
+		Me.txtPlot.Location = New System.Drawing.Point(443, 22)
 		Me.txtPlot.Multiline = True
 		Me.txtPlot.Name = "txtPlot"
 		Me.txtPlot.Size = New System.Drawing.Size(385, 112)
-		Me.txtPlot.TabIndex = 13
+		Me.txtPlot.TabIndex = 28
 		'
 		'lblOutline
 		'
@@ -760,7 +760,7 @@ Partial Class dlgEditMovie
 		Me.lblOutline.Location = New System.Drawing.Point(215, 7)
 		Me.lblOutline.Name = "lblOutline"
 		Me.lblOutline.Size = New System.Drawing.Size(48, 13)
-		Me.lblOutline.TabIndex = 71
+		Me.lblOutline.TabIndex = 25
 		Me.lblOutline.Text = "Outline:"
 		'
 		'txtOutline
@@ -772,7 +772,7 @@ Partial Class dlgEditMovie
 		Me.txtOutline.Multiline = True
 		Me.txtOutline.Name = "txtOutline"
 		Me.txtOutline.Size = New System.Drawing.Size(220, 112)
-		Me.txtOutline.TabIndex = 12
+		Me.txtOutline.TabIndex = 26
 		'
 		'lblTagline
 		'
@@ -781,7 +781,7 @@ Partial Class dlgEditMovie
 		Me.lblTagline.Location = New System.Drawing.Point(5, 127)
 		Me.lblTagline.Name = "lblTagline"
 		Me.lblTagline.Size = New System.Drawing.Size(48, 13)
-		Me.lblTagline.TabIndex = 69
+		Me.lblTagline.TabIndex = 6
 		Me.lblTagline.Text = "Tagline:"
 		'
 		'txtTagline
@@ -791,7 +791,7 @@ Partial Class dlgEditMovie
 		Me.txtTagline.Location = New System.Drawing.Point(7, 142)
 		Me.txtTagline.Name = "txtTagline"
 		Me.txtTagline.Size = New System.Drawing.Size(192, 22)
-		Me.txtTagline.TabIndex = 3
+		Me.txtTagline.TabIndex = 7
 		'
 		'pbStar5
 		'
@@ -840,7 +840,7 @@ Partial Class dlgEditMovie
 		Me.txtVotes.Location = New System.Drawing.Point(81, 264)
 		Me.txtVotes.Name = "txtVotes"
 		Me.txtVotes.Size = New System.Drawing.Size(66, 22)
-		Me.txtVotes.TabIndex = 8
+		Me.txtVotes.TabIndex = 18
 		'
 		'lblVotes
 		'
@@ -849,7 +849,7 @@ Partial Class dlgEditMovie
 		Me.lblVotes.Location = New System.Drawing.Point(78, 249)
 		Me.lblVotes.Name = "lblVotes"
 		Me.lblVotes.Size = New System.Drawing.Size(39, 13)
-		Me.lblVotes.TabIndex = 61
+		Me.lblVotes.TabIndex = 17
 		Me.lblVotes.Text = "Votes:"
 		'
 		'lblRating
@@ -859,7 +859,7 @@ Partial Class dlgEditMovie
 		Me.lblRating.Location = New System.Drawing.Point(77, 167)
 		Me.lblRating.Name = "lblRating"
 		Me.lblRating.Size = New System.Drawing.Size(44, 13)
-		Me.lblRating.TabIndex = 5
+		Me.lblRating.TabIndex = 10
 		Me.lblRating.Text = "Rating:"
 		'
 		'mtxtYear
@@ -871,7 +871,7 @@ Partial Class dlgEditMovie
 		Me.mtxtYear.Name = "mtxtYear"
 		Me.mtxtYear.PromptChar = Global.Microsoft.VisualBasic.ChrW(32)
 		Me.mtxtYear.Size = New System.Drawing.Size(50, 22)
-		Me.mtxtYear.TabIndex = 4
+		Me.mtxtYear.TabIndex = 9
 		'
 		'lblYear
 		'
@@ -880,7 +880,7 @@ Partial Class dlgEditMovie
 		Me.lblYear.Location = New System.Drawing.Point(5, 167)
 		Me.lblYear.Name = "lblYear"
 		Me.lblYear.Size = New System.Drawing.Size(33, 13)
-		Me.lblYear.TabIndex = 58
+		Me.lblYear.TabIndex = 8
 		Me.lblYear.Text = "Year:"
 		'
 		'lblTitle
@@ -890,7 +890,7 @@ Partial Class dlgEditMovie
 		Me.lblTitle.Location = New System.Drawing.Point(5, 7)
 		Me.lblTitle.Name = "lblTitle"
 		Me.lblTitle.Size = New System.Drawing.Size(32, 13)
-		Me.lblTitle.TabIndex = 57
+		Me.lblTitle.TabIndex = 0
 		Me.lblTitle.Text = "Title:"
 		'
 		'txtTitle
@@ -900,7 +900,7 @@ Partial Class dlgEditMovie
 		Me.txtTitle.Location = New System.Drawing.Point(7, 22)
 		Me.txtTitle.Name = "txtTitle"
 		Me.txtTitle.Size = New System.Drawing.Size(192, 22)
-		Me.txtTitle.TabIndex = 0
+		Me.txtTitle.TabIndex = 1
 		'
 		'TabPage2
 		'
@@ -939,7 +939,7 @@ Partial Class dlgEditMovie
 		Me.btnRemovePoster.Location = New System.Drawing.Point(735, 363)
 		Me.btnRemovePoster.Name = "btnRemovePoster"
 		Me.btnRemovePoster.Size = New System.Drawing.Size(96, 83)
-		Me.btnRemovePoster.TabIndex = 26
+		Me.btnRemovePoster.TabIndex = 4
 		Me.btnRemovePoster.Text = "Remove Poster"
 		Me.btnRemovePoster.TextAlign = System.Drawing.ContentAlignment.BottomCenter
 		Me.btnRemovePoster.UseVisualStyleBackColor = True
@@ -1028,7 +1028,7 @@ Partial Class dlgEditMovie
 		Me.btnRemoveFanart.Location = New System.Drawing.Point(735, 363)
 		Me.btnRemoveFanart.Name = "btnRemoveFanart"
 		Me.btnRemoveFanart.Size = New System.Drawing.Size(96, 83)
-		Me.btnRemoveFanart.TabIndex = 28
+		Me.btnRemoveFanart.TabIndex = 4
 		Me.btnRemoveFanart.Text = "Remove Fanart"
 		Me.btnRemoveFanart.TextAlign = System.Drawing.ContentAlignment.BottomCenter
 		Me.btnRemoveFanart.UseVisualStyleBackColor = True
@@ -1107,7 +1107,7 @@ Partial Class dlgEditMovie
 		Me.pnlETQueue.Location = New System.Drawing.Point(626, 11)
 		Me.pnlETQueue.Name = "pnlETQueue"
 		Me.pnlETQueue.Size = New System.Drawing.Size(201, 69)
-		Me.pnlETQueue.TabIndex = 5
+		Me.pnlETQueue.TabIndex = 1
 		Me.pnlETQueue.Visible = False
 		'
 		'Label4
@@ -1163,7 +1163,7 @@ Partial Class dlgEditMovie
 		Me.btnThumbsRefresh.Location = New System.Drawing.Point(87, 422)
 		Me.btnThumbsRefresh.Name = "btnThumbsRefresh"
 		Me.btnThumbsRefresh.Size = New System.Drawing.Size(23, 23)
-		Me.btnThumbsRefresh.TabIndex = 3
+		Me.btnThumbsRefresh.TabIndex = 4
 		Me.btnThumbsRefresh.UseVisualStyleBackColor = True
 		'
 		'btnRemoveThumb
@@ -1172,7 +1172,7 @@ Partial Class dlgEditMovie
 		Me.btnRemoveThumb.Location = New System.Drawing.Point(147, 422)
 		Me.btnRemoveThumb.Name = "btnRemoveThumb"
 		Me.btnRemoveThumb.Size = New System.Drawing.Size(23, 23)
-		Me.btnRemoveThumb.TabIndex = 4
+		Me.btnRemoveThumb.TabIndex = 5
 		Me.btnRemoveThumb.UseVisualStyleBackColor = True
 		'
 		'btnDown
@@ -1181,7 +1181,7 @@ Partial Class dlgEditMovie
 		Me.btnDown.Location = New System.Drawing.Point(28, 422)
 		Me.btnDown.Name = "btnDown"
 		Me.btnDown.Size = New System.Drawing.Size(23, 23)
-		Me.btnDown.TabIndex = 2
+		Me.btnDown.TabIndex = 3
 		Me.btnDown.UseVisualStyleBackColor = True
 		'
 		'btnUp
@@ -1190,7 +1190,7 @@ Partial Class dlgEditMovie
 		Me.btnUp.Location = New System.Drawing.Point(4, 422)
 		Me.btnUp.Name = "btnUp"
 		Me.btnUp.Size = New System.Drawing.Size(23, 23)
-		Me.btnUp.TabIndex = 1
+		Me.btnUp.TabIndex = 2
 		Me.btnUp.UseVisualStyleBackColor = True
 		'
 		'lvThumbs
@@ -1269,7 +1269,7 @@ Partial Class dlgEditMovie
 		Me.chkMark.Location = New System.Drawing.Point(4, 559)
 		Me.chkMark.Name = "chkMark"
 		Me.chkMark.Size = New System.Drawing.Size(86, 17)
-		Me.chkMark.TabIndex = 3
+		Me.chkMark.TabIndex = 5
 		Me.chkMark.Text = "Mark Movie"
 		Me.chkMark.UseVisualStyleBackColor = True
 		'
@@ -1281,7 +1281,7 @@ Partial Class dlgEditMovie
 		Me.btnRescrape.Location = New System.Drawing.Point(310, 554)
 		Me.btnRescrape.Name = "btnRescrape"
 		Me.btnRescrape.Size = New System.Drawing.Size(98, 23)
-		Me.btnRescrape.TabIndex = 4
+		Me.btnRescrape.TabIndex = 6
 		Me.btnRescrape.Text = "Re-scrape"
 		Me.btnRescrape.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnRescrape.UseVisualStyleBackColor = True
@@ -1294,7 +1294,7 @@ Partial Class dlgEditMovie
 		Me.btnChangeMovie.Location = New System.Drawing.Point(429, 554)
 		Me.btnChangeMovie.Name = "btnChangeMovie"
 		Me.btnChangeMovie.Size = New System.Drawing.Size(107, 23)
-		Me.btnChangeMovie.TabIndex = 5
+		Me.btnChangeMovie.TabIndex = 7
 		Me.btnChangeMovie.Text = "Change Movie"
 		Me.btnChangeMovie.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnChangeMovie.UseVisualStyleBackColor = True
@@ -1307,7 +1307,7 @@ Partial Class dlgEditMovie
 		Me.btnClearCache.Location = New System.Drawing.Point(751, 66)
 		Me.btnClearCache.Name = "btnClearCache"
 		Me.btnClearCache.Size = New System.Drawing.Size(96, 23)
-		Me.btnClearCache.TabIndex = 6
+		Me.btnClearCache.TabIndex = 4
 		Me.btnClearCache.Text = "Clear Cache"
 		Me.btnClearCache.TextAlign = System.Drawing.ContentAlignment.MiddleRight
 		Me.btnClearCache.UseVisualStyleBackColor = True

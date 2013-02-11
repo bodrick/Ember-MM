@@ -30,6 +30,7 @@ Public Class OfflineHolderModule
     Private _enabled As Boolean = False
     Private _Name As String = "Offline Media Manager"
     Private _setup As frmSettingsHolder
+	Private _AssemblyName As String = String.Empty
 
     #End Region 'Fields
 
@@ -115,8 +116,10 @@ Public Class OfflineHolderModule
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
-    Sub Init(ByVal sAssemblyName As String) Implements Interfaces.EmberExternalModule.Init
-    End Sub
+	Sub Init(ByVal sAssemblyName As String, ByVal sExecutable As String) Implements Interfaces.EmberExternalModule.Init
+		_AssemblyName = sAssemblyName
+		Master.eLang.LoadLanguage(Master.eSettings.Language, sExecutable)
+	End Sub
 
     Function InjectSetup() As Containers.SettingsPanel Implements Interfaces.EmberExternalModule.InjectSetup
         Me._setup = New frmSettingsHolder
@@ -149,6 +152,6 @@ Public Class OfflineHolderModule
         Me.Enabled = Me._setup.cbEnabled.Checked
     End Sub
 
-    #End Region 'Methods
+#End Region	'Methods
 
 End Class

@@ -67,12 +67,19 @@ Public Class clsServer
         'If ((sRequest.IndexOf(".") < 1) AndAlso (Not sRequest.EndsWith("/"))) Then
         'sRequest = sRequest & "/"
         'End If
-        iStartPos = sRequest.LastIndexOf("/") + 1
-        sRequestedFile = sRequest.Substring(iStartPos)
-        If sRequest.IndexOf("?") >= 0 Then
-            qscoll = Web.HttpUtility.ParseQueryString(sRequest.Substring(sRequest.IndexOf("?") + 1))
-            sRequestedFile = sRequest.Substring(iStartPos, sRequest.IndexOf("?") - iStartPos)
-        End If
+		iStartPos = sRequest.LastIndexOf("/") + 1
+		If (iStartPos > 0) Then
+			sRequestedFile = sRequest.Substring(iStartPos)
+		Else
+			Master.eLog.WriteToErrorLog("Error: iStartPos = 0", sbuffer & " - " & sRequest, "Error")
+			mySocket.Close()
+			Return
+		End If
+
+		If sRequest.IndexOf("?") >= 0 Then
+			qscoll = Web.HttpUtility.ParseQueryString(sRequest.Substring(sRequest.IndexOf("?") + 1))
+			sRequestedFile = sRequest.Substring(iStartPos, sRequest.IndexOf("?") - iStartPos)
+		End If
         If sRequest.Contains("<$RELOAD_DB>") Then
             sRequest = sRequest.Replace("<$RELOAD_DB>", String.Empty)
             ProccessPages.ReloadDatabase = True

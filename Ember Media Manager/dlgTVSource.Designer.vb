@@ -67,7 +67,7 @@ Partial Class dlgTVSource
 		Me.txtSourceName.Location = New System.Drawing.Point(11, 25)
 		Me.txtSourceName.Name = "txtSourceName"
 		Me.txtSourceName.Size = New System.Drawing.Size(130, 22)
-		Me.txtSourceName.TabIndex = 0
+		Me.txtSourceName.TabIndex = 4
 		'
 		'Label1
 		'
@@ -76,7 +76,7 @@ Partial Class dlgTVSource
 		Me.Label1.Location = New System.Drawing.Point(9, 10)
 		Me.Label1.Name = "Label1"
 		Me.Label1.Size = New System.Drawing.Size(79, 13)
-		Me.Label1.TabIndex = 2
+		Me.Label1.TabIndex = 3
 		Me.Label1.Text = "Source Name:"
 		'
 		'Label2
@@ -86,7 +86,7 @@ Partial Class dlgTVSource
 		Me.Label2.Location = New System.Drawing.Point(9, 55)
 		Me.Label2.Name = "Label2"
 		Me.Label2.Size = New System.Drawing.Size(72, 13)
-		Me.Label2.TabIndex = 4
+		Me.Label2.TabIndex = 0
 		Me.Label2.Text = "Source Path:"
 		'
 		'txtSourcePath
@@ -148,7 +148,7 @@ Partial Class dlgTVSource
 		Me.Panel1.Location = New System.Drawing.Point(4, 4)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(427, 101)
-		Me.Panel1.TabIndex = 0
+		Me.Panel1.TabIndex = 2
 		'
 		'dlgTVSource
 		'

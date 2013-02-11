@@ -37,7 +37,7 @@ Partial Class frmSettingsHolder
 		Me.Panel1.Location = New System.Drawing.Point(0, 0)
 		Me.Panel1.Name = "Panel1"
 		Me.Panel1.Size = New System.Drawing.Size(617, 25)
-		Me.Panel1.TabIndex = 82
+		Me.Panel1.TabIndex = 0
 		'
 		'cbEnabled
 		'
