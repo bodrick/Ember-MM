@@ -473,7 +473,7 @@
   <string id="471">File Naming</string>
   <string id="472">Use &lt;movie&gt; Only for Folders with Multiple Movies</string>
   <string id="473">YAMJ Compatible VIDEO_TS File Placement/Naming</string>
-  <string id="474"></string>
+  <string id="474">Frodo Compatible VIDEO_TS File Placement/Naming</string>
   <string id="475"></string>
   <string id="476"></string>
   <string id="477"></string>
@@ -866,7 +866,7 @@
   <string id="864">Setting menus...</string>
   <string id="865">Version {0}.{1}.{2}.{3}</string>
   <string id="866">Metadata</string>
-	<string id="867">XBMC Frodo</string>
-	<string id="868">Top 250</string>
-	<string id="869">EmberMM.com &amp;Wiki...</string>
+  <string id="867">XBMC Frodo</string>
+  <string id="868">Top 250</string>
+  <string id="869">EmberMM.com &amp;Wiki...</string>
 </strings>
