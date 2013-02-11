@@ -867,6 +867,7 @@ Public Class dlgSettings
         Me.chkMovieTBN.Checked = False
         Me.chkPosterJPG.Checked = False
         Me.chkPosterTBN.Checked = False
+        Me.chkVideoTSParentXBMC.Checked = True
         Me.rbDashTrailer.Checked = True
     End Sub
 
@@ -1010,6 +1011,10 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkAutoDetectVTS_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkAutoDetectVTS.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkVideoTSParentXBMC_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkVideoTSParentXBMC.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2401,6 +2406,7 @@ Public Class dlgSettings
                 Me.txtCheckTitleTol.Text = Master.eSettings.LevTolerance.ToString
             End If
             Me.chkAutoDetectVTS.Checked = Master.eSettings.AutoDetectVTS
+            Me.chkVideoTSParentXBMC.Checked = Master.eSettings.VideoTSParentXBMC
             Me.cbLanguages.SelectedItem = If(String.IsNullOrEmpty(Master.eSettings.FlagLang), Master.eLang.Disabled, Master.eSettings.FlagLang)
             Me.cboTVMetaDataOverlay.SelectedItem = If(String.IsNullOrEmpty(Master.eSettings.TVFlagLang), Master.eLang.Disabled, Master.eSettings.TVFlagLang)
             Me.cbIntLang.SelectedItem = Master.eSettings.Language
@@ -3487,6 +3493,7 @@ Public Class dlgSettings
 
             Master.eSettings.LevTolerance = If(Not String.IsNullOrEmpty(Me.txtCheckTitleTol.Text), Convert.ToInt32(Me.txtCheckTitleTol.Text), 0)
             Master.eSettings.AutoDetectVTS = Me.chkAutoDetectVTS.Checked
+            Master.eSettings.VideoTSParentXBMC = Me.chkVideoTSParentXBMC.Checked
             Master.eSettings.FlagLang = If(Me.cbLanguages.Text = Master.eLang.Disabled, String.Empty, Me.cbLanguages.Text)
             Master.eSettings.TVFlagLang = If(Me.cboTVMetaDataOverlay.Text = Master.eLang.Disabled, String.Empty, Me.cboTVMetaDataOverlay.Text)
             Master.eSettings.Language = Me.cbIntLang.Text
@@ -3826,6 +3833,7 @@ Public Class dlgSettings
         Me.GroupBox19.Text = Master.eLang.GetString(536, "Miscellaneous Options")
         Me.gbMiscTVSourceOpts.Text = Master.eLang.GetString(536, "Miscellaneous Options")
         Me.chkAutoDetectVTS.Text = Master.eLang.GetString(537, "Automatically Detect VIDEO_TS Folders Even if They Are Not Named ""VIDEO_TS""")
+        Me.chkVideoTSParentXBMC.Text = Master.eLang.GetString(474, "Frodo Compatible VIDEO_TS File Placement/Naming")
         Me.chkSkipStackedSizeCheck.Text = Master.eLang.GetString(538, "Skip Size Check of Stacked Files")
         Me.Label21.Text = Master.eLang.GetString(539, "MB")
         Me.Label20.Text = Master.eLang.GetString(540, "Skip files smaller than:")
