@@ -158,7 +158,7 @@ Public Class BulkRenamerModule
         tsi = DirectCast(ModulesManager.Instance.RuntimeObjects.TrayMenu.Items("cmnuTrayIconTools"), ToolStripMenuItem)
         tsi.DropDownItems.Add(MyTrayMenu)
 
-        ctxMyMenu.Text = Master.eLang.GetString(27, "Rename")
+        ctxMyMenu.Text = Master.eLang.GetString(6, "Rename")
         ctxMyMenu.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
         ctxMySubMenu1.Text = Master.eLang.GetString(28, "Auto")
         ctxMySubMenu2.Text = Master.eLang.GetString(29, "Manual")
