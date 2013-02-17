@@ -72,6 +72,9 @@ CREATE TABLE MoviesVStreams(
 	Video_AspectDisplayRatio TEXT,
 	Video_Language TEXT,
 	Video_LongLanguage TEXT,
+    Video_Bitrate TEXT,
+	Video_MultiView TEXT,
+	Video_EncodedSettings TEXT,
 	PRIMARY KEY (MovieID,StreamID)
 	);
 
@@ -82,6 +85,7 @@ CREATE TABLE MoviesAStreams(
 	Audio_LongLanguage TEXT,
 	Audio_Codec TEXT,
 	Audio_Channel TEXT,
+	Audio_Bitrate TEXT,
 	PRIMARY KEY (MovieID,StreamID)
 	);
 
@@ -225,6 +229,9 @@ CREATE TABLE TVVStreams(
 	Video_AspectDisplayRatio TEXT,
 	Video_Language TEXT,
 	Video_LongLanguage TEXT,
+    Video_Bitrate TEXT,
+	Video_MultiView TEXT,
+	Video_EncodedSettings TEXT,
 	PRIMARY KEY (TVEpID,StreamID)
 	);
 
@@ -235,6 +242,7 @@ CREATE TABLE TVAStreams(
 	Audio_LongLanguage TEXT,
 	Audio_Codec TEXT,
 	Audio_Channel TEXT,
+	Audio_Bitrate TEXT,
 	PRIMARY KEY (TVEpID,StreamID)
 	);
 

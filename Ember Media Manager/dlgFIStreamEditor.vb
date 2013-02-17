@@ -57,6 +57,14 @@ Public Class dlgFIStreamEditor
                     End If
                     txtDuration.Text = movie.StreamDetails.Video(idx).Duration
                     cbVideoLanguage.Text = movie.StreamDetails.Video(idx).LongLanguage
+
+                    'cocotus, 2013/02 Added support for new MediaInfo-fields
+                    'Display new fields in Streameditor
+                    txtMultiview.Text = movie.StreamDetails.Video(idx).MultiView
+                    txtBitrate.Text = movie.StreamDetails.Video(idx).Bitrate
+                    txtEncodingSettings.Text = movie.StreamDetails.Video(idx).EncodedSettings
+                    'cocotus end
+
                 End If
             End If
             If stream_type = Master.eLang.GetString(596, "Audio Stream") Then
@@ -69,6 +77,13 @@ Public Class dlgFIStreamEditor
                     cbAudioCodec.Text = movie.StreamDetails.Audio(idx).Codec
                     cbAudioLanguage.Text = movie.StreamDetails.Audio(idx).LongLanguage
                     cbAudioChannels.Text = movie.StreamDetails.Audio(idx).Channels
+
+
+                    'cocotus, 2013/02 Added support for new MediaInfo-fields
+                    'Display new fields in Streameditor
+                    txtABitrate.Text = movie.StreamDetails.Audio(idx).Bitrate
+                    'cocotus end
+
                 End If
             End If
             If stream_type = Master.eLang.GetString(597, "Subtitle Stream") Then
@@ -94,6 +109,13 @@ Public Class dlgFIStreamEditor
                     stream_v.Height = txtHeight.Text
                     stream_v.Scantype = If(rbProgressive.Checked, Master.eLang.GetString(616, "Progressive"), Master.eLang.GetString(615, "Interlaced"))
                     stream_v.Duration = txtDuration.Text
+
+                    'cocotus, 2013/02 Added support for new MediaInfo-fields
+                    'Save edits of new fields
+                    stream_v.Bitrate = txtBitrate.Text
+                    stream_v.MultiView = txtMultiview.Text
+                    'cocotus end
+
                     If Not cbVideoLanguage.SelectedItem Is Nothing Then stream_v.LongLanguage = cbVideoLanguage.SelectedItem.ToString
                     If Not cbVideoLanguage.SelectedItem Is Nothing Then stream_v.Language = Localization.ISOLangGetCode3ByLang(cbVideoLanguage.SelectedItem.ToString)
                     Return stream_v
@@ -103,6 +125,12 @@ Public Class dlgFIStreamEditor
                     If Not cbAudioLanguage.SelectedItem Is Nothing Then stream_a.LongLanguage = cbAudioLanguage.SelectedItem.ToString
                     If Not cbAudioLanguage.SelectedItem Is Nothing Then stream_a.Language = Localization.ISOLangGetCode3ByLang(cbAudioLanguage.SelectedItem.ToString)
                     If Not cbAudioChannels.SelectedItem Is Nothing Then stream_a.Channels = cbAudioChannels.SelectedItem.ToString
+
+                    'cocotus, 2013/02 Added support for new MediaInfo-fields
+                    'Save edits of new fields
+                    stream_a.Bitrate = txtABitrate.Text
+                    'cocotus end
+
                     Return stream_a
                 End If
                 If stream_type = Master.eLang.GetString(597, "Subtitle Stream") Then

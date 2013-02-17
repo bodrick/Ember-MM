@@ -231,6 +231,13 @@ Public Class dlgFileInfo
                 i.SubItems.Add(Master.eLang.GetString(608, "Aspect"))
                 i.SubItems.Add(Master.eLang.GetString(609, "Duration"))
                 i.SubItems.Add(Master.eLang.GetString(610, "Language"))
+
+                'cocotus, 2013/02 Added support for new MediaInfo-fields
+                i.SubItems.Add("Bitrate")
+                i.SubItems.Add("MultiView")
+                i.SubItems.Add("EncodingSettings")
+                'cocotus end
+
                 g.Items.Add(i)
                 lvStreams.Items.Add(i)
 
@@ -248,6 +255,13 @@ Public Class dlgFileInfo
                         i.SubItems.Add(v.Aspect)
                         i.SubItems.Add(v.Duration)
                         i.SubItems.Add(v.LongLanguage)
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        i.SubItems.Add(v.Bitrate)
+                        i.SubItems.Add(v.MultiView)
+                        i.SubItems.Add(v.EncodedSettings)
+                        'cocotus end
+
                         g.Items.Add(i)
                         lvStreams.Items.Add(i)
                     End If
@@ -267,6 +281,11 @@ Public Class dlgFileInfo
                 i.SubItems.Add(Master.eLang.GetString(604, "Codec"))
                 i.SubItems.Add(Master.eLang.GetString(610, "Language"))
                 i.SubItems.Add(Master.eLang.GetString(611, "Channels"))
+
+                'cocotus, 2013/02 Added support for new MediaInfo-fields
+                i.SubItems.Add("Bitrate")
+                'cocotus end
+
                 g.Items.Add(i)
                 lvStreams.Items.Add(i)
                 Dim a As MediaInfo.Audio
@@ -279,6 +298,11 @@ Public Class dlgFileInfo
                         i.SubItems.Add(a.Codec)
                         i.SubItems.Add(a.LongLanguage)
                         i.SubItems.Add(a.Channels)
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        i.SubItems.Add(a.Bitrate)
+                        'cocotus end
+
                         g.Items.Add(i)
                         lvStreams.Items.Add(i)
                     End If
@@ -312,6 +336,8 @@ Public Class dlgFileInfo
                     End If
                 Next
             End If
+
+
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
