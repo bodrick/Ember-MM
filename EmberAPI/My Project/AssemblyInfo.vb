@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("EmberAPI")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("EmberAPI")> 
 <Assembly: AssemblyCopyright("Copyright ©  2011")> 

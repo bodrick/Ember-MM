@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("generic.EmberCore.XBMC")> 
+<Assembly: AssemblyTitle("scraper.EmberCore.TMDB")> 
 <Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("generic.EmberCore.XBMC")> 
-<Assembly: AssemblyCopyright("Copyright ©  2011")> 
+<Assembly: AssemblyCompany("Ember Media Manager")>
+<Assembly: AssemblyProduct("scraper.EmberCore.TMDB")> 
+<Assembly: AssemblyCopyright("Copyright © 2011")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'The following GUID is for the ID of the typelib if this project is exposed to COM
-<Assembly: Guid("57F40914-CFF0-4C71-B24E-FA6FB0C57630")> 
+<Assembly: Guid("5756E16E-D207-4AFB-94B7-A87F7A2C5093")> 
 
 ' Version information for an assembly consists of the following four values:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.3.0.5")> 
-<Assembly: AssemblyFileVersion("1.3.0.5")> 
+<Assembly: AssemblyVersion("1.3.0.10")> 
+<Assembly: AssemblyFileVersion("1.3.0.10")> 
