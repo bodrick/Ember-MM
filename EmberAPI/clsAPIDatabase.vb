@@ -275,6 +275,8 @@ Public Class Database
                                         "Unable to open media database connection.")
         End Try
 
+      
+
         If isNew Then
             Dim sqlCommand As String = My.Resources.MediaDatabaseSQL_v1
             Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
@@ -284,10 +286,67 @@ Public Class Database
                 End Using
                 transaction.Commit()
             End Using
+
+            'cocotus, 2013/02 Added support for new MediaInfo-fields
+        Else
+            'Check if new columns exists and create them if not
+            AddMissingColumnsToDatabase()
+            'cocotus end
         End If
 
         Return isNew
     End Function
+
+
+    ''' <summary>
+    ''' cocotus, 2013/02 Added support for new MediaInfo-fields
+    ''' Checks if Ember database contains new mediainfo columns and create them if necessary
+    ''' </summary>
+    Private Sub AddMissingColumnsToDatabase()
+        'TODO Check to see if column exists and then create if not
+        Using SQLpathcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
+            Dim doAddColumns As Boolean = False
+            SQLpathcommand.CommandText = "SELECT * FROM MoviesVStreams;"
+
+            Using SQLreader As SQLite.SQLiteDataReader = SQLpathcommand.ExecuteReader
+                Try
+                    Dim myView As DataView = SQLreader.GetSchemaTable().DefaultView
+                    'simply look for column of new field
+                    myView.RowFilter = "ColumnName = 'Video_EncodedSettings'"
+                    If myView.Count = 0 Then
+                        'Column doesn't exist in current database of Ember --> asume: if one columns missing, all new mediainfo columns must be added
+                        doAddColumns = True
+                    End If
+                Catch ex As Exception
+                    'TODO
+                End Try
+            End Using
+            'Now add new columns to current database if needed
+            If doAddColumns = True Then
+                Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
+                    Dim strlistSQLCommands As New List(Of String)
+                    strlistSQLCommands.Add("alter table MoviesAStreams add Audio_Bitrate text;")
+                    strlistSQLCommands.Add("alter table MoviesVStreams add Video_EncodedSettings text;")
+                    strlistSQLCommands.Add("alter table MoviesVStreams add Video_Bitrate text;")
+                    strlistSQLCommands.Add("alter table MoviesVStreams add Video_MultiView text;")
+                    strlistSQLCommands.Add("alter table TVAStreams add Audio_Bitrate text;")
+                    strlistSQLCommands.Add("alter table TVVStreams add Video_EncodedSettings text;")
+                    strlistSQLCommands.Add("alter table TVVStreams add Video_Bitrate text;")
+                    strlistSQLCommands.Add("alter table TVVStreams add Video_MultiView text;")
+                    For Each sqlstatement In strlistSQLCommands
+                        Try
+                            SQLpathcommand.CommandText = sqlstatement
+                            SQLpathcommand.ExecuteNonQuery()
+                        Catch ex As Exception
+                            'TODO ugly to rely on exception but will do the job
+                            'Happens when column does exist (duplicate columns)
+                        End Try
+                    Next
+                    transaction.Commit()
+                End Using
+            End If
+        End Using
+    End Sub
 
     ''' <summary>
     ''' Remove all information related to a movie from the database.
@@ -658,6 +717,12 @@ Public Class Database
                         If Not DBNull.Value.Equals(SQLreader("Video_AspectDisplayRatio")) Then video.Aspect = SQLreader("Video_AspectDisplayRatio").ToString
                         If Not DBNull.Value.Equals(SQLreader("Video_Language")) Then video.Language = SQLreader("Video_Language").ToString
                         If Not DBNull.Value.Equals(SQLreader("Video_LongLanguage")) Then video.LongLanguage = SQLreader("Video_LongLanguage").ToString
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        If Not DBNull.Value.Equals(SQLreader("Video_Bitrate")) Then video.Bitrate = SQLreader("Video_Bitrate").ToString
+                        If Not DBNull.Value.Equals(SQLreader("Video_MultiView")) Then video.MultiView = SQLreader("Video_MultiView").ToString
+                        If Not DBNull.Value.Equals(SQLreader("Video_EncodedSettings")) Then video.EncodedSettings = SQLreader("Video_EncodedSettings").ToString
+                        'cocotus end
                         _movieDB.Movie.FileInfo.StreamDetails.Video.Add(video)
                     End While
                 End Using
@@ -673,6 +738,9 @@ Public Class Database
                         If Not DBNull.Value.Equals(SQLreader("Audio_LongLanguage")) Then audio.LongLanguage = SQLreader("Audio_LongLanguage").ToString
                         If Not DBNull.Value.Equals(SQLreader("Audio_Codec")) Then audio.Codec = SQLreader("Audio_Codec").ToString
                         If Not DBNull.Value.Equals(SQLreader("Audio_Channel")) Then audio.Channels = SQLreader("Audio_Channel").ToString
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        If Not DBNull.Value.Equals(SQLreader("Audio_Bitrate")) Then audio.Bitrate = SQLreader("Audio_Bitrate").ToString
+                        'cocotus end
                         _movieDB.Movie.FileInfo.StreamDetails.Audio.Add(audio)
                     End While
                 End Using
@@ -860,6 +928,13 @@ Public Class Database
                         If Not DBNull.Value.Equals(SQLreader("Video_AspectDisplayRatio")) Then video.Aspect = SQLreader("Video_AspectDisplayRatio").ToString
                         If Not DBNull.Value.Equals(SQLreader("Video_Language")) Then video.Language = SQLreader("Video_Language").ToString
                         If Not DBNull.Value.Equals(SQLreader("Video_LongLanguage")) Then video.LongLanguage = SQLreader("Video_LongLanguage").ToString
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        If Not DBNull.Value.Equals(SQLreader("Video_Bitrate")) Then video.Bitrate = SQLreader("Video_Bitrate").ToString
+                        If Not DBNull.Value.Equals(SQLreader("Video_MultiView")) Then video.MultiView = SQLreader("Video_MultiView").ToString
+                        If Not DBNull.Value.Equals(SQLreader("Video_EncodedSettings")) Then video.EncodedSettings = SQLreader("Video_EncodedSettings").ToString
+                        'cocotus end
+
                         _TVDB.TVEp.FileInfo.StreamDetails.Video.Add(video)
                     End While
                 End Using
@@ -875,6 +950,11 @@ Public Class Database
                         If Not DBNull.Value.Equals(SQLreader("Audio_LongLanguage")) Then audio.LongLanguage = SQLreader("Audio_LongLanguage").ToString
                         If Not DBNull.Value.Equals(SQLreader("Audio_Codec")) Then audio.Codec = SQLreader("Audio_Codec").ToString
                         If Not DBNull.Value.Equals(SQLreader("Audio_Channel")) Then audio.Channels = SQLreader("Audio_Channel").ToString
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        If Not DBNull.Value.Equals(SQLreader("Audio_Bitrate")) Then audio.Bitrate = SQLreader("Audio_Bitrate").ToString
+                        'cocotus end
+
                         _TVDB.TVEp.FileInfo.StreamDetails.Audio.Add(audio)
                     End While
                 End Using
@@ -1268,10 +1348,13 @@ Public Class Database
                         SQLcommandMoviesVStreams.CommandText = String.Concat("DELETE FROM MoviesVStreams WHERE MovieID = ", _movieDB.ID, ";")
                         SQLcommandMoviesVStreams.ExecuteNonQuery()
 
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        'Expanded SQL Statement to INSERT/replace new fields
                         SQLcommandMoviesVStreams.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesVStreams (", _
                                  "MovieID, StreamID, Video_Width,Video_Height,Video_Codec,Video_Duration,", _
-                                 "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage", _
-                                 ") VALUES (?,?,?,?,?,?,?,?,?,?);")
+                                 "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage, Video_Bitrate, Video_MultiView, Video_EncodedSettings", _
+                                 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);")
+                        'cocotus end
                         Dim parVideo_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_MovieID", DbType.UInt64, 0, "MovieID")
                         Dim parVideo_StreamID As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_StreamID", DbType.UInt64, 0, "StreamID")
                         Dim parVideo_Width As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_Width", DbType.String, 0, "Video_Width")
@@ -1282,6 +1365,13 @@ Public Class Database
                         Dim parVideo_AspectDisplayRatio As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_AspectDisplayRatio", DbType.String, 0, "Video_AspectDisplayRatio")
                         Dim parVideo_Language As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_Language", DbType.String, 0, "Video_Language")
                         Dim parVideo_LongLanguage As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_LongLanguage", DbType.String, 0, "Video_LongLanguage")
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        Dim parVideo_Bitrate As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_Bitrate", DbType.String, 0, "Video_Bitrate")
+                        Dim parVideo_MultiView As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_MultiView", DbType.String, 0, "Video_MultiView")
+                        Dim parVideo_EncodedSettings As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_EncodedSettings", DbType.String, 0, "Video_EncodedSettings")
+                        'cocotus end
+
                         For i As Integer = 0 To _movieDB.Movie.FileInfo.StreamDetails.Video.Count - 1
                             parVideo_MovieID.Value = _movieDB.ID
                             parVideo_StreamID.Value = i
@@ -1293,6 +1383,13 @@ Public Class Database
                             parVideo_AspectDisplayRatio.Value = _movieDB.Movie.FileInfo.StreamDetails.Video(i).Aspect
                             parVideo_Language.Value = _movieDB.Movie.FileInfo.StreamDetails.Video(i).Language
                             parVideo_LongLanguage.Value = _movieDB.Movie.FileInfo.StreamDetails.Video(i).LongLanguage
+
+                            'cocotus, 2013/02 Added support for new MediaInfo-fields
+                            parVideo_Bitrate.Value = _movieDB.Movie.FileInfo.StreamDetails.Video(i).Bitrate
+                            parVideo_MultiView.Value = _movieDB.Movie.FileInfo.StreamDetails.Video(i).MultiView
+                            parVideo_EncodedSettings.Value = _movieDB.Movie.FileInfo.StreamDetails.Video(i).EncodedSettings
+                            'cocotus end
+
                             SQLcommandMoviesVStreams.ExecuteNonQuery()
                         Next
                     End Using
@@ -1300,15 +1397,24 @@ Public Class Database
                         SQLcommandMoviesAStreams.CommandText = String.Concat("DELETE FROM MoviesAStreams WHERE MovieID = ", _movieDB.ID, ";")
                         SQLcommandMoviesAStreams.ExecuteNonQuery()
 
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        'Expanded SQL Statement to INSERT/replace new fields
                         SQLcommandMoviesAStreams.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesAStreams (", _
-                                "MovieID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel", _
-                                ") VALUES (?,?,?,?,?,?);")
+                                "MovieID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel, Audio_Bitrate", _
+                                ") VALUES (?,?,?,?,?,?,?);")
+                        'cocotus end
+
                         Dim parAudio_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_MovieID", DbType.UInt64, 0, "MovieID")
                         Dim parAudio_StreamID As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_StreamID", DbType.UInt64, 0, "StreamID")
                         Dim parAudio_Language As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_Language", DbType.String, 0, "Audio_Language")
                         Dim parAudio_LongLanguage As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_LongLanguage", DbType.String, 0, "Audio_LongLanguage")
                         Dim parAudio_Codec As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_Codec", DbType.String, 0, "Audio_Codec")
                         Dim parAudio_Channel As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_Channel", DbType.String, 0, "Audio_Channel")
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        Dim parAudio_Bitrate As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_Bitrate", DbType.String, 0, "Audio_Bitrate")
+                        'cocotus end
+
                         For i As Integer = 0 To _movieDB.Movie.FileInfo.StreamDetails.Audio.Count - 1
                             parAudio_MovieID.Value = _movieDB.ID
                             parAudio_StreamID.Value = i
@@ -1316,6 +1422,11 @@ Public Class Database
                             parAudio_LongLanguage.Value = _movieDB.Movie.FileInfo.StreamDetails.Audio(i).LongLanguage
                             parAudio_Codec.Value = _movieDB.Movie.FileInfo.StreamDetails.Audio(i).Codec
                             parAudio_Channel.Value = _movieDB.Movie.FileInfo.StreamDetails.Audio(i).Channels
+
+                            'cocotus, 2013/02 Added support for new MediaInfo-fields
+                            parAudio_Bitrate.Value = _movieDB.Movie.FileInfo.StreamDetails.Audio(i).Bitrate
+                            'cocotus end
+
                             SQLcommandMoviesAStreams.ExecuteNonQuery()
                         Next
                     End Using
@@ -1579,10 +1690,14 @@ Public Class Database
                         SQLcommandTVVStreams.CommandText = String.Concat("DELETE FROM TVVStreams WHERE TVEpID = ", _TVEpDB.EpID, ";")
                         SQLcommandTVVStreams.ExecuteNonQuery()
 
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        'Expanded SQL Statement to INSERT/replace new fields
                         SQLcommandTVVStreams.CommandText = String.Concat("INSERT OR REPLACE INTO TVVStreams (", _
                                  "TVEpID, StreamID, Video_Width,Video_Height,Video_Codec,Video_Duration,", _
-                                 "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage", _
-                                 ") VALUES (?,?,?,?,?,?,?,?,?,?);")
+                                 "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage, Video_Bitrate, Video_MultiView, Video_EncodedSettings", _
+                                 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);")
+                        'cocotus end
+
                         Dim parVideo_EpID As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_EpID", DbType.UInt64, 0, "TVEpID")
                         Dim parVideo_StreamID As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_StreamID", DbType.UInt64, 0, "StreamID")
                         Dim parVideo_Width As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_Width", DbType.String, 0, "Video_Width")
@@ -1593,6 +1708,13 @@ Public Class Database
                         Dim parVideo_AspectDisplayRatio As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_AspectDisplayRatio", DbType.String, 0, "Video_AspectDisplayRatio")
                         Dim parVideo_Language As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_Language", DbType.String, 0, "Video_Language")
                         Dim parVideo_LongLanguage As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_LongLanguage", DbType.String, 0, "Video_LongLanguage")
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        Dim parVideo_Bitrate As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_Bitrate", DbType.String, 0, "Video_Bitrate")
+                        Dim parVideo_MultiView As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_MultiView", DbType.String, 0, "Video_MultiView")
+                        Dim parVideo_EncodedSettings As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_EncodedSettings", DbType.String, 0, "Video_EncodedSettings")
+                        'cocotus end
+
                         For i As Integer = 0 To _TVEpDB.TVEp.FileInfo.StreamDetails.Video.Count - 1
                             parVideo_EpID.Value = _TVEpDB.EpID
                             parVideo_StreamID.Value = i
@@ -1604,6 +1726,13 @@ Public Class Database
                             parVideo_AspectDisplayRatio.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Video(i).Aspect
                             parVideo_Language.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Video(i).Language
                             parVideo_LongLanguage.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Video(i).LongLanguage
+
+                            'cocotus, 2013/02 Added support for new MediaInfo-fields
+                            parVideo_Bitrate.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Video(i).Bitrate
+                            parVideo_MultiView.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Video(i).MultiView
+                            parVideo_EncodedSettings.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Video(i).EncodedSettings
+                            'cocotus end
+
                             SQLcommandTVVStreams.ExecuteNonQuery()
                         Next
                     End Using
@@ -1611,15 +1740,24 @@ Public Class Database
                         SQLcommandTVAStreams.CommandText = String.Concat("DELETE FROM TVAStreams WHERE TVEpID = ", _TVEpDB.EpID, ";")
                         SQLcommandTVAStreams.ExecuteNonQuery()
 
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        'Expanded SQL Statement to INSERT/replace new fields
                         SQLcommandTVAStreams.CommandText = String.Concat("INSERT OR REPLACE INTO TVAStreams (", _
-                                 "TVEpID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel", _
-                                 ") VALUES (?,?,?,?,?,?);")
+                                 "TVEpID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel, Audio_Bitrate", _
+                                 ") VALUES (?,?,?,?,?,?,?);")
+                        'cocotus end
+
                         Dim parAudio_EpID As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_EpID", DbType.UInt64, 0, "TVEpID")
                         Dim parAudio_StreamID As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_StreamID", DbType.UInt64, 0, "StreamID")
                         Dim parAudio_Language As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_Language", DbType.String, 0, "Audio_Language")
                         Dim parAudio_LongLanguage As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_LongLanguage", DbType.String, 0, "Audio_LongLanguage")
                         Dim parAudio_Codec As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_Codec", DbType.String, 0, "Audio_Codec")
                         Dim parAudio_Channel As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_Channel", DbType.String, 0, "Audio_Channel")
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        Dim parAudio_Bitrate As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_Bitrate", DbType.String, 0, "Audio_Bitrate")
+                        'cocotus end
+
                         For i As Integer = 0 To _TVEpDB.TVEp.FileInfo.StreamDetails.Audio.Count - 1
                             parAudio_EpID.Value = _TVEpDB.EpID
                             parAudio_StreamID.Value = i
@@ -1627,6 +1765,11 @@ Public Class Database
                             parAudio_LongLanguage.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Audio(i).LongLanguage
                             parAudio_Codec.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Audio(i).Codec
                             parAudio_Channel.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Audio(i).Channels
+
+                            'cocotus, 2013/02 Added support for new MediaInfo-fields
+                            parAudio_Bitrate.Value = _TVEpDB.TVEp.FileInfo.StreamDetails.Audio(i).Bitrate
+                            'cocotus end
+
                             SQLcommandTVAStreams.ExecuteNonQuery()
                         Next
                     End Using

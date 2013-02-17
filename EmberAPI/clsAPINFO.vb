@@ -117,6 +117,10 @@ Public Class NFO
             fiaOut.Channels = String.Empty
             fiaOut.Language = String.Empty
 
+            'cocotus, 2013/02 Added support for new MediaInfo-fields
+            fiaOut.Bitrate = String.Empty
+            'cocotus end
+
             For Each miAudio As MediaInfo.Audio In miFIA.StreamDetails.Audio
                 If Not String.IsNullOrEmpty(miAudio.Channels) Then
                     sinChans = NumUtils.ConvertToSingle(miAudio.Channels)
@@ -125,6 +129,11 @@ Public Class NFO
                         fiaOut.Codec = miAudio.Codec
                         fiaOut.Channels = sinChans.ToString
                         fiaOut.Language = miAudio.Language
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        fiaOut.Bitrate = miAudio.Bitrate
+                        'cocotus end
+
                     End If
                 End If
 
@@ -159,6 +168,11 @@ Public Class NFO
             fivOut.Duration = String.Empty
             fivOut.Scantype = String.Empty
             fivOut.Language = String.Empty
+            'cocotus, 2013/02 Added support for new MediaInfo-fields
+            fivOut.Bitrate = String.Empty
+            fivOut.MultiView = String.Empty
+            fivOut.EncodedSettings = String.Empty
+            'cocotus end
 
             For Each miVideo As MediaInfo.Video In miFIV.StreamDetails.Video
                 If Not String.IsNullOrEmpty(miVideo.Width) Then
@@ -172,6 +186,19 @@ Public Class NFO
                         fivOut.Duration = miVideo.Duration
                         fivOut.Scantype = miVideo.Scantype
                         fivOut.Language = miVideo.Language
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+
+                        'Multiview (3D) handling, simply map field
+                        fivOut.MultiView = miVideo.MultiView
+
+                        'EncodedSettings handling, simply map field
+                        fivOut.EncodedSettings = miVideo.EncodedSettings
+
+                        'Bitrate handling, simply map field
+                        fivOut.Bitrate = miVideo.Bitrate
+                        'cocotus end
+
                     End If
                 End If
             Next

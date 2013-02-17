@@ -450,6 +450,39 @@ Public Class MediaInfo
                 Dim vCodec As String = String.Empty
                 For v As Integer = 0 To VideoStreams - 1
                     miVideo = New Video
+
+
+                    'cocotus, 2013/02 Added support for new MediaInfo-fields
+                    'map VideoBitrate from MediaInfoScan to Ember
+
+                    'Bitrate handling:
+                    Dim newstr As String = Me.Get_(StreamKind.Visual, v, "BitRate/String")
+                    'now consider bitrate number and calculate all values in KB instead of MB/KB
+                    If newstr.ToUpper.IndexOf("K") > 0 Then
+                        newstr = newstr.Substring(0, newstr.ToUpper.IndexOf("K"))
+                        newstr = newstr.Replace(" ", "")
+                    ElseIf newstr.ToUpper.IndexOf("M") > 0 Then
+                        'can happen if video is ripped from bluray
+                        newstr = newstr.Substring(0, newstr.ToUpper.IndexOf("M"))
+                        newstr = newstr.Replace(" ", "")
+                        Try
+                            newstr = (CDbl(newstr) * 100).ToString
+                        Catch ex As Exception
+                        End Try
+                    End If
+                    'If no bitrate is read by MediaInfo, then set default 0 - I need value here because of comparing numbers later in HTML/Javascript template!
+                    If newstr = "" Then
+                        newstr = "0"
+                    End If
+                    'now save cleaned bitrate
+                    miVideo.Bitrate = newstr
+
+                    '  map multiview info (Support for 3D Movies) from MediaInfoScan to Ember (If > 1 -> 3D Movie)
+                    miVideo.MultiView = Me.Get_(StreamKind.Visual, v, "MultiView_Count")
+                    'map used encoder-settings from MediaInfoScan to Ember
+                    miVideo.EncodedSettings = Me.Get_(StreamKind.Visual, v, "Encoded_Library_Settings")
+                    'cocotus end
+
                     miVideo.Width = Me.Get_(StreamKind.Visual, v, "Width")
                     miVideo.Height = Me.Get_(StreamKind.Visual, v, "Height")
                     miVideo.Codec = ConvertVFormat(Me.Get_(StreamKind.Visual, v, "CodecID/Hint"))
@@ -489,6 +522,33 @@ Public Class MediaInfo
                         miAudio.Codec = If(IsNumeric(aCodec) OrElse String.IsNullOrEmpty(aCodec), ConvertAFormat(Me.Get_(StreamKind.Audio, a, "Format"), a_Profile), aCodec)
                     End If
                     miAudio.Channels = Me.Get_(StreamKind.Audio, a, "Channel(s)")
+
+                    'cocotus, 2013/02 Added support for new MediaInfo-fields
+                    'map audio bitrate from MediaInfoScan to Ember
+
+                    'Bitrate handling:
+                    Dim newstr As String = Me.Get_(StreamKind.Audio, a, "BitRate/String")
+                    'now consider bitrate number and calculate all values in KB instead of MB/KB
+                    If newstr.ToUpper.IndexOf("K") > 0 Then
+                        newstr = newstr.Substring(0, newstr.ToUpper.IndexOf("K"))
+                        newstr = newstr.Replace(" ", "")
+                    ElseIf newstr.ToUpper.IndexOf("M") > 0 Then
+                        'can happen if video is ripped from bluray
+                        newstr = newstr.Substring(0, newstr.ToUpper.IndexOf("M"))
+                        newstr = newstr.Replace(" ", "")
+                        Try
+                            newstr = (CDbl(newstr) * 100).ToString
+                        Catch ex As Exception
+                        End Try
+                    End If
+                    'If no bitrate is read by MediaInfo, then set default 0 - I need value here because of comparing numbers later in HTML/Javascript template!
+                    If newstr = "" Then
+                        newstr = "0"
+                    End If
+                    'now save cleaned bitrate
+                    miAudio.Bitrate = newstr
+                    'cocotus end
+
                     aLang = Me.Get_(StreamKind.Audio, a, "Language/String")
                     If Not String.IsNullOrEmpty(aLang) Then
                         miAudio.LongLanguage = aLang
@@ -568,6 +628,10 @@ Public Class MediaInfo
         Private _haspreferred As Boolean = False
         Private _language As String = String.Empty
         Private _longlanguage As String = String.Empty
+
+        'cocotus, 2013/02 Added support for new MediaInfo-fields
+        Private _bitrate As String = String.Empty
+        'cocotus end
 
         #End Region 'Fields
 
@@ -650,6 +714,19 @@ Public Class MediaInfo
                 Return Not String.IsNullOrEmpty(Me._longlanguage)
             End Get
         End Property
+
+        'cocotus, 2013/02 Added support for new MediaInfo-fields
+        'add GETTER/Setter for new fields here..
+        <XmlElement("bitrate")> _
+        Public Property Bitrate() As String
+            Get
+                Return Me._bitrate
+            End Get
+            Set(ByVal Value As String)
+                Me._bitrate = Value
+            End Set
+        End Property
+        'end cocotus
 
         #End Region 'Properties
 
@@ -842,6 +919,12 @@ Public Class MediaInfo
         Private _scantype As String = String.Empty
         Private _width As String = String.Empty
 
+        'cocotus, 2013/02 Added support for new MediaInfo-fields
+        Private _bitrate As String = String.Empty
+        Private _multiview As String = String.Empty
+        Private _encoded_Settings As String = String.Empty
+        'cocotus end
+
         #End Region 'Fields
 
         #Region "Properties"
@@ -981,6 +1064,39 @@ Public Class MediaInfo
                 Return Not String.IsNullOrEmpty(Me._width)
             End Get
         End Property
+
+        'cocotus, 2013/02 Added support for new MediaInfo-fields
+        'add GETTER/Setter for new fields here..
+
+        <XmlElement("bitrate")> _
+        Public Property Bitrate() As String
+            Get
+                Return Me._bitrate
+            End Get
+            Set(ByVal Value As String)
+                Me._bitrate = Value
+            End Set
+        End Property
+
+        <XmlElement("multiView_Count")> _
+        Public Property MultiView() As String
+            Get
+                Return Me._multiview
+            End Get
+            Set(ByVal Value As String)
+                Me._multiview = Value
+            End Set
+        End Property
+        <XmlElement("encodedSettings")> _
+        Public Property EncodedSettings() As String
+            Get
+                Return Me._encoded_Settings
+            End Get
+            Set(ByVal Value As String)
+                Me._encoded_Settings = Value
+            End Set
+        End Property
+        'cocotus end
 
         #End Region 'Properties
 
