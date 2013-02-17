@@ -254,6 +254,47 @@ Public Class ImageUtils
         Return imgUnderlay
     End Function
 
+    'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+    ' New Image methods added here (resizing/compressing)
+
+    ''' <summary>
+    ''' Compress JPEG Image and save result as local image
+    ''' </summary>
+    ''' <param name="Image">Image which should be compressed/encoded</param>
+    ''' <param name="OutPutFile">Savepath of recoded image</param>
+    ''' <param name="Qualitiy">Quality Setting 0-100</param>
+    Public Shared Sub JPEGCompression(ByVal Image As Image, ByVal OutPutFile As String, ByVal Qualitiy As Integer)
+        Dim ImageCodecs() As Imaging.ImageCodecInfo
+        Dim ImageParameters As Imaging.EncoderParameters
+
+        ImageCodecs = Imaging.ImageCodecInfo.GetImageEncoders()
+        ImageParameters = New Imaging.EncoderParameters(1)
+        ImageParameters.Param(0) = New Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, Qualitiy)
+        Image.Save(OutPutFile, ImageCodecs(1), ImageParameters)
+    End Sub
+
+    ''' <summary>
+    ''' Resizes Image
+    ''' </summary>
+    ''' <param name="Image">Image which should be resized</param>
+    ''' <param name="OutPutFile">Size of image</param>
+    Public Shared Function ResizeImage(ByVal poImage As Image, ByVal poSize As Size) As Image
+
+        Dim Original As Image = DirectCast(poImage.Clone(), Image)
+        Dim ResizedImage As Image = New Bitmap(poSize.Width, poSize.Height, Original.PixelFormat)
+        Dim oGraphic As Graphics = Graphics.FromImage(ResizedImage)
+        oGraphic.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality
+        oGraphic.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality
+        oGraphic.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic
+        Dim oRectangle As Rectangle = New Rectangle(0, 0, poSize.Width, poSize.Height)
+        oGraphic.DrawImage(Original, oRectangle)
+        oGraphic.Dispose()
+        Original.Dispose()
+        Return ResizedImage
+    End Function
+
+    'cocotus end
+
 #End Region 'Methods
 
 End Class
