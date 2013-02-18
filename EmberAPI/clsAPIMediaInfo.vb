@@ -355,6 +355,17 @@ Public Class MediaInfo
             End If
             Return AdvancedSettings.GetSetting(String.Concat("AudioFormatConvert:", sFormat.ToLower), sFormat.ToLower)
             'Return sFormat
+            'cocotus, 2013/02 Fix2 for DTS Scan
+        ElseIf Not String.IsNullOrEmpty(sProfile) Then
+            If sProfile.ToUpper.Contains("MA") Then
+                sFormat = "dtshd_ma" 'Master Audio
+            ElseIf sProfile.ToUpper.Contains("HRA") Then
+                sFormat = "dtshd_hra" 'high resolution
+            ElseIf sProfile.ToLower.Contains("truehd") Then
+                sFormat = "truehd" 'Dolby TrueHD
+            End If
+            Return AdvancedSettings.GetSetting(String.Concat("AudioFormatConvert:", sFormat.ToLower), sFormat.ToLower)
+            'cocotus end
         Else
             Return String.Empty
         End If
