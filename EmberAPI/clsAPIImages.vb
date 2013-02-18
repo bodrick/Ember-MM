@@ -677,6 +677,7 @@ Public Class Images
 
         Try
             Dim fPath As String = String.Empty
+            Dim fPathStack As String = String.Empty
             Dim tPath As String = String.Empty
 
             Try
@@ -715,7 +716,11 @@ Public Class Images
                 ElseIf Master.eSettings.MovieNameFanartJPG AndAlso Not Master.eSettings.VideoTSParentXBMC Then
                     fPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name), "-fanart.jpg")
                 ElseIf Master.eSettings.MovieNameFanartJPG AndAlso Master.eSettings.VideoTSParentXBMC Then
+<<<<<<< HEAD
                     fPath = String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, "\", "fanart.jpg")
+=======
+                    fPath = String.Concat(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "\", "fanart.jpg")
+>>>>>>> upstream/1.3.0.x
                 ElseIf Master.eSettings.MovieNameDotFanartJPG Then
                     fPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), ".fanart.jpg")
                 Else
@@ -731,7 +736,9 @@ Public Class Images
                 End If
             Else
                 Dim tmpName As String = Path.GetFileNameWithoutExtension(mMovie.Filename)
+                Dim tmpNameStack As String = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(mMovie.Filename))
                 fPath = Path.Combine(Directory.GetParent(mMovie.Filename).FullName, tmpName)
+                fPathStack = Path.Combine(Directory.GetParent(mMovie.Filename).FullName, tmpNameStack)
 
                 If Master.eSettings.MovieNameDotFanartJPG AndAlso (Not mMovie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) Then
                     If FileUtils.Common.isVideoTS(mMovie.Filename) Then
@@ -765,7 +772,11 @@ Public Class Images
                         If Master.eSettings.VideoTSParentXBMC AndAlso tmpName.ToLower = "video_ts" Then
                             tPath = String.Concat(Directory.GetParent(fPath).FullName, "\", "fanart.jpg")
                         Else
+<<<<<<< HEAD
                             tPath = String.Concat(fPath, "-fanart.jpg")
+=======
+                            tPath = String.Concat(fPathStack, "-fanart.jpg")
+>>>>>>> upstream/1.3.0.x
                         End If
                     End If
 
@@ -813,6 +824,7 @@ Public Class Images
 
         Try
             Dim pPath As String = String.Empty
+            Dim pPathStack As String = String.Empty
             Try
                 Dim params As New List(Of Object)(New Object() {mMovie})
                 ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.OnMoviePosterSave, params, _image, False)
@@ -882,8 +894,11 @@ Public Class Images
                 End If
             Else
                 Dim tPath As String = String.Empty
+                Dim parPath As String = Directory.GetParent(mMovie.Filename).FullName
                 Dim tmpName As String = Path.GetFileNameWithoutExtension(mMovie.Filename)
+                Dim tmpNameStack As String = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(mMovie.Filename))
                 pPath = Path.Combine(Directory.GetParent(mMovie.Filename).FullName, tmpName)
+                pPathStack = Path.Combine(Directory.GetParent(mMovie.Filename).FullName, tmpNameStack)
 
                 If Master.eSettings.FolderJPG AndAlso mMovie.isSingle Then
                     tPath = Path.Combine(Directory.GetParent(mMovie.Filename).FullName, "folder.jpg")
@@ -932,7 +947,11 @@ Public Class Images
                         If Master.eSettings.VideoTSParentXBMC AndAlso tmpName.ToLower = "video_ts" Then
                             tPath = String.Concat(Directory.GetParent(pPath).FullName, "\", "poster.jpg")
                         Else
+<<<<<<< HEAD
                             tPath = String.Concat(pPath, "-poster.jpg")
+=======
+                            tPath = String.Concat(pPathStack, "-poster.jpg")
+>>>>>>> upstream/1.3.0.x
                         End If
                     End If
                     If Not File.Exists(tPath) OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
@@ -980,6 +999,7 @@ Public Class Images
     Public Function SaveAsActorThumb(ByVal actor As MediaContainers.Person, ByVal fpath As String, ByVal mMovie As Structures.DBMovie) As String
         Dim tPath As String = String.Empty
 
+<<<<<<< HEAD
         'If Master.eSettings.VideoTSParentXBMC AndAlso (FileUtils.Common.isVideoTS(mMovie.Filename) OrElse FileUtils.Common.isBDRip(mMovie.Filename)) Then
         '    tPath = Path.Combine(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
         '    If Not Directory.Exists(Path.Combine(Directory.GetParent(fpath).FullName, ".actors")) Then Directory.CreateDirectory(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"))
@@ -991,6 +1011,20 @@ Public Class Images
         If Not Directory.Exists(Path.Combine(fpath, ".actors")) Then Directory.CreateDirectory(Path.Combine(fpath, ".actors"))
         If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
             Save(tPath, Master.eSettings.PosterQuality)
+=======
+        If Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
+            tPath = Path.Combine(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
+            If Not Directory.Exists(Path.Combine(Directory.GetParent(fpath).FullName, ".actors")) Then Directory.CreateDirectory(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"))
+            If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
+                Save(tPath, Master.eSettings.PosterQuality)
+            End If
+        Else
+            tPath = Path.Combine(Path.Combine(fpath, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
+            If Not Directory.Exists(Path.Combine(fpath, ".actors")) Then Directory.CreateDirectory(Path.Combine(fpath, ".actors"))
+            If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
+                Save(tPath, Master.eSettings.PosterQuality)
+            End If
+>>>>>>> upstream/1.3.0.x
         End If
         'End If
         Return tPath

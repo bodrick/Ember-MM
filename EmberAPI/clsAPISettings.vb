@@ -172,6 +172,7 @@ Public Class Settings
     Private _movienamedashposterjpg As Boolean
     Private _movienamemultionly As Boolean
     Private _movienamenfo As Boolean
+    Private _movienamenfostack As Boolean
     Private _movienametbn As Boolean
     Private _movienfo As Boolean
     Private _movieposterCol As Boolean
@@ -1628,6 +1629,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._movienamenfo = value
+        End Set
+    End Property
+
+    Public Property MovieNameNFOStack() As Boolean
+        Get
+            Return Me._movienamenfostack
+        End Get
+        Set(ByVal value As Boolean)
+            Me._movienamenfostack = value
         End Set
     End Property
 
@@ -3325,6 +3335,7 @@ Public Class Settings
         Me._movienamedotfanartjpg = False
         Me._movienfo = True
         Me._movienamenfo = True
+        Me._movienamenfostack = True
         Me._movienamemultionly = False
         Me._dashtrailer = True
         Me._videotsparent = False

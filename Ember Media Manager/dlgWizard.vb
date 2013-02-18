@@ -141,7 +141,12 @@ Public Class dlgWizard
 		Me.chkMovieNameFanartJPG.Checked = Master.eSettings.MovieNameFanartJPG
 		Me.chkMovieNameDotFanartJPG.Checked = Master.eSettings.MovieNameDotFanartJPG
 		Me.chkMovieNFO.Checked = Master.eSettings.MovieNFO
+<<<<<<< HEAD
 		Me.chkMovieNameNFO.Checked = Master.eSettings.MovieNameNFO
+=======
+        Me.chkMovieNameNFO.Checked = Master.eSettings.MovieNameNFO
+        Me.chkMovieNameNFOStack.Checked = Master.eSettings.MovieNameNFOStack
+>>>>>>> upstream/1.3.0.x
         Me.chkMovieNameMultiOnly.Checked = Master.eSettings.MovieNameMultiOnly
         Me.chkVideoTSParentXBMC.Checked = Master.eSettings.VideoTSParentXBMC
 		Me.cbIntLang.SelectedItem = Master.eSettings.Language
@@ -340,7 +345,12 @@ Public Class dlgWizard
 		Master.eSettings.MovieNameFanartJPG = Me.chkMovieNameFanartJPG.Checked
 		Master.eSettings.MovieNameDotFanartJPG = Me.chkMovieNameDotFanartJPG.Checked
 		Master.eSettings.MovieNFO = Me.chkMovieNFO.Checked
+<<<<<<< HEAD
 		Master.eSettings.MovieNameNFO = Me.chkMovieNameNFO.Checked
+=======
+        Master.eSettings.MovieNameNFO = Me.chkMovieNameNFO.Checked
+        Master.eSettings.MovieNameNFOStack = Me.chkMovieNameNFOStack.Checked
+>>>>>>> upstream/1.3.0.x
         Master.eSettings.MovieNameMultiOnly = Me.chkMovieNameMultiOnly.Checked
         Master.eSettings.VideoTSParentXBMC = Me.chkVideoTSParentXBMC.Checked
 		Master.eSettings.Language = Me.cbIntLang.Text
@@ -455,7 +465,8 @@ Public Class dlgWizard
 		Me.chkMovieNameDotFanartJPG.Checked = False
 		Me.chkMovieNameFanartJPG.Checked = True
 		Me.chkMovieNameJPG.Checked = False
-		Me.chkMovieNameNFO.Checked = True
+        Me.chkMovieNameNFO.Checked = False
+        Me.chkMovieNameNFOStack.Checked = True
 		Me.chkMovieNameTBN.Checked = False
 		Me.chkMovieNFO.Checked = False
 		Me.chkMovieTBN.Checked = False
