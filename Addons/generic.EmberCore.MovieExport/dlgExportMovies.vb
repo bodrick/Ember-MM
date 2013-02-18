@@ -194,17 +194,47 @@ Public Class dlgExportMovies
             For Each _curMovie As Structures.DBMovie In _movies
                 Dim _vidDetails As String = String.Empty
                 Dim _vidDimensions As String = String.Empty
+
+
+                'cocotus, 2013/02 Added support for new MediaInfo-fields
+                'We want to use new mediainfo fields in template to -> make them avalaible here!
+                Dim _vidBitrate As String = String.Empty
+                Dim _vidEncodedSettings As String = String.Empty
+                Dim _vidMultiView As String = String.Empty
+                Dim _audBitrate As String = String.Empty
+                'cocotus end
+
                 Dim _audDetails As String = String.Empty
                 If Not IsNothing(_curMovie.Movie.FileInfo) Then
                     If _curMovie.Movie.FileInfo.StreamDetails.Video.Count > 0 Then
                         tVid = NFO.GetBestVideo(_curMovie.Movie.FileInfo)
                         tRes = NFO.GetResFromDimensions(tVid)
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        If Not String.IsNullOrEmpty(tVid.Bitrate) Then
+                            _vidBitrate = tVid.Bitrate
+                        End If
+                        If Not String.IsNullOrEmpty(tVid.EncodedSettings) Then
+                            _vidEncodedSettings = tVid.EncodedSettings
+                        End If
+                        If Not String.IsNullOrEmpty(tVid.MultiView) Then
+                            _vidMultiView = tVid.MultiView
+                        End If
+                        'cocotus end
+
                         _vidDimensions = NFO.GetDimensionsFromVideo(tVid)
                         _vidDetails = String.Format("{0} / {1}", If(String.IsNullOrEmpty(tRes), Master.eLang.GetString(283, "Unknown", True), tRes), If(String.IsNullOrEmpty(tVid.Codec), Master.eLang.GetString(283, "Unknown", True), tVid.Codec)).ToUpper
                     End If
 
                     If _curMovie.Movie.FileInfo.StreamDetails.Audio.Count > 0 Then
                         tAud = NFO.GetBestAudio(_curMovie.Movie.FileInfo, False)
+
+                        'cocotus, 2013/02 Added support for new MediaInfo-fields
+                        If Not String.IsNullOrEmpty(tAud.Bitrate) Then
+                            _audBitrate = tAud.Bitrate
+                        End If
+                        'cocotus end
+
                         _audDetails = String.Format("{0} / {1}ch", If(String.IsNullOrEmpty(tAud.Codec), Master.eLang.GetString(283, "Unknown", True), tAud.Codec), If(String.IsNullOrEmpty(tAud.Channels), Master.eLang.GetString(283, "Unknown", True), tAud.Channels)).ToUpper
                     End If
                 End If
@@ -271,6 +301,26 @@ Public Class dlgExportMovies
                 row = row.Replace("<$AUDIO>", _audDetails)
                 row = row.Replace("<$SIZE>", StringUtils.HtmlEncode(MovieSize(_curMovie.Filename).ToString))
                 row = row.Replace("<$DATEADD>", StringUtils.HtmlEncode(Functions.ConvertFromUnixTimestamp(_curMovie.DateAdd).ToShortDateString))
+
+                'cocotus, 2013/02 Added support for new MediaInfo-fields
+                row = row.Replace("<$VIDEOBITRATE>", _vidBitrate)
+                row = row.Replace("<$VIDEOMULTIVIEW>", _vidMultiView)
+                row = row.Replace("<$VIDEOENCODINGSETTINGS>", _vidEncodedSettings)
+                row = row.Replace("<$AUDIOBITRATE>", _audBitrate)
+                'Unlocking more fields to use in templates!
+                row = row.Replace("<$NOW>", System.DateTime.Now.ToLongDateString) 'Save Build Date. might be useful info!
+                row = row.Replace("<$COUNTRY>", StringUtils.HtmlEncode(_curMovie.Movie.Country))
+                row = row.Replace("<$IDMOVIEDB>", StringUtils.HtmlEncode(_curMovie.Movie.IDMovieDB))
+                row = row.Replace("<$ORIGINALTITLE>", StringUtils.HtmlEncode(_curMovie.Movie.OriginalTitle))
+                row = row.Replace("<$PLAYCOUNT>", StringUtils.HtmlEncode(_curMovie.Movie.PlayCount))
+                row = row.Replace("<$STUDIO>", StringUtils.HtmlEncode(_curMovie.Movie.Studio))
+                row = row.Replace("<$TOP250>", StringUtils.HtmlEncode(_curMovie.Movie.Top250))
+                row = row.Replace("<$TRAILER>", StringUtils.HtmlEncode(_curMovie.Movie.Trailer))
+                row = row.Replace("<$VIDEOSOURCE>", StringUtils.HtmlEncode(_curMovie.Movie.VideoSource))
+                row = row.Replace("<$WATCHED>", StringUtils.HtmlEncode(_curMovie.Movie.Watched))
+                'cocotus end
+
+
                 row = GetAVImages(_curMovie, row)
                 HTMLBody.Append(row)
                 counter += 1
@@ -542,12 +592,60 @@ Public Class dlgExportMovies
             Dim counter As Integer = 1
             Dim finalpath As String = Path.Combine(fpath, "export")
             Directory.CreateDirectory(finalpath)
+
+            'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+
+            'The following resizing method of image requires Size object, so lets create that...
+            Dim mysize As New Size(1024, 576)
+            'now consider the user selection
+            If strFanartSize <> "" Then
+                If strFanartSize = "900" Then
+                    mysize.Width = 900
+                    mysize.Height = 576
+                ElseIf strFanartSize = "1200" Then
+                    mysize.Width = 1200
+                    mysize.Height = 675
+                ElseIf strFanartSize = "1600" Then
+                    mysize.Width = 1600
+                    mysize.Height = 900
+                Else
+                    mysize.Width = 900
+                    mysize.Height = 576
+                End If
+            End If
+            'cocotus end
+
             For Each _curMovie As Structures.DBMovie In _movies.Where(Function(y) FilterMovies.Contains(y.ID))
                 Try
                     Dim fanartfile As String = Path.Combine(finalpath, String.Concat(counter.ToString, "-fanart.jpg"))
                     If File.Exists(_curMovie.FanartPath) Then
 
-                        File.Copy(_curMovie.FanartPath, fanartfile, True)
+                        'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+
+                        'old method, just copy/no image conversion
+                        'File.Copy(_curMovie.FanartPath, fanartfile, True)
+
+                        'Now we do some image processing to make the output file smaller!
+                        Try
+                            Dim img As Image
+                            Dim sFileName As String = _curMovie.FanartPath
+                            Dim fs As New System.IO.FileStream(sFileName, System.IO.FileMode.Open)
+                            img = Image.FromStream(fs)
+                            fs.Close()
+                            '1. Step: Resizing, Image method needs Size and IMAGE object we just created, so now we can start!
+                            Dim imgresized As Image = ImageUtils.ResizeImage(img, mysize)
+                            img.Dispose()
+                            '2. Step: Now use jpeg compression to make file even smaller...
+                            ImageUtils.JPEGCompression(imgresized, fanartfile, 60)
+                            imgresized.Dispose()
+
+                        Catch ex As Exception
+                            'The old method, used here when anything goes wrong
+                            File.Copy(_curMovie.FanartPath, fanartfile, True)
+                        End Try
+                        'cocotus end
+
+
                     End If
                     counter += 1
                 Catch
@@ -714,6 +812,20 @@ Public Class dlgExportMovies
     End Sub
 
     Private Sub SaveAll(ByVal sWarning As String, ByVal srcPath As String, ByVal destPath As String, Optional ByVal resizePoster As Integer = 200)
+
+        'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+        'POSTER Managament here: sets internal resizePoster variable to selected value of user (Fanart will be handled in ExportFanart method, works different)
+        If strPosterSize <> "" Then
+            Try
+                'Now instead of default width 200px, user input is considered
+                resizePoster = CInt(strPosterSize)
+            Catch ex As Exception
+                'if anything goes wrong set to 200px
+                resizePoster = 200
+            End Try
+        End If
+        'cocotus end
+
         wbMovieList.Visible = False
         If Not String.IsNullOrEmpty(sWarning) Then Warning(True, sWarning)
         cbSearch.Enabled = False
@@ -787,6 +899,14 @@ Public Class dlgExportMovies
         Me.Label2.Text = Master.eLang.GetString(14, "Template")
 
         Me.cbSearch.Items.AddRange(New Object() {Master.eLang.GetString(21, "Title", True), Master.eLang.GetString(278, "Year", True), Master.eLang.GetString(2, "Video Flag"), Master.eLang.GetString(3, "Audio Flag"), Master.eLang.GetString(1, "Source Folder")})
+
+
+        'cocotus, 2013/02 Export HTML expanded: configurable resizable images 
+        ' some values of pixelsizes the user can select in combobox /readonly to avoid non numeric input!
+        Me.cboposter.Items.AddRange(New Object() {"200", "500", "1000"})
+        Me.cbofanart.Items.AddRange(New Object() {"900", "1200", "1600"})
+        'cocotus end
+
         lstSources.Items.Clear()
         For Each s As Structures.MovieSource In Master.MovieSources
             lstSources.Items.Add(s.Name)
@@ -829,6 +949,22 @@ Public Class dlgExportMovies
         End If
         Warning(False)
     End Sub
+
+    'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+    'contains selected poster/fanart sizes
+    Dim strFanartSize As String = ""
+    Dim strPosterSize As String = ""
+
+    'save selected value from combobox to variables on LostFocus event of combobox
+    Private Sub cboposter_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboposter.LostFocus
+        strPosterSize = cboposter.Text
+    End Sub
+
+    Private Sub cbofanart_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbofanart.LostFocus
+        strFanartSize = cbofanart.Text
+    End Sub
+
+    'cocotus end
 
 #End Region 'Methods
 

@@ -587,7 +587,15 @@ Public Class dlgEditMovie
                 End If
 
                 Me.chkMark.Checked = Master.currMovie.IsMark
-
+                'cocotus, 2013/02 Playcount/Watched state support added
+                'When Edit Movie-Page is loaded, checkbox will be unchecked of playcount=0 or not set at all... 
+                If Master.currMovie.Movie.PlayCount = "" Or Master.currMovie.Movie.PlayCount = "0" Then
+                    Me.chkWatched.Checked = False
+                Else
+                    'Playcount <> Empty and not 0 -> Tag filled -> Checked!
+                    Me.chkWatched.Checked = True
+                End If
+                'cocotus end
                 If Not String.IsNullOrEmpty(Master.currMovie.Movie.Title) Then
                     .txtTitle.Text = Master.currMovie.Movie.Title
                 End If
@@ -1233,6 +1241,21 @@ Public Class dlgEditMovie
                 Master.currMovie.Movie.OldCredits = .txtCredits.Text.Trim
                 Master.currMovie.Movie.Trailer = .txtTrailer.Text.Trim
                 Master.currMovie.Movie.Studio = .txtStudio.Text.Trim
+
+                'cocotus, 2013/02 Playcount/Watched state support added
+                'if watched-checkbox is checked -> save Playcount=1 in nfo
+                If chkWatched.Checked Then
+                    'Only set to 1 if field was empty before (otherwise it would overwrite Playcount everytime which is not desirable)
+                    If String.IsNullOrEmpty(Master.currMovie.Movie.PlayCount) Or Master.currMovie.Movie.PlayCount = "0" Then
+                        Master.currMovie.Movie.PlayCount = "1"
+                    End If
+                Else
+                    'Unchecked Watched State -> Set Playcount back to 0, but only if it was filled before (check could save time)
+                    If IsNumeric(Master.currMovie.Movie.PlayCount) AndAlso CInt(Master.currMovie.Movie.PlayCount) > 0 Then
+                        Master.currMovie.Movie.PlayCount = ""
+                    End If
+                End If
+                'cocotus End
 
                 If .lbGenre.CheckedItems.Count > 0 Then
 
