@@ -130,6 +130,7 @@ Partial Class dlgExportMovies
         '
         'pnlBottomMain
         '
+        Me.pnlBottomMain.Controls.Add(Me.lstSources)
         Me.pnlBottomMain.Controls.Add(Me.lblfanart)
         Me.pnlBottomMain.Controls.Add(Me.cbofanart)
         Me.pnlBottomMain.Controls.Add(Me.lblposter)
@@ -185,7 +186,6 @@ Partial Class dlgExportMovies
         '
         'pnlSearch
         '
-        Me.pnlSearch.Controls.Add(Me.lstSources)
         Me.pnlSearch.Controls.Add(Me.btnSource)
         Me.pnlSearch.Controls.Add(Me.Reset_Button)
         Me.pnlSearch.Controls.Add(Me.Label1)
@@ -203,9 +203,9 @@ Partial Class dlgExportMovies
         '
         Me.lstSources.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstSources.FormattingEnabled = True
-        Me.lstSources.Location = New System.Drawing.Point(37, -68)
+        Me.lstSources.Location = New System.Drawing.Point(236, 7)
         Me.lstSources.Name = "lstSources"
-        Me.lstSources.Size = New System.Drawing.Size(84, 72)
+        Me.lstSources.Size = New System.Drawing.Size(84, 38)
         Me.lstSources.TabIndex = 1
         Me.lstSources.Visible = False
         '
