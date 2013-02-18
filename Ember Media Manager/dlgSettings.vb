@@ -861,7 +861,8 @@ Public Class dlgSettings
         Me.chkMovieNameDotFanartJPG.Checked = False
         Me.chkMovieNameFanartJPG.Checked = True
         Me.chkMovieNameJPG.Checked = False
-        Me.chkMovieNameNFO.Checked = True
+        Me.chkMovieNameNFO.Checked = False
+        Me.chkMovieNameNFOStack.Checked = True
         Me.chkMovieNameTBN.Checked = False
         Me.chkMovieNFO.Checked = False
         Me.chkMovieTBN.Checked = False
@@ -1433,6 +1434,10 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkMovieNameNFO_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkMovieNameNFO.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkMovieNameNFOStack_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkMovieNameNFOStack.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2282,6 +2287,7 @@ Public Class dlgSettings
             Me.chkMovieNameDotFanartJPG.Checked = Master.eSettings.MovieNameDotFanartJPG
             Me.chkMovieNFO.Checked = Master.eSettings.MovieNFO
             Me.chkMovieNameNFO.Checked = Master.eSettings.MovieNameNFO
+            Me.chkMovieNameNFOStack.Checked = Master.eSettings.MovieNameNFOStack
             Me.chkMovieNameMultiOnly.Checked = Master.eSettings.MovieNameMultiOnly
             Me.rbDashTrailer.Checked = Master.eSettings.DashTrailer
             Me.rbBracketTrailer.Checked = Not Master.eSettings.DashTrailer
@@ -3375,6 +3381,7 @@ Public Class dlgSettings
             Master.eSettings.MovieNameDotFanartJPG = Me.chkMovieNameDotFanartJPG.Checked
             Master.eSettings.MovieNFO = Me.chkMovieNFO.Checked
             Master.eSettings.MovieNameNFO = Me.chkMovieNameNFO.Checked
+            Master.eSettings.MovieNameNFOStack = Me.chkMovieNameNFOStack.Checked
             Master.eSettings.MovieNameMultiOnly = Me.chkMovieNameMultiOnly.Checked
             Master.eSettings.DashTrailer = Me.rbDashTrailer.Checked
             'Master.eSettings.VideoTSParent = Me.chkVideoTSParent.Checked

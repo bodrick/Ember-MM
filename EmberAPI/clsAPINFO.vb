@@ -712,6 +712,7 @@ Public Class NFO
 
                 Dim tPath As String = String.Empty
                 Dim nPath As String = String.Empty
+                Dim nPathStack As String = String.Empty
                 Dim doesExist As Boolean = False
                 Dim fAtt As New FileAttributes
                 Dim fAttWritable As Boolean = True
@@ -782,7 +783,9 @@ Public Class NFO
                     End If
                 Else
                     Dim tmpName As String = Path.GetFileNameWithoutExtension(movieToSave.Filename)
+                    Dim tmpNameStack As String = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(movieToSave.Filename))
                     nPath = Path.Combine(Directory.GetParent(movieToSave.Filename).FullName, tmpName)
+                    nPathStack = Path.Combine(Directory.GetParent(movieToSave.Filename).FullName, tmpNameStack)
 
                     If Master.eSettings.MovieNameNFO AndAlso (Not movieToSave.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) Then
                         If FileUtils.Common.isVideoTS(movieToSave.Filename) Then
@@ -791,6 +794,40 @@ Public Class NFO
                             tPath = Path.Combine(Directory.GetParent(movieToSave.Filename).FullName, "index.nfo")
                         Else
                             tPath = String.Concat(nPath, ".nfo")
+                        End If
+
+                        If Not Master.eSettings.OverwriteNfo Then
+                            RenameNonConfNfo(tPath, False)
+                        End If
+
+                        doesExist = File.Exists(tPath)
+                        If Not doesExist OrElse (Not CBool(File.GetAttributes(tPath) And FileAttributes.ReadOnly)) Then
+
+                            If doesExist Then
+                                fAtt = File.GetAttributes(tPath)
+                                Try
+                                    File.SetAttributes(tPath, FileAttributes.Normal)
+                                Catch ex As Exception
+                                    fAttWritable = False
+                                End Try
+                            End If
+
+                            Using xmlSW As New StreamWriter(tPath)
+                                movieToSave.NfoPath = tPath
+                                xmlSer.Serialize(xmlSW, movieToSave.Movie)
+                            End Using
+
+                            If doesExist And fAttWritable Then File.SetAttributes(tPath, fAtt)
+                        End If
+                    End If
+
+                    If Master.eSettings.MovieNameNFOStack AndAlso (Not movieToSave.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) Then
+                        If FileUtils.Common.isVideoTS(movieToSave.Filename) Then
+                            tPath = Path.Combine(Directory.GetParent(movieToSave.Filename).FullName, "video_ts.nfo")
+                        ElseIf FileUtils.Common.isBDRip(movieToSave.Filename) Then
+                            tPath = Path.Combine(Directory.GetParent(Directory.GetParent(movieToSave.Filename).FullName).FullName, "index.nfo")
+                        Else
+                            tPath = String.Concat(nPathStack, ".nfo")
                         End If
 
                         If Not Master.eSettings.OverwriteNfo Then

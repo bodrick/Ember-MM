@@ -33,6 +33,7 @@ Partial Class dlgWizard
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.chkVideoTSParentXBMC = New System.Windows.Forms.CheckBox()
         Me.GroupBox21 = New System.Windows.Forms.GroupBox()
         Me.rbBracketTrailer = New System.Windows.Forms.RadioButton()
         Me.rbDashTrailer = New System.Windows.Forms.RadioButton()
@@ -122,7 +123,7 @@ Partial Class dlgWizard
         Me.chkShowPosterTBN = New System.Windows.Forms.CheckBox()
         Me.chkShowFolderJPG = New System.Windows.Forms.CheckBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.chkVideoTSParentXBMC = New System.Windows.Forms.CheckBox()
+        Me.chkMovieNameNFOStack = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         Me.GroupBox21.SuspendLayout()
@@ -187,6 +188,7 @@ Partial Class dlgWizard
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Panel3)
         Me.Panel1.Controls.Add(Me.Label32)
         Me.Panel1.Controls.Add(Me.cbIntLang)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -240,20 +242,30 @@ Partial Class dlgWizard
         '
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.GroupBox7)
         Me.Panel3.Controls.Add(Me.chkVideoTSParentXBMC)
         Me.Panel3.Controls.Add(Me.GroupBox21)
         Me.Panel3.Controls.Add(Me.chkMovieNameMultiOnly)
         Me.Panel3.Controls.Add(Me.btnMovieFrodo)
-        Me.Panel3.Controls.Add(Me.GroupBox7)
         Me.Panel3.Controls.Add(Me.GroupBox6)
         Me.Panel3.Controls.Add(Me.GroupBox5)
         Me.Panel3.Controls.Add(Me.Label5)
         Me.Panel3.Controls.Add(Me.Label4)
-        Me.Panel3.Location = New System.Drawing.Point(959, 7)
+        Me.Panel3.Location = New System.Drawing.Point(600, 7)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(376, 323)
         Me.Panel3.TabIndex = 6
         Me.Panel3.Visible = False
+        '
+        'chkVideoTSParentXBMC
+        '
+        Me.chkVideoTSParentXBMC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkVideoTSParentXBMC.Location = New System.Drawing.Point(20, 269)
+        Me.chkVideoTSParentXBMC.Name = "chkVideoTSParentXBMC"
+        Me.chkVideoTSParentXBMC.Size = New System.Drawing.Size(337, 26)
+        Me.chkVideoTSParentXBMC.TabIndex = 7
+        Me.chkVideoTSParentXBMC.Text = "Frodo Compatible VIDEO_TS File Placement/Naming"
+        Me.chkVideoTSParentXBMC.UseVisualStyleBackColor = True
         '
         'GroupBox21
         '
@@ -314,12 +326,13 @@ Partial Class dlgWizard
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.chkMovieNameNFOStack)
         Me.GroupBox7.Controls.Add(Me.chkMovieNameNFO)
         Me.GroupBox7.Controls.Add(Me.chkMovieNFO)
         Me.GroupBox7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(218, 181)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(139, 54)
+        Me.GroupBox7.Size = New System.Drawing.Size(139, 74)
         Me.GroupBox7.TabIndex = 3
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "NFO"
@@ -1239,15 +1252,16 @@ Partial Class dlgWizard
         Me.Label11.Text = resources.GetString("Label11.Text")
         Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'chkVideoTSParentXBMC
+        'chkMovieNameNFOStack
         '
-        Me.chkVideoTSParentXBMC.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkVideoTSParentXBMC.Location = New System.Drawing.Point(20, 269)
-        Me.chkVideoTSParentXBMC.Name = "chkVideoTSParentXBMC"
-        Me.chkVideoTSParentXBMC.Size = New System.Drawing.Size(337, 26)
-        Me.chkVideoTSParentXBMC.TabIndex = 7
-        Me.chkVideoTSParentXBMC.Text = "Frodo Compatible VIDEO_TS File Placement/Naming"
-        Me.chkVideoTSParentXBMC.UseVisualStyleBackColor = True
+        Me.chkMovieNameNFOStack.AutoSize = True
+        Me.chkMovieNameNFOStack.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+        Me.chkMovieNameNFOStack.Location = New System.Drawing.Point(6, 53)
+        Me.chkMovieNameNFOStack.Name = "chkMovieNameNFOStack"
+        Me.chkMovieNameNFOStack.Size = New System.Drawing.Size(129, 17)
+        Me.chkMovieNameNFOStack.TabIndex = 2
+        Me.chkMovieNameNFOStack.Text = "<movie>.nfo (Stack)"
+        Me.chkMovieNameNFOStack.UseVisualStyleBackColor = True
         '
         'dlgWizard
         '
@@ -1256,7 +1270,6 @@ Partial Class dlgWizard
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.CancelButton = Me.Cancel_Button
         Me.ClientSize = New System.Drawing.Size(546, 364)
-        Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.btnBack)
         Me.Controls.Add(Me.btnNext)
@@ -1410,5 +1423,6 @@ Partial Class dlgWizard
 	Friend WithEvents rbBracketTrailer As System.Windows.Forms.RadioButton
     Friend WithEvents rbDashTrailer As System.Windows.Forms.RadioButton
     Friend WithEvents chkVideoTSParentXBMC As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMovieNameNFOStack As System.Windows.Forms.CheckBox
 
 End Class

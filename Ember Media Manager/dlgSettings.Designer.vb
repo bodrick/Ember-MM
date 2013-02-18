@@ -605,6 +605,7 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.chkMovieNameNFOStack = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -1532,12 +1533,13 @@ Partial Class dlgSettings
         '
         'GroupBox7
         '
+        Me.GroupBox7.Controls.Add(Me.chkMovieNameNFOStack)
         Me.GroupBox7.Controls.Add(Me.chkMovieNameNFO)
         Me.GroupBox7.Controls.Add(Me.chkMovieNFO)
         Me.GroupBox7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox7.Location = New System.Drawing.Point(258, 111)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(102, 59)
+        Me.GroupBox7.Size = New System.Drawing.Size(102, 81)
         Me.GroupBox7.TabIndex = 5
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "NFO"
@@ -2938,7 +2940,7 @@ Partial Class dlgSettings
         Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
         Me.pnlSources.Controls.Add(Me.GroupBox8)
         Me.pnlSources.Controls.Add(Me.GroupBox16)
-        Me.pnlSources.Location = New System.Drawing.Point(1374, 513)
+        Me.pnlSources.Location = New System.Drawing.Point(60, 100)
         Me.pnlSources.Name = "pnlSources"
         Me.pnlSources.Size = New System.Drawing.Size(617, 402)
         Me.pnlSources.TabIndex = 13
@@ -7168,6 +7170,18 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
         '
+        'chkMovieNameNFOStack
+        '
+        Me.chkMovieNameNFOStack.AutoSize = True
+        Me.chkMovieNameNFOStack.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieNameNFOStack.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.chkMovieNameNFOStack.Location = New System.Drawing.Point(6, 51)
+        Me.chkMovieNameNFOStack.Name = "chkMovieNameNFOStack"
+        Me.chkMovieNameNFOStack.Size = New System.Drawing.Size(93, 30)
+        Me.chkMovieNameNFOStack.TabIndex = 2
+        Me.chkMovieNameNFOStack.Text = "<movie>.nfo" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(Stack)"
+        Me.chkMovieNameNFOStack.UseVisualStyleBackColor = True
+        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -7951,4 +7965,5 @@ Partial Class dlgSettings
     Friend WithEvents btnMovieFrodo As System.Windows.Forms.Button
     Friend WithEvents btnTVShowFrodo As System.Windows.Forms.Button
     Friend WithEvents chkVideoTSParentXBMC As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMovieNameNFOStack As System.Windows.Forms.CheckBox
 End Class
