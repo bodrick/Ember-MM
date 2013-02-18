@@ -7,7 +7,7 @@ Imports System.Runtime.InteropServices
 ' associated with an assembly.
 ' Review the values of the assembly attributes
 <Assembly: AssemblyTitle("scraper.EmberExtras")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
 <Assembly: AssemblyCompany("AtWork")>
 <Assembly: AssemblyProduct("scraper.EmberExtras")>
 <Assembly: AssemblyCopyright("Copyright © AtWork 2011")> 

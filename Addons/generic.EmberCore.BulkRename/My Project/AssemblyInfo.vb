@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("generic.EmberCore.BulkRename")> 
-<Assembly: AssemblyDescription("")> 
+<Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("generic.EmberCore.BulkRename")> 
 <Assembly: AssemblyCopyright("Copyright ©  2011")> 
