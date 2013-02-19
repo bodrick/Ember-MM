@@ -141,14 +141,10 @@ Public Class dlgWizard
 		Me.chkMovieNameFanartJPG.Checked = Master.eSettings.MovieNameFanartJPG
 		Me.chkMovieNameDotFanartJPG.Checked = Master.eSettings.MovieNameDotFanartJPG
 		Me.chkMovieNFO.Checked = Master.eSettings.MovieNFO
-<<<<<<< HEAD
 		Me.chkMovieNameNFO.Checked = Master.eSettings.MovieNameNFO
-=======
-        Me.chkMovieNameNFO.Checked = Master.eSettings.MovieNameNFO
-        Me.chkMovieNameNFOStack.Checked = Master.eSettings.MovieNameNFOStack
->>>>>>> upstream/1.3.0.x
-        Me.chkMovieNameMultiOnly.Checked = Master.eSettings.MovieNameMultiOnly
-        Me.chkVideoTSParentXBMC.Checked = Master.eSettings.VideoTSParentXBMC
+		Me.chkMovieNameNFOStack.Checked = Master.eSettings.MovieNameNFOStack
+		Me.chkMovieNameMultiOnly.Checked = Master.eSettings.MovieNameMultiOnly
+		Me.chkVideoTSParentXBMC.Checked = Master.eSettings.VideoTSParentXBMC
 		Me.cbIntLang.SelectedItem = Master.eSettings.Language
 		Me.chkSeasonAllTBN.Checked = Master.eSettings.SeasonAllTBN
 		Me.chkSeasonAllJPG.Checked = Master.eSettings.SeasonAllJPG
@@ -333,7 +329,7 @@ Public Class dlgWizard
 		Master.eSettings.SeasonXXDashPosterJPG = Me.chkSeasonXXDashPosterJPG.Checked
 		Master.eSettings.MovieNameDashPosterJPG = Me.chkMovieNameDashPosterJPG.Checked
 		Master.eSettings.DashTrailer = Me.rbDashTrailer.Checked
-        Master.eSettings.SeasonXXDashFanartJPG = Me.chkSeasonXXDashFanartJPG.Checked
+		Master.eSettings.SeasonXXDashFanartJPG = Me.chkSeasonXXDashFanartJPG.Checked
 		Master.eSettings.MovieTBN = Me.chkMovieTBN.Checked
 		Master.eSettings.MovieNameTBN = Me.chkMovieNameTBN.Checked
 		Master.eSettings.MovieJPG = Me.chkMovieJPG.Checked
@@ -345,14 +341,10 @@ Public Class dlgWizard
 		Master.eSettings.MovieNameFanartJPG = Me.chkMovieNameFanartJPG.Checked
 		Master.eSettings.MovieNameDotFanartJPG = Me.chkMovieNameDotFanartJPG.Checked
 		Master.eSettings.MovieNFO = Me.chkMovieNFO.Checked
-<<<<<<< HEAD
 		Master.eSettings.MovieNameNFO = Me.chkMovieNameNFO.Checked
-=======
-        Master.eSettings.MovieNameNFO = Me.chkMovieNameNFO.Checked
-        Master.eSettings.MovieNameNFOStack = Me.chkMovieNameNFOStack.Checked
->>>>>>> upstream/1.3.0.x
-        Master.eSettings.MovieNameMultiOnly = Me.chkMovieNameMultiOnly.Checked
-        Master.eSettings.VideoTSParentXBMC = Me.chkVideoTSParentXBMC.Checked
+		Master.eSettings.MovieNameNFOStack = Me.chkMovieNameNFOStack.Checked
+		Master.eSettings.MovieNameMultiOnly = Me.chkMovieNameMultiOnly.Checked
+		Master.eSettings.VideoTSParentXBMC = Me.chkVideoTSParentXBMC.Checked
 		Master.eSettings.Language = Me.cbIntLang.Text
 		Master.eSettings.SeasonAllTBN = Me.chkSeasonAllTBN.Checked
 		Master.eSettings.SeasonAllJPG = Me.chkSeasonAllJPG.Checked
@@ -393,9 +385,9 @@ Public Class dlgWizard
 
 	Private Sub SetUp()
 		Me.btnMovieFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
-        Me.btnTVShowFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
-        Me.chkVideoTSParentXBMC.Text = Master.eLang.GetString(474, "Frodo Compatible VIDEO_TS File Placement/Naming")
-        Me.Text = Master.eLang.GetString(402, "Ember Startup Wizard")
+		Me.btnTVShowFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
+		Me.chkVideoTSParentXBMC.Text = Master.eLang.GetString(474, "Frodo Compatible VIDEO_TS File Placement/Naming")
+		Me.Text = Master.eLang.GetString(402, "Ember Startup Wizard")
 		Me.OK_Button.Text = Master.eLang.GetString(179, "OK")
 		Me.Cancel_Button.Text = Master.eLang.GetString(167, "Cancel")
 		Me.btnBack.Text = Master.eLang.GetString(403, "< Back")
@@ -465,15 +457,15 @@ Public Class dlgWizard
 		Me.chkMovieNameDotFanartJPG.Checked = False
 		Me.chkMovieNameFanartJPG.Checked = True
 		Me.chkMovieNameJPG.Checked = False
-        Me.chkMovieNameNFO.Checked = False
-        Me.chkMovieNameNFOStack.Checked = True
+		Me.chkMovieNameNFO.Checked = False
+		Me.chkMovieNameNFOStack.Checked = True
 		Me.chkMovieNameTBN.Checked = False
 		Me.chkMovieNFO.Checked = False
 		Me.chkMovieTBN.Checked = False
 		Me.chkPosterJPG.Checked = False
 		Me.chkPosterTBN.Checked = False
-        Me.rbDashTrailer.Checked = True
-        Me.chkVideoTSParentXBMC.Checked = True
+		Me.rbDashTrailer.Checked = True
+		Me.chkVideoTSParentXBMC.Checked = True
 	End Sub
 
 	Private Sub btnTVShowFrodo_Click(sender As Object, e As EventArgs) Handles btnTVShowFrodo.Click
@@ -508,6 +500,6 @@ Public Class dlgWizard
 		Me.chkShowTBN.Checked = False
 	End Sub
 
-#End Region 'Methods
+#End Region	'Methods
 
 End Class

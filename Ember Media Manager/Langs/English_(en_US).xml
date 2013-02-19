@@ -473,15 +473,9 @@
   <string id="472">Use &lt;movie&gt; Only for Folders with Multiple Movies</string>
   <string id="473">YAMJ Compatible VIDEO_TS File Placement/Naming</string>
   <string id="474">Frodo Compatible VIDEO_TS File Placement/Naming</string>
-<<<<<<< HEAD
-  <string id="475"></string>
-  <string id="476"></string>
-  <string id="477"></string>
-=======
   <string id="475"/>
   <string id="476"/>
   <string id="477"/>
->>>>>>> upstream/1.3.0.x
   <string id="478">Quality:</string>
   <string id="479">Max Width:</string>
   <string id="480">Max Height:</string>
