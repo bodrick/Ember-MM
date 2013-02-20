@@ -1409,15 +1409,10 @@ Public Class dlgEditMovie
                     '    ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
                 ElseIf Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isBDRip(Master.currMovie.Filename) Then
                     ePath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(Master.currMovie.Filename).FullName).FullName).FullName, "extrathumbs")
-<<<<<<< HEAD
-                    'ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(Master.currMovie.Filename) Then
-                    '    ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
-=======
-                ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(Master.currMovie.Filename) Then
-                    ePath = Path.Combine(Directory.GetParent(Directory.GetParent(Master.currMovie.Filename).FullName).FullName, "extrathumbs")
->>>>>>> upstream/1.3.0.x
-                Else
-                    ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
+				ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(Master.currMovie.Filename) Then
+					ePath = Path.Combine(Directory.GetParent(Directory.GetParent(Master.currMovie.Filename).FullName).FullName, "extrathumbs")
+				Else
+					ePath = Path.Combine(Directory.GetParent(Master.currMovie.Filename).FullName, "extrathumbs")
                 End If
 
                 If Master.currMovie.ClearExtras AndAlso Not hasCleared Then
