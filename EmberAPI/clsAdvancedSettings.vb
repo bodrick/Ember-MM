@@ -343,6 +343,8 @@ Public Class AdvancedSettings
             SetSetting("AudioFormatConvert:wma2", "wmav2", "*EmberAPP", True)
             SetSetting("AudioFormatConvert:a_dts", "dca", "*EmberAPP", True)
             SetSetting("AudioFormatConvert:dts", "dca", "*EmberAPP", True)
+            SetSetting("AudioFormatConvert:a_truehd", "truehd", "*EmberAPP", True)
+
         End If
 
         If Not loadSingle OrElse section = "VideoFormatConvert" Then
@@ -359,6 +361,7 @@ Public Class AdvancedSettings
             SetSetting("VideoFormatConvert:3iv1", "3ivx", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:3iv2", "3ivx", "*EmberAPP", True)
             SetSetting("VideoFormatConvert:3ivd", "3ivx", "*EmberAPP", True)
+
         End If
 
         If Not loadSingle Then
