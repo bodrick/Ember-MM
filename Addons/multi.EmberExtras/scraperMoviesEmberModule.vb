@@ -21,6 +21,8 @@ Public Class EmberExtrasMovieScraperModule
 
     Public Event SetupScraperChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer) Implements Interfaces.EmberMovieScraperModule.ScraperSetupChanged
 
+	Public Event SetupNeedsRestart() Implements Interfaces.EmberMovieScraperModule.SetupNeedsRestart
+
 #End Region 'Events
 
 #Region "Properties"

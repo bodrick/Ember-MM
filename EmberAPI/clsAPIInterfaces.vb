@@ -73,7 +73,9 @@ Public Class Interfaces
 
         Event PostScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
 
-        Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+
+		Event SetupNeedsRestart()
 
         Sub ScraperOrderChanged()
 

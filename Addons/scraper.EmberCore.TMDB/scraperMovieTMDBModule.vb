@@ -72,6 +72,8 @@ Public Class EmberTMDBScraperModule
 
 	Public Event SetupScraperChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer) Implements Interfaces.EmberMovieScraperModule.ScraperSetupChanged
 
+	Public Event SetupNeedsRestart() Implements Interfaces.EmberMovieScraperModule.SetupNeedsRestart
+
 #End Region	'Events
 
 #Region "Properties"
@@ -158,6 +160,11 @@ Public Class EmberTMDBScraperModule
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
+	Private Sub Handle_SetupNeedsRestart()
+		RaiseEvent SetupNeedsRestart()
+	End Sub
+
+
 	Private Sub Handle_SetupPostScraperChanged(ByVal state As Boolean, ByVal difforder As Integer)
 		PostScraperEnabled = state
 		RaiseEvent SetupPostScraperChanged(String.Concat(Me._Name, "PostScraper"), state, difforder)
@@ -221,6 +228,7 @@ Public Class EmberTMDBScraperModule
 
 		AddHandler _setupPost.SetupPostScraperChanged, AddressOf Handle_SetupPostScraperChanged
 		AddHandler _setupPost.ModuleSettingsChanged, AddressOf Handle_PostModuleSettingsChanged
+		AddHandler _setup.SetupNeedsRestart, AddressOf Handle_SetupNeedsRestart
 		Return Spanel
 	End Function
 
@@ -267,6 +275,7 @@ Public Class EmberTMDBScraperModule
 		SPanel.Panel = _setup.pnlSettings
 		AddHandler _setup.SetupScraperChanged, AddressOf Handle_SetupScraperChanged
 		AddHandler _setup.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+		AddHandler _setup.SetupNeedsRestart, AddressOf Handle_SetupNeedsRestart
 		Return SPanel
 	End Function
 

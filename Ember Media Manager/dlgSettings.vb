@@ -243,7 +243,8 @@ Public Class dlgSettings
             Me.SettingsPanels.Add(tPanel)
             ModuleCounter += 1
             AddHandler s.ProcessorModule.ScraperSetupChanged, AddressOf Handle_ModuleSetupChanged
-            AddHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+			AddHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+			AddHandler s.ProcessorModule.SetupNeedsRestart, AddressOf Handle_SetupNeedsRestart
             Me.AddHelpHandlers(tPanel.Panel, tPanel.Prefix)
         Next
         ModuleCounter = 1
@@ -254,7 +255,8 @@ Public Class dlgSettings
             ModuleCounter += 1
             AddHandler s.ProcessorModule.PostScraperSetupChanged, AddressOf Handle_ModuleSetupChanged
             AddHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-            Me.AddHelpHandlers(tPanel.Panel, tPanel.Prefix)
+			AddHandler s.ProcessorModule.SetupNeedsRestart, AddressOf Handle_SetupNeedsRestart
+			Me.AddHelpHandlers(tPanel.Panel, tPanel.Prefix)
         Next
         ModuleCounter = 1
         For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules.Where(Function(y) y.ProcessorModule.IsScraper).OrderBy(Function(x) x.ScraperOrder)
@@ -264,7 +266,7 @@ Public Class dlgSettings
             ModuleCounter += 1
             AddHandler s.ProcessorModule.SetupScraperChanged, AddressOf Handle_ModuleSetupChanged
             AddHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-            Me.AddHelpHandlers(tPanel.Panel, tPanel.Prefix)
+			Me.AddHelpHandlers(tPanel.Panel, tPanel.Prefix)
         Next
         ModuleCounter = 1
         For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.PostScraperOrder)
@@ -298,33 +300,40 @@ Public Class dlgSettings
         For Each s As ModulesManager._externalScraperModuleClass In ModulesManager.Instance.externalScrapersModules.Where(Function(y) y.ProcessorModule.IsScraper).OrderBy(Function(x) x.ScraperOrder)
             RemoveHandler s.ProcessorModule.ScraperSetupChanged, AddressOf Handle_ModuleSetupChanged
             RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-        Next
-        For Each s As ModulesManager._externalScraperModuleClass In ModulesManager.Instance.externalScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.PostScraperOrder)
-            RemoveHandler s.ProcessorModule.PostScraperSetupChanged, AddressOf Handle_ModuleSetupChanged
-            RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-        Next
-        For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.ScraperOrder)
-            RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-        Next
-        For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.PostScraperOrder)
-            RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-        Next
-        For Each s As ModulesManager._externalGenericModuleClass In ModulesManager.Instance.externalProcessorModules
-            RemoveHandler s.ProcessorModule.ModuleSetupChanged, AddressOf Handle_ModuleSetupChanged
-            RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
-        Next
+			RemoveHandler s.ProcessorModule.SetupNeedsRestart, AddressOf Handle_SetupNeedsRestart
+		Next
+		For Each s As ModulesManager._externalScraperModuleClass In ModulesManager.Instance.externalScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.PostScraperOrder)
+			RemoveHandler s.ProcessorModule.PostScraperSetupChanged, AddressOf Handle_ModuleSetupChanged
+			RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+			RemoveHandler s.ProcessorModule.SetupNeedsRestart, AddressOf Handle_SetupNeedsRestart
+		Next
+		For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.ScraperOrder)
+			RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+		Next
+		For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).OrderBy(Function(x) x.PostScraperOrder)
+			RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+		Next
+		For Each s As ModulesManager._externalGenericModuleClass In ModulesManager.Instance.externalProcessorModules
+			RemoveHandler s.ProcessorModule.ModuleSetupChanged, AddressOf Handle_ModuleSetupChanged
+			RemoveHandler s.ProcessorModule.ModuleSettingsChanged, AddressOf Handle_ModuleSettingsChanged
+		Next
     End Sub
 
-    Private Sub btnAddEpFilter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddEpFilter.Click
-        If Not String.IsNullOrEmpty(Me.txtEpFilter.Text) Then
-            Me.lstEpFilters.Items.Add(Me.txtEpFilter.Text)
-            Me.txtEpFilter.Text = String.Empty
-            Me.SetApplyButton(True)
-            Me.sResult.NeedsUpdate = True
-        End If
+	Private Sub Handle_SetupNeedsRestart()
+		Me.sResult.NeedsRestart = True
+	End Sub
 
-        Me.txtEpFilter.Focus()
-    End Sub
+
+	Private Sub btnAddEpFilter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddEpFilter.Click
+		If Not String.IsNullOrEmpty(Me.txtEpFilter.Text) Then
+			Me.lstEpFilters.Items.Add(Me.txtEpFilter.Text)
+			Me.txtEpFilter.Text = String.Empty
+			Me.SetApplyButton(True)
+			Me.sResult.NeedsUpdate = True
+		End If
+
+		Me.txtEpFilter.Focus()
+	End Sub
 
     Private Sub btnAddFilter_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddFilter.Click
         If Not String.IsNullOrEmpty(Me.txtFilter.Text) Then
@@ -4607,12 +4616,13 @@ Public Class dlgSettings
         Public Sub New(ByVal column As Integer)
             col = column
         End Sub
-        Public Function Compare(ByVal x As Object, ByVal y As Object) As Integer _
-           Implements IComparer.Compare
-            Return [String].Compare(CType(x, ListViewItem).SubItems(col).Text, CType(y, ListViewItem).SubItems(col).Text)
-        End Function
+
+		Public Function Compare(ByVal x As Object, ByVal y As Object) As Integer _
+		   Implements IComparer.Compare
+			Return [String].Compare(CType(x, ListViewItem).SubItems(col).Text, CType(y, ListViewItem).SubItems(col).Text)
+		End Function
     End Class
 
-#End Region 'Methods
+#End Region	'Methods
 
 End Class
