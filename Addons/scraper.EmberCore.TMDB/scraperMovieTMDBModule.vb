@@ -198,9 +198,12 @@ Public Class EmberTMDBScraperModule
 
 		' ad size from TMDB
 		_setupPost.cbManualETSize.Items.Clear()
-		For Each aSi In _TMDBg.TMDBConf.images.poster_sizes
-			_setupPost.cbManualETSize.Items.Add(aSi)
-		Next
+		If Not IsNothing(_TMDBg.TMDBConf.images) Then
+			For Each aSi In _TMDBg.TMDBConf.images.poster_sizes
+				_setupPost.cbManualETSize.Items.Add(aSi)
+			Next
+
+		End If
 		_setupPost.cbManualETSize.Text = _MySettings.ManualETSize
 
 		_setupPost.txtTimeout.Text = _MySettings.TrailerTimeout.ToString

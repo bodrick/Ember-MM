@@ -93,7 +93,9 @@ Namespace MPDB
                         PosterURL = mPoster.Value.Remove(mPoster.Value.LastIndexOf("/") + 1, 1)
                         PosterURL = PosterURL.Insert(mPoster.Value.LastIndexOf("/") + 1, "l")
                         alPosters.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
-                    Next
+						PosterURL = PosterURL.Insert(mPoster.Value.LastIndexOf("/") + 1, "t")
+						alPosters.Add(New MediaContainers.Image With {.Description = "thumb", .URL = PosterURL})
+					Next
                 End If
                 If bwMPDB.WorkerReportsProgress Then
                     bwMPDB.ReportProgress(3)

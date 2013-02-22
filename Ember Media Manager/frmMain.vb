@@ -25,12 +25,15 @@ Imports System.Linq
 Imports System.Reflection
 Imports System.Text.RegularExpressions
 Imports EmberAPI
+Imports RestSharp
+Imports WatTmdb
+
 
 Public Class frmMain
 
 #Region "Fields"
     Private fLoading As New frmSplash
-
+	'Private aaa As New V3.Tmdb("aa")
     Friend WithEvents bwCleanDB As New System.ComponentModel.BackgroundWorker
     Friend WithEvents bwDownloadPic As New System.ComponentModel.BackgroundWorker
     Friend WithEvents bwLoadEpInfo As New System.ComponentModel.BackgroundWorker
@@ -73,7 +76,7 @@ Public Class frmMain
     Private ReportDownloadPercent As Boolean = False
     Private ScrapeList As New List(Of DataRow)
     Private ScraperDone As Boolean = False
-    Private sHTTP As New HTTP
+	Private sHTTP As New EmberAPI.HTTP
     Private tmpLang As String = String.Empty
     Private tmpTitle As String = String.Empty
     Private tmpTVDB As String = String.Empty
