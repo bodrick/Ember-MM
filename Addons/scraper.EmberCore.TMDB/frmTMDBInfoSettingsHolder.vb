@@ -28,6 +28,13 @@ Public Class frmTMDBInfoSettingsHolder
 	Public Event ModuleSettingsChanged()
 
 	Public Event SetupScraperChanged(ByVal state As Boolean, ByVal difforder As Integer)
+	Public Event SetupNeedsRestart()
+
+#End Region	'Events
+
+#Region "Fields"
+
+	Private Api1 As String
 
 #End Region	'Events
 
@@ -125,8 +132,18 @@ Public Class frmTMDBInfoSettingsHolder
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
+	Private Sub txtTMDBApiKey_TextEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTMDBApiKey.Enter
+		Api1 = txtTMDBApiKey.Text
+	End Sub
+
 	Private Sub txtTMDBApiKey_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTMDBApiKey.TextChanged
 		RaiseEvent ModuleSettingsChanged()
+	End Sub
+
+	Private Sub txtTMDBApiKey_TextValidated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTMDBApiKey.Validated
+		If Not (Api1 = txtTMDBApiKey.Text) Then
+			RaiseEvent SetupNeedsRestart()
+		End If
 	End Sub
 
 	Public Sub New()
@@ -165,7 +182,7 @@ Public Class frmTMDBInfoSettingsHolder
 		Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
 	End Sub
 
-	
+
 #End Region	'Methods
 
 End Class
