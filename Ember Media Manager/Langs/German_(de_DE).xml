@@ -493,8 +493,8 @@
   <string id="492">Bewertung sperren</string>
   <string id="493">Tagline sperren</string>
   <string id="494">Titel sperren</string>
-  <string id="495">Beschreibung sperren</string>
-  <string id="496">Beschreibung sperren</string>
+  <string id="495">Kurzbeschreibung sperren</string>
+  <string id="496">Handlung sperren</string>
   <string id="497">Bilder</string>
   <string id="498">URLs nicht in Nfo speichern</string>
   <string id="499">Beim Einzelscrapen holen</string>
@@ -666,7 +666,7 @@
   <string id="665">Premiere:</string>
   <string id="666">TV Serien Theme</string>
   <string id="667">Episode Theme</string>
-  <string id="668">Proxy Port:</string>
+  <string id="668">Datenbank nach Bibliotheksaktualisierung säubern</string>
   <string id="669">Letzte Scanzeit beim Update ignorieren</string>
   <string id="670">Serien Verzeichnis/Datei Filter</string>
   <string id="671">Episoden Verzeichnis/Datei Filter</string>
@@ -820,7 +820,7 @@
   <string id="819">TV RegEx Profile</string>
   <string id="820">RegEx Profile</string>
   <string id="821">Beschreibung</string>
-  <string id="822">Diverses</string>
+  <string id="822">Miscellaneous</string>
   <string id="823">Audio &amp; Video Codec Mapping</string>
   <string id="824">Video Source:</string>
   <string id="825">Downloads:</string>
