@@ -524,7 +524,7 @@ Public Class EmberXMLScraperModule
                 For Each act As MediaContainers.Person In DBMovie.Movie.Actors
                     Dim img As New Images
                     img.FromWeb(act.Thumb)
-                    img.SaveAsActorThumb(act, Directory.GetParent(DBMovie.Filename).FullName, Master.currMovie)
+                    img.SaveAsActorThumb(act, Directory.GetParent(DBMovie.Filename).FullName, DBMovie)
                 Next
             End If
         Catch ex As Exception

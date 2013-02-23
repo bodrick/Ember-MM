@@ -412,11 +412,11 @@ Public Class EmberNativeScraperModule
                 End Try
             End If
         End If
-        If Master.GlobalScrapeMod.Actors AndAlso AdvancedSettings.GetBooleanSetting("ScrapeActorsThumbs", False) Then
+        If Master.GlobalScrapeMod.Actors AndAlso AdvancedSettings.GetBooleanSetting("ScrapeActorsThumbs", True) Then
             For Each act As MediaContainers.Person In DBMovie.Movie.Actors
                 Dim img As New Images
                 img.FromWeb(act.Thumb)
-                img.SaveAsActorThumb(act, Directory.GetParent(DBMovie.Filename).FullName, Master.currMovie)
+                img.SaveAsActorThumb(act, Directory.GetParent(DBMovie.Filename).FullName, DBMovie)
             Next
         End If
         Master.GlobalScrapeMod = saveModifier
