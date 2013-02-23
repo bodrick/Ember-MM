@@ -60,6 +60,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8564C9
 	EndProjectSection
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "scraper.EmberCore.TMDB", "Addons\scraper.EmberCore.TMDB\scraper.EmberCore.TMDB.vbproj", "{2EB03DAA-1A5D-47C5-9883-56DCD0F70D23}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EFC11645-FAB4-4C30-A498-29F5ECDF77E8} = {EFC11645-FAB4-4C30-A498-29F5ECDF77E8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatTmdb", "WatTmdb\WatTmdb.csproj", "{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}"
 EndProject

@@ -234,29 +234,29 @@ Namespace XMLScraper
                 Return changed
             End Function
 
-            Public Overloads Overrides Sub Deserialize(ByVal element As XElement)
-                Title = element.GetStringElement("title", Title)
-                Artist = element.GetStringElement("artist", Artist)
-                Label = element.GetStringElement("label", Label)
-                Type = element.GetStringElement("type", Type)
-                ReleaseDate = element.GetStringElement("releaseddate", ReleaseDate)
-                Year = element.GetIntElement("year", Year)
-                Review = element.GetStringElement("review", Review)
+			Public Overloads Overrides Sub Deserialize(ByVal element As XElement)
+				Title = element.GetStringElement("title", Title)
+				Artist = element.GetStringElement("artist", Artist)
+				Label = element.GetStringElement("label", Label)
+				Type = element.GetStringElement("type", Type)
+				ReleaseDate = element.GetStringElement("releaseddate", ReleaseDate)
+				Year = element.GetIntElement("year", Year)
+				Review = element.GetStringElement("review", Review)
 
-                element.UpdateThumbList("thumb", Thumbs)
+				element.UpdateThumbList("thumb", Thumbs)
 
-                element.UpdateStringList("genre", Genres)
-                element.UpdateStringList("style", Styles)
-                element.UpdateStringList("mood", Moods)
-                element.UpdateStringList("theme", Themes)
+				element.UpdateStringList("genre", Genres)
+				element.UpdateStringList("style", Styles)
+				element.UpdateStringList("mood", Moods)
+				element.UpdateStringList("theme", Themes)
 
-                For Each item As XElement In element.Elements("track")
-                    Dim newtrack As New AlbumTrack(item)
-                    If Not Tracks.Contains(newtrack) Then
-                        Tracks.Add(newtrack)
-                    End If
-                Next
-            End Sub
+				For Each item As XElement In element.Elements("track")
+					Dim newtrack As New AlbumTrack(item)
+					If Not Tracks.Contains(newtrack) Then
+						Tracks.Add(newtrack)
+					End If
+				Next
+			End Sub
 
             Public Overloads Sub Deserialize(ByVal xInfo As XDocument)
                 Deserialize(xInfo.Root)
