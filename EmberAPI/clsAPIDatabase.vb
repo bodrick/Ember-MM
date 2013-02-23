@@ -2132,6 +2132,67 @@ Public Class Database
         End Try
     End Sub
 
+    ''' <summary>
+    ''''cocotus 2013/02 Trakt.tv syncing
+    ''' Savethe PlayCount Tag for watched movie  into Ember database /NFO if not already set
+    ''' </summary>
+    ''' <param name="myWatchedMovies">The watched movie as Keypair</param>
+    ''' <returns></returns>
+    ''not using loop here, only do one movie a time (call function repeatedly!)! -> only deliver keypair instead of whole dictionary
+    '   Public Sub SaveMoviePlayCountInDatabase(ByVal myWatchedMovies As Dictionary(Of String, KeyValuePair(Of String, String)))
+    Public Sub SaveMoviePlayCountInDatabase(ByVal WatchedMovieData As KeyValuePair(Of String, KeyValuePair(Of String, Integer)))
+        Try
+            Dim PlaycountStored As Boolean = True
+            Dim _movieDB As New Structures.DBMovie
+            _movieDB.Movie = New MediaContainers.Movie
+            ''not using Loop here, only do one movie a time (call function repeatedly!)!
+            '  For Each watchedMovieData In myWatchedMovies
+
+            Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
+                'TODO: This statement (directly filter IMDB) doesn't work ?! This is bad, cause right now I have to get all movies and search through them!
+                '         SQLcommand.CommandText = String.Concat("SELECT * FROM movies WHERE imdb = ", watchedMovieIMDBID.Value, ";")
+                SQLcommand.CommandText = String.Concat("SELECT * FROM movies;")
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    While SQLreader.Read
+                        If Not DBNull.Value.Equals(SQLreader("IMDB")) Then
+                            If SQLreader("IMDB").ToString.Equals(WatchedMovieData.Value.Key) Then
+                                _movieDB.ID = CLng(SQLreader("ID").ToString)
+                                _movieDB.Movie.IMDBID = SQLreader("IMDB").ToString
+                                If Not DBNull.Value.Equals(SQLreader("MoviePath")) Then _movieDB.Filename = SQLreader("MoviePath").ToString
+                                If Not DBNull.Value.Equals(SQLreader("Playcount")) Then _movieDB.Movie.PlayCount = SQLreader("Playcount").ToString
+                                If DBNull.Value.Equals(SQLreader("Playcount")) Or SQLreader("Playcount").Equals("0") Or SQLreader("Playcount").Equals("") Or Not (SQLreader("Playcount").Equals(WatchedMovieData.Value.Value.ToString)) Then
+
+                                    PlaycountStored = False
+                                End If
+                                Exit While
+                            End If
+                        End If
+                    End While
+                End Using
+            End Using
+
+            If PlaycountStored = False Then
+                Using SQLTrans As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
+                    Using SQLUpdatecommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
+                        Dim parPlaycount As SQLite.SQLiteParameter = SQLUpdatecommand.Parameters.Add("parPlaycount", DbType.String, 0, "Playcount")
+                        SQLUpdatecommand.CommandText = String.Concat("UPDATE movies SET Playcount = (?) WHERE id = ", _movieDB.ID, ";")
+                        parPlaycount.Value = WatchedMovieData.Value.Value.ToString
+                        SQLUpdatecommand.ExecuteNonQuery()
+                    End Using
+                    SQLTrans.Commit()
+                End Using
+                'Save to NFO!
+                Dim _movieSavetoNFO As New Structures.DBMovie
+                _movieSavetoNFO = Master.DB.LoadMovieFromDB(_movieDB.ID)
+                Master.DB.SaveMovieToDB(_movieSavetoNFO, False, False, True)
+            End If
+            ''not using Loop here, only do one movie a time (call function repeatedly!)!
+            '    Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
 #End Region 'Methods
 
 #Region "Nested Types"
