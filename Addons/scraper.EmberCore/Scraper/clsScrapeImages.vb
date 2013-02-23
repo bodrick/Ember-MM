@@ -845,9 +845,11 @@ foundIT:
 		If Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isVideoTS(inPath) Then
 			extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName, "extrathumbs")
 		ElseIf Master.eSettings.VideoTSParent AndAlso FileUtils.Common.isBDRip(inPath) Then
-			extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName).FullName, "extrathumbs")
-		Else
-			extraPath = Path.Combine(Directory.GetParent(inPath).FullName, "extrathumbs")
+            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName).FullName, "extrathumbs")
+        ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(inPath) Then
+            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName, "extrathumbs")
+        Else
+            extraPath = Path.Combine(Directory.GetParent(inPath).FullName, "extrathumbs")
 		End If
 
 		iMod = Functions.GetExtraModifier(extraPath)

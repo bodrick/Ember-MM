@@ -984,24 +984,24 @@ Public Class Images
 
 		Return strReturn
 	End Function
-	Public Function SaveAsActorThumb(ByVal actor As MediaContainers.Person, ByVal fpath As String, ByVal mMovie As Structures.DBMovie) As String
-		Dim tPath As String = String.Empty
+    Public Function SaveAsActorThumb(ByVal actor As MediaContainers.Person, ByVal fpath As String, ByVal aMovie As Structures.DBMovie) As String
+        Dim tPath As String = String.Empty
 
-		If Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
-			tPath = Path.Combine(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
-			If Not Directory.Exists(Path.Combine(Directory.GetParent(fpath).FullName, ".actors")) Then Directory.CreateDirectory(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"))
-			If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
-				Save(tPath, Master.eSettings.PosterQuality)
-			End If
-		Else
-			tPath = Path.Combine(Path.Combine(fpath, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
-			If Not Directory.Exists(Path.Combine(fpath, ".actors")) Then Directory.CreateDirectory(Path.Combine(fpath, ".actors"))
-			If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
-				Save(tPath, Master.eSettings.PosterQuality)
-			End If
-		End If
-		'End If
-		Return tPath
+        If Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(aMovie.Filename) Then
+            tPath = Path.Combine(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
+            If Not Directory.Exists(Path.Combine(Directory.GetParent(fpath).FullName, ".actors")) Then Directory.CreateDirectory(Path.Combine(Directory.GetParent(fpath).FullName, ".actors"))
+            If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
+                Save(tPath, Master.eSettings.PosterQuality)
+            End If
+        Else
+            tPath = Path.Combine(Path.Combine(fpath, ".actors"), String.Concat(actor.Name.Replace(" ", "_"), ".jpg"))
+            If Not Directory.Exists(Path.Combine(fpath, ".actors")) Then Directory.CreateDirectory(Path.Combine(fpath, ".actors"))
+            If Not File.Exists(tPath) Then ' OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
+                Save(tPath, Master.eSettings.PosterQuality)
+            End If
+        End If
+        'End If
+        Return tPath
     End Function
     Public Function SaveAsSeasonFanart(ByVal mShow As Structures.DBTV) As String
         Dim strReturn As String = String.Empty
@@ -1349,15 +1349,13 @@ Public Class Images
         Dim iVal As Integer = 1
         Dim extraPath As String = String.Empty
 
-        'If Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isVideoTS(inPath) Then
-        '    extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName, "extrathumbs")
-        'ElseIf Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(inPath) Then
-        '    extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName).FullName, "extrathumbs")
-        'Else
-        '    extraPath = Path.Combine(Directory.GetParent(inPath).FullName, "extrathumbs")
-        'End If
-
-        extraPath = Path.Combine(Directory.GetParent(inPath).FullName, "extrathumbs")
+        If Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(inPath) Then
+            extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName, "extrathumbs")
+            'ElseIf Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(inPath) Then
+            '    extraPath = Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(inPath).FullName).FullName).FullName, "extrathumbs")
+        Else
+            extraPath = Path.Combine(Directory.GetParent(inPath).FullName, "extrathumbs")
+        End If
 
         iMod = Functions.GetExtraModifier(extraPath)
         iVal = iMod + 1
