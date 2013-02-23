@@ -54,6 +54,10 @@
     <CodeAnalysisRuleDirectories>;D:\Applications\Development\Microsoft Visual Studio 2010\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\RestSharp.104.1\lib\net35\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -81,6 +85,12 @@
     <Compile Include="frmMediaSourcesEditor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmTrakt.Designer.vb">
+      <DependentUpon>frmTrakt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTrakt.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="genericMediaSources.vb" />
     <Compile Include="frmAVCodecEditor.Designer.vb">
       <DependentUpon>frmAVCodecEditor.vb</DependentUpon>
@@ -96,6 +106,7 @@
     </Compile>
     <Compile Include="genericGenresEditor.vb" />
     <Compile Include="genericMetadataEditor.vb" />
+    <Compile Include="genericTrakt.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -125,6 +136,9 @@
     <EmbeddedResource Include="frmGenresEditor.resx">
       <DependentUpon>frmGenresEditor.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrakt.resx">
+      <DependentUpon>frmTrakt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -161,6 +175,7 @@
     <Content Include="Langs\multi.EmberExtras.Português_%28pt-BR%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\trakt.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

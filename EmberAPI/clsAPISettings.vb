@@ -347,6 +347,11 @@ Public Class Settings
     Private _yamjsetscompatible As Boolean
     Private _username As String
     Private _password As String
+    '  cocotus 2013/02 Trakt.tv syncing
+    'Adding Settings
+    Private _traktuser As String
+    Private _usetrakt As Boolean
+    'cocotus end
 
 #End Region 'Fields
 
@@ -3233,6 +3238,27 @@ Public Class Settings
             Me._password = value
         End Set
     End Property
+    ' cocotus 2013/02 Trakt.tv syncing
+    'Adding new settings
+    Public Property TraktUser() As String
+        Get
+            Return Me._traktuser
+        End Get
+        Set(ByVal value As String)
+            Me._traktuser = value
+        End Set
+    End Property
+
+    Public Property UseTrakt() As Boolean
+        Get
+            Return Me._usetrakt
+        End Get
+        Set(ByVal value As Boolean)
+            Me._usetrakt = value
+        End Set
+    End Property
+    'cocotus end
+
 
 #End Region 'Properties
 
