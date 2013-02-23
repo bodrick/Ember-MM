@@ -312,42 +312,42 @@ Public Class Scanner
                                 OrElse (Movie.isSingle AndAlso isXBMC AndAlso fFile.ToLower = Path.Combine(parPath, "fanart.jpg")) _
                                 OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso ((Master.eSettings.MovieNameFanartJPG AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, "-fanart.jpg")) _
                                 OrElse (Master.eSettings.MovieNameFanartJPG AndAlso Not isXBMC AndAlso fFile.ToLower = String.Concat(tmpName, "-fanart.jpg")) _
-                                OrElse (Master.eSettings.MovieNameFanartJPG AndAlso Not isXBMC AndAlso (fFile.ToLower = Path.Combine(parPath, "fanart.jpg") OrElse fFile.ToLower = Path.Combine(parPath, "video_ts-fanart.jpg") OrElse fFile.ToLower = Path.Combine(parPath, "index-fanart.jpg")))) _
+                                OrElse (Master.eSettings.MovieNameFanartJPG AndAlso Not isXBMC AndAlso ((fFile.ToLower = Path.Combine(parPath, "fanart.jpg") AndAlso Movie.Filename.ToLower = String.Concat(parPath, "\", "video_ts.ifo") OrElse Movie.Filename.ToLower = String.Concat(parPath, "\", "00000.m2ts")) OrElse fFile.ToLower = Path.Combine(parPath, "video_ts-fanart.jpg") OrElse fFile.ToLower = Path.Combine(parPath, "index-fanart.jpg")))) _
                                 OrElse (Master.eSettings.MovieNameDotFanartJPG AndAlso (fFile.ToLower = Path.Combine(parPath, "video_ts.fanart.jpg") OrElse fFile.ToLower = Path.Combine(parPath, "index.fanart.jpg")))) _
                                 OrElse ((Not Movie.isSingle OrElse isYAMJ OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso (((Master.eSettings.MovieNameDotFanartJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".fanart.jpg")) _
                                 OrElse ((Master.eSettings.MovieNameDotFanartJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".fanart.jpg")))) Then
-						Movie.Fanart = fFile
-						Continue For
-					End If
-				End If
+                        Movie.Fanart = fFile
+                        Continue For
+                    End If
+                End If
 
-				'poster
-				If String.IsNullOrEmpty(Movie.Poster) Then
-					If (Movie.isSingle AndAlso (Master.eSettings.MovieTBN AndAlso fFile.ToLower = Path.Combine(parPath, "movie.tbn")) _
-								OrElse (Master.eSettings.PosterTBN AndAlso fFile.ToLower = Path.Combine(parPath, "poster.tbn")) _
-								OrElse (Master.eSettings.MovieJPG AndAlso fFile.ToLower = Path.Combine(parPath, "movie.jpg")) _
-								OrElse (Master.eSettings.PosterJPG AndAlso fFile.ToLower = Path.Combine(parPath, "poster.jpg")) _
-								OrElse (Master.eSettings.FolderJPG AndAlso fFile.ToLower = Path.Combine(parPath, "folder.jpg"))) _
-								OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.tbn")) _
-								OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.jpg")) _
-								OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC AndAlso (fFile.ToLower = Path.Combine(parPath, "video_ts-poster.jpg") OrElse fFile.ToLower = Path.Combine(parPath, "poster.jpg")))) _
-								OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "index.tbn")) _
-								OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index.jpg")) _
-								OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC AndAlso fFile.ToLower = Path.Combine(parPath, "index-poster.jpg"))))) _
-								OrElse ((Not Movie.isSingle OrElse isYAMJ OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso (((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".tbn")) _
-								OrElse ((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".tbn")) _
-								OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".jpg")) _
-								OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".jpg")) _
-								OrElse ((Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, "-poster.jpg")) _
-								OrElse ((Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC) AndAlso fFile.ToLower = String.Concat(tmpName, "-poster.jpg")) _
-								OrElse ((Master.eSettings.MovieNameDashPosterJPG AndAlso isXBMC) AndAlso fFile.ToLower = Path.Combine(parPath, "poster.jpg")))) Then
-						Movie.Poster = fFile
-						Continue For
-					End If
-				End If
+                'poster
+                If String.IsNullOrEmpty(Movie.Poster) Then
+                    If (Movie.isSingle AndAlso (Master.eSettings.MovieTBN AndAlso fFile.ToLower = Path.Combine(parPath, "movie.tbn")) _
+                                OrElse (Master.eSettings.PosterTBN AndAlso fFile.ToLower = Path.Combine(parPath, "poster.tbn")) _
+                                OrElse (Master.eSettings.MovieJPG AndAlso fFile.ToLower = Path.Combine(parPath, "movie.jpg")) _
+                                OrElse (Master.eSettings.PosterJPG AndAlso fFile.ToLower = Path.Combine(parPath, "poster.jpg")) _
+                                OrElse (Master.eSettings.FolderJPG AndAlso fFile.ToLower = Path.Combine(parPath, "folder.jpg"))) _
+                                OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.tbn")) _
+                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "video_ts.jpg")) _
+                                OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC AndAlso (fFile.ToLower = Path.Combine(parPath, "video_ts-poster.jpg") OrElse (fFile.ToLower = Path.Combine(parPath, "poster.jpg") AndAlso Movie.Filename.ToLower = String.Concat(parPath, "\", "video_ts.ifo") OrElse Movie.Filename.ToLower = String.Concat(parPath, "\", "00000.m2ts"))))) _
+                                OrElse ((Not Movie.isSingle OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso ((Master.eSettings.MovieNameTBN AndAlso fFile.ToLower = Path.Combine(parPath, "index.tbn")) _
+                                OrElse (Master.eSettings.MovieNameJPG AndAlso fFile.ToLower = Path.Combine(parPath, "index.jpg")) _
+                                OrElse (Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC AndAlso fFile.ToLower = Path.Combine(parPath, "index-poster.jpg"))))) _
+                                OrElse ((Not Movie.isSingle OrElse isYAMJ OrElse Not Master.eSettings.MovieNameMultiOnly) AndAlso (((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".tbn")) _
+                                OrElse ((Master.eSettings.MovieNameTBN OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".tbn")) _
+                                OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, ".jpg")) _
+                                OrElse ((Master.eSettings.MovieNameJPG OrElse isYAMJ) AndAlso fFile.ToLower = String.Concat(tmpName, ".jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC) AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, "-poster.jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG AndAlso Not isXBMC) AndAlso fFile.ToLower = String.Concat(tmpName, "-poster.jpg")) _
+                                OrElse ((Master.eSettings.MovieNameDashPosterJPG AndAlso isXBMC) AndAlso fFile.ToLower = Path.Combine(parPath, "poster.jpg")))) Then
+                        Movie.Poster = fFile
+                        Continue For
+                    End If
+                End If
 
-				'nfo
-				If String.IsNullOrEmpty(Movie.Nfo) Then
+                'nfo
+                If String.IsNullOrEmpty(Movie.Nfo) Then
                     If (Movie.isSingle AndAlso Master.eSettings.MovieNFO AndAlso fFile.ToLower = Path.Combine(parPath, "movie.nfo")) _
                     OrElse (Movie.isSingle AndAlso isXBMC AndAlso fFile.ToLower = String.Concat(Directory.GetParent(Movie.Filename).FullName.ToLower, Path.DirectorySeparatorChar, "video_ts.nfo")) _
                     OrElse (Movie.isSingle AndAlso isXBMC AndAlso fFile.ToLower = String.Concat(Directory.GetParent(Directory.GetParent(Movie.Filename).FullName.ToLower).FullName.ToLower, Path.DirectorySeparatorChar, "index.nfo")) _
@@ -356,58 +356,58 @@ Public Class Scanner
                                                                                                 fFile.ToLower = String.Concat(tmpName, ".nfo") OrElse _
                                                                                                 fFile.ToLower = Path.Combine(parPath, "video_ts.nfo") OrElse _
                                                                                                 fFile.ToLower = Path.Combine(parPath, "index.nfo"))))) Then
-						Movie.Nfo = fFile
-						Continue For
-					End If
-				End If
+                        Movie.Nfo = fFile
+                        Continue For
+                    End If
+                End If
 
-				'subs
-				If String.IsNullOrEmpty(Movie.Subs) Then
-					If Regex.IsMatch(fFile.ToLower, String.Concat("^", Regex.Escape(tmpNameNoStack), AdvancedSettings.GetSetting("SubtitleExtension", ".*\.(sst|srt|sub|ssa|aqt|smi|sami|jss|mpl|rt|idx|ass)$")), RegexOptions.IgnoreCase) OrElse _
-								Regex.IsMatch(fFile.ToLower, String.Concat("^", Regex.Escape(tmpName), AdvancedSettings.GetSetting("SubtitleExtension", ".*\.(sst|srt|sub|ssa|aqt|smi|sami|jss|mpl|rt|idx|ass)$")), RegexOptions.IgnoreCase) Then
-						Movie.Subs = fFile
-						Continue For
-					End If
-				End If
+                'subs
+                If String.IsNullOrEmpty(Movie.Subs) Then
+                    If Regex.IsMatch(fFile.ToLower, String.Concat("^", Regex.Escape(tmpNameNoStack), AdvancedSettings.GetSetting("SubtitleExtension", ".*\.(sst|srt|sub|ssa|aqt|smi|sami|jss|mpl|rt|idx|ass)$")), RegexOptions.IgnoreCase) OrElse _
+                                Regex.IsMatch(fFile.ToLower, String.Concat("^", Regex.Escape(tmpName), AdvancedSettings.GetSetting("SubtitleExtension", ".*\.(sst|srt|sub|ssa|aqt|smi|sami|jss|mpl|rt|idx|ass)$")), RegexOptions.IgnoreCase) Then
+                        Movie.Subs = fFile
+                        Continue For
+                    End If
+                End If
 
-				'trailer
-				If String.IsNullOrEmpty(Movie.Trailer) Then
-					For Each t As String In Master.eSettings.ValidExts
-						Select Case True
-							Case fFile.ToLower = String.Concat(Directory.GetParent(Movie.Filename).FullName.ToLower, Path.DirectorySeparatorChar, "video_ts-trailer", t.ToLower)
-								Movie.Trailer = fFile
-								Exit For
-							Case fFile.ToLower = String.Concat(Directory.GetParent(Directory.GetParent(Movie.Filename).FullName.ToLower).FullName.ToLower, Path.DirectorySeparatorChar, "index-trailer", t.ToLower)
-								Movie.Trailer = fFile
-								Exit For
-							Case fFile.ToLower = String.Concat(tmpNameNoStack, "-trailer", t.ToLower)
-								Movie.Trailer = fFile
-								Exit For
-							Case fFile.ToLower = String.Concat(tmpName, "-trailer", t.ToLower)
-								Movie.Trailer = fFile
-								Exit For
-							Case fFile.ToLower = String.Concat(tmpNameNoStack, "[trailer]", t.ToLower)
-								Movie.Trailer = fFile
-								Exit For
-							Case fFile.ToLower = String.Concat(tmpName, "[trailer]", t.ToLower)
-								Movie.Trailer = fFile
-								Exit For
-							Case Movie.isSingle AndAlso fFile.ToLower = Path.Combine(parPath, String.Concat("movie-trailer", t.ToLower))
-								Movie.Trailer = fFile
-								Exit For
-							Case Movie.isSingle AndAlso fFile.ToLower = Path.Combine(parPath, String.Concat("movie[trailer]", t.ToLower))
-								Movie.Trailer = fFile
-								Exit For
-						End Select
-					Next
-				End If
+                'trailer
+                If String.IsNullOrEmpty(Movie.Trailer) Then
+                    For Each t As String In Master.eSettings.ValidExts
+                        Select Case True
+                            Case fFile.ToLower = String.Concat(Directory.GetParent(Movie.Filename).FullName.ToLower, Path.DirectorySeparatorChar, "video_ts-trailer", t.ToLower)
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case fFile.ToLower = String.Concat(Directory.GetParent(Directory.GetParent(Movie.Filename).FullName.ToLower).FullName.ToLower, Path.DirectorySeparatorChar, "index-trailer", t.ToLower)
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case fFile.ToLower = String.Concat(tmpNameNoStack, "-trailer", t.ToLower)
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case fFile.ToLower = String.Concat(tmpName, "-trailer", t.ToLower)
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case fFile.ToLower = String.Concat(tmpNameNoStack, "[trailer]", t.ToLower)
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case fFile.ToLower = String.Concat(tmpName, "[trailer]", t.ToLower)
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case Movie.isSingle AndAlso fFile.ToLower = Path.Combine(parPath, String.Concat("movie-trailer", t.ToLower))
+                                Movie.Trailer = fFile
+                                Exit For
+                            Case Movie.isSingle AndAlso fFile.ToLower = Path.Combine(parPath, String.Concat("movie[trailer]", t.ToLower))
+                                Movie.Trailer = fFile
+                                Exit For
+                        End Select
+                    Next
+                End If
 
-				If Not String.IsNullOrEmpty(Movie.Poster) AndAlso Not String.IsNullOrEmpty(Movie.Fanart) _
-				AndAlso Not String.IsNullOrEmpty(Movie.Nfo) AndAlso Not String.IsNullOrEmpty(Movie.Trailer) _
-				AndAlso Not String.IsNullOrEmpty(Movie.Subs) AndAlso Not String.IsNullOrEmpty(Movie.Extra) Then
-					Exit For
-				End If
-			Next
+                If Not String.IsNullOrEmpty(Movie.Poster) AndAlso Not String.IsNullOrEmpty(Movie.Fanart) _
+                AndAlso Not String.IsNullOrEmpty(Movie.Nfo) AndAlso Not String.IsNullOrEmpty(Movie.Trailer) _
+                AndAlso Not String.IsNullOrEmpty(Movie.Subs) AndAlso Not String.IsNullOrEmpty(Movie.Extra) Then
+                    Exit For
+                End If
+            Next
 
 		Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
