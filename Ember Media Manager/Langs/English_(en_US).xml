@@ -868,4 +868,8 @@
   <string id="867">XBMC Frodo</string>
   <string id="868">Top 250</string>
   <string id="869">EmberMM.com &amp;Wiki...</string>
+  <string id="870">Use Trakt.tv as source for "Watched" state</string>
+  <string id="871">Trakt.tv Playcount Sync</string>
+  <string id="872">Get watched movies</string>
+  <string id="873">Save watched state to database/nfo</string>
 </strings>
