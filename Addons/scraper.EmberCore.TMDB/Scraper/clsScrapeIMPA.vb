@@ -30,7 +30,7 @@ Namespace IMPA
 
         #Region "Fields"
 
-        Public IMDBURL As String
+
 
         Friend  WithEvents bwIMPA As New System.ComponentModel.BackgroundWorker
 
@@ -129,7 +129,7 @@ Namespace IMPA
             Try
 
                 Dim sHTTP As New HTTP
-                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/title/tt", IMDBID, "/posters"))
+				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", IMDBID, "/posters"))
                 sHTTP = Nothing
 
                 Dim mcIMPA As MatchCollection = Regex.Matches(HTML, "http://([^""]*)impawards.com/([^""]*)")

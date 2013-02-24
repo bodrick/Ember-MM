@@ -140,15 +140,18 @@ Namespace TMDBg
 				IMDBMovie.ID = Movie.imdb_id
 				IMDBMovie.IDMovieDB = Movie.id.ToString
 
-				If bwTMDBg.CancellationPending Then Return Nothing
-
-
 				If bwTMDBg.CancellationPending Or IsNothing(Movie) Then Return Nothing
 
 				Dim Keywords As WatTmdb.V3.TmdbMovieKeywords
 				Keywords = _TMDBApi.GetMovieKeywords(Movie.id)
-				If Keywords.keywords.Count = 0 AndAlso _MySettings.FallBackEng Then
-					Keywords = _TMDBApiE.GetMovieKeywords(Movie.id)
+				If Not IsNothing(Keywords) AndAlso Not IsNothing(Keywords.keywords) Then
+					If Keywords.keywords.Count <> 0 AndAlso _MySettings.FallBackEng Then
+						Keywords = _TMDBApiE.GetMovieKeywords(Movie.id)
+					End If
+				Else
+					If _MySettings.FallBackEng Then
+						Keywords = _TMDBApiE.GetMovieKeywords(Movie.id)
+					End If
 				End If
 
 				' to be added the tags structure
@@ -170,10 +173,16 @@ Namespace TMDBg
 					' I will add original always. to be updated if size, TMDBConf.images.poster_sizes(0) & 
 					Dim Images As WatTmdb.V3.TmdbMovieImages
 					Images = _TMDBApi.GetMovieImages(Movie.id, _MySettings.TMDBLanguage)
-					If (Images.posters.Count = 0) AndAlso _MySettings.FallBackEng Then
-						Images = _TMDBApiE.GetMovieImages(Movie.id)
+					If Not IsNothing(Images) AndAlso Not IsNothing(Images.posters) Then
+						If (Images.posters.Count = 0) AndAlso _MySettings.FallBackEng Then
+							Images = _TMDBApiE.GetMovieImages(Movie.id)
+						End If
+					Else
+						If _MySettings.FallBackEng Then
+							Images = _TMDBApiE.GetMovieImages(Movie.id)
+						End If
 					End If
-					If Not IsNothing(Images.posters) Then
+					If Not IsNothing(Images) AndAlso Not IsNothing(Images.posters) Then
 						If Images.posters.Count > 0 Then
 							_sPoster = _TMDBConf.images.base_url & "w92" & Images.posters(0).file_path
 						Else
@@ -190,11 +199,17 @@ Namespace TMDBg
 				If Options.bMPAA Then
 					IMDBMovie.MPAA = ""
 					Releases = _TMDBApi.GetMovieReleases(Movie.id)
-					If Releases.countries.Count = 0 AndAlso _MySettings.FallBackEng Then
-						Releases = _TMDBApiE.GetMovieReleases(Movie.id)
+					If Not IsNothing(Releases) AndAlso Not IsNothing(Releases.countries) Then
+						If (Releases.countries.Count = 0) AndAlso _MySettings.FallBackEng Then
+							Releases = _TMDBApiE.GetMovieReleases(Movie.id)
+						End If
+					Else
+						If _MySettings.FallBackEng Then
+							Releases = _TMDBApiE.GetMovieReleases(Movie.id)
+						End If
 					End If
 
-					If Not IsNothing(Releases.countries) Then
+					If Not IsNothing(Releases) AndAlso Not IsNothing(Releases.countries) Then
 						For Each Country In Releases.countries
 							If Country.iso_3166_1.ToUpper = CStr(IIf(Master.eSettings.CertificationLang = "", "US", Master.eSettings.CertificationLang)) Then
 								IMDBMovie.MPAA = Country.certification
@@ -221,15 +236,22 @@ Namespace TMDBg
 				If Options.bTrailer AndAlso (String.IsNullOrEmpty(IMDBMovie.Trailer) OrElse Not Master.eSettings.LockTrailer) Then
 					Dim Trailers As WatTmdb.V3.TmdbMovieTrailers
 					Trailers = _TMDBApi.GetMovieTrailers(Movie.id)
-					If Trailers.youtube.Count = 0 AndAlso _MySettings.FallBackEng Then
-						Trailers = _TMDBApiE.GetMovieTrailers(Movie.id)
-					End If
-					IMDBMovie.Trailer = ""
-					If Not IsNothing(Trailers.youtube) Then
-						If Trailers.youtube.Count > 0 Then
-							IMDBMovie.Trailer = "http://www.youtube.com/watch?hd=1&v=" & Trailers.youtube(0).source
+					If Not IsNothing(Trailers) AndAlso Not IsNothing(Trailers.youtube) Then
+						If (Trailers.youtube.Count = 0) AndAlso _MySettings.FallBackEng Then
+							Trailers = _TMDBApiE.GetMovieTrailers(Movie.id)
+						End If
+					Else
+						If _MySettings.FallBackEng Then
+							Trailers = _TMDBApiE.GetMovieTrailers(Movie.id)
 						End If
 					End If
+
+						IMDBMovie.Trailer = ""
+						If Not IsNothing(Trailers) AndAlso Not IsNothing(Trailers.youtube) Then
+							If Trailers.youtube.Count > 0 Then
+								IMDBMovie.Trailer = "http://www.youtube.com/watch?hd=1&v=" & Trailers.youtube(0).source
+							End If
+						End If
 
 				End If
 
@@ -244,12 +266,18 @@ Namespace TMDBg
 				Dim aCast As WatTmdb.V3.TmdbMovieCast = Nothing
 				If Options.bCast Then
 					aCast = _TMDBApi.GetMovieCast(Movie.id)
-					If aCast.cast.Count = 0 AndAlso _MySettings.FallBackEng Then
-						aCast = _TMDBApiE.GetMovieCast(Movie.id)
+					If Not IsNothing(aCast) AndAlso Not IsNothing(aCast.cast) Then
+						If (aCast.cast.Count = 0) AndAlso _MySettings.FallBackEng Then
+							aCast = _TMDBApiE.GetMovieCast(Movie.id)
+						End If
+					Else
+						If _MySettings.FallBackEng Then
+							aCast = _TMDBApiE.GetMovieCast(Movie.id)
+						End If
 					End If
 
 					Dim Cast As New List(Of MediaContainers.Person)
-					If Not IsNothing(aCast.cast) Then
+					If Not IsNothing(aCast) AndAlso Not IsNothing(aCast.cast) Then
 						For Each aAc As WatTmdb.V3.Cast In aCast.cast
 							Dim aPer As New MediaContainers.Person
 							aPer.Name = aAc.name
@@ -272,12 +300,18 @@ Namespace TMDBg
 				If Options.bCountry Then
 					If IsNothing(Releases) Then
 						Releases = _TMDBApi.GetMovieReleases(Movie.id)
-						If Releases.countries.Count = 0 AndAlso _MySettings.FallBackEng Then
-							Releases = _TMDBApiE.GetMovieReleases(Movie.id)
+						If Not IsNothing(Releases) AndAlso Not IsNothing(Releases.countries) Then
+							If (Releases.countries.Count = 0) AndAlso _MySettings.FallBackEng Then
+								Releases = _TMDBApiE.GetMovieReleases(Movie.id)
+							End If
+						Else
+							If _MySettings.FallBackEng Then
+								Releases = _TMDBApiE.GetMovieReleases(Movie.id)
+							End If
 						End If
 					End If
 					IMDBMovie.Countries.Clear()
-					If Not IsNothing(Releases.countries) Then
+					If Not IsNothing(Releases) AndAlso Not IsNothing(Releases.countries) Then
 						For Each aCo As WatTmdb.V3.ReleaseCountry In Releases.countries
 							IMDBMovie.Countries.Add(aCo.iso_3166_1)
 						Next
@@ -290,7 +324,13 @@ Namespace TMDBg
 				If Options.bGenre AndAlso (String.IsNullOrEmpty(IMDBMovie.Genre) OrElse Not Master.eSettings.LockGenre) Then
 					IMDBMovie.Genres.Clear()
 					Dim tGen As System.Collections.Generic.List(Of WatTmdb.V3.MovieGenre)
-					tGen = CType(IIf(IsNothing(Movie.genres) AndAlso Movie.genres.Count = 0 AndAlso _MySettings.FallBackEng, MovieE.genres, Movie.genres), Global.System.Collections.Generic.List(Of Global.WatTmdb.V3.MovieGenre))
+					If Not IsNothing(Movie) AndAlso Not IsNothing(Movie.genres) Then
+						tGen = CType(IIf(Movie.genres.Count = 0 AndAlso _MySettings.FallBackEng, MovieE.genres, Movie.genres), Global.System.Collections.Generic.List(Of Global.WatTmdb.V3.MovieGenre))
+					Else
+						tGen = CType(IIf(_MySettings.FallBackEng, MovieE.genres, Nothing), Global.System.Collections.Generic.List(Of Global.WatTmdb.V3.MovieGenre))
+					End If
+
+
 					If Not IsNothing(tGen) Then
 						For Each aGen As WatTmdb.V3.MovieGenre In tGen
 							IMDBMovie.Genres.Add(aGen.name)
@@ -325,7 +365,12 @@ Namespace TMDBg
 				If Options.bStudio AndAlso (String.IsNullOrEmpty(IMDBMovie.Studio) OrElse Not Master.eSettings.LockStudio) Then
 					tStr = ""
 					Dim tPC As System.Collections.Generic.List(Of WatTmdb.V3.ProductionCompany)
-					tPC = CType(IIf(IsNothing(Movie.production_companies) AndAlso Movie.production_companies.Count = 0 AndAlso _MySettings.FallBackEng, MovieE.production_companies, Movie.production_companies), Global.System.Collections.Generic.List(Of WatTmdb.V3.ProductionCompany))
+					If Not IsNothing(Movie) AndAlso Not IsNothing(Movie.genres) Then
+						tPC = CType(IIf(Movie.production_companies.Count = 0 AndAlso _MySettings.FallBackEng, MovieE.production_companies, Movie.production_companies), Global.System.Collections.Generic.List(Of WatTmdb.V3.ProductionCompany))
+					Else
+						tPC = CType(IIf(_MySettings.FallBackEng, MovieE.production_companies, Nothing), Global.System.Collections.Generic.List(Of WatTmdb.V3.ProductionCompany))
+					End If
+
 					If Not IsNothing(tPC) Then
 						For Each aPro As WatTmdb.V3.ProductionCompany In tPC
 							tStr = tStr & " / " & aPro.name
@@ -343,8 +388,14 @@ Namespace TMDBg
 				If FullCrew Or Options.bWriters Or Options.bDirector Then
 					If IsNothing(aCast) Then
 						aCast = _TMDBApi.GetMovieCast(Movie.id)
-						If aCast.crew.Count = 0 AndAlso _MySettings.FallBackEng Then
-							aCast = _TMDBApiE.GetMovieCast(Movie.id)
+						If Not IsNothing(aCast) AndAlso Not IsNothing(aCast.cast) Then
+							If (aCast.crew.Count = 0) AndAlso _MySettings.FallBackEng Then
+								aCast = _TMDBApiE.GetMovieCast(Movie.id)
+							End If
+						Else
+							If _MySettings.FallBackEng Then
+								aCast = _TMDBApiE.GetMovieCast(Movie.id)
+							End If
 						End If
 					End If
 					IMDBMovie.Credits.Clear()
