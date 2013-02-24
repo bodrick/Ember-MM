@@ -380,7 +380,7 @@ Public Class Scanner
                             Case fFile.ToLower = String.Concat(Directory.GetParent(Directory.GetParent(Movie.Filename).FullName.ToLower).FullName.ToLower, Path.DirectorySeparatorChar, "index-trailer", t.ToLower)
                                 Movie.Trailer = fFile
                                 Exit For
-                            Case fFile.ToLower = String.Concat(tmpNameNoStack, "-trailer", t.ToLower)
+                            Case Not Master.eSettings.MovieNameNFOStack AndAlso fFile.ToLower = String.Concat(tmpNameNoStack, "-trailer", t.ToLower)
                                 Movie.Trailer = fFile
                                 Exit For
                             Case fFile.ToLower = String.Concat(tmpName, "-trailer", t.ToLower)
