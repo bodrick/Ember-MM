@@ -148,14 +148,14 @@ Namespace YouTube
                 Dim VideoTitle As String = GetVideoTitle(Html)
                 VideoTitle = Regex.Replace(VideoTitle, "['?\\:*<>]*", "")
 
-                Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map=(.*?)\\u0026amp;", RegexOptions.IgnoreCase)
+                Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map\"": \""(.*?)\"", \""", RegexOptions.IgnoreCase)
                 If fmtMatch.Success Then
                     Dim FormatMap As String = fmtMatch.Groups(1).Value
                     Dim decoded As String = Web.HttpUtility.UrlDecode(FormatMap)
-                    Dim FormatArray() As String = Split(decoded, ",")
+                    Dim FormatArray() As String = Split(decoded.Replace(", ", ";"), ",")
 
-                    Dim rurl As New Regex("url=([^&,]+)", RegexOptions.IgnoreCase)
-                    Dim rsig As New Regex("sig=([^&,]+)", RegexOptions.IgnoreCase)
+                    Dim rurl As New Regex("url=([^\\]+)", RegexOptions.IgnoreCase)
+                    Dim rsig As New Regex("sig=([^\\]+)", RegexOptions.IgnoreCase)
                     Dim ritag As New Regex("itag=(\d+)", RegexOptions.IgnoreCase)
 
                     For i As Integer = 0 To FormatArray.Length - 1
