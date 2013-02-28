@@ -117,47 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Label4.Text" xml:space="preserve">
-    <value>Now that Ember Media Manager knows WHERE to look for the files, we need to tell it WHAT files to look for.  Simply select any combination of files type you wish Ember Media Manager to load from and save to.  You can select more than one from each section if you wish.</value>
-  </data>
   <data name="Label2.Text" xml:space="preserve">
     <value>This is either your first time running Ember Media Manager or you have upgraded to a newer version.  There are a few things Ember Media Manager needs to know to work properly.  This wizard will walk you through configuring Ember Media Manager to work for your set up.
 
 Only a handful of settings will be covered in this wizard. You can change these or any other setting at any time by selecting "Settings..." from the "Edit" menu.</value>
+  </data>
+  <data name="Label4.Text" xml:space="preserve">
+    <value>Now that Ember Media Manager knows WHERE to look for the files, we need to tell it WHAT files to look for.  Simply select any combination of files type you wish Ember Media Manager to load from and save to.  You can select more than one from each section if you wish.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnMovieRem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK6QAA
-        CukB/XXO0wAAAetJREFUOE9j+P//PwMlGEXzfQdj37t2Bs24DLxnZ5B5z96oEFkebsAtV7OIKwaq/y9p
-        Kfy/bqW7Bd2QG3YGjZd1lf9f1lH6f8PesPf/wZmMIDVgA656WHGd1lH+f1xRGoxPqcv9v2iJMOSyrUHj
-        aW0loJwUGJ/SVPx/3kzbFG7ATk4uxgOK0j0HlGX+gzFQ0SE1uf9nLHVXnLM3rDmqrfh/P1AMLq8kvf+A
-        rAQ33ACYc3cqy/TuUJL+vxOIdyhI/d8DdMk+LcX/2xUkIWIQuf1LNBVZYHowYmAj0JANQIVgDLR1PdAg
-        GH+jkvTe+doqrFgDEVlwhZL08RXAsEDD7zaZGsBtxumCBYrSDQsVpP4A8X90vEBRaiN67KB4YYaidONM
-        oEYYngFkgzCqmPSW/0+/w/WBGRNU5RkmKkg1TJSX+g/DE0BsBenNkxSku8BsZKwgtWWSihwHPBZ61RS4
-        OuUl/6Ph/bX6qkwgRV0KUr0daPJditJmKNHYoSSb2AS0pUlO8j+Q3vctwBusGYab5aW6wXJA3KIoM/2x
-        sxVYnoGZAYwFgBRvnKRofba02BZuFmYDIF8HKG4MwkA2iK+QIik6N1NafCGQLQLEfHAXABUxAzHYT2BB
-        BgZOIJ8XGQPFeJDk2UB6MFIiOdkaALyqHwCXXFYvAAAAAElFTkSuQmCC
+        CukB/XXO0wAAAe1JREFUOE+lkEFIG0EUhtfGFo21eFDbnYnJzMYomoSuFQMGmhRKoVAKHnsqCF7Ek3dF
+        ox5s2oB6UQ9ShR5yq9FADViTFoqgRWljqRTUg3j1qJfC883orLt71MO3897/v/fP7moAcCsczdGzztcH
+        CXPcrtk5TJj9h8kng3bNKv69iL3ZM0Pwu53B33g0bx8S7CfMVDkahHLEgP1kRwa+zVcIXZp/Xsa925Eg
+        bHIq2Wr1w6/u65DyUzO1HTbQI5KtNg67sXCXFVCo9laUOP1QCvpAgkPfW/zwszua3Ul2DP0IcyiiZvkG
+        LZaaHtVYAYpC0JdZMygUkDVGYB3fZKOdwxemX2qXXvFTG69UO44AQQ5DlnFQgrd+xiDV5wz69WO4+a59
+        3rGsyBp0M4v/wsXpSpdp3axwNIJFTkeXGPmPgJtFTnLueUczx2lqHgcVc1c4NZqHk3NnwFQooE0zMjod
+        IKCYEiejqzOMpmVth5H8TLO/ygrItDDvu4AOLorDj0N3hJ9mJDPp8tOcxqwAwaTR1DuG6WN+HfDcOOt5
+        JZcV4wHyXnrIBPfNHj+PS1/zaJI6PGrf6g0jA7QxX1PpMbGPoN4pwFr0rE9vWOinD5ewrkceyADxwCEP
+        Ir9JippWjX2tHdTu2/x7qHlkrcSbAdoFvKofAHGjlVEAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="btnMovieAddFolder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK6QAA
-        CukB/XXO0wAAArRJREFUOE+l01tIU3EAx/GBlAQVCkVvTZMI1B6SijCkhx566MIqJbEVFZqplTmVSZa2
-        zOsslWLdzMjMJCjDaWoPywdzrfA+15zOy9zV7cw5zXbO2fj13wFHom8e+HI48P9/zv+c/zk8ALz1FJjs
-        maqKpI1PEhiTLJ42Pye9iKcttfG0tc5fgsf86thaN+IA92BeKGuWsV7bS3hna+G1v4bX8QY+qgE+ZyN8
-        riauP+ZPpTNObPwf4oD5vuxwxvAI7MxDsMYqsKYasObH8Fpk8FqfwQ/7Zp9iwdIFB7VotNtnJU4nFeyf
-        ywFOVQafniwBM/mAVARmqphUCma6HKxBysFeYxncpk643B5QlAME2RcA7N3JfHq8EMx4Ppix2+R8F4y+
-        AMzEPZKEQ9mJO5g3yDE3/xcOh32aIBsCgK1LyPeMikFrRaB/Z5FzNujRXECXD4wRiKCs7iZck82gXEt+
-        IG/5PXCPYPp6jr80IoJnOJ2UBlqdDnbkBgaHBPg1dIKgGXBrSkDZraCccx6y/G0rgMnWeP5CfyYWeq9i
-        sTcFbN81MAPpkKnCUKHcjsVBIZZ0TXC6fbDZrI2rdmH042n+3M/rcCmTQfVcgk6ZCK0qCTXfI1HeHQG1
-        SgDtcBEsZAWm/nfFqwD1+1N8e3caXF1XoP52BpmKMOQoIlCg2INCUo5iNzI6t0Cp/wCPpqViFfCj7ni4
-        QZEKU8dFaNoTUNl2kEvUGo1MeRSkbTGo7IxDx4Acmp666lXAwFtBiPZLCjPy+Ty0zUkwtFzAlFyI1IYY
-        JNZHQ992FvoOCbTynHpr+8ldK4AgHndsFl/eL6jOjSuUZh2WVN6KLaoUxd4/WrLXeKQs2i3JPiQVC6PE
-        ZFwEKYzMCSeFBL4DchG05o+yI3RryIGdoYEt4/E2kbH+gpfnrOtX9sP/AIt1021BwrQaAAAAAElFTkSu
-        QmCC
+        CukB/XXO0wAAAq1JREFUOE+lzl1IU2Ecx/GBlAQVCkV3TZMIzC6SijCkiy666AWrSWIWFZqplTkVJUtb
+        5utWKsV6MyMzk6AMp6ldLC/MtcL3ueZ0Tuc2N7cz5zTbOWfj17PBDsquogPf8zwPPP8PDw/Af8Vt3NM1
+        0bTxcSJjkgpo8zPScwE9Vy+gLQ2+Et3ml0dXDwby/1zDheGsWcp6rC/gma+Hx/YKHvtreKkmeB3N8Dpb
+        /P02f6yYdWB9ELA4kBvJGB6CnX0A1lgD1lQH1vwInjkpPJan8MHe+SdYmuuBnVo22mzzIoeDCuUAhzKL
+        T+vLwejvk0rBTJeRKsDMVIE1iP2wx1gJl6kbTpcbFGUHQfZygK03lU9PloCZLAIzcYusd8DoisFM3SWJ
+        /Cg7dRuLBhkWFv/AbrfNEGQdB1h7Uvju8QLQGiHoXzlkzQU9ng9oi4AJAhGU1d6AU98KyrniAwp9cxxg
+        +nKWvzImhHs0k5QBWpUJduw6hkcS8HPkOEGz4FKXg7JZQDkW3OT5W9YA+nYBf2kwG0v9V7DcnwZ24CqY
+        oUxIlRGoVmzF8nAKVrQtcLi8sFotzYFhDhj/cIq/8OManIpUUH0XoVUkQaNMRt23aFT1RkGlTIBmtBRz
+        5AWmwbdlQYDq3Um+rTcDzp7LUH09jWx5BPLkUSiW70IJKU++E1ndm6DQvYdb3VYdBHxvOBZpkKfD1HUB
+        6s5ESDoO+BO2xyBbthvijlhIuuPRNSSDuq+hNggYepMQpvmcxox9OgdNazIMbecxLUtBelMskhpjoOs4
+        A12XCBpZXqOl88SONUAIz/9tLLi0L6E2P75EnHNIJLkZVyoRxt07Ur7HeLgyxiXKPSguSNldQO5FkSLI
+        TCQpjHsBOYSsVgPxtoVvDtu/PZw783gbyF1foYGZoKF/C7y/i3XTbS25p8IAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="Label8.Text" xml:space="preserve">
@@ -173,34 +172,33 @@ Locks - This section allows you to "lock" certain information so it does not get
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK6QAA
-        CukB/XXO0wAAAetJREFUOE9j+P//PwMlGEXzfQdj37t2Bs24DLxnZ5B5z96oEFkebsAtV7OIKwaq/y9p
-        Kfy/bqW7Bd2QG3YGjZd1lf9f1lH6f8PesPf/wZmMIDVgA656WHGd1lH+f1xRGoxPqcv9v2iJMOSyrUHj
-        aW0loJwUGJ/SVPx/3kzbFG7ATk4uxgOK0j0HlGX+gzFQ0SE1uf9nLHVXnLM3rDmqrfh/P1AMLq8kvf+A
-        rAQ33ACYc3cqy/TuUJL+vxOIdyhI/d8DdMk+LcX/2xUkIWIQuf1LNBVZYHowYmAj0JANQIVgDLR1PdAg
-        GH+jkvTe+doqrFgDEVlwhZL08RXAsEDD7zaZGsBtxumCBYrSDQsVpP4A8X90vEBRaiN67KB4YYaidONM
-        oEYYngFkgzCqmPSW/0+/w/WBGRNU5RkmKkg1TJSX+g/DE0BsBenNkxSku8BsZKwgtWWSihwHPBZ61RS4
-        OuUl/6Ph/bX6qkwgRV0KUr0daPJditJmKNHYoSSb2AS0pUlO8j+Q3vctwBusGYab5aW6wXJA3KIoM/2x
-        sxVYnoGZAYwFgBRvnKRofba02BZuFmYDIF8HKG4MwkA2iK+QIik6N1NafCGQLQLEfHAXABUxAzHYT2BB
-        BgZOIJ8XGQPFeJDk2UB6MFIiOdkaALyqHwCXXFYvAAAAAElFTkSuQmCC
+        CukB/XXO0wAAAe1JREFUOE+lkEFIG0EUhtfGFo21eFDbnYnJzMYomoSuFQMGmhRKoVAKHnsqCF7Ek3dF
+        ox5s2oB6UQ9ShR5yq9FADViTFoqgRWljqRTUg3j1qJfC883orLt71MO3897/v/fP7moAcCsczdGzztcH
+        CXPcrtk5TJj9h8kng3bNKv69iL3ZM0Pwu53B33g0bx8S7CfMVDkahHLEgP1kRwa+zVcIXZp/Xsa925Eg
+        bHIq2Wr1w6/u65DyUzO1HTbQI5KtNg67sXCXFVCo9laUOP1QCvpAgkPfW/zwszua3Ul2DP0IcyiiZvkG
+        LZaaHtVYAYpC0JdZMygUkDVGYB3fZKOdwxemX2qXXvFTG69UO44AQQ5DlnFQgrd+xiDV5wz69WO4+a59
+        3rGsyBp0M4v/wsXpSpdp3axwNIJFTkeXGPmPgJtFTnLueUczx2lqHgcVc1c4NZqHk3NnwFQooE0zMjod
+        IKCYEiejqzOMpmVth5H8TLO/ygrItDDvu4AOLorDj0N3hJ9mJDPp8tOcxqwAwaTR1DuG6WN+HfDcOOt5
+        JZcV4wHyXnrIBPfNHj+PS1/zaJI6PGrf6g0jA7QxX1PpMbGPoN4pwFr0rE9vWOinD5ewrkceyADxwCEP
+        Ir9JippWjX2tHdTu2/x7qHlkrcSbAdoFvKofAHGjlVEAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="btnTVAddSource.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK6QAA
-        CukB/XXO0wAAArRJREFUOE+l01tIU3EAx/GBlAQVCkVvTZMI1B6SijCkhx566MIqJbEVFZqplTmVSZa2
-        zOsslWLdzMjMJCjDaWoPywdzrfA+15zOy9zV7cw5zXbO2fj13wFHom8e+HI48P9/zv+c/zk8ALz1FJjs
-        maqKpI1PEhiTLJ42Pye9iKcttfG0tc5fgsf86thaN+IA92BeKGuWsV7bS3hna+G1v4bX8QY+qgE+ZyN8
-        riauP+ZPpTNObPwf4oD5vuxwxvAI7MxDsMYqsKYasObH8Fpk8FqfwQ/7Zp9iwdIFB7VotNtnJU4nFeyf
-        ywFOVQafniwBM/mAVARmqphUCma6HKxBysFeYxncpk643B5QlAME2RcA7N3JfHq8EMx4Ppix2+R8F4y+
-        AMzEPZKEQ9mJO5g3yDE3/xcOh32aIBsCgK1LyPeMikFrRaB/Z5FzNujRXECXD4wRiKCs7iZck82gXEt+
-        IG/5PXCPYPp6jr80IoJnOJ2UBlqdDnbkBgaHBPg1dIKgGXBrSkDZraCccx6y/G0rgMnWeP5CfyYWeq9i
-        sTcFbN81MAPpkKnCUKHcjsVBIZZ0TXC6fbDZrI2rdmH042n+3M/rcCmTQfVcgk6ZCK0qCTXfI1HeHQG1
-        SgDtcBEsZAWm/nfFqwD1+1N8e3caXF1XoP52BpmKMOQoIlCg2INCUo5iNzI6t0Cp/wCPpqViFfCj7ni4
-        QZEKU8dFaNoTUNl2kEvUGo1MeRSkbTGo7IxDx4Acmp666lXAwFtBiPZLCjPy+Ty0zUkwtFzAlFyI1IYY
-        JNZHQ992FvoOCbTynHpr+8ldK4AgHndsFl/eL6jOjSuUZh2WVN6KLaoUxd4/WrLXeKQs2i3JPiQVC6PE
-        ZFwEKYzMCSeFBL4DchG05o+yI3RryIGdoYEt4/E2kbH+gpfnrOtX9sP/AIt1021BwrQaAAAAAElFTkSu
-        QmCC
+        CukB/XXO0wAAAq1JREFUOE+lzl1IU2Ecx/GBlAQVCkV3TZMIzC6SijCkiy666AWrSWIWFZqplTkVJUtb
+        5utWKsV6MyMzk6AMp6ldLC/MtcL3ueZ0Tuc2N7cz5zTbOWfj17PBDsquogPf8zwPPP8PDw/Af8Vt3NM1
+        0bTxcSJjkgpo8zPScwE9Vy+gLQ2+Et3ml0dXDwby/1zDheGsWcp6rC/gma+Hx/YKHvtreKkmeB3N8Dpb
+        /P02f6yYdWB9ELA4kBvJGB6CnX0A1lgD1lQH1vwInjkpPJan8MHe+SdYmuuBnVo22mzzIoeDCuUAhzKL
+        T+vLwejvk0rBTJeRKsDMVIE1iP2wx1gJl6kbTpcbFGUHQfZygK03lU9PloCZLAIzcYusd8DoisFM3SWJ
+        /Cg7dRuLBhkWFv/AbrfNEGQdB1h7Uvju8QLQGiHoXzlkzQU9ng9oi4AJAhGU1d6AU98KyrniAwp9cxxg
+        +nKWvzImhHs0k5QBWpUJduw6hkcS8HPkOEGz4FKXg7JZQDkW3OT5W9YA+nYBf2kwG0v9V7DcnwZ24CqY
+        oUxIlRGoVmzF8nAKVrQtcLi8sFotzYFhDhj/cIq/8OManIpUUH0XoVUkQaNMRt23aFT1RkGlTIBmtBRz
+        5AWmwbdlQYDq3Um+rTcDzp7LUH09jWx5BPLkUSiW70IJKU++E1ndm6DQvYdb3VYdBHxvOBZpkKfD1HUB
+        6s5ESDoO+BO2xyBbthvijlhIuuPRNSSDuq+hNggYepMQpvmcxox9OgdNazIMbecxLUtBelMskhpjoOs4
+        A12XCBpZXqOl88SONUAIz/9tLLi0L6E2P75EnHNIJLkZVyoRxt07Ur7HeLgyxiXKPSguSNldQO5FkSLI
+        TCQpjHsBOYSsVgPxtoVvDtu/PZw783gbyF1foYGZoKF/C7y/i3XTbS25p8IAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="Label11.Text" xml:space="preserve">
