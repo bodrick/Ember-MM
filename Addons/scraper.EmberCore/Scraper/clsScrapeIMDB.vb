@@ -844,9 +844,9 @@ mPlot:
                 Dim R As New MovieSearchResults
 
                 Dim sHTTP As New HTTP
-                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&s=all"))
-                Dim HTMLm As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&s=tt&ttype=ft&ref_=fn_ft"))
-                Dim HTMLe As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie, System.Text.Encoding.GetEncoding("ISO-8859-1")), "&s=tt&ttype=ft&exact=true&ref_=fn_tt_ex"))
+                Dim HTML As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie), "&s=all"))
+                Dim HTMLm As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie), "&s=tt&ttype=ft&ref_=fn_ft"))
+                Dim HTMLe As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/find?q=", Web.HttpUtility.UrlEncode(sMovie), "&s=tt&ttype=ft&exact=true&ref_=fn_tt_ex"))
                 Dim rUri As String = sHTTP.ResponseUri
                 sHTTP = Nothing
 
