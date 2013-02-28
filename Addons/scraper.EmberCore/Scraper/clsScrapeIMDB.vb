@@ -637,9 +637,9 @@ mPlot:
             Dim b As Boolean = False
             Dim imdbMovie As MediaContainers.Movie = dbMovie.Movie
 
-            r.PopularTitles.Sort()
-            r.ExactMatches.Sort()
-            r.PartialMatches.Sort()
+            'r.PopularTitles.Sort()
+            'r.ExactMatches.Sort()
+            'r.PartialMatches.Sort()
 
             Try
                 Select Case iType
@@ -689,8 +689,16 @@ mPlot:
                         'End If
                         If r.ExactMatches.Count = 1 Then
                             b = GetMovieInfo(r.ExactMatches.Item(0).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)
-                        ElseIf r.ExactMatches.Count > 1 AndAlso (r.ExactMatches(If(exactHaveYear >= 0, exactHaveYear, 0)).Lev <= 5 OrElse useAnyway) Then
-                            b = GetMovieInfo(r.ExactMatches.Item(If(exactHaveYear >= 0, exactHaveYear, 0)).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)
+                        ElseIf r.ExactMatches.Count > 1 AndAlso exactHaveYear >= 0 Then
+                            b = GetMovieInfo(r.ExactMatches.Item(exactHaveYear).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)
+                        ElseIf r.PopularTitles.Count > 0 AndAlso popularHaveYear >= 0 Then
+                            b = GetMovieInfo(r.PopularTitles.Item(popularHaveYear).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCrew, False, Options, True)
+                        ElseIf r.ExactMatches.Count > 1 AndAlso (r.ExactMatches(0).Lev <= 5 OrElse useAnyway) Then
+                            b = GetMovieInfo(r.ExactMatches.Item(0).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)
+                        ElseIf r.ExactMatches.Count > 1 AndAlso (r.PopularTitles(0).Lev <= 5 OrElse useAnyway) Then
+                            b = GetMovieInfo(r.PopularTitles.Item(0).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)
+                        ElseIf r.PartialMatches.Count > 1 AndAlso (r.PartialMatches(0).Lev <= 5 OrElse useAnyway) Then
+                            b = GetMovieInfo(r.PartialMatches.Item(0).IMDBID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)
                         End If
                 End Select
 
