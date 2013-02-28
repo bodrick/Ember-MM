@@ -148,52 +148,108 @@ Namespace YouTube
                 Dim VideoTitle As String = GetVideoTitle(Html)
                 VideoTitle = Regex.Replace(VideoTitle, "['?\\:*<>]*", "")
 
-                Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map=(.*?)\\u0026amp;", RegexOptions.IgnoreCase)
+                Dim fmtMatch As Match = Regex.Match(Html, "url_encoded_fmt_stream_map\"": \""(.*?)\"", \""", RegexOptions.IgnoreCase)
                 If fmtMatch.Success Then
                     Dim FormatMap As String = fmtMatch.Groups(1).Value
+                    Dim decoded As String = Web.HttpUtility.UrlDecode(FormatMap)
+                    Dim FormatArray() As String = Split(decoded.Replace(", ", ";"), ",")
 
-                    Dim Formats As String() = Web.HttpUtility.UrlDecode(FormatMap).Split(Convert.ToChar(","))
-                    For Each fmt As String In Formats
-                        Dim Splitter As String() = {"url=", "&itag="}
-                        Dim FormatElements As String() = fmt.Split(Splitter, StringSplitOptions.RemoveEmptyEntries)
+                    Dim rurl As New Regex("url=([^\\]+)", RegexOptions.IgnoreCase)
+                    Dim rsig As New Regex("sig=([^\\]+)", RegexOptions.IgnoreCase)
+                    Dim ritag As New Regex("itag=(\d+)", RegexOptions.IgnoreCase)
+
+                    For i As Integer = 0 To FormatArray.Length - 1
+                        Dim yturl As String = rurl.Match(FormatArray(i)).Groups(1).Value
+                        Dim ytitag As String = ritag.Match(FormatArray(i)).Groups(1).Value
+                        Dim ytsig As String = rsig.Match(FormatArray(i)).Groups(1).Value
+
+                        'Console.WriteLine("Trailer Itag: {0}", ytitag)
+                        'Console.WriteLine("Trailer Url: {0}", yturl)
+                        'Console.WriteLine("Trailer Sig: {0}", ytsig)
 
                         Dim Link As New VideoLinkItem
-
-                        Select Case FormatElements(1).Trim
+                        Select Case ytitag
+                            ' **********************************************************************
+                            ' see all itags http://en.wikipedia.org/wiki/YouTube#Quality_and_codecs
+                            ' **********************************************************************
+                            Case "5"
+                                Link.Description = "240p (FLV, H.263)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "6"
+                                Link.Description = "270p (FLV, H.263)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "13"
+                                Link.Description = "144p (3GP, MPEG-4)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "17"
+                                Link.Description = "144p (3GP, MPEG-4)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
                             Case "18"
-                                Link.Description = "SQ (MP4)"
+                                Link.Description = "360p (MP4, H.264)"
                                 Link.FormatQuality = Enums.TrailerQuality.SQMP4
                             Case "22"
-                                Link.Description = "720p"
+                                Link.Description = "720p (MP4, H.264)"
                                 Link.FormatQuality = Enums.TrailerQuality.HD720p
                             Case "34"
-                                Link.Description = "SQ (FLV)"
+                                Link.Description = "360p (FLV, H.264)"
                                 Link.FormatQuality = Enums.TrailerQuality.SQFLV
                             Case "35"
-                                Link.Description = "HQ (FLV)"
+                                Link.Description = "480p (FLV, H.264)"
                                 Link.FormatQuality = Enums.TrailerQuality.HQFLV
+                            Case "36"
+                                Link.Description = "240p (3GP, MPEG-4)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
                             Case "37"
-                                Link.Description = "1080p"
+                                Link.Description = "1080p (MP4, H.264)"
                                 Link.FormatQuality = Enums.TrailerQuality.HD1080p
-                            Case "46"
-                                Link.Description = "1080p (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.HD1080pVP8
-                            Case "45"
-                                Link.Description = "720p (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.HD720pVP8
-                            Case "44"
-                                Link.Description = "HQ (VP8)"
-                                Link.FormatQuality = Enums.TrailerQuality.HQVP8
+                            Case "38"
+                                Link.Description = "1536p (MP4, H.264)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
                             Case "43"
-                                Link.Description = "SQ (VP8)"
+                                Link.Description = "360p (WebM, VP8)"
                                 Link.FormatQuality = Enums.TrailerQuality.SQVP8
+                            Case "44"
+                                Link.Description = "480p (WebM, VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.HQVP8
+                            Case "45"
+                                Link.Description = "720p (WebM, VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.HD720pVP8
+                            Case "46"
+                                Link.Description = "1080p (WebM, VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.HD1080pVP8
+                            Case "82"
+                                Link.Description = "3D 360p (MP4, H.264)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "83"
+                                Link.Description = "3D 480p (MP4, H.264)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "84"
+                                Link.Description = "3D 720p (MP4, H.264)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "85"
+                                Link.Description = "3D 520p (MP4, H.264)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "100"
+                                Link.Description = "3D 360p (WebM, VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "101"
+                                Link.Description = "3D 480p (WebM, VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "102"
+                                Link.Description = "3D 720p (WebM, VP8)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
+                            Case "120"
+                                Link.Description = "720p LiveStream (FLV, AVC)"
+                                Link.FormatQuality = Enums.TrailerQuality.OTHERS
                             Case Else
                                 Link.Description = "Other"
                                 Link.FormatQuality = Enums.TrailerQuality.OTHERS
                                 'Continue For
                         End Select
 
-                        Link.URL = Web.HttpUtility.UrlDecode(FormatElements(0)) & "&title=" & VideoTitle
+                        Link.URL = Web.HttpUtility.UrlDecode(Web.HttpUtility.UrlDecode(yturl)) & "&signature=" & ytsig & "&title=" & Web.HttpUtility.UrlEncode(VideoTitle)
+                        Link.URL = Link.URL.Replace("sig=", "signature=") ' sig= returns HTTP 403 //oldstyle, keep it
+                        'Console.WriteLine("Trailer Url decoded: {0}", Link.URL)
 
                         If bwYT.CancellationPending Then Return DownloadLinks
 
@@ -204,8 +260,8 @@ Namespace YouTube
                         If bwYT.CancellationPending Then Return DownloadLinks
 
                     Next
-                End If
 
+                End If
                 Return DownloadLinks
 
             Catch ex As Exception

@@ -228,7 +228,6 @@ Public Class dlgTrailer
                 Me.pnlStatus.Visible = True
                 Application.DoEvents()
 
-                '***************** CHECK *******************
                 If Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(Me.sPath) Then
                     Me.tURL = String.Concat(Directory.GetParent(Directory.GetParent(Me.sPath).FullName).FullName, "\", "index", If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), Path.GetExtension(Me.txtManual.Text))
                 ElseIf Master.eSettings.MovieNameNFOStack Then
