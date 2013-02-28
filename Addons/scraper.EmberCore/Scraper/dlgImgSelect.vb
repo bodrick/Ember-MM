@@ -899,7 +899,8 @@ Public Class dlgImgSelect
 
             If Not IsNothing(Me.tmpImage.Image) Then
                 If isEdit Then
-					Me.tmpImage.Save(tmpPathPlus, 100, selURL)
+                    'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
+                    Me.tmpImage.Save(tmpPathPlus)
                     Results.ImagePath = tmpPathPlus
                 Else
                     If Me.DLType = Enums.ImageType.Fanart Then
@@ -954,7 +955,8 @@ Public Class dlgImgSelect
 
                 If Not IsNothing(Me.tmpImage.Image) Then
                     If isEdit Then
-						Me.tmpImage.Save(tmpPathPlus, 100, selURL)
+                        'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
+                        Me.tmpImage.Save(tmpPathPlus)
                         Results.ImagePath = tmpPathPlus
                     Else
                         If Me.DLType = Enums.ImageType.Fanart Then
