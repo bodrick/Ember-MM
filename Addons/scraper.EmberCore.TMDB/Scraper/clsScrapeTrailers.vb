@@ -79,17 +79,19 @@ Public Class Trailers
 		Dim parPath As String = Directory.GetParent(sPath).FullName
 		Dim tmpName As String = Path.Combine(parPath, StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(sPath)))
 		Dim tmpNameNoStack As String = Path.Combine(parPath, Path.GetFileNameWithoutExtension(sPath))
-		For Each t As String In Master.eSettings.ValidExts
-			If File.Exists(String.Concat(tmpName, "-trailer", t)) AndAlso Not String.Concat(tmpName, "-trailer", t).ToLower = NewTrailer.ToLower Then
-				File.Delete(String.Concat(tmpName, "-trailer", t))
-			ElseIf File.Exists(String.Concat(tmpName, "[trailer]", t)) AndAlso Not String.Concat(tmpName, "[trailer]", t).ToLower = NewTrailer.ToLower Then
-				File.Delete(String.Concat(tmpName, "[trailer]", t))
-			ElseIf File.Exists(String.Concat(tmpNameNoStack, "-trailer", t)) AndAlso Not String.Concat(tmpNameNoStack, "-trailer", t).ToLower = NewTrailer.ToLower Then
-				File.Delete(String.Concat(tmpNameNoStack, "-trailer", t))
-			ElseIf File.Exists(String.Concat(tmpNameNoStack, "[trailer]", t)) AndAlso Not String.Concat(tmpNameNoStack, "[trailer]", t).ToLower = NewTrailer.ToLower Then
-				File.Delete(String.Concat(tmpNameNoStack, "[trailer]", t))
-			End If
-		Next
+        For Each t As String In Master.eSettings.ValidExts
+            If File.Exists(String.Concat(tmpName, "-trailer", t)) AndAlso Not String.Concat(tmpName, "-trailer", t).ToLower = NewTrailer.ToLower Then
+                File.Delete(String.Concat(tmpName, "-trailer", t))
+            ElseIf File.Exists(String.Concat(tmpName, "[trailer]", t)) AndAlso Not String.Concat(tmpName, "[trailer]", t).ToLower = NewTrailer.ToLower Then
+                File.Delete(String.Concat(tmpName, "[trailer]", t))
+            ElseIf File.Exists(String.Concat(tmpNameNoStack, "-trailer", t)) AndAlso Not String.Concat(tmpNameNoStack, "-trailer", t).ToLower = NewTrailer.ToLower Then
+                File.Delete(String.Concat(tmpNameNoStack, "-trailer", t))
+            ElseIf File.Exists(String.Concat(tmpNameNoStack, "[trailer]", t)) AndAlso Not String.Concat(tmpNameNoStack, "[trailer]", t).ToLower = NewTrailer.ToLower Then
+                File.Delete(String.Concat(tmpNameNoStack, "[trailer]", t))
+            ElseIf Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(sPath) AndAlso File.Exists(String.Concat(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, "\", "index-trailer", t)) AndAlso Not String.Concat(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, "\", "index-trailer", t).ToLower = NewTrailer.ToLower Then
+                File.Delete(String.Concat(Directory.GetParent(Directory.GetParent(sPath).FullName).FullName, "\", "index-trailer", t))
+            End If
+        Next
 	End Sub
 
 	Public Sub DownloadProgressUpdated(ByVal iPercent As Integer)
