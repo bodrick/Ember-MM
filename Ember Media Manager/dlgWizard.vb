@@ -167,7 +167,8 @@ Public Class dlgWizard
 		Me.chkSeasonDashFanart.Checked = Master.eSettings.SeasonDashFanart
 		Me.chkSeasonDotFanart.Checked = Master.eSettings.SeasonDotFanart
 		Me.chkEpisodeTBN.Checked = Master.eSettings.EpisodeTBN
-		Me.chkEpisodeJPG.Checked = Master.eSettings.EpisodeJPG
+        Me.chkEpisodeJPG.Checked = Master.eSettings.EpisodeJPG
+        Me.chkEpisodeDashThumbJPG.Checked = Master.eSettings.EpisodeDashThumbJPG
 		Me.chkEpisodeDashFanart.Checked = Master.eSettings.EpisodeDashFanart
 		Me.chkEpisodeDotFanart.Checked = Master.eSettings.EpisodeDotFanart
 		Me.tLangList.Clear()
@@ -367,7 +368,8 @@ Public Class dlgWizard
 		Master.eSettings.SeasonDashFanart = Me.chkSeasonDashFanart.Checked
 		Master.eSettings.SeasonDotFanart = Me.chkSeasonDotFanart.Checked
 		Master.eSettings.EpisodeTBN = Me.chkEpisodeTBN.Checked
-		Master.eSettings.EpisodeJPG = Me.chkEpisodeJPG.Checked
+        Master.eSettings.EpisodeJPG = Me.chkEpisodeJPG.Checked
+        Master.eSettings.EpisodeDashThumbJPG = Me.chkEpisodeDashThumbJPG.Checked
 		Master.eSettings.EpisodeDashFanart = Me.chkEpisodeDashFanart.Checked
 		Master.eSettings.EpisodeDotFanart = Me.chkEpisodeDotFanart.Checked
 		If tLangList.Count > 0 Then
@@ -428,8 +430,8 @@ Public Class dlgWizard
 		Me.Panel1.Location = New Point(166, 7)
 		Me.Panel1.Visible = True
 		Me.Panel2.Visible = False
-		Me.Panel3.Visible = False
-		Me.Panel4.Visible = False
+        Me.Panel3.Visible = False
+        Me.Panel4.Visible = False
 		Me.Panel5.Visible = False
 		Me.Panel6.Visible = False
 		Me.Panel2.Location = New Point(166, 7)
@@ -472,7 +474,7 @@ Public Class dlgWizard
 		Me.chkEpisodeDashFanart.Checked = False
 		Me.chkEpisodeDashThumbJPG.Checked = True
 		Me.chkEpisodeDotFanart.Checked = False
-		Me.chkEpisodeJPG.Checked = False
+        Me.chkEpisodeJPG.Checked = False
 		Me.chkEpisodeTBN.Checked = False
 		Me.chkSeasonAllJPG.Checked = False
 		Me.chkSeasonAllPosterJPG.Checked = True
