@@ -228,7 +228,15 @@ Public Class dlgTrailer
                 Me.pnlStatus.Visible = True
                 Application.DoEvents()
 
-                Me.tURL = Path.Combine(Directory.GetParent(Me.sPath).FullName, String.Concat(Path.GetFileNameWithoutExtension(Me.sPath), If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), Path.GetExtension(Me.txtManual.Text)))
+                '***************** CHECK *******************
+                If Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(Me.sPath) Then
+                    Me.tURL = String.Concat(Directory.GetParent(Directory.GetParent(Me.sPath).FullName).FullName, "\", "index", If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), Path.GetExtension(Me.txtManual.Text))
+                ElseIf Master.eSettings.MovieNameNFOStack Then
+                    Dim sPathStack As String = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(Me.sPath))
+                    Me.tURL = Path.Combine(Directory.GetParent(Me.sPath).FullName, String.Concat(Path.GetFileNameWithoutExtension(sPathStack), If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), Path.GetExtension(Me.txtManual.Text)))
+                Else
+                    Me.tURL = Path.Combine(Directory.GetParent(Me.sPath).FullName, String.Concat(Path.GetFileNameWithoutExtension(Me.sPath), If(Master.eSettings.DashTrailer, "-trailer", "[trailer]"), Path.GetExtension(Me.txtManual.Text)))
+                End If
                 File.Move(Me.txtManual.Text, Me.tURL)
 
                 Me.DialogResult = System.Windows.Forms.DialogResult.OK
