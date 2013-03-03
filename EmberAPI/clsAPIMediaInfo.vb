@@ -534,6 +534,25 @@ Public Class MediaInfo
                     End If
                     miAudio.Channels = Me.Get_(StreamKind.Audio, a, "Channel(s)")
 
+                    'cocotus 20130303 ChannelInfo fix
+                    'Channel(s)/sNumber might contain: "8 / 6" (7.1) so we must handle backslash and spaces --> XBMC/Ember only supports Number like 2,6,8...
+                    If miAudio.Channels.Contains("/") Then
+                        Dim mystring As String = ""
+                        'use regex to get rid of all letters(if that ever happens just in case) and also remove spaces
+                        mystring = Text.RegularExpressions.Regex.Replace(miAudio.Channels, "[^/.0-9]", "").Trim
+                        'now get channel number
+                        If mystring.Length > 0 Then
+                            If Char.IsDigit(mystring(0)) Then
+                                Try
+                                    'In case of "x/y" this will return x which is highest number, i.e 8/6 -> 8 (highest number always first!)
+                                    miAudio.Channels = CStr(mystring(0))
+                                Catch ex As Exception
+                                End Try
+                            End If
+                        End If
+                    End If
+                    'cocotus end
+
                     'cocotus, 2013/02 Added support for new MediaInfo-fields
                     'map audio bitrate from MediaInfoScan to Ember
 
