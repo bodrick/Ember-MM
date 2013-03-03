@@ -353,6 +353,12 @@ Public Class Settings
     Private _usetrakt As Boolean
     'cocotus end
 
+    'cocotus 20130303 Special DateAddvalue
+    'Adding Settings
+    Private _usespecialdateadd As Boolean
+    'cocotus end
+
+
 #End Region 'Fields
 
 #Region "Constructors"
@@ -3259,6 +3265,16 @@ Public Class Settings
     End Property
     'cocotus end
 
+    'cocotus 20130303 Special DateAddvalue
+    Public Property UseSpecialDateAddvalue() As Boolean
+        Get
+            Return Me._usespecialdateadd
+        End Get
+        Set(ByVal value As Boolean)
+            Me._usespecialdateadd = value
+        End Set
+    End Property
+    'cocotus end
 
 #End Region 'Properties
 

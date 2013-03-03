@@ -1,4 +1,4 @@
-<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+﻿<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <string id="1">&amp;Datei</string>
   <string id="2">Beenden</string>
   <string id="3">B&amp;earbeiten</string>
@@ -872,4 +872,5 @@
   <string id="871">Trakt.tv Playcount Sync</string>
   <string id="872">Gesehene Filme abrufen</string>
   <string id="873">Speichern der gesehenen Filme in Datenbank</string>
+  <string id="874">Nutze "Erstellt:"-Dateiinfo der Videodatei</string>
 </strings>
