@@ -1241,7 +1241,21 @@ Public Class Database
                 'If ToNfo AndAlso Not String.IsNullOrEmpty(_movieDB.Movie.IMDBID) Then NFO.SaveMovieToNFO(_movieDB)
                 'Why do we need IMDB to save to NFO?
                 If ToNfo Then NFO.SaveMovieToNFO(_movieDB)
-                parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(Now), _movieDB.DateAdd)
+
+                'cocotus 20130303 Special DateAddvalue
+                '    parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(Now), _movieDB.DateAdd)
+                Try
+                    If Master.eSettings.UseSpecialDateAddvalue Then
+                        'Use filecreation date of file instead of simply NOW Date    
+                            parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(System.IO.File.GetCreationTime(_movieDB.Filename)), _movieDB.DateAdd)
+                    Else
+                        parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(Now), _movieDB.DateAdd)
+                    End If
+                    'something went wrong so use old way...
+                Catch ex As Exception
+                    parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(Now), _movieDB.DateAdd)
+                End Try
+                'cocotus end
 
                 parMoviePath.Value = _movieDB.Filename
                 parType.Value = _movieDB.isSingle
