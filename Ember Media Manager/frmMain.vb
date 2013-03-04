@@ -671,11 +671,13 @@ Public Class frmMain
             If Me.btnSortDate.Tag.ToString = "DESC" Then
                 Me.btnSortDate.Tag = "ASC"
                 Me.btnSortDate.Image = My.Resources.desc
-                Me.dgvMediaList.Sort(Me.dgvMediaList.Columns(0), ComponentModel.ListSortDirection.Descending)
+                'cotocus 201303 Wrong Column! DateAdd column is 48 instead of 0 (ID)!
+                Me.dgvMediaList.Sort(Me.dgvMediaList.Columns(48), ComponentModel.ListSortDirection.Descending)
             Else
                 Me.btnSortDate.Tag = "DESC"
                 Me.btnSortDate.Image = My.Resources.asc
-                Me.dgvMediaList.Sort(Me.dgvMediaList.Columns(0), ComponentModel.ListSortDirection.Ascending)
+                'cotocus 201303 Wrong Column! DateAdd column is 48 instead of 0 (ID)!
+                Me.dgvMediaList.Sort(Me.dgvMediaList.Columns(48), ComponentModel.ListSortDirection.Ascending)
             End If
         End If
     End Sub

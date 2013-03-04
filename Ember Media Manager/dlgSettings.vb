@@ -1578,7 +1578,11 @@ Public Class dlgSettings
     Private Sub chkOverwriteNfo_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkOverwriteNfo.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
-
+    'cocotus 20130303 Special DateAddvalue
+    Private Sub chkSpecialDateAdd_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkSpecialDateAdd.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+    'cocotus end
     Private Sub chkOverwritePoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkOverwritePoster.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -2211,6 +2215,9 @@ Public Class dlgSettings
             Me.chkWhitelistVideo.Checked = Master.eSettings.CleanWhitelistVideo
             Me.lstWhitelist.Items.AddRange(Master.eSettings.CleanWhitelistExts.ToArray)
             Me.chkOverwriteNfo.Checked = Master.eSettings.OverwriteNfo
+            'cocotus 20130303 Special DateAddvalue
+            Me.chkSpecialDateAdd.Checked = Master.eSettings.UseSpecialDateAddvalue
+            'cocotus end
             'Me.chkYAMJCompatibleSets.Checked = Master.eSettings.YAMJSetsCompatible
             Me.chkLogErrors.Checked = Master.eSettings.LogErrors
             Me.lstNoStack.Items.AddRange(Master.eSettings.NoStackExts.ToArray)
@@ -3309,6 +3316,9 @@ Public Class dlgSettings
             End If
             Master.eSettings.LogErrors = Me.chkLogErrors.Checked
             Master.eSettings.OverwriteNfo = Me.chkOverwriteNfo.Checked
+            'cocotus 20130303 Special DateAddvalue
+            Master.eSettings.UseSpecialDateAddvalue = Me.chkSpecialDateAdd.Checked
+            'cocotus end
             Master.eSettings.ValidExts.Clear()
             Master.eSettings.ValidExts.AddRange(lstMovieExts.Items.OfType(Of String).ToList)
             Master.eSettings.NoStackExts.Clear()
@@ -3731,6 +3741,9 @@ Public Class dlgSettings
         Me.chkInfoPanelAnim.Text = Master.eLang.GetString(431, "Enable Panel Animation")
         Me.chkUpdates.Text = Master.eLang.GetString(432, "Check for Updates")
         Me.chkOverwriteNfo.Text = Master.eLang.GetString(433, "Overwrite Non-conforming nfos")
+        'cocotus 20130303
+        Me.chkSpecialDateAdd.Text = Master.eLang.GetString(874, "Use FileCreated information of videofile")
+        'cocotus end
         Me.Label5.Text = Master.eLang.GetString(434, "(If unchecked, non-conforming nfos will be renamed to <filename>.info)")
         Me.chkLogErrors.Text = Master.eLang.GetString(435, "Log Errors to File")
         Me.Label31.Text = Master.eLang.GetString(436, "Display Overlay if Video Contains an Audio Stream With the Following Language:")

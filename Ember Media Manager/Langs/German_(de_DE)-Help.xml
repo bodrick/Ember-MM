@@ -359,4 +359,5 @@
   <string control="Core_btnResetValidExts">Dies wird die Liste der gültigen Erweiterungen wieder auf den Standard zurücksetzen. WARNUNG: Dies WIRD jegliche eigene Änderung löschen.</string>
   <string control="Core_ResetShowRegex">Dies wird die Serien RegEx wieder auf den Standard zurücksetzen. WARNUNG: Dies WIRD jegliche eigene Änderung löschen.</string>
   <string control="Core_chkClickScrape">Aktiviere Click-Scrape im Hauptmenü beim Anklicken der Tabellen-Markierungen.</string>
+  <string control="Core_chkSpecialDateAdd">Wenn aktiviert wird beim Einlesen von Filmen in die Datenbank, das Erstelldatum der Videodatei berücksichtigt statt das aktuelle Datum. Dadurch wird die Sortierung der neuesten Filme zuverlässig und unabhängig von der Datenbank!</string>
 </strings>
