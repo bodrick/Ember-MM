@@ -116,6 +116,8 @@
     <Compile Include="Scraper\clsScrapeImages.vb" />
     <Compile Include="Scraper\clsScrapeTMDBg.vb" />
     <Compile Include="Scraper\clsScrapeYouTube.vb" />
+    <Compile Include="Scraper\clsScrapeIMDB.vb" />
+    <Compile Include="Scraper\clsScrapeFANARTTV.vb" />
     <Compile Include="Scraper\dlgTMDBSearchResults.Designer.vb">
       <DependentUpon>dlgTMDBSearchResults.vb</DependentUpon>
     </Compile>

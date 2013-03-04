@@ -34,13 +34,14 @@ Public Class dlgImgSelect
 	Friend WithEvents bwIMPADownload As New System.ComponentModel.BackgroundWorker
 	Friend WithEvents bwMPDBDownload As New System.ComponentModel.BackgroundWorker
 	Friend WithEvents bwTMDBDownload As New System.ComponentModel.BackgroundWorker
+	Friend WithEvents bwIMDBDownload As New System.ComponentModel.BackgroundWorker
+	Friend WithEvents bwFANARTTVDownload As New System.ComponentModel.BackgroundWorker
 
 	Private _MySettings As New sMySettings
 	Private _TMDBConf As V3.TmdbConfiguration
 	Private _TMDBConfE As V3.TmdbConfiguration
 	Private _TMDBApi As V3.Tmdb
 	Private _TMDBApiE As V3.Tmdb
-
 
 	Private TMDB As TMDB.Scraper
 	Private TMDBPosters As New List(Of MediaContainers.Image)
@@ -50,6 +51,12 @@ Public Class dlgImgSelect
 
 	Private IMPA As New IMPA.Scraper
 	Private IMPAPosters As New List(Of MediaContainers.Image)
+
+	Private IMDB As New IMDBimg.Scraper
+	Private IMDBPosters As New List(Of MediaContainers.Image)
+
+	Private FANARTTV As New FANARTTV.Scraper
+	Private FANARTTVPosters As New List(Of MediaContainers.Image)
 
 	Private CachePath As String = String.Empty
 	Private chkImage() As CheckBox
@@ -73,6 +80,8 @@ Public Class dlgImgSelect
 	Private tMovie As New Structures.DBMovie
 	Private tmpImage As New Images
 	Private _impaDone As Boolean = True
+	Private _imdbDone As Boolean = True
+	Private _fanarttvDone As Boolean = True
 	Private _mpdbDone As Boolean = True
 	Private _tmdbDone As Boolean = True
 
@@ -86,6 +95,9 @@ Public Class dlgImgSelect
 
 	Private Event TMDBDone()
 
+	Private Event IMDBDone()
+
+	Private Event FANARTTVDone()
 #End Region	'Events
 
 #Region "Methods"
@@ -278,6 +290,112 @@ Public Class dlgImgSelect
 		End Try
 	End Sub
 
+	Private Sub bwIMDBDownload_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwIMDBDownload.DoWork
+		'//
+		' Thread to download mpdb posters from the internet (multi-threaded because sometimes
+		' the web server is slow to respond or not reachable, hanging the GUI)
+		'\\
+		For i As Integer = 0 To Me.IMDBPosters.Count - 1
+			Try
+				If Me.bwIMDBDownload.CancellationPending Then
+					e.Cancel = True
+					Return
+				End If
+				Me.bwIMDBDownload.ReportProgress(i + 1, Me.IMDBPosters.Item(i).URL)
+				Try
+					Me.IMDBPosters.Item(i).WebImage.FromWeb(Me.IMDBPosters.Item(i).URL)
+					If Not Master.eSettings.NoSaveImagesToNfo Then Me.Results.Posters.Add(Me.MPDBPosters.Item(i).URL)
+					If Master.eSettings.UseImgCache Then
+						Try
+							Me.IMDBPosters.Item(i).URL = StringUtils.CleanURL(Me.IMDBPosters.Item(i).URL)
+							Me.IMDBPosters.Item(i).WebImage.Save(Path.Combine(CachePath, String.Concat("poster_(", Me.IMDBPosters.Item(i).Description, ")_(url=", Me.IMDBPosters.Item(i).URL, ").jpg")))
+						Catch
+						End Try
+					End If
+				Catch
+				End Try
+			Catch
+			End Try
+		Next
+	End Sub
+
+	Private Sub bwIMDBDownload_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles bwIMDBDownload.ProgressChanged
+		'//
+		' Update the status bar with the name of the current media name and increase progress bar
+		'\\
+		Try
+			Dim sStatus As String = e.UserState.ToString
+			Me.lblDL3Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL3.Value = e.ProgressPercentage
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
+
+	Private Sub bwIMDBDownload_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwIMDBDownload.RunWorkerCompleted
+		'//
+		' Thread finished: process the pics
+		'\\
+
+		If Not e.Cancelled Then
+			Me._imdbDone = True
+			RaiseEvent IMDBDone()
+		End If
+	End Sub
+
+	Private Sub bwFANARTTVDownload_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwFANARTTVDownload.DoWork
+		'//
+		' Thread to download mpdb posters from the internet (multi-threaded because sometimes
+		' the web server is slow to respond or not reachable, hanging the GUI)
+		'\\
+		For i As Integer = 0 To Me.FANARTTVPosters.Count - 1
+			Try
+				If Me.bwFANARTTVDownload.CancellationPending Then
+					e.Cancel = True
+					Return
+				End If
+				Me.bwFANARTTVDownload.ReportProgress(i + 1, Me.FANARTTVPosters.Item(i).URL)
+				Try
+					Me.FANARTTVPosters.Item(i).WebImage.FromWeb(Me.FANARTTVPosters.Item(i).URL)
+					If Not Master.eSettings.NoSaveImagesToNfo Then Me.Results.Posters.Add(Me.FANARTTVPosters.Item(i).URL)
+					If Master.eSettings.UseImgCache Then
+						Try
+							Me.FANARTTVPosters.Item(i).URL = StringUtils.CleanURL(Me.FANARTTVPosters.Item(i).URL)
+							Me.FANARTTVPosters.Item(i).WebImage.Save(Path.Combine(CachePath, String.Concat("poster_(", Me.FANARTTVPosters.Item(i).Description, ")_(url=", Me.FANARTTVPosters.Item(i).URL, ").jpg")))
+						Catch
+						End Try
+					End If
+				Catch
+				End Try
+			Catch
+			End Try
+		Next
+	End Sub
+
+	Private Sub bwFANARTTVDownload_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles bwFANARTTVDownload.ProgressChanged
+		'//
+		' Update the status bar with the name of the current media name and increase progress bar
+		'\\
+		Try
+			Dim sStatus As String = e.UserState.ToString
+			Me.lblDL3Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL3.Value = e.ProgressPercentage
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
+
+	Private Sub bwFANARTTVDownload_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwFANARTTVDownload.RunWorkerCompleted
+		'//
+		' Thread finished: process the pics
+		'\\
+
+		If Not e.Cancelled Then
+			Me._fanarttvDone = True
+			RaiseEvent FANARTTVDone()
+		End If
+	End Sub
+
 	Private Sub bwIMPADownload_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwIMPADownload.DoWork
 		'//
 		' Thread to download impa posters from the internet (multi-threaded because sometimes
@@ -318,7 +436,7 @@ Public Class dlgImgSelect
 		End Try
 	End Sub
 
-	Private Sub bwIMPADownload_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwIMPADownload.RunWorkerCompleted
+	Private Sub bwIMPABownload_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwIMPADownload.RunWorkerCompleted
 		'//
 		' Thread finished: process the pics
 		'\\
@@ -391,7 +509,7 @@ Public Class dlgImgSelect
 		Dim savePath As String = String.Empty
 		Dim extrathumbSize As String = String.Empty
 
-		extrathumbSize = AdvancedSettings.GetSetting("ManualETSize", "thumb")
+		extrathumbSize = _MySettings.ManualETSize
 
 		'Only download the posters themselves that match the cover criteria for display purposes, no need to download them all.
 		Dim posters As MediaContainers.Image()
@@ -494,10 +612,14 @@ Public Class dlgImgSelect
 		IMPA.Cancel()
 		MPDB.Cancel()
 		TMDB.Cancel()
+		IMDB.Cancel()
+		FANARTTV.Cancel()
 
 		If bwIMPADownload.IsBusy Then bwIMPADownload.CancelAsync()
 		If bwMPDBDownload.IsBusy Then bwMPDBDownload.CancelAsync()
 		If bwTMDBDownload.IsBusy Then bwTMDBDownload.CancelAsync()
+		If bwIMDBDownload.IsBusy Then bwIMDBDownload.CancelAsync()
+		If bwFANARTTVDownload.IsBusy Then bwFANARTTVDownload.CancelAsync()
 
 		While bwIMPADownload.IsBusy OrElse bwMPDBDownload.IsBusy OrElse bwTMDBDownload.IsBusy
 			Application.DoEvents()
@@ -534,10 +656,15 @@ Public Class dlgImgSelect
 		IMPA = Nothing
 		MPDB = Nothing
 		TMDB = Nothing
+		IMDB = Nothing
+		FANARTTV = Nothing
 
 		IMPAPosters = Nothing
 		MPDBPosters = Nothing
 		TMDBPosters = Nothing
+		IMDBPosters = Nothing
+		FANARTTVPosters = Nothing
+
 	End Sub
 
 	Private Sub dlgImgSelect_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
@@ -708,20 +835,30 @@ Public Class dlgImgSelect
 				di = Nothing
 			End If
 
-			If NoneFound Then
-				If AdvancedSettings.GetBooleanSetting("UseTMDB", True) Then
-					If Master.eSettings.AutoET AndAlso Not Directory.Exists(CachePath) Then
-						Directory.CreateDirectory(CachePath)
-					End If
+			If Master.eSettings.AutoET AndAlso Not Directory.Exists(CachePath) Then
+				Directory.CreateDirectory(CachePath)
+			End If
 
-					Me.lblDL1.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
-					Me.lblDL1Status.Text = String.Empty
-					Me.pbDL1.Maximum = 3
-					Me.pnlDLStatus.Visible = True
-					Me.Refresh()
+			Me.lblDL1.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
+			Me.lblDL1Status.Text = String.Empty
+			Me.pbDL1.Maximum = 3
+			Me.pnlDLStatus.Visible = True
+			Me.Refresh()
 
-					Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "backdrop")
-				End If
+			Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "backdrop")
+
+			If _MySettings.UseIMDBf Then
+				Me.lblDL2.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")
+				Me.lblDL2Status.Text = String.Empty
+				Me.pbDL2.Maximum = 3
+				Me.pnlDLStatus.Visible = True
+				Me.Refresh()
+
+				Me._imdbDone = False
+
+				Me.IMDB.GetImagesAsync(tMovie.Movie.IMDBID, True)
+			Else
+				Me.lblDL2.Text = Master.eLang.GetString(118, "IMDB.com is not enabled")
 			End If
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -780,21 +917,31 @@ Public Class dlgImgSelect
 			End If
 
 			If NoneFound Then
-				If AdvancedSettings.GetBooleanSetting("UseTMDB", True) Then
-					Me.lblDL1.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
-					Me.lblDL1Status.Text = String.Empty
-					Me.pbDL1.Maximum = 3
+				Me.lblDL1.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
+				Me.lblDL1Status.Text = String.Empty
+				Me.pbDL1.Maximum = 3
+				Me.pnlDLStatus.Visible = True
+				Me.Refresh()
+
+				Me._tmdbDone = False
+
+				Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "poster")
+
+				If _MySettings.UseIMDBp Then
+					Me.lblDL2.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")
+					Me.lblDL2Status.Text = String.Empty
+					Me.pbDL2.Maximum = 3
 					Me.pnlDLStatus.Visible = True
 					Me.Refresh()
 
-					Me._tmdbDone = False
+					Me._imdbDone = False
 
-					Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "poster")
+					Me.IMDB.GetImagesAsync(tMovie.Movie.IMDBID, False)
 				Else
-					Me.lblDL1.Text = Master.eLang.GetString(33, "TheMovieDB.com is not enabled")
+					Me.lblDL2.Text = Master.eLang.GetString(118, "IMDB.com is not enabled")
 				End If
 
-				If AdvancedSettings.GetBooleanSetting("UseIMPA", False) Then
+				If _MySettings.UseIMPA Then
 					Me.lblDL2.Text = Master.eLang.GetString(34, "Retrieving data from IMPAwards.com...")
 					Me.lblDL2Status.Text = String.Empty
 					Me.pbDL2.Maximum = 3
@@ -808,7 +955,7 @@ Public Class dlgImgSelect
 					Me.lblDL2.Text = Master.eLang.GetString(35, "IMPAwards.com is not enabled")
 				End If
 
-				If AdvancedSettings.GetBooleanSetting("UseMPDB", False) Then
+				If _MySettings.UseMPDB Then
 					Me.lblDL3.Text = Master.eLang.GetString(36, "Retrieving data from MoviePosterDB.com...")
 					Me.lblDL3Status.Text = String.Empty
 					Me.pbDL3.Maximum = 3
@@ -825,6 +972,68 @@ Public Class dlgImgSelect
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
+	End Sub
+
+	Private Sub FANARTTVDoneDownloading()
+		Try
+			Me._fanarttvDone = True
+			Me.AllDoneDownloading()
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
+
+	Private Sub FANARTTVPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
+		Try
+			Me.pbDL2.Value = 0
+
+			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL2Status.Text = String.Empty
+			Me.pbDL2.Maximum = Posters.Count
+
+			Me.FANARTTVPosters = Posters
+
+			Me.bwFANARTTVDownload.WorkerSupportsCancellation = True
+			Me.bwFANARTTVDownload.WorkerReportsProgress = True
+			Me.bwFANARTTVDownload.RunWorkerAsync()
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
+
+	Private Sub FANARTTVProgressUpdated(ByVal iPercent As Integer)
+		Me.pbDL2.Value = iPercent
+	End Sub
+
+	Private Sub IMDBDoneDownloading()
+		Try
+			Me._imdbDone = True
+			Me.AllDoneDownloading()
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
+
+	Private Sub IMDBPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
+		Try
+			Me.pbDL2.Value = 0
+
+			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL2Status.Text = String.Empty
+			Me.pbDL2.Maximum = Posters.Count
+
+			Me.IMDBPosters = Posters
+
+			Me.bwIMDBDownload.WorkerSupportsCancellation = True
+			Me.bwIMDBDownload.WorkerReportsProgress = True
+			Me.bwIMDBDownload.RunWorkerAsync()
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
+
+	Private Sub IMDBProgressUpdated(ByVal iPercent As Integer)
+		Me.pbDL2.Value = iPercent
 	End Sub
 
 	Private Sub IMPADoneDownloading()
@@ -857,6 +1066,7 @@ Public Class dlgImgSelect
 	Private Sub IMPAProgressUpdated(ByVal iPercent As Integer)
 		Me.pbDL2.Value = iPercent
 	End Sub
+
 
 	Private Sub lblImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
 		Me.DoSelect(Convert.ToInt32(DirectCast(sender, Label).Name), DirectCast(DirectCast(sender, Label).Tag, MediaContainers.Image))
@@ -1133,9 +1343,15 @@ Public Class dlgImgSelect
 			AddHandler IMPA.ProgressUpdated, AddressOf IMPAProgressUpdated
 			AddHandler MPDB.PostersDownloaded, AddressOf MPDBPostersDownloaded
 			AddHandler MPDB.ProgressUpdated, AddressOf MPDBProgressUpdated
+			AddHandler IMDB.PostersDownloaded, AddressOf IMDBPostersDownloaded
+			AddHandler IMDB.ProgressUpdated, AddressOf IMDBProgressUpdated
+			AddHandler FANARTTV.PostersDownloaded, AddressOf FANARTTVPostersDownloaded
+			AddHandler FANARTTV.ProgressUpdated, AddressOf FANARTTVProgressUpdated
 			AddHandler IMPADone, AddressOf IMPADoneDownloading
 			AddHandler TMDBDone, AddressOf TMDBDoneDownloading
 			AddHandler MPDBDone, AddressOf MPDBDoneDownloading
+			AddHandler IMDBDone, AddressOf IMDBDoneDownloading
+			AddHandler FANARTTVDone, AddressOf FANARTTVDoneDownloading
 
 			AddHandler MyBase.MouseWheel, AddressOf MouseWheelEvent
 			AddHandler pnlBG.MouseWheel, AddressOf MouseWheelEvent

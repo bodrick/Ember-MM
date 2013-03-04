@@ -116,4 +116,6 @@
   <string id="114">Fall back on english</string>
   <string id="115">Preferred Language:</string>
   <string id="116">TMDBid:</string>
+	<string id="117">Retrieving data from IMDB.com...</string>
+	<string id="118">IMDB.com is not enabled</string>
 </strings>
