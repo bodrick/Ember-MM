@@ -1231,6 +1231,7 @@ Public Class frmMain
                         If bwMovieScraper.CancellationPending Then Exit For
 
                         ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.MovieScraperRDYtoSave, Nothing, DBScrapeMovie)
+                        DBScrapeMovie = Master.DB.LoadMovieFromDB(Convert.ToInt64(dRow.Item(0))) ' reload the DB if a module has changed the entries (renamer e.g.)
 
                         If Master.GlobalScrapeMod.Extra Then
                             If Master.eSettings.AutoThumbs > 0 AndAlso DBScrapeMovie.isSingle Then
