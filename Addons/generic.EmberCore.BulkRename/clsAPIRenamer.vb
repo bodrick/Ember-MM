@@ -324,12 +324,18 @@ Public Class FileFolderRenamer
         MovieFile.Path = If(MovieFile.Path.StartsWith(Path.DirectorySeparatorChar), MovieFile.Path.Substring(1), MovieFile.Path)
 
         If Not MovieFile.IsVideo_TS AndAlso Not MovieFile.IsBDMV Then
-            MovieFile.FileName = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(_tmpMovie.Filename))
-            Dim stackMark As String = Path.GetFileNameWithoutExtension(_tmpMovie.Filename).Replace(MovieFile.FileName, String.Empty).ToLower
-            If Not stackMark = String.Empty AndAlso _tmpMovie.Movie.Title.ToLower.EndsWith(stackMark) Then
-                MovieFile.FileName = Path.GetFileNameWithoutExtension(_tmpMovie.Filename)
+            If Path.GetFileName(_tmpMovie.Filename.ToLower) = "video_ts.ifo" Then
+                MovieFile.FileName = "VIDEO_TS"
+                MovieFile.NewFileName = MovieFile.FileName
+            Else
+                MovieFile.FileName = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(_tmpMovie.Filename))
+                Dim stackMark As String = Path.GetFileNameWithoutExtension(_tmpMovie.Filename).Replace(MovieFile.FileName, String.Empty).ToLower
+                If Not stackMark = String.Empty AndAlso _tmpMovie.Movie.Title.ToLower.EndsWith(stackMark) Then
+                    MovieFile.FileName = Path.GetFileNameWithoutExtension(_tmpMovie.Filename)
+                End If
+                MovieFile.NewFileName = ProccessPattern(MovieFile, filePattern).Trim
+
             End If
-            MovieFile.NewFileName = ProccessPattern(MovieFile, filePattern).Trim
         ElseIf MovieFile.IsBDMV Then
             MovieFile.FileName = String.Concat("BDMV", Path.DirectorySeparatorChar, "STREAM")
             MovieFile.NewFileName = MovieFile.FileName
