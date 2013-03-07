@@ -17,6 +17,20 @@
 ' # You should have received a copy of the GNU General Public License            #
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
+' # HD Movie Logos -> logo.png (choose this first)
+' # ClearLOGOs -> logo.png (use this as a backup if no HD Logo in the lanaguage specified)
+' # ClearART -> clearart.png (use this as a backup if no HD ClearArt, in the language specified)
+' # HDClearART -> clearart.png (choose this first)
+' # cdART -> disc.png
+' # Movie Backgrounds -> Fanart (this is the only fanart.tv artwork that might overlap with 'typical' artwork scraping from IMDB/TMDB)
+' # Movie Banner -> Banner (not poster - Frodo supports both now, <moviename>-poster.jpg/png and <moviename>-banner.jpg/png or poster.jpg/png and banner.jpg/png)
+' # Movie Thumbs -> landscape.png
+' # Special note - the Logos and ClearArts are language-specific and should be tagged with the appropriate language. Will want to have a setting allowing users to specify a language so as not to get a bunch of foreign-language artwork.
+' # 1) Logo.png - to be added at a later stage, today is not possible to save
+' # 2) Clearart.png - to be added at a later stage, today is not possible to save
+' # 3) Disc.png - to be added at a later stage, today is not possible to save
+' # 4) Landscape.png - to be added at a later stage, today is not possible to save
+' # language is in image properties
 
 Imports System.IO
 Imports System.IO.Compression
@@ -84,18 +98,15 @@ Namespace FANARTTVs
 			Dim alPoster As New List(Of MediaContainers.Image)
 
 			If _APIInvalid Then
-				Return alPoster
+				Return Nothing
 			End If
 			Try
+				Dim Result As FanartTV.V1.FanartTVMovie = _FanartTV.GetMovieInfo(New FanartTV.V1.FanartTVRequest(imdbID, "JSON", "all", 1, 2))
 				If bwFANARTTV.CancellationPending Then Return Nothing
-				For Each mPoster As Match In mcPoster
-					If bwFANARTTV.CancellationPending Then Return Nothing
-					PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
-
-					alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
-
-					PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
-					alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
+				If IsNothing(Result) Then Return alPoster
+				If IsNothing(Result.movieinfo.moviebackground) Then Return alPoster
+				For Each image In Result.movieinfo.moviebackground
+					alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = image.url})
 				Next
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -107,7 +118,7 @@ Namespace FANARTTVs
 		Private Sub bwFANARTTVA_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwFANARTTV.DoWork
 			Dim Args As Arguments = DirectCast(e.Argument, Arguments)
 			Try
-				e.Result = GetIMPAPosters(Args.Parameter)
+				e.Result = GetFANARTTVImages(Args.Parameter)
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 				e.Result = Nothing
@@ -126,25 +137,6 @@ Namespace FANARTTVs
 			End If
 		End Sub
 
-		Private Function GetLink(ByVal IMDBID As String) As String
-			Try
-
-				Dim sHTTP As New HTTP
-				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", IMDBID, "/posters"))
-				sHTTP = Nothing
-
-				Dim mcIMPA As MatchCollection = Regex.Matches(HTML, "http://([^""]*)impawards.com/([^""]*)")
-				If mcIMPA.Count > 0 Then
-					'just use the first one if more are found
-					Return mcIMPA(0).Value.ToString
-				Else
-					Return String.Empty
-				End If
-			Catch ex As Exception
-				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-				Return String.Empty
-			End Try
-		End Function
 
 #End Region	'Methods
 

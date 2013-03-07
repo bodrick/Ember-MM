@@ -55,7 +55,7 @@ Public Class dlgImgSelect
 	Private IMDB As New IMDBimg.Scraper
 	Private IMDBPosters As New List(Of MediaContainers.Image)
 
-	Private FANARTTV As FANARTTVs.Scraper
+	Private FANARTTVs As FANARTTVs.Scraper
 	Private FANARTTVPosters As New List(Of MediaContainers.Image)
 
 	Private CachePath As String = String.Empty
@@ -113,7 +113,7 @@ Public Class dlgImgSelect
 		_TMDBApiE = tTMDBApiE
 		_TMDBConfE = tTMDBConfE
 		TMDB = New TMDB.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
-		FANARTTV = New FANARTTVs.Scraper(_MySettings)
+		FANARTTVs = New FANARTTVs.Scraper(_MySettings)
 	End Sub
 
 	Public Sub PreLoad(ByVal mMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, Optional ByVal _isEdit As Boolean = False)
@@ -614,7 +614,7 @@ Public Class dlgImgSelect
 		MPDB.Cancel()
 		TMDB.Cancel()
 		IMDB.Cancel()
-		FANARTTV.Cancel()
+		FANARTTVs.Cancel()
 
 		If bwIMPADownload.IsBusy Then bwIMPADownload.CancelAsync()
 		If bwMPDBDownload.IsBusy Then bwMPDBDownload.CancelAsync()
@@ -658,7 +658,7 @@ Public Class dlgImgSelect
 		MPDB = Nothing
 		TMDB = Nothing
 		IMDB = Nothing
-		FANARTTV = Nothing
+		FANARTTVs = Nothing
 
 		IMPAPosters = Nothing
 		MPDBPosters = Nothing
@@ -859,7 +859,7 @@ Public Class dlgImgSelect
 
 				Me._fanarttvDone = False
 
-				Me.FANARTTV.GetImagesAsync(tMovie.Movie.ID)
+				Me.FANARTTVs.GetImagesAsync(tMovie.Movie.ID)
 			Else
 				Me.lblDL2.Text = Master.eLang.GetString(121, "Fanart.tv is not enabled")
 			End If
@@ -1350,8 +1350,8 @@ Public Class dlgImgSelect
 			AddHandler MPDB.ProgressUpdated, AddressOf MPDBProgressUpdated
 			AddHandler IMDB.PostersDownloaded, AddressOf IMDBPostersDownloaded
 			AddHandler IMDB.ProgressUpdated, AddressOf IMDBProgressUpdated
-			AddHandler FANARTTV.PostersDownloaded, AddressOf FANARTTVPostersDownloaded
-			AddHandler FANARTTV.ProgressUpdated, AddressOf FANARTTVProgressUpdated
+			AddHandler FANARTTVs.PostersDownloaded, AddressOf FANARTTVPostersDownloaded
+			AddHandler FANARTTVs.ProgressUpdated, AddressOf FANARTTVProgressUpdated
 			AddHandler IMPADone, AddressOf IMPADoneDownloading
 			AddHandler TMDBDone, AddressOf TMDBDoneDownloading
 			AddHandler MPDBDone, AddressOf MPDBDoneDownloading

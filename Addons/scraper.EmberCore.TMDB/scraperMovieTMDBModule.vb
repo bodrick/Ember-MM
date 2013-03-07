@@ -274,7 +274,7 @@ Public Class EmberTMDBScraperModule
 		_setup.txtFANARTTVApiKey.Text = _MySettings.FANARTTVApiKey
 
 		SPanel.Name = String.Concat(Me._Name, "Scraper")
-		SPanel.Text = Master.eLang.GetString(858, "Ember TMDB Movie Scrapers ddddd")
+		SPanel.Text = Master.eLang.GetString(104, "Ember TMDB Movie Scrapers")
 		SPanel.Prefix = "TMDBMovieInfo_"
 		SPanel.Order = 110
 		SPanel.Parent = "pnlMovieData"

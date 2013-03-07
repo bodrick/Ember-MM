@@ -31,24 +31,27 @@ namespace FanartTV.V1
 			ResponseContent = resp.Content;
 			ResponseHeaders = resp.Headers.ToDictionary(k => k.Name, v => v.Value);
 
-			if (resp.ResponseStatus == ResponseStatus.Completed)
+			switch (resp.ResponseStatus)
 			{
-				if (resp.Content.Contains("Please specify a valid API key"))
-					Error = resp.Content;
-
-				return resp.Data;
+				case ResponseStatus.Completed:
+					switch (resp.StatusCode)
+					{
+						case HttpStatusCode.OK:
+							if (resp.Content == "Please specify a valid API key")
+								Error = resp.Content;
+							return resp.Data;
+							break;
+						default:
+							Error = resp.Content;
+							return default(T);
+							break;
+					}
+					break;
+				default:
+					Error = "HTTP Error";
+					return default(T);
+					break;
 			}
-			else
-			{
-				if (resp.Content.Contains("Please specify a valid API key"))
-					Error = resp.Content;
-				else if (resp.ErrorException != null)
-					throw resp.ErrorException;
-				else
-					Error = resp.ErrorMessage;
-			}
-
-			return default(T);
 		}
 
 		#endregion

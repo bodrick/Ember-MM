@@ -162,7 +162,7 @@ Public Class ScrapeImages
 						End If
 					End If
 				Else
-					If AdvancedSettings.GetBooleanSetting("UseTMDB", True) Then
+					If AdvancedSettings.GetBooleanSetting("tUseTMDB", True) Then
 						'download all TMBD images
 						tmpListTMDB = TMDB.GetTMDBImages(IMDBID, "poster")
 
@@ -205,7 +205,7 @@ Public Class ScrapeImages
 						End If
 					End If
 
-					If AdvancedSettings.GetBooleanSetting("UseIMPA", False) Then
+					If AdvancedSettings.GetBooleanSetting("tUseIMPA", False) Then
 						If IsNothing(Image.Image) Then
 							'no poster of the proper size from TMDB found... try IMPA
 
@@ -253,7 +253,7 @@ Public Class ScrapeImages
 						End If
 					End If
 
-					If AdvancedSettings.GetBooleanSetting("UseMPDB", False) Then
+					If AdvancedSettings.GetBooleanSetting("tUseMPDB", False) Then
 						If IsNothing(Image.Image) Then
 							'no poster of the proper size from TMDB or IMPA found... try MPDB
 
@@ -335,7 +335,7 @@ Public Class ScrapeImages
 
 						Image.Clear()
 
-						If AdvancedSettings.GetBooleanSetting("UseIMPA", False) Then
+						If AdvancedSettings.GetBooleanSetting("tUseIMPA", False) Then
 							If tmpListIMPA.Count > 0 Then
 								If Not IsNothing(tmpIMPAX) Then
 									Image.Image = New Bitmap(tmpIMPAX)
@@ -362,7 +362,7 @@ Public Class ScrapeImages
 
 						Image.Clear()
 
-						If AdvancedSettings.GetBooleanSetting("UseMPDB", False) Then
+						If AdvancedSettings.GetBooleanSetting("tUseMPDB", False) Then
 							If tmpListMPDB.Count > 0 Then
 								If Not IsNothing(tmpMPDBX) Then
 									Image.Image = New Bitmap(tmpMPDBX)
@@ -395,7 +395,7 @@ Public Class ScrapeImages
 
 			Else 'fanart
 
-				If AdvancedSettings.GetBooleanSetting("UseTMDB", True) Then
+				If AdvancedSettings.GetBooleanSetting("tUseTMDB", True) Then
 
 					Dim ETHashes As New List(Of String)
 					If Master.eSettings.AutoET AndAlso doETs Then
@@ -679,7 +679,7 @@ foundIT:
 	Public Sub GetPreferredFAasET(ByVal IMDBID As String, ByVal sPath As String)
 		Dim _Image As Image
 
-		If AdvancedSettings.GetBooleanSetting("UseTMDB", True) Then
+		If AdvancedSettings.GetBooleanSetting("tUseTMDB", True) Then
 
 			Dim tmpListTMDB As New List(Of MediaContainers.Image)
 			Dim ETHashes As New List(Of String)
@@ -834,7 +834,7 @@ foundIT:
 				Case Enums.ImageType.Fanart
 					If (isChange OrElse (String.IsNullOrEmpty(mMovie.FanartPath) OrElse Master.eSettings.OverwriteFanart)) AndAlso _
 					(Master.eSettings.MovieNameDotFanartJPG OrElse Master.eSettings.MovieNameFanartJPG OrElse Master.eSettings.FanartJPG) AndAlso _
-					AdvancedSettings.GetBooleanSetting("UseTMDB", True) Then
+					AdvancedSettings.GetBooleanSetting("tUseTMDB", True) Then
 						Return True
 					Else
 						Return False
@@ -843,7 +843,7 @@ foundIT:
 					If (isChange OrElse (String.IsNullOrEmpty(mMovie.PosterPath) OrElse Master.eSettings.OverwritePoster)) AndAlso _
 					(Master.eSettings.MovieTBN OrElse Master.eSettings.MovieNameTBN OrElse Master.eSettings.MovieJPG OrElse _
 					 Master.eSettings.MovieNameJPG OrElse Master.eSettings.PosterTBN OrElse Master.eSettings.PosterJPG OrElse Master.eSettings.FolderJPG) AndAlso _
-					 (AdvancedSettings.GetBooleanSetting("UseIMPA", False) OrElse AdvancedSettings.GetBooleanSetting("UseMPDB", False) OrElse AdvancedSettings.GetBooleanSetting("UseTMDB", True)) Then
+					 (AdvancedSettings.GetBooleanSetting("tUseIMPA", False) OrElse AdvancedSettings.GetBooleanSetting("UseMPDB", False) OrElse AdvancedSettings.GetBooleanSetting("UseTMDB", True)) Then
 						Return True
 					Else
 						Return False
