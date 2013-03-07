@@ -4997,6 +4997,7 @@ doCancel:
                 Me.lblTitle.Text = Master.currShow.TVShow.Title
             End If
 
+            Me.lblOriginalTitle.Text = String.Empty
             Me.txtPlot.Text = Master.currShow.TVShow.Plot
             Me.lblRuntime.Text = String.Format(Master.eLang.GetString(645, "Premiered: {0}"), If(String.IsNullOrEmpty(Master.currShow.TVShow.Premiered), "?", Master.currShow.TVShow.Premiered))
 
