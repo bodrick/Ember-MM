@@ -24,6 +24,7 @@ Public Class frmTrakt
         btGetMoviesTrakt.Text = Master.eLang.GetString(872, "Trakt Settings", True)
         btSaveMoviesTrakt.Text = Master.eLang.GetString(873, "Trakt Settings", True)
         txtTraktUser.Text = Master.eSettings.TraktUser
+        lblTraktUser.Text = Master.eLang.GetString(875, "Trakt.tv Username (Privacy setting must be turned off!)", True)
 
         If Not String.IsNullOrEmpty(Master.eSettings.UseTrakt.ToString) Then
             chkUseTrakt.Checked = Master.eSettings.UseTrakt
