@@ -72,30 +72,30 @@ Namespace IMDBimg
 
 			Try
 				If bwIMDBimg.CancellationPending Then Return Nothing
-				Dim sURL As String = GetLink(imdbID)
+				'Dim sURL As String = GetLink(imdbID)
 
-				If Not String.IsNullOrEmpty(sURL) Then
+				'If Not String.IsNullOrEmpty(sURL) Then
 
-					Dim sHTTP As New HTTP
-					Dim HTML As String = sHTTP.DownloadData(sURL)
-					sHTTP = Nothing
+				'	Dim sHTTP As New HTTP
+				'	Dim HTML As String = sHTTP.DownloadData(sURL)
+				'	sHTTP = Nothing
 
-					If bwIMDBimg.CancellationPending Then Return Nothing
+				'	If bwIMDBimg.CancellationPending Then Return Nothing
 
-					Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
+				'	Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
 
-					Dim PosterURL As String
+				'	Dim PosterURL As String
 
-					For Each mPoster As Match In mcPoster
-						If bwIMDBimg.CancellationPending Then Return Nothing
-						PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
+				'	For Each mPoster As Match In mcPoster
+				'		If bwIMDBimg.CancellationPending Then Return Nothing
+				'		PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
 
-						alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
+				'		alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
 
-						PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
-						alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
-					Next
-				End If
+				'		PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
+				'		alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
+				'	Next
+				'End If
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 			End Try
@@ -129,8 +129,26 @@ Namespace IMDBimg
 			Try
 
 				Dim sHTTP As New HTTP
-				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", IMDBID, "/posters"))
+				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", IMDBID, ""))
 				sHTTP = Nothing
+				'<a href="/media/rm2995297536/tt0089218?ref_=tt_ov_i" > <img height="317"
+				'				width = "214"
+				'				alt = "The Goonies (1985) Poster"
+				'				title = "The Goonies (1985) Poster"
+				'				src = "http://ia.media-imdb.com/images/M/MV5BMTY1Mzk3MTg0M15BMl5BanBnXkFtZTcwOTQzODYyMQ@@._V1_SY317_CR3,0,214,317_.jpg"
+				'itemprop="image" />
+				'</a>
+				Dim aPos = HTML.IndexOf(" Poster" + Chr(34))
+				If aPos > 0 Then
+					aPos = HTML.IndexOf(" Poster" + Chr(34), aPos + 1)
+					If aPos > 0 Then
+						aPos = HTML.IndexOf("src = " + Chr(34), aPos + 1)
+						If aPos > 0 Then
+							Dim aPos2 = HTML.IndexOf(Chr(34), aPos + 1)
+							Dim aStr = HTML.Substring(aPos, aPos2 - aPos)
+						End If
+					End If
+				End If
 
 				Dim mcIMPA As MatchCollection = Regex.Matches(HTML, "http://([^""]*)impawards.com/([^""]*)")
 				If mcIMPA.Count > 0 Then

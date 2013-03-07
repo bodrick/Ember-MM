@@ -121,4 +121,6 @@
 	<string id="119">TheMovieDB API is missing or not valid</string>
 	<string id="120">Retrieving data from Fanart.tv...</string>
 	<string id="121">Fanart.tv is not enabled</string>
+	<string id="122">Get your API Key from www.themoviedb.org</string>
+	<string id="123">Get your API Key from fanart.tv</string>
 </strings>
