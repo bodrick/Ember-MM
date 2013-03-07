@@ -873,4 +873,5 @@
   <string id="872">Get watched movies</string>
   <string id="873">Save watched state to database/nfo</string>
   <string id="874">Use file creation date of videofile</string>
+  <string id="875">Trakt.tv Username (Privacy setting must be turned off!)</string>
 </strings>
