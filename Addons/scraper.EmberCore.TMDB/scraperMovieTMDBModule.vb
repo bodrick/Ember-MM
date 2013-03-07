@@ -180,10 +180,17 @@ Public Class EmberTMDBScraperModule
 		LoadSettings()
 		'Must be after Load settings to retrieve the correct API key
 		_TMDBApi = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey, _MySettings.TMDBLanguage)
+		If IsNothing(_TMDBApi) Then
+			Master.eLog.WriteToErrorLog(Master.eLang.GetString(119, "TheMovieDB API is missing or not valid"), _TMDBApi.Error.status_message, "Info")
+		Else
+			If Not IsNothing(_TMDBApi.Error) AndAlso _TMDBApi.Error.status_message.Length > 0 Then
+				Master.eLog.WriteToErrorLog(_TMDBApi.Error.status_message, _TMDBApi.Error.status_code.ToString(), "Error")
+			End If
+		End If
 		_TMDBConf = _TMDBApi.GetConfiguration()
-		_TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
-		_TMDBConfE = _TMDBApiE.GetConfiguration()
-		_TMDBg = New TMDBg.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
+			_TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
+			_TMDBConfE = _TMDBApiE.GetConfiguration()
+			_TMDBg = New TMDBg.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
 
 	End Sub
 
@@ -198,19 +205,19 @@ Public Class EmberTMDBScraperModule
 		_setupPost.chkTrailerTMDBXBMC.Checked = _MySettings.UseTMDBTrailerXBMC
 		_setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
 		_setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
-		_setupPost.chkUseIMDB.Checked = _MySettings.UseIMDB
+		_setupPost.chkUseIMDBp.Checked = _MySettings.UseIMDB
 		_setupPost.chkUseIMPA.Checked = _MySettings.UseIMPA
 		_setupPost.chkUseMPDB.Checked = _MySettings.UseMPDB
 		_setupPost.chkUseFANARTTV.Checked = _MySettings.UseFANARTTV
 
 		' ad size from TMDB
-		_setupPost.cbManualETSize.Items.Clear()
-		If Not IsNothing(_TMDBg.TMDBConf.images) Then
-			For Each aSi In _TMDBg.TMDBConf.images.poster_sizes
-				_setupPost.cbManualETSize.Items.Add(aSi)
-			Next
-
-		End If
+		'_setupPost.cbManualETSize.Items.Clear()
+		'If Not IsNothing(_TMDBg.TMDBConf.images) Then
+		'	For Each aSi In _TMDBg.TMDBConf.images.poster_sizes
+		'	_setupPost.cbManualETSize.Items.Add(aSi)
+		'		Next
+		'
+		'End If
 		_setupPost.cbManualETSize.Text = _MySettings.ManualETSize
 
 		_setupPost.txtTimeout.Text = _MySettings.TrailerTimeout.ToString
@@ -264,9 +271,10 @@ Public Class EmberTMDBScraperModule
 		_setup.cbTMDBPrefLanguage.Text = _MySettings.TMDBLanguage
 		_setup.chkFallBackEng.Checked = _MySettings.FallBackEng
 		_setup.orderChanged()
+		_setup.txtFANARTTVApiKey.Text = _MySettings.FANARTTVApiKey
 
 		SPanel.Name = String.Concat(Me._Name, "Scraper")
-		SPanel.Text = Master.eLang.GetString(858, "Ember TMDB Movie Scrapers")
+		SPanel.Text = Master.eLang.GetString(104, "Ember TMDB Movie Scrapers")
 		SPanel.Prefix = "TMDBMovieInfo_"
 		SPanel.Order = 110
 		SPanel.Parent = "pnlMovieData"
@@ -280,48 +288,49 @@ Public Class EmberTMDBScraperModule
 	End Function
 
 	Sub LoadSettings()
-		ConfigOptions.bTitle = AdvancedSettings.GetBooleanSetting("DoTitle", True)
-		ConfigOptions.bYear = AdvancedSettings.GetBooleanSetting("DoYear", True)
-		ConfigOptions.bMPAA = AdvancedSettings.GetBooleanSetting("DoMPAA", True)
-		ConfigOptions.bRelease = AdvancedSettings.GetBooleanSetting("DoRelease", True)
-		ConfigOptions.bRuntime = AdvancedSettings.GetBooleanSetting("DoRuntime", True)
-		ConfigOptions.bRating = AdvancedSettings.GetBooleanSetting("DoRating", True)
-		ConfigOptions.bVotes = AdvancedSettings.GetBooleanSetting("DoVotes", True)
-		ConfigOptions.bStudio = AdvancedSettings.GetBooleanSetting("DoStudio", True)
-		ConfigOptions.bTagline = AdvancedSettings.GetBooleanSetting("DoTagline", True)
-		ConfigOptions.bOutline = AdvancedSettings.GetBooleanSetting("DoOutline", True)
-		ConfigOptions.bPlot = AdvancedSettings.GetBooleanSetting("DoPlot", True)
-		ConfigOptions.bCast = AdvancedSettings.GetBooleanSetting("DoCast", True)
-		ConfigOptions.bDirector = AdvancedSettings.GetBooleanSetting("DoDirector", True)
-		ConfigOptions.bWriters = AdvancedSettings.GetBooleanSetting("DoWriters", True)
-		ConfigOptions.bProducers = AdvancedSettings.GetBooleanSetting("DoProducers", True)
-		ConfigOptions.bGenre = AdvancedSettings.GetBooleanSetting("DoGenres", True)
-		ConfigOptions.bTrailer = AdvancedSettings.GetBooleanSetting("DoTrailer", True)
-		ConfigOptions.bMusicBy = AdvancedSettings.GetBooleanSetting("DoMusic", True)
-		ConfigOptions.bOtherCrew = AdvancedSettings.GetBooleanSetting("DoOtherCrews", True)
-		ConfigOptions.bFullCast = AdvancedSettings.GetBooleanSetting("DoFullCast", True)
-		ConfigOptions.bFullCrew = AdvancedSettings.GetBooleanSetting("DoFullCrews", True)
-		ConfigOptions.bTop250 = AdvancedSettings.GetBooleanSetting("DoTop250", True)
-		ConfigOptions.bCountry = AdvancedSettings.GetBooleanSetting("DoCountry", True)
-		ConfigOptions.bCert = AdvancedSettings.GetBooleanSetting("DoCert", True)
-		ConfigOptions.bFullCast = AdvancedSettings.GetBooleanSetting("FullCast", True)
-		ConfigOptions.bFullCrew = AdvancedSettings.GetBooleanSetting("FullCrew", True)
+		ConfigOptions.bTitle = AdvancedSettings.GetBooleanSetting("tDoTitle", True)
+		ConfigOptions.bYear = AdvancedSettings.GetBooleanSetting("tDoYear", True)
+		ConfigOptions.bMPAA = AdvancedSettings.GetBooleanSetting("tDoMPAA", True)
+		ConfigOptions.bRelease = AdvancedSettings.GetBooleanSetting("tDoRelease", True)
+		ConfigOptions.bRuntime = AdvancedSettings.GetBooleanSetting("tDoRuntime", True)
+		ConfigOptions.bRating = AdvancedSettings.GetBooleanSetting("tDoRating", True)
+		ConfigOptions.bVotes = AdvancedSettings.GetBooleanSetting("tDoVotes", True)
+		ConfigOptions.bStudio = AdvancedSettings.GetBooleanSetting("tDoStudio", True)
+		ConfigOptions.bTagline = AdvancedSettings.GetBooleanSetting("tDoTagline", True)
+		ConfigOptions.bOutline = AdvancedSettings.GetBooleanSetting("tDoOutline", True)
+		ConfigOptions.bPlot = AdvancedSettings.GetBooleanSetting("tDoPlot", True)
+		ConfigOptions.bCast = AdvancedSettings.GetBooleanSetting("tDoCast", True)
+		ConfigOptions.bDirector = AdvancedSettings.GetBooleanSetting("tDoDirector", True)
+		ConfigOptions.bWriters = AdvancedSettings.GetBooleanSetting("tDoWriters", True)
+		ConfigOptions.bProducers = AdvancedSettings.GetBooleanSetting("tDoProducers", True)
+		ConfigOptions.bGenre = AdvancedSettings.GetBooleanSetting("tDoGenres", True)
+		ConfigOptions.bTrailer = AdvancedSettings.GetBooleanSetting("tDoTrailer", True)
+		ConfigOptions.bMusicBy = AdvancedSettings.GetBooleanSetting("tDoMusic", True)
+		ConfigOptions.bOtherCrew = AdvancedSettings.GetBooleanSetting("tDoOtherCrews", True)
+		ConfigOptions.bFullCast = AdvancedSettings.GetBooleanSetting("tDoFullCast", True)
+		ConfigOptions.bFullCrew = AdvancedSettings.GetBooleanSetting("tDoFullCrews", True)
+		ConfigOptions.bTop250 = AdvancedSettings.GetBooleanSetting("tDoTop250", True)
+		ConfigOptions.bCountry = AdvancedSettings.GetBooleanSetting("tDoCountry", True)
+		ConfigOptions.bCert = AdvancedSettings.GetBooleanSetting("tDoCert", True)
+		ConfigOptions.bFullCast = AdvancedSettings.GetBooleanSetting("tFullCast", True)
+		ConfigOptions.bFullCrew = AdvancedSettings.GetBooleanSetting("tFullCrew", True)
 
-		_MySettings.TMDBAPIKey = AdvancedSettings.GetSetting("TMDBAPIKey", "Get your API Key from www.themoviedb.org")
-		_MySettings.FallBackEng = AdvancedSettings.GetBooleanSetting("FallBackEn", False)
-		_MySettings.TMDBLanguage = AdvancedSettings.GetSetting("TMDBLanguage", "en")
-		_MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("DownloadTraliers", False)
+		_MySettings.TMDBAPIKey = AdvancedSettings.GetSetting("tTMDBAPIKey", "Get your API Key from http://www.themoviedb.org")
+		_MySettings.FANARTTVApiKey = AdvancedSettings.GetSetting("tFANARTTVApiKey", "Get your API Key from http://fanart.tv")
+		_MySettings.FallBackEng = AdvancedSettings.GetBooleanSetting("tFallBackEn", False)
+		_MySettings.TMDBLanguage = AdvancedSettings.GetSetting("tTMDBLanguage", "en")
+		_MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("tDownloadTraliers", False)
 
-		_MySettings.TrailerTimeout = Convert.ToInt32(AdvancedSettings.GetSetting("TrailerTimeout", "10"))
-		_MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("UseTMDBTrailer", True)
-		_MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False)
-		_MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("UseIMPA", False)
-		_MySettings.UseMPDB = AdvancedSettings.GetBooleanSetting("UseMPDB", False)
-		_MySettings.UseIMDB = AdvancedSettings.GetBooleanSetting("UseIMDB", False)
-		_MySettings.UseFANARTTV = AdvancedSettings.GetBooleanSetting("UseFANARTTV", False)
-		_MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("UseIMDBTrailer", True)
-		_MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("ManualETSize", "thumb"))
-		_MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("UseTMDBTrailerPref", "en"))
+		_MySettings.TrailerTimeout = Convert.ToInt32(AdvancedSettings.GetSetting("tTrailerTimeout", "10"))
+		_MySettings.UseTMDBTrailer = AdvancedSettings.GetBooleanSetting("tUseTMDBTrailer", True)
+		_MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("tUseTMDBTrailerXBMC", False)
+		_MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("tUseIMPA", False)
+		_MySettings.UseMPDB = AdvancedSettings.GetBooleanSetting("tUseMPDB", False)
+		_MySettings.UseIMDB = AdvancedSettings.GetBooleanSetting("tUseIMDB", False)
+		_MySettings.UseFANARTTV = AdvancedSettings.GetBooleanSetting("tUseFANARTTV", False)
+		_MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("tUseIMDBTrailer", True)
+		_MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("tManualETSize", "thumb"))
+		_MySettings.UseTMDBTrailerPref = Convert.ToString(AdvancedSettings.GetSetting("tUseTMDBTrailerPref", "en"))
 
 		ConfigScrapeModifier.DoSearch = True
 		ConfigScrapeModifier.Meta = True
@@ -329,9 +338,9 @@ Public Class EmberTMDBScraperModule
 		ConfigScrapeModifier.Extra = True
 		ConfigScrapeModifier.Actors = True
 
-		ConfigScrapeModifier.Poster = AdvancedSettings.GetBooleanSetting("DoPoster", True)
-		ConfigScrapeModifier.Fanart = AdvancedSettings.GetBooleanSetting("DoFanart", True)
-		ConfigScrapeModifier.Trailer = AdvancedSettings.GetBooleanSetting("DoTrailer", True)
+		ConfigScrapeModifier.Poster = AdvancedSettings.GetBooleanSetting("tDoPoster", True)
+		ConfigScrapeModifier.Fanart = AdvancedSettings.GetBooleanSetting("tDoFanart", True)
+		ConfigScrapeModifier.Trailer = AdvancedSettings.GetBooleanSetting("tDoTrailer", True)
 	End Sub
 
 	Function PostScraper(ByRef DBMovie As Structures.DBMovie, ByVal ScrapeType As Enums.ScrapeType) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.PostScraper
@@ -454,64 +463,66 @@ Public Class EmberTMDBScraperModule
 	End Function
 
 	Sub SaveSettings()
-		AdvancedSettings.SetBooleanSetting("DoFullCast", ConfigOptions.bFullCast)
-		AdvancedSettings.SetBooleanSetting("DoFullCrews", ConfigOptions.bFullCrew)
-		AdvancedSettings.SetBooleanSetting("DoTitle", ConfigOptions.bTitle)
-		AdvancedSettings.SetBooleanSetting("DoYear", ConfigOptions.bYear)
-		AdvancedSettings.SetBooleanSetting("DoMPAA", ConfigOptions.bMPAA)
-		AdvancedSettings.SetBooleanSetting("DoRelease", ConfigOptions.bRelease)
-		AdvancedSettings.SetBooleanSetting("DoRuntime", ConfigOptions.bRuntime)
-		AdvancedSettings.SetBooleanSetting("DoRating", ConfigOptions.bRating)
-		AdvancedSettings.SetBooleanSetting("DoVotes", ConfigOptions.bVotes)
-		AdvancedSettings.SetBooleanSetting("DoStudio", ConfigOptions.bStudio)
-		AdvancedSettings.SetBooleanSetting("DoTagline", ConfigOptions.bTagline)
-		AdvancedSettings.SetBooleanSetting("DoOutline", ConfigOptions.bOutline)
-		AdvancedSettings.SetBooleanSetting("DoPlot", ConfigOptions.bPlot)
-		AdvancedSettings.SetBooleanSetting("DoCast", ConfigOptions.bCast)
-		AdvancedSettings.SetBooleanSetting("DoDirector", ConfigOptions.bDirector)
-		AdvancedSettings.SetBooleanSetting("DoWriters", ConfigOptions.bWriters)
-		AdvancedSettings.SetBooleanSetting("DoProducers", ConfigOptions.bProducers)
-		AdvancedSettings.SetBooleanSetting("DoGenres", ConfigOptions.bGenre)
-		AdvancedSettings.SetBooleanSetting("DoTrailer", ConfigOptions.bTrailer)
-		AdvancedSettings.SetBooleanSetting("DoMusic", ConfigOptions.bMusicBy)
-		AdvancedSettings.SetBooleanSetting("DoOtherCrews", ConfigOptions.bOtherCrew)
-		AdvancedSettings.SetBooleanSetting("DoCountry", ConfigOptions.bCountry)
-		AdvancedSettings.SetBooleanSetting("DoTop250", ConfigOptions.bTop250)
-		AdvancedSettings.SetBooleanSetting("DoCert", ConfigOptions.bCert)
+		AdvancedSettings.SetBooleanSetting("tDoFullCast", ConfigOptions.bFullCast)
+		AdvancedSettings.SetBooleanSetting("tDoFullCrews", ConfigOptions.bFullCrew)
+		AdvancedSettings.SetBooleanSetting("tDoTitle", ConfigOptions.bTitle)
+		AdvancedSettings.SetBooleanSetting("tDoYear", ConfigOptions.bYear)
+		AdvancedSettings.SetBooleanSetting("tDoMPAA", ConfigOptions.bMPAA)
+		AdvancedSettings.SetBooleanSetting("tDoRelease", ConfigOptions.bRelease)
+		AdvancedSettings.SetBooleanSetting("tDoRuntime", ConfigOptions.bRuntime)
+		AdvancedSettings.SetBooleanSetting("tDoRating", ConfigOptions.bRating)
+		AdvancedSettings.SetBooleanSetting("tDoVotes", ConfigOptions.bVotes)
+		AdvancedSettings.SetBooleanSetting("tDoStudio", ConfigOptions.bStudio)
+		AdvancedSettings.SetBooleanSetting("tDoTagline", ConfigOptions.bTagline)
+		AdvancedSettings.SetBooleanSetting("tDoOutline", ConfigOptions.bOutline)
+		AdvancedSettings.SetBooleanSetting("tDoPlot", ConfigOptions.bPlot)
+		AdvancedSettings.SetBooleanSetting("tDoCast", ConfigOptions.bCast)
+		AdvancedSettings.SetBooleanSetting("tDoDirector", ConfigOptions.bDirector)
+		AdvancedSettings.SetBooleanSetting("tDoWriters", ConfigOptions.bWriters)
+		AdvancedSettings.SetBooleanSetting("tDoProducers", ConfigOptions.bProducers)
+		AdvancedSettings.SetBooleanSetting("tDoGenres", ConfigOptions.bGenre)
+		AdvancedSettings.SetBooleanSetting("tDoTrailer", ConfigOptions.bTrailer)
+		AdvancedSettings.SetBooleanSetting("tDoMusic", ConfigOptions.bMusicBy)
+		AdvancedSettings.SetBooleanSetting("tDoOtherCrews", ConfigOptions.bOtherCrew)
+		AdvancedSettings.SetBooleanSetting("tDoCountry", ConfigOptions.bCountry)
+		AdvancedSettings.SetBooleanSetting("tDoTop250", ConfigOptions.bTop250)
+		AdvancedSettings.SetBooleanSetting("tDoCert", ConfigOptions.bCert)
 
-		AdvancedSettings.SetBooleanSetting("FullCast", ConfigOptions.bFullCast)
-		AdvancedSettings.SetBooleanSetting("FullCrew", ConfigOptions.bFullCrew)
-		AdvancedSettings.SetBooleanSetting("DownloadTraliers", _MySettings.DownloadTrailers)
+		AdvancedSettings.SetBooleanSetting("tFullCast", ConfigOptions.bFullCast)
+		AdvancedSettings.SetBooleanSetting("tFullCrew", ConfigOptions.bFullCrew)
+		AdvancedSettings.SetBooleanSetting("tDownloadTraliers", _MySettings.DownloadTrailers)
 
-		AdvancedSettings.SetSetting("TrailerTimeout", _MySettings.TrailerTimeout.ToString)
-		AdvancedSettings.SetBooleanSetting("UseTMDBTrailer", _MySettings.UseTMDBTrailer)
-		AdvancedSettings.SetBooleanSetting("UseTMDBTrailerXBMC", _MySettings.UseTMDBTrailerXBMC)
+		AdvancedSettings.SetSetting("tTrailerTimeout", _MySettings.TrailerTimeout.ToString)
+		AdvancedSettings.SetBooleanSetting("tUseTMDBTrailer", _MySettings.UseTMDBTrailer)
+		AdvancedSettings.SetBooleanSetting("tUseTMDBTrailerXBMC", _MySettings.UseTMDBTrailerXBMC)
+		AdvancedSettings.SetBooleanSetting("tUseIMDBTrailer", _MySettings.UseIMDBTrailer)
 
-		AdvancedSettings.SetSetting("ManualETSize", _MySettings.ManualETSize.ToString)
-		AdvancedSettings.SetSetting("UseTMDBTrailerPref", _MySettings.UseTMDBTrailerPref.ToString)
+		AdvancedSettings.SetSetting("tManualETSize", _MySettings.ManualETSize.ToString)
+		AdvancedSettings.SetSetting("tUseTMDBTrailerPref", _MySettings.UseTMDBTrailerPref.ToString)
 
-		AdvancedSettings.SetBooleanSetting("DoPoster", ConfigScrapeModifier.Poster)
-		AdvancedSettings.SetBooleanSetting("DoFanart", ConfigScrapeModifier.Fanart)
+		AdvancedSettings.SetBooleanSetting("tDoPoster", ConfigScrapeModifier.Poster)
+		AdvancedSettings.SetBooleanSetting("tDoFanart", ConfigScrapeModifier.Fanart)
+		AdvancedSettings.SetBooleanSetting("tDoTrailer", ConfigScrapeModifier.Trailer)
 
-		AdvancedSettings.SetSetting("TMDBAPIKey", _MySettings.TMDBAPIKey)
-		AdvancedSettings.SetBooleanSetting("FallBackEn", _MySettings.FallBackEng)
-		AdvancedSettings.SetSetting("TMDBLanguage", _MySettings.TMDBLanguage)
-		AdvancedSettings.SetBooleanSetting("UseIMPA", _MySettings.UseIMPA)
-		AdvancedSettings.SetBooleanSetting("UseMPDB", _MySettings.UseMPDB)
-		AdvancedSettings.SetBooleanSetting("UseIMDB", _MySettings.UseIMDB)
-		AdvancedSettings.SetBooleanSetting("UseFANARTTV", _MySettings.UseFANARTTV)
-		'AdvancedSettings.SetBooleanSetting("DoTrailer", ConfigScrapeModifier.Trailer)
+		AdvancedSettings.SetSetting("tTMDBAPIKey", _MySettings.TMDBAPIKey)
+		AdvancedSettings.SetSetting("tFANARTTVApiKey", _MySettings.FANARTTVApiKey)
+		AdvancedSettings.SetBooleanSetting("tFallBackEn", _MySettings.FallBackEng)
+		AdvancedSettings.SetSetting("tTMDBLanguage", _MySettings.TMDBLanguage)
+		AdvancedSettings.SetBooleanSetting("tUseIMPA", _MySettings.UseIMPA)
+		AdvancedSettings.SetBooleanSetting("tUseMPDB", _MySettings.UseMPDB)
+		AdvancedSettings.SetBooleanSetting("tUseIMDB", _MySettings.UseIMDB)
+		AdvancedSettings.SetBooleanSetting("tUseFANARTTV", _MySettings.UseFANARTTV)
 	End Sub
 
 	Sub SaveSetupPostScraper(ByVal DoDispose As Boolean) Implements Interfaces.EmberMovieScraperModule.SaveSetupPostScraper
 		_MySettings.DownloadTrailers = _setupPost.chkDownloadTrailer.Checked
-		''		MySettings.UseIMDBTrailer = _setupPost.chkTrailerIMDB.Checked
+		_MySettings.UseIMDBTrailer = _setupPost.chkTrailerIMDB.Checked
 		_MySettings.UseTMDBTrailer = _setupPost.chkTrailerTMDB.Checked
 		_MySettings.UseTMDBTrailerXBMC = _setupPost.chkTrailerTMDBXBMC.Checked
 		_MySettings.TrailerTimeout = Convert.ToInt32(_setupPost.txtTimeout.Text)
 		_MySettings.ManualETSize = _setupPost.cbManualETSize.Text
 		_MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
-		_MySettings.UseIMDB = _setupPost.chkUseIMDB.Checked
+		_MySettings.UseIMDB = _setupPost.chkUseIMDBp.Checked
 		_MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
 		_MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
 		_MySettings.UseFANARTTV = _setupPost.chkUseFANARTTV.Checked
@@ -578,6 +589,17 @@ Public Class EmberTMDBScraperModule
 		''TMDBg.UseOFDBGenre = MySettings.UseOFDBGenre
 		Dim tTitle As String = String.Empty
 		Dim OldTitle As String = DBMovie.Movie.Title
+
+		If IsNothing(_TMDBApi) Then
+			Master.eLog.WriteToErrorLog(Master.eLang.GetString(119, "TheMovieDB API is missing or not valid"), _TMDBApi.Error.status_message, "Error")
+			Return New Interfaces.ModuleResult With {.breakChain = False, .Cancelled = True}
+		Else
+			If Not IsNothing(_TMDBApi.Error) AndAlso _TMDBApi.Error.status_message.Length > 0 Then
+				Master.eLog.WriteToErrorLog(_TMDBApi.Error.status_message, _TMDBApi.Error.status_code.ToString(), "Error")
+				Return New Interfaces.ModuleResult With {.breakChain = False, .Cancelled = True}
+			End If
+		End If
+
 
 		If Master.GlobalScrapeMod.NFO AndAlso Not Master.GlobalScrapeMod.DoSearch Then
 			If Not String.IsNullOrEmpty(DBMovie.Movie.IMDBID) Then
@@ -707,6 +729,7 @@ Public Class EmberTMDBScraperModule
 		Dim ManualETSize As String
 		Dim UseTMDBTrailerPref As String
 		Dim TMDBAPIKey As String
+		Dim FANARTTVApiKey As String
 		Dim TMDBLanguage As String
 		Dim FallBackEng As Boolean
 		Dim UseIMDB As Boolean

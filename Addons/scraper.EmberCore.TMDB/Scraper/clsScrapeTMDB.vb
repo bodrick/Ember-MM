@@ -79,8 +79,6 @@ Namespace TMDB
 			backdrop_names(2).size = "w1280"
 			backdrop_names(3).description = "original"
 			backdrop_names(3).size = "original"
-
-
 		End Sub
 
 		Public Sub Cancel()

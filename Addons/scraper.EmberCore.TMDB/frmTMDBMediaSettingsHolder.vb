@@ -101,7 +101,15 @@ Public Class frmTMDBMediaSettingsHolder
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
-	Private Sub chkUseIMDB_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseIMDB.CheckedChanged
+	Private Sub chkUseFANARTTV_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseFANARTTV.CheckedChanged
+		RaiseEvent ModuleSettingsChanged()
+	End Sub
+
+	Private Sub chkUseIMDBp_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseIMDBp.CheckedChanged
+		RaiseEvent ModuleSettingsChanged()
+	End Sub
+
+	Private Sub chkUseIMDBf_CheckedChanged(sender As System.Object, e As System.EventArgs)
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
@@ -109,7 +117,7 @@ Public Class frmTMDBMediaSettingsHolder
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
-	Private Sub chkUseMPDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseMPDB.CheckedChanged, chkUseFANARTTV.CheckedChanged
+	Private Sub chkUseMPDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseMPDB.CheckedChanged
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 

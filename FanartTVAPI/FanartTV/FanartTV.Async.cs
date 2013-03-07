@@ -44,17 +44,26 @@ namespace FanartTV.V1
                 ResponseContent = resp.Content;
                 ResponseHeaders = resp.Headers.ToDictionary(k => k.Name, v => v.Value);
 
-                if (resp.ResponseStatus != ResponseStatus.Completed)
-                {
-                    if (resp.Content.Contains("status_message"))
-                        result.Error = resp.Content ;
-                    else if (resp.ErrorException != null)
-                        throw resp.ErrorException;
-                    else
-                        result.Error = resp.Content ;
-                }
-
-                Error = result.Error;
+				switch (resp.ResponseStatus)
+				{
+					case ResponseStatus.Completed:
+						switch (resp.StatusCode)
+						{
+							case HttpStatusCode.OK:
+								if (resp.Content == "Please specify a valid API key")
+									result.Error = resp.Content;
+								break;
+							default:
+								result.Error = resp.Content;
+								break;
+						}
+						break;
+					default:
+						result.Error = "HTTP Error";
+						break;
+				}
+				
+				Error = result.Error;
 
                 callback(result);
             });

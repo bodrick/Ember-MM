@@ -103,7 +103,7 @@
   <string id="101">Get Posters</string>
   <string id="102">Get Fanart</string>
   <string id="103">These settings are specific to this module.{0}Please refer to the global settings for more options.</string>
-  <string id="104">Ember Native Movie Scrapers</string>
+  <string id="104">Ember TMDB Movie Scrapers</string>
   <string id="105"/>
   <string id="106">IMDB</string>
   <string id="107">OFDB (German)</string>
@@ -116,4 +116,9 @@
   <string id="114">Fall back on english</string>
   <string id="115">Preferred Language:</string>
   <string id="116">TMDBid:</string>
+	<string id="117">Retrieving data from IMDB.com...</string>
+	<string id="118">IMDB.com is not enabled</string>
+	<string id="119">TheMovieDB API is missing or not valid</string>
+	<string id="120">Retrieving data from Fanart.tv...</string>
+	<string id="121">Fanart.tv is not enabled</string>
 </strings>

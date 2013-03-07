@@ -116,6 +116,8 @@
     <Compile Include="Scraper\clsScrapeImages.vb" />
     <Compile Include="Scraper\clsScrapeTMDBg.vb" />
     <Compile Include="Scraper\clsScrapeYouTube.vb" />
+    <Compile Include="Scraper\clsScrapeIMDB.vb" />
+    <Compile Include="Scraper\clsScrapeFANARTTV.vb" />
     <Compile Include="Scraper\dlgTMDBSearchResults.Designer.vb">
       <DependentUpon>dlgTMDBSearchResults.vb</DependentUpon>
     </Compile>
@@ -235,6 +237,10 @@
       <Project>{208AA35E-C6AE-4D2D-A9DD-B6EFD19A4279}</Project>
       <Name>EmberAPI</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FanartTVAPI\FanartTVAPI.csproj">
+      <Project>{70F651C6-6BB4-4E4D-AD6C-25C36CA1E9E6}</Project>
+      <Name>FanartTVAPI</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\WatTmdb\WatTmdb.csproj">
       <Project>{EFC11645-FAB4-4C30-A498-29F5ECDF77E8}</Project>
