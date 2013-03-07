@@ -29,7 +29,6 @@ Partial Class frmTMDBMediaSettingsHolder
 		Me.GroupBox3 = New System.Windows.Forms.GroupBox()
 		Me.GroupBox6 = New System.Windows.Forms.GroupBox()
 		Me.chkUseFANARTTV = New System.Windows.Forms.CheckBox()
-		Me.chkUseIMDBf = New System.Windows.Forms.CheckBox()
 		Me.Label5 = New System.Windows.Forms.Label()
 		Me.Label4 = New System.Windows.Forms.Label()
 		Me.GroupBox9 = New System.Windows.Forms.GroupBox()
@@ -129,38 +128,25 @@ Partial Class frmTMDBMediaSettingsHolder
 		'GroupBox6
 		'
 		Me.GroupBox6.Controls.Add(Me.chkUseFANARTTV)
-		Me.GroupBox6.Controls.Add(Me.chkUseIMDBf)
 		Me.GroupBox6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.GroupBox6.Location = New System.Drawing.Point(331, 21)
 		Me.GroupBox6.Name = "GroupBox6"
 		Me.GroupBox6.Size = New System.Drawing.Size(160, 55)
 		Me.GroupBox6.TabIndex = 96
 		Me.GroupBox6.TabStop = False
-		Me.GroupBox6.Text = "Get Images From:"
+		Me.GroupBox6.Text = "Get Fanart From:"
 		'
 		'chkUseFANARTTV
 		'
 		Me.chkUseFANARTTV.CheckAlign = System.Drawing.ContentAlignment.TopLeft
 		Me.chkUseFANARTTV.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkUseFANARTTV.Location = New System.Drawing.Point(6, 35)
+		Me.chkUseFANARTTV.Location = New System.Drawing.Point(6, 21)
 		Me.chkUseFANARTTV.Name = "chkUseFANARTTV"
 		Me.chkUseFANARTTV.Size = New System.Drawing.Size(150, 22)
 		Me.chkUseFANARTTV.TabIndex = 2
 		Me.chkUseFANARTTV.Text = "fanart.tv"
 		Me.chkUseFANARTTV.TextAlign = System.Drawing.ContentAlignment.TopLeft
 		Me.chkUseFANARTTV.UseVisualStyleBackColor = True
-		'
-		'chkUseIMDBf
-		'
-		Me.chkUseIMDBf.CheckAlign = System.Drawing.ContentAlignment.TopLeft
-		Me.chkUseIMDBf.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkUseIMDBf.Location = New System.Drawing.Point(6, 18)
-		Me.chkUseIMDBf.Name = "chkUseIMDBf"
-		Me.chkUseIMDBf.Size = New System.Drawing.Size(149, 19)
-		Me.chkUseIMDBf.TabIndex = 0
-		Me.chkUseIMDBf.Text = "IMDB.com"
-		Me.chkUseIMDBf.TextAlign = System.Drawing.ContentAlignment.TopLeft
-		Me.chkUseIMDBf.UseVisualStyleBackColor = True
 		'
 		'Label5
 		'
@@ -193,7 +179,7 @@ Partial Class frmTMDBMediaSettingsHolder
 		Me.GroupBox9.Size = New System.Drawing.Size(160, 78)
 		Me.GroupBox9.TabIndex = 5
 		Me.GroupBox9.TabStop = False
-		Me.GroupBox9.Text = "Get Images From:"
+		Me.GroupBox9.Text = "Get Poster From:"
 		'
 		'chkUseMPDB
 		'
@@ -561,7 +547,6 @@ Partial Class frmTMDBMediaSettingsHolder
 	Friend WithEvents Label4 As System.Windows.Forms.Label
 	Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
 	Friend WithEvents chkUseFANARTTV As System.Windows.Forms.CheckBox
-	Friend WithEvents chkUseIMDBf As System.Windows.Forms.CheckBox
 	Friend WithEvents Label5 As System.Windows.Forms.Label
 
 End Class

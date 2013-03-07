@@ -46,7 +46,7 @@ namespace FanartTV.V1
 
                 if (resp.ResponseStatus != ResponseStatus.Completed)
                 {
-                    if (resp.Content.Contains("status_message"))
+					if (resp.Content.Contains("Please specify a valid API key"))
                         result.Error = resp.Content ;
                     else if (resp.ErrorException != null)
                         throw resp.ErrorException;

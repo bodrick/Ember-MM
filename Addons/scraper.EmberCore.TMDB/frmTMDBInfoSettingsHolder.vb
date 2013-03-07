@@ -20,6 +20,7 @@
 
 Imports System.IO
 Imports EmberAPI
+Imports System.Diagnostics
 
 Public Class frmTMDBInfoSettingsHolder
 
@@ -132,6 +133,10 @@ Public Class frmTMDBInfoSettingsHolder
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
+	Private Sub txtFANARTTVApiKey_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtFANARTTVApiKey.TextChanged
+		RaiseEvent ModuleSettingsChanged()
+	End Sub
+
 	Private Sub txtTMDBApiKey_TextEnter(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTMDBApiKey.Enter
 		Api1 = txtTMDBApiKey.Text
 	End Sub
@@ -185,4 +190,29 @@ Public Class frmTMDBInfoSettingsHolder
 
 #End Region	'Methods
 
+	Private Sub PictureBox2_Click(sender As System.Object, e As System.EventArgs) Handles pbTMDB.Click
+		If Master.isWindows Then
+			Process.Start("http://docs.themoviedb.apiary.io/")
+		Else
+			Using Explorer As New Process
+				Explorer.StartInfo.FileName = "xdg-open"
+				Explorer.StartInfo.Arguments = "http://docs.themoviedb.apiary.io/"
+				Explorer.Start()
+			End Using
+		End If
+
+	End Sub
+
+	Private Sub pbFANARTTV_Click(sender As System.Object, e As System.EventArgs) Handles pbFANARTTV.Click
+		If Master.isWindows Then
+			Process.Start("http://fanart.tv/get-an-api-key/")
+		Else
+			Using Explorer As New Process
+				Explorer.StartInfo.FileName = "xdg-open"
+				Explorer.StartInfo.Arguments = "http://fanart.tv/get-an-api-key/"
+				Explorer.Start()
+			End Using
+		End If
+
+	End Sub
 End Class

@@ -55,12 +55,12 @@ Namespace IMDBimg
 			End While
 		End Sub
 
-		Public Sub GetImagesAsync(ByVal sURL As String, isFanart As Boolean)
+		Public Sub GetImagesAsync(ByVal sURL As String)
 			Try
 				If Not bwIMDBimg.IsBusy Then
 					bwIMDBimg.WorkerSupportsCancellation = True
 					bwIMDBimg.WorkerReportsProgress = True
-					bwIMDBimg.RunWorkerAsync(New Arguments With {.Parameter = sURL, .isFanart = isFanart})
+					bwIMDBimg.RunWorkerAsync(New Arguments With {.Parameter = sURL})
 				End If
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -155,7 +155,6 @@ Namespace IMDBimg
 
 			Dim Parameter As String
 			Dim sType As String
-			Dim isFanart As Boolean
 
 #End Region	'Fields
 

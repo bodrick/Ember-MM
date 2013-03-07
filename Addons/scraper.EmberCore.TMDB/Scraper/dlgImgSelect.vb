@@ -55,7 +55,7 @@ Public Class dlgImgSelect
 	Private IMDB As New IMDBimg.Scraper
 	Private IMDBPosters As New List(Of MediaContainers.Image)
 
-	Private FANARTTV As New FANARTTV.Scraper
+	Private FANARTTV As FANARTTVs.Scraper
 	Private FANARTTVPosters As New List(Of MediaContainers.Image)
 
 	Private CachePath As String = String.Empty
@@ -113,6 +113,7 @@ Public Class dlgImgSelect
 		_TMDBApiE = tTMDBApiE
 		_TMDBConfE = tTMDBConfE
 		TMDB = New TMDB.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
+		FANARTTV = New FANARTTVs.Scraper(_MySettings)
 	End Sub
 
 	Public Sub PreLoad(ByVal mMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, Optional ByVal _isEdit As Boolean = False)
@@ -845,21 +846,25 @@ Public Class dlgImgSelect
 			Me.pnlDLStatus.Visible = True
 			Me.Refresh()
 
+			Me._tmdbDone = False
+
 			Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "backdrop")
 
-			If _MySettings.UseIMDBf Then
-				Me.lblDL2.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")
+			If _MySettings.UseFANARTTV Then
+				Me.lblDL2.Text = Master.eLang.GetString(120, "Retrieving data from Fanart.tv...")
 				Me.lblDL2Status.Text = String.Empty
 				Me.pbDL2.Maximum = 3
 				Me.pnlDLStatus.Visible = True
 				Me.Refresh()
 
-				Me._imdbDone = False
+				Me._fanarttvDone = False
 
-				Me.IMDB.GetImagesAsync(tMovie.Movie.IMDBID, True)
+				Me.FANARTTV.GetImagesAsync(tMovie.Movie.ID)
 			Else
-				Me.lblDL2.Text = Master.eLang.GetString(118, "IMDB.com is not enabled")
+				Me.lblDL2.Text = Master.eLang.GetString(121, "Fanart.tv is not enabled")
 			End If
+
+
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -927,7 +932,7 @@ Public Class dlgImgSelect
 
 				Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "poster")
 
-				If _MySettings.UseIMDBp Then
+				If _MySettings.UseIMDB Then
 					Me.lblDL2.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")
 					Me.lblDL2Status.Text = String.Empty
 					Me.pbDL2.Maximum = 3
@@ -936,7 +941,7 @@ Public Class dlgImgSelect
 
 					Me._imdbDone = False
 
-					Me.IMDB.GetImagesAsync(tMovie.Movie.IMDBID, False)
+					Me.IMDB.GetImagesAsync(tMovie.Movie.IMDBID)
 				Else
 					Me.lblDL2.Text = Master.eLang.GetString(118, "IMDB.com is not enabled")
 				End If

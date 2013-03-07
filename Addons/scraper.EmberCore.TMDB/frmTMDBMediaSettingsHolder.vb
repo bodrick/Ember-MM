@@ -109,7 +109,7 @@ Public Class frmTMDBMediaSettingsHolder
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
-	Private Sub chkUseIMDBf_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseIMDBf.CheckedChanged
+	Private Sub chkUseIMDBf_CheckedChanged(sender As System.Object, e As System.EventArgs)
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 

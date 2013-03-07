@@ -23,17 +23,18 @@ Imports System.IO.Compression
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports EmberAPI
+Imports FanartTVAPI
 
-Namespace FANARTTV
+Namespace FANARTTVs
 
 	Public Class Scraper
 
 #Region "Fields"
 
-
-
+		Private _MySettings As EmberTMDBScraperModule.sMySettings
+		Private _FanartTV As FanartTV.V1.FanartTV
 		Friend WithEvents bwFANARTTV As New System.ComponentModel.BackgroundWorker
-
+		Private _APIInvalid As Boolean = False
 #End Region	'Fields
 
 #Region "Events"
@@ -45,6 +46,18 @@ Namespace FANARTTV
 #End Region	'Events
 
 #Region "Methods"
+
+		Public Sub New(ByRef tMySettings As EmberTMDBScraperModule.sMySettings)
+			_MySettings = tMySettings
+			_FanartTV = New FanartTV.V1.FanartTV(_MySettings.FANARTTVApiKey)
+			Dim Result As FanartTV.V1.FanartTVMovie = _FanartTV.GetMovieInfo(New FanartTV.V1.FanartTVRequest("1", "JSON", "all", 1, 1))
+			If IsNothing(Result) Then
+				If Not IsNothing(_FanartTV.Error) Then
+					Master.eLog.WriteToErrorLog(_FanartTV.Error, "", "Error")
+				End If
+				_APIInvalid = True
+			End If
+		End Sub
 
 		Public Sub Cancel()
 			If Me.bwFANARTTV.IsBusy Then Me.bwFANARTTV.CancelAsync()
@@ -67,35 +80,23 @@ Namespace FANARTTV
 			End Try
 		End Sub
 
-		Public Function GetIMPAPosters(ByVal imdbID As String) As List(Of MediaContainers.Image)
+		Public Function GetFANARTTVImages(ByVal imdbID As String) As List(Of MediaContainers.Image)
 			Dim alPoster As New List(Of MediaContainers.Image)
 
+			If _APIInvalid Then
+				Return alPoster
+			End If
 			Try
 				If bwFANARTTV.CancellationPending Then Return Nothing
-				Dim sURL As String = GetLink(imdbID)
-
-				If Not String.IsNullOrEmpty(sURL) Then
-
-					Dim sHTTP As New HTTP
-					Dim HTML As String = sHTTP.DownloadData(sURL)
-					sHTTP = Nothing
-
+				For Each mPoster As Match In mcPoster
 					If bwFANARTTV.CancellationPending Then Return Nothing
+					PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
 
-					Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
+					alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
 
-					Dim PosterURL As String
-
-					For Each mPoster As Match In mcPoster
-						If bwFANARTTV.CancellationPending Then Return Nothing
-						PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
-
-						alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
-
-						PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
-						alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
-					Next
-				End If
+					PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
+					alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
+				Next
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 			End Try

@@ -118,4 +118,7 @@
   <string id="116">TMDBid:</string>
 	<string id="117">Retrieving data from IMDB.com...</string>
 	<string id="118">IMDB.com is not enabled</string>
+	<string id="119">TheMovieDB API is missing or not valid</string>
+	<string id="120">Retrieving data from Fanart.tv...</string>
+	<string id="121">Fanart.tv is not enabled</string>
 </strings>

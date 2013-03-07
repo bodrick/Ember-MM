@@ -36,6 +36,9 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.btnDown = New System.Windows.Forms.Button()
 		Me.btnUp = New System.Windows.Forms.Button()
 		Me.pnlSettings = New System.Windows.Forms.Panel()
+		Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+		Me.Label5 = New System.Windows.Forms.Label()
+		Me.txtFANARTTVApiKey = New System.Windows.Forms.TextBox()
 		Me.Label1 = New System.Windows.Forms.Label()
 		Me.PictureBox1 = New System.Windows.Forms.PictureBox()
 		Me.gbOptions = New System.Windows.Forms.GroupBox()
@@ -54,11 +57,16 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.chkMPAA = New System.Windows.Forms.CheckBox()
 		Me.chkYear = New System.Windows.Forms.CheckBox()
 		Me.chkTitle = New System.Windows.Forms.CheckBox()
+		Me.pbTMDB = New System.Windows.Forms.PictureBox()
+		Me.pbFANARTTV = New System.Windows.Forms.PictureBox()
 		Me.GroupBox30.SuspendLayout()
 		Me.Panel1.SuspendLayout()
 		Me.pnlSettings.SuspendLayout()
+		Me.GroupBox1.SuspendLayout()
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.gbOptions.SuspendLayout()
+		CType(Me.pbTMDB, System.ComponentModel.ISupportInitialize).BeginInit()
+		CType(Me.pbFANARTTV, System.ComponentModel.ISupportInitialize).BeginInit()
 		Me.SuspendLayout()
 		'
 		'lblVersion
@@ -71,6 +79,7 @@ Partial Class frmTMDBInfoSettingsHolder
 		'
 		'GroupBox30
 		'
+		Me.GroupBox30.Controls.Add(Me.pbTMDB)
 		Me.GroupBox30.Controls.Add(Me.chkFallBackEng)
 		Me.GroupBox30.Controls.Add(Me.cbTMDBPrefLanguage)
 		Me.GroupBox30.Controls.Add(Me.Label3)
@@ -79,7 +88,7 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.GroupBox30.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
 		Me.GroupBox30.Location = New System.Drawing.Point(8, 40)
 		Me.GroupBox30.Name = "GroupBox30"
-		Me.GroupBox30.Size = New System.Drawing.Size(213, 123)
+		Me.GroupBox30.Size = New System.Drawing.Size(309, 123)
 		Me.GroupBox30.TabIndex = 1
 		Me.GroupBox30.TabStop = False
 		Me.GroupBox30.Text = "TMDB"
@@ -131,7 +140,7 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.txtTMDBApiKey.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
 		Me.txtTMDBApiKey.Location = New System.Drawing.Point(8, 32)
 		Me.txtTMDBApiKey.Name = "txtTMDBApiKey"
-		Me.txtTMDBApiKey.Size = New System.Drawing.Size(192, 22)
+		Me.txtTMDBApiKey.Size = New System.Drawing.Size(273, 22)
 		Me.txtTMDBApiKey.TabIndex = 1
 		'
 		'cbEnabled
@@ -191,6 +200,7 @@ Partial Class frmTMDBInfoSettingsHolder
 		'
 		'pnlSettings
 		'
+		Me.pnlSettings.Controls.Add(Me.GroupBox1)
 		Me.pnlSettings.Controls.Add(Me.Label1)
 		Me.pnlSettings.Controls.Add(Me.PictureBox1)
 		Me.pnlSettings.Controls.Add(Me.Panel1)
@@ -200,6 +210,37 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.pnlSettings.Name = "pnlSettings"
 		Me.pnlSettings.Size = New System.Drawing.Size(617, 369)
 		Me.pnlSettings.TabIndex = 0
+		'
+		'GroupBox1
+		'
+		Me.GroupBox1.Controls.Add(Me.pbFANARTTV)
+		Me.GroupBox1.Controls.Add(Me.Label5)
+		Me.GroupBox1.Controls.Add(Me.txtFANARTTVApiKey)
+		Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.GroupBox1.Location = New System.Drawing.Point(8, 169)
+		Me.GroupBox1.Name = "GroupBox1"
+		Me.GroupBox1.Size = New System.Drawing.Size(309, 71)
+		Me.GroupBox1.TabIndex = 75
+		Me.GroupBox1.TabStop = False
+		Me.GroupBox1.Text = "Fanart.tv"
+		'
+		'Label5
+		'
+		Me.Label5.AutoSize = True
+		Me.Label5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.Label5.Location = New System.Drawing.Point(6, 18)
+		Me.Label5.Name = "Label5"
+		Me.Label5.Size = New System.Drawing.Size(94, 13)
+		Me.Label5.TabIndex = 0
+		Me.Label5.Text = "Fanart.tv API Key:"
+		'
+		'txtFANARTTVApiKey
+		'
+		Me.txtFANARTTVApiKey.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.txtFANARTTVApiKey.Location = New System.Drawing.Point(8, 32)
+		Me.txtFANARTTVApiKey.Name = "txtFANARTTVApiKey"
+		Me.txtFANARTTVApiKey.Size = New System.Drawing.Size(273, 22)
+		Me.txtFANARTTVApiKey.TabIndex = 1
 		'
 		'Label1
 		'
@@ -243,9 +284,9 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.gbOptions.Controls.Add(Me.chkYear)
 		Me.gbOptions.Controls.Add(Me.chkTitle)
 		Me.gbOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.gbOptions.Location = New System.Drawing.Point(227, 40)
+		Me.gbOptions.Location = New System.Drawing.Point(323, 40)
 		Me.gbOptions.Name = "gbOptions"
-		Me.gbOptions.Size = New System.Drawing.Size(379, 150)
+		Me.gbOptions.Size = New System.Drawing.Size(283, 150)
 		Me.gbOptions.TabIndex = 3
 		Me.gbOptions.TabStop = False
 		Me.gbOptions.Text = "Scraper Fields"
@@ -254,7 +295,7 @@ Partial Class frmTMDBInfoSettingsHolder
 		'
 		Me.chkCrew.AutoSize = True
 		Me.chkCrew.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-		Me.chkCrew.Location = New System.Drawing.Point(273, 17)
+		Me.chkCrew.Location = New System.Drawing.Point(225, 17)
 		Me.chkCrew.Name = "chkCrew"
 		Me.chkCrew.Size = New System.Drawing.Size(52, 17)
 		Me.chkCrew.TabIndex = 19
@@ -415,6 +456,24 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.chkTitle.Text = "Title"
 		Me.chkTitle.UseVisualStyleBackColor = True
 		'
+		'pbTMDB
+		'
+		Me.pbTMDB.Image = CType(resources.GetObject("pbTMDB.Image"), System.Drawing.Image)
+		Me.pbTMDB.Location = New System.Drawing.Point(287, 34)
+		Me.pbTMDB.Name = "pbTMDB"
+		Me.pbTMDB.Size = New System.Drawing.Size(16, 16)
+		Me.pbTMDB.TabIndex = 5
+		Me.pbTMDB.TabStop = False
+		'
+		'pbFANARTTV
+		'
+		Me.pbFANARTTV.Image = CType(resources.GetObject("pbFANARTTV.Image"), System.Drawing.Image)
+		Me.pbFANARTTV.Location = New System.Drawing.Point(287, 34)
+		Me.pbFANARTTV.Name = "pbFANARTTV"
+		Me.pbFANARTTV.Size = New System.Drawing.Size(16, 16)
+		Me.pbFANARTTV.TabIndex = 6
+		Me.pbFANARTTV.TabStop = False
+		'
 		'frmTMDBInfoSettingsHolder
 		'
 		Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -436,9 +495,13 @@ Partial Class frmTMDBInfoSettingsHolder
 		Me.Panel1.ResumeLayout(False)
 		Me.Panel1.PerformLayout()
 		Me.pnlSettings.ResumeLayout(False)
+		Me.GroupBox1.ResumeLayout(False)
+		Me.GroupBox1.PerformLayout()
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.gbOptions.ResumeLayout(False)
 		Me.gbOptions.PerformLayout()
+		CType(Me.pbTMDB, System.ComponentModel.ISupportInitialize).EndInit()
+		CType(Me.pbFANARTTV, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.ResumeLayout(False)
 
 	End Sub
@@ -473,5 +536,10 @@ Partial Class frmTMDBInfoSettingsHolder
 	Friend WithEvents cbTMDBPrefLanguage As System.Windows.Forms.ComboBox
 	Friend WithEvents Label3 As System.Windows.Forms.Label
 	Friend WithEvents chkCrew As System.Windows.Forms.CheckBox
+	Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+	Friend WithEvents Label5 As System.Windows.Forms.Label
+	Friend WithEvents txtFANARTTVApiKey As System.Windows.Forms.TextBox
+	Friend WithEvents pbTMDB As System.Windows.Forms.PictureBox
+	Friend WithEvents pbFANARTTV As System.Windows.Forms.PictureBox
 
 End Class

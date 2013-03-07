@@ -180,10 +180,17 @@ Public Class EmberTMDBScraperModule
 		LoadSettings()
 		'Must be after Load settings to retrieve the correct API key
 		_TMDBApi = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey, _MySettings.TMDBLanguage)
+		If IsNothing(_TMDBApi) Then
+			Master.eLog.WriteToErrorLog(Master.eLang.GetString(119, "TheMovieDB API is missing or not valid"), _TMDBApi.Error.status_message, "Info")
+		Else
+			If Not IsNothing(_TMDBApi.Error) AndAlso _TMDBApi.Error.status_message.Length > 0 Then
+				Master.eLog.WriteToErrorLog(_TMDBApi.Error.status_message, _TMDBApi.Error.status_code.ToString(), "Error")
+			End If
+		End If
 		_TMDBConf = _TMDBApi.GetConfiguration()
-		_TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
-		_TMDBConfE = _TMDBApiE.GetConfiguration()
-		_TMDBg = New TMDBg.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
+			_TMDBApiE = New WatTmdb.V3.Tmdb(_MySettings.TMDBAPIKey)
+			_TMDBConfE = _TMDBApiE.GetConfiguration()
+			_TMDBg = New TMDBg.Scraper(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
 
 	End Sub
 
@@ -198,8 +205,7 @@ Public Class EmberTMDBScraperModule
 		_setupPost.chkTrailerTMDBXBMC.Checked = _MySettings.UseTMDBTrailerXBMC
 		_setupPost.chkScrapePoster.Checked = ConfigScrapeModifier.Poster
 		_setupPost.chkScrapeFanart.Checked = ConfigScrapeModifier.Fanart
-		_setupPost.chkUseIMDBp.Checked = _MySettings.UseIMDBp
-		_setupPost.chkUseIMDBf.Checked = _MySettings.UseIMDBf
+		_setupPost.chkUseIMDBp.Checked = _MySettings.UseIMDB
 		_setupPost.chkUseIMPA.Checked = _MySettings.UseIMPA
 		_setupPost.chkUseMPDB.Checked = _MySettings.UseMPDB
 		_setupPost.chkUseFANARTTV.Checked = _MySettings.UseFANARTTV
@@ -265,9 +271,10 @@ Public Class EmberTMDBScraperModule
 		_setup.cbTMDBPrefLanguage.Text = _MySettings.TMDBLanguage
 		_setup.chkFallBackEng.Checked = _MySettings.FallBackEng
 		_setup.orderChanged()
+		_setup.txtFANARTTVApiKey.Text = _MySettings.FANARTTVApiKey
 
 		SPanel.Name = String.Concat(Me._Name, "Scraper")
-		SPanel.Text = Master.eLang.GetString(858, "Ember TMDB Movie Scrapers")
+		SPanel.Text = Master.eLang.GetString(858, "Ember TMDB Movie Scrapers ddddd")
 		SPanel.Prefix = "TMDBMovieInfo_"
 		SPanel.Order = 110
 		SPanel.Parent = "pnlMovieData"
@@ -308,7 +315,8 @@ Public Class EmberTMDBScraperModule
 		ConfigOptions.bFullCast = AdvancedSettings.GetBooleanSetting("tFullCast", True)
 		ConfigOptions.bFullCrew = AdvancedSettings.GetBooleanSetting("tFullCrew", True)
 
-		_MySettings.TMDBAPIKey = AdvancedSettings.GetSetting("tTMDBAPIKey", "Get your API Key from www.themoviedb.org")
+		_MySettings.TMDBAPIKey = AdvancedSettings.GetSetting("tTMDBAPIKey", "Get your API Key from http://www.themoviedb.org")
+		_MySettings.FANARTTVApiKey = AdvancedSettings.GetSetting("tFANARTTVApiKey", "Get your API Key from http://fanart.tv")
 		_MySettings.FallBackEng = AdvancedSettings.GetBooleanSetting("tFallBackEn", False)
 		_MySettings.TMDBLanguage = AdvancedSettings.GetSetting("tTMDBLanguage", "en")
 		_MySettings.DownloadTrailers = AdvancedSettings.GetBooleanSetting("tDownloadTraliers", False)
@@ -318,8 +326,7 @@ Public Class EmberTMDBScraperModule
 		_MySettings.UseTMDBTrailerXBMC = AdvancedSettings.GetBooleanSetting("tUseTMDBTrailerXBMC", False)
 		_MySettings.UseIMPA = AdvancedSettings.GetBooleanSetting("tUseIMPA", False)
 		_MySettings.UseMPDB = AdvancedSettings.GetBooleanSetting("tUseMPDB", False)
-		_MySettings.UseIMDBp = AdvancedSettings.GetBooleanSetting("tUseIMDBp", False)
-		_MySettings.UseIMDBf = AdvancedSettings.GetBooleanSetting("tUseIMDBf", False)
+		_MySettings.UseIMDB = AdvancedSettings.GetBooleanSetting("tUseIMDB", False)
 		_MySettings.UseFANARTTV = AdvancedSettings.GetBooleanSetting("tUseFANARTTV", False)
 		_MySettings.UseIMDBTrailer = AdvancedSettings.GetBooleanSetting("tUseIMDBTrailer", True)
 		_MySettings.ManualETSize = Convert.ToString(AdvancedSettings.GetSetting("tManualETSize", "thumb"))
@@ -498,12 +505,12 @@ Public Class EmberTMDBScraperModule
 		AdvancedSettings.SetBooleanSetting("tDoTrailer", ConfigScrapeModifier.Trailer)
 
 		AdvancedSettings.SetSetting("tTMDBAPIKey", _MySettings.TMDBAPIKey)
+		AdvancedSettings.SetSetting("tFANARTTVApiKey", _MySettings.FANARTTVApiKey)
 		AdvancedSettings.SetBooleanSetting("tFallBackEn", _MySettings.FallBackEng)
 		AdvancedSettings.SetSetting("tTMDBLanguage", _MySettings.TMDBLanguage)
 		AdvancedSettings.SetBooleanSetting("tUseIMPA", _MySettings.UseIMPA)
 		AdvancedSettings.SetBooleanSetting("tUseMPDB", _MySettings.UseMPDB)
-		AdvancedSettings.SetBooleanSetting("tUseIMDBp", _MySettings.UseIMDBp)
-		AdvancedSettings.SetBooleanSetting("tUseIMDBf", _MySettings.UseIMDBf)
+		AdvancedSettings.SetBooleanSetting("tUseIMDB", _MySettings.UseIMDB)
 		AdvancedSettings.SetBooleanSetting("tUseFANARTTV", _MySettings.UseFANARTTV)
 	End Sub
 
@@ -515,8 +522,7 @@ Public Class EmberTMDBScraperModule
 		_MySettings.TrailerTimeout = Convert.ToInt32(_setupPost.txtTimeout.Text)
 		_MySettings.ManualETSize = _setupPost.cbManualETSize.Text
 		_MySettings.UseTMDBTrailerPref = _setupPost.cbTrailerTMDBPref.Text
-		_MySettings.UseIMDBp = _setupPost.chkUseIMDBp.Checked
-		_MySettings.UseIMDBf = _setupPost.chkUseIMDBf.Checked
+		_MySettings.UseIMDB = _setupPost.chkUseIMDBp.Checked
 		_MySettings.UseIMPA = _setupPost.chkUseIMPA.Checked
 		_MySettings.UseMPDB = _setupPost.chkUseMPDB.Checked
 		_MySettings.UseFANARTTV = _setupPost.chkUseFANARTTV.Checked
@@ -583,6 +589,17 @@ Public Class EmberTMDBScraperModule
 		''TMDBg.UseOFDBGenre = MySettings.UseOFDBGenre
 		Dim tTitle As String = String.Empty
 		Dim OldTitle As String = DBMovie.Movie.Title
+
+		If IsNothing(_TMDBApi) Then
+			Master.eLog.WriteToErrorLog(Master.eLang.GetString(119, "TheMovieDB API is missing or not valid"), _TMDBApi.Error.status_message, "Error")
+			Return New Interfaces.ModuleResult With {.breakChain = False, .Cancelled = True}
+		Else
+			If Not IsNothing(_TMDBApi.Error) AndAlso _TMDBApi.Error.status_message.Length > 0 Then
+				Master.eLog.WriteToErrorLog(_TMDBApi.Error.status_message, _TMDBApi.Error.status_code.ToString(), "Error")
+				Return New Interfaces.ModuleResult With {.breakChain = False, .Cancelled = True}
+			End If
+		End If
+
 
 		If Master.GlobalScrapeMod.NFO AndAlso Not Master.GlobalScrapeMod.DoSearch Then
 			If Not String.IsNullOrEmpty(DBMovie.Movie.IMDBID) Then
@@ -712,10 +729,10 @@ Public Class EmberTMDBScraperModule
 		Dim ManualETSize As String
 		Dim UseTMDBTrailerPref As String
 		Dim TMDBAPIKey As String
+		Dim FANARTTVApiKey As String
 		Dim TMDBLanguage As String
 		Dim FallBackEng As Boolean
-		Dim UseIMDBp As Boolean
-		Dim UseIMDBf As Boolean
+		Dim UseIMDB As Boolean
 		Dim UseIMPA As Boolean
 		Dim UseMPDB As Boolean
 		Dim UseFANARTTV As Boolean
