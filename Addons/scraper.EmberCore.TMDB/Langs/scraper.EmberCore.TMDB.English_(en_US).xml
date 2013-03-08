@@ -57,7 +57,7 @@
   <string id="55">Multiple</string>
   <string id="56">Downloading selected trailer...</string>
   <string id="57">Copying specified file to trailer...</string>
-  <string id="58">The trailer could not be played. This could be due to an invalid URI or you do not have the proper player to play the trailer type.</string>
+  <string id="58">The trailer could not be played. This could be due to an invalid URL or you do not have the proper player to play the trailer type.</string>
   <string id="59">Error Playing Trailer</string>
   <string id="60">Move</string>
   <string id="61">Copy</string>
