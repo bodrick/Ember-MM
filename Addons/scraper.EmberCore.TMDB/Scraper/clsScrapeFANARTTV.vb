@@ -68,8 +68,8 @@ Namespace FANARTTVs
 			If IsNothing(Result) Then
 				If Not IsNothing(_FanartTV.Error) Then
 					Master.eLog.WriteToErrorLog(_FanartTV.Error, "", "Error")
+					_APIInvalid = True
 				End If
-				_APIInvalid = True
 			End If
 		End Sub
 
