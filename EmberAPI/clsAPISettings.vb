@@ -350,6 +350,7 @@ Public Class Settings
     '  cocotus 2013/02 Trakt.tv syncing
     'Adding Settings
     Private _traktuser As String
+    Private _traktpassword As String
     Private _usetrakt As Boolean
     'cocotus end
 
@@ -3252,6 +3253,15 @@ Public Class Settings
         End Get
         Set(ByVal value As String)
             Me._traktuser = value
+        End Set
+    End Property
+    'Adding new settings
+    Public Property TraktPassword() As String
+        Get
+            Return Me._traktpassword
+        End Get
+        Set(ByVal value As String)
+            Me._traktpassword = value
         End Set
     End Property
 

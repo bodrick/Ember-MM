@@ -6,6 +6,7 @@ Imports EmberAPI
 Public Class frmTrakt
     Public Event ModuleSettingsChanged()
     Dim myWatchedMovies As New Dictionary(Of String, KeyValuePair(Of String, Integer))
+    Dim myWatchedEpisodes As New Dictionary(Of String, KeyValuePair(Of String, List(Of SeasonClass)))
     Dim bkWrk As New System.ComponentModel.BackgroundWorker()
 
     Sub New()
@@ -21,10 +22,15 @@ Public Class frmTrakt
         prgtrakt.Minimum = 0
         prgtrakt.Step = 1
         chkUseTrakt.Text = Master.eLang.GetString(870, "Use Trakt.tv", True)
-        btGetMoviesTrakt.Text = Master.eLang.GetString(872, "Trakt Settings", True)
-        btSaveMoviesTrakt.Text = Master.eLang.GetString(873, "Trakt Settings", True)
+        btGetMoviesTrakt.Text = Master.eLang.GetString(872, "Get watched movies", True)
+        btSaveMoviesTrakt.Text = Master.eLang.GetString(873, "Save playcount to database/Nfo", True)
         txtTraktUser.Text = Master.eSettings.TraktUser
-        lblTraktUser.Text = Master.eLang.GetString(875, "Trakt.tv Username (Privacy setting must be turned off!)", True)
+        lblTraktUser.Text = Master.eLang.GetString(875, "Username", True)
+        txtTraktPassword.Text = Master.eSettings.TraktPassword
+        lblTraktPassword.Text = Master.eLang.GetString(876, "Password", True)
+        btGetSeriesTrakt.Text = Master.eLang.GetString(877, "Get watched episodes", True)
+        btnSavetraktsettings.Text = Master.eLang.GetString(878, "Save", True)
+        txtTraktPassword.PasswordChar = "*"c
 
         If Not String.IsNullOrEmpty(Master.eSettings.UseTrakt.ToString) Then
             chkUseTrakt.Checked = Master.eSettings.UseTrakt
@@ -34,30 +40,34 @@ Public Class frmTrakt
 
         If Master.eSettings.UseTrakt = True Then
             txtTraktUser.Enabled = True
-            If Not String.IsNullOrEmpty(Master.eSettings.TraktUser) Then
+            txtTraktPassword.Enabled = True
+            If Not String.IsNullOrEmpty(Master.eSettings.TraktUser) AndAlso Not String.IsNullOrEmpty(Master.eSettings.TraktPassword) Then
                 btGetMoviesTrakt.Enabled = True
+                btGetSeriesTrakt.Enabled = True
             Else
                 btGetMoviesTrakt.Enabled = False
+                btGetSeriesTrakt.Enabled = False
             End If
         Else
             btGetMoviesTrakt.Enabled = False
+            btGetSeriesTrakt.Enabled = False
             txtTraktUser.Enabled = False
         End If
     End Sub
-
-    'Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pnlTrakt.Paint
-
-    'End Sub
-
+    'Little Control over Form-Controls
     Private Sub chkUseTrakt_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseTrakt.CheckedChanged
         If chkUseTrakt.Checked = True Then
-            If Not String.IsNullOrEmpty(txtTraktUser.Text) Then
+            If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso Not String.IsNullOrEmpty(txtTraktPassword.Text) Then
                 btGetMoviesTrakt.Enabled = True
+                btGetSeriesTrakt.Enabled = True
             End If
             txtTraktUser.Enabled = True
+            txtTraktPassword.Enabled = True
         Else
             btGetMoviesTrakt.Enabled = False
+            btGetSeriesTrakt.Enabled = False
             txtTraktUser.Enabled = False
+            txtTraktPassword.Enabled = False
         End If
         RaiseEvent ModuleSettingsChanged()
     End Sub
@@ -66,18 +76,32 @@ Public Class frmTrakt
         RaiseEvent ModuleSettingsChanged()
         If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso txtTraktUser.Enabled = True Then
             btGetMoviesTrakt.Enabled = True
+            btGetSeriesTrakt.Enabled = True
         Else
             btGetMoviesTrakt.Enabled = False
+            btGetSeriesTrakt.Enabled = False
+        End If
+    End Sub
+
+    Private Sub txtTraktPassword_TextChanged(sender As Object, e As EventArgs) Handles txtTraktPassword.TextChanged
+        RaiseEvent ModuleSettingsChanged()
+        If Not String.IsNullOrEmpty(txtTraktPassword.Text) AndAlso txtTraktPassword.Enabled = True Then
+            btGetMoviesTrakt.Enabled = True
+            btGetSeriesTrakt.Enabled = True
+        Else
+            btGetMoviesTrakt.Enabled = False
+            btGetSeriesTrakt.Enabled = False
         End If
     End Sub
 
     Private Sub btGetMoviesTrakt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGetMoviesTrakt.Click
+        myWatchedEpisodes = Nothing
         dgvTraktWatched.DataSource = Nothing
         dgvTraktWatched.Rows.Clear()
-        myWatchedMovies.Clear()
+        ' myWatchedMovies.Clear()
 
-        If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso chkUseTrakt.Checked = True Then
-            myWatchedMovies = GetWatchedMoviesFromTrakt(txtTraktUser.Text)
+        If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso chkUseTrakt.Checked = True AndAlso Not String.IsNullOrEmpty(txtTraktPassword.Text) Then
+            myWatchedMovies = GetWatchedMoviesFromTrakt(txtTraktUser.Text, txtTraktPassword.Text)
         End If
         dgvTraktWatched.AutoGenerateColumns = True
         If Not myWatchedMovies Is Nothing Then
@@ -86,27 +110,62 @@ Public Class frmTrakt
             dgvTraktWatched.AutoGenerateColumns = False
             'fill rows
             For Each Item In myWatchedMovies
-                    dgvTraktWatched.Rows.Add(New Object() {Item.Key, Item.Value.Value})
-                Next
+                dgvTraktWatched.Rows.Add(New Object() {Item.Key, Item.Value.Value})
+            Next
         Else
             btSaveMoviesTrakt.Enabled = False
         End If
     End Sub
 
+    Private Sub btGetSeriesTrakt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btGetSeriesTrakt.Click
+        myWatchedMovies = Nothing
+        dgvTraktWatched.DataSource = Nothing
+        dgvTraktWatched.Rows.Clear()
+        '  myWatchedMovies.Clear()
 
+        If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso chkUseTrakt.Checked = True AndAlso Not String.IsNullOrEmpty(txtTraktPassword.Text) Then
+            myWatchedEpisodes = GetWatchedEpisodesFromTrakt(txtTraktUser.Text, txtTraktPassword.Text)
+        End If
+        dgvTraktWatched.AutoGenerateColumns = True
+        If Not myWatchedEpisodes Is Nothing Then
+            btSaveMoviesTrakt.Enabled = True
+            'we map to dgv manually
+            dgvTraktWatched.AutoGenerateColumns = False
+            'fill rows
+            For Each Item In myWatchedEpisodes
+                'x = Episodes watched für specific tv show, use a loop to sum up the episodes of tvshow
+                Dim x As Integer = 0
+                For i = 0 To Item.Value.Value.Count - 1
+                    x = x + Item.Value.Value.Item(i).episodes.Count
+                Next
+
+                dgvTraktWatched.Rows.Add(New Object() {Item.Key, x})
+            Next
+        Else
+            btSaveMoviesTrakt.Enabled = False
+        End If
+    End Sub
+
+    Private Sub btnSavetraktsettings_Click(sender As Object, e As EventArgs) Handles btnSavetraktsettings.Click
+        SaveChanges()
+    End Sub
 
     Public Sub SaveChanges()
         Master.eSettings.TraktUser = txtTraktUser.Text
+        Master.eSettings.TraktPassword = txtTraktPassword.Text
         Master.eSettings.UseTrakt = chkUseTrakt.Checked
-        If Not String.IsNullOrEmpty(Master.eSettings.TraktUser) AndAlso Master.eSettings.UseTrakt = True Then
+        If Not String.IsNullOrEmpty(Master.eSettings.TraktUser) AndAlso Master.eSettings.UseTrakt = True AndAlso Not String.IsNullOrEmpty(Master.eSettings.TraktPassword) Then
             btGetMoviesTrakt.Enabled = True
+            btGetSeriesTrakt.Enabled = True
         Else
             btGetMoviesTrakt.Enabled = False
+            btGetSeriesTrakt.Enabled = False
         End If
     End Sub
 
     Private Sub btSaveMoviesTrakt_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btSaveMoviesTrakt.Click
-        If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso chkUseTrakt.Checked = True Then
+        If Not String.IsNullOrEmpty(txtTraktUser.Text) AndAlso chkUseTrakt.Checked = True AndAlso Not String.IsNullOrEmpty(txtTraktPassword.Text) Then
+            'Movies
             If Not myWatchedMovies Is Nothing Then
                 prgtrakt.Value = 0
                 prgtrakt.Maximum = myWatchedMovies.Count
@@ -114,7 +173,22 @@ Public Class frmTrakt
                 prgtrakt.Step = 1
                 btSaveMoviesTrakt.Enabled = False
                 Dim traktthread As Threading.Thread
-                traktthread = New Threading.Thread(AddressOf SavePlaycount)
+                traktthread = New Threading.Thread(AddressOf SaveMoviePlaycount)
+                traktthread.IsBackground = True
+                traktthread.Start()
+                'Tv-Show
+            ElseIf Not myWatchedEpisodes Is Nothing Then
+                prgtrakt.Value = 0
+                prgtrakt.Maximum = myWatchedEpisodes.Count
+                'start not with empty progressbar(no problem for movies) because it takes long to update for first tv show and user might think it hangs -> set value 1 to show something is going on
+                If myWatchedEpisodes.Count > 1 Then
+                    prgtrakt.Value = 1
+                End If
+                prgtrakt.Minimum = 0
+                prgtrakt.Step = 1
+                btSaveMoviesTrakt.Enabled = False
+                Dim traktthread As Threading.Thread
+                traktthread = New Threading.Thread(AddressOf SaveEpisodePlaycount)
                 traktthread.IsBackground = True
                 traktthread.Start()
             End If
@@ -123,8 +197,8 @@ Public Class frmTrakt
     End Sub
 
 
-    'Save plays-information from trakt.tv to database/nfo
-    Private Sub SavePlaycount()
+    'Save plays-information from trakt.tv to database/nfo - Movie Thread
+    Private Sub SaveMoviePlaycount()
         Try
 
             Dim i As Integer = 0
@@ -135,11 +209,40 @@ Public Class frmTrakt
                 prgtrakt.Invoke(New UpdateProgressBarDelegate(AddressOf UpdateProgressBar), i)
                 Threading.Thread.Sleep(10)
             Next
+
         Catch ex As Exception
 
         End Try
 
     End Sub
+
+    'Save plays-information from trakt.tv to database/nfo - Tv Show Thread
+    Private Sub SaveEpisodePlaycount()
+        Try
+
+            Dim i As Integer = 0
+            For Each watchedEpisodeData In myWatchedEpisodes
+                i = i + 1
+
+                'loop through every season of certain tvshow
+                For z = 0 To watchedEpisodeData.Value.Value.Count - 1
+                    'now go to every episode of current season
+                    For Each episode In watchedEpisodeData.Value.Value.Item(z).episodes
+                        '..and save playcount of every episode to database
+                        Master.DB.SaveEpisodePlayCountInDatabase(watchedEpisodeData.Value.Key, watchedEpisodeData.Value.Value.Item(z).season.ToString, episode.ToString)
+                    Next
+                Next
+                ' Invoke to update UI from thread...
+                prgtrakt.Invoke(New UpdateProgressBarDelegate(AddressOf UpdateProgressBar), i)
+                Threading.Thread.Sleep(10)
+            Next
+
+        Catch ex As Exception
+
+        End Try
+
+    End Sub
+
 
     Private Delegate Sub UpdateProgressBarDelegate(ByVal i As Integer)
     ' Do all the ui thread updates here
@@ -150,22 +253,30 @@ Public Class frmTrakt
         End If
 
         prgtrakt.Value = i
-
-        If i = myWatchedMovies.Count - 1 Then
-            lblstate.Text = "Done!"
-            lblstate.Visible = True
+        If Not myWatchedMovies Is Nothing Then
+            If i = myWatchedMovies.Count - 1 Then
+                lblstate.Text = "Done!"
+                lblstate.Visible = True
+            End If
+        ElseIf Not myWatchedEpisodes Is Nothing Then
+            If i = myWatchedEpisodes.Count - 1 Then
+                lblstate.Text = "Done!"
+                lblstate.Visible = True
+            End If
         End If
+
 
     End Sub
 
     ''' <summary>
-    ''' cocotus 2013/02 Trakt.tv syncing
-    ''' Connects with trakt.tv Website and gets Watched Movies from specific User and returns them in a List of String (IMDBID)
+    ''' cocotus 2013/02 Trakt.tv syncing: Movies
+    ''' Connects with trakt.tv Website and gets Watched Movies from specific User and returns them in special Dictionary
     ''' More Info here: http://trakt.tv/api-docs/user-library-movies-watched
     ''' </summary>
-    ''' <param name="traktID">UserId, necessary to get User specific information</param>
-    ''' <returns>3 values in dictionary: IMDBID (ex: tt0114746), Title, Playcount</returns>
-    Public Shared Function GetWatchedMoviesFromTrakt(ByVal traktID As String) As Dictionary(Of String, KeyValuePair(Of String, Integer))
+    ''' <param name="traktID">Username</param>
+    ''' <param name="traktPW">password</param>
+    ''' <returns>3 values in dictionary: IMDBID (ex: tt0114746), Title, Playcount/Plays</returns>
+    Public Shared Function GetWatchedMoviesFromTrakt(ByVal traktID As String, ByVal traktPW As String) As Dictionary(Of String, KeyValuePair(Of String, Integer))
 
         Dim wc As New Net.WebClient
         Try
@@ -180,6 +291,8 @@ Public Class frmTrakt
 
                 'Now we are using free  3rd party class/dll to make an easy parse of the json String
                 Dim client = New RestSharp.RestClient(URL)
+                'added basic authentification, to get even protected user information
+                client.Authenticator = New RestSharp.HttpBasicAuthenticator(traktID, traktPW)
                 Dim request = New RestSharp.RestRequest(RestSharp.Method.[GET])
                 Dim response = client.Execute(Of List(Of TraktWatchedMovieData))(request)
 
@@ -197,6 +310,56 @@ Public Class frmTrakt
                                     'IMDBID is alright
                                     dictMovieWatched.Add(Item.title, New KeyValuePair(Of String, Integer)(Item.imdb_id, CInt(Item.plays)))
                                 End If
+                            End If
+                        End If
+                    Next
+                End If
+            End If
+            wc.Dispose()
+            Return dictMovieWatched
+
+        Catch ex As Exception
+            wc.Dispose()
+            Return Nothing
+        End Try
+    End Function
+
+    ''' <summary>
+    ''' cocotus 2013/03 Trakt.tv syncing: TV Shows
+    ''' Connects with trakt.tv Website and gets Watched Episodes from specific User and returns them in a special Dictionary
+    ''' More Info here: http://trakt.tv/api-docs/user-library-shows-watched
+    ''' </summary>
+    ''' <param name="traktID">Username</param>
+    ''' <param name="traktPW">password</param>
+    ''' <returns>3 values in dictionary: TvShowTitle, TVDBID, Special Season Class (Season + Watched Episodes in list)</returns>
+    Public Shared Function GetWatchedEpisodesFromTrakt(ByVal traktID As String, ByVal traktPW As String) As Dictionary(Of String, KeyValuePair(Of String, List(Of SeasonClass)))
+
+        Dim wc As New Net.WebClient
+        Try
+            'Saving 3 values in Dictionary style
+            Dim dictMovieWatched As New Dictionary(Of String, KeyValuePair(Of String, List(Of SeasonClass)))
+
+            'The REQUEST String (includes API-ID + UserID)
+            Dim URL As String = "http://api.trakt.tv/user/library/shows/watched.json/b59a24b6a3fb93fc2fb565a681bb8a1d/" & traktID
+
+            Dim json As String = wc.DownloadString(URL)
+            If Not String.IsNullOrEmpty(json) Then
+
+                'Now we are using free  3rd party class/dll to make an easy parse of the json String
+                Dim client = New RestSharp.RestClient(URL)
+                'added basic authentification, to get even protected user information
+                client.Authenticator = New RestSharp.HttpBasicAuthenticator(traktID, traktPW)
+                Dim request = New RestSharp.RestRequest(RestSharp.Method.[GET])
+                Dim response = client.Execute(Of List(Of TraktWatchedEpisodeData))(request)
+
+                If Not response Is Nothing Then
+                    'Now loop through to every entry
+                    For Each Item As TraktWatchedEpisodeData In response.Data
+                        'Check if information is stored...
+                        If Not Item.title Is Nothing AndAlso Item.title <> "" AndAlso Not Item.tvdb_id Is Nothing AndAlso Item.tvdb_id <> "" Then
+                            If Not dictMovieWatched.ContainsKey(Item.title) Then
+                                'Now store tvdbID, title and the season-episode-list in dictionary...
+                                dictMovieWatched.Add(Item.title, New KeyValuePair(Of String, List(Of SeasonClass))(Item.tvdb_id, Item.seasons))
                             End If
                         End If
                     Next
@@ -254,6 +417,64 @@ Public Class TraktWatchedMovieData
         End Get
         Set(value As String)
             m_plays = value
+        End Set
+    End Property
+
+End Class
+
+'New Class which holds/described an item of WatchedEpsiode on trakt.tv
+'Todo Expand class move to seperate project and build wrapper around
+Public Class TraktWatchedEpisodeData
+    Private m_title As String
+    Public Property title() As String
+        Get
+            Return m_title
+        End Get
+        Set(value As String)
+            m_title = value
+        End Set
+    End Property
+
+    Private m_tvdb_id As String
+    Public Property tvdb_id() As String
+        Get
+            Return m_tvdb_id
+        End Get
+        Set(value As String)
+            m_tvdb_id = value
+        End Set
+    End Property
+
+    Private m_seasons As List(Of SeasonClass)
+    Public Property seasons() As List(Of SeasonClass)
+        Get
+            Return m_seasons
+        End Get
+        Set(value As List(Of SeasonClass))
+            m_seasons = value
+        End Set
+    End Property
+
+End Class
+'Child-Class of Episode Class, to store watched episodes
+Public Class SeasonClass
+    Private m_season As Integer
+    Public Property season() As Integer
+        Get
+            Return m_season
+        End Get
+        Set(value As Integer)
+            m_season = value
+        End Set
+    End Property
+
+    Private m_episode As List(Of Integer)
+    Public Property episodes() As List(Of Integer)
+        Get
+            Return m_episode
+        End Get
+        Set(value As List(Of Integer))
+            m_episode = value
         End Set
     End Property
 

@@ -41,6 +41,7 @@ Namespace MediaContainers
         Private _poster As Images
         Private _posterurl As String
         Private _localfile As String
+        Private _playcount As String
         Private _fanart As Images
 
         #End Region 'Fields
@@ -184,6 +185,16 @@ Namespace MediaContainers
             End Set
         End Property
 
+        <XmlElement("playcount")> _
+        Public Property Playcount() As String
+            Get
+                Return Me._playcount
+            End Get
+            Set(ByVal value As String)
+                Me._playcount = value
+            End Set
+        End Property
+
         <XmlIgnore()> _
         Public ReadOnly Property CreditsSpecified() As Boolean
             Get
@@ -287,6 +298,8 @@ Namespace MediaContainers
                 Me._fanart = value
             End Set
         End Property
+
+
 
         #End Region 'Properties
 
