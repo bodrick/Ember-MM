@@ -132,7 +132,7 @@ Namespace IMPA
 				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", IMDBID, "/posters"))
                 sHTTP = Nothing
 
-                Dim mcIMPA As MatchCollection = Regex.Matches(HTML, "http://([^""]*)impawards.com/([^""]*)")
+				Dim mcIMPA As MatchCollection = Regex.Matches(HTML, "http://([^""]*)impawards.com/([^""]*)")
                 If mcIMPA.Count > 0 Then
                     'just use the first one if more are found
                     Return mcIMPA(0).Value.ToString
