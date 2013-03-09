@@ -188,6 +188,7 @@ CREATE TABLE TVEps(
 	NfoPath TEXT,
 	NeedsSave BOOL NOT NULL DEFAULT False,
 	Missing BOOL NOT NULL DEFAULT False
+	Playcount TEXT,
 	);
 
 CREATE TABLE TVShowActors(
