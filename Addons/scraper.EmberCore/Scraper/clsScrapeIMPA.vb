@@ -82,7 +82,7 @@ Namespace IMPA
 
                     If bwIMPA.CancellationPending Then Return Nothing
 
-                    Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
+					Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
 
                     Dim PosterURL As String
 

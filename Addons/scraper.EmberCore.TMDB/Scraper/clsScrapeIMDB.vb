@@ -72,7 +72,38 @@ Namespace IMDBimg
 
 			Try
 				If bwIMDBimg.CancellationPending Then Return Nothing
+				Dim sHTTP As New HTTP
+				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", imdbID, ""))
+				sHTTP = Nothing
+				' check existence of a line like this
+				'      <a href="/media/rm2995297536/tt0089218?ref_=tt_ov_i" > <img height="317"
+				' and then return this one
+				'      src = "http://ia.media-imdb.com/images/M/MV5BMTY1Mzk3MTg0M15BMl5BanBnXkFtZTcwOTQzODYyMQ@@._V1_SY317_CR3,0,214,317_.jpg"
+				Dim mcIMDB As MatchCollection = Regex.Matches(HTML, String.Concat("/media/[a-zA-Z0-9]{3,12}/tt", imdbID, "\?ref_=tt_ov_i"), RegexOptions.IgnoreCase)
+				If mcIMDB.Count > 0 Then
+					'Dim sUrl1 As String = sHTTP.DownloadData(mcIMDB(0).Value)
+
+					mcIMDB = Regex.Matches(HTML, "http://ia.media-imdb.com/images/.{3,80}?.jpg")
+					If mcIMDB.Count > 0 Then
+						'just use the first one if more are found
+						alPoster.Add(New MediaContainers.Image With {.Description = "thumb", .URL = mcIMDB(0).Value})
+					End If
+
+					Dim aSP As String() = Regex.Split(mcIMDB(0).Value, "SY\d+?_CR\d+?,\d+?,\d+?,\d+?_")
+					Dim sUrl1 = aSP(0) + aSP(1)
+					alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = sUrl1})
+					'sHTTP = New HTTP
+					'HTML = sUrl1
+					'sHTTP = Nothing
+					'mcIMDB = Regex.Matches(HTML, "http://ia.media-imdb.com/images/.{3,60}?.jpg")
+					'If mcIMDB.Count > 0 Then
+					'	'just use the first one if more are found
+					'	alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = mcIMDB(0).Value})
+					'End If
+				End If
+
 				'Dim sURL As String = GetLink(imdbID)
+
 
 				'If Not String.IsNullOrEmpty(sURL) Then
 
@@ -90,7 +121,6 @@ Namespace IMDBimg
 				'		If bwIMDBimg.CancellationPending Then Return Nothing
 				'		PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
 
-				'		alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = PosterURL})
 
 				'		PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
 				'		alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
@@ -125,43 +155,6 @@ Namespace IMDBimg
 			End If
 		End Sub
 
-		Private Function GetLink(ByVal IMDBID As String) As String
-			Try
-
-				Dim sHTTP As New HTTP
-				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", IMDBID, ""))
-				sHTTP = Nothing
-				'<a href="/media/rm2995297536/tt0089218?ref_=tt_ov_i" > <img height="317"
-				'				width = "214"
-				'				alt = "The Goonies (1985) Poster"
-				'				title = "The Goonies (1985) Poster"
-				'				src = "http://ia.media-imdb.com/images/M/MV5BMTY1Mzk3MTg0M15BMl5BanBnXkFtZTcwOTQzODYyMQ@@._V1_SY317_CR3,0,214,317_.jpg"
-				'itemprop="image" />
-				'</a>
-				Dim aPos = HTML.IndexOf(" Poster" + Chr(34))
-				If aPos > 0 Then
-					aPos = HTML.IndexOf(" Poster" + Chr(34), aPos + 1)
-					If aPos > 0 Then
-						aPos = HTML.IndexOf("src = " + Chr(34), aPos + 1)
-						If aPos > 0 Then
-							Dim aPos2 = HTML.IndexOf(Chr(34), aPos + 1)
-							Dim aStr = HTML.Substring(aPos, aPos2 - aPos)
-						End If
-					End If
-				End If
-
-				Dim mcIMPA As MatchCollection = Regex.Matches(HTML, "http://([^""]*)impawards.com/([^""]*)")
-				If mcIMPA.Count > 0 Then
-					'just use the first one if more are found
-					Return mcIMPA(0).Value.ToString
-				Else
-					Return String.Empty
-				End If
-			Catch ex As Exception
-				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-				Return String.Empty
-			End Try
-		End Function
 
 #End Region	'Methods
 
