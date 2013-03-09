@@ -306,13 +306,13 @@ Public Class Database
         'TODO Check to see if column exists and then create if not
         Using SQLpathcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
             Dim doAddColumns As Boolean = False
-            SQLpathcommand.CommandText = "SELECT * FROM MoviesVStreams;"
+            SQLpathcommand.CommandText = "SELECT * FROM TVEps;"
 
             Using SQLreader As SQLite.SQLiteDataReader = SQLpathcommand.ExecuteReader
                 Try
                     Dim myView As DataView = SQLreader.GetSchemaTable().DefaultView
                     'simply look for column of new field
-                    myView.RowFilter = "ColumnName = 'Video_EncodedSettings'"
+                    myView.RowFilter = "ColumnName = 'Playcount'"
                     If myView.Count = 0 Then
                         'Column doesn't exist in current database of Ember --> asume: if one columns missing, all new mediainfo columns must be added
                         doAddColumns = True
@@ -333,6 +333,7 @@ Public Class Database
                     strlistSQLCommands.Add("alter table TVVStreams add Video_EncodedSettings text;")
                     strlistSQLCommands.Add("alter table TVVStreams add Video_Bitrate text;")
                     strlistSQLCommands.Add("alter table TVVStreams add Video_MultiView text;")
+                    strlistSQLCommands.Add("alter table TVEps add Playcount text;")
                     For Each sqlstatement In strlistSQLCommands
                         Try
                             SQLpathcommand.CommandText = sqlstatement
@@ -885,6 +886,7 @@ Public Class Database
                             If Not DBNull.Value.Equals(SQLreader("Plot")) Then .Plot = SQLreader("Plot").ToString
                             If Not DBNull.Value.Equals(SQLreader("Director")) Then .Director = SQLreader("Director").ToString
                             If Not DBNull.Value.Equals(SQLreader("Credits")) Then .Credits = SQLreader("Credits").ToString
+                            If Not DBNull.Value.Equals(SQLreader("Playcount")) Then .Playcount = SQLreader("Playcount").ToString
                         End With
                     End If
                 End Using
@@ -1247,7 +1249,7 @@ Public Class Database
                 Try
                     If Master.eSettings.UseSpecialDateAddvalue Then
                         'Use filecreation date of file instead of simply NOW Date    
-                            parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(System.IO.File.GetCreationTime(_movieDB.Filename)), _movieDB.DateAdd)
+                        parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(System.IO.File.GetCreationTime(_movieDB.Filename)), _movieDB.DateAdd)
                     Else
                         parMovieDateAdd.Value = If(IsNew, Functions.ConvertToUnixTimestamp(Now), _movieDB.DateAdd)
                     End If
@@ -1593,13 +1595,13 @@ Public Class Database
                 If IsNew Then
                     SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
                         "TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
-                        "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing", _
-                        ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
+                        "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
+                        ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
                 Else
                     SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
                         "ID, TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
-                        "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing", _
-                        ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
+                        "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
+                        ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
                     Dim parTVEpID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVEpID", DbType.UInt64, 0, "ID")
                     parTVEpID.Value = _TVEpDB.EpID
                 End If
@@ -1628,6 +1630,8 @@ Public Class Database
                 Dim parNeedsSave As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parNeedsSave", DbType.Boolean, 0, "NeedsSave")
                 Dim parTVEpMissing As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVEpMissing", DbType.Boolean, 0, "Missing")
 
+                Dim parPlaycount As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parPlaycount", DbType.String, 0, "Playcount")
+
                 ' First let's save it to NFO, even because we will need the NFO path
                 If ToNfo Then NFO.SaveTVEpToNFO(_TVEpDB)
 
@@ -1655,6 +1659,7 @@ Public Class Database
                     parAired.Value = .Aired
                     parDirector.Value = .Director
                     parCredits.Value = .Credits
+                    parPlaycount.Value = .Playcount
                 End With
 
                 If IsNew Then
@@ -2147,7 +2152,7 @@ Public Class Database
     End Sub
 
     ''' <summary>
-    ''''cocotus 2013/02 Trakt.tv syncing
+    ''''cocotus 2013/02 Trakt.tv syncing - Movies
     ''' Savethe PlayCount Tag for watched movie  into Ember database /NFO if not already set
     ''' </summary>
     ''' <param name="myWatchedMovies">The watched movie as Keypair</param>
@@ -2206,6 +2211,86 @@ Public Class Database
 
         End Try
     End Sub
+
+    ''' <summary>
+    ''''cocotus 2013/03 Trakt.tv syncing - Episodes
+    ''' Savethe PlayCount Tag for watched episode into Ember database /NFO if not already set
+    ''' </summary>
+    ''' <param name="TVDBID">TVDBID for TV Show identification</param>
+    ''' <param name="Season">Season Number</param>
+    ''' <param name="episode">Episode Number</param>
+    ''' <returns></returns>
+    ''not using loop here, only do one episode a time (call function repeatedly!)!
+    Public Sub SaveEpisodePlayCountInDatabase(ByVal TVDBID As String, ByVal Season As String, ByVal episode As String)
+        Try
+            Dim PlaycountStored As Boolean = True
+            Dim _TVEpDB As New Structures.DBTV
+            Dim tempTVDBID As String = ""
+            Dim tempPlaycount As String = ""
+
+            'First get the internal ID of TVSHOW using the TVDBID info
+            Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
+                SQLcommand.CommandText = String.Concat("SELECT * FROM TVShows WHERE tvdb = ", TVDBID, ";")
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    While SQLreader.Read
+                        If Not DBNull.Value.Equals(SQLreader("id")) Then
+                            tempTVDBID = SQLreader("id").ToString                          
+                                Exit While
+                        End If
+                    End While
+                End Using
+            End Using
+
+            'No ID --> TV Show doesn't Exist in Ember --> Exit no updates!
+            If tempTVDBID = "" Then Exit Sub
+            'Now we search episodes of the found TV Show
+            Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
+                SQLcommand.CommandText = String.Concat("SELECT * FROM TVEps WHERE TVShowID = ", tempTVDBID, ";")
+
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    While SQLreader.Read
+                        If SQLreader("Season").ToString.Equals(Season) AndAlso SQLreader("Episode").ToString.Equals(episode) Then
+                            _TVEpDB.EpID = CLng(SQLreader("id").ToString)
+                            'Only if playcount is not set we update
+                            If DBNull.Value.Equals(SQLreader("Playcount")) Or SQLreader("Playcount").Equals("0") Or SQLreader("Playcount").Equals("") Then
+                                PlaycountStored = False
+                            Else
+                                tempPlaycount = SQLreader("playcount").ToString
+                            End If
+                            Exit While
+                        End If
+                    End While
+                End Using
+            End Using
+            'Updating Playcount in database
+            If PlaycountStored = False Then
+                Using SQLTrans As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
+                    Using SQLUpdatecommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
+                        Dim parPlaycount As SQLite.SQLiteParameter = SQLUpdatecommand.Parameters.Add("parPlaycount", DbType.String, 0, "Playcount")
+                        If Not String.IsNullOrEmpty(CStr(_TVEpDB.EpID)) Then
+                            SQLUpdatecommand.CommandText = String.Concat("UPDATE TVEps SET Playcount = (?) WHERE id = ", _TVEpDB.EpID, ";")
+                            parPlaycount.Value = "1"
+                            SQLUpdatecommand.ExecuteNonQuery()
+                        Else
+                            Exit Sub
+                        End If
+                    End Using
+                    SQLTrans.Commit()
+                End Using
+                'Save to NFO!
+                Dim _episodeSavetoNFO As New Structures.DBTV
+                _episodeSavetoNFO = Master.DB.LoadTVEpFromDB(_TVEpDB.EpID, True)
+                SaveTVEpToDB(_episodeSavetoNFO, False, False, False, True)
+
+            End If
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
+
 
 #End Region 'Methods
 
