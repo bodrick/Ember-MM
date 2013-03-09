@@ -88,6 +88,10 @@ Namespace MPDB
 
                     Dim PosterURL As String = String.Empty
 
+					If bwMPDB.WorkerReportsProgress Then
+						bwMPDB.ReportProgress(2)
+					End If
+
                     For Each mPoster As Match In mcPoster
                         If Me.bwMPDB.CancellationPending Then Return Nothing
                         PosterURL = mPoster.Value.Remove(mPoster.Value.LastIndexOf("/") + 1, 1)

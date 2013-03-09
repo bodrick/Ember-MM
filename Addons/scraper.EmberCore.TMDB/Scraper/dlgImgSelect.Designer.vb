@@ -41,19 +41,28 @@ Partial Class dlgImgSelect
 		Me.lblInfo = New System.Windows.Forms.Label()
 		Me.pnlDLStatus = New System.Windows.Forms.Panel()
 		Me.pnlMPDB = New System.Windows.Forms.Panel()
-		Me.lblDL3Status = New System.Windows.Forms.Label()
-		Me.lblDL3 = New System.Windows.Forms.Label()
-		Me.pbDL3 = New System.Windows.Forms.ProgressBar()
+		Me.lblDL5Status = New System.Windows.Forms.Label()
+		Me.lblDL5 = New System.Windows.Forms.Label()
+		Me.pbDL5 = New System.Windows.Forms.ProgressBar()
 		Me.pnlIMPA = New System.Windows.Forms.Panel()
-		Me.lblDL2Status = New System.Windows.Forms.Label()
-		Me.lblDL2 = New System.Windows.Forms.Label()
-		Me.pbDL2 = New System.Windows.Forms.ProgressBar()
-		Me.lblDL1Status = New System.Windows.Forms.Label()
-		Me.lblDL1 = New System.Windows.Forms.Label()
-		Me.pbDL1 = New System.Windows.Forms.ProgressBar()
+		Me.lblDL4Status = New System.Windows.Forms.Label()
+		Me.lblDL4 = New System.Windows.Forms.Label()
+		Me.pbDL4 = New System.Windows.Forms.ProgressBar()
 		Me.pnlSinglePic = New System.Windows.Forms.Panel()
 		Me.Label2 = New System.Windows.Forms.Label()
 		Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
+		Me.pnlFANARTTV = New System.Windows.Forms.Panel()
+		Me.lblDL3Status = New System.Windows.Forms.Label()
+		Me.lblDL3 = New System.Windows.Forms.Label()
+		Me.pbDL3 = New System.Windows.Forms.ProgressBar()
+		Me.pnlTMDB = New System.Windows.Forms.Panel()
+		Me.lblDL2Status = New System.Windows.Forms.Label()
+		Me.lblDL2 = New System.Windows.Forms.Label()
+		Me.pbDL2 = New System.Windows.Forms.ProgressBar()
+		Me.pnlIMDB = New System.Windows.Forms.Panel()
+		Me.lblDL6Status = New System.Windows.Forms.Label()
+		Me.lblDL6 = New System.Windows.Forms.Label()
+		Me.pbDL6 = New System.Windows.Forms.ProgressBar()
 		Me.TableLayoutPanel1.SuspendLayout()
 		Me.pnlBottomMain.SuspendLayout()
 		Me.pnlSize.SuspendLayout()
@@ -62,6 +71,9 @@ Partial Class dlgImgSelect
 		Me.pnlMPDB.SuspendLayout()
 		Me.pnlIMPA.SuspendLayout()
 		Me.pnlSinglePic.SuspendLayout()
+		Me.pnlFANARTTV.SuspendLayout()
+		Me.pnlTMDB.SuspendLayout()
+		Me.pnlIMDB.SuspendLayout()
 		Me.SuspendLayout()
 		'
 		'TableLayoutPanel1
@@ -261,26 +273,126 @@ Partial Class dlgImgSelect
 		'
 		Me.pnlDLStatus.BackColor = System.Drawing.Color.White
 		Me.pnlDLStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+		Me.pnlDLStatus.Controls.Add(Me.pnlIMDB)
+		Me.pnlDLStatus.Controls.Add(Me.pnlSinglePic)
+		Me.pnlDLStatus.Controls.Add(Me.pnlFANARTTV)
 		Me.pnlDLStatus.Controls.Add(Me.pnlMPDB)
 		Me.pnlDLStatus.Controls.Add(Me.pnlIMPA)
-		Me.pnlDLStatus.Controls.Add(Me.lblDL1Status)
-		Me.pnlDLStatus.Controls.Add(Me.lblDL1)
-		Me.pnlDLStatus.Controls.Add(Me.pbDL1)
-		Me.pnlDLStatus.Location = New System.Drawing.Point(257, 132)
+		Me.pnlDLStatus.Controls.Add(Me.pnlTMDB)
+		Me.pnlDLStatus.Location = New System.Drawing.Point(253, 98)
 		Me.pnlDLStatus.Name = "pnlDLStatus"
-		Me.pnlDLStatus.Size = New System.Drawing.Size(323, 223)
+		Me.pnlDLStatus.Size = New System.Drawing.Size(331, 330)
 		Me.pnlDLStatus.TabIndex = 0
 		Me.pnlDLStatus.Visible = False
 		'
 		'pnlMPDB
 		'
-		Me.pnlMPDB.Controls.Add(Me.lblDL3Status)
-		Me.pnlMPDB.Controls.Add(Me.lblDL3)
-		Me.pnlMPDB.Controls.Add(Me.pbDL3)
-		Me.pnlMPDB.Location = New System.Drawing.Point(0, 147)
+		Me.pnlMPDB.Controls.Add(Me.lblDL5Status)
+		Me.pnlMPDB.Controls.Add(Me.lblDL5)
+		Me.pnlMPDB.Controls.Add(Me.pbDL5)
+		Me.pnlMPDB.Location = New System.Drawing.Point(3, 246)
 		Me.pnlMPDB.Name = "pnlMPDB"
 		Me.pnlMPDB.Size = New System.Drawing.Size(321, 75)
 		Me.pnlMPDB.TabIndex = 9
+		'
+		'lblDL5Status
+		'
+		Me.lblDL5Status.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.lblDL5Status.Location = New System.Drawing.Point(5, 34)
+		Me.lblDL5Status.Name = "lblDL5Status"
+		Me.lblDL5Status.Size = New System.Drawing.Size(310, 13)
+		Me.lblDL5Status.TabIndex = 8
+		'
+		'lblDL5
+		'
+		Me.lblDL5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.lblDL5.Location = New System.Drawing.Point(5, 10)
+		Me.lblDL5.Name = "lblDL5"
+		Me.lblDL5.Size = New System.Drawing.Size(310, 13)
+		Me.lblDL5.TabIndex = 7
+		Me.lblDL5.Text = "Performing Preliminary Tasks..."
+		'
+		'pbDL5
+		'
+		Me.pbDL5.Location = New System.Drawing.Point(6, 53)
+		Me.pbDL5.Name = "pbDL5"
+		Me.pbDL5.Size = New System.Drawing.Size(309, 19)
+		Me.pbDL5.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+		Me.pbDL5.TabIndex = 6
+		'
+		'pnlIMPA
+		'
+		Me.pnlIMPA.Controls.Add(Me.lblDL4Status)
+		Me.pnlIMPA.Controls.Add(Me.lblDL4)
+		Me.pnlIMPA.Controls.Add(Me.pbDL4)
+		Me.pnlIMPA.Location = New System.Drawing.Point(3, 165)
+		Me.pnlIMPA.Name = "pnlIMPA"
+		Me.pnlIMPA.Size = New System.Drawing.Size(321, 75)
+		Me.pnlIMPA.TabIndex = 6
+		'
+		'lblDL4Status
+		'
+		Me.lblDL4Status.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.lblDL4Status.Location = New System.Drawing.Point(5, 34)
+		Me.lblDL4Status.Name = "lblDL4Status"
+		Me.lblDL4Status.Size = New System.Drawing.Size(310, 13)
+		Me.lblDL4Status.TabIndex = 8
+		'
+		'lblDL4
+		'
+		Me.lblDL4.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblDL4.Location = New System.Drawing.Point(5, 10)
+		Me.lblDL4.Name = "lblDL4"
+		Me.lblDL4.Size = New System.Drawing.Size(310, 13)
+		Me.lblDL4.TabIndex = 7
+		Me.lblDL4.Text = "Performing Preliminary Tasks..."
+		'
+		'pbDL4
+		'
+		Me.pbDL4.Location = New System.Drawing.Point(6, 52)
+		Me.pbDL4.Name = "pbDL4"
+		Me.pbDL4.Size = New System.Drawing.Size(309, 19)
+		Me.pbDL4.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+		Me.pbDL4.TabIndex = 6
+		'
+		'pnlSinglePic
+		'
+		Me.pnlSinglePic.BackColor = System.Drawing.Color.White
+		Me.pnlSinglePic.Controls.Add(Me.Label2)
+		Me.pnlSinglePic.Controls.Add(Me.ProgressBar1)
+		Me.pnlSinglePic.Location = New System.Drawing.Point(3, 3)
+		Me.pnlSinglePic.Name = "pnlSinglePic"
+		Me.pnlSinglePic.Size = New System.Drawing.Size(321, 75)
+		Me.pnlSinglePic.TabIndex = 9
+		Me.pnlSinglePic.Visible = False
+		'
+		'Label2
+		'
+		Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.Label2.Location = New System.Drawing.Point(5, 10)
+		Me.Label2.Name = "Label2"
+		Me.Label2.Size = New System.Drawing.Size(310, 13)
+		Me.Label2.TabIndex = 7
+		Me.Label2.Text = "Downloading Selected Image..."
+		'
+		'ProgressBar1
+		'
+		Me.ProgressBar1.Location = New System.Drawing.Point(6, 53)
+		Me.ProgressBar1.MarqueeAnimationSpeed = 25
+		Me.ProgressBar1.Name = "ProgressBar1"
+		Me.ProgressBar1.Size = New System.Drawing.Size(309, 19)
+		Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee
+		Me.ProgressBar1.TabIndex = 6
+		'
+		'pnlFANARTTV
+		'
+		Me.pnlFANARTTV.Controls.Add(Me.lblDL3Status)
+		Me.pnlFANARTTV.Controls.Add(Me.lblDL3)
+		Me.pnlFANARTTV.Controls.Add(Me.pbDL3)
+		Me.pnlFANARTTV.Location = New System.Drawing.Point(3, 84)
+		Me.pnlFANARTTV.Name = "pnlFANARTTV"
+		Me.pnlFANARTTV.Size = New System.Drawing.Size(321, 75)
+		Me.pnlFANARTTV.TabIndex = 11
 		'
 		'lblDL3Status
 		'
@@ -307,15 +419,15 @@ Partial Class dlgImgSelect
 		Me.pbDL3.Style = System.Windows.Forms.ProgressBarStyle.Continuous
 		Me.pbDL3.TabIndex = 6
 		'
-		'pnlIMPA
+		'pnlTMDB
 		'
-		Me.pnlIMPA.Controls.Add(Me.lblDL2Status)
-		Me.pnlIMPA.Controls.Add(Me.lblDL2)
-		Me.pnlIMPA.Controls.Add(Me.pbDL2)
-		Me.pnlIMPA.Location = New System.Drawing.Point(0, 73)
-		Me.pnlIMPA.Name = "pnlIMPA"
-		Me.pnlIMPA.Size = New System.Drawing.Size(321, 75)
-		Me.pnlIMPA.TabIndex = 6
+		Me.pnlTMDB.Controls.Add(Me.lblDL2Status)
+		Me.pnlTMDB.Controls.Add(Me.lblDL2)
+		Me.pnlTMDB.Controls.Add(Me.pbDL2)
+		Me.pnlTMDB.Location = New System.Drawing.Point(3, 3)
+		Me.pnlTMDB.Name = "pnlTMDB"
+		Me.pnlTMDB.Size = New System.Drawing.Size(321, 75)
+		Me.pnlTMDB.TabIndex = 10
 		'
 		'lblDL2Status
 		'
@@ -342,60 +454,40 @@ Partial Class dlgImgSelect
 		Me.pbDL2.Style = System.Windows.Forms.ProgressBarStyle.Continuous
 		Me.pbDL2.TabIndex = 6
 		'
-		'lblDL1Status
+		'pnlIMDB
 		'
-		Me.lblDL1Status.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.lblDL1Status.Location = New System.Drawing.Point(5, 29)
-		Me.lblDL1Status.Name = "lblDL1Status"
-		Me.lblDL1Status.Size = New System.Drawing.Size(310, 13)
-		Me.lblDL1Status.TabIndex = 2
+		Me.pnlIMDB.Controls.Add(Me.lblDL6Status)
+		Me.pnlIMDB.Controls.Add(Me.lblDL6)
+		Me.pnlIMDB.Controls.Add(Me.pbDL6)
+		Me.pnlIMDB.Location = New System.Drawing.Point(3, 84)
+		Me.pnlIMDB.Name = "pnlIMDB"
+		Me.pnlIMDB.Size = New System.Drawing.Size(321, 75)
+		Me.pnlIMDB.TabIndex = 9
 		'
-		'lblDL1
+		'lblDL6Status
 		'
-		Me.lblDL1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.lblDL1.Location = New System.Drawing.Point(5, 6)
-		Me.lblDL1.Name = "lblDL1"
-		Me.lblDL1.Size = New System.Drawing.Size(310, 13)
-		Me.lblDL1.TabIndex = 1
-		Me.lblDL1.Text = "Performing Preliminary Tasks..."
+		Me.lblDL6Status.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
+		Me.lblDL6Status.Location = New System.Drawing.Point(5, 34)
+		Me.lblDL6Status.Name = "lblDL6Status"
+		Me.lblDL6Status.Size = New System.Drawing.Size(310, 13)
+		Me.lblDL6Status.TabIndex = 8
 		'
-		'pbDL1
+		'lblDL6
 		'
-		Me.pbDL1.Location = New System.Drawing.Point(6, 49)
-		Me.pbDL1.Name = "pbDL1"
-		Me.pbDL1.Size = New System.Drawing.Size(309, 19)
-		Me.pbDL1.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-		Me.pbDL1.TabIndex = 0
+		Me.lblDL6.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+		Me.lblDL6.Location = New System.Drawing.Point(5, 10)
+		Me.lblDL6.Name = "lblDL6"
+		Me.lblDL6.Size = New System.Drawing.Size(310, 13)
+		Me.lblDL6.TabIndex = 7
+		Me.lblDL6.Text = "Performing Preliminary Tasks..."
 		'
-		'pnlSinglePic
+		'pbDL6
 		'
-		Me.pnlSinglePic.BackColor = System.Drawing.Color.White
-		Me.pnlSinglePic.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-		Me.pnlSinglePic.Controls.Add(Me.Label2)
-		Me.pnlSinglePic.Controls.Add(Me.ProgressBar1)
-		Me.pnlSinglePic.Location = New System.Drawing.Point(258, 206)
-		Me.pnlSinglePic.Name = "pnlSinglePic"
-		Me.pnlSinglePic.Size = New System.Drawing.Size(321, 75)
-		Me.pnlSinglePic.TabIndex = 9
-		Me.pnlSinglePic.Visible = False
-		'
-		'Label2
-		'
-		Me.Label2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-		Me.Label2.Location = New System.Drawing.Point(5, 10)
-		Me.Label2.Name = "Label2"
-		Me.Label2.Size = New System.Drawing.Size(310, 13)
-		Me.Label2.TabIndex = 7
-		Me.Label2.Text = "Downloading Selected Image..."
-		'
-		'ProgressBar1
-		'
-		Me.ProgressBar1.Location = New System.Drawing.Point(6, 53)
-		Me.ProgressBar1.MarqueeAnimationSpeed = 25
-		Me.ProgressBar1.Name = "ProgressBar1"
-		Me.ProgressBar1.Size = New System.Drawing.Size(309, 19)
-		Me.ProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee
-		Me.ProgressBar1.TabIndex = 6
+		Me.pbDL6.Location = New System.Drawing.Point(6, 52)
+		Me.pbDL6.Name = "pbDL6"
+		Me.pbDL6.Size = New System.Drawing.Size(309, 19)
+		Me.pbDL6.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+		Me.pbDL6.TabIndex = 6
 		'
 		'dlgImgSelect
 		'
@@ -406,7 +498,6 @@ Partial Class dlgImgSelect
 		Me.CancelButton = Me.Cancel_Button
 		Me.ClientSize = New System.Drawing.Size(836, 545)
 		Me.ControlBox = False
-		Me.Controls.Add(Me.pnlSinglePic)
 		Me.Controls.Add(Me.pnlDLStatus)
 		Me.Controls.Add(Me.pnlBG)
 		Me.Controls.Add(Me.pnlBottomMain)
@@ -428,39 +519,51 @@ Partial Class dlgImgSelect
 		Me.pnlMPDB.ResumeLayout(False)
 		Me.pnlIMPA.ResumeLayout(False)
 		Me.pnlSinglePic.ResumeLayout(False)
+		Me.pnlFANARTTV.ResumeLayout(False)
+		Me.pnlTMDB.ResumeLayout(False)
+		Me.pnlIMDB.ResumeLayout(False)
 		Me.ResumeLayout(False)
 
 	End Sub
-    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents OK_Button As System.Windows.Forms.Button
-    Friend WithEvents Cancel_Button As System.Windows.Forms.Button
-    Friend WithEvents pnlBG As System.Windows.Forms.Panel
-    Friend WithEvents pnlBottomMain As System.Windows.Forms.Panel
-    Friend WithEvents pnlDLStatus As System.Windows.Forms.Panel
-    Friend WithEvents lblDL1Status As System.Windows.Forms.Label
-    Friend WithEvents lblDL1 As System.Windows.Forms.Label
-    Friend WithEvents pbDL1 As System.Windows.Forms.ProgressBar
-    Friend WithEvents pnlIMPA As System.Windows.Forms.Panel
-    Friend WithEvents lblDL2Status As System.Windows.Forms.Label
-    Friend WithEvents lblDL2 As System.Windows.Forms.Label
-    Friend WithEvents pbDL2 As System.Windows.Forms.ProgressBar
-    Friend WithEvents lblInfo As System.Windows.Forms.Label
-    Friend WithEvents pnlSize As System.Windows.Forms.Panel
-    Friend WithEvents rbSmall As System.Windows.Forms.RadioButton
-    Friend WithEvents rbMedium As System.Windows.Forms.RadioButton
-    Friend WithEvents rbLarge As System.Windows.Forms.RadioButton
-    Friend WithEvents rbXLarge As System.Windows.Forms.RadioButton
-    Friend WithEvents pnlSinglePic As System.Windows.Forms.Panel
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
-    Friend WithEvents pnlMPDB As System.Windows.Forms.Panel
-    Friend WithEvents lblDL3Status As System.Windows.Forms.Label
-    Friend WithEvents lblDL3 As System.Windows.Forms.Label
-    Friend WithEvents pbDL3 As System.Windows.Forms.ProgressBar
-    Friend WithEvents pnlFanart As System.Windows.Forms.Panel
-    Friend WithEvents chkThumb As System.Windows.Forms.CheckBox
-    Friend WithEvents chkMid As System.Windows.Forms.CheckBox
-    Friend WithEvents chkOriginal As System.Windows.Forms.CheckBox
-    Friend WithEvents btnPreview As System.Windows.Forms.Button
+	Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+	Friend WithEvents OK_Button As System.Windows.Forms.Button
+	Friend WithEvents Cancel_Button As System.Windows.Forms.Button
+	Friend WithEvents pnlBG As System.Windows.Forms.Panel
+	Friend WithEvents pnlBottomMain As System.Windows.Forms.Panel
+	Friend WithEvents pnlDLStatus As System.Windows.Forms.Panel
+	Friend WithEvents pnlIMPA As System.Windows.Forms.Panel
+	Friend WithEvents lblDL4Status As System.Windows.Forms.Label
+	Friend WithEvents lblDL4 As System.Windows.Forms.Label
+	Friend WithEvents pbDL4 As System.Windows.Forms.ProgressBar
+	Friend WithEvents lblInfo As System.Windows.Forms.Label
+	Friend WithEvents pnlSize As System.Windows.Forms.Panel
+	Friend WithEvents rbSmall As System.Windows.Forms.RadioButton
+	Friend WithEvents rbMedium As System.Windows.Forms.RadioButton
+	Friend WithEvents rbLarge As System.Windows.Forms.RadioButton
+	Friend WithEvents rbXLarge As System.Windows.Forms.RadioButton
+	Friend WithEvents pnlSinglePic As System.Windows.Forms.Panel
+	Friend WithEvents Label2 As System.Windows.Forms.Label
+	Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+	Friend WithEvents pnlMPDB As System.Windows.Forms.Panel
+	Friend WithEvents lblDL5Status As System.Windows.Forms.Label
+	Friend WithEvents lblDL5 As System.Windows.Forms.Label
+	Friend WithEvents pbDL5 As System.Windows.Forms.ProgressBar
+	Friend WithEvents pnlFanart As System.Windows.Forms.Panel
+	Friend WithEvents chkThumb As System.Windows.Forms.CheckBox
+	Friend WithEvents chkMid As System.Windows.Forms.CheckBox
+	Friend WithEvents chkOriginal As System.Windows.Forms.CheckBox
+	Friend WithEvents btnPreview As System.Windows.Forms.Button
+	Friend WithEvents pnlFANARTTV As System.Windows.Forms.Panel
+	Friend WithEvents lblDL3Status As System.Windows.Forms.Label
+	Friend WithEvents lblDL3 As System.Windows.Forms.Label
+	Friend WithEvents pbDL3 As System.Windows.Forms.ProgressBar
+	Friend WithEvents pnlTMDB As System.Windows.Forms.Panel
+	Friend WithEvents lblDL2Status As System.Windows.Forms.Label
+	Friend WithEvents lblDL2 As System.Windows.Forms.Label
+	Friend WithEvents pbDL2 As System.Windows.Forms.ProgressBar
+	Friend WithEvents pnlIMDB As System.Windows.Forms.Panel
+	Friend WithEvents lblDL6Status As System.Windows.Forms.Label
+	Friend WithEvents lblDL6 As System.Windows.Forms.Label
+	Friend WithEvents pbDL6 As System.Windows.Forms.ProgressBar
 
 End Class
