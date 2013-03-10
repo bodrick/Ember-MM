@@ -249,7 +249,7 @@ Public Class dlgImgSelect
 			Me.pnlIMDB.Visible = False
 			Me.pnlFANARTTV.Visible = False
 			Me.pnlIMPA.Visible = False
-			Me.pnlMPDB.Visible = False
+			Me.pnlMDB.Visible = False
 			Me.pnlSinglePic.Visible = True
 			Me.pnlDLStatus.Height = 85
 			Me.pnlDLStatus.Top = 185
@@ -335,8 +335,8 @@ Public Class dlgImgSelect
 		'\\
 		Try
 			Dim sStatus As String = e.UserState.ToString
-			Me.lblDL5Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
-			Me.pbDL5.Value = e.ProgressPercentage
+			Me.lblDL6Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL6.Value = e.ProgressPercentage
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -388,8 +388,8 @@ Public Class dlgImgSelect
 		'\\
 		Try
 			Dim sStatus As String = e.UserState.ToString
-			Me.lblDL5Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
-			Me.pbDL5.Value = e.ProgressPercentage
+			Me.lblDL3Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL3.Value = e.ProgressPercentage
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -896,7 +896,7 @@ Public Class dlgImgSelect
 				End If
 
 				If lFi.Count > 0 Then
-					Me.pnlDLStatus.Height = 75
+					Me.pnlDLStatus.Height = 165
 					Me.pnlDLStatus.Top = 207
 					Me.pnlDLStatus.Visible = True
 					Application.DoEvents()
@@ -990,6 +990,9 @@ Public Class dlgImgSelect
 	Private Sub FANARTTVDoneDownloading()
 		Try
 			Me._fanarttvDone = True
+			Me.lblDL3.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1000,7 +1003,7 @@ Public Class dlgImgSelect
 		Try
 			Me.pbDL3.Value = 0
 
-			Me.lblDL3.Text = Master.eLang.GetString(38, "Preparing images...")
+			'Me.lblDL3.Text = Master.eLang.GetString(38, "Preparing images...")
 			Me.lblDL3Status.Text = String.Empty
 			Me.pbDL3.Maximum = Posters.Count
 
@@ -1021,6 +1024,9 @@ Public Class dlgImgSelect
 	Private Sub IMDBDoneDownloading()
 		Try
 			Me._imdbDone = True
+			Me.lblDL6.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1031,7 +1037,7 @@ Public Class dlgImgSelect
 		Try
 			Me.pbDL6.Value = 0
 
-			Me.lblDL6.Text = Master.eLang.GetString(38, "Preparing images...")
+			'Me.lblDL6.Text = Master.eLang.GetString(38, "Preparing images...")
 			Me.lblDL6Status.Text = String.Empty
 			Me.pbDL6.Maximum = Posters.Count
 
@@ -1052,6 +1058,9 @@ Public Class dlgImgSelect
 	Private Sub IMPADoneDownloading()
 		Try
 			Me._impaDone = True
+			Me.lblDL4.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1062,7 +1071,7 @@ Public Class dlgImgSelect
 		Try
 			Me.pbDL4.Value = 0
 
-			Me.lblDL4.Text = Master.eLang.GetString(38, "Preparing images...")
+			'Me.lblDL4.Text = Master.eLang.GetString(38, "Preparing images...")
 			Me.lblDL4Status.Text = String.Empty
 			Me.pbDL4.Maximum = Posters.Count
 
@@ -1104,6 +1113,9 @@ Public Class dlgImgSelect
 	Private Sub MPDBDoneDownloading()
 		Try
 			Me._mpdbDone = True
+			Me.lblDL5.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1114,7 +1126,7 @@ Public Class dlgImgSelect
 		Try
 			Me.pbDL5.Value = 0
 
-			Me.lblDL5.Text = Master.eLang.GetString(38, "Preparing images...")
+			'Me.lblDL5.Text = Master.eLang.GetString(38, "Preparing images...")
 			Me.lblDL5Status.Text = String.Empty
 			Me.pbDL5.Maximum = Posters.Count
 
@@ -1377,7 +1389,7 @@ Public Class dlgImgSelect
 				Me.pnlIMDB.Visible = True
 				Me.pnlFANARTTV.Visible = False
 				Me.pnlIMPA.Visible = True
-				Me.pnlMPDB.Visible = True
+				Me.pnlMDB.Visible = True
 				Me.pnlSinglePic.Visible = False
 				Me.pnlDLStatus.Height = 328
 				Me.pnlDLStatus.Top = 82
@@ -1387,9 +1399,9 @@ Public Class dlgImgSelect
 				Me.pnlIMDB.Visible = False
 				Me.pnlFANARTTV.Visible = True
 				Me.pnlIMPA.Visible = False
-				Me.pnlMPDB.Visible = False
+				Me.pnlMDB.Visible = False
 				Me.pnlSinglePic.Visible = False
-				Me.pnlDLStatus.Height = 142
+				Me.pnlDLStatus.Height = 165
 				Me.pnlDLStatus.Top = 129
 
 				If Master.eSettings.AutoET Then
@@ -1531,16 +1543,11 @@ Public Class dlgImgSelect
 
 	Private Sub TMDBDoneDownloading()
 		Try
-			If Me.DLType = Enums.ImageType.Posters Then
-				Me._tmdbDone = True
-				Me.AllDoneDownloading()
-			Else
-				Me.pnlDLStatus.Visible = False
-				Me.ProcessPics(Me.TMDBPosters)
-				Me.pnlBG.Visible = True
-				'Me.pnlFanart.Visible = True
-				'Me.lblInfo.Visible = True
-			End If
+			Me._tmdbDone = True
+			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
+			Me.AllDoneDownloading()
 
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1551,11 +1558,11 @@ Public Class dlgImgSelect
 		Try
 			Me.pbDL2.Value = 0
 
-			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
+			'Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
 			Me.lblDL2Status.Text = String.Empty
 			Me.pbDL2.Maximum = Posters.Count
 
-			TMDBPosters = Posters
+			Me.TMDBPosters = Posters
 
 			Me.bwTMDBDownload.WorkerSupportsCancellation = True
 			Me.bwTMDBDownload.WorkerReportsProgress = True
