@@ -29,8 +29,6 @@ Partial Class frmTMDBMediaSettingsHolder
 		Me.GroupBox3 = New System.Windows.Forms.GroupBox()
 		Me.GroupBox6 = New System.Windows.Forms.GroupBox()
 		Me.chkUseFANARTTV = New System.Windows.Forms.CheckBox()
-		Me.Label5 = New System.Windows.Forms.Label()
-		Me.Label4 = New System.Windows.Forms.Label()
 		Me.GroupBox9 = New System.Windows.Forms.GroupBox()
 		Me.chkUseMPDB = New System.Windows.Forms.CheckBox()
 		Me.chkUseIMDBp = New System.Windows.Forms.CheckBox()
@@ -110,8 +108,6 @@ Partial Class frmTMDBMediaSettingsHolder
 		'GroupBox3
 		'
 		Me.GroupBox3.Controls.Add(Me.GroupBox6)
-		Me.GroupBox3.Controls.Add(Me.Label5)
-		Me.GroupBox3.Controls.Add(Me.Label4)
 		Me.GroupBox3.Controls.Add(Me.GroupBox9)
 		Me.GroupBox3.Controls.Add(Me.GroupBox4)
 		Me.GroupBox3.Controls.Add(Me.grpSaveFanart)
@@ -147,26 +143,6 @@ Partial Class frmTMDBMediaSettingsHolder
 		Me.chkUseFANARTTV.Text = "fanart.tv"
 		Me.chkUseFANARTTV.TextAlign = System.Drawing.ContentAlignment.TopLeft
 		Me.chkUseFANARTTV.UseVisualStyleBackColor = True
-		'
-		'Label5
-		'
-		Me.Label5.AutoSize = True
-		Me.Label5.ForeColor = System.Drawing.Color.Red
-		Me.Label5.Location = New System.Drawing.Point(334, 76)
-		Me.Label5.Name = "Label5"
-		Me.Label5.Size = New System.Drawing.Size(153, 13)
-		Me.Label5.TabIndex = 95
-		Me.Label5.Text = "Images get only from TMDB"
-		'
-		'Label4
-		'
-		Me.Label4.AutoSize = True
-		Me.Label4.ForeColor = System.Drawing.Color.Red
-		Me.Label4.Location = New System.Drawing.Point(168, 94)
-		Me.Label4.Name = "Label4"
-		Me.Label4.Size = New System.Drawing.Size(153, 13)
-		Me.Label4.TabIndex = 95
-		Me.Label4.Text = "Images get only from TMDB"
 		'
 		'GroupBox9
 		'
@@ -496,7 +472,6 @@ Partial Class frmTMDBMediaSettingsHolder
 		Me.pnlSettings.ResumeLayout(False)
 		CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
 		Me.GroupBox3.ResumeLayout(False)
-		Me.GroupBox3.PerformLayout()
 		Me.GroupBox6.ResumeLayout(False)
 		Me.GroupBox9.ResumeLayout(False)
 		Me.GroupBox4.ResumeLayout(False)
@@ -544,9 +519,7 @@ Partial Class frmTMDBMediaSettingsHolder
 	Friend WithEvents chkUseIMDBp As System.Windows.Forms.CheckBox
 	Friend WithEvents chkUseIMPA As System.Windows.Forms.CheckBox
 	Friend WithEvents chkTrailerIMDB As System.Windows.Forms.CheckBox
-	Friend WithEvents Label4 As System.Windows.Forms.Label
 	Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
 	Friend WithEvents chkUseFANARTTV As System.Windows.Forms.CheckBox
-	Friend WithEvents Label5 As System.Windows.Forms.Label
 
 End Class
