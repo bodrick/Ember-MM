@@ -75,6 +75,12 @@ Namespace IMDBimg
 				Dim sHTTP As New HTTP
 				Dim HTML As String = sHTTP.DownloadData(String.Concat("http://www.imdb.com/title/tt", imdbID, ""))
 				sHTTP = Nothing
+
+				If bwIMDBimg.WorkerReportsProgress Then
+					bwIMDBimg.ReportProgress(1)
+				End If
+
+
 				' check existence of a line like this
 				'      <a href="/media/rm2995297536/tt0089218?ref_=tt_ov_i" > <img height="317"
 				' and then return this one
@@ -89,43 +95,18 @@ Namespace IMDBimg
 						alPoster.Add(New MediaContainers.Image With {.Description = "thumb", .URL = mcIMDB(0).Value})
 					End If
 
+					If bwIMDBimg.WorkerReportsProgress Then
+						bwIMDBimg.ReportProgress(2)
+					End If
+
 					Dim aSP As String() = Regex.Split(mcIMDB(0).Value, "SY\d+?_CR\d+?,\d+?,\d+?,\d+?_")
 					Dim sUrl1 = aSP(0) + aSP(1)
 					alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = sUrl1})
-					'sHTTP = New HTTP
-					'HTML = sUrl1
-					'sHTTP = Nothing
-					'mcIMDB = Regex.Matches(HTML, "http://ia.media-imdb.com/images/.{3,60}?.jpg")
-					'If mcIMDB.Count > 0 Then
-					'	'just use the first one if more are found
-					'	alPoster.Add(New MediaContainers.Image With {.Description = "poster", .URL = mcIMDB(0).Value})
-					'End If
 				End If
 
-				'Dim sURL As String = GetLink(imdbID)
-
-
-				'If Not String.IsNullOrEmpty(sURL) Then
-
-				'	Dim sHTTP As New HTTP
-				'	Dim HTML As String = sHTTP.DownloadData(sURL)
-				'	sHTTP = Nothing
-
-				'	If bwIMDBimg.CancellationPending Then Return Nothing
-
-				'	Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
-
-				'	Dim PosterURL As String
-
-				'	For Each mPoster As Match In mcPoster
-				'		If bwIMDBimg.CancellationPending Then Return Nothing
-				'		PosterURL = Strings.Replace(String.Format("{0}/{1}", sURL.Substring(0, sURL.LastIndexOf("/")), mPoster.Value.ToString()).Replace("thumbs", "posters"), "imp_", String.Empty)
-
-
-				'		PosterURL = PosterURL.Insert(PosterURL.LastIndexOf("."), "_xlg")
-				'		alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
-				'	Next
-				'End If
+				If bwIMDBimg.WorkerReportsProgress Then
+					bwIMDBimg.ReportProgress(3)
+				End If
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 			End Try

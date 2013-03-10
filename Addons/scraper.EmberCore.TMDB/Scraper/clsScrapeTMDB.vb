@@ -149,7 +149,7 @@ Namespace TMDB
 				End If
 
 				If bwTMDB.WorkerReportsProgress Then
-					bwTMDB.ReportProgress(2)
+					bwTMDB.ReportProgress(3)
 				End If
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")

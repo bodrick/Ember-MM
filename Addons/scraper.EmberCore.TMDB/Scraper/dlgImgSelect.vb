@@ -228,10 +228,12 @@ Public Class dlgImgSelect
 	End Sub
 
 	Private Sub AllDoneDownloading()
-		If Me._impaDone AndAlso Me._tmdbDone AndAlso Me._mpdbDone Then
+		If Me._impaDone AndAlso Me._tmdbDone AndAlso Me._mpdbDone AndAlso Me._imdbDone AndAlso Me._fanarttvDone Then
 			Me.pnlDLStatus.Visible = False
 			Me.TMDBPosters.AddRange(Me.IMPAPosters)
 			Me.TMDBPosters.AddRange(Me.MPDBPosters)
+			Me.TMDBPosters.AddRange(Me.IMDBPosters)
+			Me.TMDBPosters.AddRange(Me.FANARTTVPosters)
 			Me.ProcessPics(Me.TMDBPosters)
 			Me.pnlBG.Visible = True
 		End If
@@ -243,8 +245,15 @@ Public Class dlgImgSelect
 	Private Sub PreviewImage()
 		Try
 			Dim tImage As New Images
-
+			Me.pnlTMDB.Visible = False
+			Me.pnlIMDB.Visible = False
+			Me.pnlFANARTTV.Visible = False
+			Me.pnlIMPA.Visible = False
+			Me.pnlMDB.Visible = False
 			Me.pnlSinglePic.Visible = True
+			Me.pnlDLStatus.Height = 85
+			Me.pnlDLStatus.Top = 185
+
 			Application.DoEvents()
 
 			Select Case True
@@ -326,8 +335,8 @@ Public Class dlgImgSelect
 		'\\
 		Try
 			Dim sStatus As String = e.UserState.ToString
-			Me.lblDL3Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
-			Me.pbDL3.Value = e.ProgressPercentage
+			Me.lblDL6Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL6.Value = e.ProgressPercentage
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -430,8 +439,8 @@ Public Class dlgImgSelect
 		'\\
 		Try
 			Dim sStatus As String = e.UserState.ToString
-			Me.lblDL2Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
-			Me.pbDL2.Value = e.ProgressPercentage
+			Me.lblDL4Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL4.Value = e.ProgressPercentage
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -483,8 +492,8 @@ Public Class dlgImgSelect
 		'\\
 		Try
 			Dim sStatus As String = e.UserState.ToString
-			Me.lblDL3Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
-			Me.pbDL3.Value = e.ProgressPercentage
+			Me.lblDL5Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL5.Value = e.ProgressPercentage
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -520,7 +529,6 @@ Public Class dlgImgSelect
 			posters = TMDBPosters.Where(Function(s) s.Description = "cover").ToArray()
 		End If
 
-		Dim percent = 100 / posters.Count
 		For i As Integer = 0 To posters.Count - 1
 			Try
 				If Me.DLType = Enums.ImageType.Fanart OrElse (Master.eSettings.UseImgCache OrElse (posters(i).Description = "cover" OrElse Master.eSettings.PosterPrefSizeOnly)) Then
@@ -528,7 +536,7 @@ Public Class dlgImgSelect
 						e.Cancel = True
 						Return
 					End If
-					Me.bwTMDBDownload.ReportProgress(Convert.ToInt32((i + 1) * percent), posters(i).URL)
+					Me.bwTMDBDownload.ReportProgress((i + 1), posters(i).URL)
 					Try
 						posters(i).WebImage.FromWeb(posters(i).URL)
 						If Not Master.eSettings.NoSaveImagesToNfo Then
@@ -591,8 +599,8 @@ Public Class dlgImgSelect
 		'\\
 		Try
 			Dim sStatus As String = e.UserState.ToString
-			Me.lblDL1Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
-			Me.pbDL1.Value = e.ProgressPercentage
+			Me.lblDL2Status.Text = String.Format(Master.eLang.GetString(27, "Downloading {0}"), If(sStatus.Length > 40, StringUtils.TruncateURL(sStatus, 40), sStatus))
+			Me.pbDL2.Value = e.ProgressPercentage
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 		End Try
@@ -840,9 +848,9 @@ Public Class dlgImgSelect
 				Directory.CreateDirectory(CachePath)
 			End If
 
-			Me.lblDL1.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
-			Me.lblDL1Status.Text = String.Empty
-			Me.pbDL1.Maximum = 3
+			Me.lblDL2.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
+			Me.lblDL2Status.Text = String.Empty
+			Me.pbDL2.Maximum = 3
 			Me.pnlDLStatus.Visible = True
 			Me.Refresh()
 
@@ -851,9 +859,9 @@ Public Class dlgImgSelect
 			Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "backdrop")
 
 			If _MySettings.UseFANARTTV Then
-				Me.lblDL2.Text = Master.eLang.GetString(120, "Retrieving data from Fanart.tv...")
-				Me.lblDL2Status.Text = String.Empty
-				Me.pbDL2.Maximum = 3
+				Me.lblDL3.Text = Master.eLang.GetString(120, "Retrieving data from Fanart.tv...")
+				Me.lblDL3Status.Text = String.Empty
+				Me.pbDL3.Maximum = 3
 				Me.pnlDLStatus.Visible = True
 				Me.Refresh()
 
@@ -861,7 +869,7 @@ Public Class dlgImgSelect
 
 				Me.FANARTTVs.GetImagesAsync(tMovie.Movie.ID)
 			Else
-				Me.lblDL2.Text = Master.eLang.GetString(121, "Fanart.tv is not enabled")
+				Me.lblDL3.Text = Master.eLang.GetString(121, "Fanart.tv is not enabled")
 			End If
 
 
@@ -888,7 +896,7 @@ Public Class dlgImgSelect
 				End If
 
 				If lFi.Count > 0 Then
-					Me.pnlDLStatus.Height = 75
+					Me.pnlDLStatus.Height = 165
 					Me.pnlDLStatus.Top = 207
 					Me.pnlDLStatus.Visible = True
 					Application.DoEvents()
@@ -922,9 +930,9 @@ Public Class dlgImgSelect
 			End If
 
 			If NoneFound Then
-				Me.lblDL1.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
-				Me.lblDL1Status.Text = String.Empty
-				Me.pbDL1.Maximum = 3
+				Me.lblDL2.Text = Master.eLang.GetString(32, "Retrieving data from TheMovieDB.com...")
+				Me.lblDL2Status.Text = String.Empty
+				Me.pbDL2.Maximum = 3
 				Me.pnlDLStatus.Visible = True
 				Me.Refresh()
 
@@ -933,9 +941,9 @@ Public Class dlgImgSelect
 				Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "poster")
 
 				If _MySettings.UseIMDB Then
-					Me.lblDL2.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")
-					Me.lblDL2Status.Text = String.Empty
-					Me.pbDL2.Maximum = 3
+					Me.lblDL6.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")
+					Me.lblDL6Status.Text = String.Empty
+					Me.pbDL6.Maximum = 3
 					Me.pnlDLStatus.Visible = True
 					Me.Refresh()
 
@@ -943,13 +951,13 @@ Public Class dlgImgSelect
 
 					Me.IMDB.GetImagesAsync(tMovie.Movie.IMDBID)
 				Else
-					Me.lblDL2.Text = Master.eLang.GetString(118, "IMDB.com is not enabled")
+					Me.lblDL6.Text = Master.eLang.GetString(118, "IMDB.com is not enabled")
 				End If
 
 				If _MySettings.UseIMPA Then
-					Me.lblDL2.Text = Master.eLang.GetString(34, "Retrieving data from IMPAwards.com...")
-					Me.lblDL2Status.Text = String.Empty
-					Me.pbDL2.Maximum = 3
+					Me.lblDL4.Text = Master.eLang.GetString(34, "Retrieving data from IMPAwards.com...")
+					Me.lblDL4Status.Text = String.Empty
+					Me.pbDL4.Maximum = 3
 					Me.pnlDLStatus.Visible = True
 					Me.Refresh()
 
@@ -957,13 +965,13 @@ Public Class dlgImgSelect
 
 					Me.IMPA.GetImagesAsync(tMovie.Movie.IMDBID)
 				Else
-					Me.lblDL2.Text = Master.eLang.GetString(35, "IMPAwards.com is not enabled")
+					Me.lblDL4.Text = Master.eLang.GetString(35, "IMPAwards.com is not enabled")
 				End If
 
 				If _MySettings.UseMPDB Then
-					Me.lblDL3.Text = Master.eLang.GetString(36, "Retrieving data from MoviePosterDB.com...")
-					Me.lblDL3Status.Text = String.Empty
-					Me.pbDL3.Maximum = 3
+					Me.lblDL5.Text = Master.eLang.GetString(36, "Retrieving data from MoviePosterDB.com...")
+					Me.lblDL5Status.Text = String.Empty
+					Me.pbDL5.Maximum = 3
 					Me.pnlDLStatus.Visible = True
 					Me.Refresh()
 
@@ -971,7 +979,7 @@ Public Class dlgImgSelect
 
 					Me.MPDB.GetImagesAsync(tMovie.Movie.IMDBID)
 				Else
-					Me.lblDL3.Text = Master.eLang.GetString(37, "MoviePostersDB.com is not enabled")
+					Me.lblDL5.Text = Master.eLang.GetString(37, "MoviePostersDB.com is not enabled")
 				End If
 			End If
 		Catch ex As Exception
@@ -982,6 +990,9 @@ Public Class dlgImgSelect
 	Private Sub FANARTTVDoneDownloading()
 		Try
 			Me._fanarttvDone = True
+			Me.lblDL3.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -990,11 +1001,11 @@ Public Class dlgImgSelect
 
 	Private Sub FANARTTVPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
 		Try
-			Me.pbDL2.Value = 0
+			Me.pbDL3.Value = 0
 
-			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
-			Me.lblDL2Status.Text = String.Empty
-			Me.pbDL2.Maximum = Posters.Count
+			'Me.lblDL3.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL3Status.Text = String.Empty
+			Me.pbDL3.Maximum = Posters.Count
 
 			Me.FANARTTVPosters = Posters
 
@@ -1007,12 +1018,15 @@ Public Class dlgImgSelect
 	End Sub
 
 	Private Sub FANARTTVProgressUpdated(ByVal iPercent As Integer)
-		Me.pbDL2.Value = iPercent
+		Me.pbDL3.Value = iPercent
 	End Sub
 
 	Private Sub IMDBDoneDownloading()
 		Try
 			Me._imdbDone = True
+			Me.lblDL6.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1021,11 +1035,11 @@ Public Class dlgImgSelect
 
 	Private Sub IMDBPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
 		Try
-			Me.pbDL2.Value = 0
+			Me.pbDL6.Value = 0
 
-			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
-			Me.lblDL2Status.Text = String.Empty
-			Me.pbDL2.Maximum = Posters.Count
+			'Me.lblDL6.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL6Status.Text = String.Empty
+			Me.pbDL6.Maximum = Posters.Count
 
 			Me.IMDBPosters = Posters
 
@@ -1038,12 +1052,15 @@ Public Class dlgImgSelect
 	End Sub
 
 	Private Sub IMDBProgressUpdated(ByVal iPercent As Integer)
-		Me.pbDL2.Value = iPercent
+		Me.pbDL6.Value = iPercent
 	End Sub
 
 	Private Sub IMPADoneDownloading()
 		Try
 			Me._impaDone = True
+			Me.lblDL4.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1052,11 +1069,11 @@ Public Class dlgImgSelect
 
 	Private Sub IMPAPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
 		Try
-			Me.pbDL2.Value = 0
+			Me.pbDL4.Value = 0
 
-			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
-			Me.lblDL2Status.Text = String.Empty
-			Me.pbDL2.Maximum = Posters.Count
+			'Me.lblDL4.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL4Status.Text = String.Empty
+			Me.pbDL4.Maximum = Posters.Count
 
 			Me.IMPAPosters = Posters
 
@@ -1069,7 +1086,7 @@ Public Class dlgImgSelect
 	End Sub
 
 	Private Sub IMPAProgressUpdated(ByVal iPercent As Integer)
-		Me.pbDL2.Value = iPercent
+		Me.pbDL4.Value = iPercent
 	End Sub
 
 
@@ -1096,6 +1113,9 @@ Public Class dlgImgSelect
 	Private Sub MPDBDoneDownloading()
 		Try
 			Me._mpdbDone = True
+			Me.lblDL5.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
 			Me.AllDoneDownloading()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1104,11 +1124,11 @@ Public Class dlgImgSelect
 
 	Private Sub MPDBPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
 		Try
-			Me.pbDL3.Value = 0
+			Me.pbDL5.Value = 0
 
-			Me.lblDL3.Text = Master.eLang.GetString(38, "Preparing images...")
-			Me.lblDL3Status.Text = String.Empty
-			Me.pbDL3.Maximum = Posters.Count
+			'Me.lblDL5.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL5Status.Text = String.Empty
+			Me.pbDL5.Maximum = Posters.Count
 
 			Me.MPDBPosters = Posters
 
@@ -1121,7 +1141,7 @@ Public Class dlgImgSelect
 	End Sub
 
 	Private Sub MPDBProgressUpdated(ByVal iPercent As Integer)
-		Me.pbDL3.Value = iPercent
+		Me.pbDL5.Value = iPercent
 	End Sub
 
 	Private Sub OK_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK_Button.Click
@@ -1365,10 +1385,24 @@ Public Class dlgImgSelect
 
 			If Me.DLType = Enums.ImageType.Posters Then
 				Me.Text = String.Concat(Master.eLang.GetString(39, "Select Poster - "), If(Not String.IsNullOrEmpty(Me.tMovie.Movie.Title), Me.tMovie.Movie.Title, Me.tMovie.ListTitle))
+				Me.pnlTMDB.Visible = True
+				Me.pnlIMDB.Visible = True
+				Me.pnlFANARTTV.Visible = False
+				Me.pnlIMPA.Visible = True
+				Me.pnlMDB.Visible = True
+				Me.pnlSinglePic.Visible = False
+				Me.pnlDLStatus.Height = 328
+				Me.pnlDLStatus.Top = 82
 			Else
 				Me.Text = String.Concat(Master.eLang.GetString(40, "Select Fanart - "), If(Not String.IsNullOrEmpty(Me.tMovie.Movie.Title), Me.tMovie.Movie.Title, Me.tMovie.ListTitle))
-				Me.pnlDLStatus.Height = 75
-				Me.pnlDLStatus.Top = 207
+				Me.pnlTMDB.Visible = True
+				Me.pnlIMDB.Visible = False
+				Me.pnlFANARTTV.Visible = True
+				Me.pnlIMPA.Visible = False
+				Me.pnlMDB.Visible = False
+				Me.pnlSinglePic.Visible = False
+				Me.pnlDLStatus.Height = 165
+				Me.pnlDLStatus.Top = 129
 
 				If Master.eSettings.AutoET Then
 					ETHashes = HashFile.CurrentETHashes(tMovie.Filename)
@@ -1384,9 +1418,10 @@ Public Class dlgImgSelect
 			Me.chkMid.Text = Master.eLang.GetString(42, "Check All Mid")
 			Me.chkOriginal.Text = Master.eLang.GetString(43, "Check All Original")
 			Me.lblInfo.Text = Master.eLang.GetString(44, "Selected item will be set as fanart. All checked items will be saved to \extrathumbs.")
-			Me.lblDL3.Text = Master.eLang.GetString(45, "Performing Preliminary Tasks...")
-			Me.lblDL2.Text = Me.lblDL3.Text
-			Me.lblDL1.Text = Me.lblDL3.Text
+			Me.lblDL5.Text = Master.eLang.GetString(45, "Performing Preliminary Tasks...")
+			Me.lblDL4.Text = Me.lblDL5.Text
+			Me.lblDL3.Text = Me.lblDL5.Text
+			Me.lblDL2.Text = Me.lblDL5.Text
 			Me.Label2.Text = Master.eLang.GetString(46, "Downloading Selected Image...")
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1508,16 +1543,11 @@ Public Class dlgImgSelect
 
 	Private Sub TMDBDoneDownloading()
 		Try
-			If Me.DLType = Enums.ImageType.Posters Then
-				Me._tmdbDone = True
-				Me.AllDoneDownloading()
-			Else
-				Me.pnlDLStatus.Visible = False
-				Me.ProcessPics(Me.TMDBPosters)
-				Me.pnlBG.Visible = True
-				'Me.pnlFanart.Visible = True
-				'Me.lblInfo.Visible = True
-			End If
+			Me._tmdbDone = True
+			Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
+			Application.DoEvents()
+
+			Me.AllDoneDownloading()
 
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -1526,13 +1556,13 @@ Public Class dlgImgSelect
 
 	Private Sub TMDBPostersDownloaded(ByVal Posters As List(Of MediaContainers.Image))
 		Try
-			Me.pbDL1.Value = 0
+			Me.pbDL2.Value = 0
 
-			Me.lblDL1.Text = Master.eLang.GetString(38, "Preparing images...")
-			Me.lblDL1Status.Text = String.Empty
+			'Me.lblDL2.Text = Master.eLang.GetString(38, "Preparing images...")
+			Me.lblDL2Status.Text = String.Empty
+			Me.pbDL2.Maximum = Posters.Count
 
-			TMDBPosters = Posters
-			Me.pbDL1.Maximum = 100
+			Me.TMDBPosters = Posters
 
 			Me.bwTMDBDownload.WorkerSupportsCancellation = True
 			Me.bwTMDBDownload.WorkerReportsProgress = True
@@ -1543,7 +1573,7 @@ Public Class dlgImgSelect
 	End Sub
 
 	Private Sub TMDBProgressUpdated(ByVal iPercent As Integer)
-		Me.pbDL1.Value = iPercent
+		Me.pbDL2.Value = iPercent
 	End Sub
 
 #End Region	'Methods

@@ -73,6 +73,9 @@ Namespace IMPA
             Try
                 If bwIMPA.CancellationPending Then Return Nothing
                 Dim sURL As String = GetLink(imdbID)
+				If bwIMPA.WorkerReportsProgress Then
+					bwIMPA.ReportProgress(1)
+				End If
 
                 If Not String.IsNullOrEmpty(sURL) Then
 
@@ -80,7 +83,11 @@ Namespace IMPA
                     Dim HTML As String = sHTTP.DownloadData(sURL)
                     sHTTP = Nothing
 
-                    If bwIMPA.CancellationPending Then Return Nothing
+					If bwIMPA.CancellationPending Then Return Nothing
+
+					If bwIMPA.WorkerReportsProgress Then
+						bwIMPA.ReportProgress(2)
+					End If
 
                     Dim mcPoster As MatchCollection = Regex.Matches(HTML, "(thumbs/imp_([^>]*ver[^>]*.jpg))|(thumbs/imp_([^>]*.jpg))")
 
@@ -96,8 +103,11 @@ Namespace IMPA
                         alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = PosterURL})
                     Next
                 End If
-            Catch ex As Exception
-                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+				If bwIMPA.WorkerReportsProgress Then
+					bwIMPA.ReportProgress(3)
+				End If
+			Catch ex As Exception
+				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
             End Try
 
             Return alPoster
