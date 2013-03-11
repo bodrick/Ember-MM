@@ -447,8 +447,6 @@ Namespace TMDBg
 			Dim b As Boolean = False
 			Dim imdbMovie As MediaContainers.Movie = dbMovie.Movie
 
-			r.Matches.Sort()
-
 			Try
 				Select Case iType
 					Case Enums.ScrapeType.FullAsk, Enums.ScrapeType.UpdateAsk, Enums.ScrapeType.NewAsk, Enums.ScrapeType.MarkAsk, Enums.ScrapeType.FilterAsk
@@ -471,7 +469,6 @@ Namespace TMDBg
 							End Using
 						End If
 					Case Enums.ScrapeType.FullAuto, Enums.ScrapeType.UpdateAuto, Enums.ScrapeType.NewAuto, Enums.ScrapeType.MarkAuto, Enums.ScrapeType.SingleScrape, Enums.ScrapeType.FilterAuto
-
 						Dim exactHaveYear As Integer = FindYear(dbMovie.Filename, r.Matches)
 						If r.Matches.Count = 1 Then	'redirected to imdb info page
 							b = GetMovieInfo(r.Matches.Item(0).ID, imdbMovie, Master.eSettings.FullCrew, Master.eSettings.FullCast, False, Options, True)

@@ -369,7 +369,7 @@ Public Class EmberTMDBScraperModule
 			Poster.Clear()
 			If Poster.IsAllowedToDownload(DBMovie, Enums.ImageType.Posters) Then
 				pResults = New Containers.ImgResult
-				If aScrapeImages.GetPreferredImage(Poster, DBMovie.Movie.IDMovieDB, Enums.ImageType.Posters, pResults, DBMovie.Filename, False, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
+				If aScrapeImages.GetPreferredImage(Poster, DBMovie.Movie.ID, DBMovie.Movie.IDMovieDB, Enums.ImageType.Posters, pResults, DBMovie.Filename, False, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
 					If Not IsNothing(Poster.Image) Then
 						pResults.ImagePath = Poster.SaveAsPoster(DBMovie)
 						If Not String.IsNullOrEmpty(pResults.ImagePath) Then
@@ -401,7 +401,7 @@ Public Class EmberTMDBScraperModule
 			If Fanart.IsAllowedToDownload(DBMovie, Enums.ImageType.Fanart) Then
 				fResults = New Containers.ImgResult
 				didEts = True
-				If aScrapeImages.GetPreferredImage(Fanart, DBMovie.Movie.IDMovieDB, Enums.ImageType.Fanart, fResults, DBMovie.Filename, Master.GlobalScrapeMod.Extra, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
+				If aScrapeImages.GetPreferredImage(Fanart, DBMovie.Movie.IMDBID, DBMovie.Movie.IDMovieDB, Enums.ImageType.Fanart, fResults, DBMovie.Filename, Master.GlobalScrapeMod.Extra, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
 					If Not IsNothing(Fanart.Image) Then
 						fResults.ImagePath = Fanart.SaveAsFanart(DBMovie)
 						If Not String.IsNullOrEmpty(fResults.ImagePath) Then
