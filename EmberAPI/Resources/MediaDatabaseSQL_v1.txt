@@ -187,8 +187,8 @@ CREATE TABLE TVEps(
 	FanartPath TEXT,
 	NfoPath TEXT,
 	NeedsSave BOOL NOT NULL DEFAULT False,
-	Missing BOOL NOT NULL DEFAULT False
-	Playcount TEXT,
+	Missing BOOL NOT NULL DEFAULT False,
+	Playcount TEXT
 	);
 
 CREATE TABLE TVShowActors(

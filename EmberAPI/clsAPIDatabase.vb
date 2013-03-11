@@ -306,10 +306,13 @@ Public Class Database
         'TODO Check to see if column exists and then create if not
         Using SQLpathcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
             Dim doAddColumns As Boolean = False
-            SQLpathcommand.CommandText = "SELECT * FROM TVEps;"
+            Dim noTVShows As Boolean = False
 
-            Using SQLreader As SQLite.SQLiteDataReader = SQLpathcommand.ExecuteReader
-                Try
+
+            SQLpathcommand.CommandText = "SELECT * FROM TVEps;"
+            Try
+                Using SQLreader As SQLite.SQLiteDataReader = SQLpathcommand.ExecuteReader
+
                     Dim myView As DataView = SQLreader.GetSchemaTable().DefaultView
                     'simply look for column of new field
                     myView.RowFilter = "ColumnName = 'Playcount'"
@@ -317,10 +320,31 @@ Public Class Database
                         'Column doesn't exist in current database of Ember --> asume: if one columns missing, all new mediainfo columns must be added
                         doAddColumns = True
                     End If
-                Catch ex As Exception
-                    'TODO
+        End Using
+                'table not found!
+            Catch ex As SQLiteException
+                noTVShows = True
+            End Try
+
+            If noTVShows = True Then
+                'no tvshow --> check movie-table
+                SQLpathcommand.CommandText = "SELECT * FROM MoviesVStreams;"
+                Try
+                    Using SQLreader As SQLite.SQLiteDataReader = SQLpathcommand.ExecuteReader
+
+                        Dim myView As DataView = SQLreader.GetSchemaTable().DefaultView
+                        'simply look for column of new field
+                        myView.RowFilter = "ColumnName = 'Video_EncodedSettings'"
+                        If myView.Count = 0 Then
+                            'Column doesn't exist in current database of Ember --> asume: if one columns missing, all new mediainfo columns must be added
+                            doAddColumns = True
+                        End If
+                    End Using
+                    'table not found!
+                Catch ex As SQLiteException
                 End Try
-            End Using
+            End If
+
             'Now add new columns to current database if needed
             If doAddColumns = True Then
                 Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
@@ -348,6 +372,8 @@ Public Class Database
             End If
         End Using
     End Sub
+
+
 
     ''' <summary>
     ''' Remove all information related to a movie from the database.
