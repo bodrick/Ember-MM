@@ -357,6 +357,9 @@ Public Class EmberTMDBScraperModule
 		Dim aScrapeImages As ScrapeImages
 
 		LoadSettings()
+		If String.IsNullOrEmpty(DBMovie.Movie.IDMovieDB) Then
+			_TMDBg.GetMovieID(DBMovie)
+		End If
 		Trailer = New Trailers(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
 		Dim saveModifier As Structures.ScrapeModifier = Master.GlobalScrapeMod
 		Master.GlobalScrapeMod = Functions.ScrapeModifierAndAlso(Master.GlobalScrapeMod, ConfigScrapeModifier)
@@ -364,7 +367,6 @@ Public Class EmberTMDBScraperModule
 		Dim doSave As Boolean = False
 
 		aScrapeImages = New ScrapeImages(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
-
 		If Master.GlobalScrapeMod.Poster Then
 			Poster.Clear()
 			If Poster.IsAllowedToDownload(DBMovie, Enums.ImageType.Posters) Then

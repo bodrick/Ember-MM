@@ -118,6 +118,27 @@ Namespace TMDBg
 			End While
 		End Sub
 
+		Public Sub GetMovieID(ByRef DBMovie As Structures.DBMovie)
+			Try
+				Dim Movie As WatTmdb.V3.TmdbMovie
+				Dim MovieE As WatTmdb.V3.TmdbMovie
+
+				If bwTMDBg.CancellationPending Then Return
+
+				Movie = _TMDBApi.GetMovieByIMDB(DBMovie.Movie.ID, _MySettings.TMDBLanguage)
+				MovieE = _TMDBApiE.GetMovieByIMDB(DBMovie.Movie.ID)
+				If IsNothing(Movie) AndAlso Not _MySettings.FallBackEng Then
+					Return
+				End If
+
+				DBMovie.Movie.IDMovieDB = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
+
+			Catch ex As Exception
+				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+			End Try
+
+		End Sub
+
 		Public Function GetMovieInfo(ByVal strID As String, ByRef IMDBMovie As MediaContainers.Movie, ByVal FullCrew As Boolean, ByVal FullCast As Boolean, ByVal GetPoster As Boolean, ByVal Options As Structures.ScrapeOptions, ByVal IsSearch As Boolean) As Boolean
 			Try
 				Dim Movie As WatTmdb.V3.TmdbMovie
@@ -137,8 +158,8 @@ Namespace TMDBg
 					Return False
 				End If
 
-				IMDBMovie.ID = Movie.imdb_id
-				IMDBMovie.IDMovieDB = Movie.id.ToString
+				IMDBMovie.ID = CStr(IIf(String.IsNullOrEmpty(Movie.imdb_id) AndAlso _MySettings.FallBackEng, MovieE.imdb_id, Movie.imdb_id))
+				IMDBMovie.IDMovieDB = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
 
 				If bwTMDBg.CancellationPending Or IsNothing(Movie) Then Return Nothing
 
@@ -246,12 +267,12 @@ Namespace TMDBg
 						End If
 					End If
 
-						IMDBMovie.Trailer = ""
-						If Not IsNothing(Trailers) AndAlso Not IsNothing(Trailers.youtube) Then
-							If Trailers.youtube.Count > 0 Then
-								IMDBMovie.Trailer = "http://www.youtube.com/watch?hd=1&v=" & Trailers.youtube(0).source
-							End If
+					IMDBMovie.Trailer = ""
+					If Not IsNothing(Trailers) AndAlso Not IsNothing(Trailers.youtube) Then
+						If Trailers.youtube.Count > 0 Then
+							IMDBMovie.Trailer = "http://www.youtube.com/watch?hd=1&v=" & Trailers.youtube(0).source
 						End If
+					End If
 
 				End If
 
