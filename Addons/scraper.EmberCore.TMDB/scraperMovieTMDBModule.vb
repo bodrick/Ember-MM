@@ -702,6 +702,9 @@ Public Class EmberTMDBScraperModule
 	End Function
 
 	Function SelectImageOfType(ByRef mMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.SelectImageOfType
+		If String.IsNullOrEmpty(mMovie.Movie.IDMovieDB) Then
+			_TMDBg.GetMovieID(mMovie)
+		End If
 		If preload AndAlso _DLType = Enums.ImageType.Fanart AndAlso Not IsNothing(dFImgSelect) Then
 			pResults = dFImgSelect.ShowDialog()
 			dFImgSelect = Nothing
