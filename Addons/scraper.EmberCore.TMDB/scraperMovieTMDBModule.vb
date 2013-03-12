@@ -138,7 +138,7 @@ Public Class EmberTMDBScraperModule
 	Function DownloadTrailer(ByRef DBMovie As Structures.DBMovie, ByRef sURL As String) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.DownloadTrailer
 		Using dTrailer As New dlgTrailer(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
 
-			sURL = dTrailer.ShowDialog(DBMovie.Movie.IDMovieDB, DBMovie.Filename)
+			sURL = dTrailer.ShowDialog(DBMovie.Movie.TMDBID, DBMovie.Filename)
 		End Using
 		Return New Interfaces.ModuleResult With {.breakChain = False}
 	End Function
@@ -357,7 +357,7 @@ Public Class EmberTMDBScraperModule
 		Dim aScrapeImages As ScrapeImages
 
 		LoadSettings()
-		If String.IsNullOrEmpty(DBMovie.Movie.IDMovieDB) Then
+		If String.IsNullOrEmpty(DBMovie.Movie.TMDBID) Then
 			_TMDBg.GetMovieID(DBMovie)
 		End If
 		Trailer = New Trailers(_TMDBConf, _TMDBConfE, _TMDBApi, _TMDBApiE, _MySettings)
@@ -371,7 +371,7 @@ Public Class EmberTMDBScraperModule
 			Poster.Clear()
 			If Poster.IsAllowedToDownload(DBMovie, Enums.ImageType.Posters) Then
 				pResults = New Containers.ImgResult
-				If aScrapeImages.GetPreferredImage(Poster, DBMovie.Movie.ID, DBMovie.Movie.IDMovieDB, Enums.ImageType.Posters, pResults, DBMovie.Filename, False, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
+				If aScrapeImages.GetPreferredImage(Poster, DBMovie.Movie.ID, DBMovie.Movie.TMDBID, Enums.ImageType.Posters, pResults, DBMovie.Filename, False, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
 					If Not IsNothing(Poster.Image) Then
 						pResults.ImagePath = Poster.SaveAsPoster(DBMovie)
 						If Not String.IsNullOrEmpty(pResults.ImagePath) Then
@@ -403,7 +403,7 @@ Public Class EmberTMDBScraperModule
 			If Fanart.IsAllowedToDownload(DBMovie, Enums.ImageType.Fanart) Then
 				fResults = New Containers.ImgResult
 				didEts = True
-				If aScrapeImages.GetPreferredImage(Fanart, DBMovie.Movie.IMDBID, DBMovie.Movie.IDMovieDB, Enums.ImageType.Fanart, fResults, DBMovie.Filename, Master.GlobalScrapeMod.Extra, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
+				If aScrapeImages.GetPreferredImage(Fanart, DBMovie.Movie.IMDBID, DBMovie.Movie.TMDBID, Enums.ImageType.Fanart, fResults, DBMovie.Filename, Master.GlobalScrapeMod.Extra, If(ScrapeType = Enums.ScrapeType.FullAsk OrElse ScrapeType = Enums.ScrapeType.NewAsk OrElse ScrapeType = Enums.ScrapeType.MarkAsk OrElse ScrapeType = Enums.ScrapeType.UpdateAsk, True, False)) Then
 					If Not IsNothing(Fanart.Image) Then
 						fResults.ImagePath = Fanart.SaveAsFanart(DBMovie)
 						If Not String.IsNullOrEmpty(fResults.ImagePath) Then
@@ -431,7 +431,7 @@ Public Class EmberTMDBScraperModule
 			End If
 		End If
 		If Master.GlobalScrapeMod.Trailer AndAlso _MySettings.DownloadTrailers Then
-			tURL = Trailer.DownloadSingleTrailer(DBMovie.Filename, DBMovie.Movie.IDMovieDB, DBMovie.isSingle, DBMovie.Movie.Trailer)
+			tURL = Trailer.DownloadSingleTrailer(DBMovie.Filename, DBMovie.Movie.TMDBID, DBMovie.isSingle, DBMovie.Movie.Trailer)
 			If Not String.IsNullOrEmpty(tURL) Then
 				If tURL.Substring(0, 22) = "http://www.youtube.com" Then
 					If AdvancedSettings.GetBooleanSetting("UseTMDBTrailerXBMC", False) Then
@@ -450,7 +450,7 @@ Public Class EmberTMDBScraperModule
 		If Master.GlobalScrapeMod.Extra Then
 			If Master.eSettings.AutoET AndAlso DBMovie.isSingle Then
 				Try
-					aScrapeImages.GetPreferredFAasET(DBMovie.Movie.IDMovieDB, DBMovie.Filename)
+					aScrapeImages.GetPreferredFAasET(DBMovie.Movie.TMDBID, DBMovie.Filename)
 					RaiseEvent MovieScraperEvent(Enums.MovieScraperEventType.ThumbsItem, True)
 				Catch ex As Exception
 				End Try
@@ -702,7 +702,7 @@ Public Class EmberTMDBScraperModule
 	End Function
 
 	Function SelectImageOfType(ByRef mMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As Interfaces.ModuleResult Implements Interfaces.EmberMovieScraperModule.SelectImageOfType
-		If String.IsNullOrEmpty(mMovie.Movie.IDMovieDB) Then
+		If String.IsNullOrEmpty(mMovie.Movie.TMDBID) Then
 			_TMDBg.GetMovieID(mMovie)
 		End If
 		If preload AndAlso _DLType = Enums.ImageType.Fanart AndAlso Not IsNothing(dFImgSelect) Then

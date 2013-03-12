@@ -252,9 +252,9 @@ Public Class dlgTMDBSearchResults
 				Me.txtOutline.Text = Master.tmpMovie.Outline
 				Me.lblIMDB.Text = Master.tmpMovie.IMDBID
 
-				If _PosterCache.ContainsKey(Master.tmpMovie.IDMovieDB) Then
+				If _PosterCache.ContainsKey(Master.tmpMovie.TMDBID) Then
 					'just set it
-					Me.pbPoster.Image = _PosterCache(Master.tmpMovie.IDMovieDB)
+					Me.pbPoster.Image = _PosterCache(Master.tmpMovie.TMDBID)
 				Else
 					'go download it, if available
 					If Not String.IsNullOrEmpty(sPoster) Then
@@ -264,14 +264,14 @@ Public Class dlgTMDBSearchResults
 						pnlPicStatus.Visible = True
 						Me.bwDownloadPic = New System.ComponentModel.BackgroundWorker
 						Me.bwDownloadPic.WorkerSupportsCancellation = True
-						Me.bwDownloadPic.RunWorkerAsync(New Arguments With {.pURL = sPoster, .IMDBId = Master.tmpMovie.IDMovieDB})
+						Me.bwDownloadPic.RunWorkerAsync(New Arguments With {.pURL = sPoster, .IMDBId = Master.tmpMovie.TMDBID})
 					End If
 
 				End If
 
 				'store clone of tmpmovie
-				If Not _InfoCache.ContainsKey(Master.tmpMovie.IDMovieDB) Then
-					_InfoCache.Add(Master.tmpMovie.IDMovieDB, GetMovieClone(Master.tmpMovie))
+				If Not _InfoCache.ContainsKey(Master.tmpMovie.TMDBID) Then
+					_InfoCache.Add(Master.tmpMovie.TMDBID, GetMovieClone(Master.tmpMovie))
 				End If
 
 
@@ -302,7 +302,7 @@ Public Class dlgTMDBSearchResults
 				'M.Matches.Sort()
 				For Each Movie As MediaContainers.Movie In M.Matches
 					'TnP.Nodes.Add(New TreeNode() With {.Text = String.Concat(Movie.Title, If(Not String.IsNullOrEmpty(Movie.Year), String.Format(" ({0})", Movie.Year), String.Empty)), .Tag = Movie.IMDBID})
-					Me.tvResults.Nodes.Add(New TreeNode() With {.Text = String.Concat(Movie.Title, If(Not String.IsNullOrEmpty(Movie.Year), String.Format(" ({0})", Movie.Year), String.Empty)), .Tag = Movie.IDMovieDB})
+					Me.tvResults.Nodes.Add(New TreeNode() With {.Text = String.Concat(Movie.Title, If(Not String.IsNullOrEmpty(Movie.Year), String.Format(" ({0})", Movie.Year), String.Empty)), .Tag = Movie.TMDBID})
 				Next
 				'TnP.Expand()
 				'Me.tvResults.Nodes.Add(TnP)

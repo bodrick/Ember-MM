@@ -131,7 +131,7 @@ Namespace TMDBg
 					Return
 				End If
 
-				DBMovie.Movie.IDMovieDB = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
+				DBMovie.Movie.TMDBID = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
 
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -159,7 +159,7 @@ Namespace TMDBg
 				End If
 
 				IMDBMovie.ID = CStr(IIf(String.IsNullOrEmpty(Movie.imdb_id) AndAlso _MySettings.FallBackEng, MovieE.imdb_id, Movie.imdb_id))
-				IMDBMovie.IDMovieDB = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
+				IMDBMovie.TMDBID = CStr(IIf(String.IsNullOrEmpty(Movie.id.ToString) AndAlso _MySettings.FallBackEng, MovieE.id.ToString, Movie.id.ToString))
 
 				If bwTMDBg.CancellationPending Or IsNothing(Movie) Then Return Nothing
 
@@ -661,7 +661,7 @@ Namespace TMDBg
 							t2 = CStr(IIf(String.IsNullOrEmpty(aMovie.title), "", aMovie.title))
 							t3 = Left(CStr(IIf(String.IsNullOrEmpty(aMovie.release_date), "", aMovie.release_date)), 4)
 							Dim lNewMovie As MediaContainers.Movie = New MediaContainers.Movie(t1, t2, t3, 0)
-							lNewMovie.IDMovieDB = aMI.id.ToString
+							lNewMovie.TMDBID = aMI.id.ToString
 							R.Matches.Add(lNewMovie)
 						Next
 						Page = Page + 1

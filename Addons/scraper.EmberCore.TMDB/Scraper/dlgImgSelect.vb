@@ -856,7 +856,7 @@ Public Class dlgImgSelect
 
 			Me._tmdbDone = False
 
-			Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "backdrop")
+			Me.TMDB.GetImagesAsync(tMovie.Movie.TMDBID, "backdrop")
 
 			If _MySettings.UseFANARTTV Then
 				Me.lblDL3.Text = Master.eLang.GetString(120, "Retrieving data from Fanart.tv...")
@@ -938,7 +938,7 @@ Public Class dlgImgSelect
 
 				Me._tmdbDone = False
 
-				Me.TMDB.GetImagesAsync(tMovie.Movie.IDMovieDB, "poster")
+				Me.TMDB.GetImagesAsync(tMovie.Movie.TMDBID, "poster")
 
 				If _MySettings.UseIMDB Then
 					Me.lblDL6.Text = Master.eLang.GetString(117, "Retrieving data from IMDB.com...")

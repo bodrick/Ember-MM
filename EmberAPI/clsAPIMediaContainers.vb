@@ -414,7 +414,8 @@ Namespace MediaContainers
         Private _ysets As New SetContainer
         Private _fileInfo As New MediaInfo.Fileinfo
         Private _lev As Integer
-        Private _videosource As String
+		Private _videosource As String
+		Private _TMDBID As String
 #End Region 'Fields
 
 #Region "Constructors"
@@ -496,7 +497,8 @@ Namespace MediaContainers
             Set(ByVal value As String)
                 Me.MovieID.ID = value
             End Set
-        End Property
+		End Property
+
         <XmlIgnore()> _
         Public Property IDMovieDB() As String
             Get
@@ -506,6 +508,16 @@ Namespace MediaContainers
                 Me.MovieID.IDMovieDB = value
             End Set
         End Property
+
+		<XmlIgnore()> _
+		Public Property TMDBID() As String
+			Get
+				Return Me._TMDBID
+			End Get
+			Set(ByVal value As String)
+				Me._TMDBID = value
+			End Set
+		End Property
 
         <XmlIgnore()> _
         Public Property IMDBID() As String
