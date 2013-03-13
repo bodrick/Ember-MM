@@ -395,8 +395,14 @@ Public Class Images
         If Not String.IsNullOrEmpty(sPath) AndAlso File.Exists(sPath) Then
             Try
                 Using fsImage As New FileStream(sPath, FileMode.Open, FileAccess.Read)
-					_ms.SetLength(fsImage.Length)
-					fsImage.Read(_ms.GetBuffer(), 0, Convert.ToInt32(fsImage.Length))
+					Dim StreamBuffer(Convert.ToInt32(fsImage.Length - 1)) As Byte
+
+					fsImage.Read(StreamBuffer, 0, StreamBuffer.Length)
+					_ms.Write(StreamBuffer, 0, StreamBuffer.Length)
+
+					StreamBuffer = Nothing
+					'_ms.SetLength(fsImage.Length)
+					'fsImage.Read(_ms.GetBuffer(), 0, Convert.ToInt32(fsImage.Length))
 					_ms.Flush()
 					_image = New Bitmap(_ms)
                 End Using

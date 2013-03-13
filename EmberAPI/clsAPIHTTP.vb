@@ -380,7 +380,8 @@ Public Class HTTP
 								bytesRead += SourceStream.Read(buffer, bytesRead, count - bytesRead)
 							Loop Until bytesRead = count
 							SourceStream.Close()
-							Me._ms = New MemoryStream(buffer)
+							Me._ms = New MemoryStream()
+							Me._ms.Write(buffer, 0, bytesRead)
 							'End Using
 							'Me._ms.SetLength(SourceStream.Length)
 							'SourceStream.Read(Me.ms.GetBuffer(), 0, Convert.ToInt32(SourceStream.Length))
