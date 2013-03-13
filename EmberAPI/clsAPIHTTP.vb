@@ -142,6 +142,7 @@ Public Class HTTP
 				Me._responseuri = wrResponse.ResponseUri.ToString
 			End Using
 		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error", False)
 		End Try
 
 		Return sResponse
@@ -332,6 +333,7 @@ Public Class HTTP
 
 			End Using
 		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error", False)
 		End Try
 
 		Return outFile
@@ -389,7 +391,8 @@ Public Class HTTP
 					End If
 				End Using
 			End If
-		Catch
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error", False)
 		End Try
 	End Sub
 
@@ -413,7 +416,8 @@ Public Class HTTP
 			Using wrResponse As HttpWebResponse = DirectCast(Me.wrRequest.GetResponse(), HttpWebResponse)
 				Return Functions.ReadStreamToEnd(wrResponse.GetResponseStream)
 			End Using
-		Catch
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error", False)
 		End Try
 
 		Return Nothing
