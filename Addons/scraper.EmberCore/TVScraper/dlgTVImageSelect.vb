@@ -80,22 +80,22 @@ Public Class dlgTVImageSelect
                     'no preferred size, just get any one of them
                     If IsNothing(tSP) Then tSP = ShowPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
-                    If Not IsNothing(tSP) Then
-                        Scraper.TVDBImages.ShowPoster.Image.Image = tSP.Image.Image
-                        Scraper.TVDBImages.ShowPoster.LocalFile = tSP.LocalFile
-                        Scraper.TVDBImages.ShowPoster.URL = tSP.URL
-                    Else
-                        'still nothing? try to get from generic posters
-                        Dim tSPg As Scraper.TVDBPoster = GenericPosterList.FirstOrDefault(Function(p) p.Language = Master.eSettings.TVDBLanguage AndAlso Not IsNothing(p.Image.Image))
+					If Not IsNothing(tSP) Then
+						Scraper.TVDBImages.ShowPoster.Image = tSP.Image
+						Scraper.TVDBImages.ShowPoster.LocalFile = tSP.LocalFile
+						Scraper.TVDBImages.ShowPoster.URL = tSP.URL
+					Else
+						'still nothing? try to get from generic posters
+						Dim tSPg As Scraper.TVDBPoster = GenericPosterList.FirstOrDefault(Function(p) p.Language = Master.eSettings.TVDBLanguage AndAlso Not IsNothing(p.Image.Image))
 
-                        If IsNothing(tSPg) Then tSPg = GenericPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
+						If IsNothing(tSPg) Then tSPg = GenericPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
-                        If Not IsNothing(tSPg) Then
-                            Scraper.TVDBImages.ShowPoster.Image.Image = tSPg.Image.Image
-                            Scraper.TVDBImages.ShowPoster.LocalFile = tSPg.LocalFile
-                            Scraper.TVDBImages.ShowPoster.URL = tSPg.URL
-                        End If
-                    End If
+						If Not IsNothing(tSPg) Then
+							Scraper.TVDBImages.ShowPoster.Image = tSPg.Image
+							Scraper.TVDBImages.ShowPoster.LocalFile = tSPg.LocalFile
+							Scraper.TVDBImages.ShowPoster.URL = tSPg.URL
+						End If
+					End If
                 Else
                     Dim tSPg As Scraper.TVDBPoster = GenericPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image) AndAlso Me.GetPosterDims(p.Size) = Master.eSettings.PreferredShowPosterSize AndAlso p.Language = Master.eSettings.TVDBLanguage)
 
@@ -109,7 +109,7 @@ Public Class dlgTVImageSelect
                     If IsNothing(tSPg) Then tSPg = GenericPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
                     If Not IsNothing(tSPg) Then
-                        Scraper.TVDBImages.ShowPoster.Image.Image = tSPg.Image.Image
+						Scraper.TVDBImages.ShowPoster.Image = tSPg.Image
                         Scraper.TVDBImages.ShowPoster.LocalFile = tSPg.LocalFile
                         Scraper.TVDBImages.ShowPoster.URL = tSPg.URL
                     Else
@@ -118,7 +118,7 @@ Public Class dlgTVImageSelect
                         If IsNothing(tSP) Then tSP = ShowPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
                         If Not IsNothing(tSP) Then
-                            Scraper.TVDBImages.ShowPoster.Image.Image = tSP.Image.Image
+							Scraper.TVDBImages.ShowPoster.Image = tSP.Image
                             Scraper.TVDBImages.ShowPoster.LocalFile = tSP.LocalFile
                             Scraper.TVDBImages.ShowPoster.URL = tSP.URL
                         End If
@@ -148,7 +148,7 @@ Public Class dlgTVImageSelect
                         Scraper.TVDBImages.ShowFanart.Image.FromWeb(tSF.URL)
                         If Not IsNothing(Scraper.TVDBImages.ShowFanart.Image.Image) Then
                             Directory.CreateDirectory(Directory.GetParent(tSF.LocalFile).FullName)
-                            Scraper.TVDBImages.ShowFanart.Image.Save(tSF.LocalFile)
+							Scraper.TVDBImages.ShowFanart.Image.Save(tSF.LocalFile, , , False)
                             Scraper.TVDBImages.ShowFanart.LocalFile = tSF.LocalFile
                             Scraper.TVDBImages.ShowFanart.URL = tSF.URL
                         End If
@@ -171,7 +171,7 @@ Public Class dlgTVImageSelect
                     If IsNothing(tSP) Then tSP = ShowPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
                     If Not IsNothing(tSP) Then
-                        Scraper.TVDBImages.AllSeasonPoster.Image.Image = tSP.Image.Image
+						Scraper.TVDBImages.AllSeasonPoster.Image = tSP.Image
                         Scraper.TVDBImages.AllSeasonPoster.LocalFile = tSP.LocalFile
                         Scraper.TVDBImages.AllSeasonPoster.URL = tSP.URL
                     Else
@@ -181,7 +181,7 @@ Public Class dlgTVImageSelect
                         If IsNothing(tSPg) Then tSPg = GenericPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
                         If Not IsNothing(tSPg) Then
-                            Scraper.TVDBImages.AllSeasonPoster.Image.Image = tSPg.Image.Image
+							Scraper.TVDBImages.AllSeasonPoster.Image = tSPg.Image
                             Scraper.TVDBImages.AllSeasonPoster.LocalFile = tSPg.LocalFile
                             Scraper.TVDBImages.AllSeasonPoster.URL = tSPg.URL
                         End If
@@ -195,7 +195,7 @@ Public Class dlgTVImageSelect
                     If IsNothing(tSPg) Then tSPg = GenericPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
                     If Not IsNothing(tSPg) Then
-                        Scraper.TVDBImages.AllSeasonPoster.Image.Image = tSPg.Image.Image
+						Scraper.TVDBImages.AllSeasonPoster.Image = tSPg.Image
                         Scraper.TVDBImages.AllSeasonPoster.LocalFile = tSPg.LocalFile
                         Scraper.TVDBImages.AllSeasonPoster.URL = tSPg.URL
                     Else
@@ -204,7 +204,7 @@ Public Class dlgTVImageSelect
                         If IsNothing(tSP) Then tSP = ShowPosterList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image))
 
                         If Not IsNothing(tSP) Then
-                            Scraper.TVDBImages.AllSeasonPoster.Image.Image = tSP.Image.Image
+							Scraper.TVDBImages.AllSeasonPoster.Image = tSP.Image
                             Scraper.TVDBImages.AllSeasonPoster.LocalFile = tSP.LocalFile
                             Scraper.TVDBImages.AllSeasonPoster.URL = tSP.URL
                         End If
@@ -225,9 +225,9 @@ Public Class dlgTVImageSelect
                             tSea = SeasonList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image) AndAlso p.Season = iSeason AndAlso p.Type = Master.eSettings.PreferredSeasonPosterSize AndAlso p.Language = Master.eSettings.TVDBLanguage)
                             If IsNothing(tSea) Then tSea = SeasonList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image) AndAlso p.Season = iSeason AndAlso p.Type = Master.eSettings.PreferredSeasonPosterSize)
                             If IsNothing(tSea) Then tSea = SeasonList.FirstOrDefault(Function(p) Not IsNothing(p.Image.Image) AndAlso p.Season = iSeason)
-                            If Not IsNothing(tSea) Then cSeason.Poster.Image = tSea.Image.Image
+							If Not IsNothing(tSea) Then cSeason.Poster = tSea.Image
                         End If
-                        If (Me._type = Enums.TVImageType.All OrElse Me._type = Enums.TVImageType.SeasonFanart) AndAlso Master.eSettings.SeasonFanartEnabled AndAlso IsNothing(cSeason.Fanart.Image.Image) AndAlso Not IsNothing(Scraper.TVDBImages.ShowFanart.Image.Image) Then cSeason.Fanart.Image.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+						If (Me._type = Enums.TVImageType.All OrElse Me._type = Enums.TVImageType.SeasonFanart) AndAlso Master.eSettings.SeasonFanartEnabled AndAlso IsNothing(cSeason.Fanart.Image.Image) AndAlso Not IsNothing(Scraper.TVDBImages.ShowFanart.Image.Image) Then cSeason.Fanart.Image = Scraper.TVDBImages.ShowFanart.Image
 
                         If Me.bwLoadImages.CancellationPending Then
                             Return True
@@ -253,7 +253,7 @@ Public Class dlgTVImageSelect
                             If Not String.IsNullOrEmpty(Episode.EpFanartPath) Then
                                 Episode.TVEp.Fanart.FromFile(Episode.EpFanartPath)
                             ElseIf Not IsNothing(Scraper.TVDBImages.ShowFanart.Image.Image) Then
-                                Episode.TVEp.Fanart.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+								Episode.TVEp.Fanart = Scraper.TVDBImages.ShowFanart.Image
                             End If
                         End If
 
@@ -284,77 +284,78 @@ Public Class dlgTVImageSelect
         Return MyBase.ShowDialog
     End Function
 
-    Public Overloads Function ShowDialog(ByVal ShowID As Integer, ByVal Type As Enums.TVImageType, ByVal Season As Integer, ByVal CurrentImage As Image) As Image
-        Me._id = ShowID
-        Me._type = Type
-        Me._season = Season
-        Me.pbCurrent.Image = CurrentImage
+	Public Overloads Function ShowDialog(ByVal ShowID As Integer, ByVal Type As Enums.TVImageType, ByVal Season As Integer, ByVal CurrentImage As Images) As Images
+		Me._id = ShowID
+		Me._type = Type
+		Me._season = Season
+		Me.pbCurrent.Image = CurrentImage.Image
+		Me.pbCurrent.Tag = CurrentImage
 
-        If MyBase.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Return Me.pbCurrent.Image
-        Else
-            Return Nothing
-        End If
-    End Function
+		If MyBase.ShowDialog = Windows.Forms.DialogResult.OK Then
+			Return CType(Me.pbCurrent.Tag, Images)
+		Else
+			Return Nothing
+		End If
+	End Function
 
-    Private Sub AddImage(ByVal iImage As Image, ByVal sDescription As String, ByVal iIndex As Integer, ByVal fTag As ImageTag)
-        Try
-            ReDim Preserve Me.pnlImage(iIndex)
-            ReDim Preserve Me.pbImage(iIndex)
-            ReDim Preserve Me.lblImage(iIndex)
-            Me.pnlImage(iIndex) = New Panel()
-            Me.pbImage(iIndex) = New PictureBox()
-            Me.lblImage(iIndex) = New Label()
-            Me.pbImage(iIndex).Name = iIndex.ToString
-            Me.pnlImage(iIndex).Name = iIndex.ToString
-            Me.lblImage(iIndex).Name = iIndex.ToString
-            Me.pnlImage(iIndex).Size = New Size(187, 187)
-            Me.pbImage(iIndex).Size = New Size(181, 151)
-            Me.lblImage(iIndex).Size = New Size(181, 30)
-            Me.pnlImage(iIndex).BackColor = Color.White
-            Me.pnlImage(iIndex).BorderStyle = BorderStyle.FixedSingle
-            Me.pbImage(iIndex).SizeMode = PictureBoxSizeMode.Zoom
-            Me.lblImage(iIndex).AutoSize = False
-            Me.lblImage(iIndex).BackColor = Color.White
-            Me.lblImage(iIndex).TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-            Me.lblImage(iIndex).Text = sDescription
-            Me.pbImage(iIndex).Image = iImage
-            Me.pnlImage(iIndex).Left = iLeft
-            Me.pbImage(iIndex).Left = 3
-            Me.lblImage(iIndex).Left = 0
-            Me.pnlImage(iIndex).Top = iTop
-            Me.pbImage(iIndex).Top = 3
-            Me.lblImage(iIndex).Top = 151
-            Me.pnlImage(iIndex).Tag = fTag
-            Me.pbImage(iIndex).Tag = fTag
-            Me.lblImage(iIndex).Tag = fTag
-            Me.pnlImages.Controls.Add(Me.pnlImage(iIndex))
-            Me.pnlImage(iIndex).Controls.Add(Me.pbImage(iIndex))
-            Me.pnlImage(iIndex).Controls.Add(Me.lblImage(iIndex))
-            Me.pnlImage(iIndex).BringToFront()
-            AddHandler pbImage(iIndex).Click, AddressOf pbImage_Click
-            AddHandler pbImage(iIndex).DoubleClick, AddressOf pbImage_DoubleClick
-            AddHandler pnlImage(iIndex).Click, AddressOf pnlImage_Click
-            AddHandler lblImage(iIndex).Click, AddressOf lblImage_Click
+	Private Sub AddImage(ByVal sDescription As String, ByVal iIndex As Integer, ByVal fTag As ImageTag)
+		Try
+			ReDim Preserve Me.pnlImage(iIndex)
+			ReDim Preserve Me.pbImage(iIndex)
+			ReDim Preserve Me.lblImage(iIndex)
+			Me.pnlImage(iIndex) = New Panel()
+			Me.pbImage(iIndex) = New PictureBox()
+			Me.lblImage(iIndex) = New Label()
+			Me.pbImage(iIndex).Name = iIndex.ToString
+			Me.pnlImage(iIndex).Name = iIndex.ToString
+			Me.lblImage(iIndex).Name = iIndex.ToString
+			Me.pnlImage(iIndex).Size = New Size(187, 187)
+			Me.pbImage(iIndex).Size = New Size(181, 151)
+			Me.lblImage(iIndex).Size = New Size(181, 30)
+			Me.pnlImage(iIndex).BackColor = Color.White
+			Me.pnlImage(iIndex).BorderStyle = BorderStyle.FixedSingle
+			Me.pbImage(iIndex).SizeMode = PictureBoxSizeMode.Zoom
+			Me.lblImage(iIndex).AutoSize = False
+			Me.lblImage(iIndex).BackColor = Color.White
+			Me.lblImage(iIndex).TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+			Me.lblImage(iIndex).Text = sDescription
+			Me.pbImage(iIndex).Image = fTag.ImageObj.Image
+			Me.pnlImage(iIndex).Left = iLeft
+			Me.pbImage(iIndex).Left = 3
+			Me.lblImage(iIndex).Left = 0
+			Me.pnlImage(iIndex).Top = iTop
+			Me.pbImage(iIndex).Top = 3
+			Me.lblImage(iIndex).Top = 151
+			Me.pnlImage(iIndex).Tag = fTag
+			Me.pbImage(iIndex).Tag = fTag
+			Me.lblImage(iIndex).Tag = fTag
+			Me.pnlImages.Controls.Add(Me.pnlImage(iIndex))
+			Me.pnlImage(iIndex).Controls.Add(Me.pbImage(iIndex))
+			Me.pnlImage(iIndex).Controls.Add(Me.lblImage(iIndex))
+			Me.pnlImage(iIndex).BringToFront()
+			AddHandler pbImage(iIndex).Click, AddressOf pbImage_Click
+			AddHandler pbImage(iIndex).DoubleClick, AddressOf pbImage_DoubleClick
+			AddHandler pnlImage(iIndex).Click, AddressOf pnlImage_Click
+			AddHandler lblImage(iIndex).Click, AddressOf lblImage_Click
 
-            AddHandler pbImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
-            AddHandler pnlImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
-            AddHandler lblImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			AddHandler pbImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			AddHandler pnlImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			AddHandler lblImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
 
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
 
-        Me.iCounter += 1
+		Me.iCounter += 1
 
-        If Me.iCounter = 3 Then
-            Me.iCounter = 0
-            Me.iLeft = 5
-            Me.iTop += 192
-        Else
-            Me.iLeft += 192
-        End If
-    End Sub
+		If Me.iCounter = 3 Then
+			Me.iCounter = 0
+			Me.iLeft = 5
+			Me.iTop += 192
+		Else
+			Me.iLeft += 192
+		End If
+	End Sub
 
     Private Sub btnCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCancel.Click
         If Me.bwLoadData.IsBusy Then Me.bwLoadData.CancelAsync()
@@ -387,7 +388,7 @@ Public Class dlgTVImageSelect
                 Scraper.TVDBImages.ShowFanart.Image.FromWeb(Scraper.TVDBImages.ShowFanart.URL)
                 If Not IsNothing(Scraper.TVDBImages.ShowFanart.Image.Image) Then
                     Directory.CreateDirectory(Directory.GetParent(Scraper.TVDBImages.ShowFanart.LocalFile).FullName)
-                    Scraper.TVDBImages.ShowFanart.Image.Save(Scraper.TVDBImages.ShowFanart.LocalFile)
+					Scraper.TVDBImages.ShowFanart.Image.Save(Scraper.TVDBImages.ShowFanart.LocalFile, , , False)
                     Master.currShow.ShowFanartPath = Scraper.TVDBImages.ShowFanart.LocalFile
                 End If
             End If
@@ -398,32 +399,36 @@ Public Class dlgTVImageSelect
             Me.lblStatus.Text = Master.eLang.GetString(87, "Downloading Fullsize Fanart Image...")
             Me.pbStatus.Style = ProgressBarStyle.Marquee
             Me.pnlStatus.Visible = True
-            If Not String.IsNullOrEmpty(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile) AndAlso File.Exists(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile) Then
-                Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.FromFile(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile)
-                Me.pbCurrent.Image = Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Image
-            ElseIf Not String.IsNullOrEmpty(Scraper.TVDBImages.SeasonImageList(0).Fanart.URL) AndAlso Not String.IsNullOrEmpty(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile) Then
-                Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Clear()
-                Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.FromWeb(Scraper.TVDBImages.SeasonImageList(0).Fanart.URL)
-                If Not IsNothing(Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Image) Then
-                    Directory.CreateDirectory(Directory.GetParent(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile).FullName)
-                    Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Save(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile)
-                    Me.pbCurrent.Image = Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Image
-                End If
-            End If
+			If Not String.IsNullOrEmpty(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile) AndAlso File.Exists(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile) Then
+				Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.FromFile(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile)
+				Me.pbCurrent.Image = Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Image
+				Me.pbCurrent.Tag = Scraper.TVDBImages.SeasonImageList(0).Fanart.Image
+			ElseIf Not String.IsNullOrEmpty(Scraper.TVDBImages.SeasonImageList(0).Fanart.URL) AndAlso Not String.IsNullOrEmpty(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile) Then
+				Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Clear()
+				Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.FromWeb(Scraper.TVDBImages.SeasonImageList(0).Fanart.URL)
+				If Not IsNothing(Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Image) Then
+					Directory.CreateDirectory(Directory.GetParent(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile).FullName)
+					Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Save(Scraper.TVDBImages.SeasonImageList(0).Fanart.LocalFile, , , False)
+					Me.pbCurrent.Image = Scraper.TVDBImages.SeasonImageList(0).Fanart.Image.Image
+					Me.pbCurrent.Tag = Scraper.TVDBImages.SeasonImageList(0).Fanart.Image
+				End If
+			End If
         ElseIf (Me._type = Enums.TVImageType.ShowFanart OrElse Me._type = Enums.TVImageType.EpisodeFanart) AndAlso Me._fanartchanged Then
             Me.lblStatus.Text = Master.eLang.GetString(87, "Downloading Fullsize Fanart Image...")
             Me.pbStatus.Style = ProgressBarStyle.Marquee
             Me.pnlStatus.Visible = True
             If Not String.IsNullOrEmpty(Scraper.TVDBImages.ShowFanart.LocalFile) AndAlso File.Exists(Scraper.TVDBImages.ShowFanart.LocalFile) Then
                 Scraper.TVDBImages.ShowFanart.Image.FromFile(Scraper.TVDBImages.ShowFanart.LocalFile)
-                Me.pbCurrent.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+				Me.pbCurrent.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+				Me.pbCurrent.Tag = Scraper.TVDBImages.ShowFanart.Image
             ElseIf Not String.IsNullOrEmpty(Scraper.TVDBImages.ShowFanart.URL) AndAlso Not String.IsNullOrEmpty(Scraper.TVDBImages.ShowFanart.LocalFile) Then
                 Scraper.TVDBImages.ShowFanart.Image.Clear()
                 Scraper.TVDBImages.ShowFanart.Image.FromWeb(Scraper.TVDBImages.ShowFanart.URL)
                 If Not IsNothing(Scraper.TVDBImages.ShowFanart.Image.Image) Then
                     Directory.CreateDirectory(Directory.GetParent(Scraper.TVDBImages.ShowFanart.LocalFile).FullName)
-                    Scraper.TVDBImages.ShowFanart.Image.Save(Scraper.TVDBImages.ShowFanart.LocalFile)
-                    Me.pbCurrent.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+					Scraper.TVDBImages.ShowFanart.Image.Save(Scraper.TVDBImages.ShowFanart.LocalFile, , , False)
+					Me.pbCurrent.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+					Me.pbCurrent.Tag = Scraper.TVDBImages.ShowFanart.Image
                 End If
             End If
         End If
@@ -453,21 +458,21 @@ Public Class dlgTVImageSelect
 
         Select Case Me._type
             Case Enums.TVImageType.AllSeasonPoster
-                Scraper.TVDBImages.AllSeasonPoster.Image.Image = Me.pbCurrent.Image
+				Scraper.TVDBImages.AllSeasonPoster.Image = CType(Me.pbCurrent.Tag, Images)
             Case Enums.TVImageType.SeasonFanart
                 cSI = New Scraper.TVDBSeasonImage
                 cSI.Season = Me._season
-                cSI.Fanart.Image.Image = Me.pbCurrent.Image
+				cSI.Fanart.Image = CType(Me.pbCurrent.Tag, Images)
                 Scraper.TVDBImages.SeasonImageList.Add(cSI)
             Case Enums.TVImageType.SeasonPoster
                 cSI = New Scraper.TVDBSeasonImage
                 cSI.Season = Me._season
-                cSI.Poster.Image = Me.pbCurrent.Image
+				cSI.Poster = CType(Me.pbCurrent.Tag, Images)
                 Scraper.TVDBImages.SeasonImageList.Add(cSI)
             Case Enums.TVImageType.ShowFanart, Enums.TVImageType.EpisodeFanart
-                Scraper.TVDBImages.ShowFanart.Image.Image = Me.pbCurrent.Image
+				Scraper.TVDBImages.ShowFanart.Image = CType(Me.pbCurrent.Tag, Images)
             Case Enums.TVImageType.ShowPoster
-                Scraper.TVDBImages.ShowPoster.Image.Image = Me.pbCurrent.Image
+				Scraper.TVDBImages.ShowPoster.Image = CType(Me.pbCurrent.Tag, Images)
             Case Enums.TVImageType.All
 
                 If _withcurrent Then
@@ -652,7 +657,8 @@ Public Class dlgTVImageSelect
             Me.iCounter = 0
             Me.iLeft = 5
             Me.iTop = 5
-            Me.pbCurrent.Image = Nothing
+			Me.pbCurrent.Image = Nothing
+			Me.pbCurrent.Tag = Nothing
 
             If Me.pnlImages.Controls.Count > 0 Then
                 For i As Integer = UBound(Me.pnlImage) To 0 Step -1
@@ -684,25 +690,25 @@ Public Class dlgTVImageSelect
         Me.bwLoadData.RunWorkerAsync()
     End Sub
 
-    Private Sub DoSelect(ByVal iIndex As Integer, ByVal SelImage As Image, ByVal SelTag As ImageTag)
-        Try
-            For i As Integer = 0 To UBound(Me.pnlImage)
-                Me.pnlImage(i).BackColor = Color.White
-                Me.lblImage(i).BackColor = Color.White
-                Me.lblImage(i).ForeColor = Color.Black
-            Next
+	Private Sub DoSelect(ByVal iIndex As Integer, ByVal SelTag As ImageTag)
+		Try
+			For i As Integer = 0 To UBound(Me.pnlImage)
+				Me.pnlImage(i).BackColor = Color.White
+				Me.lblImage(i).BackColor = Color.White
+				Me.lblImage(i).ForeColor = Color.Black
+			Next
 
-            Me.pnlImage(iIndex).BackColor = Color.Blue
-            Me.lblImage(iIndex).BackColor = Color.Blue
-            Me.lblImage(iIndex).ForeColor = Color.White
+			Me.pnlImage(iIndex).BackColor = Color.Blue
+			Me.lblImage(iIndex).BackColor = Color.Blue
+			Me.lblImage(iIndex).ForeColor = Color.White
 
-            SetImage(SelImage, SelTag)
+			SetImage(SelTag)
 
-            Me.CheckCurrentImage()
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
-    End Sub
+			Me.CheckCurrentImage()
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
+	End Sub
 
     Private Function DownloadAllImages() As Boolean
         Dim iProgress As Integer = 1
@@ -745,7 +751,7 @@ Public Class dlgTVImageSelect
                                 Seas.Image.FromWeb(Seas.URL)
                                 If Not IsNothing(Seas.Image.Image) Then
                                     Directory.CreateDirectory(Directory.GetParent(Seas.LocalFile).FullName)
-                                    Seas.Image.Save(Seas.LocalFile)
+									Seas.Image.Save(Seas.LocalFile, , , False)
                                     SeasonList.Add(Seas)
                                 End If
                             End If
@@ -774,12 +780,12 @@ Public Class dlgTVImageSelect
                                 SPost.Image.FromWeb(SPost.URL)
                                 If Not IsNothing(SPost.Image.Image) Then
                                     Directory.CreateDirectory(Directory.GetParent(SPost.LocalFile).FullName)
-                                    SPost.Image.Save(SPost.LocalFile)
+									SPost.Image.Save(SPost.LocalFile, , , False)
                                     ShowPosterList.Add(SPost)
                                 End If
                             End If
                         Else
-                            SPost.Image.FromFile(SPost.LocalFile)
+							SPost.Image.FromFile(SPost.LocalFile)
                             ShowPosterList.Add(SPost)
                         End If
 
@@ -803,7 +809,7 @@ Public Class dlgTVImageSelect
                                 SFan.Image.FromWeb(SFan.ThumbnailURL)
                                 If Not IsNothing(SFan.Image.Image) Then
                                     Directory.CreateDirectory(Directory.GetParent(SFan.LocalThumb).FullName)
-                                    SFan.Image.Image.Save(SFan.LocalThumb)
+									SFan.Image.Save(SFan.LocalThumb, , , False)
                                     FanartList.Add(SFan)
                                 End If
                             End If
@@ -833,7 +839,7 @@ Public Class dlgTVImageSelect
                                 Post.Image.FromWeb(Post.URL)
                                 If Not IsNothing(Post.Image.Image) Then
                                     Directory.CreateDirectory(Directory.GetParent(Post.LocalFile).FullName)
-                                    Post.Image.Save(Post.LocalFile)
+									Post.Image.Save(Post.LocalFile, , , False)
                                     GenericPosterList.Add(Post)
                                 End If
                             End If
@@ -877,7 +883,7 @@ Public Class dlgTVImageSelect
                 tImage.FromWeb(iTag.URL)
                 If Not IsNothing(tImage.Image) Then
                     Directory.CreateDirectory(Directory.GetParent(iTag.Path).FullName)
-                    tImage.Save(iTag.Path)
+					tImage.Save(iTag.Path, , , False)
                 End If
 
                 sHTTP = Nothing
@@ -955,7 +961,7 @@ Public Class dlgTVImageSelect
 
     Private Sub lblImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim iindex As Integer = Convert.ToInt32(DirectCast(sender, Label).Name)
-        Me.DoSelect(iindex, Me.pbImage(iindex).Image, DirectCast(DirectCast(sender, Label).Tag, ImageTag))
+		Me.DoSelect(iindex, DirectCast(DirectCast(sender, Label).Tag, ImageTag))
     End Sub
 
     Private Sub MouseWheelEvent(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
@@ -975,12 +981,13 @@ Public Class dlgTVImageSelect
     End Sub
 
     Private Sub pbDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pbDelete.Click
-        Me.pbCurrent.Image = Nothing
-        Me.SetImage(Nothing, New ImageTag)
+		Me.pbCurrent.Image = Nothing
+		Me.pbCurrent.Tag = Nothing
+		Me.SetImage(New ImageTag)
     End Sub
 
     Private Sub pbImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
-        Me.DoSelect(Convert.ToInt32(DirectCast(sender, PictureBox).Name), DirectCast(sender, PictureBox).Image, DirectCast(DirectCast(sender, PictureBox).Tag, ImageTag))
+		Me.DoSelect(Convert.ToInt32(DirectCast(sender, PictureBox).Name), DirectCast(DirectCast(sender, PictureBox).Tag, ImageTag))
     End Sub
 
     Private Sub pbImage_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -998,74 +1005,80 @@ Public Class dlgTVImageSelect
     Private Sub pbUndo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles pbUndo.Click
         If Me.SelSeason = -999 Then
             If Me.SelIsPoster Then
-                Scraper.TVDBImages.ShowPoster.Image.Image = DefaultImages.ShowPoster.Image.Image
+				Scraper.TVDBImages.ShowPoster.Image = DefaultImages.ShowPoster.Image
                 Scraper.TVDBImages.ShowPoster.LocalFile = DefaultImages.ShowPoster.LocalFile
                 Scraper.TVDBImages.ShowPoster.URL = DefaultImages.ShowPoster.URL
-                Me.pbCurrent.Image = Scraper.TVDBImages.ShowPoster.Image.Image
+				Me.pbCurrent.Image = Scraper.TVDBImages.ShowPoster.Image.Image
+				Me.pbCurrent.Tag = Scraper.TVDBImages.ShowPoster.Image
             Else
-                Scraper.TVDBImages.ShowFanart.Image.Image = DefaultImages.ShowFanart.Image.Image
+				Scraper.TVDBImages.ShowFanart.Image = DefaultImages.ShowFanart.Image
                 Scraper.TVDBImages.ShowFanart.LocalFile = DefaultImages.ShowFanart.LocalFile
                 Scraper.TVDBImages.ShowFanart.URL = DefaultImages.ShowFanart.URL
-                Me.pbCurrent.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+				Me.pbCurrent.Image = Scraper.TVDBImages.ShowFanart.Image.Image
+				Me.pbCurrent.Tag = Scraper.TVDBImages.ShowFanart.Image
             End If
         ElseIf Me.SelSeason = 999 Then
-            Scraper.TVDBImages.AllSeasonPoster.Image.Image = DefaultImages.AllSeasonPoster.Image.Image
+			Scraper.TVDBImages.AllSeasonPoster.Image = DefaultImages.AllSeasonPoster.Image
             Scraper.TVDBImages.AllSeasonPoster.LocalFile = DefaultImages.AllSeasonPoster.LocalFile
             Scraper.TVDBImages.AllSeasonPoster.URL = DefaultImages.AllSeasonPoster.URL
-            Me.pbCurrent.Image = Scraper.TVDBImages.AllSeasonPoster.Image.Image
+			Me.pbCurrent.Image = Scraper.TVDBImages.AllSeasonPoster.Image.Image
+			Me.pbCurrent.Tag = Scraper.TVDBImages.AllSeasonPoster.Image
         Else
             If Me.SelIsPoster Then
-                Dim dSPost As Image = DefaultImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Poster.Image
-                Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Poster.Image = dSPost
-                Me.pbCurrent.Image = dSPost
+				Dim dSPost As Images = DefaultImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Poster
+				Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Poster = dSPost
+				Me.pbCurrent.Image = dSPost.Image
+				Me.pbCurrent.Tag = dSPost
             Else
                 Dim dSFan As Scraper.TVDBFanart = DefaultImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Fanart
                 Dim tSFan As Scraper.TVDBFanart = Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Fanart
-                tSFan.Image.Image = dSFan.Image.Image
+				tSFan.Image = dSFan.Image
                 tSFan.LocalFile = dSFan.LocalFile
                 tSFan.URL = dSFan.URL
-                Me.pbCurrent.Image = dSFan.Image.Image
+				Me.pbCurrent.Image = dSFan.Image.Image
+				Me.pbCurrent.Tag = dSFan.Image
             End If
         End If
     End Sub
 
     Private Sub pnlImage_Click(ByVal sender As Object, ByVal e As System.EventArgs)
         Dim iIndex As Integer = Convert.ToInt32(DirectCast(sender, Panel).Name)
-        Me.DoSelect(iIndex, Me.pbImage(iIndex).Image, DirectCast(DirectCast(sender, Panel).Tag, ImageTag))
+		Me.DoSelect(iIndex, DirectCast(DirectCast(sender, Panel).Tag, ImageTag))
     End Sub
 
-    Private Sub SetImage(ByVal SelImage As Image, ByVal SelTag As ImageTag)
-        Me.pbCurrent.Image = SelImage
+	Private Sub SetImage(ByVal SelTag As ImageTag)
+		Me.pbCurrent.Image = SelTag.ImageObj.Image
+		Me.pbCurrent.Tag = SelTag.ImageObj
 
-        Me._fanartchanged = True
+		Me._fanartchanged = True
 
-        If Me.SelSeason = -999 Then
-            If Me.SelIsPoster Then
-                Scraper.TVDBImages.ShowPoster.Image.Image = SelImage
-                Scraper.TVDBImages.ShowPoster.LocalFile = SelTag.Path
-                Scraper.TVDBImages.ShowPoster.URL = SelTag.URL
-            Else
-                Scraper.TVDBImages.ShowFanart.Image.Image = SelImage
-                Scraper.TVDBImages.ShowFanart.LocalFile = SelTag.Path
-                Scraper.TVDBImages.ShowFanart.URL = SelTag.URL
-            End If
-        ElseIf Me.SelSeason = 999 Then
-            Scraper.TVDBImages.AllSeasonPoster.Image.Image = SelImage
-            Scraper.TVDBImages.AllSeasonPoster.LocalFile = SelTag.Path
-            Scraper.TVDBImages.AllSeasonPoster.URL = SelTag.URL
-        Else
-            If Me.SelIsPoster Then
-                Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Poster.Image = SelImage
-            Else
-                Dim tFan As Scraper.TVDBFanart = Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Fanart
-                If Not IsNothing(tFan) Then
-                    tFan.Image.Image = SelImage
-                    tFan.LocalFile = SelTag.Path
-                    tFan.URL = SelTag.URL
-                End If
-            End If
-        End If
-    End Sub
+		If Me.SelSeason = -999 Then
+			If Me.SelIsPoster Then
+				Scraper.TVDBImages.ShowPoster.Image = SelTag.ImageObj
+				Scraper.TVDBImages.ShowPoster.LocalFile = SelTag.Path
+				Scraper.TVDBImages.ShowPoster.URL = SelTag.URL
+			Else
+				Scraper.TVDBImages.ShowFanart.Image = SelTag.ImageObj
+				Scraper.TVDBImages.ShowFanart.LocalFile = SelTag.Path
+				Scraper.TVDBImages.ShowFanart.URL = SelTag.URL
+			End If
+		ElseIf Me.SelSeason = 999 Then
+			Scraper.TVDBImages.AllSeasonPoster.Image = SelTag.ImageObj
+			Scraper.TVDBImages.AllSeasonPoster.LocalFile = SelTag.Path
+			Scraper.TVDBImages.AllSeasonPoster.URL = SelTag.URL
+		Else
+			If Me.SelIsPoster Then
+				Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Poster = SelTag.ImageObj
+			Else
+				Dim tFan As Scraper.TVDBFanart = Scraper.TVDBImages.SeasonImageList.FirstOrDefault(Function(s) s.Season = Me.SelSeason).Fanart
+				If Not IsNothing(tFan) Then
+					tFan.Image = SelTag.ImageObj
+					tFan.LocalFile = SelTag.Path
+					tFan.URL = SelTag.URL
+				End If
+			End If
+		End If
+	End Sub
 
     Private Sub SetUp()
         Me.Text = Master.eLang.GetString(99, "TV Image Selection")
@@ -1094,13 +1107,13 @@ Public Class dlgTVImageSelect
                     iCount = ShowPosterList.Count
                     For i = 0 To iCount - 1
                         If Not IsNothing(ShowPosterList(i)) AndAlso Not IsNothing(ShowPosterList(i).Image) AndAlso Not IsNothing(ShowPosterList(i).Image.Image) Then
-                            Me.AddImage(ShowPosterList(i).Image.Image, String.Format("{0}x{1}", ShowPosterList(i).Image.Image.Width, ShowPosterList(i).Image.Image.Height), i, New ImageTag With {.URL = ShowPosterList(i).URL, .Path = ShowPosterList(i).LocalFile, .isFanart = False})
+							Me.AddImage(String.Format("{0}x{1}", ShowPosterList(i).Image.Image.Width, ShowPosterList(i).Image.Image.Height), i, New ImageTag With {.URL = ShowPosterList(i).URL, .Path = ShowPosterList(i).LocalFile, .isFanart = False, .ImageObj = ShowPosterList(i).Image})
                         End If
                     Next
 
                     For i = 0 To GenericPosterList.Count - 1
                         If Not IsNothing(GenericPosterList(i)) AndAlso Not IsNothing(GenericPosterList(i).Image) AndAlso Not IsNothing(GenericPosterList(i).Image.Image) Then
-                            Me.AddImage(GenericPosterList(i).Image.Image, String.Format("{0}x{1}", GenericPosterList(i).Image.Image.Width, GenericPosterList(i).Image.Image.Height), i + iCount, New ImageTag With {.URL = GenericPosterList(i).URL, .Path = GenericPosterList(i).LocalFile, .isFanart = False})
+							Me.AddImage(String.Format("{0}x{1}", GenericPosterList(i).Image.Image.Width, GenericPosterList(i).Image.Image.Height), i + iCount, New ImageTag With {.URL = GenericPosterList(i).URL, .Path = GenericPosterList(i).LocalFile, .isFanart = False, .ImageObj = GenericPosterList(i).Image})
                         End If
                     Next
 
@@ -1116,7 +1129,7 @@ Public Class dlgTVImageSelect
 
                     For i = 0 To FanartList.Count - 1
                         If Not IsNothing(FanartList(i)) AndAlso Not IsNothing(FanartList(i).Image) AndAlso Not IsNothing(FanartList(i).Image.Image) Then
-                            Me.AddImage(FanartList(i).Image.Image, String.Format("{0}x{1}", FanartList(i).Size.Width, FanartList(i).Size.Height), i, New ImageTag With {.URL = FanartList(i).URL, .Path = FanartList(i).LocalFile, .isFanart = True})
+							Me.AddImage(String.Format("{0}x{1}", FanartList(i).Size.Width, FanartList(i).Size.Height), i, New ImageTag With {.URL = FanartList(i).URL, .Path = FanartList(i).LocalFile, .isFanart = True, .ImageObj = FanartList(i).Image})
                         End If
                     Next
 
@@ -1132,13 +1145,13 @@ Public Class dlgTVImageSelect
                     iCount = GenericPosterList.Count
                     For i = 0 To iCount - 1
                         If Not IsNothing(GenericPosterList(i)) AndAlso Not IsNothing(GenericPosterList(i).Image) AndAlso Not IsNothing(GenericPosterList(i).Image.Image) Then
-                            Me.AddImage(GenericPosterList(i).Image.Image, String.Format("{0}x{1}", GenericPosterList(i).Image.Image.Width, GenericPosterList(i).Image.Image.Height), i, New ImageTag With {.URL = GenericPosterList(i).URL, .Path = GenericPosterList(i).LocalFile, .isFanart = False})
+							Me.AddImage(String.Format("{0}x{1}", GenericPosterList(i).Image.Image.Width, GenericPosterList(i).Image.Image.Height), i, New ImageTag With {.URL = GenericPosterList(i).URL, .Path = GenericPosterList(i).LocalFile, .isFanart = False, .ImageObj = GenericPosterList(i).Image})
                         End If
                     Next
 
                     For i = 0 To ShowPosterList.Count - 1
                         If Not IsNothing(ShowPosterList(i)) AndAlso Not IsNothing(ShowPosterList(i).Image) AndAlso Not IsNothing(ShowPosterList(i).Image.Image) Then
-                            Me.AddImage(ShowPosterList(i).Image.Image, String.Format("{0}x{1}", ShowPosterList(i).Image.Image.Width, ShowPosterList(i).Image.Image.Height), i + iCount, New ImageTag With {.URL = ShowPosterList(i).URL, .Path = ShowPosterList(i).LocalFile, .isFanart = False})
+							Me.AddImage(String.Format("{0}x{1}", ShowPosterList(i).Image.Image.Width, ShowPosterList(i).Image.Image.Height), i + iCount, New ImageTag With {.URL = ShowPosterList(i).URL, .Path = ShowPosterList(i).LocalFile, .isFanart = False, .ImageObj = ShowPosterList(i).Image})
                         End If
                     Next
                 Else
@@ -1155,7 +1168,7 @@ Public Class dlgTVImageSelect
                             End If
                             For i = 0 To FanartList.Count - 1
                                 If Not IsNothing(FanartList(i)) AndAlso Not IsNothing(FanartList(i).Image) AndAlso Not IsNothing(FanartList(i).Image.Image) Then
-                                    Me.AddImage(FanartList(i).Image.Image, String.Format("{0}x{1}", FanartList(i).Size.Width, FanartList(i).Size.Height), i, New ImageTag With {.URL = FanartList(i).URL, .Path = FanartList(i).LocalFile, .isFanart = True})
+									Me.AddImage(String.Format("{0}x{1}", FanartList(i).Size.Width, FanartList(i).Size.Height), i, New ImageTag With {.URL = FanartList(i).URL, .Path = FanartList(i).LocalFile, .isFanart = True, .ImageObj = FanartList(i).Image})
                                 End If
                             Next
                         ElseIf tMatch.Groups("type").Value = "p" Then
@@ -1170,7 +1183,7 @@ Public Class dlgTVImageSelect
                             iCount = 0
                             For Each SImage As Scraper.TVDBSeasonPoster In SeasonList.Where(Function(s) s.Season = Convert.ToInt32(tMatch.Groups("num").Value))
                                 If Not IsNothing(SImage.Image) AndAlso Not IsNothing(SImage.Image.Image) Then
-                                    Me.AddImage(SImage.Image.Image, String.Format("{0}x{1}", SImage.Image.Image.Width, SImage.Image.Image.Height), iCount, New ImageTag With {.URL = SImage.URL, .Path = SImage.LocalFile, .isFanart = False})
+									Me.AddImage(String.Format("{0}x{1}", SImage.Image.Image.Width, SImage.Image.Image.Height), iCount, New ImageTag With {.URL = SImage.URL, .Path = SImage.LocalFile, .isFanart = False, .ImageObj = SImage.Image})
                                 End If
                                 iCount += 1
                             Next
@@ -1199,7 +1212,8 @@ Public Class dlgTVImageSelect
 
         Dim isFanart As Boolean
         Dim Path As String
-        Dim URL As String
+		Dim URL As String
+		Dim ImageObj As Images
 
 #End Region 'Fields
 

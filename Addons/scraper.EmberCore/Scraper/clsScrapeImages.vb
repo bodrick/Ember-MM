@@ -39,16 +39,16 @@ Public Class ScrapeImages
 		Dim tmpListTMDB As New List(Of MediaContainers.Image)
 		Dim tmpListIMPA As New List(Of MediaContainers.Image)
 		Dim tmpListMPDB As New List(Of MediaContainers.Image)
-		Dim tmpIMPAX As Image = Nothing
-		Dim tmpIMPAL As Image = Nothing
-		Dim tmpIMPAM As Image = Nothing
-		Dim tmpIMPAS As Image = Nothing
-		Dim tmpIMPAW As Image = Nothing
-		Dim tmpMPDBX As Image = Nothing
-		Dim tmpMPDBL As Image = Nothing
-		Dim tmpMPDBM As Image = Nothing
-		Dim tmpMPDBS As Image = Nothing
-		Dim tmpMPDBW As Image = Nothing
+		Dim tmpIMPAX As Images = Nothing
+		Dim tmpIMPAL As Images = Nothing
+		Dim tmpIMPAM As Images = Nothing
+		Dim tmpIMPAS As Images = Nothing
+		Dim tmpIMPAW As Images = Nothing
+		Dim tmpMPDBX As Images = Nothing
+		Dim tmpMPDBL As Images = Nothing
+		Dim tmpMPDBM As Images = Nothing
+		Dim tmpMPDBS As Images = Nothing
+		Dim tmpMPDBW As Images = Nothing
 
 		Dim CachePath As String = String.Concat(Master.TempPath, Path.DirectorySeparatorChar, IMDBID, Path.DirectorySeparatorChar, If(iType = Enums.ImageType.Posters, "posters", "fanart"))
 
@@ -109,8 +109,8 @@ Public Class ScrapeImages
 							tmdbThumb.WebImage.FromWeb(tmdbThumb.URL)
 							If Not IsNothing(tmdbThumb.WebImage.Image) Then
 								If Not Master.eSettings.NoSaveImagesToNfo Then imgResult.Posters.Add(tmdbThumb.URL)
-								Image.Image = tmdbThumb.WebImage.Image
-								Image.Save(Path.Combine(CachePath, String.Concat("poster_(", tmdbThumb.Description, ")_(url=", StringUtils.CleanURL(tmdbThumb.URL), ").jpg")))
+								Image = tmdbThumb.WebImage
+								Image.Save(Path.Combine(CachePath, String.Concat("poster_(", tmdbThumb.Description, ")_(url=", StringUtils.CleanURL(tmdbThumb.URL), ").jpg")), , , False)
 							End If
 							Image.Clear()
 						Next
@@ -128,13 +128,13 @@ Public Class ScrapeImages
 
 						For Each iMovie As MediaContainers.Image In tmpListTMDB
 							If Images.GetPosterDims(iMovie.WebImage.Image) = Master.eSettings.PreferredPosterSize Then
-								Image.Image = iMovie.WebImage.Image
+								Image = iMovie.WebImage
 								GoTo foundit
 							End If
 						Next
 
 						If Not doAsk Then
-							Image.Image = tmpListTMDB.OrderBy(Function(i) i.WebImage.Image.Height + i.WebImage.Image.Height).FirstOrDefault.WebImage.Image
+							Image = tmpListTMDB.OrderBy(Function(i) i.WebImage.Image.Height + i.WebImage.Image.Height).FirstOrDefault.WebImage
 						End If
 					End If
 				Else
@@ -199,23 +199,23 @@ Public Class ScrapeImages
 											Select Case tmpSize
 												Case Enums.PosterSize.Xlrg
 													If IsNothing(tmpIMPAX) Then
-														tmpIMPAX = New Bitmap(Image.Image)
+														tmpIMPAX = Image
 													End If
 												Case Enums.PosterSize.Lrg
 													If IsNothing(tmpIMPAL) Then
-														tmpIMPAL = New Bitmap(Image.Image)
+														tmpIMPAL = Image
 													End If
 												Case Enums.PosterSize.Mid
 													If IsNothing(tmpIMPAM) Then
-														tmpIMPAM = New Bitmap(Image.Image)
+														tmpIMPAM = Image
 													End If
 												Case Enums.PosterSize.Small
 													If IsNothing(tmpIMPAS) Then
-														tmpIMPAS = New Bitmap(Image.Image)
+														tmpIMPAS = Image
 													End If
 												Case Enums.PosterSize.Wide
 													If IsNothing(tmpIMPAW) Then
-														tmpIMPAW = New Bitmap(Image.Image)
+														tmpIMPAW = Image
 													End If
 											End Select
 										Else
@@ -247,23 +247,23 @@ Public Class ScrapeImages
 											Select Case tmpSize
 												Case Enums.PosterSize.Xlrg
 													If IsNothing(tmpMPDBX) Then
-														tmpMPDBX = New Bitmap(Image.Image)
+														tmpMPDBX = Image
 													End If
 												Case Enums.PosterSize.Lrg
 													If IsNothing(tmpMPDBL) Then
-														tmpMPDBL = New Bitmap(Image.Image)
+														tmpMPDBL = Image
 													End If
 												Case Enums.PosterSize.Mid
 													If IsNothing(tmpMPDBM) Then
-														tmpMPDBM = New Bitmap(Image.Image)
+														tmpMPDBM = Image
 													End If
 												Case Enums.PosterSize.Small
 													If IsNothing(tmpMPDBS) Then
-														tmpMPDBS = New Bitmap(Image.Image)
+														tmpMPDBS = Image
 													End If
 												Case Enums.PosterSize.Wide
 													If IsNothing(tmpMPDBW) Then
-														tmpMPDBW = New Bitmap(Image.Image)
+														tmpMPDBW = Image
 													End If
 											End Select
 										Else
@@ -314,23 +314,23 @@ Public Class ScrapeImages
 						If AdvancedSettings.GetBooleanSetting("UseIMPA", False) Then
 							If tmpListIMPA.Count > 0 Then
 								If Not IsNothing(tmpIMPAX) Then
-									Image.Image = New Bitmap(tmpIMPAX)
+									Image = tmpIMPAX
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpIMPAL) Then
-									Image.Image = New Bitmap(tmpIMPAL)
+									Image = tmpIMPAL
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpIMPAM) Then
-									Image.Image = New Bitmap(tmpIMPAM)
+									Image = tmpIMPAM
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpIMPAS) Then
-									Image.Image = New Bitmap(tmpIMPAS)
+									Image = tmpIMPAS
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpIMPAW) Then
-									Image.Image = New Bitmap(tmpIMPAW)
+									Image = tmpIMPAW
 									GoTo foundIT
 								End If
 							End If
@@ -341,23 +341,23 @@ Public Class ScrapeImages
 						If AdvancedSettings.GetBooleanSetting("UseMPDB", False) Then
 							If tmpListMPDB.Count > 0 Then
 								If Not IsNothing(tmpMPDBX) Then
-									Image.Image = New Bitmap(tmpMPDBX)
+									Image = tmpMPDBX
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpMPDBL) Then
-									Image.Image = New Bitmap(tmpMPDBL)
+									Image = tmpMPDBL
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpMPDBM) Then
-									Image.Image = New Bitmap(tmpMPDBM)
+									Image = tmpMPDBM
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpMPDBS) Then
-									Image.Image = New Bitmap(tmpMPDBS)
+									Image = tmpMPDBS
 									GoTo foundIT
 								End If
 								If Not IsNothing(tmpMPDBW) Then
-									Image.Image = New Bitmap(tmpMPDBW)
+									Image = tmpMPDBW
 									GoTo foundIT
 								End If
 							End If
@@ -436,9 +436,9 @@ Public Class ScrapeImages
 								For Each miFanart As MediaContainers.Image In tmpListTMDB
 									miFanart.WebImage.FromWeb(miFanart.URL)
 									If Not IsNothing(miFanart.WebImage.Image) Then
-										Image.Image = miFanart.WebImage.Image
+										Image = miFanart.WebImage
 										Dim savePath As String = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-										Image.Save(savePath)
+										Image.Save(savePath, , , False)
 										If Master.eSettings.AutoET AndAlso doETs Then
 											Select Case miFanart.Description.ToLower
 												Case "original"
@@ -489,7 +489,7 @@ Public Class ScrapeImages
 
 							For Each iMovie As MediaContainers.Image In tmpListTMDB
 								If Images.GetFanartDims(iMovie.WebImage.Image) = Master.eSettings.PreferredFanartSize Then
-									Image.Image = iMovie.WebImage.Image
+									Image = iMovie.WebImage
 									GoTo foundit
 								End If
 							Next
@@ -497,7 +497,7 @@ Public Class ScrapeImages
 							Image.Clear()
 
 							If Not doAsk Then
-								Image.Image = tmpListTMDB.OrderBy(Function(i) i.WebImage.Image.Height + i.WebImage.Image.Height).FirstOrDefault.WebImage.Image
+								Image = tmpListTMDB.OrderBy(Function(i) i.WebImage.Image.Height + i.WebImage.Image.Height).FirstOrDefault.WebImage
 							End If
 
 						End If
@@ -538,9 +538,9 @@ Public Class ScrapeImages
 											If Master.eSettings.AutoETSize = Enums.FanartSize.Lrg Then
 												miFanart.WebImage.FromWeb(miFanart.URL)
 												If Not IsNothing(miFanart.WebImage.Image) Then
-													Image.Image = miFanart.WebImage.Image
+													Image = miFanart.WebImage
 													savePath = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-													Image.Save(savePath)
+													Image.Save(savePath, , , False)
 													If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
 														Image.SaveFAasET(savePath, sPath)
 													End If
@@ -550,9 +550,9 @@ Public Class ScrapeImages
 											If Master.eSettings.AutoETSize = Enums.FanartSize.Mid Then
 												miFanart.WebImage.FromWeb(miFanart.URL)
 												If Not IsNothing(miFanart.WebImage.Image) Then
-													Image.Image = miFanart.WebImage.Image
+													Image = miFanart.WebImage
 													savePath = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-													Image.Save(savePath)
+													Image.Save(savePath, , , False)
 													If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
 														Image.SaveFAasET(savePath, sPath)
 													End If
@@ -562,9 +562,9 @@ Public Class ScrapeImages
 											If Master.eSettings.AutoETSize = Enums.FanartSize.Small Then
 												miFanart.WebImage.FromWeb(miFanart.URL)
 												If Not IsNothing(miFanart.WebImage.Image) Then
-													Image.Image = miFanart.WebImage.Image
+													Image = miFanart.WebImage
 													savePath = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-													Image.Save(savePath)
+													Image.Save(savePath, , , False)
 													If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
 														Image.SaveFAasET(savePath, sPath)
 													End If
@@ -582,7 +582,7 @@ Public Class ScrapeImages
 									Case Enums.FanartSize.Lrg
 										If iMovie.Description.ToLower = "original" Then
 											If Not IsNothing(iMovie.WebImage.Image) Then
-												Image.Image = iMovie.WebImage.Image
+												Image = iMovie.WebImage
 											Else
 												Image.FromWeb(iMovie.URL)
 											End If
@@ -591,7 +591,7 @@ Public Class ScrapeImages
 									Case Enums.FanartSize.Mid
 										If iMovie.Description.ToLower = "mid" Then
 											If Not IsNothing(iMovie.WebImage.Image) Then
-												Image.Image = iMovie.WebImage.Image
+												Image = iMovie.WebImage
 											Else
 												Image.FromWeb(iMovie.URL)
 											End If
@@ -600,7 +600,7 @@ Public Class ScrapeImages
 									Case Enums.FanartSize.Small
 										If iMovie.Description.ToLower = "thumb" Then
 											If Not IsNothing(iMovie.WebImage.Image) Then
-												Image.Image = iMovie.WebImage.Image
+												Image = iMovie.WebImage
 											Else
 												Image.FromWeb(iMovie.URL)
 											End If
@@ -722,7 +722,7 @@ foundIT:
 							If Not IsNothing(miFanart.WebImage.Image) Then
 								_Image = miFanart.WebImage.Image
 								Dim savePath As String = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-								Save(_Image, savePath)
+								miFanart.WebImage.Save(savePath, , , False)
 								If Master.eSettings.AutoET Then
 									Select Case miFanart.Description.ToLower
 										Case "original"
@@ -768,7 +768,7 @@ foundIT:
 									If Not IsNothing(miFanart.WebImage.Image) Then
 										_Image = miFanart.WebImage.Image
 										savePath = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-										Save(_Image, savePath)
+										miFanart.WebImage.Save(savePath, , , False)
 										If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
 											SaveFAasET(savePath, sPath)
 										End If
@@ -780,7 +780,7 @@ foundIT:
 									If Not IsNothing(miFanart.WebImage.Image) Then
 										_Image = miFanart.WebImage.Image
 										savePath = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-										Save(_Image, savePath)
+										miFanart.WebImage.Save(savePath, , , False)
 										If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
 											SaveFAasET(savePath, sPath)
 										End If
@@ -792,7 +792,7 @@ foundIT:
 									If Not IsNothing(miFanart.WebImage.Image) Then
 										_Image = miFanart.WebImage.Image
 										savePath = Path.Combine(CachePath, String.Concat("fanart_(", miFanart.Description, ")_(url=", StringUtils.CleanURL(miFanart.URL), ").jpg"))
-										Save(_Image, savePath)
+										miFanart.WebImage.Save(savePath, , , False)
 										If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
 											SaveFAasET(savePath, sPath)
 										End If
@@ -862,67 +862,68 @@ foundIT:
 		FileUtils.Common.MoveFileWithStream(faPath, Path.Combine(extraPath, String.Concat("thumb", iVal, ".jpg")))
 	End Sub
 
+	' Duplicate of clsImage
+	'Public Shared Sub Save(ByVal _image As Image, ByVal sPath As String, Optional ByVal iQuality As Long = 0, Optional ByVal sUrl As String = "")
+	'	Try
+	'		If IsNothing(_image) Then Exit Sub
 
-	Public Shared Sub Save(ByVal _image As Image, ByVal sPath As String, Optional ByVal iQuality As Long = 0, Optional ByVal sUrl As String = "")
-		Try
-			If IsNothing(_image) Then Exit Sub
+	'		Dim doesExist As Boolean = File.Exists(sPath)
+	'		Dim fAtt As New FileAttributes
+	'		If Not String.IsNullOrEmpty(sPath) AndAlso (Not doesExist OrElse (Not CBool(File.GetAttributes(sPath) And FileAttributes.ReadOnly))) Then
+	'			If doesExist Then
+	'				'get the current attributes to set them back after writing
+	'				fAtt = File.GetAttributes(sPath)
+	'				'set attributes to none for writing
+	'				File.SetAttributes(sPath, FileAttributes.Normal)
+	'			End If
 
-			Dim doesExist As Boolean = File.Exists(sPath)
-			Dim fAtt As New FileAttributes
-			If Not String.IsNullOrEmpty(sPath) AndAlso (Not doesExist OrElse (Not CBool(File.GetAttributes(sPath) And FileAttributes.ReadOnly))) Then
-				If doesExist Then
-					'get the current attributes to set them back after writing
-					fAtt = File.GetAttributes(sPath)
-					'set attributes to none for writing
-					File.SetAttributes(sPath, FileAttributes.Normal)
-				End If
+	'			If Not sUrl = "" Then
+	'				Dim stroriginalurl As String = sUrl
 
-				If Not sUrl = "" Then
-					Dim stroriginalurl As String = sUrl
+	'				'Image Download from tmdb is special, need original size
+	'				If Not sUrl.Contains("impawards") AndAlso Not sUrl.Contains("movieposterdb") Then
+	'					'Always get original image...
+	'					'links to images (tmdb) have following structure:  'example: http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/x65b4vsFKYuA878pLN1mJiAsgIP.jpg
+	'					Dim stringArray() As String = Split(stroriginalurl, "/")
+	'					If stringArray.Length > 4 Then
+	'						' stringArray(5) contains values like "w185","original", "w154"...-->size -> we want original!
+	'						stringArray(5) = "original"
+	'						stroriginalurl = Join(stringArray, "/")
+	'					End If
+	'				End If
+	'				Dim webclient As New Net.WebClient
+	'				webclient.DownloadFile(stroriginalurl, sPath)
+	'			Else
+	'				Using msSave As New MemoryStream
+	'					Dim retSave() As Byte
+	'					Dim ICI As ImageCodecInfo = GetEncoderInfo(ImageFormat.Jpeg)
+	'					Dim EncPars As EncoderParameters = New EncoderParameters(If(iQuality > 0, 2, 1))
 
-					'Image Download from tmdb is special, need original size
-					If Not sUrl.Contains("impawards") AndAlso Not sUrl.Contains("movieposterdb") Then
-						'Always get original image...
-						'links to images (tmdb) have following structure:  'example: http://d3gtl9l2a4fn1j.cloudfront.net/t/p/w92/x65b4vsFKYuA878pLN1mJiAsgIP.jpg
-						Dim stringArray() As String = Split(stroriginalurl, "/")
-						If stringArray.Length > 4 Then
-							' stringArray(5) contains values like "w185","original", "w154"...-->size -> we want original!
-							stringArray(5) = "original"
-							stroriginalurl = Join(stringArray, "/")
-						End If
-					End If
-					Dim webclient As New Net.WebClient
-					webclient.DownloadFile(stroriginalurl, sPath)
-				Else
-					Using msSave As New MemoryStream
-						Dim retSave() As Byte
-						Dim ICI As ImageCodecInfo = GetEncoderInfo(ImageFormat.Jpeg)
-						Dim EncPars As EncoderParameters = New EncoderParameters(If(iQuality > 0, 2, 1))
+	'					EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
 
-						EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
+	'					If iQuality > 0 Then
+	'						EncPars.Param(1) = New EncoderParameter(Encoder.Quality, iQuality)
+	'					End If
 
-						If iQuality > 0 Then
-							EncPars.Param(1) = New EncoderParameter(Encoder.Quality, iQuality)
-						End If
+	'					_image.Save(msSave, ICI, EncPars)
 
-						_image.Save(msSave, ICI, EncPars)
+	'					retSave = msSave.ToArray
 
-						retSave = msSave.ToArray
+	'					Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
+	'						fs.Write(retSave, 0, retSave.Length)
+	'						fs.Flush()
+	'					End Using
+	'					msSave.Flush()
+	'				End Using
+	'			End If
 
-						Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
-							fs.Write(retSave, 0, retSave.Length)
-							fs.Flush()
-						End Using
-						msSave.Flush()
-					End Using
-				End If
+	'			If doesExist Then File.SetAttributes(sPath, fAtt)
+	'		End If
+	'	Catch ex As Exception
+	'		Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+	'	End Try
+	'End Sub
 
-				If doesExist Then File.SetAttributes(sPath, fAtt)
-			End If
-		Catch ex As Exception
-			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-		End Try
-	End Sub
 	Private Shared Function GetEncoderInfo(ByVal Format As ImageFormat) As ImageCodecInfo
 		Dim Encoders() As ImageCodecInfo = ImageCodecInfo.GetImageEncoders()
 

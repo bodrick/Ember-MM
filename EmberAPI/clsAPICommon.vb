@@ -681,42 +681,42 @@ Public Class Functions
     Public Shared Function CheckNeedUpdate() As Boolean
         Dim sHTTP As New HTTP
         Dim needUpdate As Boolean = False
-        Dim platform As String = "x86"
-        Dim updateXML As String = sHTTP.DownloadData(String.Format("http://pcjco.dommel.be/emm-r/{0}/versions.xml", If(IsBetaEnabled(), "updatesbeta", "updates")))
-        sHTTP = Nothing
-        If updateXML.Length > 0 Then
-            For Each v As ModulesManager.VersionItem In ModulesManager.VersionList
-                Dim vl As ModulesManager.VersionItem = v
-                Dim n As String = String.Empty
-                Dim xmlUpdate As XDocument
-                Try
-                    xmlUpdate = XDocument.Parse(updateXML)
-                Catch
-                    Return False
-                End Try
-                Dim xUdpate = From xUp In xmlUpdate...<Config>...<Modules>...<File> Where (xUp.<Version>.Value <> "" AndAlso xUp.<Name>.Value = vl.AssemblyFileName AndAlso xUp.<Platform>.Value = platform) Select xUp.<Version>.Value
-                Try
-                    If Convert.ToInt16(xUdpate(0)) > Convert.ToInt16(v.Version) Then
-                        v.NeedUpdate = True
-                        needUpdate = True
-                    End If
-                Catch ex As Exception
-                End Try
-            Next
-        End If
+		'Dim platform As String = "x86"
+		'Dim updateXML As String = sHTTP.DownloadData(String.Format("http://pcjco.dommel.be/emm-r/{0}/versions.xml", If(IsBetaEnabled(), "updatesbeta", "updates")))
+		'sHTTP = Nothing
+		'If updateXML.Length > 0 Then
+		'    For Each v As ModulesManager.VersionItem In ModulesManager.VersionList
+		'        Dim vl As ModulesManager.VersionItem = v
+		'        Dim n As String = String.Empty
+		'        Dim xmlUpdate As XDocument
+		'        Try
+		'            xmlUpdate = XDocument.Parse(updateXML)
+		'        Catch
+		'            Return False
+		'        End Try
+		'        Dim xUdpate = From xUp In xmlUpdate...<Config>...<Modules>...<File> Where (xUp.<Version>.Value <> "" AndAlso xUp.<Name>.Value = vl.AssemblyFileName AndAlso xUp.<Platform>.Value = platform) Select xUp.<Version>.Value
+		'        Try
+		'            If Convert.ToInt16(xUdpate(0)) > Convert.ToInt16(v.Version) Then
+		'                v.NeedUpdate = True
+		'                needUpdate = True
+		'            End If
+		'        Catch ex As Exception
+		'        End Try
+		'    Next
+		'End If
         Return needUpdate
     End Function
 
-    Public Shared Function ConvertFromUnixTimestamp(ByVal timestamp As Double) As DateTime
-        Dim origin As DateTime = New DateTime(1970, 1, 1, 0, 0, 0, 0)
-        Return origin.AddSeconds(timestamp)
-    End Function
+	Public Shared Function ConvertFromUnixTimestamp(ByVal timestamp As Double) As DateTime
+		Dim origin As DateTime = New DateTime(1970, 1, 1, 0, 0, 0, 0)
+		Return origin.AddSeconds(timestamp)
+	End Function
 
-    Public Shared Function ConvertToUnixTimestamp(ByVal data As DateTime) As Double
-        Dim origin As DateTime = New DateTime(1970, 1, 1, 0, 0, 0, 0)
-        Dim diff As System.TimeSpan = data - origin
-        Return Math.Floor(diff.TotalSeconds)
-    End Function
+	Public Shared Function ConvertToUnixTimestamp(ByVal data As DateTime) As Double
+		Dim origin As DateTime = New DateTime(1970, 1, 1, 0, 0, 0, 0)
+		Dim diff As System.TimeSpan = data - origin
+		Return Math.Floor(diff.TotalSeconds)
+	End Function
 
     Public Shared Function LocksToOptions() As Structures.ScrapeOptions
         Dim options As New Structures.ScrapeOptions
@@ -834,56 +834,56 @@ Public Class Functions
     ''' </summary>
     ''' <param name="sPath">Full path to extrathumbs directory</param>
     ''' <returns>Last detected number of the discovered extrathumbs.</returns>
-    Public Shared Function GetExtraModifier(ByVal sPath As String) As Integer
-        Dim iMod As Integer = 0
-        Dim lThumbs As New List(Of String)
+	Public Shared Function GetExtraModifier(ByVal sPath As String) As Integer
+		Dim iMod As Integer = 0
+		Dim lThumbs As New List(Of String)
 
-        Try
-            If Directory.Exists(sPath) Then
+		Try
+			If Directory.Exists(sPath) Then
 
-                Try
-                    lThumbs.AddRange(Directory.GetFiles(sPath, "thumb*.jpg"))
-                Catch
-                End Try
+				Try
+					lThumbs.AddRange(Directory.GetFiles(sPath, "thumb*.jpg"))
+				Catch
+				End Try
 
-                If lThumbs.Count > 0 Then
-                    Dim cur As Integer = 0
-                    For Each t As String In lThumbs
-                        cur = Convert.ToInt32(Regex.Match(t, "(\d+).jpg").Groups(1).ToString)
-                        iMod = Math.Max(iMod, cur)
-                    Next
-                End If
-            End If
+				If lThumbs.Count > 0 Then
+					Dim cur As Integer = 0
+					For Each t As String In lThumbs
+						cur = Convert.ToInt32(Regex.Match(t, "(\d+).jpg").Groups(1).ToString)
+						iMod = Math.Max(iMod, cur)
+					Next
+				End If
+			End If
 
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
 
-        Return iMod
-    End Function
+		Return iMod
+	End Function
 
-    Public Shared Function GetFFMpeg() As String
-        If Master.isWindows Then
-            Return String.Concat(Functions.AppPath, "Bin", Path.DirectorySeparatorChar, "ffmpeg.exe")
-        Else
-            Return "ffmpeg"
-        End If
-    End Function
+	Public Shared Function GetFFMpeg() As String
+		If Master.isWindows Then
+			Return String.Concat(Functions.AppPath, "Bin", Path.DirectorySeparatorChar, "ffmpeg.exe")
+		Else
+			Return "ffmpeg"
+		End If
+	End Function
 
     ''' <summary>
     ''' Get a list of paths to all sources stored in the database
     ''' </summary>
-    Public Shared Sub GetListOfSources()
-        Master.SourcesList.Clear()
-        Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
-            SQLcommand.CommandText = "SELECT sources.Path FROM sources;"
-            Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
-                While SQLreader.Read
-                    Master.SourcesList.Add(SQLreader("Path").ToString)
-                End While
-            End Using
-        End Using
-    End Sub
+	Public Shared Sub GetListOfSources()
+		Master.SourcesList.Clear()
+		Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
+			SQLcommand.CommandText = "SELECT sources.Path FROM sources;"
+			Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+				While SQLreader.Read
+					Master.SourcesList.Add(SQLreader("Path").ToString)
+				End While
+			End Using
+		End Using
+	End Sub
 
     Public Shared Function GetSeasonDirectoryFromShowPath(ByVal ShowPath As String, ByVal iSeason As Integer) As String
         If Directory.Exists(ShowPath) Then
@@ -907,13 +907,13 @@ Public Class Functions
         Return String.Empty
     End Function
 
-    Public Shared Function HasModifier() As Boolean
-        With Master.GlobalScrapeMod
-            If .Extra OrElse .Fanart OrElse .Meta OrElse .NFO OrElse .Poster OrElse .Trailer Then Return True
-        End With
+	Public Shared Function HasModifier() As Boolean
+		With Master.GlobalScrapeMod
+			If .Extra OrElse .Fanart OrElse .Meta OrElse .NFO OrElse .Poster OrElse .Trailer Then Return True
+		End With
 
-        Return False
-    End Function
+		Return False
+	End Function
 
     Public Shared Function IsSeasonDirectory(ByVal sPath As String) As Boolean
         For Each rShow As Settings.TVShowRegEx In Master.eSettings.TVShowRegexes.Where(Function(s) s.SeasonFromDirectory = True)
@@ -929,14 +929,14 @@ Public Class Functions
     ''' <param name="source">List(of T)</param>
     ''' <param name="separator">Character or string to use as a value separator</param>
     ''' <returns>String of separated values</returns>
-    Public Shared Function ListToStringWithSeparator(Of T)(ByVal source As IList(Of T), ByVal separator As String) As String
-        If source Is Nothing Then Throw New ArgumentNullException("Source parameter cannot be nothing")
-        If String.IsNullOrEmpty(separator) Then Throw New ArgumentException("Separator parameter cannot be nothing or empty")
+	Public Shared Function ListToStringWithSeparator(Of T)(ByVal source As IList(Of T), ByVal separator As String) As String
+		If source Is Nothing Then Throw New ArgumentNullException("Source parameter cannot be nothing")
+		If String.IsNullOrEmpty(separator) Then Throw New ArgumentException("Separator parameter cannot be nothing or empty")
 
-        Dim values As String() = source.Cast(Of Object)().Where(Function(n) n IsNot Nothing).Select(Function(s) s.ToString).ToArray
+		Dim values As String() = source.Cast(Of Object)().Where(Function(n) n IsNot Nothing).Select(Function(s) s.ToString).ToArray
 
-        Return String.Join(separator, values)
-    End Function
+		Return String.Join(separator, values)
+	End Function
 
     Public Shared Sub PNLDoubleBuffer(ByRef cPNL As Panel)
         Dim conType As Type = cPNL.GetType
@@ -949,9 +949,9 @@ Public Class Functions
     ''' </summary>
     ''' <param name="iNumber">Number to quantize</param>
     ''' <param name="iMultiple">Multiple of constraint.</param>
-    Public Shared Function Quantize(ByVal iNumber As Integer, ByVal iMultiple As Integer) As Integer
-        Return Convert.ToInt32(System.Math.Round(iNumber / iMultiple, 0) * iMultiple)
-    End Function
+	Public Shared Function Quantize(ByVal iNumber As Integer, ByVal iMultiple As Integer) As Integer
+		Return Convert.ToInt32(System.Math.Round(iNumber / iMultiple, 0) * iMultiple)
+	End Function
 
     Public Shared Function ReadStreamToEnd(ByVal rStream As Stream) As Byte()
         Dim StreamBuffer(4096) As Byte
@@ -1181,7 +1181,7 @@ Public Class Structures
 
 #Region "Fields"
 
-        Dim CurrentImage As Image
+		Dim CurrentImage As Images
         Dim Ordering As Enums.Ordering
         Dim iEpisode As Integer
         Dim ImageType As Enums.TVImageType

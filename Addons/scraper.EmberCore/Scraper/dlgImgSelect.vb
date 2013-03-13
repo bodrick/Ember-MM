@@ -589,7 +589,7 @@ Public Class dlgImgSelect
                 Me.rbSmall.Checked = False
                 Me.OK_Button.Enabled = True
                 Me.OK_Button.Focus()
-                Me.tmpImage.Image = Me.pbImage(iIndex).Image
+				Me.tmpImage = CType(Me.pbImage(iIndex).Tag, Images)
             End If
 
         Catch ex As Exception
@@ -900,7 +900,7 @@ Public Class dlgImgSelect
             If Not IsNothing(Me.tmpImage.Image) Then
                 If isEdit Then
                     'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
-                    Me.tmpImage.Save(tmpPathPlus)
+					Me.tmpImage.Save(tmpPathPlus, , , False)
                     Results.ImagePath = tmpPathPlus
                 Else
                     If Me.DLType = Enums.ImageType.Fanart Then
@@ -920,7 +920,7 @@ Public Class dlgImgSelect
                             tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(original)_(url=", Me.rbXLarge.Tag, ").jpg")))
                         Else
                             If extrathumbSize = "original" And DLType = Enums.ImageType.Fanart Then
-                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
+								Me.tmpImage = CType(Me.pbImage(selIndex).Tag, Images)
                             Else
                                 Me.tmpImage.FromWeb(Me.rbXLarge.Tag.ToString)
                             End If
@@ -930,14 +930,14 @@ Public Class dlgImgSelect
                             Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))
                         Else
                             If extrathumbSize = "w1280" And DLType = Enums.ImageType.Fanart Or Not DLType = Enums.ImageType.Fanart Then
-                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
+								Me.tmpImage = CType(Me.pbImage(selIndex).Tag, Images)
                             Else
                                 Me.tmpImage.FromWeb(Me.rbLarge.Tag.ToString)
                             End If
                         End If
                     Case Me.rbMedium.Checked
                         If extrathumbSize = "poster" And DLType = Enums.ImageType.Fanart Then
-                            Me.tmpImage.Image = Me.pbImage(selIndex).Image
+							Me.tmpImage = CType(Me.pbImage(selIndex).Tag, Images)
                         Else
                             Me.tmpImage.FromWeb(Me.rbMedium.Tag.ToString)
                         End If
@@ -946,7 +946,7 @@ Public Class dlgImgSelect
                             Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
                         Else
                             If extrathumbSize = "thumb" And DLType = Enums.ImageType.Fanart Then
-                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
+								Me.tmpImage = CType(Me.pbImage(selIndex).Tag, Images)
                             Else
                                 Me.tmpImage.FromWeb(Me.rbSmall.Tag.ToString)
                             End If
@@ -956,7 +956,7 @@ Public Class dlgImgSelect
                 If Not IsNothing(Me.tmpImage.Image) Then
                     If isEdit Then
                         'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
-                        Me.tmpImage.Save(tmpPathPlus)
+						Me.tmpImage.Save(tmpPathPlus, , , False)
                         Results.ImagePath = tmpPathPlus
                     Else
                         If Me.DLType = Enums.ImageType.Fanart Then

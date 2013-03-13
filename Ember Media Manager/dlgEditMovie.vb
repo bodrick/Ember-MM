@@ -177,13 +177,15 @@ Public Class dlgEditMovie
     End Sub
 
     Private Sub btnRemoveFanart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveFanart.Click
-        Me.pbFanart.Image = Nothing
-        Me.Fanart.Image = Nothing
+		Me.pbFanart.Image = Nothing
+		Me.pbFanart.Tag = Nothing
+		Me.Fanart = Nothing
     End Sub
 
     Private Sub btnRemovePoster_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemovePoster.Click
-        Me.pbPoster.Image = Nothing
-        Me.Poster.Image = Nothing
+		Me.pbPoster.Image = Nothing
+		Me.pbPoster.Tag = Nothing
+		Me.Poster = Nothing
     End Sub
 
     Private Sub btnRemoveThumb_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveThumb.Click

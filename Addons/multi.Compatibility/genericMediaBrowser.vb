@@ -107,7 +107,7 @@ Public Class genericMediaBrowser
 	Public Function RunGeneric(ByVal mType As EmberAPI.Enums.ModuleEventType, ByRef _params As System.Collections.Generic.List(Of Object), ByRef _refparam As Object) As EmberAPI.Interfaces.ModuleResult Implements EmberAPI.Interfaces.EmberExternalModule.RunGeneric
 		Dim doContinue As Boolean
 		Dim mMovie As Structures.DBMovie
-		Dim _image As Image
+		Dim _image As Images
 		If Enabled Then
 			Try
 				Select Case mType
@@ -121,11 +121,11 @@ Public Class genericMediaBrowser
 					Case Enums.ModuleEventType.OnMovieFanartSave
 						If AdvancedSettings.GetBooleanSetting("MediaBrowserBackdrop", False) Then
 							mMovie = DirectCast(_params(0), Structures.DBMovie)
-							_image = DirectCast(_refparam, Image)
+							_image = DirectCast(_refparam, Images)
 							Dim fPath As String = Path.Combine(Path.GetDirectoryName(mMovie.Filename), "backdrop.jpg")
 							Dim eimage As New Images
-							eimage.Image = _image
-							eimage.Save(fPath, Master.eSettings.FanartQuality)
+							eimage = _image
+							eimage.Save(fPath, Master.eSettings.FanartQuality, , False)
 						End If
 				End Select
 

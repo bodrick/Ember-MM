@@ -94,9 +94,9 @@ Public Class Scraper
         Return sObject.GetSingleEpisode(New Structures.ScrapeInfo With {.ShowID = ShowID, .TVDBID = TVDBID, .iSeason = Season, .iEpisode = Episode, .SelectedLang = Lang, .Ordering = Ordering, .Options = Options})
     End Function
 
-    Public Function GetSingleImage(ByVal Title As String, ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Type As Enums.TVImageType, ByVal Season As Integer, ByVal Episode As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal CurrentImage As Image) As Image
-        Return sObject.GetSingleImage(New Structures.ScrapeInfo With {.ShowTitle = Title, .ShowID = ShowID, .TVDBID = TVDBID, .ImageType = Type, .iSeason = Season, .iEpisode = Episode, .SelectedLang = Lang, .Ordering = Ordering, .CurrentImage = CurrentImage})
-    End Function
+	Public Function GetSingleImage(ByVal Title As String, ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Type As Enums.TVImageType, ByVal Season As Integer, ByVal Episode As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal CurrentImage As Images) As Images
+		Return sObject.GetSingleImage(New Structures.ScrapeInfo With {.ShowTitle = Title, .ShowID = ShowID, .TVDBID = TVDBID, .ImageType = Type, .iSeason = Season, .iEpisode = Episode, .SelectedLang = Lang, .Ordering = Ordering, .CurrentImage = CurrentImage})
+	End Function
 
     Public Sub InnerEvent(ByVal eType As Enums.TVScraperEventType, ByVal iProgress As Integer, ByVal Parameter As Object)
         RaiseEvent ScraperEvent(eType, iProgress, Parameter)
@@ -424,105 +424,105 @@ Public Class Scraper
             Return New MediaContainers.EpisodeDetails
         End Function
 
-        Public Function GetSingleImage(ByVal sInfo As Structures.ScrapeInfo) As Image
-            tmpTVDBShow = New TVDBShow
+		Public Function GetSingleImage(ByVal sInfo As Structures.ScrapeInfo) As Images
+			tmpTVDBShow = New TVDBShow
 
-            If sInfo.ImageType = Enums.TVImageType.EpisodePoster Then
+			If sInfo.ImageType = Enums.TVImageType.EpisodePoster Then
 
-                If String.IsNullOrEmpty(sInfo.TVDBID) Then
-                    Using dTVDBSearch As New dlgTVDBSearchResults
-                        sInfo = dTVDBSearch.ShowDialog(sInfo, True)
-                        If Not String.IsNullOrEmpty(sInfo.TVDBID) Then
-                            Master.currShow.TVShow.ID = sInfo.TVDBID
+				If String.IsNullOrEmpty(sInfo.TVDBID) Then
+					Using dTVDBSearch As New dlgTVDBSearchResults
+						sInfo = dTVDBSearch.ShowDialog(sInfo, True)
+						If Not String.IsNullOrEmpty(sInfo.TVDBID) Then
+							Master.currShow.TVShow.ID = sInfo.TVDBID
 
-                            Using tImage As New Images
-                                Dim tmpEp As MediaContainers.EpisodeDetails = Me.GetListOfKnownEpisodes(sInfo).FirstOrDefault(Function(e) e.Episode = sInfo.iEpisode AndAlso e.Season = sInfo.iSeason)
-                                If Not IsNothing(tmpEp) Then
+							Using tImage As New Images
+								Dim tmpEp As MediaContainers.EpisodeDetails = Me.GetListOfKnownEpisodes(sInfo).FirstOrDefault(Function(e) e.Episode = sInfo.iEpisode AndAlso e.Season = sInfo.iSeason)
+								If Not IsNothing(tmpEp) Then
 
-                                    If File.Exists(tmpEp.LocalFile) Then
-                                        tImage.FromFile(tmpEp.LocalFile)
-                                    Else
-                                        tImage.FromWeb(tmpEp.PosterURL)
-                                        If Not IsNothing(tImage.Image) Then
-                                            Directory.CreateDirectory(Directory.GetParent(tmpEp.LocalFile).FullName)
-                                            tImage.Save(tmpEp.LocalFile)
-                                        End If
-                                    End If
+									If File.Exists(tmpEp.LocalFile) Then
+										tImage.FromFile(tmpEp.LocalFile)
+									Else
+										tImage.FromWeb(tmpEp.PosterURL)
+										If Not IsNothing(tImage.Image) Then
+											Directory.CreateDirectory(Directory.GetParent(tmpEp.LocalFile).FullName)
+											tImage.Save(tmpEp.LocalFile, , , False)
+										End If
+									End If
 
-                                    If Not IsNothing(tImage.Image) Then
-                                        Using dPosterConfirm As New dlgTVEpisodePoster
-                                            If dPosterConfirm.ShowDialog(tImage.Image) = DialogResult.OK Then
-                                                Return tImage.Image
-                                            Else
-                                                Return Nothing
-                                            End If
-                                        End Using
-                                    Else
-                                        MsgBox(Master.eLang.GetString(81, "There is no poster available for this episode."), MsgBoxStyle.OkOnly, Master.eLang.GetString(31, "No Posters Found"))
-                                        Return Nothing
-                                    End If
-                                Else
-                                    Return Nothing
-                                End If
-                            End Using
-                        Else
-                            Return Nothing
-                        End If
-                    End Using
-                Else
-                    Using tImage As New Images
-                        Dim tmpEp As MediaContainers.EpisodeDetails = Me.GetListOfKnownEpisodes(sInfo).FirstOrDefault(Function(e) e.Episode = sInfo.iEpisode AndAlso e.Season = sInfo.iSeason)
-                        If Not IsNothing(tmpEp) Then
+									If Not IsNothing(tImage.Image) Then
+										Using dPosterConfirm As New dlgTVEpisodePoster
+											If dPosterConfirm.ShowDialog(tImage.Image) = DialogResult.OK Then
+												Return tImage
+											Else
+												Return Nothing
+											End If
+										End Using
+									Else
+										MsgBox(Master.eLang.GetString(81, "There is no poster available for this episode."), MsgBoxStyle.OkOnly, Master.eLang.GetString(31, "No Posters Found"))
+										Return Nothing
+									End If
+								Else
+									Return Nothing
+								End If
+							End Using
+						Else
+							Return Nothing
+						End If
+					End Using
+				Else
+					Using tImage As New Images
+						Dim tmpEp As MediaContainers.EpisodeDetails = Me.GetListOfKnownEpisodes(sInfo).FirstOrDefault(Function(e) e.Episode = sInfo.iEpisode AndAlso e.Season = sInfo.iSeason)
+						If Not IsNothing(tmpEp) Then
 
-                            If File.Exists(tmpEp.LocalFile) Then
-                                tImage.FromFile(tmpEp.LocalFile)
-                            Else
-                                tImage.FromWeb(tmpEp.PosterURL)
-                                If Not IsNothing(tImage.Image) Then
-                                    Directory.CreateDirectory(Directory.GetParent(tmpEp.LocalFile).FullName)
-                                    tImage.Save(tmpEp.LocalFile)
-                                End If
-                            End If
+							If File.Exists(tmpEp.LocalFile) Then
+								tImage.FromFile(tmpEp.LocalFile)
+							Else
+								tImage.FromWeb(tmpEp.PosterURL)
+								If Not IsNothing(tImage.Image) Then
+									Directory.CreateDirectory(Directory.GetParent(tmpEp.LocalFile).FullName)
+									tImage.Save(tmpEp.LocalFile, , , False)
+								End If
+							End If
 
-                            If Not IsNothing(tImage.Image) Then
-                                Using dPosterConfirm As New dlgTVEpisodePoster
-                                    If dPosterConfirm.ShowDialog(tImage.Image) = DialogResult.OK Then
-                                        Return tImage.Image
-                                    Else
-                                        Return Nothing
-                                    End If
-                                End Using
-                            Else
-                                MsgBox(Master.eLang.GetString(81, "There is no poster available for this episode."), MsgBoxStyle.OkOnly, Master.eLang.GetString(31, "No Posters Found"))
-                                Return Nothing
-                            End If
-                        Else
-                            Return Nothing
-                        End If
-                    End Using
-                End If
-            Else
-                If String.IsNullOrEmpty(sInfo.TVDBID) Then
-                    Using dTVDBSearch As New dlgTVDBSearchResults
-                        sInfo = dTVDBSearch.ShowDialog(sInfo, True)
-                        If Not String.IsNullOrEmpty(sInfo.TVDBID) Then
-                            Master.currShow.TVShow.ID = sInfo.TVDBID
-                            Me.DownloadSeries(sInfo, True)
-                            Using dImageSelect As New dlgTVImageSelect
-                                Return dImageSelect.ShowDialog(sInfo.ShowID, sInfo.ImageType, sInfo.iSeason, sInfo.CurrentImage)
-                            End Using
-                        Else
-                            Return Nothing
-                        End If
-                    End Using
-                Else
-                    Me.DownloadSeries(sInfo, True)
-                    Using dImageSelect As New dlgTVImageSelect
-                        Return dImageSelect.ShowDialog(sInfo.ShowID, sInfo.ImageType, sInfo.iSeason, sInfo.CurrentImage)
-                    End Using
-                End If
-            End If
-        End Function
+							If Not IsNothing(tImage.Image) Then
+								Using dPosterConfirm As New dlgTVEpisodePoster
+									If dPosterConfirm.ShowDialog(tImage.Image) = DialogResult.OK Then
+										Return tImage
+									Else
+										Return Nothing
+									End If
+								End Using
+							Else
+								MsgBox(Master.eLang.GetString(81, "There is no poster available for this episode."), MsgBoxStyle.OkOnly, Master.eLang.GetString(31, "No Posters Found"))
+								Return Nothing
+							End If
+						Else
+							Return Nothing
+						End If
+					End Using
+				End If
+			Else
+				If String.IsNullOrEmpty(sInfo.TVDBID) Then
+					Using dTVDBSearch As New dlgTVDBSearchResults
+						sInfo = dTVDBSearch.ShowDialog(sInfo, True)
+						If Not String.IsNullOrEmpty(sInfo.TVDBID) Then
+							Master.currShow.TVShow.ID = sInfo.TVDBID
+							Me.DownloadSeries(sInfo, True)
+							Using dImageSelect As New dlgTVImageSelect
+								Return dImageSelect.ShowDialog(sInfo.ShowID, sInfo.ImageType, sInfo.iSeason, sInfo.CurrentImage)
+							End Using
+						Else
+							Return Nothing
+						End If
+					End Using
+				Else
+					Me.DownloadSeries(sInfo, True)
+					Using dImageSelect As New dlgTVImageSelect
+						Return dImageSelect.ShowDialog(sInfo.ShowID, sInfo.ImageType, sInfo.iSeason, sInfo.CurrentImage)
+					End Using
+				End If
+			End If
+		End Function
 
         Public Function IsBusy() As Boolean
             Return bwTVDB.IsBusy
@@ -848,17 +848,17 @@ Public Class Scraper
                             If Me.bwTVDB.CancellationPending Then Return
 
                             If Episode.TVEp.Season > -1 AndAlso Episode.TVEp.Episode > -1 AndAlso Not Episode.IsLockEp Then
-                                If Not IsNothing(Episode.TVEp.Poster.Image) Then Episode.EpPosterPath = Episode.TVEp.Poster.SaveAsEpPoster(Episode)
+								If Not IsNothing(Episode.TVEp.Poster.Image) Then Episode.EpPosterPath = Episode.TVEp.Poster.SaveAsEpPoster(Episode, Episode.TVEp.PosterURL)
 
                                 If Me.bwTVDB.CancellationPending Then Return
 
-                                If Master.eSettings.EpisodeFanartEnabled AndAlso Not IsNothing(Episode.TVEp.Fanart.Image) Then Episode.EpFanartPath = Episode.TVEp.Fanart.SaveAsEpFanart(Episode)
+								If Master.eSettings.EpisodeFanartEnabled AndAlso Not IsNothing(Episode.TVEp.Fanart.Image) Then Episode.EpFanartPath = Episode.TVEp.Fanart.SaveAsEpFanart(Episode, )
 
                                 If Me.bwTVDB.CancellationPending Then Return
 
                                 Dim cSea = From cSeason As TVDBSeasonImage In TVDBImages.SeasonImageList Where cSeason.Season = iSea Take 1
                                 If cSea.Count > 0 Then
-                                    If Not IsNothing(cSea(0).Poster.Image) Then Episode.SeasonPosterPath = cSea(0).Poster.SaveAsSeasonPoster(Episode)
+									If Not IsNothing(cSea(0).Poster.Image) Then Episode.SeasonPosterPath = cSea(0).Poster.SaveAsSeasonPoster(Episode)
 
                                     If Me.bwTVDB.CancellationPending Then Return
 
@@ -871,7 +871,7 @@ Public Class Scraper
                                             cSea(0).Fanart.Image.FromWeb(cSea(0).Fanart.URL)
                                             If Not IsNothing(cSea(0).Fanart.Image.Image) Then
                                                 Directory.CreateDirectory(Directory.GetParent(cSea(0).Fanart.LocalFile).FullName)
-                                                cSea(0).Fanart.Image.Save(cSea(0).Fanart.LocalFile)
+                                                cSea(0).Fanart.Image.Save(cSea(0).Fanart.LocalFile, , , False)
                                                 Episode.SeasonFanartPath = cSea(0).Fanart.Image.SaveAsSeasonFanart(Episode)
                                             End If
                                         End If
@@ -934,24 +934,14 @@ Public Class Scraper
         End Sub
 
         Private Sub SaveToCache(ByVal sID As String, ByVal sURL As String, ByVal sPath As String)
-            Dim sHTTP As New HTTP
             Dim sImage As New Images
 
-            sHTTP.StartDownloadImage(sURL)
-
-            While sHTTP.IsDownloading
-                Application.DoEvents()
-                Threading.Thread.Sleep(50)
-            End While
-
-            sImage.Image = sHTTP.Image
+			sImage.FromWeb(sURL)
 
             If Not IsNothing(sImage.Image) Then
-                sImage.Save(Path.Combine(Master.TempPath, String.Concat("Shows", Path.DirectorySeparatorChar, sID, Path.DirectorySeparatorChar, sPath.Replace(Convert.ToChar("/"), Path.DirectorySeparatorChar))))
+				sImage.Save(Path.Combine(Master.TempPath, String.Concat("Shows", Path.DirectorySeparatorChar, sID, Path.DirectorySeparatorChar, sPath.Replace(Convert.ToChar("/"), Path.DirectorySeparatorChar))), , , True)
             End If
-
-            sImage = Nothing
-            sHTTP = Nothing
+			sImage = Nothing
         End Sub
 
         Private Function SearchSeries(ByVal sInfo As Structures.ScrapeInfo) As List(Of TVSearchResults)

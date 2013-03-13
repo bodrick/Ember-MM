@@ -872,9 +872,9 @@ Public Class frmMain
 
                 If Not IsNothing(Me.MainFanart.Image) Then
                     If String.IsNullOrEmpty(Master.currShow.Filename) Then
-                        Me.MainFanart.Image = ImageUtils.AddMissingStamp(Me.MainFanart.Image)
+						Me.MainFanart = ImageUtils.AddMissingStamp(Me.MainFanart)
                     ElseIf NeedsGS Then
-                        Me.MainFanart.Image = ImageUtils.GrayScale(Me.MainFanart.Image)
+						Me.MainFanart = ImageUtils.GrayScale(Me.MainFanart)
                     End If
                 End If
             End If
@@ -1000,7 +1000,7 @@ Public Class frmMain
                     Me.MainFanart.FromFile(Master.currShow.SeasonFanartPath)
                 Else
                     Me.MainFanart.FromFile(Master.currShow.ShowFanartPath)
-                    If Not IsNothing(Me.MainFanart.Image) Then Me.MainFanart.Image = ImageUtils.GrayScale(Me.MainFanart.Image)
+					If Not IsNothing(Me.MainFanart.Image) Then Me.MainFanart = ImageUtils.GrayScale(Me.MainFanart)
                 End If
             End If
 

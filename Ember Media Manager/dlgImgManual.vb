@@ -100,7 +100,7 @@ Public Class dlgImgManual
             End If
 
             If Not IsNothing(tImage.Image) Then
-                tImage.Save(tmpPathPlus)
+				tImage.Save(tmpPathPlus, , , False)
             End If
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")

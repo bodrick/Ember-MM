@@ -30,7 +30,7 @@ Public Class Database
     ReadOnly _connStringTemplate As String = "Data Source=""{0}"";Version=3;Compress=True"
     Protected _mediaDBConn As SQLiteConnection
     ' NOTE: This will use another DB because: can grow alot, Don't want to stress Media DB with this stuff
-    Protected _jobsDBConn As SQLiteConnection
+	'Protected _jobsDBConn As SQLiteConnection
 
 #End Region 'Fields
 
@@ -2043,35 +2043,35 @@ Public Class Database
 
 
     '''''''''''''''''''''''''''''''''''''''''''
-    Protected Sub ConnectJobsDB()
-        If Not IsNothing(_mediaDBConn) Then
-            Return
-            'Throw New InvalidOperationException("A database connection is already open, can't open another.")
-        End If
+	'Protected Sub ConnectJobsDB()
+	'    If Not IsNothing(_mediaDBConn) Then
+	'        Return
+	'        'Throw New InvalidOperationException("A database connection is already open, can't open another.")
+	'    End If
 
-        Dim jobsDBFile As String = Path.Combine(Functions.AppPath, "JobLogs.emm")
-        Dim isNew As Boolean = (Not File.Exists(jobsDBFile))
+	'    Dim jobsDBFile As String = Path.Combine(Functions.AppPath, "JobLogs.emm")
+	'    Dim isNew As Boolean = (Not File.Exists(jobsDBFile))
 
-        Try
-            _jobsDBConn = New SQLiteConnection(String.Format(_connStringTemplate, jobsDBFile))
-            _jobsDBConn.Open()
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.ToString, _
-                                        ex.StackTrace, _
-                                        "Unable to open media database connection.")
-        End Try
+	'    Try
+	'        _jobsDBConn = New SQLiteConnection(String.Format(_connStringTemplate, jobsDBFile))
+	'        _jobsDBConn.Open()
+	'    Catch ex As Exception
+	'        Master.eLog.WriteToErrorLog(ex.ToString, _
+	'                                    ex.StackTrace, _
+	'                                    "Unable to open media database connection.")
+	'    End Try
 
-        If isNew Then
-            Dim sqlCommand As String = My.Resources.JobsDatabaseSQL_v1
-            Using transaction As SQLite.SQLiteTransaction = _jobsDBConn.BeginTransaction()
-                Using command As SQLite.SQLiteCommand = _jobsDBConn.CreateCommand()
-                    command.CommandText = sqlCommand
-                    command.ExecuteNonQuery()
-                End Using
-                transaction.Commit()
-            End Using
-        End If
-    End Sub
+	'    If isNew Then
+	'        Dim sqlCommand As String = My.Resources.JobsDatabaseSQL_v1
+	'        Using transaction As SQLite.SQLiteTransaction = _jobsDBConn.BeginTransaction()
+	'            Using command As SQLite.SQLiteCommand = _jobsDBConn.CreateCommand()
+	'                command.CommandText = sqlCommand
+	'                command.ExecuteNonQuery()
+	'            End Using
+	'            transaction.Commit()
+	'        End Using
+	'    End If
+	'End Sub
 
     Public Function IsAddonInstalled(ByVal AddonID As Integer) As Single
         Try
