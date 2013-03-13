@@ -475,7 +475,6 @@ Public Class Images
 
 	Public Sub Save(ByVal sPath As String, Optional ByVal iQuality As Long = 0, Optional ByVal sUrl As String = "", Optional ByVal doResize As Boolean = False)
 		Dim retSave() As Byte
-		Master.eLog.WriteToErrorLog(sPath, sUrl, doResize.ToString, False)
 		Try
 			If Not doResize Then
 				'EmberAPI.FileUtils.Common.MoveFileWithStream(sUrl, sPath)
