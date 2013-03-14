@@ -213,13 +213,14 @@ Public Class dlgEditMovie
     Private Sub btnSetFanartDL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetFanartDL.Click
         Try
             Using dImgManual As New dlgImgManual
-                If dImgManual.ShowDialog(Enums.ImageType.Fanart) = DialogResult.OK Then
-                    Fanart.FromFile(Path.Combine(Master.TempPath, "fanart.jpg"))
-                    pbFanart.Image = Fanart.Image
+				Dim tImage As Images = dImgManual.ShowDialog(Enums.ImageType.Fanart)
+				If Not IsNothing(tImage) Then
+					Fanart = tImage
+					pbFanart.Image = Fanart.Image
 
-                    Me.lblFanartSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbFanart.Image.Width, Me.pbFanart.Image.Height)
-                    Me.lblFanartSize.Visible = True
-                End If
+					Me.lblFanartSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbFanart.Image.Width, Me.pbFanart.Image.Height)
+					Me.lblFanartSize.Visible = True
+				End If
             End Using
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -270,13 +271,15 @@ Public Class dlgEditMovie
     Private Sub btnSetPosterDL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetPosterDL.Click
         Try
             Using dImgManual As New dlgImgManual
-                If dImgManual.ShowDialog(Enums.ImageType.Posters) = DialogResult.OK Then
-                    Poster.FromFile(Path.Combine(Master.TempPath, "poster.jpg"))
-                    pbPoster.Image = Poster.Image
+				Dim tImage As Images = dImgManual.ShowDialog(Enums.ImageType.Posters)
+				If Not IsNothing(tImage) Then
+					Poster = tImage
+					Poster.FromFile(Path.Combine(Master.TempPath, "poster.jpg"))
+					pbPoster.Image = Poster.Image
 
-                    Me.lblPosterSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbPoster.Image.Width, Me.pbPoster.Image.Height)
-                    Me.lblPosterSize.Visible = True
-                End If
+					Me.lblPosterSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbPoster.Image.Width, Me.pbPoster.Image.Height)
+					Me.lblPosterSize.Visible = True
+				End If
             End Using
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")

@@ -5517,7 +5517,7 @@ doCancel:
                     APIXML.CacheXMLs()
 					'fLoading.SetLoadingMesg("Loading database...")
 					fLoading.SetLoadingMesg(Master.eLang.GetString(858, "Loading database..."))
-					If Master.DB.CheckEssentials() Then
+					If Master.DB.ConnectMediaDB() Then
 						Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
 					End If
                     Master.DB.LoadMovieSourcesFromDB()
@@ -5717,13 +5717,13 @@ doCancel:
 						'fLoading.SetLoadingMesg("Loading database...")
 						fLoading.SetLoadingMesg(Master.eLang.GetString(858, "Loading database..."))
 						If Master.eSettings.Version = String.Format("r{0}", My.Application.Info.Version.Revision) Then
-							If Master.DB.CheckEssentials() Then
+							If Master.DB.ConnectMediaDB() Then
 								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
 							End If
 							Me.FillList(0)
 							Me.Visible = True
 						Else
-							If Master.DB.CheckEssentials() Then
+							If Master.DB.ConnectMediaDB() Then
 								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
 							End If
 							If dlgWizard.ShowDialog = Windows.Forms.DialogResult.OK Then

@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph GraphDirection="LeftToRight" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
+    <Node Id="Removed\generic.EmberCore.WebServer" Label="generic.EmberCore.WebServer" Category="Project" />
+    <Node Id="System.Data.SQLite 1.0.84.0" Label="System.Data.SQLite 1.0.84.0" Category="Package" />
     <Node Id="RottenTomatoesAPI" Label="RottenTomatoesAPI" Category="Project" />
     <Node Id="RestSharp 104.1" Label="RestSharp 104.1" Category="Package" />
     <Node Id="FanartTVAPI" Label="FanartTVAPI" Category="Project" />
@@ -14,8 +16,6 @@
     <Node Id="SharpZipLib 0.86.0" Label="SharpZipLib 0.86.0" Category="Package" />
     <Node Id="Addons\scraper.EmberCore" Label="scraper.EmberCore" Category="Project" />
     <Node Id="SharpZipLib 0.86.0" Label="SharpZipLib 0.86.0" Category="Package" />
-    <Node Id="System.Data.SQLite 1.0.84.0" Label="System.Data.SQLite 1.0.84.0" Category="Package" />
-    <Node Id="Addons\generic.EmberCore.WebServer" Label="generic.EmberCore.WebServer" Category="Project" />
     <Node Id="System.Data.SQLite 1.0.84.0" Label="System.Data.SQLite 1.0.84.0" Category="Package" />
     <Node Id="Addons\generic.EmberCore.OfflineHolder" Label="generic.EmberCore.OfflineHolder" Category="Project" />
     <Node Id="System.Data.SQLite 1.0.84.0" Label="System.Data.SQLite 1.0.84.0" Category="Package" />
@@ -34,6 +34,7 @@
     <Node Id="System.Data.SQLite 1.0.84.0" Label="System.Data.SQLite 1.0.84.0" Category="Package" />
   </Nodes>
   <Links>
+    <Link Source="Removed\generic.EmberCore.WebServer" Target="System.Data.SQLite 1.0.84.0" Category="Installed Package" />
     <Link Source="RottenTomatoesAPI" Target="RestSharp 104.1" Category="Installed Package" />
     <Link Source="FanartTVAPI" Target="RestSharp 104.1" Category="Installed Package" />
     <Link Source="WatTmdb" Target="RestSharp 104.1" Category="Installed Package" />
@@ -42,7 +43,6 @@
     <Link Source="Addons\scraper.EmberCore.XML" Target="SharpZipLib 0.86.0" Category="Installed Package" />
     <Link Source="Addons\scraper.EmberCore" Target="SharpZipLib 0.86.0" Category="Installed Package" />
     <Link Source="Addons\scraper.EmberCore" Target="System.Data.SQLite 1.0.84.0" Category="Installed Package" />
-    <Link Source="Addons\generic.EmberCore.WebServer" Target="System.Data.SQLite 1.0.84.0" Category="Installed Package" />
     <Link Source="Addons\generic.EmberCore.OfflineHolder" Target="System.Data.SQLite 1.0.84.0" Category="Installed Package" />
     <Link Source="Addons\generic.EmberCore.NMT" Target="SharpZipLib 0.86.0" Category="Installed Package" />
     <Link Source="Addons\generic.EmberCore.NMT" Target="System.Data.SQLite 1.0.84.0" Category="Installed Package" />
