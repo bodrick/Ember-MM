@@ -371,8 +371,6 @@ Public Class HTTP
 							_isJPG = True
 						End If
 						Using SourceStream As System.IO.Stream = wrResponse.GetResponseStream()
-							'Dim memStream As MemoryStream
-							'Using rdr As System.IO.Stream = response.GetResponseStream
 							Dim count = Convert.ToInt32(wrResponse.ContentLength)
 							Dim buffer = New Byte(count) {}
 							Dim bytesRead As Integer
@@ -380,11 +378,10 @@ Public Class HTTP
 								bytesRead += SourceStream.Read(buffer, bytesRead, count - bytesRead)
 							Loop Until bytesRead = count
 							SourceStream.Close()
+							Me._ms.Dispose()
 							Me._ms = New MemoryStream()
+
 							Me._ms.Write(buffer, 0, bytesRead)
-							'End Using
-							'Me._ms.SetLength(SourceStream.Length)
-							'SourceStream.Read(Me.ms.GetBuffer(), 0, Convert.ToInt32(SourceStream.Length))
 							Me._ms.Flush()
 							Me._image = New Bitmap(Me._ms)
 						End Using

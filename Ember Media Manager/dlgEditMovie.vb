@@ -274,7 +274,7 @@ Public Class dlgEditMovie
 				Dim tImage As Images = dImgManual.ShowDialog(Enums.ImageType.Posters)
 				If Not IsNothing(tImage) Then
 					Poster = tImage
-					Poster.FromFile(Path.Combine(Master.TempPath, "poster.jpg"))
+					'Poster.FromFile(Path.Combine(Master.TempPath, "poster.jpg"))
 					pbPoster.Image = Poster.Image
 
 					Me.lblPosterSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbPoster.Image.Width, Me.pbPoster.Image.Height)

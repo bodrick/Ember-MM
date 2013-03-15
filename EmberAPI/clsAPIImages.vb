@@ -429,7 +429,7 @@ Public Class Images
     Public Sub FromWeb(ByVal sURL As String)
         Try
             sHTTP.StartDownloadImage(sURL)
-
+			Debug.Print(sURL)
             While sHTTP.IsDownloading
                 Application.DoEvents()
                 Threading.Thread.Sleep(50)
@@ -437,13 +437,31 @@ Public Class Images
 
 			If Not IsNothing(sHTTP.Image) Then
 				If IsNothing(_ms) Then _ms = New MemoryStream()
-				Dim StreamBuffer(Convert.ToInt32(sHTTP.ms.Length - 1)) As Byte
-				sHTTP.ms.Read(StreamBuffer, 0, StreamBuffer.Length)
-				_ms.Write(StreamBuffer, 0, StreamBuffer.Length)
-				StreamBuffer = Nothing
+
+				Me._ms.Dispose()
+				Me._ms = New MemoryStream()
+				Dim retSave() As Byte
+				retSave = sHTTP.ms.ToArray
+				_ms.Write(retSave, 0, retSave.Length)
+
+				'Dim kkk As String = Path.Combine(Master.TempPath, sHTTP.ms.Length.ToString)
+				'Using fs As New FileStream(kkk & "a.jpg", FileMode.Create, FileAccess.Write)
+				'	fs.Write(retSave, 0, retSave.Length)
+				'	fs.Flush()
+				'	fs.Close()
+				'End Using
+
+				'retSave = _ms.ToArray()
+				'Using fs As New FileStream(kkk & "a2.jpg", FileMode.Create, FileAccess.Write)
+				'	fs.Write(retSave, 0, retSave.Length)
+				'	fs.Flush()
+				'	fs.Close()
+				'End Using
+				'Me.Save(kkk & "b.jpg", , , False)
 
 				'I do not copy from the _ms as it could not be a JPG
 				_image = New Bitmap(sHTTP.Image)
+
 				' if is not a JPG we have to conver the memory stream to JPG format
 				If Not sHTTP.isJPG Then
 					UpdateMSfromImg(New Bitmap(_image))
@@ -495,7 +513,6 @@ Public Class Images
 
 	Public Sub Save(ByVal sPath As String, Optional ByVal iQuality As Long = 0, Optional ByVal sUrl As String = "", Optional ByVal doResize As Boolean = False)
 		Dim retSave() As Byte
-		Master.eLog.WriteToErrorLog(sPath, sUrl, doResize.ToString, False)
 		Try
 			If Not doResize Then
 				'EmberAPI.FileUtils.Common.MoveFileWithStream(sUrl, sPath)
@@ -507,6 +524,7 @@ Public Class Images
 					Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
 						fs.Write(retSave, 0, retSave.Length)
 						fs.Flush()
+						fs.Close()
 					End Using
 				End If
 				Return
