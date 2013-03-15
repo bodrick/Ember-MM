@@ -767,7 +767,7 @@ Public Class Images
 				ImageUtils.ResizeImage(_image, Master.eSettings.FanartWidth, Master.eSettings.FanartHeight)
 			End If
 
-			If Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isVideoTS(mMovie.Filename) Then
+			If (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isVideoTS(mMovie.Filename) Then
 				If Master.eSettings.FanartJPG Then
 					fPath = String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, "\", "fanart.jpg")
 				ElseIf Master.eSettings.MovieNameFanartJPG AndAlso Not Master.eSettings.VideoTSParentXBMC Then
@@ -787,7 +787,7 @@ Public Class Images
 					End If
 					strReturn = fPath
 				End If
-			ElseIf Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
+			ElseIf (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
 				If Master.eSettings.FanartJPG Then
 					fPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "fanart.jpg"))
 				ElseIf Master.eSettings.MovieNameFanartJPG AndAlso Not Master.eSettings.VideoTSParentXBMC Then
