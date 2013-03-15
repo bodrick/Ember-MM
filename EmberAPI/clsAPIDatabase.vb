@@ -244,8 +244,8 @@ Public Class Database
 			connection.Close()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.ToString, _
-										ex.StackTrace, _
-										"There was a problem closing the media database.")
+				   ex.StackTrace, _
+				   "There was a problem closing the media database.")
 		Finally
 			connection.Dispose()
 		End Try
@@ -271,8 +271,8 @@ Public Class Database
 			_mediaDBConn.Open()
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.ToString, _
-				   ex.StackTrace, _
-				   "Unable to open media database connection.")
+				ex.StackTrace, _
+				"Unable to open media database connection.")
 		End Try
 
 
@@ -699,7 +699,7 @@ Public Class Database
 
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				SQLcommand.CommandText = String.Concat("SELECT MA.MovieID, MA.ActorName , MA.Role ,Act.Name,Act.thumb FROM MoviesActors AS MA ", _
-													   "INNER JOIN Actors AS Act ON (MA.ActorName = Act.Name) WHERE MA.MovieID = ", _movieDB.ID, " ORDER BY MA.ROWID;")
+							"INNER JOIN Actors AS Act ON (MA.ActorName = Act.Name) WHERE MA.MovieID = ", _movieDB.ID, " ORDER BY MA.ROWID;")
 				Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
 					Dim person As MediaContainers.Person
 					While SQLreader.Read
@@ -911,7 +911,7 @@ Public Class Database
 
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				SQLcommand.CommandText = String.Concat("SELECT TA.TVEpID, TA.ActorName, TA.Role, Act.Name, Act.thumb FROM TVEpActors AS TA ", _
-													   "INNER JOIN Actors AS Act ON (TA.ActorName = Act.Name) WHERE TA.TVEpID = ", EpID, " ORDER BY TA.ROWID;")
+							"INNER JOIN Actors AS Act ON (TA.ActorName = Act.Name) WHERE TA.TVEpID = ", EpID, " ORDER BY TA.ROWID;")
 				Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
 					Dim person As MediaContainers.Person
 					While SQLreader.Read
@@ -1099,7 +1099,7 @@ Public Class Database
 
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				SQLcommand.CommandText = String.Concat("SELECT TA.TVShowID, TA.ActorName, TA.Role, Act.Name, Act.thumb FROM TVShowActors AS TA ", _
-													   "INNER JOIN Actors AS Act ON (TA.ActorName = Act.Name) WHERE TA.TVShowID = ", ShowID, " ORDER BY TA.ROWID;")
+							"INNER JOIN Actors AS Act ON (TA.ActorName = Act.Name) WHERE TA.TVShowID = ", ShowID, " ORDER BY TA.ROWID;")
 				Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
 					Dim person As MediaContainers.Person
 					While SQLreader.Read
@@ -1181,18 +1181,18 @@ Public Class Database
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				If IsNew Then
 					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO movies (", _
-						"MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
-						"Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
-						"Studio, Runtime, ReleaseDate, Director, Credits, Playcount, Watched, Trailer, ", _
-						"PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
-						") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
+					 "MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
+					 "Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
+					 "Studio, Runtime, ReleaseDate, Director, Credits, Playcount, Watched, Trailer, ", _
+					 "PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
+					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
 				Else
 					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO movies (", _
-						"ID, MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
-						"Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
-						"Studio, Runtime, ReleaseDate, Director, Credits, Playcount, Watched, Trailer, ", _
-						"PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
-						") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
+					 "ID, MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
+					 "Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
+					 "Studio, Runtime, ReleaseDate, Director, Credits, Playcount, Watched, Trailer, ", _
+					 "PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
+					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
 					Dim parMovieID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMovieID", DbType.Int32, 0, "ID")
 					parMovieID.Value = _movieDB.ID
 				End If
@@ -1375,9 +1375,9 @@ Public Class Database
 						'cocotus, 2013/02 Added support for new MediaInfo-fields
 						'Expanded SQL Statement to INSERT/replace new fields
 						SQLcommandMoviesVStreams.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesVStreams (", _
-								 "MovieID, StreamID, Video_Width,Video_Height,Video_Codec,Video_Duration,", _
-								 "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage, Video_Bitrate, Video_MultiView, Video_EncodedSettings", _
-								 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);")
+						   "MovieID, StreamID, Video_Width,Video_Height,Video_Codec,Video_Duration,", _
+						   "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage, Video_Bitrate, Video_MultiView, Video_EncodedSettings", _
+						   ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);")
 						'cocotus end
 						Dim parVideo_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_MovieID", DbType.UInt64, 0, "MovieID")
 						Dim parVideo_StreamID As SQLite.SQLiteParameter = SQLcommandMoviesVStreams.Parameters.Add("parVideo_StreamID", DbType.UInt64, 0, "StreamID")
@@ -1424,8 +1424,8 @@ Public Class Database
 						'cocotus, 2013/02 Added support for new MediaInfo-fields
 						'Expanded SQL Statement to INSERT/replace new fields
 						SQLcommandMoviesAStreams.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesAStreams (", _
-								"MovieID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel, Audio_Bitrate", _
-								") VALUES (?,?,?,?,?,?,?);")
+						  "MovieID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel, Audio_Bitrate", _
+						  ") VALUES (?,?,?,?,?,?,?);")
 						'cocotus end
 
 						Dim parAudio_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesAStreams.Parameters.Add("parAudio_MovieID", DbType.UInt64, 0, "MovieID")
@@ -1459,8 +1459,8 @@ Public Class Database
 						SQLcommandMoviesSubs.ExecuteNonQuery()
 
 						SQLcommandMoviesSubs.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesSubs (", _
-								 "MovieID, StreamID, Subs_Language, Subs_LongLanguage,Subs_Type, Subs_Path", _
-								 ") VALUES (?,?,?,?,?,?);")
+						   "MovieID, StreamID, Subs_Language, Subs_LongLanguage,Subs_Type, Subs_Path", _
+						   ") VALUES (?,?,?,?,?,?);")
 						Dim parSubs_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesSubs.Parameters.Add("parSubs_MovieID", DbType.UInt64, 0, "MovieID")
 						Dim parSubs_StreamID As SQLite.SQLiteParameter = SQLcommandMoviesSubs.Parameters.Add("parSubs_StreamID", DbType.UInt64, 0, "StreamID")
 						Dim parSubs_Language As SQLite.SQLiteParameter = SQLcommandMoviesSubs.Parameters.Add("parSubs_Language", DbType.String, 0, "Subs_Language")
@@ -1484,8 +1484,8 @@ Public Class Database
 
 						If Not Master.eSettings.NoSaveImagesToNfo Then
 							SQLcommandMoviesPosters.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesPosters (", _
-									 "MovieID, thumbs", _
-									 ") VALUES (?,?);")
+							   "MovieID, thumbs", _
+							   ") VALUES (?,?);")
 							Dim parPosters_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesPosters.Parameters.Add("parPosters_MovieID", DbType.UInt64, 0, "MovieID")
 							Dim parPosters_thumb As SQLite.SQLiteParameter = SQLcommandMoviesPosters.Parameters.Add("parPosters_thumb", DbType.String, 0, "thumbs")
 							For Each p As String In _movieDB.Movie.Thumb
@@ -1501,8 +1501,8 @@ Public Class Database
 
 						If Not Master.eSettings.NoSaveImagesToNfo Then
 							SQLcommandMoviesFanart.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesFanart (", _
-									   "MovieID, preview, thumbs", _
-									   ") VALUES (?,?,?);")
+								 "MovieID, preview, thumbs", _
+								 ") VALUES (?,?,?);")
 							Dim parFanart_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesFanart.Parameters.Add("parFanart_MovieID", DbType.UInt64, 0, "MovieID")
 							Dim parFanart_Preview As SQLite.SQLiteParameter = SQLcommandMoviesFanart.Parameters.Add("parFanart_Preview", DbType.String, 0, "Preview")
 							Dim parFanart_thumb As SQLite.SQLiteParameter = SQLcommandMoviesFanart.Parameters.Add("parFanart_thumb", DbType.String, 0, "thumb")
@@ -1516,8 +1516,8 @@ Public Class Database
 					End Using
 					Using SQLcommandSets As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 						SQLcommandSets.CommandText = String.Concat("INSERT OR REPLACE INTO Sets (", _
-								 "SetName", _
-								 ") VALUES (?);")
+						   "SetName", _
+						   ") VALUES (?);")
 						Dim parSets_SetName As SQLite.SQLiteParameter = SQLcommandSets.Parameters.Add("parSets_SetName", DbType.String, 0, "SetName")
 						For Each s As MediaContainers.Set In _movieDB.Movie.Sets
 							parSets_SetName.Value = s.Set
@@ -1529,8 +1529,8 @@ Public Class Database
 						SQLcommandMoviesSets.ExecuteNonQuery()
 
 						SQLcommandMoviesSets.CommandText = String.Concat("INSERT OR REPLACE INTO MoviesSets (", _
-								 "MovieID,SetName,SetOrder", _
-								 ") VALUES (?,?,?);")
+						   "MovieID,SetName,SetOrder", _
+						   ") VALUES (?,?,?);")
 						Dim parMovieSets_MovieID As SQLite.SQLiteParameter = SQLcommandMoviesSets.Parameters.Add("parMovieSets_MovieID", DbType.UInt64, 0, "MovieID")
 						Dim parMovieSets_SetName As SQLite.SQLiteParameter = SQLcommandMoviesSets.Parameters.Add("parMovieSets_SetName", DbType.String, 0, "SetName")
 						Dim parMovieSets_SetOrder As SQLite.SQLiteParameter = SQLcommandMoviesSets.Parameters.Add("parMovieSets_SetOrder", DbType.String, 0, "SetOrder")
@@ -1588,7 +1588,7 @@ Public Class Database
 						Else
 							Using SQLpcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 								SQLpcommand.CommandText = String.Concat("INSERT INTO TVEpPaths (", _
-											  "TVEpPath) VALUES (?); SELECT LAST_INSERT_ROWID() FROM TVEpPaths;")
+									 "TVEpPath) VALUES (?); SELECT LAST_INSERT_ROWID() FROM TVEpPaths;")
 								Dim parEpPath As SQLite.SQLiteParameter = SQLpcommand.Parameters.Add("parEpPath", DbType.String, 0, "TVEpPath")
 								parEpPath.Value = _TVEpDB.Filename
 
@@ -1602,14 +1602,14 @@ Public Class Database
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				If IsNew Then
 					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
-						"TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
-						"Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
-						") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
+					 "TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
+					 "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
+					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
 				Else
 					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
-						"ID, TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
-						"Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
-						") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
+					 "ID, TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
+					 "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
+					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
 					Dim parTVEpID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVEpID", DbType.UInt64, 0, "ID")
 					parTVEpID.Value = _TVEpDB.EpID
 				End If
@@ -1720,9 +1720,9 @@ Public Class Database
 						'cocotus, 2013/02 Added support for new MediaInfo-fields
 						'Expanded SQL Statement to INSERT/replace new fields
 						SQLcommandTVVStreams.CommandText = String.Concat("INSERT OR REPLACE INTO TVVStreams (", _
-								 "TVEpID, StreamID, Video_Width,Video_Height,Video_Codec,Video_Duration,", _
-								 "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage, Video_Bitrate, Video_MultiView, Video_EncodedSettings", _
-								 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);")
+						   "TVEpID, StreamID, Video_Width,Video_Height,Video_Codec,Video_Duration,", _
+						   "Video_ScanType, Video_AspectDisplayRatio, Video_Language, Video_LongLanguage, Video_Bitrate, Video_MultiView, Video_EncodedSettings", _
+						   ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);")
 						'cocotus end
 
 						Dim parVideo_EpID As SQLite.SQLiteParameter = SQLcommandTVVStreams.Parameters.Add("parVideo_EpID", DbType.UInt64, 0, "TVEpID")
@@ -1770,8 +1770,8 @@ Public Class Database
 						'cocotus, 2013/02 Added support for new MediaInfo-fields
 						'Expanded SQL Statement to INSERT/replace new fields
 						SQLcommandTVAStreams.CommandText = String.Concat("INSERT OR REPLACE INTO TVAStreams (", _
-								 "TVEpID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel, Audio_Bitrate", _
-								 ") VALUES (?,?,?,?,?,?,?);")
+						   "TVEpID, StreamID, Audio_Language, Audio_LongLanguage, Audio_Codec, Audio_Channel, Audio_Bitrate", _
+						   ") VALUES (?,?,?,?,?,?,?);")
 						'cocotus end
 
 						Dim parAudio_EpID As SQLite.SQLiteParameter = SQLcommandTVAStreams.Parameters.Add("parAudio_EpID", DbType.UInt64, 0, "TVEpID")
@@ -1805,8 +1805,8 @@ Public Class Database
 						SQLcommandTVSubs.ExecuteNonQuery()
 
 						SQLcommandTVSubs.CommandText = String.Concat("INSERT OR REPLACE INTO TVSubs (", _
-								"TVEpID, StreamID, Subs_Language, Subs_LongLanguage", _
-								") VALUES (?,?,?,?);")
+						  "TVEpID, StreamID, Subs_Language, Subs_LongLanguage", _
+						  ") VALUES (?,?,?,?);")
 						Dim parSubs_EpID As SQLite.SQLiteParameter = SQLcommandTVSubs.Parameters.Add("parSubs_EpID", DbType.UInt64, 0, "TVEpID")
 						Dim parSubs_StreamID As SQLite.SQLiteParameter = SQLcommandTVSubs.Parameters.Add("parSubs_StreamID", DbType.UInt64, 0, "StreamID")
 						Dim parSubs_Language As SQLite.SQLiteParameter = SQLcommandTVSubs.Parameters.Add("parSubs_Language", DbType.String, 0, "Subs_Language")
@@ -1836,8 +1836,8 @@ Public Class Database
 
 		Using SQLcommandTVSeason As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 			SQLcommandTVSeason.CommandText = String.Concat("INSERT OR ", If(IsNew, "IGNORE", "REPLACE"), " INTO TVSeason (", _
-					"TVShowID, SeasonText, Season, HasPoster, HasFanart, PosterPath, FanartPath, Lock, Mark, New", _
-					") VALUES (?,?,?,?,?,?,?,?,?,?);")
+			  "TVShowID, SeasonText, Season, HasPoster, HasFanart, PosterPath, FanartPath, Lock, Mark, New", _
+			  ") VALUES (?,?,?,?,?,?,?,?,?,?);")
 			Dim parSeasonShowID As SQLite.SQLiteParameter = SQLcommandTVSeason.Parameters.Add("parSeasonShowID", DbType.UInt64, 0, "TVShowID")
 			Dim parSeasonSeasonText As SQLite.SQLiteParameter = SQLcommandTVSeason.Parameters.Add("parSeasonSeasonText", DbType.String, 0, "SeasonText")
 			Dim parSeasonSeason As SQLite.SQLiteParameter = SQLcommandTVSeason.Parameters.Add("parSeasonSeason", DbType.Int32, 0, "Season")
@@ -1879,14 +1879,14 @@ Public Class Database
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				If IsNew Then
 					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVShows (", _
-						"TVShowPath, HasPoster, HasFanart, HasNfo, New, Mark, Source, TVDB, Lock, Title,", _
-						"EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering", _
-						") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
+					 "TVShowPath, HasPoster, HasFanart, HasNfo, New, Mark, Source, TVDB, Lock, Title,", _
+					 "EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering", _
+					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
 				Else
 					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVShows (", _
-						"ID, TVShowPath, HasPoster, HasFanart, HasNfo, New, Mark, Source, TVDB, Lock, Title,", _
-						"EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering", _
-						") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
+					 "ID, TVShowPath, HasPoster, HasFanart, HasNfo, New, Mark, Source, TVDB, Lock, Title,", _
+					 "EpisodeGuide, Plot, Genre, Premiered, Studio, MPAA, Rating, PosterPath, FanartPath, NfoPath, NeedsSave, Language, Ordering", _
+					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVShows;")
 					Dim parTVShowID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVShowID", DbType.UInt64, 0, "ID")
 					parTVShowID.Value = _TVShowDB.ShowID
 				End If
@@ -2131,7 +2131,7 @@ Public Class Database
 		Try
 			Using SQLCommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				SQLCommand.CommandText = String.Concat("INSERT OR REPLACE INTO Addons (", _
-						"AddonID, Version) VALUES (?,?);")
+				  "AddonID, Version) VALUES (?,?);")
 				Dim parAddonID As SQLite.SQLiteParameter = SQLCommand.Parameters.Add("parAddonID", DbType.Int32, 0, "AddonID")
 				Dim parVersion As SQLite.SQLiteParameter = SQLCommand.Parameters.Add("parVersion", DbType.String, 0, "Version")
 
