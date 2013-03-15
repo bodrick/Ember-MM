@@ -22,6 +22,7 @@ Imports EmberAPI
 Imports RestSharp
 Imports WatTmdb
 
+
 Namespace TMDB
 
 	Public Class Scraper
@@ -61,24 +62,34 @@ Namespace TMDB
 			' v3 does not have description anymore
 			poster_names(0).description = "thumb"
 			poster_names(0).size = "w92"
+			poster_names(0).width = 92
 			poster_names(1).description = "w154"
 			poster_names(1).size = "w154"
+			poster_names(1).width = 154
 			poster_names(2).description = "cover"
 			poster_names(2).size = "w185"
+			poster_names(2).width = 185
 			poster_names(3).description = "w342"
 			poster_names(3).size = "w342"
+			poster_names(3).width = 342
 			poster_names(4).description = "mid"
 			poster_names(4).size = "w500"
+			poster_names(4).width = 500
 			poster_names(5).description = "original"
 			poster_names(5).size = "original"
+			poster_names(5).width = 0
 			backdrop_names(0).description = "thumb"
 			backdrop_names(0).size = "w300"
+			backdrop_names(0).width = 300
 			backdrop_names(1).description = "poster"
 			backdrop_names(1).size = "w780"
+			backdrop_names(1).width = 780
 			backdrop_names(2).description = "w1280"
 			backdrop_names(2).size = "w1280"
+			backdrop_names(2).width = 1280
 			backdrop_names(3).description = "original"
 			backdrop_names(3).size = "original"
+			backdrop_names(3).width = 0
 		End Sub
 
 		Public Sub Cancel()
@@ -105,6 +116,7 @@ Namespace TMDB
 		Public Function GetTMDBImages(ByVal imdbID As String, ByVal sType As String) As List(Of MediaContainers.Image)
 			Dim alPosters As New List(Of MediaContainers.Image)
 			Dim images As V3.TmdbMovieImages
+			Dim aW, aH As Integer
 
 			If bwTMDB.CancellationPending Then Return Nothing
 			Try
@@ -134,7 +146,15 @@ Namespace TMDB
 					For Each tmdbI As V3.Poster In images.posters
 						If bwTMDB.CancellationPending Then Return Nothing
 						For Each aSize In poster_names
-							Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(tmdbI.width), .Height = CStr(tmdbI.height), .ParentID = imdbID}
+							Select Case aSize.size
+								Case "original"
+									aW = tmdbI.width
+									aH = tmdbI.width
+								Case Else
+									aW = aSize.width
+									aH = CInt(aW / tmdbI.aspect_ratio)
+							End Select
+							Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = imdbID}
 							alPosters.Add(tmpPoster)
 						Next
 					Next
@@ -142,7 +162,15 @@ Namespace TMDB
 					For Each tmdbI As V3.Backdrop In images.backdrops
 						If bwTMDB.CancellationPending Then Return Nothing
 						For Each aSize In backdrop_names
-							Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(tmdbI.width), .Height = CStr(tmdbI.height), .ParentID = imdbID}
+							Select Case aSize.size
+								Case "original"
+									aW = tmdbI.width
+									aH = tmdbI.width
+								Case Else
+									aW = aSize.width
+									aH = CInt(aW / tmdbI.aspect_ratio)
+							End Select
+							Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = imdbID}
 							alPosters.Add(tmpPoster)
 						Next
 					Next
@@ -241,6 +269,7 @@ Namespace TMDB
 
 			Dim size As String
 			Dim description As String
+			Dim width As Integer
 
 #End Region	'Fields
 
