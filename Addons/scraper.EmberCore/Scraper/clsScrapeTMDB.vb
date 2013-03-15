@@ -104,7 +104,8 @@ Namespace TMDB
                                 For Each tmdbI As XElement In tmdbImages
                                     Dim parentID As String = tmdbI.Parent.Attribute("id").Value
                                     If bwTMDB.CancellationPending Then Return Nothing
-                                    Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
+									Debug.Print("{0}/t{1}", tmdbI.@size, tmdbI.@url)
+									Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
                                     alPosters.Add(tmpPoster)
                                 Next
                             End If
