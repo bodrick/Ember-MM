@@ -520,7 +520,7 @@ Public Class EmberXMLScraperModule
                     End Try
                 End If
             End If
-            If Master.GlobalScrapeMod.Actors AndAlso AdvancedSettings.GetBooleanSetting("ScrapeActorsThumbs", False) Then
+            If Master.GlobalScrapeMod.Actors AndAlso AdvancedSettings.GetBooleanSetting("ScrapeActorsThumbs", False, "*EmberAPP") Then
                 For Each act As MediaContainers.Person In DBMovie.Movie.Actors
                     Dim img As New Images
                     img.FromWeb(act.Thumb)
