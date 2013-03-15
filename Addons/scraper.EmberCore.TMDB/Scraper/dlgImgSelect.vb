@@ -355,7 +355,7 @@ Public Class dlgImgSelect
 
 	Private Sub bwFANARTTVDownload_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwFANARTTVDownload.DoWork
 		'//
-		' Thread to download mpdb posters from the internet (multi-threaded because sometimes
+		' Thread to download FanartTV images from the internet (multi-threaded because sometimes
 		' the web server is slow to respond or not reachable, hanging the GUI)
 		'\\
 		For i As Integer = 0 To Me.FANARTTVPosters.Count - 1
