@@ -509,7 +509,7 @@ Public Class FileFolderRenamer
                         End If
 
                         If DoDB AndAlso DoUpdate Then
-                            UpdateFaSPaths(_movieDB, destDir, f.FileName, f.NewFileName)
+                            UpdateFaSPaths(_movieDB, srcDir, destDir, f.FileName, f.NewFileName)
                             Master.DB.SaveMovieToDB(_movieDB, False)
                             If Not f.IsSingle Then
                                 Dim fileCount As Integer = 0
@@ -671,14 +671,14 @@ Public Class FileFolderRenamer
                 Dim srcDir As String = Path.Combine(_frename.BasePath, _frename.Path)
                 Dim destDir As String = Path.Combine(_frename.BasePath, _frename.NewPath)
 
-                If _frename.IsVideo_TS Then
-                    srcDir = Path.Combine(srcDir, "VIDEO_TS")
-                    destDir = Path.Combine(destDir, "VIDEO_TS")
+                'If _frename.IsVideo_TS Then
+                '    srcDir = Path.Combine(srcDir, "VIDEO_TS")
+                '    destDir = Path.Combine(destDir, "VIDEO_TS")
 
-                ElseIf _frename.IsBDMV Then
-                    srcDir = Path.Combine(srcDir, String.Concat("BDMV", Path.DirectorySeparatorChar, "STREAM"))
-                    destDir = Path.Combine(destDir, String.Concat("BDMV", Path.DirectorySeparatorChar, "STREAM"))
-                End If
+                'ElseIf _frename.IsBDMV Then
+                '    srcDir = Path.Combine(srcDir, String.Concat("BDMV", Path.DirectorySeparatorChar, "STREAM"))
+                '    destDir = Path.Combine(destDir, String.Concat("BDMV", Path.DirectorySeparatorChar, "STREAM"))
+                'End If
 
                 'Rename Directory
                 If Not srcDir = destDir Then
@@ -750,7 +750,7 @@ Public Class FileFolderRenamer
                     End If
                 End If
 
-                UpdateFaSPaths(_movie, destDir, _frename.FileName, _frename.NewFileName)
+                UpdateFaSPaths(_movie, srcDir, destDir, _frename.FileName, _frename.NewFileName)
                 Master.DB.SaveMovieToDB(_movie, False, BatchMode, toNfo)
                 If Not _frename.IsSingle Then
                     Dim fileCount As Integer = 0
@@ -781,14 +781,14 @@ Public Class FileFolderRenamer
         End Try
     End Sub
 
-    Private Shared Sub UpdateFaSPaths(ByRef _DBM As Structures.DBMovie, ByVal newPath As String, ByVal oldFile As String, ByVal newFile As String)
-        If Not String.IsNullOrEmpty(_DBM.FanartPath) Then _DBM.FanartPath = Path.Combine(newPath, Path.GetFileName(_DBM.FanartPath).Replace(oldFile, newFile))
-        If Not String.IsNullOrEmpty(_DBM.ExtraPath) Then _DBM.ExtraPath = Path.Combine(newPath, Path.GetFileName(_DBM.ExtraPath).Replace(oldFile, newFile))
-        If Not String.IsNullOrEmpty(_DBM.Filename) Then _DBM.Filename = Path.Combine(newPath, Path.GetFileName(_DBM.Filename).Replace(oldFile, newFile))
-        If Not String.IsNullOrEmpty(_DBM.NfoPath) Then _DBM.NfoPath = Path.Combine(newPath, Path.GetFileName(_DBM.NfoPath).Replace(oldFile, newFile))
-        If Not String.IsNullOrEmpty(_DBM.PosterPath) Then _DBM.PosterPath = Path.Combine(newPath, Path.GetFileName(_DBM.PosterPath).Replace(oldFile, newFile))
-        If Not String.IsNullOrEmpty(_DBM.SubPath) Then _DBM.SubPath = Path.Combine(newPath, Path.GetFileName(_DBM.SubPath).Replace(oldFile, newFile))
-        If Not String.IsNullOrEmpty(_DBM.TrailerPath) Then _DBM.TrailerPath = Path.Combine(newPath, Path.GetFileName(_DBM.TrailerPath).Replace(oldFile, newFile))
+    Private Shared Sub UpdateFaSPaths(ByRef _DBM As Structures.DBMovie, ByVal oldPath As String, ByVal newPath As String, ByVal oldFile As String, ByVal newFile As String)
+        If Not String.IsNullOrEmpty(_DBM.FanartPath) Then _DBM.FanartPath = Path.Combine(Directory.GetParent(_DBM.FanartPath).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.FanartPath).Replace(oldFile, newFile))
+        If Not String.IsNullOrEmpty(_DBM.ExtraPath) Then _DBM.ExtraPath = Path.Combine(Directory.GetParent(_DBM.ExtraPath).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.ExtraPath).Replace(oldFile, newFile))
+        If Not String.IsNullOrEmpty(_DBM.Filename) Then _DBM.Filename = Path.Combine(Directory.GetParent(_DBM.Filename).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.Filename).Replace(oldFile, newFile))
+        If Not String.IsNullOrEmpty(_DBM.NfoPath) Then _DBM.NfoPath = Path.Combine(Directory.GetParent(_DBM.NfoPath).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.NfoPath).Replace(oldFile, newFile))
+        If Not String.IsNullOrEmpty(_DBM.PosterPath) Then _DBM.PosterPath = Path.Combine(Directory.GetParent(_DBM.PosterPath).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.PosterPath).Replace(oldFile, newFile))
+        If Not String.IsNullOrEmpty(_DBM.SubPath) Then _DBM.SubPath = Path.Combine(Directory.GetParent(_DBM.SubPath).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.SubPath).Replace(oldFile, newFile))
+        If Not String.IsNullOrEmpty(_DBM.TrailerPath) Then _DBM.TrailerPath = Path.Combine(Directory.GetParent(_DBM.TrailerPath).FullName.Replace(oldPath, newPath), Path.GetFileName(_DBM.TrailerPath).Replace(oldFile, newFile))
     End Sub
 
 #End Region 'Methods
