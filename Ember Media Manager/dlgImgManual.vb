@@ -69,7 +69,7 @@ Public Class dlgImgManual
 	End Sub
 
 	Private Sub dlgImgManual_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
-		tImage.Dispose()
+		'tImage.Dispose() cannot dispose as is used by calling entity
 		tImage = Nothing
 	End Sub
 

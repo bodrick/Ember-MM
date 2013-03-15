@@ -29,7 +29,7 @@ Public Class Images
 
 #Region "Fields"
 
-	Private _ms As MemoryStream = New MemoryStream()
+	Private _ms As MemoryStream
     Private Ret As Byte()
     <NonSerialized()> _
     Private sHTTP As New HTTP
@@ -79,7 +79,8 @@ Public Class Images
 			EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
 
 			EncPars.Param(1) = New EncoderParameter(Encoder.Quality, 100)
-
+			_ms.Dispose()
+			_ms = New MemoryStream()
 			nImage.Save(_ms, ICI, EncPars)
 			_ms.Flush()
 			_image = New Bitmap(_ms)
@@ -138,9 +139,14 @@ Public Class Images
     End Function
 
     Public Sub Clear()
-        _isedit = False
-        _image = Nothing
-    End Sub
+		_isedit = False
+		If Not IsNothing(_ms) Or Not IsNothing(_image) Then
+			Me.Dispose()
+		Else
+			_image = Nothing
+			_ms = New MemoryStream()
+		End If
+	End Sub
 
     Public Sub Delete(ByVal sPath As String)
         If Not String.IsNullOrEmpty(sPath) Then
@@ -384,17 +390,25 @@ Public Class Images
     End Sub
 
     Public Sub Dispose() Implements IDisposable.Dispose
-		_ms.Flush()
-		_ms.Close()
-		_ms.Dispose()
-		_ms = Nothing
-        Clear()
+		If Not IsNothing(_ms) Then
+			_ms.Flush()
+			_ms.Close()
+			_ms.Dispose()
+			_ms = Nothing
+		End If
+		If Not IsNothing(_image) Then
+			_image.Dispose()
+			_image = Nothing
+		End If
+		_isedit = False
     End Sub
 
-    Public Sub FromFile(ByVal sPath As String)
-        If Not String.IsNullOrEmpty(sPath) AndAlso File.Exists(sPath) Then
-            Try
-                Using fsImage As New FileStream(sPath, FileMode.Open, FileAccess.Read)
+	Public Sub FromFile(ByVal sPath As String)
+		Debug.Print("FromFile\t" & sPath)
+		If Not String.IsNullOrEmpty(sPath) AndAlso File.Exists(sPath) Then
+			Try
+				If IsNothing(_ms) Then _ms = New MemoryStream()
+				Using fsImage As New FileStream(sPath, FileMode.Open, FileAccess.Read)
 					Dim StreamBuffer(Convert.ToInt32(fsImage.Length - 1)) As Byte
 
 					fsImage.Read(StreamBuffer, 0, StreamBuffer.Length)
@@ -405,12 +419,12 @@ Public Class Images
 					'fsImage.Read(_ms.GetBuffer(), 0, Convert.ToInt32(fsImage.Length))
 					_ms.Flush()
 					_image = New Bitmap(_ms)
-                End Using
-            Catch ex As Exception
-                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error: " & sPath)
-            End Try
-        End If
-    End Sub
+				End Using
+			Catch ex As Exception
+				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error: " & sPath)
+			End Try
+		End If
+	End Sub
 
     Public Sub FromWeb(ByVal sURL As String)
         Try
@@ -422,7 +436,13 @@ Public Class Images
             End While
 
 			If Not IsNothing(sHTTP.Image) Then
-				_ms = sHTTP.ms
+				If IsNothing(_ms) Then _ms = New MemoryStream()
+				Dim StreamBuffer(Convert.ToInt32(sHTTP.ms.Length - 1)) As Byte
+				sHTTP.ms.Read(StreamBuffer, 0, StreamBuffer.Length)
+				_ms.Write(StreamBuffer, 0, StreamBuffer.Length)
+				StreamBuffer = Nothing
+
+				'I do not copy from the _ms as it could not be a JPG
 				_image = New Bitmap(sHTTP.Image)
 				' if is not a JPG we have to conver the memory stream to JPG format
 				If Not sHTTP.isJPG Then

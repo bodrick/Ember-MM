@@ -500,7 +500,7 @@ Public Class dlgEditMovie
     End Sub
 
     Private Sub dlgEditMovie_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
-        Me.Poster.Dispose()
+		Me.Poster.Dispose()
         Me.Poster = Nothing
 
         Me.Fanart.Dispose()
