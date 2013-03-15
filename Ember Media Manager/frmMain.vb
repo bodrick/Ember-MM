@@ -872,9 +872,9 @@ Public Class frmMain
 
                 If Not IsNothing(Me.MainFanart.Image) Then
                     If String.IsNullOrEmpty(Master.currShow.Filename) Then
-                        Me.MainFanart.Image = ImageUtils.AddMissingStamp(Me.MainFanart.Image)
+						Me.MainFanart = ImageUtils.AddMissingStamp(Me.MainFanart)
                     ElseIf NeedsGS Then
-                        Me.MainFanart.Image = ImageUtils.GrayScale(Me.MainFanart.Image)
+						Me.MainFanart = ImageUtils.GrayScale(Me.MainFanart)
                     End If
                 End If
             End If
@@ -1000,7 +1000,7 @@ Public Class frmMain
                     Me.MainFanart.FromFile(Master.currShow.SeasonFanartPath)
                 Else
                     Me.MainFanart.FromFile(Master.currShow.ShowFanartPath)
-                    If Not IsNothing(Me.MainFanart.Image) Then Me.MainFanart.Image = ImageUtils.GrayScale(Me.MainFanart.Image)
+					If Not IsNothing(Me.MainFanart.Image) Then Me.MainFanart = ImageUtils.GrayScale(Me.MainFanart)
                 End If
             End If
 
@@ -1231,7 +1231,8 @@ Public Class frmMain
                         If bwMovieScraper.CancellationPending Then Exit For
 
                         ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.MovieScraperRDYtoSave, Nothing, DBScrapeMovie)
-                        DBScrapeMovie = Master.DB.LoadMovieFromDB(Convert.ToInt64(dRow.Item(0))) ' reload the DB if a module has changed the entries (renamer e.g.)
+						' nosense always clears the DB on new fields resulting in an empty record
+						'DBScrapeMovie = Master.DB.LoadMovieFromDB(Convert.ToInt64(dRow.Item(0))) ' reload the DB if a module has changed the entries (renamer e.g.)
 
                         If Master.GlobalScrapeMod.Extra Then
                             If Master.eSettings.AutoThumbs > 0 AndAlso DBScrapeMovie.isSingle Then
@@ -1249,7 +1250,7 @@ Public Class frmMain
                             End If
                         End If
 
-                        Master.DB.SaveMovieToDB(DBScrapeMovie, False, False, Not String.IsNullOrEmpty(DBScrapeMovie.Movie.IMDBID))
+						Master.DB.SaveMovieToDB(DBScrapeMovie, False, False, Not String.IsNullOrEmpty(DBScrapeMovie.Movie.IMDBID))
                         ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.MovieSync, Nothing, DBScrapeMovie)
                         bwMovieScraper.ReportProgress(-1, If(Not OldTitle = NewTitle, String.Format(Master.eLang.GetString(812, "Old Title: {0} | New Title: {1}"), OldTitle, NewTitle), NewTitle))
                         bwMovieScraper.ReportProgress(-2, dScrapeRow.Item(0).ToString)
@@ -5516,7 +5517,7 @@ doCancel:
                     APIXML.CacheXMLs()
 					'fLoading.SetLoadingMesg("Loading database...")
 					fLoading.SetLoadingMesg(Master.eLang.GetString(858, "Loading database..."))
-					If Master.DB.CheckEssentials() Then
+					If Master.DB.ConnectMediaDB() Then
 						Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
 					End If
                     Master.DB.LoadMovieSourcesFromDB()
@@ -5716,13 +5717,13 @@ doCancel:
 						'fLoading.SetLoadingMesg("Loading database...")
 						fLoading.SetLoadingMesg(Master.eLang.GetString(858, "Loading database..."))
 						If Master.eSettings.Version = String.Format("r{0}", My.Application.Info.Version.Revision) Then
-							If Master.DB.CheckEssentials() Then
+							If Master.DB.ConnectMediaDB() Then
 								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
 							End If
 							Me.FillList(0)
 							Me.Visible = True
 						Else
-							If Master.DB.CheckEssentials() Then
+							If Master.DB.ConnectMediaDB() Then
 								Me.LoadMedia(New Structures.Scans With {.Movies = True, .TV = True})
 							End If
 							If dlgWizard.ShowDialog = Windows.Forms.DialogResult.OK Then

@@ -22,54 +22,63 @@ Imports System.IO
 
 Public Class ErrorLogger
 
-    #Region "Events"
+#Region "Fields"
+	Private Shared _LogFile As String
+#End Region	'Fields
 
-    Public Event ErrorOccurred()
+#Region "Constructors"
 
-    #End Region 'Events
+	Public Sub New()
+		Dim _sPath As String
+		_sPath = Path.Combine(Functions.AppPath, "Log")
+		If Not System.IO.Directory.Exists(_sPath) Then
+			System.IO.Directory.CreateDirectory(_sPath)
+		End If
 
-    #Region "Methods"
+		_LogFile = Path.Combine(_sPath, Format(Now, "yyyyMMdd-HHmmss") & ".log")
+	End Sub
 
-    ''' <summary>
-    ''' Write the error to our log file, if enabled in settings.
-    ''' </summary>
-    ''' <param name="msg">Error summary</param>
-    ''' <param name="stkTrace">Full stack trace</param>
-    ''' <param name="title">Error title</param>
-    Public Sub WriteToErrorLog(ByVal msg As String, ByVal stkTrace As String, ByVal title As String, Optional ByVal Notify As Boolean = True)
-        Try
-            If Master.eSettings.LogErrors Then
-                Dim sPath As String = Path.Combine(Functions.AppPath, "Log")
+#End Region	'Constructors
 
-                If Not System.IO.Directory.Exists(sPath) Then
-                    System.IO.Directory.CreateDirectory(sPath)
-                End If
+#Region "Properties"
+#End Region	'Properties
 
-                'check the file
-                Using fs As FileStream = New FileStream(Path.Combine(sPath, "errlog.txt"), FileMode.OpenOrCreate, FileAccess.ReadWrite)
-                    Using s As StreamWriter = New StreamWriter(fs)
-                    End Using
-                End Using
+#Region "Events"
 
-                'log it
-                Using fs1 As FileStream = New FileStream(Path.Combine(sPath, "errlog.txt"), FileMode.Append, FileAccess.Write)
-                    Using s1 As StreamWriter = New StreamWriter(fs1)
-                        s1.Write(String.Concat("Title: ", title, vbNewLine))
-                        s1.Write(String.Concat("Message: ", msg, vbNewLine))
-                        s1.Write(String.Concat("StackTrace: ", stkTrace, vbNewLine))
-                        s1.Write(String.Concat("Date/Time: ", DateTime.Now.ToString(), vbNewLine))
-                        s1.Write(String.Concat("===========================================================================================", vbNewLine, vbNewLine))
-                    End Using
-                End Using
+	Public Event ErrorOccurred()
 
-                If Notify Then ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.Notification, New List(Of Object)(New Object() {"error", 1, Master.eLang.GetString(816, "An Error Has Occurred"), msg, Nothing}))
+#End Region	'Events
 
-                RaiseEvent ErrorOccurred()
-            End If
-        Catch 
-        End Try
-    End Sub
+#Region "Methods"
 
-    #End Region 'Methods
+	''' <summary>
+	''' Write the error to our log file, if enabled in settings.
+	''' </summary>
+	''' <param name="msg">Error summary</param>
+	''' <param name="stkTrace">Full stack trace</param>
+	''' <param name="title">Error title</param>
+	Public Sub WriteToErrorLog(ByVal msg As String, ByVal stkTrace As String, ByVal title As String, Optional ByVal Notify As Boolean = True)
+		Try
+			If Master.eSettings.LogErrors Then
+				Using fs1 As FileStream = New FileStream(_LogFile, FileMode.Append, FileAccess.Write)
+					Using s1 As StreamWriter = New StreamWriter(fs1)
+						s1.Write(String.Concat("Title: ", title, vbNewLine))
+						s1.Write(String.Concat("Message: ", msg, vbNewLine))
+						s1.Write(String.Concat("StackTrace: ", stkTrace, vbNewLine))
+						s1.Write(String.Concat("Date/Time: ", DateTime.Now.ToString(), vbNewLine))
+						s1.Write(String.Concat("===========================================================================================", vbNewLine, vbNewLine))
+						s1.Flush()
+					End Using
+				End Using
+
+				If Notify Then ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.Notification, New List(Of Object)(New Object() {"error", 1, Master.eLang.GetString(816, "An Error Has Occurred"), msg, Nothing}))
+
+				RaiseEvent ErrorOccurred()
+			End If
+		Catch
+		End Try
+	End Sub
+
+#End Region	'Methods
 
 End Class

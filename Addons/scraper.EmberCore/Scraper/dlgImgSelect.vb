@@ -57,7 +57,7 @@ Public Class dlgImgSelect
     Private TMDB As New TMDB.Scraper
     Private TMDBPosters As New List(Of MediaContainers.Image)
     Private tMovie As New Structures.DBMovie
-    Private tmpImage As New Images
+	Private tmpImage As New MediaContainers.Image
     Private _impaDone As Boolean = True
     Private _mpdbDone As Boolean = True
     Private _tmdbDone As Boolean = True
@@ -589,7 +589,7 @@ Public Class dlgImgSelect
                 Me.rbSmall.Checked = False
                 Me.OK_Button.Enabled = True
                 Me.OK_Button.Focus()
-                Me.tmpImage.Image = Me.pbImage(iIndex).Image
+				Me.tmpImage = CType(Me.pbImage(iIndex).Tag, MediaContainers.Image)
             End If
 
         Catch ex As Exception
@@ -897,77 +897,77 @@ Public Class dlgImgSelect
                 tmpPathPlus = Path.Combine(Master.TempPath, "poster.jpg")
             End If
 
-            If Not IsNothing(Me.tmpImage.Image) Then
-                If isEdit Then
-                    'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
-                    Me.tmpImage.Save(tmpPathPlus)
-                    Results.ImagePath = tmpPathPlus
-                Else
-                    If Me.DLType = Enums.ImageType.Fanart Then
-                        Results.ImagePath = Me.tmpImage.SaveAsFanart(tMovie)
-                    Else
-                        Results.ImagePath = Me.tmpImage.SaveAsPoster(tMovie)
-                    End If
-                End If
-            Else
-                Me.pnlBG.Visible = False
-                Me.pnlSinglePic.Visible = True
-                Me.Refresh()
-                Application.DoEvents()
-                Select Case True
-                    Case Me.rbXLarge.Checked
-                        If Master.eSettings.UseImgCache Then
-                            tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(original)_(url=", Me.rbXLarge.Tag, ").jpg")))
-                        Else
-                            If extrathumbSize = "original" And DLType = Enums.ImageType.Fanart Then
-                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
-                            Else
-                                Me.tmpImage.FromWeb(Me.rbXLarge.Tag.ToString)
-                            End If
-                        End If
-                    Case Me.rbLarge.Checked
-                        If Master.eSettings.UseImgCache Then
-                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))
-                        Else
-                            If extrathumbSize = "w1280" And DLType = Enums.ImageType.Fanart Or Not DLType = Enums.ImageType.Fanart Then
-                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
-                            Else
-                                Me.tmpImage.FromWeb(Me.rbLarge.Tag.ToString)
-                            End If
-                        End If
-                    Case Me.rbMedium.Checked
-                        If extrathumbSize = "poster" And DLType = Enums.ImageType.Fanart Then
-                            Me.tmpImage.Image = Me.pbImage(selIndex).Image
-                        Else
-                            Me.tmpImage.FromWeb(Me.rbMedium.Tag.ToString)
-                        End If
-                    Case Me.rbSmall.Checked
-                        If Master.eSettings.UseImgCache Then
-                            Me.tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
-                        Else
-                            If extrathumbSize = "thumb" And DLType = Enums.ImageType.Fanart Then
-                                Me.tmpImage.Image = Me.pbImage(selIndex).Image
-                            Else
-                                Me.tmpImage.FromWeb(Me.rbSmall.Tag.ToString)
-                            End If
-                        End If
-                End Select
+			If Not IsNothing(Me.tmpImage.WebImage.Image) Then
+				If isEdit Then
+					'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
+					Me.tmpImage.WebImage.Save(tmpPathPlus, , , False)
+					Results.ImagePath = tmpPathPlus
+				Else
+					If Me.DLType = Enums.ImageType.Fanart Then
+						Results.ImagePath = Me.tmpImage.WebImage.SaveAsFanart(tMovie)
+					Else
+						Results.ImagePath = Me.tmpImage.WebImage.SaveAsPoster(tMovie)
+					End If
+				End If
+			Else
+				Me.pnlBG.Visible = False
+				Me.pnlSinglePic.Visible = True
+				Me.Refresh()
+				Application.DoEvents()
+				Select Case True
+					Case Me.rbXLarge.Checked
+						If Master.eSettings.UseImgCache Then
+							tmpImage.WebImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(original)_(url=", Me.rbXLarge.Tag, ").jpg")))
+						Else
+							If extrathumbSize = "original" And DLType = Enums.ImageType.Fanart Then
+								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+							Else
+								Me.tmpImage.WebImage.FromWeb(Me.rbXLarge.Tag.ToString)
+							End If
+						End If
+					Case Me.rbLarge.Checked
+						If Master.eSettings.UseImgCache Then
+							Me.tmpImage.WebImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))
+						Else
+							If extrathumbSize = "w1280" And DLType = Enums.ImageType.Fanart Or Not DLType = Enums.ImageType.Fanart Then
+								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+							Else
+								Me.tmpImage.WebImage.FromWeb(Me.rbLarge.Tag.ToString)
+							End If
+						End If
+					Case Me.rbMedium.Checked
+						If extrathumbSize = "poster" And DLType = Enums.ImageType.Fanart Then
+							Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+						Else
+							Me.tmpImage.WebImage.FromWeb(Me.rbMedium.Tag.ToString)
+						End If
+					Case Me.rbSmall.Checked
+						If Master.eSettings.UseImgCache Then
+							Me.tmpImage.WebImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
+						Else
+							If extrathumbSize = "thumb" And DLType = Enums.ImageType.Fanart Then
+								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+							Else
+								Me.tmpImage.WebImage.FromWeb(Me.rbSmall.Tag.ToString)
+							End If
+						End If
+				End Select
 
-                If Not IsNothing(Me.tmpImage.Image) Then
-                    If isEdit Then
-                        'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
-                        Me.tmpImage.Save(tmpPathPlus)
-                        Results.ImagePath = tmpPathPlus
-                    Else
-                        If Me.DLType = Enums.ImageType.Fanart Then
-                            Results.ImagePath = Me.tmpImage.SaveAsFanart(Me.tMovie)
-                        Else
-                            Results.ImagePath = Me.tmpImage.SaveAsPoster(Me.tMovie)
-                        End If
-                    End If
-                End If
-                Me.pnlSinglePic.Visible = False
-            End If
+				If Not IsNothing(Me.tmpImage.WebImage.Image) Then
+					If isEdit Then
+						'Me.tmpImage.Save(tmpPathPlus, 100, selURL)
+						Me.tmpImage.WebImage.Save(tmpPathPlus, , , False)
+						Results.ImagePath = tmpPathPlus
+					Else
+						If Me.DLType = Enums.ImageType.Fanart Then
+							Results.ImagePath = Me.tmpImage.WebImage.SaveAsFanart(Me.tMovie)
+						Else
+							Results.ImagePath = Me.tmpImage.WebImage.SaveAsPoster(Me.tMovie)
+						End If
+					End If
+				End If
+				Me.pnlSinglePic.Visible = False
+			End If
 
             If Me.DLType = Enums.ImageType.Fanart Then
                 Dim iMod As Integer = 0

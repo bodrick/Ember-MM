@@ -177,13 +177,15 @@ Public Class dlgEditMovie
     End Sub
 
     Private Sub btnRemoveFanart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveFanart.Click
-        Me.pbFanart.Image = Nothing
-        Me.Fanart.Image = Nothing
+		Me.pbFanart.Image = Nothing
+		Me.pbFanart.Tag = Nothing
+		Me.Fanart = Nothing
     End Sub
 
     Private Sub btnRemovePoster_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemovePoster.Click
-        Me.pbPoster.Image = Nothing
-        Me.Poster.Image = Nothing
+		Me.pbPoster.Image = Nothing
+		Me.pbPoster.Tag = Nothing
+		Me.Poster = Nothing
     End Sub
 
     Private Sub btnRemoveThumb_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveThumb.Click
@@ -211,13 +213,14 @@ Public Class dlgEditMovie
     Private Sub btnSetFanartDL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetFanartDL.Click
         Try
             Using dImgManual As New dlgImgManual
-                If dImgManual.ShowDialog(Enums.ImageType.Fanart) = DialogResult.OK Then
-                    Fanart.FromFile(Path.Combine(Master.TempPath, "fanart.jpg"))
-                    pbFanart.Image = Fanart.Image
+				Dim tImage As Images = dImgManual.ShowDialog(Enums.ImageType.Fanart)
+				If Not IsNothing(tImage) Then
+					Fanart = tImage
+					pbFanart.Image = Fanart.Image
 
-                    Me.lblFanartSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbFanart.Image.Width, Me.pbFanart.Image.Height)
-                    Me.lblFanartSize.Visible = True
-                End If
+					Me.lblFanartSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbFanart.Image.Width, Me.pbFanart.Image.Height)
+					Me.lblFanartSize.Visible = True
+				End If
             End Using
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -268,13 +271,15 @@ Public Class dlgEditMovie
     Private Sub btnSetPosterDL_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetPosterDL.Click
         Try
             Using dImgManual As New dlgImgManual
-                If dImgManual.ShowDialog(Enums.ImageType.Posters) = DialogResult.OK Then
-                    Poster.FromFile(Path.Combine(Master.TempPath, "poster.jpg"))
-                    pbPoster.Image = Poster.Image
+				Dim tImage As Images = dImgManual.ShowDialog(Enums.ImageType.Posters)
+				If Not IsNothing(tImage) Then
+					Poster = tImage
+					'Poster.FromFile(Path.Combine(Master.TempPath, "poster.jpg"))
+					pbPoster.Image = Poster.Image
 
-                    Me.lblPosterSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbPoster.Image.Width, Me.pbPoster.Image.Height)
-                    Me.lblPosterSize.Visible = True
-                End If
+					Me.lblPosterSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbPoster.Image.Width, Me.pbPoster.Image.Height)
+					Me.lblPosterSize.Visible = True
+				End If
             End Using
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -495,7 +500,7 @@ Public Class dlgEditMovie
     End Sub
 
     Private Sub dlgEditMovie_Disposed(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Disposed
-        Me.Poster.Dispose()
+		Me.Poster.Dispose()
         Me.Poster = Nothing
 
         Me.Fanart.Dispose()

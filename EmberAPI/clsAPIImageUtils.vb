@@ -25,37 +25,41 @@ Public Class ImageUtils
 
 #Region "Methods"
 
-    Public Shared Function AddMissingStamp(ByVal oImage As Image) As Image
-        Dim nImage As New Bitmap(GrayScale(oImage))
+	Public Shared Function AddMissingStamp(ByVal oImage As Images) As Images
+		Dim nImage As New Bitmap(GrayScale(oImage).Image)
 
-        'now overlay "missing" image
-        Dim grOverlay As Graphics = Graphics.FromImage(nImage)
-        Dim oWidth As Integer = If(nImage.Width >= My.Resources.missing.Width, My.Resources.missing.Width, nImage.Width)
-        Dim oheight As Integer = If(nImage.Height >= My.Resources.missing.Height, My.Resources.missing.Height, nImage.Height)
-        grOverlay.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
-        grOverlay.DrawImage(My.Resources.missing, 0, 0, oWidth, oheight)
+		'now overlay "missing" image
+		Dim grOverlay As Graphics = Graphics.FromImage(nImage)
+		Dim oWidth As Integer = If(nImage.Width >= My.Resources.missing.Width, My.Resources.missing.Width, nImage.Width)
+		Dim oheight As Integer = If(nImage.Height >= My.Resources.missing.Height, My.Resources.missing.Height, nImage.Height)
+		grOverlay.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+		grOverlay.DrawImage(My.Resources.missing, 0, 0, oWidth, oheight)
 
-        Return nImage
-    End Function
+		oImage.UpdateMSfromImg(nImage)
 
-    Public Shared Function GrayScale(ByVal oImage As Image) As Image
-        Dim nImage As New Bitmap(oImage)
+		Return oImage
+	End Function
 
-        'first let's convert the background to grayscale
-        Dim g As Graphics = Graphics.FromImage(nImage)
-        Dim cm As Imaging.ColorMatrix = New Imaging.ColorMatrix(New Single()() _
-             {New Single() {0.5, 0.5, 0.5, 0, 0}, _
-            New Single() {0.5, 0.5, 0.5, 0, 0}, _
-            New Single() {0.5, 0.5, 0.5, 0, 0}, _
-            New Single() {0, 0, 0, 1, 0}, _
-            New Single() {0, 0, 0, 0, 1}})
+	Public Shared Function GrayScale(ByVal oImage As Images) As Images
+		Dim nImage As New Bitmap(oImage.Image)
 
-        Dim ia As Imaging.ImageAttributes = New Imaging.ImageAttributes()
-        ia.SetColorMatrix(cm)
-        g.DrawImage(oImage, New Rectangle(0, 0, oImage.Width, oImage.Height), 0, 0, oImage.Width, oImage.Height, GraphicsUnit.Pixel, ia)
+		'first let's convert the background to grayscale
+		Dim g As Graphics = Graphics.FromImage(nImage)
+		Dim cm As Imaging.ColorMatrix = New Imaging.ColorMatrix(New Single()() _
+		  {New Single() {0.5, 0.5, 0.5, 0, 0}, _
+		 New Single() {0.5, 0.5, 0.5, 0, 0}, _
+		 New Single() {0.5, 0.5, 0.5, 0, 0}, _
+		 New Single() {0, 0, 0, 1, 0}, _
+		 New Single() {0, 0, 0, 0, 1}})
 
-        Return nImage
-    End Function
+		Dim ia As Imaging.ImageAttributes = New Imaging.ImageAttributes()
+		ia.SetColorMatrix(cm)
+		g.DrawImage(nImage, New Rectangle(0, 0, nImage.Width, nImage.Height), 0, 0, nImage.Width, nImage.Height, GraphicsUnit.Pixel, ia)
+
+		oImage.UpdateMSfromImg(nImage)
+
+		Return oImage
+	End Function
 
     Public Shared Sub DrawGradEllipse(ByRef graphics As Graphics, ByVal bounds As Rectangle, ByVal color1 As Color, ByVal color2 As Color)
         Try
@@ -263,15 +267,15 @@ Public Class ImageUtils
     ''' <param name="Image">Image which should be compressed/encoded</param>
     ''' <param name="OutPutFile">Savepath of recoded image</param>
     ''' <param name="Qualitiy">Quality Setting 0-100</param>
-    Public Shared Sub JPEGCompression(ByVal Image As Image, ByVal OutPutFile As String, ByVal Qualitiy As Integer)
-        Dim ImageCodecs() As Imaging.ImageCodecInfo
-        Dim ImageParameters As Imaging.EncoderParameters
+	Public Shared Sub JPEGCompression(ByVal Image As Image, ByVal OutPutFile As String, ByVal Qualitiy As Integer)
+		Dim ImageCodecs() As Imaging.ImageCodecInfo
+		Dim ImageParameters As Imaging.EncoderParameters
 
-        ImageCodecs = Imaging.ImageCodecInfo.GetImageEncoders()
-        ImageParameters = New Imaging.EncoderParameters(1)
-        ImageParameters.Param(0) = New Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, Qualitiy)
-        Image.Save(OutPutFile, ImageCodecs(1), ImageParameters)
-    End Sub
+		ImageCodecs = Imaging.ImageCodecInfo.GetImageEncoders()
+		ImageParameters = New Imaging.EncoderParameters(1)
+		ImageParameters.Param(0) = New Imaging.EncoderParameter(System.Drawing.Imaging.Encoder.Quality, Qualitiy)
+		Image.Save(OutPutFile, ImageCodecs(1), ImageParameters)
+	End Sub
 
     ''' <summary>
     ''' Resizes Image

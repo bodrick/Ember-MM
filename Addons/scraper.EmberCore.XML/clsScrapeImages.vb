@@ -84,7 +84,7 @@ Public Class ScrapeImages
                         If Not IsNothing(Fanart.Image) Then
                             _Image = Fanart.Image
                             Dim savePath As String = Path.Combine(CachePath, String.Concat("fanart_(url=", StringUtils.CleanURL(miFanart.Url), ").jpg"))
-                            Save(_Image, savePath)
+							Fanart.Save(savePath, , , False)
                             If Master.eSettings.AutoET Then
                                 If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
                                     SaveFAasET(savePath, sPath)
@@ -109,7 +109,7 @@ Public Class ScrapeImages
                         If Not IsNothing(Fanart.Image) Then
                             _Image = Fanart.Image
                             savePath = Path.Combine(CachePath, String.Concat("fanart_(url=", StringUtils.CleanURL(miFanart.Url), ").jpg"))
-                            Save(_Image, savePath)
+							Fanart.Save(savePath, , , False)
                             If Not ETHashes.Contains(HashFile.HashCalcFile(savePath)) Then
                                 SaveFAasET(savePath, sPath)
                             End If
@@ -146,48 +146,48 @@ Public Class ScrapeImages
     End Sub
 
 
-    Public Shared Sub Save(ByVal _image As Image, ByVal sPath As String, Optional ByVal iQuality As Long = 0)
-        Try
-            If IsNothing(_image) Then Exit Sub
+	'Public Shared Sub Save(ByVal _image As Image, ByVal sPath As String, Optional ByVal iQuality As Long = 0)
+	'    Try
+	'        If IsNothing(_image) Then Exit Sub
 
-            Dim doesExist As Boolean = File.Exists(sPath)
-            Dim fAtt As New FileAttributes
-            If Not String.IsNullOrEmpty(sPath) AndAlso (Not doesExist OrElse (Not CBool(File.GetAttributes(sPath) And FileAttributes.ReadOnly))) Then
-                If doesExist Then
-                    'get the current attributes to set them back after writing
-                    fAtt = File.GetAttributes(sPath)
-                    'set attributes to none for writing
-                    File.SetAttributes(sPath, FileAttributes.Normal)
-                End If
+	'        Dim doesExist As Boolean = File.Exists(sPath)
+	'        Dim fAtt As New FileAttributes
+	'        If Not String.IsNullOrEmpty(sPath) AndAlso (Not doesExist OrElse (Not CBool(File.GetAttributes(sPath) And FileAttributes.ReadOnly))) Then
+	'            If doesExist Then
+	'                'get the current attributes to set them back after writing
+	'                fAtt = File.GetAttributes(sPath)
+	'                'set attributes to none for writing
+	'                File.SetAttributes(sPath, FileAttributes.Normal)
+	'            End If
 
-                Using msSave As New MemoryStream
-                    Dim retSave() As Byte
-                    Dim ICI As ImageCodecInfo = GetEncoderInfo(ImageFormat.Jpeg)
-                    Dim EncPars As EncoderParameters = New EncoderParameters(If(iQuality > 0, 2, 1))
+	'            Using msSave As New MemoryStream
+	'                Dim retSave() As Byte
+	'                Dim ICI As ImageCodecInfo = GetEncoderInfo(ImageFormat.Jpeg)
+	'                Dim EncPars As EncoderParameters = New EncoderParameters(If(iQuality > 0, 2, 1))
 
-                    EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
+	'                EncPars.Param(0) = New EncoderParameter(Encoder.RenderMethod, EncoderValue.RenderNonProgressive)
 
-                    If iQuality > 0 Then
-                        EncPars.Param(1) = New EncoderParameter(Encoder.Quality, iQuality)
-                    End If
+	'                If iQuality > 0 Then
+	'                    EncPars.Param(1) = New EncoderParameter(Encoder.Quality, iQuality)
+	'                End If
 
-                    _image.Save(msSave, ICI, EncPars)
+	'                _image.Save(msSave, ICI, EncPars)
 
-                    retSave = msSave.ToArray
+	'                retSave = msSave.ToArray
 
-                    Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
-                        fs.Write(retSave, 0, retSave.Length)
-                        fs.Flush()
-                    End Using
-                    msSave.Flush()
-                End Using
+	'                Using fs As New FileStream(sPath, FileMode.Create, FileAccess.Write)
+	'                    fs.Write(retSave, 0, retSave.Length)
+	'                    fs.Flush()
+	'                End Using
+	'                msSave.Flush()
+	'            End Using
 
-                If doesExist Then File.SetAttributes(sPath, fAtt)
-            End If
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
-    End Sub
+	'            If doesExist Then File.SetAttributes(sPath, fAtt)
+	'        End If
+	'    Catch ex As Exception
+	'        Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+	'    End Try
+	'End Sub
     Private Shared Function GetEncoderInfo(ByVal Format As ImageFormat) As ImageCodecInfo
         Dim Encoders() As ImageCodecInfo = ImageCodecInfo.GetImageEncoders()
 

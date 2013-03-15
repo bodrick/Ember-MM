@@ -89,82 +89,82 @@ Public Class dlgImgSelect
         Return Results
     End Function
 
-    Private Sub AddImage(ByVal iImage As Image, ByVal sDescription As String, ByVal iIndex As Integer, ByVal sURL As String, ByVal isChecked As Boolean)
-        Try
-            ReDim Preserve pnlImage(iIndex)
-            ReDim Preserve pbImage(iIndex)
-            pnlImage(iIndex) = New Panel()
-            pbImage(iIndex) = New PictureBox()
-            pbImage(iIndex).Name = iIndex.ToString
-            pnlImage(iIndex).Name = iIndex.ToString
-            pnlImage(iIndex).Size = New Size(256, 286)
-            pbImage(iIndex).Size = New Size(250, 250)
-            pnlImage(iIndex).BackColor = Color.White
-            pnlImage(iIndex).BorderStyle = BorderStyle.FixedSingle
-            pbImage(iIndex).SizeMode = PictureBoxSizeMode.Zoom
-            pnlImage(iIndex).Tag = sURL
-            pbImage(iIndex).Tag = sURL
-            pbImage(iIndex).Image = iImage
-            pnlImage(iIndex).Left = iLeft
-            pbImage(iIndex).Left = 3
-            pnlImage(iIndex).Top = iTop
-            pbImage(iIndex).Top = 3
-            pnlBG.Controls.Add(pnlImage(iIndex))
-            pnlImage(iIndex).Controls.Add(pbImage(iIndex))
-            pnlImage(iIndex).BringToFront()
-            AddHandler pbImage(iIndex).Click, AddressOf pbImage_Click
-            AddHandler pbImage(iIndex).DoubleClick, AddressOf pbImage_DoubleClick
-            AddHandler pnlImage(iIndex).Click, AddressOf pnlImage_Click
+	Private Sub AddImage(ByVal sDescription As String, ByVal iIndex As Integer, ByVal ImgTag As ImageTag, ByVal isChecked As Boolean)
+		Try
+			ReDim Preserve pnlImage(iIndex)
+			ReDim Preserve pbImage(iIndex)
+			pnlImage(iIndex) = New Panel()
+			pbImage(iIndex) = New PictureBox()
+			pbImage(iIndex).Name = iIndex.ToString
+			pnlImage(iIndex).Name = iIndex.ToString
+			pnlImage(iIndex).Size = New Size(256, 286)
+			pbImage(iIndex).Size = New Size(250, 250)
+			pnlImage(iIndex).BackColor = Color.White
+			pnlImage(iIndex).BorderStyle = BorderStyle.FixedSingle
+			pbImage(iIndex).SizeMode = PictureBoxSizeMode.Zoom
+			pnlImage(iIndex).Tag = ImgTag
+			pbImage(iIndex).Tag = ImgTag
+			pbImage(iIndex).Image = ImgTag.ImageObj.Image
+			pnlImage(iIndex).Left = iLeft
+			pbImage(iIndex).Left = 3
+			pnlImage(iIndex).Top = iTop
+			pbImage(iIndex).Top = 3
+			pnlBG.Controls.Add(pnlImage(iIndex))
+			pnlImage(iIndex).Controls.Add(pbImage(iIndex))
+			pnlImage(iIndex).BringToFront()
+			AddHandler pbImage(iIndex).Click, AddressOf pbImage_Click
+			AddHandler pbImage(iIndex).DoubleClick, AddressOf pbImage_DoubleClick
+			AddHandler pnlImage(iIndex).Click, AddressOf pnlImage_Click
 
-            AddHandler pbImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
-            AddHandler pnlImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			AddHandler pbImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			AddHandler pnlImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
 
-            If DLType = Enums.ImageType.Fanart Then
-                ReDim Preserve chkImage(iIndex)
-                chkImage(iIndex) = New CheckBox()
-                chkImage(iIndex).Name = iIndex.ToString
-                chkImage(iIndex).Size = New Size(250, 30)
-                chkImage(iIndex).AutoSize = False
-                chkImage(iIndex).BackColor = Color.White
-                chkImage(iIndex).TextAlign = ContentAlignment.MiddleCenter
-                chkImage(iIndex).Text = String.Format("{0}x{1} ({2})", pbImage(iIndex).Image.Width.ToString, pbImage(iIndex).Image.Height.ToString, sDescription)
-                chkImage(iIndex).Left = 0
-                chkImage(iIndex).Top = 250
-                chkImage(iIndex).Checked = isChecked
-                pnlImage(iIndex).Controls.Add(chkImage(iIndex))
-                AddHandler pnlImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
-            Else
-                ReDim Preserve lblImage(iIndex)
-                lblImage(iIndex) = New Label()
-                lblImage(iIndex).Name = iIndex.ToString
-                lblImage(iIndex).Size = New Size(250, 30)
-                lblImage(iIndex).AutoSize = False
-                lblImage(iIndex).BackColor = Color.White
-                lblImage(iIndex).TextAlign = ContentAlignment.MiddleCenter
-                'lblImage(iIndex).Text = Master.eLang.GetString(55, "Multiple")
-                lblImage(iIndex).Text = String.Format("{0}x{1} ({2})", pbImage(iIndex).Image.Width.ToString, pbImage(iIndex).Image.Height.ToString, sDescription)
+			If DLType = Enums.ImageType.Fanart Then
+				ReDim Preserve chkImage(iIndex)
+				chkImage(iIndex) = New CheckBox()
+				chkImage(iIndex).Name = iIndex.ToString
+				chkImage(iIndex).Size = New Size(250, 30)
+				chkImage(iIndex).AutoSize = False
+				chkImage(iIndex).BackColor = Color.White
+				chkImage(iIndex).TextAlign = ContentAlignment.MiddleCenter
+				chkImage(iIndex).Text = String.Format("{0}x{1} ({2})", pbImage(iIndex).Image.Width.ToString, pbImage(iIndex).Image.Height.ToString, sDescription)
+				chkImage(iIndex).Left = 0
+				chkImage(iIndex).Top = 250
+				chkImage(iIndex).Checked = isChecked
+				pnlImage(iIndex).Controls.Add(chkImage(iIndex))
+				AddHandler pnlImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			Else
+				ReDim Preserve lblImage(iIndex)
+				lblImage(iIndex) = New Label()
+				lblImage(iIndex).Name = iIndex.ToString
+				lblImage(iIndex).Size = New Size(250, 30)
+				lblImage(iIndex).AutoSize = False
+				lblImage(iIndex).BackColor = Color.White
+				lblImage(iIndex).TextAlign = ContentAlignment.MiddleCenter
+				'lblImage(iIndex).Text = Master.eLang.GetString(55, "Multiple")
+				lblImage(iIndex).Text = String.Format("{0}x{1} ({2})", pbImage(iIndex).Image.Width.ToString, pbImage(iIndex).Image.Height.ToString, sDescription)
 
-                lblImage(iIndex).Tag = sURL
-                lblImage(iIndex).Left = 0
-                lblImage(iIndex).Top = 250
-                pnlImage(iIndex).Controls.Add(lblImage(iIndex))
-                AddHandler lblImage(iIndex).Click, AddressOf lblImage_Click
-                AddHandler lblImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
-            End If
-        Catch ex As Exception
-            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-        End Try
+				lblImage(iIndex).Tag = ImgTag
+				lblImage(iIndex).Left = 0
+				lblImage(iIndex).Top = 250
+				pnlImage(iIndex).Controls.Add(lblImage(iIndex))
+				AddHandler lblImage(iIndex).Click, AddressOf lblImage_Click
+				AddHandler lblImage(iIndex).MouseWheel, AddressOf MouseWheelEvent
+			End If
+		Catch ex As Exception
+			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+		End Try
 
-        iCounter += 1
+		iCounter += 1
 
-        If iCounter = 3 Then
-            iCounter = 0
-            iLeft = 5
-            iTop += 301
-        Else
-            iLeft += 271
-        End If
-    End Sub
+		If iCounter = 3 Then
+			iCounter = 0
+			iLeft = 5
+			iTop += 301
+		Else
+			iLeft += 271
+		End If
+	End Sub
 
     Private Sub AllDoneDownloading()
         ' If _impaDone AndAlso _tmdbDone AndAlso _mpdbDone Then
@@ -243,7 +243,7 @@ Public Class dlgImgSelect
                 If Master.eSettings.UseImgCache Then
                     Try
                         MovieImages.Item(i).URL = StringUtils.CleanURL(MovieImages.Item(i).URL)
-                        MovieImages.Item(i).WebImage.Save(Path.Combine(CachePath, String.Concat("poster_(", MovieImages.Item(i).Description, ")_(url=", MovieImages.Item(i).URL, ").jpg")))
+						MovieImages.Item(i).WebImage.Save(Path.Combine(CachePath, String.Concat("poster_(", MovieImages.Item(i).Description, ")_(url=", MovieImages.Item(i).URL, ").jpg")), , , False)
                     Catch
                     End Try
                 End If
@@ -370,23 +370,23 @@ Public Class dlgImgSelect
 
             pnlSize.Visible = False
 
-            If Not DLType = Enums.ImageType.Fanart AndAlso sURL.ToLower.Contains("themoviedb.org") Then
-                SetupSizes(sURL)
-                If Not rbLarge.Checked AndAlso Not rbMedium.Checked AndAlso Not rbSmall.Checked AndAlso Not rbXLarge.Checked Then
-                    OK_Button.Enabled = False
-                Else
-                    OK_Button.Focus()
-                End If
-                tmpImage.Clear()
-            Else
-                rbXLarge.Checked = False
-                rbLarge.Checked = False
-                rbMedium.Checked = False
-                rbSmall.Checked = False
-                OK_Button.Enabled = True
-                OK_Button.Focus()
-                tmpImage.Image = pbImage(iIndex).Image
-            End If
+			If Not DLType = Enums.ImageType.Fanart Then	'AndAlso sURL.ToLower.Contains("themoviedb.org") Then
+				SetupSizes(sURL)
+				If Not rbLarge.Checked AndAlso Not rbMedium.Checked AndAlso Not rbSmall.Checked AndAlso Not rbXLarge.Checked Then
+					OK_Button.Enabled = False
+				Else
+					OK_Button.Focus()
+				End If
+				tmpImage.Clear()
+			Else
+				rbXLarge.Checked = False
+				rbLarge.Checked = False
+				rbMedium.Checked = False
+				rbSmall.Checked = False
+				OK_Button.Enabled = True
+				OK_Button.Focus()
+				tmpImage = CType(pbImage(iIndex).Tag, ImageTag).ImageObj
+			End If
 
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -594,7 +594,7 @@ Public Class dlgImgSelect
 
             If Not IsNothing(tmpImage.Image) Then
                 If isEdit Then
-                    tmpImage.Save(tmpPathPlus)
+					tmpImage.Save(tmpPathPlus, , , False)
                     Results.ImagePath = tmpPathPlus
                 Else
                     If DLType = Enums.ImageType.Fanart Then
@@ -622,7 +622,7 @@ Public Class dlgImgSelect
                             tmpImage.FromWeb(rbLarge.Tag.ToString)
                         End If
                     Case rbMedium.Checked
-                        tmpImage.Image = pbImage(selIndex).Image
+						tmpImage = CType(pbImage(selIndex).Tag, ImageTag).ImageObj
                     Case rbSmall.Checked
                         If Master.eSettings.UseImgCache Then
                             tmpImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", rbSmall.Tag, ").jpg")))
@@ -633,7 +633,7 @@ Public Class dlgImgSelect
 
                 If Not IsNothing(tmpImage.Image) Then
                     If isEdit Then
-                        tmpImage.Save(tmpPathPlus)
+						tmpImage.Save(tmpPathPlus, , , False)
                         Results.ImagePath = tmpPathPlus
                     Else
                         If DLType = Enums.ImageType.Fanart Then
@@ -679,15 +679,12 @@ Public Class dlgImgSelect
                         Directory.CreateDirectory(extraPath)
                     End If
 
-                    Dim fsET As FileStream
-                    For i As Integer = 0 To UBound(chkImage)
-                        If chkImage(i).Checked Then
-                            fsET = New FileStream(Path.Combine(extraPath, String.Concat("thumb", iVal, ".jpg")), FileMode.Create, FileAccess.ReadWrite)
-                            pbImage(i).Image.Save(fsET, Imaging.ImageFormat.Jpeg)
-                            fsET.Close()
-                            iVal += 1
-                        End If
-                    Next                    
+					For i As Integer = 0 To UBound(chkImage)
+						If chkImage(i).Checked Then
+							CType(pbImage(i).Tag, ImageTag).ImageObj.Save(Path.Combine(extraPath, String.Concat("thumb", iVal, ".jpg")), , , False)
+							iVal += 1
+						End If
+					Next
                 End If
             End If
         Catch ex As Exception
@@ -731,7 +728,7 @@ Public Class dlgImgSelect
             If posters.Count > 0 Then
                 For Each xPoster As MediaContainers.Image In posters.OrderBy(Function(p) p.URL)
                     If Not IsNothing(xPoster.WebImage.Image) AndAlso (DLType = Enums.ImageType.Fanart OrElse Not (xPoster.URL.ToLower.Contains("themoviedb.org") AndAlso Not xPoster.Description = "cover")) Then
-                        AddImage(xPoster.WebImage.Image, xPoster.Description, iIndex, xPoster.URL, xPoster.isChecked)
+						AddImage(xPoster.Description, iIndex, New ImageTag With {.URL = xPoster.URL, .ImageObj = xPoster.WebImage}, xPoster.isChecked)
                         iIndex += 1
                     End If
                 Next
@@ -893,4 +890,18 @@ Public Class dlgImgSelect
 
 #End Region 'Methods
 
+#Region "Nested Types"
+
+	Private Structure ImageTag
+
+#Region "Fields"
+
+		Dim URL As String
+		Dim ImageObj As Images
+
+#End Region	'Fields
+
+	End Structure
+
+#End Region	'Nested Types
 End Class
