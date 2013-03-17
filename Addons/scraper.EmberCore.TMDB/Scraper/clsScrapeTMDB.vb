@@ -154,7 +154,7 @@ Namespace TMDB
 									aW = aSize.width
 									aH = CInt(aW / tmdbI.aspect_ratio)
 							End Select
-							Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = imdbID}
+							Dim tmpPoster As New MediaContainers.Image With {.URL = _TMDBConf.images.base_url & aSize.size & tmdbI.file_path, .Description = aSize.description, .Width = CStr(aW), .Height = CStr(aH), .ParentID = tmdbI.file_path}
 							alPosters.Add(tmpPoster)
 						Next
 					Next
