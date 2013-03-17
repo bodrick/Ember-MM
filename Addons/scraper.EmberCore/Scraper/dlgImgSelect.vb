@@ -920,7 +920,7 @@ Public Class dlgImgSelect
 							tmpImage.WebImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(original)_(url=", Me.rbXLarge.Tag, ").jpg")))
 						Else
 							If extrathumbSize = "original" And DLType = Enums.ImageType.Fanart Then
-								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, MediaContainers.Image).WebImage
 							Else
 								Me.tmpImage.WebImage.FromWeb(Me.rbXLarge.Tag.ToString)
 							End If
@@ -930,14 +930,14 @@ Public Class dlgImgSelect
 							Me.tmpImage.WebImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(mid)_(url=", Me.rbLarge.Tag, ").jpg")))
 						Else
 							If extrathumbSize = "w1280" And DLType = Enums.ImageType.Fanart Or Not DLType = Enums.ImageType.Fanart Then
-								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, MediaContainers.Image).WebImage
 							Else
 								Me.tmpImage.WebImage.FromWeb(Me.rbLarge.Tag.ToString)
 							End If
 						End If
 					Case Me.rbMedium.Checked
 						If extrathumbSize = "poster" And DLType = Enums.ImageType.Fanart Then
-							Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+							Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, MediaContainers.Image).WebImage
 						Else
 							Me.tmpImage.WebImage.FromWeb(Me.rbMedium.Tag.ToString)
 						End If
@@ -946,7 +946,7 @@ Public Class dlgImgSelect
 							Me.tmpImage.WebImage.FromFile(Path.Combine(CachePath, String.Concat("poster_(thumb)_(url=", Me.rbSmall.Tag, ").jpg")))
 						Else
 							If extrathumbSize = "thumb" And DLType = Enums.ImageType.Fanart Then
-								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, Images)
+								Me.tmpImage.WebImage = CType(Me.pbImage(selIndex).Tag, MediaContainers.Image).WebImage
 							Else
 								Me.tmpImage.WebImage.FromWeb(Me.rbSmall.Tag.ToString)
 							End If
