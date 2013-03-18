@@ -73,44 +73,44 @@ Namespace TMDB
             If bwTMDB.CancellationPending Then Return Nothing
             Try
                 Dim ApiXML As String = sHTTP.DownloadData(String.Format("http://api.themoviedb.org/2.1/Movie.getImages/en/xml/{0}/tt{1}", APIKey, imdbID))
+				If Not String.IsNullOrEmpty(ApiXML) Then
+					Try
+						xmlTMDB = XDocument.Parse(ApiXML)
+					Catch
+						Return alPosters
+					End Try
 
-                If Not String.IsNullOrEmpty(ApiXML) Then
-                    Try
-                        xmlTMDB = XDocument.Parse(ApiXML)
-                    Catch
-                        Return alPosters
-                    End Try
+					If bwTMDB.WorkerReportsProgress Then
+						bwTMDB.ReportProgress(1)
+					End If
 
-                    If bwTMDB.WorkerReportsProgress Then
-                        bwTMDB.ReportProgress(1)
-                    End If
+					If bwTMDB.CancellationPending Then Return Nothing
 
-                    If bwTMDB.CancellationPending Then Return Nothing
-
-                    If Not xmlTMDB...<OpenSearchDescription>...<movies>.Value = "Nothing found." Then
-                        If sType = "poster" Then
-                            Dim tmdbImages = From iNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<images>...<poster>.Elements Select iNode
-                            If tmdbImages.Count > 0 Then
-                                For Each tmdbI As XElement In tmdbImages
-                                    Dim parentID As String = tmdbI.Parent.Attribute("id").Value
-                                    If bwTMDB.CancellationPending Then Return Nothing
-                                    Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
-                                    alPosters.Add(tmpPoster)
-                                Next
-                            End If
-                        ElseIf sType = "backdrop" Then
-                            Dim tmdbImages = From iNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<images>...<backdrop>.Elements Select iNode
-                            If tmdbImages.Count > 0 Then
-                                For Each tmdbI As XElement In tmdbImages
-                                    Dim parentID As String = tmdbI.Parent.Attribute("id").Value
-                                    If bwTMDB.CancellationPending Then Return Nothing
-                                    Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
-                                    alPosters.Add(tmpPoster)
-                                Next
-                            End If
-                        End If
-                    End If
-                End If
+					If Not xmlTMDB...<OpenSearchDescription>...<movies>.Value = "Nothing found." Then
+						If sType = "poster" Then
+							Dim tmdbImages = From iNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<images>...<poster>.Elements Select iNode
+							If tmdbImages.Count > 0 Then
+								For Each tmdbI As XElement In tmdbImages
+									Dim parentID As String = tmdbI.Parent.Attribute("id").Value
+									If bwTMDB.CancellationPending Then Return Nothing
+									Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
+									alPosters.Add(tmpPoster)
+								Next
+							End If
+						ElseIf sType = "backdrop" Then
+							Dim tmdbImages = From iNode In xmlTMDB...<OpenSearchDescription>...<movies>...<movie>...<images>...<backdrop>.Elements Select iNode
+							If tmdbImages.Count > 0 Then
+								For Each tmdbI As XElement In tmdbImages
+									Dim parentID As String = tmdbI.Parent.Attribute("id").Value
+									If bwTMDB.CancellationPending Then Return Nothing
+									Debug.Print("{0}/t{1}", tmdbI.@size, tmdbI.@url)
+									Dim tmpPoster As New MediaContainers.Image With {.URL = tmdbI.@url, .Description = tmdbI.@size, .Width = tmdbI.@width, .Height = tmdbI.@height, .ParentID = parentID}
+									alPosters.Add(tmpPoster)
+								Next
+							End If
+						End If
+					End If
+				End If
 
                 If bwTMDB.WorkerReportsProgress Then
                     bwTMDB.ReportProgress(2)
