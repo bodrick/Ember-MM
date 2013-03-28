@@ -154,7 +154,15 @@ Public Class OFDB
                     'title
                     If String.IsNullOrEmpty(OFDBMovie.Title) OrElse Not Master.eSettings.LockTitle Then
                         Dim OFDBTitle As String = CleanTitle(Web.HttpUtility.HtmlDecode(Regex.Match(HTML, "<td width=""99\%""><h1 itemprop=""name""><font face=""Arial,Helvetica,sans-serif"" size=""3""><b>([^<]+)</b></font></h1></td>").Groups(1).Value.ToString))
-                        _title = OFDBTitle
+                        If OFDBTitle.EndsWith(", Der") Then
+                            _title = String.Concat("Der ", OFDBTitle.Replace(", Der", " ")).Trim
+                        ElseIf OFDBTitle.EndsWith(", Die") Then
+                            _title = String.Concat("Die ", OFDBTitle.Replace(", Die", " ")).Trim
+                        ElseIf OFDBTitle.EndsWith(", Das") Then
+                            _title = String.Concat("Das ", OFDBTitle.Replace(", Das", " ")).Trim
+                        Else
+                            _title = OFDBTitle
+                        End If
                     End If
 
                     Dim D, W, B As Integer
@@ -173,9 +181,9 @@ Public Class OFDB
                     'full plot
                     D = 0 : W = 0
                     If String.IsNullOrEmpty(OFDBMovie.Plot) OrElse Not Master.eSettings.LockPlot Then
-                        D = Html.IndexOf("<b>Inhalt:</b>")
+                        D = HTML.IndexOf("<b>Inhalt:</b>")
                         If D > 0 Then
-                            Dim L As Integer = Html.Length
+                            Dim L As Integer = HTML.Length
                             tmpHTML = HTML.Substring(D + 44, L - (D + 44)).Trim
                             W = tmpHTML.IndexOf("<a href=""")
                             If W > 0 Then
