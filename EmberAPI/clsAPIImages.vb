@@ -404,21 +404,24 @@ Public Class Images
     End Sub
 
 	Public Sub FromFile(ByVal sPath As String)
-		Debug.Print("FromFile\t" & sPath)
+		Debug.Print("FromFile/t{0}", sPath)
 		If Not String.IsNullOrEmpty(sPath) AndAlso File.Exists(sPath) Then
 			Try
-				If IsNothing(_ms) Then _ms = New MemoryStream()
+				If Not IsNothing(Me._ms) Then
+					Me._ms.Dispose()
+				End If
+				Me._ms = New MemoryStream()
 				Using fsImage As New FileStream(sPath, FileMode.Open, FileAccess.Read)
 					Dim StreamBuffer(Convert.ToInt32(fsImage.Length - 1)) As Byte
 
 					fsImage.Read(StreamBuffer, 0, StreamBuffer.Length)
-					_ms.Write(StreamBuffer, 0, StreamBuffer.Length)
+					Me._ms.Write(StreamBuffer, 0, StreamBuffer.Length)
 
 					StreamBuffer = Nothing
 					'_ms.SetLength(fsImage.Length)
 					'fsImage.Read(_ms.GetBuffer(), 0, Convert.ToInt32(fsImage.Length))
-					_ms.Flush()
-					_image = New Bitmap(_ms)
+					Me._ms.Flush()
+					_image = New Bitmap(Me._ms)
 				End Using
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error: " & sPath)
@@ -429,20 +432,21 @@ Public Class Images
     Public Sub FromWeb(ByVal sURL As String)
         Try
             sHTTP.StartDownloadImage(sURL)
-			Debug.Print(sURL)
+			Debug.Print("FromWeb/t{0}", sURL)
             While sHTTP.IsDownloading
                 Application.DoEvents()
                 Threading.Thread.Sleep(50)
             End While
 
 			If Not IsNothing(sHTTP.Image) Then
-				If IsNothing(_ms) Then _ms = New MemoryStream()
-
-				Me._ms.Dispose()
+				If Not IsNothing(Me._ms) Then
+					Me._ms.Dispose()
+				End If
 				Me._ms = New MemoryStream()
+
 				Dim retSave() As Byte
 				retSave = sHTTP.ms.ToArray
-				_ms.Write(retSave, 0, retSave.Length)
+				Me._ms.Write(retSave, 0, retSave.Length)
 
 				'Dim kkk As String = Path.Combine(Master.TempPath, sHTTP.ms.Length.ToString)
 				'Using fs As New FileStream(kkk & "a.jpg", FileMode.Create, FileAccess.Write)
