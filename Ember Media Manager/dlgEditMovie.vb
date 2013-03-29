@@ -233,8 +233,12 @@ Public Class dlgEditMovie
 
             ModulesManager.Instance.ScraperSelectImageOfType(Master.currMovie, Enums.ImageType.Fanart, fResults, True)
             If Not String.IsNullOrEmpty(fResults.ImagePath) Then
-                Fanart.FromFile(sPath)
-                pbFanart.Image = Fanart.Image
+				Fanart.FromFile(sPath)
+				If Not IsNothing(pbFanart.Image) Then
+					pbFanart.Image.Dispose()
+				End If
+
+				pbFanart.Image = CType(Fanart.Image.Clone(), Image)
 
                 Me.lblFanartSize.Text = String.Format(Master.eLang.GetString(269, "Size: {0}x{1}"), Me.pbFanart.Image.Width, Me.pbFanart.Image.Height)
                 Me.lblFanartSize.Visible = True

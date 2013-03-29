@@ -107,6 +107,7 @@ Namespace FANARTTVs
 				If IsNothing(Result.movieinfo.moviebackground) Then Return alPoster
 				For Each image In Result.movieinfo.moviebackground
 					alPoster.Add(New MediaContainers.Image With {.Description = "original", .URL = image.url})
+					alPoster.Add(New MediaContainers.Image With {.Description = "thumb", .URL = image.url & "/preview"})
 				Next
 			Catch ex As Exception
 				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")

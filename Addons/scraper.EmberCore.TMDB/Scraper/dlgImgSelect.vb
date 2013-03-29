@@ -242,6 +242,7 @@ Public Class dlgImgSelect
 	Private Sub btnPreview_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPreview.Click
 		PreviewImage()
 	End Sub
+
 	Private Sub PreviewImage()
 		Try
 			Dim tImage As New Images
@@ -314,7 +315,7 @@ Public Class dlgImgSelect
 				Me.bwIMDBDownload.ReportProgress(i + 1, Me.IMDBPosters.Item(i).URL)
 				Try
 					Me.IMDBPosters.Item(i).WebImage.FromWeb(Me.IMDBPosters.Item(i).URL)
-					If Not Master.eSettings.NoSaveImagesToNfo Then Me.Results.Posters.Add(Me.MPDBPosters.Item(i).URL)
+					If Not Master.eSettings.NoSaveImagesToNfo Then Me.Results.Posters.Add(Me.IMDBPosters.Item(i).URL)
 					If Master.eSettings.UseImgCache Then
 						Try
 							Me.IMDBPosters.Item(i).URL = StringUtils.CleanURL(Me.IMDBPosters.Item(i).URL)
@@ -833,7 +834,7 @@ Public Class dlgImgSelect
 							Me.TMDBPosters.Add(tImage)
 						End If
 					Next
-					ProcessPics(TMDBPosters)
+					Me.ProcessPics(TMDBPosters)
 					Me.pnlDLStatus.Visible = False
 					Me.pnlBG.Visible = True
 					'Me.pnlFanart.Visible = True
@@ -920,7 +921,7 @@ Public Class dlgImgSelect
 						tImage.URL = Regex.Match(sFile.Name, "\(url=(.*?)\)").Groups(1).ToString
 						Me.TMDBPosters.Add(tImage)
 					Next
-					ProcessPics(TMDBPosters)
+					Me.ProcessPics(TMDBPosters)
 					Me.pnlDLStatus.Visible = False
 					Me.pnlBG.Visible = True
 				End If
