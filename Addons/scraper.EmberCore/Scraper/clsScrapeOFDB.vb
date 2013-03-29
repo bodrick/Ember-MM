@@ -153,8 +153,16 @@ Public Class OFDB
                 If Not String.IsNullOrEmpty(Html) Then
                     'title
                     If String.IsNullOrEmpty(OFDBMovie.Title) OrElse Not Master.eSettings.LockTitle Then
-                        Dim OFDBTitle As String = CleanTitle(Web.HttpUtility.HtmlDecode(Regex.Match(Html, "<td width=""99\%""><h2><font face=""Arial,Helvetica,sans-serif"" size=""3""><b>([^<]+)</b></font></h2></td>").Groups(1).Value.ToString))
-                        _title = OFDBTitle
+                        Dim OFDBTitle As String = CleanTitle(Web.HttpUtility.HtmlDecode(Regex.Match(HTML, "<td width=""99\%""><h1 itemprop=""name""><font face=""Arial,Helvetica,sans-serif"" size=""3""><b>([^<]+)</b></font></h1></td>").Groups(1).Value.ToString))
+                        If OFDBTitle.EndsWith(", Der") Then
+                            _title = String.Concat("Der ", OFDBTitle.Replace(", Der", " ")).Trim
+                        ElseIf OFDBTitle.EndsWith(", Die") Then
+                            _title = String.Concat("Die ", OFDBTitle.Replace(", Die", " ")).Trim
+                        ElseIf OFDBTitle.EndsWith(", Das") Then
+                            _title = String.Concat("Das ", OFDBTitle.Replace(", Das", " ")).Trim
+                        Else
+                            _title = OFDBTitle
+                        End If
                     End If
 
                     Dim D, W, B As Integer
@@ -162,21 +170,21 @@ Public Class OFDB
 
                     'outline
                     If String.IsNullOrEmpty(OFDBMovie.Outline) OrElse Not Master.eSettings.LockOutline Then
-                        D = Html.IndexOf("<b>Inhalt:</b>")
+                        D = HTML.IndexOf("<b>Inhalt:</b>")
 
                         If D > 0 Then
-                            W = Html.IndexOf("<a href=""", D + 14)
-                            _outline = Web.HttpUtility.HtmlDecode(HTML.Substring(D + 14, W - (D + 14)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
+                            W = HTML.IndexOf("<a href=""", D + 44)
+                            _outline = Web.HttpUtility.HtmlDecode(HTML.Substring(D + 44, W - (D + 44)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
                         End If
                     End If
 
                     'full plot
                     D = 0 : W = 0
                     If String.IsNullOrEmpty(OFDBMovie.Plot) OrElse Not Master.eSettings.LockPlot Then
-                        D = Html.IndexOf("<b>Inhalt:</b>")
+                        D = HTML.IndexOf("<b>Inhalt:</b>")
                         If D > 0 Then
-                            Dim L As Integer = Html.Length
-                            tmpHTML = Html.Substring(D + 14, L - (D + 14)).Trim
+                            Dim L As Integer = HTML.Length
+                            tmpHTML = HTML.Substring(D + 44, L - (D + 44)).Trim
                             W = tmpHTML.IndexOf("<a href=""")
                             If W > 0 Then
                                 B = tmpHTML.IndexOf("""><b>[mehr]</b>", W + 9)
@@ -197,7 +205,7 @@ Public Class OFDB
                         If D > 0 Then
                             W = HTML.IndexOf("</table>", D)
                             If W > 0 Then
-                                Dim rGenres As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), "<a.*?href=[""'](?<url>.*?)[""'].*?>(?<name>.*?)</a>")
+                                Dim rGenres As MatchCollection = Regex.Matches(HTML.Substring(D, W - D), "<a.*?href=[""'](?<url>.*?)[""'].*?><span itemprop=""genre"">(?<name>.*?)</span></a>")
                                 Dim Gen = From M In rGenres _
                                       Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString)
                                 If Gen.Count > 0 Then
