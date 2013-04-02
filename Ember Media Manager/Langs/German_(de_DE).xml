@@ -1,4 +1,4 @@
-﻿<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <string id="1">&amp;Datei</string>
   <string id="2">Beenden</string>
   <string id="3">B&amp;earbeiten</string>
@@ -423,7 +423,7 @@
   <string id="422"/>
   <string id="423"/>
   <string id="424"/>
-  <string id="425">Benutzername:</string>
+  <string id="425">Benutzer:</string>
   <string id="426">Passwort:</string>
   <string id="427"/>
   <string id="428"/>
@@ -593,8 +593,8 @@
   <string id="592"/>
   <string id="593"/>
   <string id="594">Metadaten Editor</string>
-  <string id="595">Untertitel Streams</string>
-  <string id="596">Untertitel Streams</string>
+  <string id="595">Video Streams</string>
+  <string id="596">Audio Streams</string>
   <string id="597">Untertitel Streams</string>
   <string id="598">Stream Typ</string>
   <string id="599">Lade alle Fanarts der folgenden Größe als Extrathumbs:</string>
@@ -617,7 +617,7 @@
   <string id="616">Progressive</string>
   <string id="617">Video Stream</string>
   <string id="618">Audio Stream</string>
-  <string id="619">Untert. Stream</string>
+  <string id="619">Untertitel Stream</string>
   <string id="620">Movie Theme</string>
   <string id="621">Neue Episoden "fest" markieren</string>
   <string id="622">Medien Scrapen (Aktueller Filter - Fragen)</string>
@@ -648,11 +648,11 @@
   <string id="647">Ausgestrahlt: {0}</string>
   <string id="648">Staffel: {0}, Episode: {1}</string>
   <string id="649">Alle aktualisieren</string>
-  <string id="650">Staffel</string>
+  <string id="650">Staffel </string>
   <string id="651">Keine Informationen über diese Serie vorhanden</string>
   <string id="652">Keine Informationen über diese Episode vorhanden</string>
   <string id="653">TV Serien</string>
-  <string id="654">Staffel</string>
+  <string id="654">Staffel </string>
   <string id="655">Staffel Specials</string>
   <string id="656">Episode editieren</string>
   <string id="657">Die Details der gewählten Episode editieren.</string>
@@ -820,13 +820,13 @@
   <string id="819">TV RegEx Profile</string>
   <string id="820">RegEx Profile</string>
   <string id="821">Beschreibung</string>
-  <string id="822">Miscellaneous</string>
+  <string id="822">Diverses</string>
   <string id="823">Audio &amp; Video Codec Mapping</string>
   <string id="824">Video Source:</string>
   <string id="825">Downloads:</string>
   <string id="826"/>
   <string id="827"/>
-  <string id="828">Aktiviere Schauspl.Cache</string>
+  <string id="828">Aktiviere Actor Thumbs</string>
   <string id="829">Überwachen des ""Dump"" Ordners</string>
   <string id="830">Details für die gewählte Staffel editieren.</string>
   <string id="831"/>
@@ -868,9 +868,13 @@
   <string id="867">XBMC Frodo</string>
   <string id="868">Top 250</string>
   <string id="869">EmberMM.com &amp;Wiki...</string>
-  <string id="870">Trakt.tv als Quelle für "Gesehen" Status verwenden</string>
+  <string id="870">Nutze Trakt.tv als Quelle für "Gesehen" Status</string>
   <string id="871">Trakt.tv Playcount Sync</string>
   <string id="872">Gesehene Filme abrufen</string>
-  <string id="873">Speichern der gesehenen Filme in Datenbank</string>
+  <string id="873">Playcount in Datenbank/NFO speichern</string>
   <string id="874">Nutze "Erstellt:"-Dateiinfo der Videodatei</string>
+  <string id="875">Benutzer</string>
+  <string id="876">Passwort</string>
+  <string id="877">Gesehene Episoden abrufen</string>
+  <string id="878">Speichern</string>
 </strings>
