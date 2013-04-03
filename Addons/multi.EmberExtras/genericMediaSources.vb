@@ -61,8 +61,8 @@ Public Class genericMediaSources
     Public Function InjectSetup() As EmberAPI.Containers.SettingsPanel Implements EmberAPI.Interfaces.EmberExternalModule.InjectSetup
         Dim SPanel As New Containers.SettingsPanel
         Me.fMediaSources = New frmMediaSources
-        SPanel.Name = Master.eLang.GetString(61, "Media Sources Editor", True)
-        SPanel.Text = Master.eLang.GetString(61, "Media Sources Editor", True)
+        SPanel.Name = Master.eLang.GetString(61, "Media Sources Editor", False)
+        SPanel.Text = Master.eLang.GetString(61, "Media Sources Editor", False)
         SPanel.Prefix = "MediaSourcesEditor_"
         SPanel.Type = Master.eLang.GetString(822, "Miscellaneous", True)
         SPanel.ImageIndex = -1

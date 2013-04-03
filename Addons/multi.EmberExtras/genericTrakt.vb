@@ -61,8 +61,8 @@ Public Class genericTrakt
     Public Function InjectSetup() As EmberAPI.Containers.SettingsPanel Implements EmberAPI.Interfaces.EmberExternalModule.InjectSetup
         Dim SPanel As New Containers.SettingsPanel
         Me.fTrakt = New frmTrakt
-        SPanel.Name = Master.eLang.GetString(871, "Trakt Settings", True)
-        SPanel.Text = Master.eLang.GetString(871, "Trakt Settings", True)
+        SPanel.Name = Master.eLang.GetString(871, "Trakt Settings", False)
+        SPanel.Text = Master.eLang.GetString(871, "Trakt Settings", False)
         SPanel.Prefix = "TraktSettings_"
         SPanel.Type = Master.eLang.GetString(822, "Miscellaneous", True)
         SPanel.ImageIndex = -1

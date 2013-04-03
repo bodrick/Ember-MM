@@ -60,8 +60,8 @@ Public Class genericGenresEditor
 	Public Function InjectSetup() As EmberAPI.Containers.SettingsPanel Implements EmberAPI.Interfaces.EmberExternalModule.InjectSetup
 		Dim SPanel As New Containers.SettingsPanel
 		Me.fGenres = New frmGenresEditor
-        SPanel.Name = Master.eLang.GetString(1, "Genres Editor", True)
-        SPanel.Text = Master.eLang.GetString(1, "Genres Editor", True)
+        SPanel.Name = Master.eLang.GetString(1, "Genres Editor", False)
+        SPanel.Text = Master.eLang.GetString(1, "Genres Editor", False)
 		SPanel.Prefix = "GenresEditor_"
         SPanel.Type = Master.eLang.GetString(822, "Miscellaneous", True)
 		SPanel.ImageIndex = -1
