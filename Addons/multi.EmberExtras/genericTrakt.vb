@@ -63,10 +63,8 @@ Public Class genericTrakt
         Me.fTrakt = New frmTrakt
         SPanel.Name = Master.eLang.GetString(871, "Trakt Settings", True)
         SPanel.Text = Master.eLang.GetString(871, "Trakt Settings", True)
-
-
         SPanel.Prefix = "TraktSettings_"
-        SPanel.Type = Master.eLang.GetString(822, "Miscellaneous")
+        SPanel.Type = Master.eLang.GetString(822, "Miscellaneous", True)
         SPanel.ImageIndex = -1
         SPanel.Image = My.Resources.trakt
         SPanel.Order = 100
