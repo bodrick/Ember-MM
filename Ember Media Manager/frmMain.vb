@@ -4141,11 +4141,11 @@ doCancel:
 
     Private Sub DonateToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DonateToolStripMenuItem.Click
         If Master.isWindows Then
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G4WN5KRET4K48")
+            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VWVJCUV3KAUX2&lc=CH&item_name=Ember%2dTeam%3a%20DanCooper%2c%20m%2esavazzi%20%26%20Cocotus&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted")
         Else
             Using Explorer As New Process
                 Explorer.StartInfo.FileName = "xdg-open"
-                Explorer.StartInfo.Arguments = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=G4WN5KRET4K48"
+                Explorer.StartInfo.Arguments = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VWVJCUV3KAUX2&lc=CH&item_name=Ember%2dTeam%3a%20DanCooper%2c%20m%2esavazzi%20%26%20Cocotus&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"
                 Explorer.Start()
             End Using
         End If
