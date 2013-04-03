@@ -127,6 +127,7 @@ Partial Class frmTrakt
         '
         'txtTraktPassword
         '
+        Me.txtTraktPassword.Enabled = False
         Me.txtTraktPassword.Location = New System.Drawing.Point(78, 77)
         Me.txtTraktPassword.Name = "txtTraktPassword"
         Me.txtTraktPassword.Size = New System.Drawing.Size(167, 20)
