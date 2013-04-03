@@ -175,7 +175,7 @@
     <Content Include="Langs\multi.EmberExtras.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Langs\multi.EmberExtras.Português_%28pt-BR%29.xml">
+    <Content Include="Langs\multi.EmberExtras.Norwegian_%28no_NO%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\trakt.png" />

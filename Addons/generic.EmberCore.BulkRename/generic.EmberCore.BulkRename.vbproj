@@ -213,7 +213,10 @@
     <Content Include="Langs\generic.EmberCore.BulkRename.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Langs\generic.EmberCore.BulkRename.Português_%28pt-BR%29.xml">
+    <Content Include="Langs\generic.EmberCore.BulkRename.Norwegian_%28no_NO%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\generic.EmberCore.BulkRename.Norwegian_%28no_NO%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="x64\SQLite.Interop.dll">
