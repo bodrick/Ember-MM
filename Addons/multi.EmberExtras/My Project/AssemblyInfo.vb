@@ -10,7 +10,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
 <Assembly: AssemblyCompany("AtWork")>
 <Assembly: AssemblyProduct("scraper.EmberExtras")>
-<Assembly: AssemblyCopyright("Copyright © AtWork 2011")> 
+<Assembly: AssemblyCopyright("Copyright © AtWork 2013")> 
 <Assembly: AssemblyTrademark("")>
 <Assembly: ComVisible(False)>
 
@@ -27,5 +27,5 @@ Imports System.Runtime.InteropServices
 ' You can specify all the values or you can default the Build and Revision Numbers
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")>
-<Assembly: AssemblyVersion("1.3.0.5")> 
-<Assembly: AssemblyFileVersion("1.3.0.5")> 
+<Assembly: AssemblyVersion("1.3.0.11")> 
+<Assembly: AssemblyFileVersion("1.3.0.11")> 

@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("http://forum.xbmc.org/showthread.php?tid=116941")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Ember Media Manager")> 
-<Assembly: AssemblyCopyright("Copyright ©  2012")> 
+<Assembly: AssemblyCopyright("Copyright ©  2013")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' by using the '*' as shown below:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.3.0.10")> 
-<Assembly: AssemblyFileVersion("1.3.0.10")> 
+<Assembly: AssemblyVersion("1.3.0.11")> 
+<Assembly: AssemblyFileVersion("1.3.0.11")> 
