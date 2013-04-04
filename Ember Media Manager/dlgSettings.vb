@@ -931,6 +931,9 @@ Public Class dlgSettings
 
     Private Sub cbIntLang_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbIntLang.SelectedIndexChanged
         Me.SetApplyButton(True)
+        If Not Me.cbIntLang.SelectedItem.ToString = Master.eSettings.Language Then
+            Handle_SetupNeedsRestart()
+        End If
     End Sub
 
     Private Sub cbLanguages_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbLanguages.SelectedIndexChanged
