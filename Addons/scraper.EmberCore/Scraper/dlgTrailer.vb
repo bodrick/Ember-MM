@@ -68,6 +68,7 @@ Public Class dlgTrailer
         Me.OK_Button.Enabled = False
         Me.btnSetNfo.Enabled = False
         Me.btnPlayTrailer.Enabled = False
+        Me.btnPlayBrowser.Enabled = False
         Me.lbTrailers.Enabled = False
         Me.txtYouTube.Enabled = False
         Me.txtManual.Enabled = False
@@ -186,6 +187,7 @@ Public Class dlgTrailer
         Me.OK_Button.Enabled = False
         Me.btnSetNfo.Enabled = False
         Me.btnPlayTrailer.Enabled = False
+        Me.btnPlayBrowser.Enabled = False
         Me.lbTrailers.Enabled = False
         Me.txtYouTube.Enabled = False
         Me.txtManual.Enabled = False
@@ -211,6 +213,30 @@ Public Class dlgTrailer
         End Try
     End Sub
 
+    Private Sub btnPlayBrowser_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPlayBrowser.Click
+        If Not String.IsNullOrEmpty(Me.txtYouTube.Text) Then
+            If Master.isWindows Then
+                Process.Start(Me.txtYouTube.Text)
+            Else
+                Using Explorer As New Process
+                    Explorer.StartInfo.FileName = "xdg-open"
+                    Explorer.StartInfo.Arguments = Me.txtYouTube.Text
+                    Explorer.Start()
+                End Using
+            End If
+        Else
+            If Master.isWindows Then
+                Process.Start(Me.lbTrailers.SelectedItem.ToString)
+            Else
+                Using Explorer As New Process
+                    Explorer.StartInfo.FileName = "xdg-open"
+                    Explorer.StartInfo.Arguments = Me.lbTrailers.SelectedItem.ToString
+                    Explorer.Start()
+                End Using
+            End If
+        End If
+    End Sub
+
     Private Sub btnSetNfo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSetNfo.Click
 
         If Me.btnSetNfo.Text = Master.eLang.GetString(60, "Move") Then
@@ -218,6 +244,7 @@ Public Class dlgTrailer
                 Me.OK_Button.Enabled = False
                 Me.btnSetNfo.Enabled = False
                 Me.btnPlayTrailer.Enabled = False
+                Me.btnPlayBrowser.Enabled = False
                 Me.lbTrailers.Enabled = False
                 Me.txtYouTube.Enabled = False
                 Me.txtManual.Enabled = False
@@ -390,6 +417,11 @@ Public Class dlgTrailer
             Me.btnSetNfo.Enabled = True
             Me.btnPlayTrailer.Enabled = True
             If Me.txtManual.Text.Length > 0 Then
+                Me.btnPlayBrowser.Enabled = False
+            Else
+                Me.btnPlayBrowser.Enabled = True
+            End If
+            If Me.txtManual.Text.Length > 0 Then
                 Me.OK_Button.Text = Master.eLang.GetString(61, "Copy")
                 Me.btnSetNfo.Text = Master.eLang.GetString(60, "Move")
             Else
@@ -400,6 +432,7 @@ Public Class dlgTrailer
             Me.OK_Button.Enabled = False
             Me.OK_Button.Text = Master.eLang.GetString(373, "Download", True)
             Me.btnPlayTrailer.Enabled = False
+            Me.btnPlayBrowser.Enabled = False
             Me.btnSetNfo.Enabled = False
             Me.btnSetNfo.Text = Master.eLang.GetString(63, "Set To Nfo")
         End If
@@ -414,6 +447,7 @@ Public Class dlgTrailer
         Me.Label1.Text = Master.eLang.GetString(67, "Direct Link or YouTube URL:")
         Me.lblStatus.Text = Master.eLang.GetString(68, "Compiling trailer list...")
         Me.btnPlayTrailer.Text = Master.eLang.GetString(69, "Preview Trailer")
+        Me.btnPlayBrowser.Text = Master.eLang.GetString(114, "Open In Browser")
         Me.btnSetNfo.Text = Master.eLang.GetString(63, "Set To Nfo")
         Me.Label2.Text = Master.eLang.GetString(70, "Local Trailer:")
     End Sub
