@@ -85,9 +85,6 @@
   <name searchstring="Enfants" language="Français">
     <icon>children.jpg</icon>
   </name>
-  <name searchstring="Kinder-" language="German">
-    <icon>children.jpg</icon>
-  </name>
   <name searchstring="Infantil" language="Español">
     <icon>children.jpg</icon>
   </name>
