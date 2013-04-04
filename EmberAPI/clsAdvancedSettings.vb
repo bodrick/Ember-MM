@@ -375,7 +375,7 @@ Public Class AdvancedSettings
             SetSetting("NotValidDirIs", "extrathumbs|video_ts|bdmv|audio_ts|recycler|subs|subtitles|.trashes", "*EmberAPP", True)
             SetSetting("NotValidDirContains", "-trailer|[trailer|temporary files|(noscan)|$recycle.bin|lost+found|system volume information|sample", "*EmberAPP", True)
 
-            SetSetting("ForceTitle", "Argentina|Australia|Belgium|Brazil|Canada: English title|Canada: French title|Finland|France|Germany|Hong Kong|Iceland|Ireland|Netherlands|New Zealand|Peru|Portugal|Singapore|South Korea|Spain|Sweden|Switzerland|UK|USA", "*EmberAPP", True)
+            SetSetting("ForceTitle", "Argentina|Australia|Belgium|Brazil|Canada: English title|Canada: French title|Denmark|Finland|France|Germany|Hong Kong|Iceland|Ireland|Italy|Netherlands|New Zealand|Peru|Portugal|Singapore|South Korea|Spain|Sweden|Switzerland|UK|USA", "*EmberAPP", True)
 
             SetBooleanSetting("StudioTagAlwaysOn", False, "*EmberAPP", True)
             SetBooleanSetting("ScrapeActorsThumbs", False, "*EmberAPP", True)
