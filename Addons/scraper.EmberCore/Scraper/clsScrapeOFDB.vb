@@ -119,15 +119,20 @@ Public Class OFDB
                 Dim HTML As String = sHTTP.DownloadData(sURL)
                 sHTTP = Nothing
 
-                Dim D, W, B As Integer
+                Dim D, W, Wq, Wqq, B As Integer
                 Dim tmpHTML As String
 
-                D = Html.IndexOf("Eine Inhaltsangabe von")
+                D = HTML.IndexOf("Eine Inhaltsangabe von")
                 If D > 0 Then
                     Dim L As Integer = Html.Length
                     tmpHTML = Html.Substring(D + 22, L - (D + 22)).Trim
                     W = tmpHTML.IndexOf("</b></b><br><br>")
-                    If W > 0 Then
+                    Wq = tmpHTML.IndexOf("<b>Quelle:</b>")
+                    If Wq > 0 Then
+                        Wqq = tmpHTML.IndexOf("<br><br>", Wq)
+                        B = tmpHTML.IndexOf("</font></p>", Wqq + 8)
+                        FullPlot = Web.HttpUtility.HtmlDecode(tmpHTML.Substring(Wqq + 8, B - (Wqq + 8)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
+                    ElseIf W > 0 Then
                         B = tmpHTML.IndexOf("</font></p>", W + 16)
                         FullPlot = Web.HttpUtility.HtmlDecode(tmpHTML.Substring(W + 16, B - (W + 16)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
                     End If
@@ -165,24 +170,44 @@ Public Class OFDB
                         End If
                     End If
 
-                    Dim D, W, B As Integer
+                    Dim D, Dq, W, Wq, B As Integer
                     Dim tmpHTML As String
 
                     'outline
                     If String.IsNullOrEmpty(OFDBMovie.Outline) OrElse Not Master.eSettings.LockOutline Then
                         D = HTML.IndexOf("<b>Inhalt:</b>")
+                        Dq = HTML.IndexOf("<b>Inhalt:</b> <font style=")
 
-                        If D > 0 Then
+                        If Dq > 0 Then
+                            Wq = HTML.IndexOf("<span itemprop=""description"">", Dq)
+                            W = HTML.IndexOf("<a href=""plot", Wq + 29)
+                            _outline = Web.HttpUtility.HtmlDecode(HTML.Substring(Wq + 29, W - (Wq + 29)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
+                        ElseIf D > 0 Then
                             W = HTML.IndexOf("<a href=""", D + 44)
                             _outline = Web.HttpUtility.HtmlDecode(HTML.Substring(D + 44, W - (D + 44)).Replace("<br />", String.Empty).Replace(vbCrLf, " ").Trim)
                         End If
                     End If
 
                     'full plot
-                    D = 0 : W = 0
+                    D = 0 : Dq = 0 : W = 0
                     If String.IsNullOrEmpty(OFDBMovie.Plot) OrElse Not Master.eSettings.LockPlot Then
                         D = HTML.IndexOf("<b>Inhalt:</b>")
-                        If D > 0 Then
+                        Dq = HTML.IndexOf("<b>Inhalt:</b> <font style=")
+
+                        If Dq > 0 Then
+                            Dim L As Integer = HTML.Length
+                            tmpHTML = HTML.Substring(D + 197, L - (D + 197)).Trim
+                            W = tmpHTML.IndexOf("<a href=""")
+                            If W > 0 Then
+                                B = tmpHTML.IndexOf("""><b>[mehr]</b>", W + 9)
+                                If B > 0 Then
+                                    Dim FullPlot = GetFullPlot(String.Concat("http://www.ofdb.de/", tmpHTML.Substring(W + 9, B - (W + 9))))
+                                    If Not String.IsNullOrEmpty(FullPlot) Then
+                                        _plot = FullPlot
+                                    End If
+                                End If
+                            End If
+                        ElseIf D > 0 Then
                             Dim L As Integer = HTML.Length
                             tmpHTML = HTML.Substring(D + 44, L - (D + 44)).Trim
                             W = tmpHTML.IndexOf("<a href=""")
