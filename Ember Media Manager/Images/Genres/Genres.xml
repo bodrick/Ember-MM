@@ -415,7 +415,7 @@
   <name searchstring="Guerra" language="Italian">
     <icon>war.jpg</icon>
   </name>
-  <name searchstring="Western" language="English|Français|Español">
+  <name searchstring="Western" language="English|German|Français|Español">
     <icon>western.jpg</icon>
   </name>
   <name searchstring="Wrestling" language="English">
