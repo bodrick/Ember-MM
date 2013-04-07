@@ -1517,7 +1517,7 @@ Namespace MediaContainers
             End Get
         End Property
 
-        <XmlElement("episodeguideurl")> _
+        <XmlElement("episodeguide")> _
         Public Property EpisodeGuideURL() As String
             Get
                 Return Me._episodeguideurl
