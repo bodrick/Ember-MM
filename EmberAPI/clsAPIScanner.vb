@@ -187,6 +187,11 @@ Public Class Scanner
                 Episode.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
+            If String.IsNullOrEmpty(Episode.Poster) AndAlso AdvancedSettings.GetBooleanSetting("YAMJEpisodePoster", False, "multi.Compatibility") Then
+                fName = String.Concat(tmpName, ".videoimage.jpg")
+                Episode.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+            End If
+
             If Master.eSettings.EpisodeDashFanart Then
                 fName = String.Concat(tmpName, "-fanart.jpg")
                 Episode.Fanart = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
@@ -469,9 +474,11 @@ Public Class Scanner
 
             If bInside AndAlso ((Master.eSettings.SeasonPosterTBN OrElse Master.eSettings.SeasonPosterJPG OrElse _
                                 Master.eSettings.SeasonNameTBN OrElse Master.eSettings.SeasonNameJPG OrElse _
-                                Master.eSettings.SeasonFolderJPG AndAlso String.IsNullOrEmpty(TVDB.SeasonPosterPath)) OrElse _
+                                Master.eSettings.SeasonFolderJPG OrElse AdvancedSettings.GetBooleanSetting("YAMJSeasonPoster", False, "multi.Compatibility") AndAlso _
+                                String.IsNullOrEmpty(TVDB.SeasonPosterPath)) OrElse _
                                 (Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse _
-                                 Master.eSettings.SeasonDotFanart AndAlso String.IsNullOrEmpty(TVDB.SeasonFanartPath))) Then
+                                 Master.eSettings.SeasonDotFanart OrElse AdvancedSettings.GetBooleanSetting("YAMJSeasonFanart", False, "multi.Compatibility") AndAlso _
+                                 String.IsNullOrEmpty(TVDB.SeasonFanartPath))) Then
 
                 SeasonPath = Directory.GetParent(TVDB.Filename).FullName
 
