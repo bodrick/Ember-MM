@@ -413,12 +413,15 @@ Namespace IMDB
                                 Dim Gen = From M In rGenres _
                                           Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString) Where Not N.Contains("more") Take If(Master.eSettings.GenreLimit > 0, Master.eSettings.GenreLimit, 999999)
                                 If Gen.Count > 0 Then
-                                    'force splitting of /ed genres
-                                    IMDBMovie.Genre = Strings.Join(Gen.ToArray, "/").Trim.Replace("/", " / ").Trim
+                                    Dim tGenre As String = Strings.Join(Gen.ToArray, "/").Trim
+                                    tGenre = StringUtils.GenreFilter(tGenre)
+                                    If Not String.IsNullOrEmpty(tGenre) Then
+                                        IMDBMovie.Genre = Strings.Join(tGenre.Split(Convert.ToChar("/")), " / ").Trim
+                                    End If
                                 End If
                             End If
                         End If
-                    End If
+                        End If
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing

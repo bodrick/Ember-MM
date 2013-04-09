@@ -306,6 +306,36 @@ Public Class APIXML
         Return retGenre.ToArray
     End Function
 
+    Public Shared Function GetGenreListString(Optional ByVal LangsOnly As Boolean = False) As String()
+        Dim retGenre As New List(Of String)
+        Try
+            If LangsOnly Then
+                Dim xGenre = From xGen In GenreXML...<supported>.Descendants Select xGen.Value
+                If xGenre.Count > 0 Then
+                    retGenre.AddRange(xGenre.ToArray)
+                End If
+            Else
+                Dim splitLang() As String
+                Dim xGenre = From xGen In GenreXML...<name> Select xGen.@searchstring, xGen.@language
+                If xGenre.Count > 0 Then
+                    For i As Integer = 0 To xGenre.Count - 1
+                        If Not IsNothing(xGenre(i).language) Then
+                            splitLang = xGenre(i).language.Split(Convert.ToChar("|"))
+                            For Each strGen As String In splitLang
+                                If Not retGenre.Contains(xGenre(i).searchstring) AndAlso (Master.eSettings.GenreFilter.Contains(String.Format("{0}", Master.eLang.GetString(569, Master.eLang.All))) OrElse Master.eSettings.GenreFilter.Split(Convert.ToChar(",")).Contains(strGen)) Then
+                                    retGenre.Add(xGenre(i).searchstring)
+                                End If
+                            Next
+                        End If
+                    Next
+                End If
+            End If
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+        Return retGenre.ToArray
+    End Function
+
     Public Shared Function GetRatingImage(ByVal strRating As String) As Image
         '//
         ' Parse the floating Rating box

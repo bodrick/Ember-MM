@@ -37,6 +37,32 @@ Public Class StringUtils
         End If
     End Function
 
+    Public Shared Function GenreFilter(aGenres As String) As String
+
+        If Not String.IsNullOrEmpty(Master.eSettings.GenreFilter) Then
+            Dim sGenres() As String = Strings.Split(aGenres, "/")
+            Dim fGenres() As String = APIXML.GetGenreListString
+            Dim tGenres As String
+            Dim rGenres As New List(Of String)
+
+            For Each Genre As String In fGenres
+                If sGenres.Contains(Genre) Then
+                    rGenres.Add(Genre)
+                End If
+            Next
+
+            If rGenres.Count > 0 Then
+                tGenres = Strings.Join(rGenres.ToArray, "/").Trim
+                Return tGenres
+            Else
+                Return ""
+            End If
+        Else
+            Return aGenres
+        End If
+
+    End Function
+
     Public Shared Function CleanStackingMarkers(ByVal sPath As String, Optional ByVal Asterisk As Boolean = False) As String
         If AdvancedSettings.GetBooleanSetting("DisableMultiPartMedia", False) Then Return sPath
         If String.IsNullOrEmpty(sPath) Then Return String.Empty

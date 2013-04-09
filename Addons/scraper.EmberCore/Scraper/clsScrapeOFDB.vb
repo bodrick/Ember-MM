@@ -237,7 +237,10 @@ Public Class OFDB
                                       Select N = Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString)
                                 If Gen.Count > 0 Then
                                     Dim tGenre As String = Strings.Join(Gen.ToArray, "/").Trim
-                                    _genre = Strings.Join(tGenre.Split(Convert.ToChar("/")), " / ").Trim
+                                    tGenre = StringUtils.GenreFilter(tGenre)
+                                    If Not String.IsNullOrEmpty(tGenre) Then
+                                        _genre = Strings.Join(tGenre.Split(Convert.ToChar("/")), " / ").Trim
+                                    End If
                                 End If
                             End If
                         End If
