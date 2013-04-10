@@ -439,6 +439,9 @@
   <name searchstring="Corto" language="Español">
     <icon>short.jpg</icon>
   </name>
+  <name searchstring="Mondo" language="German">
+    <icon>documentary.jpg</icon>
+  </name>
   <default>
     <icon>default.jpg</icon>
   </default>
