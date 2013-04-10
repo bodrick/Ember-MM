@@ -159,6 +159,10 @@ Public Class frmMediaSettingsHolder
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
+    Private Sub cbActorThumbsSize_SelectedIndexChanged(ByVal sender As System.Object, e As System.EventArgs) Handles cbActorThumbsSize.SelectedIndexChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
+
     Private Sub cbTrailerTMDBPref_SelectedIndexChanged(ByVal sender As System.Object, e As System.EventArgs) Handles cbTrailerTMDBPref.SelectedIndexChanged
         RaiseEvent ModuleSettingsChanged()
     End Sub
