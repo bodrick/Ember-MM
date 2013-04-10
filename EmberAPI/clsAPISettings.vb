@@ -231,6 +231,7 @@ Public Class Settings
     Private _scmainstate As Integer
     Private _scshowstate As Integer
     Private _scseasonstate As Integer
+    Private _scraperactorthumbs As Boolean
     Private _scraperepactors As Boolean
     Private _scraperepaired As Boolean
     Private _scraperepcredits As Boolean
@@ -2238,6 +2239,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property ScraperActorThumbs() As Boolean
+        Get
+            Return Me._scraperactorthumbs
+        End Get
+        Set(ByVal value As Boolean)
+            Me._scraperactorthumbs = value
+        End Set
+    End Property
+
     Public Property ScraperEpActors() As Boolean
         Get
             Return Me._scraperepactors
@@ -3589,6 +3599,7 @@ Public Class Settings
         Me._eplocktitle = False
         Me._eplockplot = False
         Me._eplockrating = False
+        Me._scraperactorthumbs = False
         Me._scrapershowtitle = True
         Me._scrapershowegu = True
         Me._scrapershowgenre = True

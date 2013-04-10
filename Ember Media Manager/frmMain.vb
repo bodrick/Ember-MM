@@ -6431,7 +6431,7 @@ doCancel:
                     End If
                 End If
                 Me.tslLoading.Text = Master.eLang.GetString(568, "Generating Actors Cache:")
-                If Master.GlobalScrapeMod.Actors AndAlso AdvancedSettings.GetBooleanSetting("ScrapeActorsThumbs", False) Then
+                If Master.GlobalScrapeMod.Actors AndAlso Master.eSettings.ScraperActorThumbs Then
                     For Each act As MediaContainers.Person In Master.currMovie.Movie.Actors
                         Dim img As New Images
                         img.FromWeb(act.Thumb)

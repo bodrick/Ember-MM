@@ -902,7 +902,7 @@ Public Class dlgSettings
         Me.chkSeasonXXDashFanartJPG.Checked = True
         Me.chkSeasonXXDashPosterJPG.Checked = True
         Me.chkSeasonXXTBN.Checked = False
-        'Me.chkShowBannerJPG.Checked = True (banners not implemented at time)
+        'Me.chkShowBannerJPG.Checked = True (banners not implemented atm)
         Me.chkShowDashFanart.Checked = False
         Me.chkShowDotFanart.Checked = False
         Me.chkShowFanartJPG.Checked = True
@@ -1728,6 +1728,10 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkScanOrderModify_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScanOrderModify.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkScraperActorThumbs_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScraperActorThumbs.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2582,7 +2586,7 @@ Public Class dlgSettings
             Me.chkMarkNewEpisodes.Checked = Master.eSettings.MarkNewEpisodes
             Me.cbOrdering.SelectedIndex = Master.eSettings.OrderDefault
             Me.chkOnlyValueForCert.Checked = Master.eSettings.OnlyValueForCert
-            Me.chkActorCache.Checked = AdvancedSettings.GetBooleanSetting("ScrapeActorsThumbs", False)
+            Me.chkScraperActorThumbs.Checked = Master.eSettings.ScraperActorThumbs
             Me.RefreshSources()
             Me.RefreshTVSources()
             Me.RefreshShowFilters()
@@ -3700,7 +3704,7 @@ Public Class dlgSettings
             Master.eSettings.MarkNewEpisodes = Me.chkMarkNewEpisodes.Checked
             Master.eSettings.OrderDefault = DirectCast(Me.cbOrdering.SelectedIndex, Enums.Ordering)
             Master.eSettings.OnlyValueForCert = Me.chkOnlyValueForCert.Checked
-            AdvancedSettings.SetBooleanSetting("ScrapeActorsThumbs", Me.chkActorCache.Checked)
+            Master.eSettings.ScraperActorThumbs = Me.chkScraperActorThumbs.Checked
             For Each s As ModulesManager._externalScraperModuleClass In ModulesManager.Instance.externalScrapersModules
                 Try
                     If s.ProcessorModule.IsScraper Then s.ProcessorModule.SaveSetupScraper(Not isApply)
@@ -4071,7 +4075,7 @@ Public Class dlgSettings
         Me.chkMarkNewEpisodes.Text = Master.eLang.GetString(621, "Mark New Episodes")
         Me.lblOrdering.Text = Master.eLang.GetString(797, "Default Episode Ordering:")
         Me.chkOnlyValueForCert.Text = Master.eLang.GetString(835, "Only Save the Value to NFO")
-        Me.chkActorCache.Text = Master.eLang.GetString(828, "Enable Actors Cache")
+        Me.chkScraperActorThumbs.Text = Master.eLang.GetString(828, "Enable Actor Thumbs")
         Me.rbBanner.Text = Master.eLang.GetString(838, "Banner")
         Me.rbPoster.Text = Me.GroupBox5.Text
         Me.rbAllSBanner.Text = Me.rbBanner.Text
@@ -4085,10 +4089,10 @@ Public Class dlgSettings
         Me.lblAllSPosterQ.Text = Me.Label24.Text
         Me.btnClearRegex.Text = Master.eLang.GetString(123, "Clear")
         Me.chkAskCheckboxScrape.Text = Master.eLang.GetString(852, "Ask On Click Scrape")
-		Me.btnMovieFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
-		Me.btnTVShowFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
+        Me.btnMovieFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
+        Me.btnTVShowFrodo.Text = Master.eLang.GetString(867, "XBMC Frodo")
 
-		Me.lvTVSources.Columns(1).Text = Master.eLang.GetString(232, "Name")
+        Me.lvTVSources.Columns(1).Text = Master.eLang.GetString(232, "Name")
         Me.lvTVSources.Columns(2).Text = Master.eLang.GetString(410, "Path")
 
         Me.lvShowRegex.Columns(1).Text = Master.eLang.GetString(696, "Show Regex")

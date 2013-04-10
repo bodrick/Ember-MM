@@ -31,6 +31,7 @@ Partial Class dlgSettings
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dlgSettings))
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.chkSpecialDateAdd = New System.Windows.Forms.CheckBox()
         Me.chkShowGenresText = New System.Windows.Forms.CheckBox()
         Me.chkSourceFromFolder = New System.Windows.Forms.CheckBox()
         Me.chkNoDisplayFanart = New System.Windows.Forms.CheckBox()
@@ -154,7 +155,7 @@ Partial Class dlgSettings
         Me.lblFanartSize = New System.Windows.Forms.Label()
         Me.chkOverwriteFanart = New System.Windows.Forms.CheckBox()
         Me.GroupBox9 = New System.Windows.Forms.GroupBox()
-        Me.chkActorCache = New System.Windows.Forms.CheckBox()
+        Me.chkScraperActorThumbs = New System.Windows.Forms.CheckBox()
         Me.chkNoSaveImagesToNfo = New System.Windows.Forms.CheckBox()
         Me.chkSingleScrapeImages = New System.Windows.Forms.CheckBox()
         Me.GroupBox17 = New System.Windows.Forms.GroupBox()
@@ -606,7 +607,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.chkSpecialDateAdd = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -736,6 +736,17 @@ Partial Class dlgSettings
         Me.GroupBox4.TabIndex = 1
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "Miscellaneous"
+        '
+        'chkSpecialDateAdd
+        '
+        Me.chkSpecialDateAdd.AutoSize = True
+        Me.chkSpecialDateAdd.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkSpecialDateAdd.Location = New System.Drawing.Point(10, 195)
+        Me.chkSpecialDateAdd.Name = "chkSpecialDateAdd"
+        Me.chkSpecialDateAdd.Size = New System.Drawing.Size(196, 17)
+        Me.chkSpecialDateAdd.TabIndex = 10
+        Me.chkSpecialDateAdd.Text = "Use file creation date of videofile"
+        Me.chkSpecialDateAdd.UseVisualStyleBackColor = True
         '
         'chkShowGenresText
         '
@@ -2096,7 +2107,7 @@ Partial Class dlgSettings
         '
         'GroupBox9
         '
-        Me.GroupBox9.Controls.Add(Me.chkActorCache)
+        Me.GroupBox9.Controls.Add(Me.chkScraperActorThumbs)
         Me.GroupBox9.Controls.Add(Me.chkNoSaveImagesToNfo)
         Me.GroupBox9.Controls.Add(Me.chkSingleScrapeImages)
         Me.GroupBox9.Controls.Add(Me.GroupBox17)
@@ -2108,17 +2119,17 @@ Partial Class dlgSettings
         Me.GroupBox9.TabStop = False
         Me.GroupBox9.Text = "Images"
         '
-        'chkActorCache
+        'chkScraperActorThumbs
         '
-        Me.chkActorCache.CheckAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.chkActorCache.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkActorCache.Location = New System.Drawing.Point(6, 35)
-        Me.chkActorCache.Name = "chkActorCache"
-        Me.chkActorCache.Size = New System.Drawing.Size(173, 19)
-        Me.chkActorCache.TabIndex = 1
-        Me.chkActorCache.Text = "Enable Actors Cache"
-        Me.chkActorCache.TextAlign = System.Drawing.ContentAlignment.TopLeft
-        Me.chkActorCache.UseVisualStyleBackColor = True
+        Me.chkScraperActorThumbs.CheckAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.chkScraperActorThumbs.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkScraperActorThumbs.Location = New System.Drawing.Point(6, 35)
+        Me.chkScraperActorThumbs.Name = "chkScraperActorThumbs"
+        Me.chkScraperActorThumbs.Size = New System.Drawing.Size(173, 19)
+        Me.chkScraperActorThumbs.TabIndex = 1
+        Me.chkScraperActorThumbs.Text = "Enable Actor Thumbs"
+        Me.chkScraperActorThumbs.TextAlign = System.Drawing.ContentAlignment.TopLeft
+        Me.chkScraperActorThumbs.UseVisualStyleBackColor = True
         '
         'chkNoSaveImagesToNfo
         '
@@ -7185,17 +7196,6 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
         '
-        'chkSpecialDateAdd
-        '
-        Me.chkSpecialDateAdd.AutoSize = True
-        Me.chkSpecialDateAdd.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkSpecialDateAdd.Location = New System.Drawing.Point(10, 195)
-        Me.chkSpecialDateAdd.Name = "chkSpecialDateAdd"
-        Me.chkSpecialDateAdd.Size = New System.Drawing.Size(196, 17)
-        Me.chkSpecialDateAdd.TabIndex = 10
-        Me.chkSpecialDateAdd.Text = "Use file creation date of videofile"
-        Me.chkSpecialDateAdd.UseVisualStyleBackColor = True
-        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -7966,7 +7966,7 @@ Partial Class dlgSettings
     Friend WithEvents btnGetTVProfiles As System.Windows.Forms.Button
     Friend WithEvents chkAskCheckboxScrape As System.Windows.Forms.CheckBox
     Friend WithEvents chkClickScrape As System.Windows.Forms.CheckBox
-    Friend WithEvents chkActorCache As System.Windows.Forms.CheckBox
+    Friend WithEvents chkScraperActorThumbs As System.Windows.Forms.CheckBox
     Friend WithEvents chkPosterOnly As System.Windows.Forms.CheckBox
     Friend WithEvents gbShowBanner As System.Windows.Forms.GroupBox
     Friend WithEvents chkShowBannerJPG As System.Windows.Forms.CheckBox
