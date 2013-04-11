@@ -7187,7 +7187,7 @@ doCancel:
                 End If
 
                 Dim sContainer As New Scanner.TVShowContainer With {.ShowPath = tmpShowDb.ShowPath}
-                fScanner.GetShowFolderContents(sContainer)
+                fScanner.GetShowFolderContents(sContainer, ID)
                 tmpShowDb.ShowPosterPath = sContainer.Poster
                 tmpShowDb.ShowFanartPath = sContainer.Fanart
                 'assume invalid nfo if no title
