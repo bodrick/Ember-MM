@@ -564,7 +564,7 @@ Public Class Scanner
     End Sub
 
     ''' <summary>
-    ''' Check if a directory contains supporting files (nfo, poster)
+    ''' Check if a directory contains supporting files (nfo, poster, fanart)
     ''' </summary>
     ''' <param name="tShow">TVShowContainer object.</param>
     Public Sub GetShowFolderContents(ByRef tShow As TVShowContainer)
@@ -631,6 +631,22 @@ Public Class Scanner
             If String.IsNullOrEmpty(tShow.Fanart) AndAlso Master.eSettings.ShowDotFanart Then
                 fName = Path.Combine(parPath, String.Concat(FileUtils.Common.GetDirectory(parPath), ".fanart.jpg"))
                 tShow.Fanart = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+            End If
+
+            If AdvancedSettings.GetBooleanSetting("YAMJShowPoster", False, "multi.Compatibility") Then
+                Dim tPath As String = String.Empty
+                Dim seasonPath As String = Directory.GetParent(tShow.Episodes.FirstOrDefault.Filename).FullName
+                If String.IsNullOrEmpty(seasonPath) Then
+                    Dim dtSeasons As New DataTable
+                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", "14", " AND Season <> 999 ORDER BY Season;"))
+                    If dtSeasons.Rows.Count > 0 Then
+                        seasonPath = Functions.GetSeasonDirectoryFromShowPath(parPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
+                    End If
+                End If
+                tPath = Path.Combine(parPath, seasonPath)
+                tPath = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(parPath), "_1.jpg"))
+                fName = tPath
+                tShow.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
             fName = Path.Combine(parPath, "tvshow.nfo")
