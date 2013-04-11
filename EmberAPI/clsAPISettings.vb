@@ -3664,7 +3664,7 @@ Public Class Settings
     End Sub
 
     Public Function SeasonFanartEnabled() As Boolean
-        Return Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart OrElse Master.eSettings.SeasonXXDashFanartJPG
+        Return Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonDotFanart OrElse Master.eSettings.SeasonXXDashFanartJPG OrElse AdvancedSettings.GetBooleanSetting("YAMJSeasonFanart", False, "multi.Compatibility")
     End Function
 
     Public Sub SetDefaultsForLists(ByVal Type As Enums.DefaultType, ByVal Force As Boolean)
