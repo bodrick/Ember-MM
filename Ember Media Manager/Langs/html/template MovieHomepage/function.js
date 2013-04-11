@@ -1,7 +1,7 @@
 "use strict";
 
 //Area of global Array Declaration - used to save the EMBER Variables from HTML-Template to Javascript global arrays
-var version = "version 1.70";
+var version = "version 1.80";
 var iCount;
 var DataSource = [];
 var DataURL = [];
@@ -21,12 +21,15 @@ var DataWatched = [];
 var DataThreed = [];
 var DataPlot = [];
 var DataNow;
+var DataSet = [];
+var DataMoviesets;
 
 //Here are string fragments which will be fused together with function-variables to build the whole site navigation dynamically
 var navilinks_full, navilinks, moviewall, moviewall_full;
 var string_navigation_1 = '<li><a href="javascript:{}" onclick="func_ShowDetails(';
 var string_navigation_1HD1 = '<li><a href="javascript:{}" style="color:#A6D3EA;" onclick="func_ShowDetails(';
 var string_navigation_1DVD1 = '<li><a href="javascript:{}" style="color:#b8860b;" onclick="func_ShowDetails(';
+var string_navigation_1Movieset = '<li><a href="javascript:{}" onclick="func_DisplayMovieset(';
 var string_navigation_2 = ')"';
 var string_tabindexstart = ' tabindex="';
 var string_tabindexend = '">';
@@ -667,6 +670,115 @@ Control1.innerHTML = '<ol id="ol_navigation">' + navilinks_full + '</ol>';
 Control2.innerHTML = moviewall_full;
 }
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//---- Function: Build Moviesetnavigation-----
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+function func_BuildMoviesets() {
+var Control1 = document.getElementById("navigation");
+var i;
+var arrmoviesets=DataMoviesets.split("#"); 
+navilinks_full = "";  // deletes all entries of left sidebar
+moviewall_full = ""; // deletes all entries of right sidebar
+
+
+// Loop through all entries and check if movie contains "movieset"
+//Navigation builder to build whole page dynamically
+for (var i=0; i < arrmoviesets.length; i++)
+{
+navilinks = string_navigation_1Movieset  + i + string_navigation_2 + string_tabindexstart + i + string_tabindexend  + arrmoviesets[i] + string_navigation_3 + string_navigation_4;
+navilinks_full = navilinks_full + navilinks;
+}
+
+Control1.innerHTML = '<ol id="ol_navigation">' + navilinks_full + '</ol>';
+}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//---- Function: Show Moviesets-----
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+function func_DisplayMovieset(moviesetindex) {
+var arrmoviesets=DataMoviesets.split("#"); 
+var movieset=arrmoviesets[moviesetindex];
+var myregexp = new RegExp(movieset); //  NEW RegeExp Object
+var doOnce = 0;
+var Control2 = document.getElementById("div_moviewall");
+var i;
+
+moviewall_full = ""; // deletes all entries of right sidebar
+
+// Loop through all entries and check if movie contains "movieset"
+for (i = 1;i <= iCount; i++)
+{
+var arr2str = DataSet[i].toString();
+var result = arr2str.search(myregexp);
+
+var arr2strLower = arr2str.toLowerCase();
+var result2 = arr2strLower.search(myregexp);
+
+if (result !== -1 || result2 !== -1) // Found something!
+{
+func_BuildNavigationMoviesets(i); // Calls LoadPage Function and add match to left and right navigation string variable!
+}
+}
+
+Control2.innerHTML = moviewall_full;
+}
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+//---- Function for building left and right navigation of site-----
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
+function func_BuildNavigationMoviesets(selectedmovie)
+{
+var y, Control1, Control2, Control3, i, arr2str, result1, result2,result3,result4;
+Control1 = document.getElementById("navigation");
+Control2 = document.getElementById("div_moviewall");
+Control3 = document.getElementById("div_moviecounter");
+var myregexp1 = new RegExp('1080');
+var myregexp2 = new RegExp('720');
+var myregexp3 = new RegExp('576');
+var myregexp4 = new RegExp('default');
+var myregexp5 = new RegExp('1');
+var bluraycounter = 0;
+var dvdcounter = 0;
+var othercounter = 0;
+var moviecounter = 0;
+var watchedcounter = 0;
+var threedcounter = 0;
+
+//execute only for buildung up navigation for ALL movies (PageLoad, Reset-Button)!
+if (selectedmovie === 0) {
+navilinks_full = "";  // deletes all entries of left sidebar
+moviewall_full = ""; // deletes all entries of right sidebar
+y = iCount; // this will make sure to add navigation of ALL movies!
+func_ShowDetails(1);
+}
+else // only navigation elements of one specific movie will be added!
+{
+y = selectedmovie;
+}
+//Navigation builder for left and right sidebar
+for (i = selectedmovie;i <= y; i++)
+{
+if (i === 0) {
+i = 1; }
+arr2str = DataSource[i].toString();
+result1 = arr2str.search(myregexp1);
+result2 = arr2str.search(myregexp2);
+result3 = arr2str.search(myregexp3);
+result4 = arr2str.search(myregexp4);
+
+
+  
+//Navigation builder to build whole page dynamically
+//navilinks_full = navilinks_full + navilinks;
+moviewall = string_moviewalllink_1 + i + string_moviewalllink_2 + i + string_moviewalllink_3 + string_moviewallpic_1 + DataBild[i] + string_moviewallpic_2 + DataName[i] + string_moviewallpic_3 + DataName[i] + string_moviewallpic_4;
+moviewall_full = moviewall_full + moviewall;
+}
+if (selectedmovie === 0) { // only needed when function not called from another function
+selectedmovie = 1;
+moviecounter = dvdcounter + bluraycounter + othercounter;
+Control1.innerHTML = '<ol class="symbol" id="ol_navigation" style="padding-left: 9px">' + navilinks_full + '</ol><p style="color:yellow;font-size:0.6em;">' + version + '</p>';
+Control2.innerHTML = moviewall_full;
+Control3.innerHTML = '<p><span style="font-family:Verdana;">Total: </span> <span style="font-family:Verdana; color: white;">' + moviecounter + '</span> <span style="font-family:Verdana; color: #A6D3EA;">&nbsp;&nbsp;Blurays: ' + bluraycounter + '</span><span style="font-family:Verdana; color: #b8860b;">&nbsp;&nbsp;DVD: ' + dvdcounter + '</span><span style="font-family:Verdana; color: red;">&nbsp;&nbsp;3D: ' + threedcounter + '</span><span style="font-family:Verdana; color: Orange;">&nbsp;&nbsp;Rest: ' + othercounter + '</span><span style="font-family:Verdana; color: white;">&nbsp;&nbsp;Watched: ' + watchedcounter + '</span></p>';
+}
+}
 
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
