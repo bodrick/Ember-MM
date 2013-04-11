@@ -567,7 +567,7 @@ Public Class Scanner
     ''' Check if a directory contains supporting files (nfo, poster, fanart)
     ''' </summary>
     ''' <param name="tShow">TVShowContainer object.</param>
-    Public Sub GetShowFolderContents(ByRef tShow As TVShowContainer)
+    Public Sub GetShowFolderContents(ByRef tShow As TVShowContainer, Optional ByVal ID As Long = 0)
         Dim parPath As String = tShow.ShowPath
         Dim fList As New List(Of String)
         Dim fName As String = String.Empty
@@ -635,14 +635,24 @@ Public Class Scanner
 
             If AdvancedSettings.GetBooleanSetting("YAMJShowPoster", False, "multi.Compatibility") Then
                 Dim tPath As String = String.Empty
-                Dim seasonPath As String = Directory.GetParent(tShow.Episodes.FirstOrDefault.Filename).FullName
+                Dim seasonPath As String = String.Empty
+
+                If tShow.Episodes.Count > 0 Then
+                    seasonPath = Directory.GetParent(tShow.Episodes.FirstOrDefault.Filename).FullName
+                End If
+
                 If String.IsNullOrEmpty(seasonPath) Then
                     Dim dtSeasons As New DataTable
-                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", "14", " AND Season <> 999 ORDER BY Season;"))
+                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", ID, " AND Season <> 999 ORDER BY Season;"))
                     If dtSeasons.Rows.Count > 0 Then
                         seasonPath = Functions.GetSeasonDirectoryFromShowPath(parPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
                     End If
                 End If
+                Try
+                    fList.AddRange(Directory.GetFiles(seasonPath))
+                Catch
+                End Try
+
                 tPath = Path.Combine(parPath, seasonPath)
                 tPath = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(parPath), "_1.jpg"))
                 fName = tPath
