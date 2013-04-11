@@ -141,6 +141,13 @@ Public Class dlgExportMovies
             Me.bexportFanart = False
             Me.bexportFlags = False
 
+            Dim AllMovieSetList As String = ""
+            Try
+                AllMovieSetList = GetAllMovieSets()
+            Catch ex As Exception
+
+            End Try
+
             Dim tVid As New MediaInfo.Video
             Dim tAud As New MediaInfo.Audio
             Dim tRes As String = String.Empty
@@ -300,9 +307,11 @@ Public Class dlgExportMovies
                 row = row.Replace("<$VIDEO_DIMENSIONS>", _vidDimensions)
                 row = row.Replace("<$AUDIO>", _audDetails)
                 row = row.Replace("<$SIZE>", StringUtils.HtmlEncode(MovieSize(_curMovie.Filename).ToString))
-                row = row.Replace("<$DATEADD>", StringUtils.HtmlEncode(Functions.ConvertFromUnixTimestamp(_curMovie.DateAdd).ToShortDateString))
+                row = row.Replace("<$DATEADD>", StringUtils.HtmlEncode(Functions.ConvertFromUnixTimestamp(_curMovie.DateAdd).ToString("dd.MM.yyyy")))
 
                 'cocotus, 2013/02 Added support for new MediaInfo-fields
+                row = row.Replace("<$MOVIESETS>", StringUtils.HtmlEncode(AllMovieSetList)) 'A long string of all moviesets, seperated with ;!
+                row = row.Replace("<$SET>", StringUtils.HtmlEncode(GetMovieSets(_curMovie))) 'All sets which movie belongs to, seperated with ;!
                 row = row.Replace("<$VIDEOBITRATE>", _vidBitrate)
                 row = row.Replace("<$VIDEOMULTIVIEW>", _vidMultiView)
                 row = row.Replace("<$VIDEOENCODINGSETTINGS>", _vidEncodedSettings)
@@ -337,6 +346,67 @@ Public Class dlgExportMovies
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
     End Sub
+
+    Private Function GetMovieSets(_curMovie As Structures.DBMovie) As String
+        Dim ReturnString As String = ""
+        Try
+
+            If _curMovie.Movie.Sets.Count > 0 Then
+                For i = 0 To _curMovie.Movie.Sets.Count - 1
+                    If i > 0 Then
+                        ReturnString = ReturnString + "#" + _curMovie.Movie.Sets.Item(i).Set
+                    Else
+                        ReturnString = _curMovie.Movie.Sets.Item(i).Set
+                    End If
+
+                Next
+            End If
+            Return ReturnString
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Return ReturnString
+        End Try
+
+    End Function
+    Private alSets As New List(Of String)
+    '  Private lMovies As New List(Of Movies)
+    Private Function GetAllMovieSets() As String
+        '//
+        ' Start thread to load movie information from nfo
+        '\\
+
+
+
+        Dim ReturnString As String = ""
+        Try
+
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
+                SQLcommand.CommandText = String.Concat("SELECT SetName FROM MoviesSets;")
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    If SQLreader.HasRows Then
+                        While SQLreader.Read()
+                            If Not alSets.Contains(SQLreader("SetName").ToString) AndAlso Not String.IsNullOrEmpty(SQLreader("SetName").ToString) Then
+                                alSets.Add(SQLreader("SetName").ToString)
+                            End If
+                        End While
+                    End If
+                End Using
+            End Using
+            If alSets.Count > 0 Then
+                For i = 0 To alSets.Count - 1
+                    If i > 0 Then
+                        ReturnString = ReturnString + "#" + alSets(i)
+                    Else
+                        ReturnString = alSets(i)
+                    End If
+                Next
+            End If
+            Return ReturnString
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Return ""
+        End Try
+    End Function
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSource.Click
         If btnSource.ImageIndex = 0 Then
