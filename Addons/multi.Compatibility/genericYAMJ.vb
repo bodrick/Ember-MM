@@ -147,7 +147,6 @@ Public Class genericYAMJ
 										tPath = Path.Combine(tPath, "Season 1.banner.jpg")
 										imageList.Add(tPath)
 										'doContinue = False
-										'SET_<show>_1.banner.jpg
 									End If
 								Case Enums.TVImageType.EpisodePoster
 									If AdvancedSettings.GetBooleanSetting("YAMJEpisodePoster", False) Then
@@ -193,7 +192,6 @@ Public Class genericYAMJ
 										tPath = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(mShow.ShowPath), "_1.jpg"))
 										imageList.Add(tPath)
 										'doContinue = False
-										'SET_<show>_1.jpg
 									End If
 								Case Enums.TVImageType.ShowFanart
 									If AdvancedSettings.GetBooleanSetting("YAMJShowFanart", False) Then
@@ -209,7 +207,6 @@ Public Class genericYAMJ
 										tPath = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(mShow.ShowPath), "_1.fanart.jpg"))
 										imageList.Add(tPath)
 										'doContinue = False
-										'SET_<show>_1.fanart.jpg
 									End If
 							End Select
 						End If
