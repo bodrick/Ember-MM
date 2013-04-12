@@ -3301,7 +3301,7 @@ Public Class Settings
 #Region "Methods"
 
     Public Function AllSeasonPosterEnabled() As Boolean
-        Return Me._seasonalltbn OrElse Me._seasonalljpg OrElse Me._seasonallposterjpg
+        Return Me._seasonalltbn OrElse Me._seasonalljpg OrElse Me._seasonallposterjpg OrElse AdvancedSettings.GetBooleanSetting("YAMJAllSeasonPoster", False, "multi.Compatibility")
     End Function
 
     Public Sub Clear()
