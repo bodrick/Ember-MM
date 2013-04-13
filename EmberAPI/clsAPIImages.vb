@@ -937,35 +937,35 @@ Public Class Images
 					Save(pPath, Master.eSettings.PosterQuality, sURL, doResize)
 					strReturn = pPath
 				End If
-			ElseIf Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
-				With Master.eSettings
-					If .MovieNameJPG Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), ".jpg")
-					ElseIf .MovieJPG Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "movie.jpg"))
-					ElseIf .FolderJPG Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "folder.jpg"))
-					ElseIf .PosterJPG Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.jpg"))
-					ElseIf .MovieNameTBN Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), ".tbn")
-					ElseIf .MovieNameDashPosterJPG And Not Master.eSettings.VideoTSParentXBMC Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), "-poster.jpg")
-					ElseIf .MovieNameDashPosterJPG And Master.eSettings.VideoTSParentXBMC Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.jpg"))
-					ElseIf .MovieTBN Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "movie.tbn"))
-					ElseIf .PosterTBN Then
-						pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.tbn"))
-					Else
-						pPath = String.Empty
-					End If
-				End With
+            ElseIf (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
+                With Master.eSettings
+                    If .MovieNameJPG Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), ".jpg")
+                    ElseIf .MovieJPG Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "movie.jpg"))
+                    ElseIf .FolderJPG Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "folder.jpg"))
+                    ElseIf .PosterJPG Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.jpg"))
+                    ElseIf .MovieNameTBN Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), ".tbn")
+                    ElseIf .MovieNameDashPosterJPG And Not Master.eSettings.VideoTSParentXBMC Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), "-poster.jpg")
+                    ElseIf .MovieNameDashPosterJPG And Master.eSettings.VideoTSParentXBMC Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.jpg"))
+                    ElseIf .MovieTBN Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "movie.tbn"))
+                    ElseIf .PosterTBN Then
+                        pPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, "poster.tbn"))
+                    Else
+                        pPath = String.Empty
+                    End If
+                End With
 
-				If Not pPath = String.Empty And (Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwritePoster)) Then
-					Save(pPath, Master.eSettings.PosterQuality, sURL, doResize)
-					strReturn = pPath
-				End If
+                If Not pPath = String.Empty And (Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwritePoster)) Then
+                    Save(pPath, Master.eSettings.PosterQuality, sURL, doResize)
+                    strReturn = pPath
+                End If
 			Else
 				Dim tPath As String = String.Empty
 				Dim parPath As String = Directory.GetParent(mMovie.Filename).FullName
