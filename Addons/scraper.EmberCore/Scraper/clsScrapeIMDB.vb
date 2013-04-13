@@ -390,9 +390,20 @@ Namespace IMDB
                                   Select Web.HttpUtility.HtmlDecode(DirectCast(M, Match).Groups("name").ToString)
 
                         If Cou.Count > 0 Then
-                            IMDBMovie.Country = Strings.Join(Cou.ToArray, " / ").Trim
+
+                            'fix for display country flag in XBMC! 
+                            If Strings.Join(Cou.ToArray, " / ").Trim.ToUpper.Contains("USA") Then
+                                IMDBMovie.Country = "United States of America"
+                            ElseIf Strings.Join(Cou.ToArray, " / ").Trim.ToUpper.Contains("UK") Then
+                                IMDBMovie.Country = "United Kingdom"
+                            Else
+                                IMDBMovie.Country = Strings.Join(Cou.ToArray, " / ").Trim()
+                            End If
+
                         End If
                     End If
+
+
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing
