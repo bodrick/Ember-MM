@@ -19,6 +19,7 @@
 ' ################################################################################
 
 Imports System.Text.RegularExpressions
+Imports System.IO
 Imports EmberAPI
 
 Public Class dlgIMDBSearchResults
@@ -140,6 +141,14 @@ Public Class dlgIMDBSearchResults
 
         Me.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Close()
+    End Sub
+
+    Private Sub btnOpenFolder_Click(sender As Object, e As EventArgs) Handles btnOpenFolder.Click
+        Dim fPath As String = Directory.GetParent(Master.currMovie.Filename).FullName
+
+        If Not String.IsNullOrEmpty(fPath) Then
+            Shell("Explorer.exe " & fPath, vbNormalFocus)
+        End If
     End Sub
 
     Private Sub chkManual_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkManual.CheckedChanged
@@ -386,6 +395,7 @@ Public Class dlgIMDBSearchResults
         Me.lblIMDBHeader.Text = Master.eLang.GetString(289, "IMDB ID:", True)
         Me.lblPlotHeader.Text = Master.eLang.GetString(242, "Plot Outline:", True)
         Me.Label3.Text = Master.eLang.GetString(25, "Searching IMDB...")
+        Me.txtFileName.Text = Master.currMovie.Filename
     End Sub
 
     Private Sub tmrLoad_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrLoad.Tick
@@ -506,4 +516,5 @@ Public Class dlgIMDBSearchResults
     End Structure
 
     #End Region 'Nested Types
+
 End Class
