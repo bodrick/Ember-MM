@@ -9,7 +9,7 @@
   <string id="7">Timeout:</string>
   <string id="8">Supported Sites:</string>
   <string id="9">Get Images From:</string>
-  <string id="10">Search Results -</string>
+  <string id="10">Search Results</string>
   <string id="11">Searching TMDB...</string>
   <string id="12">The ID you entered is not a valid IMDB ID.</string>
   <string id="13">You have manually entered an IMDB ID but have not verified it is correct.</string>
@@ -38,8 +38,8 @@
   <string id="36">Retrieving data from MoviePosterDB.com...</string>
   <string id="37">MoviePostersDB.com is not enabled</string>
   <string id="38">Preparing images...</string>
-  <string id="39">Select Poster -</string>
-  <string id="40">Select Fanart -</string>
+  <string id="39">Select Poster</string>
+  <string id="40">Select Fanart</string>
   <string id="41">Check All Thumb</string>
   <string id="42">Check All Mid</string>
   <string id="43">Check All Original</string>

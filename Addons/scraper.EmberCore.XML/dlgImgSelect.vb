@@ -783,9 +783,9 @@ Public Class dlgImgSelect
             Functions.PNLDoubleBuffer(pnlBG)
 
             If DLType = Enums.ImageType.Posters Then
-                Text = String.Concat(Master.eLang.GetString(39, "Select Poster - "), If(Not String.IsNullOrEmpty(tMovie.Movie.Title), tMovie.Movie.Title, tMovie.ListTitle))
+                Text = String.Concat(Master.eLang.GetString(39, "Select Poster"), " - ", If(Not String.IsNullOrEmpty(tMovie.Movie.Title), tMovie.Movie.Title, tMovie.ListTitle))
             Else
-                Text = String.Concat(Master.eLang.GetString(40, "Select Fanart - "), If(Not String.IsNullOrEmpty(tMovie.Movie.Title), tMovie.Movie.Title, tMovie.ListTitle))
+                Text = String.Concat(Master.eLang.GetString(40, "Select Fanart"), " - ", If(Not String.IsNullOrEmpty(tMovie.Movie.Title), tMovie.Movie.Title, tMovie.ListTitle))
                 pnlDLStatus.Height = 75
                 pnlDLStatus.Top = 207
 

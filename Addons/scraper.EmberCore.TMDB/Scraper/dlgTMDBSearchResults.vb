@@ -65,7 +65,7 @@ Public Class dlgTMDBSearchResults
 
 		_filterOptions = filterOptions
 
-		Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results - "), sMovieTitle)
+        Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results"), " - ", sMovieTitle)
 		Me.txtSearch.Text = sMovieTitle
 		chkManual.Enabled = False
 		'TMDBg.IMDBURL = TMDBId
@@ -80,7 +80,7 @@ Public Class dlgTMDBSearchResults
 		Me.tmrLoad.Enabled = False
 		Me.tmrLoad.Interval = 100
 
-		Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results - "), sMovieTitle)
+        Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results"), " - ", sMovieTitle)
 		Me.txtSearch.Text = sMovieTitle
 		SearchResultsDownloaded(Res)
 
