@@ -732,7 +732,10 @@ Public Class Functions
             .bPlot = Not Master.eSettings.LockPlot
             .bProducers = True
             .bRating = Not Master.eSettings.LockRating
-            .bLanguage = Not Master.eSettings.LockLanguage
+            .bLanguageV = Not Master.eSettings.LockLanguageV
+            .bLanguageA = Not Master.eSettings.LockLanguageA
+            .buseMPAAForFSK = Not Master.eSettings.UseMPAAForFSK
+
             .bRelease = True
             .bRuntime = True
             .bStudio = Not Master.eSettings.LockStudio
@@ -1234,7 +1237,9 @@ Public Class Structures
         Dim bPlot As Boolean
         Dim bProducers As Boolean
         Dim bRating As Boolean
-        Dim bLanguage As Boolean
+        Dim bLanguageV As Boolean
+        Dim bLanguageA As Boolean
+        Dim buseMPAAForFSK As Boolean
         Dim bRelease As Boolean
         Dim bRuntime As Boolean
         Dim bStudio As Boolean

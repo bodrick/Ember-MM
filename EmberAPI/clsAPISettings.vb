@@ -147,7 +147,10 @@ Public Class Settings
     Private _lockoutline As Boolean
     Private _lockplot As Boolean
     Private _lockrating As Boolean
-    Private _locklanguage As Boolean
+    Private _locklanguageV As Boolean
+    Private _locklanguageA As Boolean
+    Private _lockMPAA As Boolean
+    Private _useMPAAForFSK As Boolean
     Private _lockstudio As Boolean
     Private _locktagline As Boolean
     Private _locktitle As Boolean
@@ -1421,15 +1424,38 @@ Public Class Settings
         End Set
     End Property
 
-    Public Property LockLanguage() As Boolean
+    Public Property LockLanguageV() As Boolean
         Get
-            Return Me._locklanguage
+            Return Me._locklanguageV
         End Get
         Set(ByVal value As Boolean)
-            Me._locklanguage = value
+            Me._locklanguageV = value
         End Set
     End Property
-
+    Public Property LockLanguageA() As Boolean
+        Get
+            Return Me._locklanguageA
+        End Get
+        Set(ByVal value As Boolean)
+            Me._locklanguageA = value
+        End Set
+    End Property
+    Public Property LockMPAA() As Boolean
+        Get
+            Return Me._lockMPAA
+        End Get
+        Set(ByVal value As Boolean)
+            Me._lockMPAA = value
+        End Set
+    End Property
+    Public Property UseMPAAForFSK() As Boolean
+        Get
+            Return Me._useMPAAForFSK
+        End Get
+        Set(ByVal value As Boolean)
+            Me._useMPAAForFSK = value
+        End Set
+    End Property
     Public Property LockStudio() As Boolean
         Get
             Return Me._lockstudio

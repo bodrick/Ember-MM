@@ -581,6 +581,9 @@ Partial Class dlgSettings
         Me.chkUseMIDuration = New System.Windows.Forms.CheckBox()
         Me.chkScanMediaInfo = New System.Windows.Forms.CheckBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.chkLockMPAA = New System.Windows.Forms.CheckBox()
+        Me.chkLockLanguageA = New System.Windows.Forms.CheckBox()
+        Me.chkLockLanguageV = New System.Windows.Forms.CheckBox()
         Me.chkLockOutline = New System.Windows.Forms.CheckBox()
         Me.chkLockPlot = New System.Windows.Forms.CheckBox()
         Me.chkLockTrailer = New System.Windows.Forms.CheckBox()
@@ -590,6 +593,7 @@ Partial Class dlgSettings
         Me.chkLockTagline = New System.Windows.Forms.CheckBox()
         Me.chkLockTitle = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.chkUseMPAAFSK = New System.Windows.Forms.CheckBox()
         Me.chkOnlyValueForCert = New System.Windows.Forms.CheckBox()
         Me.cbForce = New System.Windows.Forms.ComboBox()
         Me.chkForceTitle = New System.Windows.Forms.CheckBox()
@@ -607,7 +611,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.chkLockLanguage = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -2967,7 +2970,7 @@ Partial Class dlgSettings
         Me.pnlSources.Controls.Add(Me.btnMovieAddFolder)
         Me.pnlSources.Controls.Add(Me.GroupBox8)
         Me.pnlSources.Controls.Add(Me.GroupBox16)
-        Me.pnlSources.Location = New System.Drawing.Point(898, 656)
+        Me.pnlSources.Location = New System.Drawing.Point(580, 818)
         Me.pnlSources.Name = "pnlSources"
         Me.pnlSources.Size = New System.Drawing.Size(617, 402)
         Me.pnlSources.TabIndex = 13
@@ -6417,7 +6420,7 @@ Partial Class dlgSettings
         Me.gbOptions.Controls.Add(Me.chkYear)
         Me.gbOptions.Controls.Add(Me.chkTitle)
         Me.gbOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbOptions.Location = New System.Drawing.Point(8, 187)
+        Me.gbOptions.Location = New System.Drawing.Point(8, 218)
         Me.gbOptions.Name = "gbOptions"
         Me.gbOptions.Size = New System.Drawing.Size(302, 179)
         Me.gbOptions.TabIndex = 67
@@ -6718,9 +6721,9 @@ Partial Class dlgSettings
         Me.GroupBox26.Controls.Add(Me.gbRTFormat)
         Me.GroupBox26.Controls.Add(Me.chkScanMediaInfo)
         Me.GroupBox26.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox26.Location = New System.Drawing.Point(159, 6)
+        Me.GroupBox26.Location = New System.Drawing.Point(168, 6)
         Me.GroupBox26.Name = "GroupBox26"
-        Me.GroupBox26.Size = New System.Drawing.Size(443, 176)
+        Me.GroupBox26.Size = New System.Drawing.Size(434, 176)
         Me.GroupBox26.TabIndex = 63
         Me.GroupBox26.TabStop = False
         Me.GroupBox26.Text = "Meta Data"
@@ -6734,7 +6737,7 @@ Partial Class dlgSettings
         Me.GroupBox28.Controls.Add(Me.btnEditMetaDataFT)
         Me.GroupBox28.Controls.Add(Me.btnNewMetaDataFT)
         Me.GroupBox28.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.GroupBox28.Location = New System.Drawing.Point(252, 11)
+        Me.GroupBox28.Location = New System.Drawing.Point(249, 10)
         Me.GroupBox28.Name = "GroupBox28"
         Me.GroupBox28.Size = New System.Drawing.Size(183, 144)
         Me.GroupBox28.TabIndex = 8
@@ -6806,7 +6809,7 @@ Partial Class dlgSettings
         '
         Me.chkIFOScan.AutoSize = True
         Me.chkIFOScan.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkIFOScan.Location = New System.Drawing.Point(5, 33)
+        Me.chkIFOScan.Location = New System.Drawing.Point(6, 33)
         Me.chkIFOScan.Name = "chkIFOScan"
         Me.chkIFOScan.Size = New System.Drawing.Size(123, 17)
         Me.chkIFOScan.TabIndex = 18
@@ -6840,9 +6843,9 @@ Partial Class dlgSettings
         Me.gbRTFormat.Controls.Add(Me.txtRuntimeFormat)
         Me.gbRTFormat.Controls.Add(Me.chkUseMIDuration)
         Me.gbRTFormat.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbRTFormat.Location = New System.Drawing.Point(5, 51)
+        Me.gbRTFormat.Location = New System.Drawing.Point(6, 50)
         Me.gbRTFormat.Name = "gbRTFormat"
-        Me.gbRTFormat.Size = New System.Drawing.Size(244, 63)
+        Me.gbRTFormat.Size = New System.Drawing.Size(234, 64)
         Me.gbRTFormat.TabIndex = 9
         Me.gbRTFormat.TabStop = False
         Me.gbRTFormat.Text = "Duration Format"
@@ -6850,9 +6853,9 @@ Partial Class dlgSettings
         'Label51
         '
         Me.Label51.Font = New System.Drawing.Font("Segoe UI", 7.0!)
-        Me.Label51.Location = New System.Drawing.Point(168, 9)
+        Me.Label51.Location = New System.Drawing.Point(160, 10)
         Me.Label51.Name = "Label51"
-        Me.Label51.Size = New System.Drawing.Size(70, 50)
+        Me.Label51.Size = New System.Drawing.Size(72, 50)
         Me.Label51.TabIndex = 23
         Me.Label51.Text = "<h>=Hours" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "<m>=Minutes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "<s>=Seconds"
         Me.Label51.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -6880,7 +6883,7 @@ Partial Class dlgSettings
         '
         Me.chkScanMediaInfo.AutoSize = True
         Me.chkScanMediaInfo.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkScanMediaInfo.Location = New System.Drawing.Point(5, 16)
+        Me.chkScanMediaInfo.Location = New System.Drawing.Point(6, 16)
         Me.chkScanMediaInfo.Name = "chkScanMediaInfo"
         Me.chkScanMediaInfo.Size = New System.Drawing.Size(106, 17)
         Me.chkScanMediaInfo.TabIndex = 7
@@ -6889,7 +6892,9 @@ Partial Class dlgSettings
         '
         'GroupBox10
         '
-        Me.GroupBox10.Controls.Add(Me.chkLockLanguage)
+        Me.GroupBox10.Controls.Add(Me.chkLockMPAA)
+        Me.GroupBox10.Controls.Add(Me.chkLockLanguageA)
+        Me.GroupBox10.Controls.Add(Me.chkLockLanguageV)
         Me.GroupBox10.Controls.Add(Me.chkLockOutline)
         Me.GroupBox10.Controls.Add(Me.chkLockPlot)
         Me.GroupBox10.Controls.Add(Me.chkLockTrailer)
@@ -6901,10 +6906,43 @@ Partial Class dlgSettings
         Me.GroupBox10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox10.Location = New System.Drawing.Point(8, 6)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(145, 176)
+        Me.GroupBox10.Size = New System.Drawing.Size(156, 206)
         Me.GroupBox10.TabIndex = 1
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Global Locks"
+        '
+        'chkLockMPAA
+        '
+        Me.chkLockMPAA.AutoSize = True
+        Me.chkLockMPAA.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLockMPAA.Location = New System.Drawing.Point(6, 186)
+        Me.chkLockMPAA.Name = "chkLockMPAA"
+        Me.chkLockMPAA.Size = New System.Drawing.Size(149, 17)
+        Me.chkLockMPAA.TabIndex = 49
+        Me.chkLockMPAA.Text = "Lock MPAA/Certification"
+        Me.chkLockMPAA.UseVisualStyleBackColor = True
+        '
+        'chkLockLanguageA
+        '
+        Me.chkLockLanguageA.AutoSize = True
+        Me.chkLockLanguageA.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLockLanguageA.Location = New System.Drawing.Point(6, 169)
+        Me.chkLockLanguageA.Name = "chkLockLanguageA"
+        Me.chkLockLanguageA.Size = New System.Drawing.Size(142, 17)
+        Me.chkLockLanguageA.TabIndex = 48
+        Me.chkLockLanguageA.Text = "Lock Language (audio)"
+        Me.chkLockLanguageA.UseVisualStyleBackColor = True
+        '
+        'chkLockLanguageV
+        '
+        Me.chkLockLanguageV.AutoSize = True
+        Me.chkLockLanguageV.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLockLanguageV.Location = New System.Drawing.Point(6, 152)
+        Me.chkLockLanguageV.Name = "chkLockLanguageV"
+        Me.chkLockLanguageV.Size = New System.Drawing.Size(140, 17)
+        Me.chkLockLanguageV.TabIndex = 47
+        Me.chkLockLanguageV.Text = "Lock Language (video)"
+        Me.chkLockLanguageV.UseVisualStyleBackColor = True
         '
         'chkLockOutline
         '
@@ -6988,6 +7026,7 @@ Partial Class dlgSettings
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.chkUseMPAAFSK)
         Me.GroupBox1.Controls.Add(Me.chkOnlyValueForCert)
         Me.GroupBox1.Controls.Add(Me.cbForce)
         Me.GroupBox1.Controls.Add(Me.chkForceTitle)
@@ -7001,17 +7040,29 @@ Partial Class dlgSettings
         Me.GroupBox1.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox1.Location = New System.Drawing.Point(313, 187)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(289, 198)
+        Me.GroupBox1.Size = New System.Drawing.Size(289, 210)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Miscellaneous"
+        '
+        'chkUseMPAAFSK
+        '
+        Me.chkUseMPAAFSK.AutoSize = True
+        Me.chkUseMPAAFSK.Enabled = False
+        Me.chkUseMPAAFSK.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkUseMPAAFSK.Location = New System.Drawing.Point(25, 163)
+        Me.chkUseMPAAFSK.Name = "chkUseMPAAFSK"
+        Me.chkUseMPAAFSK.Size = New System.Drawing.Size(213, 17)
+        Me.chkUseMPAAFSK.TabIndex = 67
+        Me.chkUseMPAAFSK.Text = "Use MPAA as Fallback for FSK Rating"
+        Me.chkUseMPAAFSK.UseVisualStyleBackColor = True
         '
         'chkOnlyValueForCert
         '
         Me.chkOnlyValueForCert.AutoSize = True
         Me.chkOnlyValueForCert.Enabled = False
         Me.chkOnlyValueForCert.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkOnlyValueForCert.Location = New System.Drawing.Point(32, 145)
+        Me.chkOnlyValueForCert.Location = New System.Drawing.Point(25, 142)
         Me.chkOnlyValueForCert.Name = "chkOnlyValueForCert"
         Me.chkOnlyValueForCert.Size = New System.Drawing.Size(168, 17)
         Me.chkOnlyValueForCert.TabIndex = 66
@@ -7024,7 +7075,7 @@ Partial Class dlgSettings
         Me.cbForce.Enabled = False
         Me.cbForce.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.cbForce.FormattingEnabled = True
-        Me.cbForce.Location = New System.Drawing.Point(139, 167)
+        Me.cbForce.Location = New System.Drawing.Point(139, 183)
         Me.cbForce.Name = "cbForce"
         Me.cbForce.Size = New System.Drawing.Size(144, 21)
         Me.cbForce.Sorted = True
@@ -7034,7 +7085,7 @@ Partial Class dlgSettings
         '
         Me.chkForceTitle.AutoSize = True
         Me.chkForceTitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkForceTitle.Location = New System.Drawing.Point(6, 168)
+        Me.chkForceTitle.Location = New System.Drawing.Point(6, 184)
         Me.chkForceTitle.Name = "chkForceTitle"
         Me.chkForceTitle.Size = New System.Drawing.Size(135, 17)
         Me.chkForceTitle.TabIndex = 64
@@ -7068,7 +7119,7 @@ Partial Class dlgSettings
         Me.chkUseCertForMPAA.AutoSize = True
         Me.chkUseCertForMPAA.Enabled = False
         Me.chkUseCertForMPAA.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkUseCertForMPAA.Location = New System.Drawing.Point(13, 124)
+        Me.chkUseCertForMPAA.Location = New System.Drawing.Point(6, 124)
         Me.chkUseCertForMPAA.Name = "chkUseCertForMPAA"
         Me.chkUseCertForMPAA.Size = New System.Drawing.Size(162, 17)
         Me.chkUseCertForMPAA.TabIndex = 6
@@ -7128,7 +7179,7 @@ Partial Class dlgSettings
         Me.pnlScraper.Controls.Add(Me.gbOptions)
         Me.pnlScraper.Controls.Add(Me.GroupBox1)
         Me.pnlScraper.Controls.Add(Me.GroupBox26)
-        Me.pnlScraper.Location = New System.Drawing.Point(915, 593)
+        Me.pnlScraper.Location = New System.Drawing.Point(936, 576)
         Me.pnlScraper.Name = "pnlScraper"
         Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
         Me.pnlScraper.TabIndex = 14
@@ -7197,16 +7248,6 @@ Partial Class dlgSettings
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
-        '
-        'chkLockLanguage
-        '
-        Me.chkLockLanguage.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkLockLanguage.Location = New System.Drawing.Point(6, 152)
-        Me.chkLockLanguage.Name = "chkLockLanguage"
-        Me.chkLockLanguage.Size = New System.Drawing.Size(129, 17)
-        Me.chkLockLanguage.TabIndex = 47
-        Me.chkLockLanguage.Text = "Lock Language"
-        Me.chkLockLanguage.UseVisualStyleBackColor = True
         '
         'dlgSettings
         '
@@ -7405,6 +7446,7 @@ Partial Class dlgSettings
         Me.gbRTFormat.ResumeLayout(False)
         Me.gbRTFormat.PerformLayout()
         Me.GroupBox10.ResumeLayout(False)
+        Me.GroupBox10.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.pnlScraper.ResumeLayout(False)
@@ -7992,5 +8034,8 @@ Partial Class dlgSettings
     Friend WithEvents chkVideoTSParentXBMC As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieNameNFOStack As System.Windows.Forms.CheckBox
     Friend WithEvents chkSpecialDateAdd As System.Windows.Forms.CheckBox
-    Friend WithEvents chkLockLanguage As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLockLanguageV As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLockLanguageA As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLockMPAA As System.Windows.Forms.CheckBox
+    Friend WithEvents chkUseMPAAFSK As System.Windows.Forms.CheckBox
 End Class

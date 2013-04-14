@@ -89,16 +89,41 @@ Public Class MediaInfo
                     ' overwrite only if it get something from Mediainfo
 
 
-                    If Master.eSettings.LockLanguage Then
+                    If Master.eSettings.LockLanguageV Then
                         Try
                             'sets old language setting if setting is enabled (lock language)
-                            tinfo.StreamDetails.Video.Item(0).Language = miMovie.Movie.FileInfo.StreamDetails.Video.Item(0).Language
-                            tinfo.StreamDetails.Video.Item(0).LongLanguage = miMovie.Movie.FileInfo.StreamDetails.Video.Item(0).LongLanguage
+                            'First make sure that there is no completely new video source scanned of the movie --> if so (i.e. more streams) then update!
+                            If tinfo.StreamDetails.Video.Count = miMovie.Movie.FileInfo.StreamDetails.Video.Count Then
+                                For i = 0 To tinfo.StreamDetails.Video.Count - 1
+                                    'only preserve if language tag is filled --> else update!
+                                    If Not String.IsNullOrEmpty(miMovie.Movie.FileInfo.StreamDetails.Video.Item(i).LongLanguage) Then
+                                        tinfo.StreamDetails.Video.Item(i).Language = miMovie.Movie.FileInfo.StreamDetails.Video.Item(i).Language
+                                        tinfo.StreamDetails.Video.Item(i).LongLanguage = miMovie.Movie.FileInfo.StreamDetails.Video.Item(i).LongLanguage
+                                    End If
+                                Next
+                            End If
                         Catch ex As Exception
 
                         End Try
                     End If
+                    If Master.eSettings.LockLanguageA Then
+                        Try
+                            'sets old language setting if setting is enabled (lock language)
+                            'First make sure that there is no completely new audio source scanned of the movie --> if so (i.e. more streams) then update!
+                            If tinfo.StreamDetails.Audio.Count = miMovie.Movie.FileInfo.StreamDetails.Audio.Count Then
+                                For i = 0 To tinfo.StreamDetails.Audio.Count - 1
+                                    'only preserve if language tag is filled --> else update!
+                                    If Not String.IsNullOrEmpty(miMovie.Movie.FileInfo.StreamDetails.Audio.Item(i).LongLanguage) Then
+                                        tinfo.StreamDetails.Audio.Item(i).Language = miMovie.Movie.FileInfo.StreamDetails.Audio.Item(i).Language
+                                        tinfo.StreamDetails.Audio.Item(i).LongLanguage = miMovie.Movie.FileInfo.StreamDetails.Audio.Item(i).LongLanguage
+                                    End If
+                                Next
+                            End If
 
+                        Catch ex As Exception
+
+                        End Try
+                    End If
                     miMovie.Movie.FileInfo = tinfo
                 End If
                 If miMovie.Movie.FileInfo.StreamDetails.Video.Count > 0 AndAlso Master.eSettings.UseMIDuration Then

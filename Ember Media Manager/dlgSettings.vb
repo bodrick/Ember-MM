@@ -1076,8 +1076,11 @@ Public Class dlgSettings
         Me.chkUseCertForMPAA.Enabled = Me.chkCert.Checked
         If Not Me.chkCert.Checked Then
             Me.chkUseCertForMPAA.Checked = False
+
             Me.chkOnlyValueForCert.Checked = False
             Me.chkOnlyValueForCert.Enabled = False
+            Me.chkUseMPAAFSK.Checked = False
+            Me.chkUseMPAAFSK.Enabled = False
         End If
         Me.SetApplyButton(True)
     End Sub
@@ -1548,6 +1551,10 @@ Public Class dlgSettings
     End Sub
 
     Private Sub chkOnlyValueForCert_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkOnlyValueForCert.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkUseMPAAFSK_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseMPAAFSK.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
 
@@ -2062,8 +2069,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
 
         Me.chkOnlyValueForCert.Enabled = Me.chkUseCertForMPAA.Checked
+        Me.chkUseMPAAFSK.Enabled = Me.chkUseCertForMPAA.Checked
 
         If Not Me.chkUseCertForMPAA.Checked Then Me.chkOnlyValueForCert.Checked = False
+        If Not Me.chkUseCertForMPAA.Checked Then Me.chkUseMPAAFSK.Checked = False
     End Sub
 
     Private Sub chkUseETasFA_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseETasFA.CheckedChanged
@@ -2321,7 +2330,10 @@ Public Class dlgSettings
             Me.chkLockTagline.Checked = Master.eSettings.LockTagline
             Me.chkLockRating.Checked = Master.eSettings.LockRating
             Me.chkLockRealStudio.Checked = Master.eSettings.LockStudio
-            Me.chkLockLanguage.Checked = Master.eSettings.LockLanguage
+            Me.chkLockLanguageA.Checked = Master.eSettings.LockLanguageA
+            Me.chkLockLanguageV.Checked = Master.eSettings.LockLanguageV
+            Me.chkLockMPAA.Checked = Master.eSettings.LockMPAA
+            Me.chkUseMPAAFSK.Checked = Master.eSettings.UseMPAAForFSK
             Me.chkLockGenre.Checked = Master.eSettings.LockGenre
             Me.chkLockTrailer.Checked = Master.eSettings.LockTrailer
             Me.chkSingleScrapeImages.Checked = Master.eSettings.SingleScrapeImages
@@ -3340,6 +3352,7 @@ Public Class dlgSettings
             Else
                 Master.eSettings.UseCertForMPAA = False
             End If
+
             Master.eSettings.ForceTitle = Me.cbForce.Text
             Master.eSettings.ScanMediaInfo = Me.chkScanMediaInfo.Checked
             Master.eSettings.ScanTVMediaInfo = Me.chkTVScanMetaData.Checked
@@ -3417,7 +3430,10 @@ Public Class dlgSettings
             Master.eSettings.LockTitle = Me.chkLockTitle.Checked
             Master.eSettings.LockTagline = Me.chkLockTagline.Checked
             Master.eSettings.LockRating = Me.chkLockRating.Checked
-            Master.eSettings.LockLanguage = Me.chkLockLanguage.Checked
+            Master.eSettings.LockLanguageV = Me.chkLockLanguageV.Checked
+            Master.eSettings.LockLanguageA = Me.chkLockLanguageA.Checked
+            Master.eSettings.LockMPAA = Me.chkLockMPAA.Checked
+            Master.eSettings.UseMPAAForFSK = Me.chkUseMPAAFSK.Checked
             Master.eSettings.LockStudio = Me.chkLockRealStudio.Checked
             Master.eSettings.LockGenre = Me.chkLockGenre.Checked
             Master.eSettings.LockTrailer = Me.chkLockTrailer.Checked
@@ -3829,7 +3845,10 @@ Public Class dlgSettings
         Me.GroupBox9.Text = Master.eLang.GetString(497, "Images")
         Me.chkNoSaveImagesToNfo.Text = Master.eLang.GetString(498, "Do Not Save URLs to Nfo")
         Me.chkSingleScrapeImages.Text = Master.eLang.GetString(499, "Get on Single Scrape")
-        Me.chkLockLanguage.Text = Master.eLang.GetString(879, "Lock Language")
+        Me.chkLockLanguageV.Text = Master.eLang.GetString(879, "Lock Language (video)")
+        Me.chkLockLanguageA.Text = Master.eLang.GetString(880, "Lock Language (audio)")
+        Me.chkLockMPAA.Text = Master.eLang.GetString(881, "Lock MPAA/Certification")
+        Me.chkUseMPAAFSK.Text = Master.eLang.GetString(882, "Use MPAA as Fallback for FSK Rating")
         Me.chkUseETasFA.Text = Master.eLang.GetString(503, "Use if no Fanart Found")
         Me.chkNoSpoilers.Text = Master.eLang.GetString(505, "No Spoilers")
         Me.Label15.Text = Master.eLang.GetString(506, "Number To Create:")

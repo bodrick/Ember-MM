@@ -877,5 +877,8 @@
   <string id="876">Password</string>
   <string id="877">Get watched episodes</string>
   <string id="878">Save</string>
-  <string id="879">Lock Language</string>
+  <string id="879">Lock Language (video)</string>
+  <string id="880">Lock Language (audio)</string>
+  <string id="881">Lock MPAA/Certification</string>
+  <string id="882">Use MPAA as Fallback for FSK Rating</string>
 </strings>
