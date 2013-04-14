@@ -78,6 +78,7 @@ Public Class MediaInfo
             'DON'T clear it out
             'miMovie.Movie.FileInfo = New MediaInfo.Fileinfo
             Dim tinfo = New MediaInfo.Fileinfo
+
             Dim pExt As String = Path.GetExtension(miMovie.Filename).ToLower
             If Not pExt = ".rar" AndAlso (Master.CanScanDiscImage OrElse Not (pExt = ".iso" OrElse _
                pExt = ".img" OrElse pExt = ".bin" OrElse pExt = ".cue" OrElse pExt = ".nrg")) Then
@@ -86,6 +87,18 @@ Public Class MediaInfo
                 MI.GetMIFromPath(tinfo, miMovie.Filename, False)
                 If tinfo.StreamDetails.Video.Count > 0 OrElse tinfo.StreamDetails.Audio.Count > 0 OrElse tinfo.StreamDetails.Subtitle.Count > 0 Then
                     ' overwrite only if it get something from Mediainfo
+
+
+                    If Master.eSettings.LockLanguage Then
+                        Try
+                            'sets old language setting if setting is enabled (lock language)
+                            tinfo.StreamDetails.Video.Item(0).Language = miMovie.Movie.FileInfo.StreamDetails.Video.Item(0).Language
+                            tinfo.StreamDetails.Video.Item(0).LongLanguage = miMovie.Movie.FileInfo.StreamDetails.Video.Item(0).LongLanguage
+                        Catch ex As Exception
+
+                        End Try
+                    End If
+
                     miMovie.Movie.FileInfo = tinfo
                 End If
                 If miMovie.Movie.FileInfo.StreamDetails.Video.Count > 0 AndAlso Master.eSettings.UseMIDuration Then
@@ -101,6 +114,7 @@ Public Class MediaInfo
                 _mi = MediaInfo.ApplyDefaults(pExt)
                 If Not _mi Is Nothing Then miMovie.Movie.FileInfo = _mi
             End If
+
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
