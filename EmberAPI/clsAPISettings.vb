@@ -147,6 +147,7 @@ Public Class Settings
     Private _lockoutline As Boolean
     Private _lockplot As Boolean
     Private _lockrating As Boolean
+    Private _locklanguage As Boolean
     Private _lockstudio As Boolean
     Private _locktagline As Boolean
     Private _locktitle As Boolean
@@ -1417,6 +1418,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._lockrating = value
+        End Set
+    End Property
+
+    Public Property LockLanguage() As Boolean
+        Get
+            Return Me._locklanguage
+        End Get
+        Set(ByVal value As Boolean)
+            Me._locklanguage = value
         End Set
     End Property
 

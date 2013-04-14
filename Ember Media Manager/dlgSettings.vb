@@ -2321,6 +2321,7 @@ Public Class dlgSettings
             Me.chkLockTagline.Checked = Master.eSettings.LockTagline
             Me.chkLockRating.Checked = Master.eSettings.LockRating
             Me.chkLockRealStudio.Checked = Master.eSettings.LockStudio
+            Me.chkLockLanguage.Checked = Master.eSettings.LockLanguage
             Me.chkLockGenre.Checked = Master.eSettings.LockGenre
             Me.chkLockTrailer.Checked = Master.eSettings.LockTrailer
             Me.chkSingleScrapeImages.Checked = Master.eSettings.SingleScrapeImages
@@ -3416,6 +3417,7 @@ Public Class dlgSettings
             Master.eSettings.LockTitle = Me.chkLockTitle.Checked
             Master.eSettings.LockTagline = Me.chkLockTagline.Checked
             Master.eSettings.LockRating = Me.chkLockRating.Checked
+            Master.eSettings.LockLanguage = Me.chkLockLanguage.Checked
             Master.eSettings.LockStudio = Me.chkLockRealStudio.Checked
             Master.eSettings.LockGenre = Me.chkLockGenre.Checked
             Master.eSettings.LockTrailer = Me.chkLockTrailer.Checked
@@ -3827,7 +3829,7 @@ Public Class dlgSettings
         Me.GroupBox9.Text = Master.eLang.GetString(497, "Images")
         Me.chkNoSaveImagesToNfo.Text = Master.eLang.GetString(498, "Do Not Save URLs to Nfo")
         Me.chkSingleScrapeImages.Text = Master.eLang.GetString(499, "Get on Single Scrape")
-
+        Me.chkLockLanguage.Text = Master.eLang.GetString(879, "Lock Language")
         Me.chkUseETasFA.Text = Master.eLang.GetString(503, "Use if no Fanart Found")
         Me.chkNoSpoilers.Text = Master.eLang.GetString(505, "No Spoilers")
         Me.Label15.Text = Master.eLang.GetString(506, "Number To Create:")

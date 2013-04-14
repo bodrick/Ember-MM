@@ -607,6 +607,7 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.chkLockLanguage = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -6888,6 +6889,7 @@ Partial Class dlgSettings
         '
         'GroupBox10
         '
+        Me.GroupBox10.Controls.Add(Me.chkLockLanguage)
         Me.GroupBox10.Controls.Add(Me.chkLockOutline)
         Me.GroupBox10.Controls.Add(Me.chkLockPlot)
         Me.GroupBox10.Controls.Add(Me.chkLockTrailer)
@@ -7126,7 +7128,7 @@ Partial Class dlgSettings
         Me.pnlScraper.Controls.Add(Me.gbOptions)
         Me.pnlScraper.Controls.Add(Me.GroupBox1)
         Me.pnlScraper.Controls.Add(Me.GroupBox26)
-        Me.pnlScraper.Location = New System.Drawing.Point(1065, 616)
+        Me.pnlScraper.Location = New System.Drawing.Point(915, 593)
         Me.pnlScraper.Name = "pnlScraper"
         Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
         Me.pnlScraper.TabIndex = 14
@@ -7195,6 +7197,16 @@ Partial Class dlgSettings
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
+        '
+        'chkLockLanguage
+        '
+        Me.chkLockLanguage.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLockLanguage.Location = New System.Drawing.Point(6, 152)
+        Me.chkLockLanguage.Name = "chkLockLanguage"
+        Me.chkLockLanguage.Size = New System.Drawing.Size(129, 17)
+        Me.chkLockLanguage.TabIndex = 47
+        Me.chkLockLanguage.Text = "Lock Language"
+        Me.chkLockLanguage.UseVisualStyleBackColor = True
         '
         'dlgSettings
         '
@@ -7980,4 +7992,5 @@ Partial Class dlgSettings
     Friend WithEvents chkVideoTSParentXBMC As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieNameNFOStack As System.Windows.Forms.CheckBox
     Friend WithEvents chkSpecialDateAdd As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLockLanguage As System.Windows.Forms.CheckBox
 End Class
