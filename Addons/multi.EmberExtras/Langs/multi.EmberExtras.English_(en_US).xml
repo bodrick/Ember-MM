@@ -22,4 +22,13 @@
   <string id="65">Map Media Source by File Extension</string>
   <string id="66">File Extension</string>
   <string id="67">Set Defaults</string>
+  <string id="68">Use trakt.tv as source for "Playcount"</string>
+  <string id="69">trakt.tv Playcount Sync</string>
+  <string id="70">Get watched movies</string>
+  <string id="71">Save playcount to database/nfo</string>
+  <string id="72">Use file creation date of videofile</string>
+  <string id="73">Username</string>
+  <string id="74">Password</string>
+  <string id="75">Get watched episodes</string>
+  <string id="76">Save</string>
 </strings>
