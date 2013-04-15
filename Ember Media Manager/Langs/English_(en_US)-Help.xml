@@ -360,5 +360,8 @@
   <string control="Core_ResetShowRegex">This will reset the show regex to the default list. WARNING: This WILL delete any custom regex you have entered.</string>
   <string control="Core_chkClickScrape">Enable Click Scrape on main screen column marks.</string>
   <string control="Core_chkSpecialDateAdd">If enabled Ember will respect the FileBuilt-Date of videofile instead of using the current date when importing new movies into the database. That results in more stable searches when filtering for newest movies!</string>
-  <string control="Core_chkLockLanguage">If enabled, the language field (video metadata) will not be updated.</string>
+  <string control="Core_chkLockLanguageV">If enabled, the language field (video metadata) will not be updated.</string>
+  <string control="Core_chkLockLanguageA">If enabled, the language field (audio metadata) will not be updated.</string>
+  <string control="Core_chkLockMPAA">If enabled, the certification/MPAA field will not be updated.</string>
+  <string control="Core_chkUseMPAAFSK">If enabled, MPAA values will be converted to FSK if no FSK values are found. Priority: FSK -> MPAA</string>
   </strings>

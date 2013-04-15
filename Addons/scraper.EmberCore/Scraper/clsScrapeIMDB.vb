@@ -201,7 +201,7 @@ Namespace IMDB
 
                 Dim D, W, tempD As Integer
 
-                If Options.bMPAA Then
+                If Options.bMPAA AndAlso (String.IsNullOrEmpty(IMDBMovie.MPAA) OrElse Not Master.eSettings.LockMPAA) Then
                     tempD = If(HTML.IndexOf("<h5><a href=""/mpaa"">MPAA</a>:</h5>") > 0, HTML.IndexOf("<h5><a href=""/mpaa"">MPAA</a>:</h5>"), 0)
 
                     D = If(tempD > 0, HTML.IndexOf("<div class=""info-content"">", tempD), 0)
@@ -213,7 +213,7 @@ Namespace IMDB
 
                 If bwIMDB.CancellationPending Then Return Nothing
 
-                If Options.bCert Then
+                If Options.bCert AndAlso (String.IsNullOrEmpty(IMDBMovie.Certification) OrElse Not Master.eSettings.LockMPAA) Then
                     'get certifications
                     D = HTML.IndexOf("<h5>Certification:</h5>")
 
@@ -230,15 +230,83 @@ Namespace IMDB
                                     If Options.bMPAA AndAlso Master.eSettings.UseCertForMPAA AndAlso (Not Master.eSettings.CertificationLang = "USA" OrElse (Master.eSettings.CertificationLang = "USA" AndAlso String.IsNullOrEmpty(IMDBMovie.MPAA))) Then
                                         IMDBMovie.MPAA = If(Master.eSettings.CertificationLang = "USA", StringUtils.USACertToMPAA(IMDBMovie.Certification), If(Master.eSettings.OnlyValueForCert, IMDBMovie.Certification.Split(Convert.ToChar(":"))(1), IMDBMovie.Certification))
                                     End If
+
+
+                                Else
+                                    'No FSK Rating was found  -> Alternative: Set USA Rating instead as fallback, MPAA will be converted to FSK, Certification from USA will be used, so people can see that US info was used!
+                                    If Master.eSettings.UseMPAAForFSK Then
+                                        Try
+                                            If Master.eSettings.CertificationLang = "Germany" AndAlso (IMDBMovie.MPAA.ToLower.Contains("usa") Or IMDBMovie.MPAA.ToLower.Contains("rated")) Then
+                                                Dim LANGRATING As String = "USA"
+                                                Dim Cert2 = From M In rCert Select N = String.Format("{0}:{1}", DirectCast(M, Match).Groups(1).ToString.Trim, DirectCast(M, Match).Groups(2).ToString.Trim) Order By N Descending Where N.Contains(LANGRATING)
+                                                If Cert2.Count > 0 Then
+                                                    IMDBMovie.Certification = Cert2(0).ToString.Replace("West", String.Empty).Trim
+                                                    If Options.bMPAA AndAlso Master.eSettings.UseCertForMPAA Then
+                                                        If IMDBMovie.MPAA.ToLower.Contains("usa:g") Or IMDBMovie.MPAA.ToLower.Contains("rated g") Then
+                                                            IMDBMovie.Certification = IMDBMovie.MPAA
+                                                            If Master.eSettings.OnlyValueForCert = False Then
+                                                                IMDBMovie.MPAA = "Germany:0"
+                                                            Else
+                                                                IMDBMovie.MPAA = "0"
+                                                            End If
+
+                                                        ElseIf IMDBMovie.MPAA.ToLower.Contains("usa:pg-13") Or IMDBMovie.MPAA.ToLower.Contains("rated pg-13") Then
+                                                            IMDBMovie.Certification = IMDBMovie.MPAA
+                                                            If Master.eSettings.OnlyValueForCert = False Then
+                                                                IMDBMovie.MPAA = "Germany:16"
+                                                            Else
+                                                                IMDBMovie.MPAA = "16"
+                                                            End If
+
+                                                        ElseIf IMDBMovie.MPAA.ToLower.Contains("usa:pg") Or IMDBMovie.MPAA.ToLower.Contains("rated pg") Then
+                                                            IMDBMovie.Certification = IMDBMovie.MPAA
+                                                            If Master.eSettings.OnlyValueForCert = False Then
+                                                                IMDBMovie.MPAA = "Germany:12"
+                                                            Else
+                                                                IMDBMovie.MPAA = "12"
+                                                            End If
+
+                                                        ElseIf IMDBMovie.Certification.ToLower.Contains("usa:r") Or IMDBMovie.Certification.ToLower.Contains("rated r") Then
+                                                            IMDBMovie.Certification = IMDBMovie.MPAA
+                                                            If Master.eSettings.OnlyValueForCert = False Then
+                                                                IMDBMovie.MPAA = "Germany:18"
+                                                            Else
+                                                                IMDBMovie.MPAA = "18"
+                                                            End If
+
+                                                        ElseIf IMDBMovie.Certification.ToLower.Contains("usa:nc-17") Or IMDBMovie.Certification.ToLower.Contains("rated nc") Then
+                                                            IMDBMovie.Certification = IMDBMovie.MPAA
+                                                            If Master.eSettings.OnlyValueForCert = False Then
+                                                                IMDBMovie.MPAA = "Germany:18"
+                                                            Else
+                                                                IMDBMovie.MPAA = "18"
+                                                            End If
+
+                                                        End If
+                                                    End If
+                                                End If
+                                            End If
+                                        Catch ex As Exception
+                                            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+                                        End Try
+
+                                    End If
                                 End If
+
+
                             Else
+
                                 IMDBMovie.Certification = Strings.Join(Cert.ToArray, " / ").Trim
+
+
                             End If
                         End If
                     End If
+
                     If String.IsNullOrEmpty(IMDBMovie.Certification) AndAlso Not String.IsNullOrEmpty(IMDBMovie.MPAA) Then
                         IMDBMovie.Certification = IMDBMovie.MPAA
                     End If
+
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing
@@ -433,7 +501,7 @@ Namespace IMDB
                                 End If
                             End If
                         End If
-                        End If
+                    End If
                 End If
 
                 If bwIMDB.CancellationPending Then Return Nothing
