@@ -1091,89 +1091,89 @@ Public Class Images
 		Dim doResize As Boolean = Master.eSettings.ResizeSeasonFanart AndAlso (_image.Width > Master.eSettings.SeasonFanartWidth OrElse _image.Height > Master.eSettings.SeasonFanartHeight)
 
 		Try
-			Dim pPath As String = String.Empty
+            Dim pPath As String = String.Empty
 
-			If Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonXXDashFanartJPG OrElse Master.eSettings.SeasonDotFanart Then
-				If doResize Then
-					ImageUtils.ResizeImage(_image, Master.eSettings.SeasonFanartWidth, Master.eSettings.SeasonFanartHeight)
-				End If
-				Try
-					Dim params As New List(Of Object)(New Object() {Enums.TVImageType.SeasonFanart, mShow, New List(Of String)})
-					Dim doContinue As Boolean = True
-					ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.TVImageNaming, params, doContinue)
-					For Each s As String In DirectCast(params(2), List(Of String))
-						If Not File.Exists(s) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+            If doResize Then
+                ImageUtils.ResizeImage(_image, Master.eSettings.SeasonFanartWidth, Master.eSettings.SeasonFanartHeight)
+            End If
+            Try
+                Dim params As New List(Of Object)(New Object() {Enums.TVImageType.SeasonFanart, mShow, New List(Of String)})
+                Dim doContinue As Boolean = True
+                ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.TVImageNaming, params, doContinue)
+                For Each s As String In DirectCast(params(2), List(Of String))
+                    If Not File.Exists(s) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
 
-							Save(s, Master.eSettings.SeasonFanartQuality, sURL, doResize)
-							If String.IsNullOrEmpty(strReturn) Then strReturn = s
-						End If
-					Next
-					If Not doContinue Then
-						Return strReturn
-					End If
-				Catch ex As Exception
-					Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-				End Try
+                        Save(s, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                        If String.IsNullOrEmpty(strReturn) Then strReturn = s
+                    End If
+                Next
+                If Not doContinue Then
+                    Return strReturn
+                End If
+            Catch ex As Exception
+                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            End Try
 
-				Dim tPath As String = String.Empty
+            If Master.eSettings.SeasonFanartJPG OrElse Master.eSettings.SeasonDashFanart OrElse Master.eSettings.SeasonXXDashFanartJPG OrElse Master.eSettings.SeasonDotFanart Then
+                Dim tPath As String = String.Empty
 
-				Try
-					tPath = Functions.GetSeasonDirectoryFromShowPath(mShow.ShowPath, mShow.TVEp.Season)
-				Catch ex As Exception
-				End Try
+                Try
+                    tPath = Functions.GetSeasonDirectoryFromShowPath(mShow.ShowPath, mShow.TVEp.Season)
+                Catch ex As Exception
+                End Try
 
-				If Not String.IsNullOrEmpty(tPath) Then
+                If Not String.IsNullOrEmpty(tPath) Then
 
-					If Master.eSettings.SeasonDotFanart Then
-						pPath = Path.Combine(tPath, String.Concat(FileUtils.Common.GetDirectory(tPath), ".fanart.jpg"))
-						If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
-							Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
-							strReturn = pPath
-						End If
-					End If
+                    If Master.eSettings.SeasonDotFanart Then
+                        pPath = Path.Combine(tPath, String.Concat(FileUtils.Common.GetDirectory(tPath), ".fanart.jpg"))
+                        If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+                            Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                            strReturn = pPath
+                        End If
+                    End If
 
-					If Master.eSettings.SeasonDashFanart Then
-						pPath = Path.Combine(tPath, String.Concat(FileUtils.Common.GetDirectory(tPath), "-fanart.jpg"))
-						If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
-							Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
-							strReturn = pPath
-						End If
-					End If
+                    If Master.eSettings.SeasonDashFanart Then
+                        pPath = Path.Combine(tPath, String.Concat(FileUtils.Common.GetDirectory(tPath), "-fanart.jpg"))
+                        If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+                            Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                            strReturn = pPath
+                        End If
+                    End If
 
-					If Master.eSettings.SeasonFanartJPG Then
-						pPath = Path.Combine(tPath, "Fanart.jpg")
-						If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
-							Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
-							strReturn = pPath
-						End If
-					End If
+                    If Master.eSettings.SeasonFanartJPG Then
+                        pPath = Path.Combine(tPath, "Fanart.jpg")
+                        If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+                            Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                            strReturn = pPath
+                        End If
+                    End If
 
-					If Master.eSettings.SeasonXXDashFanartJPG Then
-						If mShow.TVEp.Season = 0 Then
-							pPath = Path.Combine(mShow.ShowPath, "season-specials-fanart.jpg")
-						Else
-							pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}-fanart.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
-						End If
-						If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
-							Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
-							strReturn = pPath
-						End If
-					End If
+                    If Master.eSettings.SeasonXXDashFanartJPG Then
+                        If mShow.TVEp.Season = 0 Then
+                            pPath = Path.Combine(mShow.ShowPath, "season-specials-fanart.jpg")
+                        Else
+                            pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}-fanart.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
+                        End If
+                        If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+                            Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                            strReturn = pPath
+                        End If
+                    End If
 
-				Else
-					If Master.eSettings.SeasonXXDashFanartJPG Then
-						If mShow.TVEp.Season = 0 Then
-							pPath = Path.Combine(mShow.ShowPath, "season-specials-fanart.jpg")
-						Else
-							pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}-fanart.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
-						End If
-						If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
-							Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
-							strReturn = pPath
-						End If
-					End If
-				End If
-			End If
+                Else
+                    If Master.eSettings.SeasonXXDashFanartJPG Then
+                        If mShow.TVEp.Season = 0 Then
+                            pPath = Path.Combine(mShow.ShowPath, "season-specials-fanart.jpg")
+                        Else
+                            pPath = Path.Combine(mShow.ShowPath, String.Format("season{0}-fanart.jpg", mShow.TVEp.Season.ToString.PadLeft(2, Convert.ToChar("0"))))
+                        End If
+                        If Not File.Exists(pPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteSeasonFanart) Then
+                            Save(pPath, Master.eSettings.SeasonFanartQuality, sURL, doResize)
+                            strReturn = pPath
+                        End If
+                    End If
+                End If
+            End If
 
 		Catch ex As Exception
 			Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
