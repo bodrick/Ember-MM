@@ -868,14 +868,17 @@
   <string id="867">XBMC Frodo</string>
   <string id="868">Top 250</string>
   <string id="869">EmberMM.com &amp;Wiki...</string>
-  <string id="870"/>
-  <string id="871"/>
-  <string id="872"/>
-  <string id="873"/>
-  <string id="874"/>
-  <string id="875"/>
-  <string id="876"/>
-  <string id="877"/>
-  <string id="878"/>
+  <string id="870">Use trakt.tv as source for "Playcount"</string>
+  <string id="871">trakt.tv Playcount Sync</string>
+  <string id="872">Get watched movies</string>
+  <string id="873">Save playcount to database/nfo</string>
+  <string id="874">Use file creation date of videofile</string>
+  <string id="875">Username</string>
+  <string id="876">Password</string>
+  <string id="877">Get watched episodes</string>
+  <string id="878">Save</string>
   <string id="879">Lock Language (video)</string>
+  <string id="880">Lock Language (audio)</string>
+  <string id="881">Lock MPAA/Certification</string>
+  <string id="882">Use MPAA as Fallback for FSK Rating</string>
 </strings>
