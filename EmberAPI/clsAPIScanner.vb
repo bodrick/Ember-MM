@@ -681,7 +681,7 @@ Public Class Scanner
                 End If
                 If String.IsNullOrEmpty(seasonPath) Then
                     Dim dtSeasons As New DataTable
-                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", ID, " AND Season <> 999 ORDER BY Season;"))
+                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", ID, " ORDER BY Season, Episode;"))
                     If dtSeasons.Rows.Count > 0 Then
                         seasonPath = Functions.GetSeasonDirectoryFromShowPath(parPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
                     End If
@@ -703,7 +703,7 @@ Public Class Scanner
                 End If
                 If String.IsNullOrEmpty(seasonPath) Then
                     Dim dtSeasons As New DataTable
-                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", ID, " AND Season <> 999 ORDER BY Season;"))
+                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", ID, " ORDER BY Season, Episode;"))
                     If dtSeasons.Rows.Count > 0 Then
                         seasonPath = Functions.GetSeasonDirectoryFromShowPath(parPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
                     End If
