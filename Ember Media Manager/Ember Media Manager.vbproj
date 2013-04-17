@@ -477,6 +477,12 @@
     <None Include="Resources\Wizard.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Bin\ffmpeg.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Bin\MediaInfo.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Flags\achan_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
