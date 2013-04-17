@@ -805,8 +805,10 @@ Public Class Images
 				End If
 
 				If Not File.Exists(fPath) OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
-					Save(fPath, Master.eSettings.AllSPosterQuality, sURL, doResize)
-					Save(Path.Combine(Master.eSettings.BDPath, Path.GetFileName(fPath)), Master.eSettings.AllSPosterQuality, sURL, doResize)
+                    Save(fPath, Master.eSettings.AllSPosterQuality, sURL, doResize)
+                    If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
+                        Save(Path.Combine(Master.eSettings.BDPath, Path.GetFileName(fPath)), Master.eSettings.AllSPosterQuality, sURL, doResize)
+                    End If
 					strReturn = fPath
 				End If
 			Else
