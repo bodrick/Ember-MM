@@ -1,5 +1,5 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <string id="0">Mediabrowser-kompabilitet.</string>
+  <string id="0">MediaBrowser-kompabilitet</string>
   <string id="1">YAMJ-kompatibilitet</string>
   <string id="2">YAMJ-kompatible samlinger</string>
   <string id="3">Kompatible VIDEO_TS filplasseringer/navn (BEMERK: Dette vil bli satt selv om modulen er avslått)</string>
@@ -17,4 +17,5 @@
   <string id="15">Erstatt ID-felt med Boxee ID-felt</string>
   <string id="16">TVserie-valg</string>
   <string id="17">Eksperimental modul</string>
+  <string id="18">Boxee-kompatibilitet</string>
 </strings>

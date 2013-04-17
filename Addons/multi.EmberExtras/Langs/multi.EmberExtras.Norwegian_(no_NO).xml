@@ -22,4 +22,13 @@
   <string id="65">Finn mediakilde fra filtype</string>
   <string id="66">Filtype</string>
   <string id="67">Sett standarder</string>
+  <string id="68">Bruk trakt.tv som kilde for "Spilt antall ganger"</string>
+  <string id="69">trakt.tv Spilleantall-synkronisering.</string>
+  <string id="70">Hente sette filmer.</string>
+  <string id="71">Lagre spilleantall i databasen/nfo.</string>
+  <string id="72">Bruk laget-dato fra videofilen.</string>
+  <string id="73">Brukernavn</string>
+  <string id="74">Passord</string>
+  <string id="75">Hent episoder som er sett</string>
+  <string id="76">Lagre</string>
 </strings>

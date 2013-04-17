@@ -360,4 +360,8 @@
   <string control="Core_ResetShowRegex">Dies wird die Serien RegEx wieder auf den Standard zurücksetzen. WARNUNG: Dies WIRD jegliche eigene Änderung löschen.</string>
   <string control="Core_chkClickScrape">Aktiviere Click-Scrape im Hauptmenü beim Anklicken der Tabellen-Markierungen.</string>
   <string control="Core_chkSpecialDateAdd">Wenn aktiviert wird beim Einlesen von Filmen in die Datenbank, das Erstelldatum der Videodatei berücksichtigt statt das aktuelle Datum. Dadurch wird die Sortierung der neuesten Filme zuverlässig und unabhängig von der Datenbank!</string>
+  <string control="Core_chkLockLanguageV">Wenn aktiviert wird das Sprachfeld (Video Metadata) nicht aktualisiert.</string>
+  <string control="Core_chkLockLanguageA">Wenn aktiviert wird das Sprachfeld (Audio Metadata) nicht aktualisiert.</string>
+  <string control="Core_chkLockMPAA">Wenn aktiviert wird die Altersfreigabe nicht aktualisiert.</string>
+  <string control="Core_chkUseMPAAFSK">Wenn aktiviert werden die MPAA Freigabewerte in FSK konvertiert falls keine FSK Freigabe gefunden wird. Priorität: FSK -&gt; MPAA</string>
 </strings>

@@ -868,13 +868,17 @@
   <string id="867">XBMC Frodo</string>
   <string id="868">Top 250</string>
   <string id="869">EmberMM.com &amp;Wiki...</string>
-  <string id="870">Nutze Trakt.tv als Quelle für "Gesehen" Status</string>
-  <string id="871">Trakt.tv Playcount Sync</string>
-  <string id="872">Gesehene Filme abrufen</string>
-  <string id="873">Playcount in Datenbank/NFO speichern</string>
-  <string id="874">Nutze "Erstellt:"-Dateiinfo der Videodatei</string>
-  <string id="875">Benutzer</string>
-  <string id="876">Passwort</string>
-  <string id="877">Gesehene Episoden abrufen</string>
-  <string id="878">Speichern</string>
+  <string id="870"/>
+  <string id="871"/>
+  <string id="872"/>
+  <string id="873"/>
+  <string id="874"/>
+  <string id="875"/>
+  <string id="876"/>
+  <string id="877"/>
+  <string id="878"/>
+  <string id="879">Sprache sperren (Video)</string>
+  <string id="880">Sprache sperren (Audio)</string>
+  <string id="881">Altersfreigabe sperren</string>
+  <string id="882">Benutze MPAA wenn keine FSK Freigabe vorliegt</string>
 </strings>

@@ -360,4 +360,8 @@
   <string control="Core_ResetShowRegex">Dette vil resette serieRegex til standardliste. ADVARSEL: Dette vil slette alle selvvalgte filtere du har lagt inn.</string>
   <string control="Core_chkClickScrape">Slå på Klikkdetaljhenting på hovedbildemarkeringer.</string>
   <string control="Core_chkSpecialDateAdd">Hvis påslått, så vil EMM respektere fildatoen i videofilen istedet for å bruke dagens dato når videoen importeres til databasen. Dette resulterer mer stabile søk når nye filmer sorteres.</string>
+  <string control="Core_chkLockLanguageV">Hvis påslått, så vil språk (videometadata) ikke bli oppdatert.</string>
+  <string control="Core_chkLockLanguageA">Hvis påslått, så vil språk (lydmetadata) ikke bli oppdatert.</string>
+  <string control="Core_chkLockMPAA">Hvis påslått, så vil MPAA/aldersgrense ikke bli oppdatert.</string>
+  <string control="Core_chkUseMPAAFSK">Hvis påslått, så vil MPAA-verdier bli konvertert til FSK hvis ingen FSK-verdier ble funnet. Prioritet: FSK -&gt; MPAA</string>
 </strings>

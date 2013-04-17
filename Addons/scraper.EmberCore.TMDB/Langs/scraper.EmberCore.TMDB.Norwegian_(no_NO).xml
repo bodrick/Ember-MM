@@ -9,7 +9,7 @@
   <string id="7">Tidsavbrudd:</string>
   <string id="8">Støttede sider:</string>
   <string id="9">Hent bilder fra:</string>
-  <string id="10">Søkeresultater - </string>
+  <string id="10">Søkeresultater</string>
   <string id="11">Søker TMDB...</string>
   <string id="12">IDen du førte inn er ikke en riktig IMDB-ID.</string>
   <string id="13">Du har ført inn en IMDB-ID, men har ikke verifisert om den er riktig.</string>
@@ -38,8 +38,8 @@
   <string id="36">Henter data fra MoviePosterDB.com...</string>
   <string id="37">MoviePostersDB.com er ikke påslått</string>
   <string id="38">Forbereder bilder...</string>
-  <string id="39">Velg plakat -</string>
-  <string id="40">Velg fankunst -</string>
+  <string id="39">Velg plakat</string>
+  <string id="40">Velg fankunst</string>
   <string id="41">Huk av alle tommelbilder</string>
   <string id="42">Huk av alle Mid</string>
   <string id="43">Huk av alle originale</string>

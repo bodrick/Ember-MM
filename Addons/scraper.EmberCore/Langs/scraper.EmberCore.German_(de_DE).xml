@@ -9,7 +9,7 @@
   <string id="7">Timeout:</string>
   <string id="8">Unterstützte Seiten:</string>
   <string id="9">Bilder holen von:</string>
-  <string id="10">Suchergebnis - </string>
+  <string id="10">Suchergebnis</string>
   <string id="11">Suche in der IMDB...</string>
   <string id="12">Die eingegebene ID ist keine gültige IMDB ID.</string>
   <string id="13">Die IMDB ID ist noch nicht geprüft.</string>
@@ -38,8 +38,8 @@
   <string id="36">Lade Daten von MoviePosterDB.com...</string>
   <string id="37">MoviePostersDB.com ist nicht aktiviert.</string>
   <string id="38">Bereite Bilder vor...</string>
-  <string id="39">Wähle Poster - </string>
-  <string id="40">Wähle Fanart - </string>
+  <string id="39">Wähle Poster</string>
+  <string id="40">Wähle Fanart</string>
   <string id="41">Alle Thumbs</string>
   <string id="42">Alle Mittl.</string>
   <string id="43">Alle Original</string>
@@ -113,4 +113,5 @@
   <string id="111">XBMC Format</string>
   <string id="112">Bevorzugte Sprache</string>
   <string id="113">Speichere Fanart in:</string>
+  <string id="114">Im Browser öffnen</string>
 </strings>
