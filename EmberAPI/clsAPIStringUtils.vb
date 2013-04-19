@@ -66,7 +66,7 @@ Public Class StringUtils
     Public Shared Function CleanStackingMarkers(ByVal sPath As String, Optional ByVal Asterisk As Boolean = False) As String
         If AdvancedSettings.GetBooleanSetting("DisableMultiPartMedia", False) Then Return sPath
         If String.IsNullOrEmpty(sPath) Then Return String.Empty
-        Dim sReturn As String = Regex.Replace(sPath, AdvancedSettings.GetSetting("DeleteStackMarkers", "[\s_\-\.]?((cd|dvd|p(?:ar)?t|dis[ck])[\s_\-\.]*([0-9]))"), If(Asterisk, "*", " "), RegexOptions.IgnoreCase).Trim
+        Dim sReturn As String = Regex.Replace(sPath, AdvancedSettings.GetSetting("DeleteStackMarkers", "[\s_\-\.]?((cd|dvd|p(?:ar)?t|dis[ck])[\s_\-\.]*([0-9]*))"), If(Asterisk, "*", " "), RegexOptions.IgnoreCase).Trim
         If Not sReturn = sPath Then
             Return Regex.Replace(sReturn, "\s\s(\s+)?", " ").Trim
         Else
