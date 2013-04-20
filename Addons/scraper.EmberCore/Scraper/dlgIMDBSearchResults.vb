@@ -49,16 +49,17 @@ Public Class dlgIMDBSearchResults
 
     #Region "Methods"
 
-    Public Overloads Function ShowDialog(ByVal sMovieTitle As String, ByVal filterOptions As Structures.ScrapeOptions) As Windows.Forms.DialogResult
+    Public Overloads Function ShowDialog(ByVal sMovieTitle As String, ByVal filterOptions As Structures.ScrapeOptions, ByVal sFilename As String) As Windows.Forms.DialogResult
         Me.tmrWait.Enabled = False
         Me.tmrWait.Interval = 250
         Me.tmrLoad.Enabled = False
         Me.tmrLoad.Interval = 100
 
-		_filterOptions = filterOptions        
+        _filterOptions = filterOptions
 
         Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results"), " - ", sMovieTitle)
-		Me.txtSearch.Text = sMovieTitle
+        Me.txtSearch.Text = sMovieTitle
+        Me.txtFileName.Text = sFilename
         chkManual.Enabled = False
         IMDB.IMDBURL = IMDBURL
         IMDB.SearchMovieAsync(sMovieTitle, _filterOptions)
@@ -66,14 +67,15 @@ Public Class dlgIMDBSearchResults
         Return MyBase.ShowDialog()
     End Function
 
-    Public Overloads Function ShowDialog(ByVal Res As IMDB.MovieSearchResults, ByVal sMovieTitle As String) As Windows.Forms.DialogResult
+    Public Overloads Function ShowDialog(ByVal Res As IMDB.MovieSearchResults, ByVal sMovieTitle As String, ByVal sFilename As String) As Windows.Forms.DialogResult
         Me.tmrWait.Enabled = False
         Me.tmrWait.Interval = 250
         Me.tmrLoad.Enabled = False
         Me.tmrLoad.Interval = 100
 
         Me.Text = String.Concat(Master.eLang.GetString(10, "Search Results"), " - ", sMovieTitle)
-		Me.txtSearch.Text = sMovieTitle
+        Me.txtSearch.Text = sMovieTitle
+        Me.txtFileName.Text = sFilename
         SearchResultsDownloaded(Res)
 
         Return MyBase.ShowDialog()
@@ -144,7 +146,7 @@ Public Class dlgIMDBSearchResults
     End Sub
 
     Private Sub btnOpenFolder_Click(sender As Object, e As EventArgs) Handles btnOpenFolder.Click
-        Dim fPath As String = Directory.GetParent(Master.currMovie.Filename).FullName
+        Dim fPath As String = Directory.GetParent(Me.txtFileName.Text).FullName
 
         If Not String.IsNullOrEmpty(fPath) Then
             Shell("Explorer.exe " & fPath, vbNormalFocus)
@@ -395,7 +397,6 @@ Public Class dlgIMDBSearchResults
         Me.lblIMDBHeader.Text = Master.eLang.GetString(289, "IMDB ID:", True)
         Me.lblPlotHeader.Text = Master.eLang.GetString(242, "Plot Outline:", True)
         Me.Label3.Text = Master.eLang.GetString(25, "Searching IMDB...")
-        Me.txtFileName.Text = Master.currMovie.Filename
     End Sub
 
     Private Sub tmrLoad_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrLoad.Tick

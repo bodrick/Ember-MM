@@ -595,7 +595,7 @@ Public Class EmberNativeScraperModule
                         End If
                     End If
                     Dim filterOptions As Structures.ScrapeOptions = Functions.ScrapeOptionsAndAlso(Options, ConfigOptions)
-                    If dSearch.ShowDialog(tmpTitle, filterOptions) = Windows.Forms.DialogResult.OK Then
+                    If dSearch.ShowDialog(tmpTitle, filterOptions, DBMovie.Filename) = Windows.Forms.DialogResult.OK Then
                         If Not String.IsNullOrEmpty(Master.tmpMovie.IMDBID) Then
                             DBMovie.Movie.IMDBID = Master.tmpMovie.IMDBID
                         End If
