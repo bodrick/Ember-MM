@@ -184,6 +184,7 @@ Public Class Settings
     Private _movietbn As Boolean
     Private _movietheme As String
     Private _movietrailerCol As Boolean
+    Private _moviewatchedCol As Boolean
     Private _nodisplayfanart As Boolean
     Private _nodisplayposter As Boolean
     Private _noepfilters As Boolean
@@ -1750,6 +1751,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._movietrailerCol = value
+        End Set
+    End Property
+
+    Public Property MovieWatchedCol() As Boolean
+        Get
+            Return Me._moviewatchedCol
+        End Get
+        Set(ByVal value As Boolean)
+            Me._moviewatchedCol = value
         End Set
     End Property
 
@@ -3359,6 +3369,7 @@ Public Class Settings
         Me._moviefanartCol = False
         Me._movieinfoCol = False
         Me._movietrailerCol = False
+        Me._moviewatchedCol = False
         Me._moviesubCol = False
         Me._movieextraCol = False
         Me._cleanfolderJpg = False

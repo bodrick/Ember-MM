@@ -3054,7 +3054,7 @@ doCancel:
             End If
 
             'icons
-            If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 9 AndAlso e.RowIndex = -1 Then
+            If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 34 AndAlso e.RowIndex = -1 Then
                 e.PaintBackground(e.ClipBounds, False)
 
                 Dim pt As Point = e.CellBounds.Location
@@ -3062,54 +3062,58 @@ doCancel:
 
                 pt.X += offset
                 pt.Y = 3
-                Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 4)
-
+                If e.ColumnIndex = 34 Then
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 26)
+                Else
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 4)
+                End If
                 e.Handled = True
 
             End If
 
-            If e.ColumnIndex = 3 AndAlso e.RowIndex >= 0 Then
-                If Convert.ToBoolean(Me.dgvMediaList.Item(11, e.RowIndex).Value) Then
-                    e.CellStyle.ForeColor = Color.Crimson
-                    e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                    e.CellStyle.SelectionForeColor = Color.Crimson
-                ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(10, e.RowIndex).Value) Then
-                    e.CellStyle.ForeColor = Color.Green
-                    e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                    e.CellStyle.SelectionForeColor = Color.Green
-                Else
-                    e.CellStyle.ForeColor = Color.Black
-                    e.CellStyle.Font = New Font("Segoe UI", 8.25, FontStyle.Regular)
-                    e.CellStyle.SelectionForeColor = Color.FromKnownColor(KnownColor.HighlightText)
-                End If
-            End If
-
-            If e.ColumnIndex >= 3 AndAlso e.ColumnIndex <= 9 AndAlso e.RowIndex >= 0 Then
-                If Convert.ToBoolean(Me.dgvMediaList.Item(14, e.RowIndex).Value) Then
-                    e.CellStyle.BackColor = Color.LightSteelBlue
-                    e.CellStyle.SelectionBackColor = Color.DarkTurquoise
-                ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(43, e.RowIndex).Value) Then
-                    e.CellStyle.BackColor = Color.MistyRose
-                    e.CellStyle.SelectionBackColor = Color.DarkMagenta
-                Else
-                    e.CellStyle.BackColor = Color.White
-                    e.CellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.Highlight)
+                'text
+                If e.ColumnIndex = 3 AndAlso e.RowIndex >= 0 Then
+                    If Convert.ToBoolean(Me.dgvMediaList.Item(11, e.RowIndex).Value) Then 'is marked
+                        e.CellStyle.ForeColor = Color.Crimson
+                        e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                        e.CellStyle.SelectionForeColor = Color.Crimson
+                    ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(10, e.RowIndex).Value) Then 'is new
+                        e.CellStyle.ForeColor = Color.Green
+                        e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                        e.CellStyle.SelectionForeColor = Color.Green
+                    Else
+                        e.CellStyle.ForeColor = Color.Black
+                        e.CellStyle.Font = New Font("Segoe UI", 8.25, FontStyle.Regular)
+                        e.CellStyle.SelectionForeColor = Color.FromKnownColor(KnownColor.HighlightText)
+                    End If
                 End If
 
-                If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 9 Then
-                    e.PaintBackground(e.ClipBounds, True)
+                If e.ColumnIndex >= 3 AndAlso e.ColumnIndex <= 34 AndAlso e.RowIndex >= 0 Then
+                    If Convert.ToBoolean(Me.dgvMediaList.Item(14, e.RowIndex).Value) Then 'is locked
+                        e.CellStyle.BackColor = Color.LightSteelBlue
+                        e.CellStyle.SelectionBackColor = Color.DarkTurquoise
+                    ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(43, e.RowIndex).Value) Then 'use folder
+                        e.CellStyle.BackColor = Color.MistyRose
+                        e.CellStyle.SelectionBackColor = Color.DarkMagenta
+                    Else
+                        e.CellStyle.BackColor = Color.White
+                        e.CellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.Highlight)
+                    End If
 
-                    Dim pt As Point = e.CellBounds.Location
-                    Dim offset As Integer = Convert.ToInt32((e.CellBounds.Width - Me.ilColumnIcons.ImageSize.Width) / 2)
+                    If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 34 Then
+                        e.PaintBackground(e.ClipBounds, True)
 
-                    pt.X += offset
-                    pt.Y = e.CellBounds.Top + 3
-                    Me.ilColumnIcons.Draw(e.Graphics, pt, If(Convert.ToBoolean(e.Value), 6, 7))
-                    e.Handled = True
+                        Dim pt As Point = e.CellBounds.Location
+                        Dim offset As Integer = Convert.ToInt32((e.CellBounds.Width - Me.ilColumnIcons.ImageSize.Width) / 2)
+
+                        pt.X += offset
+                        pt.Y = e.CellBounds.Top + 3
+                        Me.ilColumnIcons.Draw(e.Graphics, pt, If(Convert.ToBoolean(e.Value), 6, 7))
+                        e.Handled = True
+                    End If
                 End If
-            End If
 
-            Me.tabMovies.Text = String.Format("{0} ({1})", Master.eLang.GetString(36, "Movies"), Me.dgvMediaList.RowCount)
+                Me.tabMovies.Text = String.Format("{0} ({1})", Master.eLang.GetString(36, "Movies"), Me.dgvMediaList.RowCount)
 
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -4398,7 +4402,37 @@ doCancel:
                         .dgvMediaList.Columns(9).SortMode = DataGridViewColumnSortMode.Automatic
                         .dgvMediaList.Columns(9).Visible = Not Master.eSettings.MovieExtraCol
                         .dgvMediaList.Columns(9).ToolTipText = Master.eLang.GetString(153, "Extrathumbs")
-                        For i As Integer = 10 To .dgvMediaList.Columns.Count - 1
+                        .dgvMediaList.Columns(10).Visible = False
+                        .dgvMediaList.Columns(11).Visible = False
+                        .dgvMediaList.Columns(12).Visible = False
+                        .dgvMediaList.Columns(13).Visible = False
+                        .dgvMediaList.Columns(14).Visible = False
+                        .dgvMediaList.Columns(15).Visible = False
+                        .dgvMediaList.Columns(16).Visible = False
+                        .dgvMediaList.Columns(17).Visible = False
+                        .dgvMediaList.Columns(18).Visible = False
+                        .dgvMediaList.Columns(19).Visible = False
+                        .dgvMediaList.Columns(20).Visible = False
+                        .dgvMediaList.Columns(21).Visible = False
+                        .dgvMediaList.Columns(22).Visible = False
+                        .dgvMediaList.Columns(23).Visible = False
+                        .dgvMediaList.Columns(24).Visible = False
+                        .dgvMediaList.Columns(25).Visible = False
+                        .dgvMediaList.Columns(26).Visible = False
+                        .dgvMediaList.Columns(27).Visible = False
+                        .dgvMediaList.Columns(28).Visible = False
+                        .dgvMediaList.Columns(29).Visible = False
+                        .dgvMediaList.Columns(30).Visible = False
+                        .dgvMediaList.Columns(31).Visible = False
+                        .dgvMediaList.Columns(32).Visible = False
+                        .dgvMediaList.Columns(33).Visible = False
+                        .dgvMediaList.Columns(34).Width = 20
+                        .dgvMediaList.Columns(34).Resizable = DataGridViewTriState.False
+                        .dgvMediaList.Columns(34).ReadOnly = True
+                        .dgvMediaList.Columns(34).SortMode = DataGridViewColumnSortMode.Automatic
+                        .dgvMediaList.Columns(34).Visible = Not Master.eSettings.MovieWatchedCol
+                        .dgvMediaList.Columns(34).ToolTipText = Master.eLang.GetString(883, "Watched")
+                        For i As Integer = 35 To .dgvMediaList.Columns.Count - 1
                             .dgvMediaList.Columns(i).Visible = False
                         Next
 
@@ -6940,6 +6974,7 @@ doCancel:
         Dim hasTrailer As Boolean = False
         Dim hasSub As Boolean = False
         Dim hasExtra As Boolean = False
+        Dim hasWatched As Boolean = False
 
         Dim myDelegate As New MydtListUpdate(AddressOf dtListUpdate)
 
@@ -7018,6 +7053,7 @@ doCancel:
                 hasTrailer = Not String.IsNullOrEmpty(mContainer.Trailer)
                 hasSub = Not String.IsNullOrEmpty(mContainer.Subs)
                 hasExtra = Not String.IsNullOrEmpty(mContainer.Extra)
+                hasWatched = Not String.IsNullOrEmpty(tmpMovieDb.Movie.PlayCount)
 
                 Dim dRow = From drvRow In dtMedia.Rows Where Convert.ToInt64(DirectCast(drvRow, DataRow).Item(0)) = ID Select drvRow
 
@@ -7039,6 +7075,7 @@ doCancel:
                         Me.Invoke(myDelegate, New Object() {dRow(0), 15, tmpMovieDb.Movie.Title})
                         Me.Invoke(myDelegate, New Object() {dRow(0), 47, tmpMovieDb.Movie.SortTitle})
                         Me.Invoke(myDelegate, New Object() {dRow(0), 27, tmpMovieDb.Movie.Genre})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 34, hasWatched})
                     Else
                         selRow.Item(1) = tmpMovieDb.Filename
                         selRow.Item(3) = tmpMovieDb.ListTitle
@@ -7052,6 +7089,7 @@ doCancel:
                         selRow.Item(15) = tmpMovieDb.Movie.Title
                         selRow.Item(47) = tmpMovieDb.Movie.SortTitle
                         selRow.Item(27) = tmpMovieDb.Movie.Genre
+                        selRow.Item(34) = hasWatched
                     End If
                 End If
                 'Why on earth resave the movie if we just refreshed its data (causes issues with saving rescrapes_

@@ -611,6 +611,7 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.chkMovieWatchedCol = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -1295,6 +1296,7 @@ Partial Class dlgSettings
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.chkMovieWatchedCol)
         Me.GroupBox2.Controls.Add(Me.txtCheckTitleTol)
         Me.GroupBox2.Controls.Add(Me.Label30)
         Me.GroupBox2.Controls.Add(Me.chkCheckTitles)
@@ -1309,7 +1311,7 @@ Partial Class dlgSettings
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(7, 106)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(218, 279)
+        Me.GroupBox2.Size = New System.Drawing.Size(218, 291)
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Media List Options"
@@ -2570,7 +2572,7 @@ Partial Class dlgSettings
         Me.pnlMovies.Controls.Add(Me.GroupBox27)
         Me.pnlMovies.Controls.Add(Me.GroupBox12)
         Me.pnlMovies.Controls.Add(Me.GroupBox2)
-        Me.pnlMovies.Location = New System.Drawing.Point(997, 642)
+        Me.pnlMovies.Location = New System.Drawing.Point(250, 100)
         Me.pnlMovies.Name = "pnlMovies"
         Me.pnlMovies.Size = New System.Drawing.Size(617, 400)
         Me.pnlMovies.TabIndex = 15
@@ -7249,6 +7251,17 @@ Partial Class dlgSettings
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
         '
+        'chkMovieWatchedCol
+        '
+        Me.chkMovieWatchedCol.AutoSize = True
+        Me.chkMovieWatchedCol.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieWatchedCol.Location = New System.Drawing.Point(9, 274)
+        Me.chkMovieWatchedCol.Name = "chkMovieWatchedCol"
+        Me.chkMovieWatchedCol.Size = New System.Drawing.Size(142, 17)
+        Me.chkMovieWatchedCol.TabIndex = 75
+        Me.chkMovieWatchedCol.Text = "Hide Watched Column"
+        Me.chkMovieWatchedCol.UseVisualStyleBackColor = True
+        '
         'dlgSettings
         '
         Me.AcceptButton = Me.btnOK
@@ -8038,4 +8051,5 @@ Partial Class dlgSettings
     Friend WithEvents chkLockLanguageA As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockMPAA As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseMPAAFSK As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMovieWatchedCol As System.Windows.Forms.CheckBox
 End Class

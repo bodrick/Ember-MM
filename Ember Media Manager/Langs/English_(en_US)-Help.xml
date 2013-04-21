@@ -364,4 +364,5 @@
   <string control="Core_chkLockLanguageA">If enabled, the language field (audio metadata) will not be updated.</string>
   <string control="Core_chkLockMPAA">If enabled, the certification/MPAA field will not be updated.</string>
   <string control="Core_chkUseMPAAFSK">If enabled, MPAA values will be converted to FSK if no FSK values are found. Priority: FSK -> MPAA</string>
+  <string control="Core_chkMovieWatchedCol">Hide the Watched column from the main movie list.</string>
   </strings>

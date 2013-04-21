@@ -1480,6 +1480,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkMovieWatchedCol_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkMovieWatchedCol.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkMPAA_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkMPAA.CheckedChanged
         Me.SetApplyButton(True)
 
@@ -2263,6 +2267,7 @@ Public Class dlgSettings
             Me.chkMovieTrailerCol.Checked = Master.eSettings.MovieTrailerCol
             Me.chkMovieSubCol.Checked = Master.eSettings.MovieSubCol
             Me.chkMovieExtraCol.Checked = Master.eSettings.MovieExtraCol
+            Me.chkMovieWatchedCol.Checked = Master.eSettings.MovieWatchedCol
 
             Me.cbPosterSize.SelectedIndex = Master.eSettings.PreferredPosterSize
             Me.cbFanartSize.SelectedIndex = Master.eSettings.PreferredFanartSize
@@ -3365,6 +3370,7 @@ Public Class dlgSettings
             Master.eSettings.MovieTrailerCol = Me.chkMovieTrailerCol.Checked
             Master.eSettings.MovieSubCol = Me.chkMovieSubCol.Checked
             Master.eSettings.MovieExtraCol = Me.chkMovieExtraCol.Checked
+            Master.eSettings.MovieWatchedCol = Me.chkMovieWatchedCol.Checked
 
             Master.eSettings.PreferredPosterSize = DirectCast(Me.cbPosterSize.SelectedIndex, Enums.PosterSize)
             Master.eSettings.PreferredFanartSize = DirectCast(Me.cbFanartSize.SelectedIndex, Enums.FanartSize)
@@ -3798,6 +3804,7 @@ Public Class dlgSettings
         Me.chkMovieExtraCol.Text = Master.eLang.GetString(465, "Hide Extrathumb Column")
         Me.chkMovieSubCol.Text = Master.eLang.GetString(466, "Hide Sub Column")
         Me.chkMovieTrailerCol.Text = Master.eLang.GetString(467, "Hide Trailer Column")
+        Me.chkMovieWatchedCol.Text = Master.eLang.GetString(884, "Hide Watched Column")
         Me.chkMovieInfoCol.Text = Master.eLang.GetString(468, "Hide Info Column")
         Me.chkMovieFanartCol.Text = Master.eLang.GetString(469, "Hide Fanart Column")
         Me.chkMoviePosterCol.Text = Master.eLang.GetString(470, "Hide Poster Column")

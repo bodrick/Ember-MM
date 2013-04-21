@@ -37,7 +37,7 @@ CREATE TABLE Movies (
 	Director TEXT,
 	Credits TEXT,
 	Playcount TEXT,
-	Watched TEXT,
+	HasWatched BOOL,
 	Trailer TEXT,
 	PosterPath TEXT,
 	FanartPath TEXT,

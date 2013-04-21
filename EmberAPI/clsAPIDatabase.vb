@@ -690,7 +690,7 @@ Public Class Database
 						If Not DBNull.Value.Equals(SQLreader("Director")) Then .Director = SQLreader("Director").ToString
 						If Not DBNull.Value.Equals(SQLreader("Credits")) Then .OldCredits = SQLreader("Credits").ToString
 						If Not DBNull.Value.Equals(SQLreader("PlayCount")) Then .PlayCount = SQLreader("PlayCount").ToString
-						If Not DBNull.Value.Equals(SQLreader("Watched")) Then .Watched = SQLreader("Watched").ToString
+                        'If Not DBNull.Value.Equals(SQLreader("Watched")) Then .Watched = SQLreader("Watched").ToString
 						If Not DBNull.Value.Equals(SQLreader("FanartURL")) AndAlso Not Master.eSettings.NoSaveImagesToNfo Then .Fanart.URL = SQLreader("FanartURL").ToString
 					End With
 
@@ -1180,19 +1180,19 @@ Public Class Database
 			If Not BatchMode Then SQLtransaction = _mediaDBConn.BeginTransaction()
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				If IsNew Then
-					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO movies (", _
-					 "MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
-					 "Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
-					 "Studio, Runtime, ReleaseDate, Director, Credits, Playcount, Watched, Trailer, ", _
-					 "PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
-					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
+                    SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO movies (", _
+                     "MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
+                     "Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
+                     "Studio, Runtime, ReleaseDate, Director, Credits, Playcount, HasWatched, Trailer, ", _
+                     "PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
+                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
 				Else
-					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO movies (", _
-					 "ID, MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
-					 "Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
-					 "Studio, Runtime, ReleaseDate, Director, Credits, Playcount, Watched, Trailer, ", _
-					 "PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
-					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
+                    SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO movies (", _
+                     "ID, MoviePath, type, ListTitle, HasPoster, HasFanart, HasNfo, HasTrailer, HasSub, HasExtra, new, mark, source, imdb, lock, ", _
+                     "Title, OriginalTitle, SortTitle, Year, Rating, Votes, MPAA, Top250, Country, Outline, Plot, Tagline, Certification, Genre, ", _
+                     "Studio, Runtime, ReleaseDate, Director, Credits, Playcount, HasWatched, Trailer, ", _
+                     "PosterPath, FanartPath, NfoPath, TrailerPath, SubPath, ExtraPath, FanartURL, UseFolder, OutOfTolerance, FileSource, NeedsSave, DateAdd", _
+                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM movies;")
 					Dim parMovieID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parMovieID", DbType.Int32, 0, "ID")
 					parMovieID.Value = _movieDB.ID
 				End If
@@ -1231,7 +1231,7 @@ Public Class Database
 				Dim parDirector As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parDirector", DbType.String, 0, "Director")
 				Dim parCredits As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parCredits", DbType.String, 0, "Credits")
 				Dim parPlaycount As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parPlaycount", DbType.String, 0, "Playcount")
-				Dim parWatched As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parWatched", DbType.String, 0, "Watched")
+                Dim parHasWatched As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parHasWatched", DbType.Boolean, 0, "HasWatched")
 				Dim parTrailer As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTrailer", DbType.String, 0, "Trailer")
 
 				Dim parPosterPath As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parPosterPath", DbType.String, 0, "PosterPath")
@@ -1289,7 +1289,8 @@ Public Class Database
 				parHasNfo.Value = Not String.IsNullOrEmpty(_movieDB.NfoPath)
 				parHasTrailer.Value = Not String.IsNullOrEmpty(_movieDB.TrailerPath)
 				parHasSub.Value = Not String.IsNullOrEmpty(_movieDB.SubPath)
-				parHasExtra.Value = Not String.IsNullOrEmpty(_movieDB.ExtraPath)
+                parHasExtra.Value = Not String.IsNullOrEmpty(_movieDB.ExtraPath)
+                parHasWatched.Value = Not String.IsNullOrEmpty(_movieDB.Movie.PlayCount)
 
 				parNew.Value = IsNew
 				parMark.Value = _movieDB.IsMark
@@ -1316,7 +1317,7 @@ Public Class Database
 				parDirector.Value = _movieDB.Movie.Director
 				parCredits.Value = _movieDB.Movie.OldCredits
 				parPlaycount.Value = _movieDB.Movie.PlayCount
-				parWatched.Value = _movieDB.Movie.Watched
+                'parWatched.Value = _movieDB.Movie.Watched
 				parTrailer.Value = _movieDB.Movie.Trailer
 
 				parUseFolder.Value = _movieDB.UseFolder
