@@ -45,11 +45,12 @@ Public Class frmYAMJ
         Me.chkYAMJnfoFields.Text = Master.eLang.GetString(5, "YAMJ Specific NFO fields")
         Me.chkShowPoster.Text = Master.eLang.GetString(6, "Show Poster as Set_<Show>_1.jpg")
         Me.chkShowFanart.Text = Master.eLang.GetString(7, "Show Poster as Set_<Show>_1.fanart.jpg")
-        Me.chkSeasonPoster.Text = Master.eLang.GetString(8, "Season Poster as <Episode>SxxE01.jpg")
-        Me.chkSeasonFanart.Text = Master.eLang.GetString(9, "Season Fanart as <Episode>SxxE01.fanart.jpg")
-        Me.chkEpisodePoster.Text = Master.eLang.GetString(10, "Episode Poster as <Show>.videoimage.jpg")
-		Me.chkAllSeasonPoster.Text = Master.eLang.GetString(14, "Show All Season as Set_<Show>_1.banner.jpg")
-		Me.btnCheckAll.Text = Master.eLang.GetString(17, "Check all")
+        Me.chkSeasonPoster.Text = Master.eLang.GetString(8, "Season Poster as <Episode>.jpg *")
+        Me.chkSeasonFanart.Text = Master.eLang.GetString(9, "Season Fanart as <Episode>.fanart.jpg *")
+        Me.chkEpisodePoster.Text = Master.eLang.GetString(10, "Episode Poster as <Episode>.videoimage.jpg")
+        Me.chkAllSeasonPoster.Text = Master.eLang.GetString(14, "All Seasons Poster as Set_<Show>_1.banner.jpg")
+        Me.btnCheckAll.Text = Master.eLang.GetString(17, "Use YAMJ Settings")
+        Me.lblInfo.Text = Master.eLang.GetString(19, "* Use allways the first existing episode of a season")
     End Sub
 
     Private Sub chkYAMJCompatibleSets_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkYAMJCompatibleSets.CheckedChanged
@@ -58,6 +59,16 @@ Public Class frmYAMJ
 
     Private Sub chkYAMJCompatibleTVSets_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkYAMJCompatibleTVImages.CheckedChanged
         gbImages.Enabled = chkYAMJCompatibleTVImages.Checked
+
+        If Not Me.chkYAMJCompatibleTVImages.Checked Then
+            Me.chkAllSeasonPoster.Checked = False
+            Me.chkEpisodePoster.Checked = False
+            Me.chkSeasonFanart.Checked = False
+            Me.chkSeasonPoster.Checked = False
+            Me.chkShowFanart.Checked = False
+            Me.chkShowPoster.Checked = False
+        End If
+
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
@@ -71,8 +82,7 @@ Public Class frmYAMJ
         chkSeasonPoster.Checked = True
         chkSeasonFanart.Checked = True
         chkEpisodePoster.Checked = True
-        Me.chkAllSeasonPoster.Checked = True
-
+        chkAllSeasonPoster.Checked = True
     End Sub
 
     Private Sub chkYAMJnfoFields_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkYAMJnfoFields.CheckedChanged
