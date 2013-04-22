@@ -15,4 +15,16 @@
   <string id="13">Canceling Compilation...</string>
   <string id="14">Template</string>
   <string id="15">Export Movie List</string>
+  <string id="16">Export TV Shows</string>
+  <string id="17">Generate Filter</string>
+  <string id="18">Export Path</string>
+  <string id="19">Fanart Width [px]</string>
+  <string id="20">Poster Height [px]</string>
+  <string id="21">Filter Settings</string>
+  <string id="22">Image Settings</string>
+  <string id="23">General Settings</string>
+  <string id="24">Save Filter</string>
+  <string id="25">Reset Filter</string>
+  <string id="26">Generate HTML...</string>
+  <string id="27">Template saved to:</string>
 </strings>

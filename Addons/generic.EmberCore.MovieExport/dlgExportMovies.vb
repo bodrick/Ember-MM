@@ -25,6 +25,7 @@ Imports EmberAPI
 
 Public Class dlgExportMovies
 
+
 #Region "Fields"
 
     Friend WithEvents bwLoadInfo As New System.ComponentModel.BackgroundWorker
@@ -44,6 +45,8 @@ Public Class dlgExportMovies
     Private use_filter As Boolean = False
     Private workerCanceled As Boolean = False
     Private _movies As New List(Of Structures.DBMovie)
+
+    Private AllTVShowList As String = ""
 
 #End Region 'Fields
 
@@ -98,7 +101,9 @@ Public Class dlgExportMovies
             ' copy all the files of the current directory
             Dim ChildFile As FileInfo
             For Each ChildFile In SourceDir.GetFiles()
+                'cocotus: Htm File should be copied too...
                 If (ChildFile.Attributes And FileAttributes.Hidden) = FileAttributes.Hidden OrElse Path.GetExtension(ChildFile.FullName) = ".html" Then Continue For
+
                 If Overwrite Then
                     ChildFile.CopyTo(Path.Combine(DestDir.FullName, ChildFile.Name), True)
                 Else
@@ -148,6 +153,10 @@ Public Class dlgExportMovies
 
             End Try
 
+
+
+
+
             Dim tVid As New MediaInfo.Video
             Dim tAud As New MediaInfo.Audio
             Dim tRes As String = String.Empty
@@ -165,10 +174,67 @@ Public Class dlgExportMovies
             pattern = File.ReadAllText(htmlPath)
             If pattern.Contains("<$NEED_POSTERS>") Then
                 Me.bexportPosters = True
+
+                'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+                '++++++POSTER++++++++
+                strPosterSize = AdvancedSettings.GetSetting("ExportPosterHeight", "300")
+
+                'now consider the user selection
+                If strPosterSize <> "" Then
+                    If strPosterSize = "300" Then
+                        PosterSize.Width = 200
+                        PosterSize.Height = 300
+                    ElseIf strPosterSize = "400" Then
+                        PosterSize.Width = 267
+                        PosterSize.Height = 400
+                    ElseIf strPosterSize = "600" Then
+                        PosterSize.Width = 400
+                        PosterSize.Height = 600
+                    ElseIf strPosterSize = "800" Then
+                        PosterSize.Width = 533
+                        PosterSize.Height = 800
+                    ElseIf strPosterSize = "original" Then
+                        PosterSize.Width = 1
+                        PosterSize.Height = 1
+                    Else
+                        PosterSize.Width = 200
+                        PosterSize.Height = 300
+                    End If
+                End If
+
+                'cocotus end
+
                 pattern = pattern.Replace("<$NEED_POSTERS>", String.Empty)
             End If
             If pattern.Contains("<$NEED_FANART>") Then
                 Me.bexportFanart = True
+                'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+                '++++++Fanart++++++++
+                strFanartSize = AdvancedSettings.GetSetting("ExportFanartWidth", "800")
+
+                'now consider the user selection
+                If strFanartSize <> "" Then
+                    If strFanartSize = "400" Then
+                        FanartSize.Width = 400
+                        FanartSize.Height = 225
+                    ElseIf strFanartSize = "600" Then
+                        FanartSize.Width = 600
+                        FanartSize.Height = 338
+                    ElseIf strFanartSize = "800" Then
+                        FanartSize.Width = 800
+                        FanartSize.Height = 450
+                    ElseIf strFanartSize = "1200" Then
+                        FanartSize.Width = 1200
+                        FanartSize.Height = 675
+                    ElseIf strFanartSize = "original" Then
+                        FanartSize.Width = 1
+                        FanartSize.Height = 1
+                    Else
+                        FanartSize.Width = 800
+                        FanartSize.Height = 450
+                    End If
+                End If
+                'cocotus end
                 pattern = pattern.Replace("<$NEED_FANART>", String.Empty)
             End If
             If pattern.Contains("<$NEED_FLAGS>") Then
@@ -310,7 +376,8 @@ Public Class dlgExportMovies
                 row = row.Replace("<$DATEADD>", StringUtils.HtmlEncode(Functions.ConvertFromUnixTimestamp(_curMovie.DateAdd).ToString("dd.MM.yyyy")))
 
                 'cocotus, 2013/02 Added support for new MediaInfo-fields
-                row = row.Replace("<$MOVIESETS>", StringUtils.HtmlEncode(AllMovieSetList)) 'A long string of all moviesets, seperated with ;!
+                row = row.Replace("<$MOVIESETS>", StringUtils.HtmlEncode(AllMovieSetList)) 'A long string of all moviesets, seperated with #!
+                row = row.Replace("<$TVSHOWS>", StringUtils.HtmlEncode(AllTVShowList)) 'A long string of all tvshows, seperated with #!
                 row = row.Replace("<$SET>", StringUtils.HtmlEncode(GetMovieSets(_curMovie))) 'All sets which movie belongs to, seperated with ;!
                 row = row.Replace("<$VIDEOBITRATE>", _vidBitrate)
                 row = row.Replace("<$VIDEOMULTIVIEW>", _vidMultiView)
@@ -337,7 +404,9 @@ Public Class dlgExportMovies
             HTMLBody.Append(moviefooter)
 
             If Not Me.isCL Then
-                Dim outFile As String = Path.Combine(Me.TempPath, String.Concat(Master.eSettings.Language, ".html"))
+                'just name it index.html
+                '    Dim outFile As String = Path.Combine(Me.TempPath, String.Concat(Master.eSettings.Language, ".html"))
+                Dim outFile As String = Path.Combine(Me.TempPath, "index.htm")
                 DontSaveExtra = False
                 Me.SaveAll(If(doNavigate, Master.eLang.GetString(4, "Preparing preview. Please wait..."), String.Empty), Path.GetDirectoryName(htmlPath), outFile)
                 If doNavigate Then LoadHTML()
@@ -375,11 +444,8 @@ Public Class dlgExportMovies
         ' Start thread to load movie information from nfo
         '\\
 
-
-
         Dim ReturnString As String = ""
         Try
-
             Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
                 SQLcommand.CommandText = String.Concat("SELECT SetName FROM MoviesSets;")
                 Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
@@ -408,22 +474,144 @@ Public Class dlgExportMovies
         End Try
     End Function
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSource.Click
-        If btnSource.ImageIndex = 0 Then
-            lstSources.Visible = True
-            btnSource.ImageIndex = 1
-        Else
-            lstSources.Visible = False
-            btnSource.ImageIndex = 0
-            Dim sFilter As String = String.Empty
-            If cbSearch.Text = Master.eLang.GetString(5, "Source Folder") Then
-                For Each s In lstSources.CheckedItems
-                    sFilter = String.Concat(sFilter, If(sFilter = String.Empty, String.Empty, ";"), s.ToString)
+    Private allTVShows As New List(Of String)
+    '  Private lMovies As New List(Of Movies)
+    Private Function GetAllTVShows() As String
+        '//
+        ' Start thread to load movie information from nfo
+        '\\
+        Dim ReturnString As String = ""
+        Try
+
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
+                SQLcommand.CommandText = String.Concat("SELECT * FROM TVShows ORDER BY Title COLLATE NOCASE;")
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    If SQLreader.HasRows Then
+                        While SQLreader.Read()
+                            If Not allTVShows.Contains(SQLreader("Title").ToString) AndAlso Not String.IsNullOrEmpty(SQLreader("Title").ToString) Then
+                                If Not String.IsNullOrEmpty(SQLreader("ID").ToString) Then
+                                    allTVShows.Add(SQLreader("ID").ToString & "*" & SQLreader("Title").ToString & GetSeasonInfo(SQLreader("ID").ToString))
+                                End If
+                            End If
+                        End While
+                    End If
+                End Using
+            End Using
+            If allTVShows.Count > 0 Then
+                For i = 0 To allTVShows.Count - 1
+                    If i > 0 Then
+                        ReturnString = ReturnString + "|" + allTVShows(i)
+                    Else
+                        ReturnString = allTVShows(i)
+                    End If
                 Next
-                txtSearch.Text = sFilter
             End If
-        End If
+            Return ReturnString
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Return ""
+        End Try
+    End Function
+    Private Function GetSeasonInfo(ByVal Id As String) As String
+        Dim ReturnString As String = ""
+        Try
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
+                Dim parID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parID", DbType.Int32, 0, "id")
+                SQLcommand.CommandText = "SELECT * FROM TVSeason WHERE TVShowID = (?);"
+                parID.Value = Id
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    If SQLreader.HasRows Then
+                        While SQLreader.Read()
+
+                            If Not String.IsNullOrEmpty(SQLreader("Season").ToString) AndAlso Not SQLreader("Season").ToString.Contains("999") Then
+                                If Not String.IsNullOrEmpty(SQLreader("PosterPath").ToString) Then
+                                    ExportSeasonImage(SQLreader("TVShowID").ToString & "s" & SQLreader("Season").ToString, SQLreader("PosterPath").ToString, TempPath)
+                                End If
+                                ReturnString = ReturnString + "*" + SQLreader("TVShowID").ToString & "s" & SQLreader("Season").ToString
+                            End If
+                        End While
+                    End If
+                End Using
+            End Using
+            Return ReturnString
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+            Return ReturnString
+        End Try
+
+    End Function
+
+    Private Sub ExportSeasonImage(ByVal filename As String, ByVal source As String, ByVal temppath As String)
+        Try
+
+            Dim finalpath As String = Path.Combine(temppath, "export")
+            Directory.CreateDirectory(finalpath)
+
+            Try
+                Dim posterfile As String = Path.Combine(finalpath, String.Concat(filename, ".jpg"))
+                If File.Exists(source) Then
+                    'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+
+                    'old method
+                    'If new_width > 0 Then
+                    '    Dim im As New Images
+                    '    im.FromFile(_curMovie.PosterPath)
+                    '    ImageUtils.ResizeImage(im.Image, new_width, new_width, False, Color.Black.ToArgb)
+                    '    im.Save(posterfile)
+                    'Else
+                    '    File.Copy(_curMovie.PosterPath, posterfile, True)
+                    'End If
+
+                    If strPosterSize = "original" Then
+                        File.Copy(source, posterfile, True)
+                    Else
+                        'Now we do some image processing to make the output file smaller!
+                        Try
+                            Dim img As Image
+                            Dim sFileName As String = source
+                            Dim fs As New System.IO.FileStream(sFileName, System.IO.FileMode.Open)
+                            img = Image.FromStream(fs)
+                            fs.Close()
+                            '1. Step: Resizing, Image method needs Size and IMAGE object we just created, so now we can start!
+                            Dim imgresized As Image = ImageUtils.ResizeImage(img, PosterSize)
+                            img.Dispose()
+                            '2. Step: Now use jpeg compression to make file even smaller...
+                            ImageUtils.JPEGCompression(imgresized, posterfile, CInt(AdvancedSettings.GetSetting("ExportImageQuality", "70")))
+                            imgresized.Dispose()
+
+                        Catch ex As Exception
+                            'The old method, used here when anything goes wrong
+                            File.Copy(source, posterfile, True)
+                        End Try
+                    End If
+
+                    'cocotus end
+
+                End If
+
+            Catch
+            End Try
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
     End Sub
+
+    'Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    '    If btnSource.ImageIndex = 0 Then
+    '        lstSources.Visible = True
+    '        btnSource.ImageIndex = 1
+    '    Else
+    '        lstSources.Visible = False
+    '        btnSource.ImageIndex = 0
+    '        Dim sFilter As String = String.Empty
+    '        If cbSearch.Text = Master.eLang.GetString(5, "Source Folder") Then
+    '            For Each s In lstSources.CheckedItems
+    '                sFilter = String.Concat(sFilter, If(sFilter = String.Empty, String.Empty, ";"), s.ToString)
+    '            Next
+    '            txtSearch.Text = sFilter
+    '        End If
+    '    End If
+    'End Sub
 
     Private Sub bwLoadInfo_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwLoadInfo.DoWork
         '//
@@ -523,6 +711,15 @@ Public Class dlgExportMovies
                 If Me.bexportFanart Then
                     Me.ExportFanart(destPathShort)
                 End If
+
+                If AdvancedSettings.GetBooleanSetting("ExportTVShows", False) = True Then
+                    Try
+                        AllTVShowList = GetAllTVShows()
+                    Catch ex As Exception
+
+                    End Try
+                End If
+
                 If bwSaveAll.CancellationPending Then
                     e.Cancel = True
                     Return
@@ -547,44 +744,21 @@ Public Class dlgExportMovies
         workerCanceled = e.Cancelled
     End Sub
 
-    Private Sub cbFilterSource_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        If ((cbSearch.Text = Master.eLang.GetString(5, "Source Folder") AndAlso lstSources.CheckedItems.Count > 0) OrElse txtSearch.Text <> "") AndAlso cbSearch.Text <> "" Then
-            Search_Button.Enabled = True
-        Else
-            Search_Button.Enabled = False
-        End If
-    End Sub
 
-    Private Sub cbSearch_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbSearch.SelectedIndexChanged
-        If ((cbSearch.Text = Master.eLang.GetString(5, "Source Folder") AndAlso lstSources.CheckedItems.Count > 0) OrElse txtSearch.Text <> "") AndAlso cbSearch.Text <> "" Then
-            Search_Button.Enabled = True
-        Else
-            Search_Button.Enabled = False
-        End If
-        If cbSearch.Text = Master.eLang.GetString(5, "Source Folder") Then
-            'cbFilterSource.Visible = True
-            btnSource.Visible = True
-            txtSearch.ReadOnly = True
-        Else
-            'cbFilterSource.Visible = False
-            btnSource.Visible = False
-            txtSearch.ReadOnly = False
-        End If
-    End Sub
 
     Private Sub cbTemplate_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbTemplate.SelectedIndexChanged
         base_template = cbTemplate.Text
         DontSaveExtra = False
-        Dim sFilter As String = String.Empty
-        If cbSearch.Text = Master.eLang.GetString(5, "Source Folder") Then
-            For Each s As String In lstSources.CheckedItems
-                sFilter = String.Concat(sFilter, If(sFilter = String.Empty, String.Empty, ";"), s.ToString)
-            Next
-        Else
-            sFilter = txtSearch.Text
-        End If
+        'Dim sFilter As String = String.Empty
+        'If cbSearch.Text = Master.eLang.GetString(5, "Source Folder") Then
+        '    For Each s As String In lstSources.CheckedItems
+        '        sFilter = String.Concat(sFilter, If(sFilter = String.Empty, String.Empty, ";"), s.ToString)
+        '    Next
+        'Else
+        '    sFilter = txtSearch.Text
+        'End If
 
-        BuildHTML(use_filter, sFilter, cbSearch.Text, base_template, True)
+        'BuildHTML(use_filter, sFilter, cbSearch.Text, base_template, True)
 
 
     End Sub
@@ -663,28 +837,6 @@ Public Class dlgExportMovies
             Dim finalpath As String = Path.Combine(fpath, "export")
             Directory.CreateDirectory(finalpath)
 
-            'cocotus, 2013/02 Export HTML expanded: configurable resizable images
-
-            'The following resizing method of image requires Size object, so lets create that...
-            Dim mysize As New Size(1024, 576)
-            'now consider the user selection
-            If strFanartSize <> "" Then
-                If strFanartSize = "900" Then
-                    mysize.Width = 900
-                    mysize.Height = 576
-                ElseIf strFanartSize = "1200" Then
-                    mysize.Width = 1200
-                    mysize.Height = 675
-                ElseIf strFanartSize = "1600" Then
-                    mysize.Width = 1600
-                    mysize.Height = 900
-                Else
-                    mysize.Width = 900
-                    mysize.Height = 576
-                End If
-            End If
-            'cocotus end
-
             For Each _curMovie As Structures.DBMovie In _movies.Where(Function(y) FilterMovies.Contains(y.ID))
                 Try
                     Dim fanartfile As String = Path.Combine(finalpath, String.Concat(counter.ToString, "-fanart.jpg"))
@@ -695,24 +847,29 @@ Public Class dlgExportMovies
                         'old method, just copy/no image conversion
                         'File.Copy(_curMovie.FanartPath, fanartfile, True)
 
-                        'Now we do some image processing to make the output file smaller!
-                        Try
-                            Dim img As Image
-                            Dim sFileName As String = _curMovie.FanartPath
-                            Dim fs As New System.IO.FileStream(sFileName, System.IO.FileMode.Open)
-                            img = Image.FromStream(fs)
-                            fs.Close()
-                            '1. Step: Resizing, Image method needs Size and IMAGE object we just created, so now we can start!
-                            Dim imgresized As Image = ImageUtils.ResizeImage(img, mysize)
-                            img.Dispose()
-                            '2. Step: Now use jpeg compression to make file even smaller...
-                            ImageUtils.JPEGCompression(imgresized, fanartfile, 60)
-                            imgresized.Dispose()
-
-                        Catch ex As Exception
-                            'The old method, used here when anything goes wrong
+                        If strFanartSize = "original" Then
                             File.Copy(_curMovie.FanartPath, fanartfile, True)
-                        End Try
+                        Else
+                            'Now we do some image processing to make the output file smaller!
+                            Try
+                                Dim img As Image
+                                Dim sFileName As String = _curMovie.FanartPath
+                                Dim fs As New System.IO.FileStream(sFileName, System.IO.FileMode.Open)
+                                img = Image.FromStream(fs)
+                                fs.Close()
+                                '1. Step: Resizing, Image method needs Size and IMAGE object we just created, so now we can start!
+                                Dim imgresized As Image = ImageUtils.ResizeImage(img, FanartSize)
+                                img.Dispose()
+                                '2. Step: Now use jpeg compression to make file even smaller...
+                                ImageUtils.JPEGCompression(imgresized, fanartfile, CInt(AdvancedSettings.GetSetting("ExportImageQuality", "70")))
+                                imgresized.Dispose()
+
+                            Catch ex As Exception
+                                'The old method, used here when anything goes wrong
+                                File.Copy(_curMovie.FanartPath, fanartfile, True)
+                            End Try
+                        End If
+
                         'cocotus end
 
 
@@ -732,6 +889,7 @@ Public Class dlgExportMovies
 
     Private Sub ExportPoster(ByVal fpath As String, ByVal new_width As Integer)
         Try
+
             Dim counter As Integer = 1
             Dim finalpath As String = Path.Combine(fpath, "export")
             Directory.CreateDirectory(finalpath)
@@ -739,14 +897,45 @@ Public Class dlgExportMovies
                 Try
                     Dim posterfile As String = Path.Combine(finalpath, String.Concat(counter.ToString, ".jpg"))
                     If File.Exists(_curMovie.PosterPath) Then
-                        If new_width > 0 Then
-                            Dim im As New Images
-                            im.FromFile(_curMovie.PosterPath)
-                            ImageUtils.ResizeImage(im.Image, new_width, new_width, False, Color.Black.ToArgb)
-                            im.Save(posterfile)
-                        Else
+
+
+                        'cocotus, 2013/02 Export HTML expanded: configurable resizable images
+
+                        'old method
+                        'If new_width > 0 Then
+                        '    Dim im As New Images
+                        '    im.FromFile(_curMovie.PosterPath)
+                        '    ImageUtils.ResizeImage(im.Image, new_width, new_width, False, Color.Black.ToArgb)
+                        '    im.Save(posterfile)
+                        'Else
+                        '    File.Copy(_curMovie.PosterPath, posterfile, True)
+                        'End If
+
+                        If strPosterSize = "original" Then
                             File.Copy(_curMovie.PosterPath, posterfile, True)
+                        Else
+                            'Now we do some image processing to make the output file smaller!
+                            Try
+                                Dim img As Image
+                                Dim sFileName As String = _curMovie.PosterPath
+                                Dim fs As New System.IO.FileStream(sFileName, System.IO.FileMode.Open)
+                                img = Image.FromStream(fs)
+                                fs.Close()
+                                '1. Step: Resizing, Image method needs Size and IMAGE object we just created, so now we can start!
+                                Dim imgresized As Image = ImageUtils.ResizeImage(img, PosterSize)
+                                img.Dispose()
+                                '2. Step: Now use jpeg compression to make file even smaller...
+                                ImageUtils.JPEGCompression(imgresized, posterfile, CInt(AdvancedSettings.GetSetting("ExportImageQuality", "70")))
+                                imgresized.Dispose()
+
+                            Catch ex As Exception
+                                'The old method, used here when anything goes wrong
+                                File.Copy(_curMovie.PosterPath, posterfile, True)
+                            End Try
                         End If
+
+                        'cocotus end
+
                     End If
 
                 Catch
@@ -829,8 +1018,14 @@ Public Class dlgExportMovies
 
     Private Sub LoadHTML()
         Warning(True, Master.eLang.GetString(6, "Loading. Please wait..."))
-        Dim tmphtml As String = Path.Combine(Me.TempPath, String.Concat(Master.eSettings.Language, ".html"))
-        wbMovieList.Navigate(tmphtml)
+        '   Dim tmphtml As String = Path.Combine(Me.TempPath, String.Concat(Master.eSettings.Language, ".html"))
+        Dim tmphtml As String = Path.Combine(Me.TempPath, "index.htm")
+        Try
+            wbMovieList.Navigate(tmphtml)
+            Save_Button.Enabled = True
+        Catch ex As Exception
+            Save_Button.Enabled = False
+        End Try
     End Sub
 
     Function MovieSize(ByVal spath As String) As Long
@@ -872,36 +1067,14 @@ Public Class dlgExportMovies
         Return MovieFilesSize
     End Function
 
-    Private Sub pnlSearch_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pnlSearch.Paint
-    End Sub
 
-    Private Sub Reset_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Reset_Button.Click
-        pnlSearch.Enabled = False
-        use_filter = False
-        BuildHTML(use_filter, String.Empty, String.Empty, base_template, True)
-    End Sub
-
-    Private Sub SaveAll(ByVal sWarning As String, ByVal srcPath As String, ByVal destPath As String, Optional ByVal resizePoster As Integer = 200)
-
-        'cocotus, 2013/02 Export HTML expanded: configurable resizable images
-        'POSTER Managament here: sets internal resizePoster variable to selected value of user (Fanart will be handled in ExportFanart method, works different)
-        If strPosterSize <> "" Then
-            Try
-                'Now instead of default width 200px, user input is considered
-                resizePoster = CInt(strPosterSize)
-            Catch ex As Exception
-                'if anything goes wrong set to 200px
-                resizePoster = 200
-            End Try
-        End If
-        'cocotus end
+    Private Sub SaveAll(ByVal sWarning As String, ByVal srcPath As String, ByVal destPath As String, Optional ByVal resizePoster As Integer = 0)
 
         wbMovieList.Visible = False
         If Not String.IsNullOrEmpty(sWarning) Then Warning(True, sWarning)
-        cbSearch.Enabled = False
+        cbo_SelectedFilter.Enabled = False
         cbTemplate.Enabled = False
-        Search_Button.Enabled = False
-        Reset_Button.Enabled = False
+        btn_BuildHTML.Enabled = False
         Save_Button.Enabled = False
         Me.bwSaveAll = New System.ComponentModel.BackgroundWorker
         Me.bwSaveAll.WorkerReportsProgress = True
@@ -912,84 +1085,58 @@ Public Class dlgExportMovies
             Threading.Thread.Sleep(50)
         End While
 
-        cbSearch.Enabled = True
+        cbo_SelectedFilter.Enabled = True
         cbTemplate.Enabled = True
-        'Search_Button.Enabled = True
-        Reset_Button.Enabled = True
+        btn_BuildHTML.Enabled = True
         Save_Button.Enabled = True
         If pnlCancel.Visible Then Warning(False)
         If Not workerCanceled Then
             wbMovieList.Visible = True
         End If
+
     End Sub
 
     Private Sub Save_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Save_Button.Click
-        Dim saveHTML As New SaveFileDialog()
-        Dim myStream As Stream
-        saveHTML.Filter = "HTML files (*.htm)|*.htm"
-        saveHTML.FilterIndex = 2
-        saveHTML.RestoreDirectory = True
 
-        If saveHTML.ShowDialog() = DialogResult.OK Then
-            myStream = saveHTML.OpenFile()
-            myStream.Close()
-            If Not IsNothing(myStream) Then
-                DontSaveExtra = False 'Force Full Save
-                Dim srcPath As String = String.Concat(Functions.AppPath, "Langs", Path.DirectorySeparatorChar, "html", Path.DirectorySeparatorChar, base_template, Path.DirectorySeparatorChar)
-                Me.SaveAll(Master.eLang.GetString(7, "Saving all files. Please wait..."), srcPath, saveHTML.FileName)
-            End If
-        End If
-    End Sub
+        'cocotus  Use settings instead of opening filedialog which causes problems!
+        'old
+        'Dim saveHTML As New SaveFileDialog()
+        'Dim myStream As Stream
+        'saveHTML.Filter = "HTML files (*.htm)|*.htm"
+        'saveHTML.FilterIndex = 2
+        'saveHTML.RestoreDirectory = True
 
-    Private Sub Search_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Search_Button.Click
-        pnlSearch.Enabled = False
-        use_filter = True
-        Dim sFilter As String = String.Empty
-        If cbSearch.Text = Master.eLang.GetString(5, "Source Folder") Then
-            For Each s As String In lstSources.CheckedItems
-                sFilter = String.Concat(sFilter, If(sFilter = String.Empty, String.Empty, ";"), s.ToString)
-            Next
+        'If saveHTML.ShowDialog() = DialogResult.OK Then
+        '    myStream = saveHTML.OpenFile()
+        '    myStream.Close()
+        '    If Not IsNothing(myStream) Then
+        '        DontSaveExtra = False 'Force Full Save
+        '        Dim srcPath As String = String.Concat(Functions.AppPath, "Langs", Path.DirectorySeparatorChar, "html", Path.DirectorySeparatorChar, base_template, Path.DirectorySeparatorChar)
+        '        Me.SaveAll(Master.eLang.GetString(7, "Saving all files. Please wait..."), srcPath, saveHTML.FileName)
+        '    End If
+        'End If
+        'new simply copy from temp to user defined directory
+        If IO.Directory.Exists(AdvancedSettings.GetSetting("ExportPath", "")) Then
+            CopyDirectory(TempPath, AdvancedSettings.GetSetting("ExportPath", ""), True)
+            Save_Button.Enabled = False
+            MessageBox.Show((Master.eLang.GetString(27, "Template saved to:") & AdvancedSettings.GetSetting("ExportPath", "")), Master.eLang.GetString(361, "Finished!"), MessageBoxButtons.OK)
         Else
-            sFilter = txtSearch.Text
+            Save_Button.Enabled = False
+            MessageBox.Show((Master.eLang.GetString(28, "Export Path is not valid:") & AdvancedSettings.GetSetting("ExportPath", "")), Master.eLang.GetString(816, "An Error Has Occurred"), MessageBoxButtons.OK)
         End If
-        BuildHTML(use_filter, sFilter, cbSearch.Text, base_template, True)
+        
     End Sub
 
     Private Sub SetUp()
         Me.Text = Master.eLang.GetString(8, "Export Movies")
         Me.Save_Button.Text = Master.eLang.GetString(273, "Save", True)
         Me.Close_Button.Text = Master.eLang.GetString(19, "Close", True)
-        Me.Reset_Button.Text = Master.eLang.GetString(9, "Reset")
-        Me.Label1.Text = Master.eLang.GetString(10, "Filter")
-        Me.Search_Button.Text = Master.eLang.GetString(176, "Apply", True)
-        Me.lblIn.Text = Master.eLang.GetString(11, "in")
         Me.lblCompiling.Text = Master.eLang.GetString(12, "Compiling Movie List...")
         Me.lblCanceling.Text = Master.eLang.GetString(13, "Canceling Compilation...")
         Me.btnCancel.Text = Master.eLang.GetString(167, "Cancel", True)
         Me.Label2.Text = Master.eLang.GetString(14, "Template")
-
-        Me.cbSearch.Items.AddRange(New Object() {Master.eLang.GetString(21, "Title", True), Master.eLang.GetString(278, "Year", True), Master.eLang.GetString(2, "Video Flag"), Master.eLang.GetString(3, "Audio Flag"), Master.eLang.GetString(1, "Source Folder")})
-
-
-        'cocotus, 2013/02 Export HTML expanded: configurable resizable images 
-        ' some values of pixelsizes the user can select in combobox /readonly to avoid non numeric input!
-        Me.cboposter.Items.AddRange(New Object() {"200", "500", "1000"})
-        Me.cbofanart.Items.AddRange(New Object() {"900", "1200", "1600"})
-        'cocotus end
-
-        lstSources.Items.Clear()
-        For Each s As Structures.MovieSource In Master.MovieSources
-            lstSources.Items.Add(s.Name)
-        Next
-
-    End Sub
-
-    Private Sub txtSearch_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtSearch.TextChanged
-        If txtSearch.Text <> "" AndAlso cbSearch.Text <> "" Then
-            Search_Button.Enabled = True
-        Else
-            Search_Button.Enabled = False
-        End If
+        Me.btn_BuildHTML.Text = Master.eLang.GetString(26, "Generate HTML...")
+        Save_Button.Enabled = False
     End Sub
 
     Private Sub Warning(ByVal show As Boolean, Optional ByVal txt As String = "")
@@ -1012,28 +1159,45 @@ Public Class dlgExportMovies
 
     Private Sub WebBrowser1_DocumentCompleted(ByVal sender As System.Object, ByVal e As System.Windows.Forms.WebBrowserDocumentCompletedEventArgs) Handles wbMovieList.DocumentCompleted
         If Not bCancelled Then
-            'wbMovieList.Visible = True
+
             If Not cbTemplate.Text = String.Empty Then Me.Save_Button.Enabled = True
-            pnlSearch.Enabled = True
-            Reset_Button.Enabled = bFiltered
+
         End If
         Warning(False)
+    End Sub
+
+    Private Sub btn_BuildHTML_Click(sender As Object, e As EventArgs) Handles btn_BuildHTML.Click
+        If cbo_SelectedFilter.Text = "Filter 1" Then
+            strFilter = AdvancedSettings.GetSetting("ExportFilter1", "")
+        ElseIf cbo_SelectedFilter.Text = "Filter 2" Then
+            strFilter = AdvancedSettings.GetSetting("ExportFilter2", "")
+        ElseIf cbo_SelectedFilter.Text = "Filter 3" Then
+            strFilter = AdvancedSettings.GetSetting("ExportFilter3", "")
+        Else
+            strFilter = ""
+        End If
+        If Not strFilter = "" Then
+            use_filter = True
+            Dim sFiltertype As String = String.Empty
+            Dim parts As String() = strFilter.Split(New String() {"#"}, StringSplitOptions.None)
+            strFilter = parts(0)
+            If parts.Length > 1 Then
+                sFiltertype = parts(1)
+            End If
+            BuildHTML(use_filter, strFilter, sFiltertype, base_template, True)
+        Else
+            BuildHTML(False, String.Empty, String.Empty, base_template, True)
+        End If
     End Sub
 
     'cocotus, 2013/02 Export HTML expanded: configurable resizable images
     'contains selected poster/fanart sizes
     Dim strFanartSize As String = ""
     Dim strPosterSize As String = ""
-
-    'save selected value from combobox to variables on LostFocus event of combobox
-    Private Sub cboposter_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cboposter.LostFocus
-        strPosterSize = cboposter.Text
-    End Sub
-
-    Private Sub cbofanart_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbofanart.LostFocus
-        strFanartSize = cbofanart.Text
-    End Sub
-
+    Dim strFilter As String = ""
+    'The following resizing method of image requires Size object, so lets create that...
+    Dim FanartSize As New Size(1024, 576)
+    Dim PosterSize As New Size(200, 300)
     'cocotus end
 
 #End Region 'Methods
@@ -1053,5 +1217,7 @@ Public Class dlgExportMovies
     End Structure
 
 #End Region 'Nested Types
+
+
 
 End Class
