@@ -376,9 +376,9 @@ Public Class dlgExportMovies
                 row = row.Replace("<$DATEADD>", StringUtils.HtmlEncode(Functions.ConvertFromUnixTimestamp(_curMovie.DateAdd).ToString("dd.MM.yyyy")))
 
                 'cocotus, 2013/02 Added support for new MediaInfo-fields
-                row = row.Replace("<$MOVIESETS>", StringUtils.HtmlEncode(AllMovieSetList)) 'A long string of all moviesets, seperated with #!
-                row = row.Replace("<$TVSHOWS>", StringUtils.HtmlEncode(AllTVShowList)) 'A long string of all tvshows, seperated with #!
-                row = row.Replace("<$SET>", StringUtils.HtmlEncode(GetMovieSets(_curMovie))) 'All sets which movie belongs to, seperated with ;!
+                row = row.Replace("<$MOVIESETS>", StringUtils.HtmlEncode(AllMovieSetList)) 'A long string of all moviesets, seperated with |!
+                row = row.Replace("<$TVSHOWS>", StringUtils.HtmlEncode(AllTVShowList)) 'A long string of all tvshows, seperated with |!
+                row = row.Replace("<$SET>", StringUtils.HtmlEncode(GetMovieSets(_curMovie))) 'All sets which movie belongs to, seperated with |!
                 row = row.Replace("<$VIDEOBITRATE>", _vidBitrate)
                 row = row.Replace("<$VIDEOMULTIVIEW>", _vidMultiView)
                 row = row.Replace("<$VIDEOENCODINGSETTINGS>", _vidEncodedSettings)
@@ -423,7 +423,7 @@ Public Class dlgExportMovies
             If _curMovie.Movie.Sets.Count > 0 Then
                 For i = 0 To _curMovie.Movie.Sets.Count - 1
                     If i > 0 Then
-                        ReturnString = ReturnString + "#" + _curMovie.Movie.Sets.Item(i).Set
+                        ReturnString = ReturnString + "|" + _curMovie.Movie.Sets.Item(i).Set
                     Else
                         ReturnString = _curMovie.Movie.Sets.Item(i).Set
                     End If
@@ -461,7 +461,7 @@ Public Class dlgExportMovies
             If alSets.Count > 0 Then
                 For i = 0 To alSets.Count - 1
                     If i > 0 Then
-                        ReturnString = ReturnString + "#" + alSets(i)
+                        ReturnString = ReturnString + "|" + alSets(i)
                     Else
                         ReturnString = alSets(i)
                     End If
