@@ -150,6 +150,7 @@ Public Class Settings
     Private _locklanguageV As Boolean
     Private _locklanguageA As Boolean
     Private _lockMPAA As Boolean
+    Private _lockSubtitle As Boolean
     Private _useMPAAForFSK As Boolean
     Private _lockstudio As Boolean
     Private _locktagline As Boolean
@@ -1447,6 +1448,14 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._lockMPAA = value
+        End Set
+    End Property
+    Public Property LockSubtitle() As Boolean
+        Get
+            Return Me._lockSubtitle
+        End Get
+        Set(ByVal value As Boolean)
+            Me._lockSubtitle = value
         End Set
     End Property
     Public Property UseMPAAForFSK() As Boolean
