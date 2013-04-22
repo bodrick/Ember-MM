@@ -81,6 +81,7 @@ Partial Class dlgSettings
         Me.chkMarkNew = New System.Windows.Forms.CheckBox()
         Me.lbGenre = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.chkMovieWatchedCol = New System.Windows.Forms.CheckBox()
         Me.txtCheckTitleTol = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.chkCheckTitles = New System.Windows.Forms.CheckBox()
@@ -581,6 +582,7 @@ Partial Class dlgSettings
         Me.chkUseMIDuration = New System.Windows.Forms.CheckBox()
         Me.chkScanMediaInfo = New System.Windows.Forms.CheckBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.chkLockSubtitle = New System.Windows.Forms.CheckBox()
         Me.chkLockMPAA = New System.Windows.Forms.CheckBox()
         Me.chkLockLanguageA = New System.Windows.Forms.CheckBox()
         Me.chkLockLanguageV = New System.Windows.Forms.CheckBox()
@@ -611,7 +613,6 @@ Partial Class dlgSettings
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.chkMovieWatchedCol = New System.Windows.Forms.CheckBox()
         Me.GroupBox4.SuspendLayout()
         Me.GroupBox29.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -1315,6 +1316,17 @@ Partial Class dlgSettings
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Media List Options"
+        '
+        'chkMovieWatchedCol
+        '
+        Me.chkMovieWatchedCol.AutoSize = True
+        Me.chkMovieWatchedCol.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieWatchedCol.Location = New System.Drawing.Point(9, 274)
+        Me.chkMovieWatchedCol.Name = "chkMovieWatchedCol"
+        Me.chkMovieWatchedCol.Size = New System.Drawing.Size(142, 17)
+        Me.chkMovieWatchedCol.TabIndex = 75
+        Me.chkMovieWatchedCol.Text = "Hide Watched Column"
+        Me.chkMovieWatchedCol.UseVisualStyleBackColor = True
         '
         'txtCheckTitleTol
         '
@@ -6422,9 +6434,9 @@ Partial Class dlgSettings
         Me.gbOptions.Controls.Add(Me.chkYear)
         Me.gbOptions.Controls.Add(Me.chkTitle)
         Me.gbOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbOptions.Location = New System.Drawing.Point(8, 218)
+        Me.gbOptions.Location = New System.Drawing.Point(8, 227)
         Me.gbOptions.Name = "gbOptions"
-        Me.gbOptions.Size = New System.Drawing.Size(302, 179)
+        Me.gbOptions.Size = New System.Drawing.Size(302, 170)
         Me.gbOptions.TabIndex = 67
         Me.gbOptions.TabStop = False
         Me.gbOptions.Text = "Scraper Fields - Global"
@@ -6894,6 +6906,7 @@ Partial Class dlgSettings
         '
         'GroupBox10
         '
+        Me.GroupBox10.Controls.Add(Me.chkLockSubtitle)
         Me.GroupBox10.Controls.Add(Me.chkLockMPAA)
         Me.GroupBox10.Controls.Add(Me.chkLockLanguageA)
         Me.GroupBox10.Controls.Add(Me.chkLockLanguageV)
@@ -6908,10 +6921,20 @@ Partial Class dlgSettings
         Me.GroupBox10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox10.Location = New System.Drawing.Point(8, 6)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(156, 206)
+        Me.GroupBox10.Size = New System.Drawing.Size(156, 224)
         Me.GroupBox10.TabIndex = 1
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Global Locks"
+        '
+        'chkLockSubtitle
+        '
+        Me.chkLockSubtitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLockSubtitle.Location = New System.Drawing.Point(6, 203)
+        Me.chkLockSubtitle.Name = "chkLockSubtitle"
+        Me.chkLockSubtitle.Size = New System.Drawing.Size(129, 17)
+        Me.chkLockSubtitle.TabIndex = 50
+        Me.chkLockSubtitle.Text = "Lock Subtitle"
+        Me.chkLockSubtitle.UseVisualStyleBackColor = True
         '
         'chkLockMPAA
         '
@@ -6961,7 +6984,7 @@ Partial Class dlgSettings
         Me.chkLockPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkLockPlot.Location = New System.Drawing.Point(6, 33)
         Me.chkLockPlot.Name = "chkLockPlot"
-        Me.chkLockPlot.Size = New System.Drawing.Size(129, 17)
+        Me.chkLockPlot.Size = New System.Drawing.Size(76, 17)
         Me.chkLockPlot.TabIndex = 0
         Me.chkLockPlot.Text = "Lock Plot"
         Me.chkLockPlot.UseVisualStyleBackColor = True
@@ -7181,7 +7204,7 @@ Partial Class dlgSettings
         Me.pnlScraper.Controls.Add(Me.gbOptions)
         Me.pnlScraper.Controls.Add(Me.GroupBox1)
         Me.pnlScraper.Controls.Add(Me.GroupBox26)
-        Me.pnlScraper.Location = New System.Drawing.Point(936, 576)
+        Me.pnlScraper.Location = New System.Drawing.Point(902, 202)
         Me.pnlScraper.Name = "pnlScraper"
         Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
         Me.pnlScraper.TabIndex = 14
@@ -7250,17 +7273,6 @@ Partial Class dlgSettings
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(636, 69)
         Me.Panel2.TabIndex = 8
-        '
-        'chkMovieWatchedCol
-        '
-        Me.chkMovieWatchedCol.AutoSize = True
-        Me.chkMovieWatchedCol.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkMovieWatchedCol.Location = New System.Drawing.Point(9, 274)
-        Me.chkMovieWatchedCol.Name = "chkMovieWatchedCol"
-        Me.chkMovieWatchedCol.Size = New System.Drawing.Size(142, 17)
-        Me.chkMovieWatchedCol.TabIndex = 75
-        Me.chkMovieWatchedCol.Text = "Hide Watched Column"
-        Me.chkMovieWatchedCol.UseVisualStyleBackColor = True
         '
         'dlgSettings
         '
@@ -8052,4 +8064,5 @@ Partial Class dlgSettings
     Friend WithEvents chkLockMPAA As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseMPAAFSK As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieWatchedCol As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLockSubtitle As System.Windows.Forms.CheckBox
 End Class

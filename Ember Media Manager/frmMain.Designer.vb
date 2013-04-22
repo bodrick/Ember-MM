@@ -498,6 +498,9 @@ Partial Class frmMain
         Me.pnlLoadingSettings = New System.Windows.Forms.Panel()
         Me.tmrAppExit = New System.Windows.Forms.Timer(Me.components)
         Me.tmrKeyBuffer = New System.Windows.Forms.Timer(Me.components)
+        Me.ExportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MoviesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TVShowsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip.SuspendLayout()
         Me.MenuStrip.SuspendLayout()
         Me.scMain.Panel1.SuspendLayout()
@@ -742,7 +745,7 @@ Partial Class frmMain
         '
         'ToolsToolStripMenuItem
         '
-        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CleanFoldersToolStripMenuItem, Me.ConvertFileSourceToFolderSourceToolStripMenuItem, Me.CopyExistingFanartToBackdropsFolderToolStripMenuItem, Me.ToolStripSeparator4, Me.SetsManagerToolStripMenuItem, Me.ToolStripMenuItem3, Me.ClearAllCachesToolStripMenuItem, Me.RefreshAllMoviesToolStripMenuItem, Me.CleanDatabaseToolStripMenuItem, Me.ToolStripSeparator5})
+        Me.ToolsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CleanFoldersToolStripMenuItem, Me.ConvertFileSourceToFolderSourceToolStripMenuItem, Me.CopyExistingFanartToBackdropsFolderToolStripMenuItem, Me.ToolStripSeparator4, Me.SetsManagerToolStripMenuItem, Me.ToolStripMenuItem3, Me.ClearAllCachesToolStripMenuItem, Me.RefreshAllMoviesToolStripMenuItem, Me.CleanDatabaseToolStripMenuItem, Me.ToolStripSeparator5, Me.ExportToolStripMenuItem})
         Me.ToolsToolStripMenuItem.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.ToolsToolStripMenuItem.Name = "ToolsToolStripMenuItem"
         Me.ToolsToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
@@ -4443,6 +4446,26 @@ Partial Class frmMain
         '
         Me.tmrKeyBuffer.Interval = 1000
         '
+        'ExportToolStripMenuItem
+        '
+        Me.ExportToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MoviesToolStripMenuItem, Me.TVShowsToolStripMenuItem})
+        Me.ExportToolStripMenuItem.Image = Global.Ember_Media_Manager.My.Resources.Resources.modules
+        Me.ExportToolStripMenuItem.Name = "ExportToolStripMenuItem"
+        Me.ExportToolStripMenuItem.Size = New System.Drawing.Size(352, 22)
+        Me.ExportToolStripMenuItem.Text = "Export"
+        '
+        'MoviesToolStripMenuItem
+        '
+        Me.MoviesToolStripMenuItem.Name = "MoviesToolStripMenuItem"
+        Me.MoviesToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.MoviesToolStripMenuItem.Text = "Movies"
+        '
+        'TVShowsToolStripMenuItem
+        '
+        Me.TVShowsToolStripMenuItem.Name = "TVShowsToolStripMenuItem"
+        Me.TVShowsToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TVShowsToolStripMenuItem.Text = "TV Shows"
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -5020,4 +5043,7 @@ Partial Class frmMain
     Friend WithEvents pbStar1 As System.Windows.Forms.PictureBox
     Friend WithEvents lblVotes As System.Windows.Forms.Label
     Friend WithEvents lblOriginalTitle As System.Windows.Forms.Label
+    Friend WithEvents ExportToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MoviesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TVShowsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

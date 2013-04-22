@@ -2337,6 +2337,7 @@ Public Class dlgSettings
             Me.chkLockRealStudio.Checked = Master.eSettings.LockStudio
             Me.chkLockLanguageA.Checked = Master.eSettings.LockLanguageA
             Me.chkLockLanguageV.Checked = Master.eSettings.LockLanguageV
+            Me.chkLockSubtitle.Checked = Master.eSettings.LockSubtitle
             Me.chkLockMPAA.Checked = Master.eSettings.LockMPAA
             Me.chkUseMPAAFSK.Checked = Master.eSettings.UseMPAAForFSK
             Me.chkLockGenre.Checked = Master.eSettings.LockGenre
@@ -3438,6 +3439,7 @@ Public Class dlgSettings
             Master.eSettings.LockRating = Me.chkLockRating.Checked
             Master.eSettings.LockLanguageV = Me.chkLockLanguageV.Checked
             Master.eSettings.LockLanguageA = Me.chkLockLanguageA.Checked
+            Master.eSettings.LockSubtitle = Me.chkLockSubtitle.Checked
             Master.eSettings.LockMPAA = Me.chkLockMPAA.Checked
             Master.eSettings.UseMPAAForFSK = Me.chkUseMPAAFSK.Checked
             Master.eSettings.LockStudio = Me.chkLockRealStudio.Checked
@@ -3854,6 +3856,7 @@ Public Class dlgSettings
         Me.chkSingleScrapeImages.Text = Master.eLang.GetString(499, "Get on Single Scrape")
         Me.chkLockLanguageV.Text = Master.eLang.GetString(879, "Lock Language (video)")
         Me.chkLockLanguageA.Text = Master.eLang.GetString(880, "Lock Language (audio)")
+        Me.chkLockSubtitle.Text = Master.eLang.GetString(885, "Lock Subtitle")
         Me.chkLockMPAA.Text = Master.eLang.GetString(881, "Lock MPAA/Certification")
         Me.chkUseMPAAFSK.Text = Master.eLang.GetString(882, "Use MPAA as Fallback for FSK Rating")
         Me.chkUseETasFA.Text = Master.eLang.GetString(503, "Use if no Fanart Found")
@@ -4637,6 +4640,21 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkLockSubtitle_CheckedChanged(sender As Object, e As EventArgs) Handles chkLockSubtitle.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkLockMPAA_CheckedChanged(sender As Object, e As EventArgs) Handles chkLockMPAA.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkLockLanguageA_CheckedChanged(sender As Object, e As EventArgs) Handles chkLockLanguageA.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
+    Private Sub chkLockLanguageV_CheckedChanged(sender As Object, e As EventArgs) Handles chkLockLanguageV.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
     Private Sub txtTVDefFIExt_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTVDefFIExt.TextChanged
         btnNewTVMetaDataFT.Enabled = Not String.IsNullOrEmpty(txtTVDefFIExt.Text) AndAlso Not Me.lstTVMetaData.Items.Contains(If(txtTVDefFIExt.Text.StartsWith("."), txtTVDefFIExt.Text, String.Concat(".", txtTVDefFIExt.Text)))
         If btnNewTVMetaDataFT.Enabled Then
@@ -4672,5 +4690,6 @@ Public Class dlgSettings
     End Class
 
 #End Region	'Methods
+
 
 End Class

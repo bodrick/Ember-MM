@@ -686,7 +686,7 @@ Control2.innerHTML = moviewall_full;
 function func_BuildMoviesets() {
 var Control1 = document.getElementById("navigation");
 var i;
-var arrmoviesets=DataMoviesets.split("#"); 
+var arrmoviesets=DataMoviesets.split("|"); 
 navilinks_full = "";  // deletes all entries of left sidebar
 moviewall_full = ""; // deletes all entries of right sidebar
 
@@ -705,7 +705,7 @@ Control1.innerHTML = '<ol id="ol_navigation">' + navilinks_full + '</ol>';
 //---- Function: Show Moviesets-----
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 function func_DisplayMovieset(moviesetindex) {
-var arrmoviesets=DataMoviesets.split("#"); 
+var arrmoviesets=DataMoviesets.split("|"); 
 var movieset=arrmoviesets[moviesetindex];
 var myregexp = new RegExp(movieset); //  NEW RegeExp Object
 var doOnce = 0;

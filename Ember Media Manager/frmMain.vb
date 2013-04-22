@@ -8401,6 +8401,8 @@ doCancel:
                 .cmnuRescrape.Text = Master.eLang.GetString(163, "(Re)Scrape Movie")
 				.ScrapingToolStripMenuItem.Text = Master.eLang.GetString(164, "(Re)Scrape Selected Movies")
 				.WikiStripMenuItem.Text = Master.eLang.GetString(869, "EmberMM.com &Wiki...")
+                .MoviesToolStripMenuItem.Text = Master.eLang.GetString(36, "Movies")
+                .TVShowsToolStripMenuItem.Text = Master.eLang.GetString(698, "TV Shows")
 
                 Dim TT As ToolTip = New System.Windows.Forms.ToolTip(.components)
                 .tsbAutoPilot.ToolTipText = Master.eLang.GetString(84, "Scrape/download data from the internet for multiple movies.")
@@ -9069,5 +9071,54 @@ doCancel:
     Private Sub tmrKeyBuffer_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmrKeyBuffer.Tick
         tmrKeyBuffer.Enabled = False
         KeyBuffer = String.Empty
+    End Sub
+    Private Sub MoviesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MoviesToolStripMenuItem.Click
+        Try
+            Dim table As New DataTable
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
+                SQLcommand.CommandText = "Select * from Movies;"
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    'Load the SqlDataReader object to the DataTable object as follows. 
+                    table.Load(SQLreader)
+                End Using
+            End Using
+
+            Dim saveFileDialog1 As New SaveFileDialog()
+            saveFileDialog1.FileName = "export_movies" + ".xml"
+            saveFileDialog1.Filter = "xml files (*.xml)|*.xml"
+            saveFileDialog1.FilterIndex = 2
+            saveFileDialog1.RestoreDirectory = True
+
+            If saveFileDialog1.ShowDialog() = DialogResult.OK Then
+                table.WriteXml(saveFileDialog1.FileName)
+            End If
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
+    End Sub
+
+    Private Sub TVShowsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TVShowsToolStripMenuItem.Click
+        Try
+            Dim table As New DataTable
+            Using SQLcommand As SQLite.SQLiteCommand = Master.DB.MediaDBConn.CreateCommand()
+                SQLcommand.CommandText = "Select * from TVShows;"
+                Using SQLreader As SQLite.SQLiteDataReader = SQLcommand.ExecuteReader()
+                    'Load the SqlDataReader object to the DataTable object as follows. 
+                    table.Load(SQLreader)
+                End Using
+            End Using
+
+            Dim saveFileDialog1 As New SaveFileDialog()
+            saveFileDialog1.FileName = "export_tvshows" + ".xml"
+            saveFileDialog1.Filter = "xml files (*.xml)|*.xml"
+            saveFileDialog1.FilterIndex = 2
+            saveFileDialog1.RestoreDirectory = True
+
+            If saveFileDialog1.ShowDialog() = DialogResult.OK Then
+                table.WriteXml(saveFileDialog1.FileName)
+            End If
+        Catch ex As Exception
+            Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+        End Try
     End Sub
 End Class
