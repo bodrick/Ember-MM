@@ -807,7 +807,7 @@ Public Class Images
                 End With
                 
                 If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
-                    Save(Path.Combine(Master.eSettings.BDPath, Path.GetFileName(fPath)), Master.eSettings.AllSPosterQuality, sURL, doResize)
+                    Save(String.Concat(Master.eSettings.BDPath, Path.DirectorySeparatorChar, StringUtils.CleanFileName(mMovie.Movie.OriginalTitle), "_tt", mMovie.Movie.IMDBID, ".jpg"), Master.eSettings.AllSPosterQuality, sURL, doResize)
                 End If
 
             ElseIf (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
@@ -846,8 +846,9 @@ Public Class Images
                 End With
 
                 If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
-                    Save(Path.Combine(Master.eSettings.BDPath, Path.GetFileName(fPath)), Master.eSettings.AllSPosterQuality, sURL, doResize)
+                    Save(String.Concat(Master.eSettings.BDPath, Path.DirectorySeparatorChar, StringUtils.CleanFileName(mMovie.Movie.OriginalTitle), "_tt", mMovie.Movie.IMDBID, ".jpg"), Master.eSettings.AllSPosterQuality, sURL, doResize)
                 End If
+
             Else
                 Dim tmpName As String = Path.GetFileNameWithoutExtension(mMovie.Filename)
                 Dim tmpNameStack As String = StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(mMovie.Filename))
@@ -865,15 +866,6 @@ Public Class Images
                     If Not File.Exists(tPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteFanart) Then
                         Save(tPath, Master.eSettings.FanartQuality, sURL, doResize)
                         strReturn = tPath
-                        If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
-                            If FileUtils.Common.isVideoTS(mMovie.Filename) Then
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            ElseIf FileUtils.Common.isBDRip(mMovie.Filename) Then
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            Else
-                                Save(Path.Combine(Master.eSettings.BDPath, Path.GetFileName(tPath)), Master.eSettings.FanartQuality, sURL, doResize)
-                            End If
-                        End If
                     End If
                 End If
 
@@ -893,15 +885,6 @@ Public Class Images
                     If Not File.Exists(tPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteFanart) Then
                         Save(tPath, Master.eSettings.FanartQuality, sURL, doResize)
                         strReturn = tPath
-                        If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
-                            If FileUtils.Common.isVideoTS(mMovie.Filename) Then
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            ElseIf FileUtils.Common.isBDRip(mMovie.Filename) Then
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            Else
-                                Save(Path.Combine(Master.eSettings.BDPath, Path.GetFileName(tPath)), Master.eSettings.FanartQuality, sURL, doResize)
-                            End If
-                        End If
                     End If
                 End If
 
@@ -910,16 +893,11 @@ Public Class Images
                     If Not File.Exists(tPath) OrElse (IsEdit OrElse Master.eSettings.OverwriteFanart) Then
                         Save(tPath, Master.eSettings.FanartQuality, sURL, doResize)
                         strReturn = tPath
-                        If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
-                            If FileUtils.Common.isVideoTS(mMovie.Filename) Then
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            ElseIf FileUtils.Common.isBDRip(mMovie.Filename) Then
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            Else
-                                Save(Path.Combine(Master.eSettings.BDPath, String.Concat(tmpName, "-fanart.jpg")), Master.eSettings.FanartQuality, sURL, doResize)
-                            End If
-                        End If
                     End If
+                End If
+
+                If Master.eSettings.AutoBD AndAlso Directory.Exists(Master.eSettings.BDPath) Then
+                    Save(String.Concat(Master.eSettings.BDPath, Path.DirectorySeparatorChar, StringUtils.CleanFileName(mMovie.Movie.OriginalTitle), "_tt", mMovie.Movie.IMDBID, ".jpg"), Master.eSettings.AllSPosterQuality, sURL, doResize)
                 End If
             End If
 
