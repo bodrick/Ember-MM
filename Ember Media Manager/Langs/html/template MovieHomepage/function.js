@@ -910,20 +910,10 @@ Control2.innerHTML = moviewall_full;
 //---- Function: Open Movie Folder -----
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++//
 function func_OpenFolder(Counter) {
-var Adresse = window.location.href;
-var searchURL = new RegExp('file:'); //  NEW RegeExp Object
-var result = Adresse.search(searchURL);
 
-if (result !== -1) // HTML Page is local!
-{
 window.open ('file:///' + DataURL[Counter] + '/' + DataFilename[Counter], '_blank');
-}
-else // HTML Page is placed in internet!
-{
-alert( 'Kein Zugriff auf Ordner möglich!' );
-}
-}
 
+}
 
 
 /* ****************************************************************************** * // CREDIT: Quaese, Quelle: http://www.tutorials.de/javascript-ajax/283260-javascript-zweidimensionales-array-sortieren.html
