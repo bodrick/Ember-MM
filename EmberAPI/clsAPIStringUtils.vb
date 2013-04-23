@@ -424,6 +424,24 @@ Public Class StringUtils
         Return String.Empty
     End Function
 
+    Public Shared Function CleanFileName(ByVal fName As String) As String
+
+        If Not String.IsNullOrEmpty(fName) Then
+            fName = fName.Replace(":", " -")
+            fName = fName.Replace("/", String.Empty)
+            'pattern = pattern.Replace("\", String.Empty)
+            fName = fName.Replace("|", String.Empty)
+            fName = fName.Replace("<", String.Empty)
+            fName = fName.Replace(">", String.Empty)
+            fName = fName.Replace("?", String.Empty)
+            fName = fName.Replace("*", String.Empty)
+            fName = fName.Replace("  ", " ")
+            Return fName
+        End If
+
+        Return fName
+    End Function
+
 #End Region 'Methods
 
 #Region "Nested Types"
