@@ -218,15 +218,7 @@ Public Class FileFolderRenamer
                 pattern = String.Concat(pattern, strmore)
                 nextC = pattern.IndexOf("$?")
             End While
-            pattern = pattern.Replace(":", " -")
-            pattern = pattern.Replace("/", String.Empty)
-            'pattern = pattern.Replace("\", String.Empty)
-            pattern = pattern.Replace("|", String.Empty)
-            pattern = pattern.Replace("<", String.Empty)
-            pattern = pattern.Replace(">", String.Empty)
-            pattern = pattern.Replace("?", String.Empty)
-            pattern = pattern.Replace("*", String.Empty)
-            pattern = pattern.Replace("  ", " ")
+            StringUtils.CleanFileName(pattern)
 
             For Each Invalid As Char In Path.GetInvalidPathChars
                 pattern = pattern.Replace(Invalid, String.Empty)
