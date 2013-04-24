@@ -2685,8 +2685,8 @@ Public Class dlgSettings
 
 			Try
 				'If tvSettings.Nodes.Count > 0 AndAlso tvSettings.Nodes(0).TreeView.IsDisposed Then Return 'Dont know yet why we need this. second call to settings will raise Exception with treview been disposed
-				If Not IsNothing(tvSettings.Nodes.Find(Name, True)(0)) Then
-					Dim t As TreeNode = tvSettings.Nodes.Find(Name, True)(0)
+				Dim t As TreeNode = tvSettings.Nodes.Find(Name, True)(0)
+				If Not IsNothing(t) Then
 					If Not diffOrder = 0 Then
 						Dim p As TreeNode = t.Parent
 						Dim i As Integer = t.Index
@@ -2708,9 +2708,20 @@ Public Class dlgSettings
 					Me.pbCurrent.Image = Me.ilSettings.Images(If(State, 9, 10))
 				End If
 
-				For Each s As ModulesManager._externalScraperModuleClass In (ModulesManager.Instance.externalScrapersModules.Where(Function(y) y.AssemblyName <> Name))
+				For Each s As ModulesManager._externalScraperModuleClass_Data In (ModulesManager.Instance.externalDataScrapersModules.Where(Function(y) y.AssemblyName <> Name))
 					s.ProcessorModule.ScraperOrderChanged()
-					s.ProcessorModule.PostScraperOrderChanged()
+				Next
+				For Each s As ModulesManager._externalScraperModuleClass_Poster In (ModulesManager.Instance.externalPosterScrapersModules.Where(Function(y) y.AssemblyName <> Name))
+					s.ProcessorModule.ScraperOrderChanged()
+				Next
+				For Each s As ModulesManager._externalScraperModuleClass_Trailer In (ModulesManager.Instance.externalTrailerScrapersModules.Where(Function(y) y.AssemblyName <> Name))
+					s.ProcessorModule.ScraperOrderChanged()
+				Next
+				For Each s As ModulesManager._externalTVScraperModuleClass_Data In (ModulesManager.Instance.externalTVDataScrapersModules.Where(Function(y) y.AssemblyName <> Name))
+					s.ProcessorModule.ScraperOrderChanged()
+				Next
+				For Each s As ModulesManager._externalTVScraperModuleClass_Poster In (ModulesManager.Instance.externalTVPosterScrapersModules.Where(Function(y) y.AssemblyName <> Name))
+					s.ProcessorModule.ScraperOrderChanged()
 				Next
 
 			Catch ex As Exception
@@ -3739,18 +3750,37 @@ Public Class dlgSettings
 			Master.eSettings.OrderDefault = DirectCast(Me.cbOrdering.SelectedIndex, Enums.Ordering)
 			Master.eSettings.OnlyValueForCert = Me.chkOnlyValueForCert.Checked
 			Master.eSettings.ScraperActorThumbs = Me.chkScraperActorThumbs.Checked
-			For Each s As ModulesManager._externalScraperModuleClass In ModulesManager.Instance.externalScrapersModules
+			For Each s As ModulesManager._externalScraperModuleClass_Data In ModulesManager.Instance.externalDataScrapersModules
 				Try
-					If s.ProcessorModule.IsScraper Then s.ProcessorModule.SaveSetupScraper(Not isApply)
-					If s.ProcessorModule.IsPostScraper Then s.ProcessorModule.SaveSetupPostScraper(Not isApply)
+					s.ProcessorModule.SaveSetupScraper(Not isApply)
 				Catch ex As Exception
 					Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 				End Try
 			Next
-			For Each s As ModulesManager._externalTVScraperModuleClass In ModulesManager.Instance.externalTVScrapersModules
+			For Each s As ModulesManager._externalScraperModuleClass_Poster In ModulesManager.Instance.externalPosterScrapersModules
 				Try
-					If s.ProcessorModule.IsScraper Then s.ProcessorModule.SaveSetupScraper(Not isApply)
-					If s.ProcessorModule.IsPostScraper Then s.ProcessorModule.SaveSetupPostScraper(Not isApply)
+					s.ProcessorModule.SaveSetupScraper(Not isApply)
+				Catch ex As Exception
+					Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+				End Try
+			Next
+			For Each s As ModulesManager._externalScraperModuleClass_Trailer In ModulesManager.Instance.externalTrailerScrapersModules
+				Try
+					s.ProcessorModule.SaveSetupScraper(Not isApply)
+				Catch ex As Exception
+					Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+				End Try
+			Next
+			For Each s As ModulesManager._externalTVScraperModuleClass_Data In ModulesManager.Instance.externalTVDataScrapersModules
+				Try
+					s.ProcessorModule.SaveSetupScraper(Not isApply)
+				Catch ex As Exception
+					Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+				End Try
+			Next
+			For Each s As ModulesManager._externalTVScraperModuleClass_Poster In ModulesManager.Instance.externalTVPosterScrapersModules
+				Try
+					s.ProcessorModule.SaveSetupScraper(Not isApply)
 				Catch ex As Exception
 					Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
 				End Try
