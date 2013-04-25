@@ -37,7 +37,7 @@ CREATE TABLE Movies (
 	Director TEXT,
 	Credits TEXT,
 	Playcount TEXT,
-	HasWatched BOOL,
+	HasWatched BOOL NOT NULL DEFAULT False,
 	Trailer TEXT,
 	PosterPath TEXT,
 	FanartPath TEXT,
@@ -188,7 +188,8 @@ CREATE TABLE TVEps(
 	NfoPath TEXT,
 	NeedsSave BOOL NOT NULL DEFAULT False,
 	Missing BOOL NOT NULL DEFAULT False,
-	Playcount TEXT
+	Playcount TEXT,
+	HasWatched BOOL NOT NULL DEFAULT False
 	);
 
 CREATE TABLE TVShowActors(

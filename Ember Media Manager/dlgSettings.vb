@@ -1247,6 +1247,10 @@ Public Class dlgSettings
         Me.SetApplyButton(True)
     End Sub
 
+    Private Sub chkEpisodeWatchedCol_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkEpisodeWatchedCol.CheckedChanged
+        Me.SetApplyButton(True)
+    End Sub
+
     Private Sub chkEpisodePosterCol_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkEpisodePosterCol.CheckedChanged
         Me.SetApplyButton(True)
     End Sub
@@ -2544,6 +2548,7 @@ Public Class dlgSettings
             Me.chkEpisodePosterCol.Checked = Master.eSettings.EpisodePosterCol
             Me.chkEpisodeFanartCol.Checked = Master.eSettings.EpisodeFanartCol
             Me.chkEpisodeNfoCol.Checked = Master.eSettings.EpisodeNfoCol
+            Me.chkEpisodeWatchedCol.Checked = Master.eSettings.EpisodeWatchedCol
             Me.chkSourceFromFolder.Checked = Master.eSettings.SourceFromFolder
             Me.chkSortBeforeScan.Checked = Master.eSettings.SortBeforeScan
             Me.tLangList.Clear()
@@ -3656,6 +3661,7 @@ Public Class dlgSettings
             Master.eSettings.EpisodePosterCol = Me.chkEpisodePosterCol.Checked
             Master.eSettings.EpisodeFanartCol = Me.chkEpisodeFanartCol.Checked
             Master.eSettings.EpisodeNfoCol = Me.chkEpisodeNfoCol.Checked
+            Master.eSettings.EpisodeWatchedCol = Me.chkEpisodeWatchedCol.Checked
             Master.eSettings.SourceFromFolder = Me.chkSourceFromFolder.Checked
             Master.eSettings.SortBeforeScan = Me.chkSortBeforeScan.Checked
             If tLangList.Count > 0 Then
@@ -4012,6 +4018,7 @@ Public Class dlgSettings
         Me.chkEpisodeFanartCol.Text = Me.chkMovieFanartCol.Text
         Me.chkShowNfoCol.Text = Me.chkMovieInfoCol.Text
         Me.chkEpisodeNfoCol.Text = Me.chkMovieInfoCol.Text
+        Me.chkEpisodeWatchedCol.Text = Master.eLang.GetString(884, "Hide Watched Column")
         Me.gbShowPosters.Text = Master.eLang.GetString(683, "Show Posters")
         Me.gbShowFanart.Text = Master.eLang.GetString(684, "Show Fanart")
         Me.gbSeasonPosters.Text = Master.eLang.GetString(685, "Season Posters")

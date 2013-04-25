@@ -86,6 +86,7 @@ Public Class Settings
     Private _episodejpg As Boolean
     Private _episodedashthumbjpg As Boolean
     Private _episodenfocol As Boolean
+    Private _episodewatchedcol As Boolean
     Private _episodepostercol As Boolean
     Private _episodetbn As Boolean
     Private _eplockplot As Boolean
@@ -865,6 +866,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._episodenfocol = value
+        End Set
+    End Property
+
+    Public Property EpisodeWatchedCol() As Boolean
+        Get
+            Return Me._episodewatchedcol
+        End Get
+        Set(ByVal value As Boolean)
+            Me._episodewatchedcol = value
         End Set
     End Property
 
@@ -3630,6 +3640,7 @@ Public Class Settings
         Me._episodepostercol = False
         Me._episodefanartcol = True
         Me._episodenfocol = False
+        Me._episodewatchedcol = False
         Me._proxyuri = String.Empty
         Me._proxyport = -1
         Me._proxycredentials = New NetworkCredential

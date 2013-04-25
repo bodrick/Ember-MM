@@ -295,6 +295,13 @@ Public Class dlgEditEpisode
             If Not String.IsNullOrEmpty(Master.currShow.TVEp.Season.ToString) Then .txtSeason.Text = Master.currShow.TVEp.Season.ToString
             If Not String.IsNullOrEmpty(Master.currShow.TVEp.Episode.ToString) Then .txtEpisode.Text = Master.currShow.TVEp.Episode.ToString
 
+            If Master.currShow.TVEp.Playcount = "" Or Master.currShow.TVEp.Playcount = "0" Then
+                Me.chkWatched.Checked = False
+            Else
+                'Playcount <> Empty and not 0 -> Tag filled -> Checked!
+                Me.chkWatched.Checked = True
+            End If
+
             Dim lvItem As ListViewItem
             .lvActors.Items.Clear()
             For Each imdbAct As MediaContainers.Person In Master.currShow.TVEp.Actors
@@ -531,6 +538,18 @@ Public Class dlgEditEpisode
 
                 Master.currShow.TVEp.Actors.Clear()
 
+                If chkWatched.Checked Then
+                    'Only set to 1 if field was empty before (otherwise it would overwrite Playcount everytime which is not desirable)
+                    If String.IsNullOrEmpty(Master.currShow.TVEp.Playcount) Or Master.currShow.TVEp.Playcount = "0" Then
+                        Master.currShow.TVEp.Playcount = "1"
+                    End If
+                Else
+                    'Unchecked Watched State -> Set Playcount back to 0, but only if it was filled before (check could save time)
+                    If IsNumeric(Master.currShow.TVEp.Playcount) AndAlso CInt(Master.currShow.TVEp.Playcount) > 0 Then
+                        Master.currShow.TVEp.Playcount = ""
+                    End If
+                End If
+
                 If .lvActors.Items.Count > 0 Then
                     For Each lviActor As ListViewItem In .lvActors.Items
                         Dim addActor As New MediaContainers.Person
@@ -595,8 +614,8 @@ Public Class dlgEditEpisode
         Me.lblDirector.Text = Master.eLang.GetString(239, "Director:")
         Me.lblCredits.Text = Master.eLang.GetString(228, "Credits:")
         Me.TabPage4.Text = Master.eLang.GetString(256, "Frame Extraction")
-
         Me.TabPage5.Text = Master.eLang.GetString(59, "Meta Data")
+        Me.chkWatched.Text = Master.eLang.GetString(883, "Watched")
     End Sub
 
     Private Sub txtEpisode_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtEpisode.KeyPress

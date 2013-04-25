@@ -1602,15 +1602,15 @@ Public Class Database
 
 			Using SQLcommand As SQLite.SQLiteCommand = _mediaDBConn.CreateCommand()
 				If IsNew Then
-					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
-					 "TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
-					 "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
-					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
+                    SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
+                     "TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
+                     "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount, HasWatched", _
+                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
 				Else
-					SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
-					 "ID, TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
-					 "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount", _
-					 ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
+                    SQLcommand.CommandText = String.Concat("INSERT OR REPLACE INTO TVEps (", _
+                     "ID, TVShowID, HasPoster, HasFanart, HasNfo, New, Mark, TVEpPathID, Source, Lock, Title, Season, Episode,", _
+                     "Rating, Plot, Aired, Director, Credits, PosterPath, FanartPath, NfoPath, NeedsSave, Missing, Playcount, HasWatched", _
+                     ") VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); SELECT LAST_INSERT_ROWID() FROM TVEps;")
 					Dim parTVEpID As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVEpID", DbType.UInt64, 0, "ID")
 					parTVEpID.Value = _TVEpDB.EpID
 				End If
@@ -1639,7 +1639,8 @@ Public Class Database
 				Dim parNeedsSave As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parNeedsSave", DbType.Boolean, 0, "NeedsSave")
 				Dim parTVEpMissing As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parTVEpMissing", DbType.Boolean, 0, "Missing")
 
-				Dim parPlaycount As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parPlaycount", DbType.String, 0, "Playcount")
+                Dim parPlaycount As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parPlaycount", DbType.String, 0, "Playcount")
+                Dim parHasWatched As SQLite.SQLiteParameter = SQLcommand.Parameters.Add("parHasWatched", DbType.Boolean, 0, "HasWatched")
 
 				' First let's save it to NFO, even because we will need the NFO path
 				If ToNfo Then NFO.SaveTVEpToNFO(_TVEpDB)
@@ -1650,7 +1651,8 @@ Public Class Database
 				parNfoPath.Value = _TVEpDB.EpNfoPath
 				parHasPoster.Value = Not String.IsNullOrEmpty(_TVEpDB.EpPosterPath)
 				parHasFanart.Value = Not String.IsNullOrEmpty(_TVEpDB.EpFanartPath)
-				parHasNfo.Value = Not String.IsNullOrEmpty(_TVEpDB.EpNfoPath)
+                parHasNfo.Value = Not String.IsNullOrEmpty(_TVEpDB.EpNfoPath)
+                parHasWatched.Value = Not String.IsNullOrEmpty(_TVEpDB.TVEp.Playcount)
 				parNew.Value = IsNew
 				parMark.Value = _TVEpDB.IsMarkEp
 				parTVEpPathID.Value = PathID

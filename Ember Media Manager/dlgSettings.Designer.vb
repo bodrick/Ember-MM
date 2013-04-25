@@ -352,6 +352,7 @@ Partial Class dlgSettings
         Me.gbTVListOptions = New System.Windows.Forms.GroupBox()
         Me.chkDisplayMissingEpisodes = New System.Windows.Forms.CheckBox()
         Me.gbEpisodeListOptions = New System.Windows.Forms.GroupBox()
+        Me.chkEpisodeWatchedCol = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeNfoCol = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeFanartCol = New System.Windows.Forms.CheckBox()
         Me.chkEpisodePosterCol = New System.Windows.Forms.CheckBox()
@@ -2584,7 +2585,7 @@ Partial Class dlgSettings
         Me.pnlMovies.Controls.Add(Me.GroupBox27)
         Me.pnlMovies.Controls.Add(Me.GroupBox12)
         Me.pnlMovies.Controls.Add(Me.GroupBox2)
-        Me.pnlMovies.Location = New System.Drawing.Point(250, 100)
+        Me.pnlMovies.Location = New System.Drawing.Point(850, 650)
         Me.pnlMovies.Name = "pnlMovies"
         Me.pnlMovies.Size = New System.Drawing.Size(617, 400)
         Me.pnlMovies.TabIndex = 15
@@ -4302,7 +4303,7 @@ Partial Class dlgSettings
         Me.pnlShows.Controls.Add(Me.gbTVMisc)
         Me.pnlShows.Controls.Add(Me.gbEpFilter)
         Me.pnlShows.Controls.Add(Me.gbShowFilter)
-        Me.pnlShows.Location = New System.Drawing.Point(654, 767)
+        Me.pnlShows.Location = New System.Drawing.Point(850, 750)
         Me.pnlShows.Name = "pnlShows"
         Me.pnlShows.Size = New System.Drawing.Size(617, 400)
         Me.pnlShows.TabIndex = 20
@@ -4315,9 +4316,9 @@ Partial Class dlgSettings
         Me.gbTVListOptions.Controls.Add(Me.gbSeasonListOptions)
         Me.gbTVListOptions.Controls.Add(Me.gbShowListOptions)
         Me.gbTVListOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbTVListOptions.Location = New System.Drawing.Point(6, 150)
+        Me.gbTVListOptions.Location = New System.Drawing.Point(6, 143)
         Me.gbTVListOptions.Name = "gbTVListOptions"
-        Me.gbTVListOptions.Size = New System.Drawing.Size(219, 245)
+        Me.gbTVListOptions.Size = New System.Drawing.Size(219, 252)
         Me.gbTVListOptions.TabIndex = 1
         Me.gbTVListOptions.TabStop = False
         Me.gbTVListOptions.Text = "Media List Options"
@@ -4326,7 +4327,7 @@ Partial Class dlgSettings
         '
         Me.chkDisplayMissingEpisodes.AutoSize = True
         Me.chkDisplayMissingEpisodes.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkDisplayMissingEpisodes.Location = New System.Drawing.Point(10, 224)
+        Me.chkDisplayMissingEpisodes.Location = New System.Drawing.Point(8, 231)
         Me.chkDisplayMissingEpisodes.Name = "chkDisplayMissingEpisodes"
         Me.chkDisplayMissingEpisodes.Size = New System.Drawing.Size(155, 17)
         Me.chkDisplayMissingEpisodes.TabIndex = 3
@@ -4335,16 +4336,28 @@ Partial Class dlgSettings
         '
         'gbEpisodeListOptions
         '
+        Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodeWatchedCol)
         Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodeNfoCol)
         Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodeFanartCol)
         Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodePosterCol)
         Me.gbEpisodeListOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbEpisodeListOptions.Location = New System.Drawing.Point(10, 143)
         Me.gbEpisodeListOptions.Name = "gbEpisodeListOptions"
-        Me.gbEpisodeListOptions.Size = New System.Drawing.Size(199, 68)
+        Me.gbEpisodeListOptions.Size = New System.Drawing.Size(199, 86)
         Me.gbEpisodeListOptions.TabIndex = 2
         Me.gbEpisodeListOptions.TabStop = False
         Me.gbEpisodeListOptions.Text = "Episodes"
+        '
+        'chkEpisodeWatchedCol
+        '
+        Me.chkEpisodeWatchedCol.AutoSize = True
+        Me.chkEpisodeWatchedCol.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkEpisodeWatchedCol.Location = New System.Drawing.Point(7, 64)
+        Me.chkEpisodeWatchedCol.Name = "chkEpisodeWatchedCol"
+        Me.chkEpisodeWatchedCol.Size = New System.Drawing.Size(142, 17)
+        Me.chkEpisodeWatchedCol.TabIndex = 3
+        Me.chkEpisodeWatchedCol.Text = "Hide Watched Column"
+        Me.chkEpisodeWatchedCol.UseVisualStyleBackColor = True
         '
         'chkEpisodeNfoCol
         '
@@ -4469,7 +4482,7 @@ Partial Class dlgSettings
         Me.gbTVMisc.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbTVMisc.Location = New System.Drawing.Point(6, 7)
         Me.gbTVMisc.Name = "gbTVMisc"
-        Me.gbTVMisc.Size = New System.Drawing.Size(219, 142)
+        Me.gbTVMisc.Size = New System.Drawing.Size(219, 130)
         Me.gbTVMisc.TabIndex = 0
         Me.gbTVMisc.TabStop = False
         Me.gbTVMisc.Text = "Miscellaneous"
@@ -7281,6 +7294,7 @@ Partial Class dlgSettings
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(892, 628)
+        Me.Controls.Add(Me.pnlShows)
         Me.Controls.Add(Me.pnlSources)
         Me.Controls.Add(Me.pnlTVSources)
         Me.Controls.Add(Me.pnlImages)
@@ -7300,7 +7314,6 @@ Partial Class dlgSettings
         Me.Controls.Add(Me.pnlXBMCCom)
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.pnlTVScraper)
-        Me.Controls.Add(Me.pnlShows)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -8065,4 +8078,5 @@ Partial Class dlgSettings
     Friend WithEvents chkUseMPAAFSK As System.Windows.Forms.CheckBox
     Friend WithEvents chkMovieWatchedCol As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockSubtitle As System.Windows.Forms.CheckBox
+    Friend WithEvents chkEpisodeWatchedCol As System.Windows.Forms.CheckBox
 End Class

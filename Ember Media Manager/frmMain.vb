@@ -3067,6 +3067,7 @@ doCancel:
                 Else
                     Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 4)
                 End If
+
                 e.Handled = True
 
             End If
@@ -3358,7 +3359,7 @@ doCancel:
             End If
 
             'icons
-            If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 6 AndAlso e.RowIndex = -1 Then
+            If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 24 AndAlso e.RowIndex = -1 Then
                 e.PaintBackground(e.ClipBounds, False)
 
                 Dim pt As Point = e.CellBounds.Location
@@ -3367,7 +3368,11 @@ doCancel:
                 pt.X += offset
                 pt.Y = 1
 
-                Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 4)
+                If e.ColumnIndex = 24 Then
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 16)
+                Else
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, e.ColumnIndex - 4)
+                End If
 
                 e.Handled = True
             End If
@@ -3392,7 +3397,7 @@ doCancel:
                 End If
             End If
 
-            If e.ColumnIndex >= 2 AndAlso e.ColumnIndex <= 6 AndAlso e.RowIndex >= 0 Then
+            If e.ColumnIndex >= 2 AndAlso e.ColumnIndex <= 24 AndAlso e.RowIndex >= 0 Then
 
                 If Convert.ToBoolean(Me.dgvTVEpisodes.Item(22, e.RowIndex).Value) Then
                     e.CellStyle.BackColor = Color.White
@@ -3405,7 +3410,7 @@ doCancel:
                     e.CellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.Highlight)
                 End If
 
-                If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 6 Then
+                If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 24 Then
                     e.PaintBackground(e.ClipBounds, True)
 
                     Dim pt As Point = e.CellBounds.Location
@@ -4302,7 +4307,30 @@ doCancel:
                 .dgvTVEpisodes.Columns(6).SortMode = DataGridViewColumnSortMode.Automatic
                 .dgvTVEpisodes.Columns(6).Visible = Not Master.eSettings.EpisodeNfoCol
                 .dgvTVEpisodes.Columns(6).ToolTipText = Master.eLang.GetString(150, "Nfo")
-                For i As Integer = 7 To .dgvTVEpisodes.Columns.Count - 1
+                .dgvTVEpisodes.Columns(7).Visible = False
+                .dgvTVEpisodes.Columns(8).Visible = False
+                .dgvTVEpisodes.Columns(9).Visible = False
+                .dgvTVEpisodes.Columns(10).Visible = False
+                .dgvTVEpisodes.Columns(11).Visible = False
+                .dgvTVEpisodes.Columns(12).Visible = False
+                .dgvTVEpisodes.Columns(13).Visible = False
+                .dgvTVEpisodes.Columns(14).Visible = False
+                .dgvTVEpisodes.Columns(15).Visible = False
+                .dgvTVEpisodes.Columns(16).Visible = False
+                .dgvTVEpisodes.Columns(17).Visible = False
+                .dgvTVEpisodes.Columns(18).Visible = False
+                .dgvTVEpisodes.Columns(19).Visible = False
+                .dgvTVEpisodes.Columns(20).Visible = False
+                .dgvTVEpisodes.Columns(21).Visible = False
+                .dgvTVEpisodes.Columns(22).Visible = False
+                .dgvTVEpisodes.Columns(23).Visible = False
+                .dgvTVEpisodes.Columns(24).Width = 20
+                .dgvTVEpisodes.Columns(24).Resizable = DataGridViewTriState.False
+                .dgvTVEpisodes.Columns(24).ReadOnly = True
+                .dgvTVEpisodes.Columns(24).SortMode = DataGridViewColumnSortMode.Automatic
+                .dgvTVEpisodes.Columns(24).Visible = Not Master.eSettings.EpisodeWatchedCol
+                .dgvTVEpisodes.Columns(24).ToolTipText = Master.eLang.GetString(883, "Watched")
+                For i As Integer = 25 To .dgvTVEpisodes.Columns.Count - 1
                     .dgvTVEpisodes.Columns(i).Visible = False
                 Next
 
@@ -6930,12 +6958,14 @@ doCancel:
                         Me.Invoke(myDelegate, New Object() {dRow(0), 5, If(String.IsNullOrEmpty(eContainer.Fanart), False, True)})
                         Me.Invoke(myDelegate, New Object() {dRow(0), 6, If(String.IsNullOrEmpty(tmpShowDb.EpNfoPath), False, True)})
                         Me.Invoke(myDelegate, New Object() {dRow(0), 7, False})
+                        Me.Invoke(myDelegate, New Object() {dRow(0), 24, If(String.IsNullOrEmpty(tmpShowDb.TVEp.Playcount), False, True)})
                     Else
                         DirectCast(dRow(0), DataRow).Item(3) = tmpShowDb.TVEp.Title
                         DirectCast(dRow(0), DataRow).Item(4) = If(String.IsNullOrEmpty(eContainer.Poster), False, True)
                         DirectCast(dRow(0), DataRow).Item(5) = If(String.IsNullOrEmpty(eContainer.Fanart), False, True)
                         DirectCast(dRow(0), DataRow).Item(6) = If(String.IsNullOrEmpty(tmpShowDb.EpNfoPath), False, True)
                         DirectCast(dRow(0), DataRow).Item(7) = False
+                        DirectCast(dRow(0), DataRow).Item(24) = If(String.IsNullOrEmpty(tmpShowDb.TVEp.Playcount), False, True)
                     End If
                 End If
 
@@ -7414,6 +7444,7 @@ doCancel:
                 If(Master.eSettings.EpisodePosterCol, 0, 20) - _
                 If(Master.eSettings.EpisodeFanartCol, 0, 20) - _
                 If(Master.eSettings.EpisodeNfoCol, 0, 20) - _
+                If(Master.eSettings.EpisodeWatchedCol, 0, 20) - _
                 If(Me.dgvTVEpisodes.DisplayRectangle.Height > Me.dgvTVEpisodes.ClientRectangle.Height, 0, SystemInformation.VerticalScrollBarWidth)
             End If
 
