@@ -63,156 +63,344 @@ Public Class Interfaces
 
     End Interface
 
-    Public Interface EmberMovieScraperModule
+	'    Public Interface EmberMovieScraperModule
+
+	'#Region "Events"
+
+	'        Event ModuleSettingsChanged()
+
+	'        Event MovieScraperEvent(ByVal eType As Enums.MovieScraperEventType, ByVal Parameter As Object)
+
+	'        Event PostScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+
+	'		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+
+	'		Event SetupNeedsRestart()
+
+	'        Sub ScraperOrderChanged()
+
+	'        Sub PostScraperOrderChanged()
+
+	'#End Region 'Events
+
+	'#Region "Properties"
+
+	'        ReadOnly Property IsPostScraper() As Boolean
+
+	'        ReadOnly Property IsScraper() As Boolean
+
+	'        ReadOnly Property ModuleName() As String
+
+	'        ReadOnly Property ModuleVersion() As String
+
+	'        Property PostScraperEnabled() As Boolean
+
+	'        Property ScraperEnabled() As Boolean
+
+	'#End Region 'Properties
+
+	'#Region "Methods"
+
+	'        Function DownloadTrailer(ByRef DBMovie As Structures.DBMovie, ByRef sURL As String) As ModuleResult
+
+	'        Function GetMovieStudio(ByRef DBMovie As Structures.DBMovie, ByRef sStudio As List(Of String)) As ModuleResult
+
+	'        Sub Init(ByVal sAssemblyName As String)
+
+	'        Function InjectSetupPostScraper() As Containers.SettingsPanel
+
+	'        Function QueryPostScraperCapabilities(ByVal cap As Enums.PostScraperCapabilities) As Boolean
+
+	'        Function InjectSetupScraper() As Containers.SettingsPanel
+
+	'        Function PostScraper(ByRef DBMovie As Structures.DBMovie, ByVal ScrapeType As Enums.ScrapeType) As ModuleResult
+
+	'        Sub SaveSetupPostScraper(ByVal DoDispose As Boolean)
+
+	'        Sub SaveSetupScraper(ByVal DoDispose As Boolean)
+
+	'        'Movie is byref because some scrapper may run to update only some fields (defined in Scraper Setup)
+	'        'Options is byref to allow field blocking in scraper chain
+	'        Function Scraper(ByRef DBMovie As Structures.DBMovie, ByRef ScrapeType As Enums.ScrapeType, ByRef Options As Structures.ScrapeOptions) As ModuleResult
+
+	'        Function SelectImageOfType(ByRef DBMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As ModuleResult
+
+	'#End Region 'Methods
+
+	'    End Interface
+
+
+
+	' ################################################################################
+	' #                             EMBER MEDIA MANAGER                              #
+	' ################################################################################
+	' ################################################################################
+	' # NOTE: the following interfaces could be avoided with a single type			 #
+	' #  and some generic functions with generic Object return and type casting		 #
+	' #																				 #
+	' # IT HAS BEEN DONE ON PURPOSE as we have seen the mess it has been created in  #
+	' # multi purpose Scrapers (data + image + trailers).							 #
+	' # In this way evey scraper will have one precise object and development, debug #
+	' #  and maintenance will be far easier											 #
+	' #																				 #
+	' # In the libraries there will be replicated code to manage the five lists		 #
+	' #	3 for movies and 2 for TV episodes. Even if not optimal this is easier to	 #
+	' #	manage and debug															 #
+	' #																				 #
+	' ################################################################################
+
+	Public Interface EmberMovieScraperModule_Data
 
 #Region "Events"
 
-        Event ModuleSettingsChanged()
+		Event ModuleSettingsChanged()
 
-        Event MovieScraperEvent(ByVal eType As Enums.MovieScraperEventType, ByVal Parameter As Object)
-
-        Event PostScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+		Event MovieScraperEvent(ByVal eType As Enums.MovieScraperEventType, ByVal Parameter As Object)
 
 		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
 
 		Event SetupNeedsRestart()
 
-        Sub ScraperOrderChanged()
-
-        Sub PostScraperOrderChanged()
-
-#End Region 'Events
+#End Region	'Events
 
 #Region "Properties"
 
-        ReadOnly Property IsPostScraper() As Boolean
+		ReadOnly Property ModuleName() As String
 
-        ReadOnly Property IsScraper() As Boolean
+		ReadOnly Property ModuleVersion() As String
 
-        ReadOnly Property ModuleName() As String
+		Property ScraperEnabled() As Boolean
 
-        ReadOnly Property ModuleVersion() As String
-
-        Property PostScraperEnabled() As Boolean
-
-        Property ScraperEnabled() As Boolean
-
-#End Region 'Properties
+#End Region	'Properties
 
 #Region "Methods"
 
-        Function DownloadTrailer(ByRef DBMovie As Structures.DBMovie, ByRef sURL As String) As ModuleResult
+		Sub ScraperOrderChanged()
 
-        Function GetMovieStudio(ByRef DBMovie As Structures.DBMovie, ByRef sStudio As List(Of String)) As ModuleResult
+		Function GetMovieStudio(ByRef DBMovie As Structures.DBMovie, ByRef sStudio As List(Of String)) As ModuleResult
 
-        Sub Init(ByVal sAssemblyName As String)
+		Sub Init(ByVal sAssemblyName As String)
 
-        Function InjectSetupPostScraper() As Containers.SettingsPanel
+		Function InjectSetupScraper() As Containers.SettingsPanel
 
-        Function QueryPostScraperCapabilities(ByVal cap As Enums.PostScraperCapabilities) As Boolean
+		Sub SaveSetupScraper(ByVal DoDispose As Boolean)
 
-        Function InjectSetupScraper() As Containers.SettingsPanel
+		'Movie is byref because some scrapper may run to update only some fields (defined in Scraper Setup)
+		'Options is byref to allow field blocking in scraper chain
+		Function Scraper(ByRef DBMovie As Structures.DBMovie, ByRef ScrapeType As Enums.ScrapeType, ByRef Options As Structures.ScrapeOptions) As ModuleResult
 
-        Function PostScraper(ByRef DBMovie As Structures.DBMovie, ByVal ScrapeType As Enums.ScrapeType) As ModuleResult
+#End Region	'Methods
 
-        Sub SaveSetupPostScraper(ByVal DoDispose As Boolean)
+	End Interface
 
-        Sub SaveSetupScraper(ByVal DoDispose As Boolean)
-
-        'Movie is byref because some scrapper may run to update only some fields (defined in Scraper Setup)
-        'Options is byref to allow field blocking in scraper chain
-        Function Scraper(ByRef DBMovie As Structures.DBMovie, ByRef ScrapeType As Enums.ScrapeType, ByRef Options As Structures.ScrapeOptions) As ModuleResult
-
-        Function SelectImageOfType(ByRef DBMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As ModuleResult
-
-#End Region 'Methods
-
-    End Interface
-
-    Public Interface EmberTVScraperModule
+	Public Interface EmberMovieScraperModule_Poster
 
 #Region "Events"
 
-        Event ModuleSettingsChanged()
+		Event ModuleSettingsChanged()
 
-        Event SetupPostScraperChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+		Event MovieScraperEvent(ByVal eType As Enums.MovieScraperEventType, ByVal Parameter As Object)
 
-        Event SetupScraperChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
 
-        Event TVScraperEvent(ByVal eType As Enums.TVScraperEventType, ByVal iProgress As Integer, ByVal Parameter As Object)
+		Event SetupNeedsRestart()
 
-#End Region 'Events
+#End Region	'Events
 
 #Region "Properties"
 
-        ReadOnly Property IsBusy() As Boolean
+		ReadOnly Property ModuleName() As String
 
-        ReadOnly Property IsPostScraper() As Boolean
+		ReadOnly Property ModuleVersion() As String
 
-        ReadOnly Property IsScraper() As Boolean
+		Property ScraperEnabled() As Boolean
 
-        ReadOnly Property ModuleName() As String
-
-        ReadOnly Property ModuleVersion() As String
-
-        Property PostScraperEnabled() As Boolean
-
-        Property ScraperEnabled() As Boolean
-
-#End Region 'Properties
+#End Region	'Properties
 
 #Region "Methods"
 
-        Sub CancelAsync()
+		Sub ScraperOrderChanged()
 
-        Function ChangeEpisode(ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Lang As String, ByRef epDet As MediaContainers.EpisodeDetails) As ModuleResult
+		Sub Init(ByVal sAssemblyName As String)
 
-        Function GetLangs(ByVal sMirror As String, ByRef Langs As List(Of Containers.TVLanguage)) As ModuleResult
+		Function InjectSetupScraper() As Containers.SettingsPanel
 
-        Function GetSingleEpisode(ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Season As Integer, ByVal Episode As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions, ByRef epDetails As MediaContainers.EpisodeDetails) As ModuleResult
+		Function QueryScraperCapabilities(ByVal cap As Enums.PostScraperCapabilities) As Boolean
+
+		Function Scraper(ByRef DBMovie As Structures.DBMovie, ByVal ScrapeType As Enums.ScrapeType) As ModuleResult
+
+		Sub SaveSetupScraper(ByVal DoDispose As Boolean)
+
+		Function ReturnImageList(ByRef DBMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As ModuleResult
+
+		Function SelectImageOfType(ByRef DBMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As ModuleResult
+
+#End Region	'Methods
+
+	End Interface
+
+	Public Interface EmberMovieScraperModule_Trailer
+
+#Region "Events"
+
+		Event ModuleSettingsChanged()
+
+		Event MovieScraperEvent(ByVal eType As Enums.MovieScraperEventType, ByVal Parameter As Object)
+
+		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+
+		Event SetupNeedsRestart()
+
+#End Region	'Events
+
+#Region "Properties"
+
+		ReadOnly Property ModuleName() As String
+
+		ReadOnly Property ModuleVersion() As String
+
+		Property ScraperEnabled() As Boolean
+
+#End Region	'Properties
+
+#Region "Methods"
+
+		Sub ScraperOrderChanged()
+
+		Function DownloadTrailer(ByRef DBMovie As Structures.DBMovie, ByRef sURL As String) As ModuleResult
+
+		Function GetMovieStudio(ByRef DBMovie As Structures.DBMovie, ByRef sStudio As List(Of String)) As ModuleResult
+
+		Sub Init(ByVal sAssemblyName As String)
+
+		Function InjectSetupScraper() As Containers.SettingsPanel
+
+		Function QueryTrailerScraperCapabilities(ByVal cap As Enums.PostScraperCapabilities) As Boolean
+
+		Function TrailerScraper(ByRef DBMovie As Structures.DBMovie, ByVal ScrapeType As Enums.ScrapeType) As ModuleResult
+
+		Sub SaveSetupScraper(ByVal DoDispose As Boolean)
+
+		Function ScraperTrailerList(ByRef DBMovie As Structures.DBMovie, ByVal _DLType As Enums.ImageType, ByRef pResults As Containers.ImgResult, Optional ByVal _isEdit As Boolean = False, Optional ByVal preload As Boolean = False) As ModuleResult
+
+#End Region	'Methods
+
+	End Interface
+
+	Public Interface EmberTVScraperModule_Data
+
+#Region "Events"
+
+		Event ModuleSettingsChanged()
+
+		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+
+		Event TVScraperEvent(ByVal eType As Enums.TVScraperEventType, ByVal iProgress As Integer, ByVal Parameter As Object)
+
+#End Region	'Events
+
+#Region "Properties"
+
+		ReadOnly Property IsBusy() As Boolean
+
+		ReadOnly Property ModuleName() As String
+
+		ReadOnly Property ModuleVersion() As String
+
+		Property ScraperEnabled() As Boolean
+
+#End Region	'Properties
+
+#Region "Methods"
+
+		Sub ScraperOrderChanged()
+
+		Sub CancelAsync()
+
+		Function GetSingleEpisode(ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Season As Integer, ByVal Episode As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions, ByRef epDetails As MediaContainers.EpisodeDetails) As ModuleResult
+
+		Sub Init(ByVal sAssemblyName As String)
+
+		Function InjectSetupScraper() As Containers.SettingsPanel
+
+		Sub SaveSetupScraper(ByVal DoDispose As Boolean)
+
+		Function ScrapeEpisode(ByVal ShowID As Integer, ByVal ShowTitle As String, ByVal TVDBID As String, ByVal iEpisode As Integer, ByVal iSeason As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions) As ModuleResult
+
+		Function Scraper(ByVal ShowID As Integer, ByVal ShowTitle As String, ByVal TVDBID As String, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions, ByVal ScrapeType As Enums.ScrapeType, ByVal WithCurrent As Boolean) As ModuleResult
+
+		Function ScrapeSeason(ByVal ShowID As Integer, ByVal ShowTitle As String, ByVal TVDBID As String, ByVal iSeason As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions) As ModuleResult
+
+#End Region	'Methods
+
+	End Interface
+
+	Public Interface EmberTVScraperModule_Poster
+
+#Region "Events"
+
+		Event ModuleSettingsChanged()
+
+		Event ScraperSetupChanged(ByVal name As String, ByVal State As Boolean, ByVal difforder As Integer)
+
+		Event TVScraperEvent(ByVal eType As Enums.TVScraperEventType, ByVal iProgress As Integer, ByVal Parameter As Object)
+
+#End Region	'Events
+
+#Region "Properties"
+
+		ReadOnly Property IsBusy() As Boolean
+
+		ReadOnly Property ModuleName() As String
+
+		ReadOnly Property ModuleVersion() As String
+
+		Property ScraperEnabled() As Boolean
+
+#End Region	'Properties
+
+#Region "Methods"
+
+		Sub ScraperOrderChanged()
+
+		Sub CancelAsync()
+
+		Function ChangeEpisode(ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Lang As String, ByRef epDet As MediaContainers.EpisodeDetails) As ModuleResult
+
+		Function GetLangs(ByVal sMirror As String, ByRef Langs As List(Of Containers.TVLanguage)) As ModuleResult
 
 		Function GetSingleImage(ByVal Title As String, ByVal ShowID As Integer, ByVal TVDBID As String, ByVal Type As Enums.TVImageType, ByVal Season As Integer, ByVal Episode As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal CurrentImage As Images, ByRef Image As Images) As ModuleResult
 
-        Sub Init(ByVal sAssemblyName As String)
+		Sub Init(ByVal sAssemblyName As String)
 
-        Function InjectSetupPostScraper() As Containers.SettingsPanel
+		Function InjectSetupScraper() As Containers.SettingsPanel
 
-        Function InjectSetupScraper() As Containers.SettingsPanel
+		Function Scraper(ByRef DBTV As Structures.DBTV, ByVal ScrapeType As Enums.ScrapeType) As ModuleResult
 
-        Function PostScraper(ByRef DBTV As Structures.DBTV, ByVal ScrapeType As Enums.ScrapeType) As ModuleResult
+		Function SaveImages() As ModuleResult
 
-        Function SaveImages() As ModuleResult
+		Sub SaveSetupScraper(ByVal DoDispose As Boolean)
 
-        Sub SaveSetupPostScraper(ByVal DoDispose As Boolean)
+#End Region	'Methods
 
-        Sub SaveSetupScraper(ByVal DoDispose As Boolean)
+	End Interface
 
-        Function ScrapeEpisode(ByVal ShowID As Integer, ByVal ShowTitle As String, ByVal TVDBID As String, ByVal iEpisode As Integer, ByVal iSeason As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions) As ModuleResult
-
-        Function Scraper(ByVal ShowID As Integer, ByVal ShowTitle As String, ByVal TVDBID As String, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions, ByVal ScrapeType As Enums.ScrapeType, ByVal WithCurrent As Boolean) As ModuleResult
-
-        Function ScrapeSeason(ByVal ShowID As Integer, ByVal ShowTitle As String, ByVal TVDBID As String, ByVal iSeason As Integer, ByVal Lang As String, ByVal Ordering As Enums.Ordering, ByVal Options As Structures.TVScrapeOptions) As ModuleResult
-
-#End Region 'Methods
-
-    End Interface
-
-#End Region 'Nested Interfaces
+#End Region	'Nested Interfaces
 
 #Region "Nested Types"
 
-    Public Structure ModuleResult
+	Public Structure ModuleResult
 
 #Region "Fields"
 
-        Public breakChain As Boolean
-        Public Cancelled As Boolean
-        Public BoolProperty As Boolean
+		Public breakChain As Boolean
+		Public Cancelled As Boolean
+		Public BoolProperty As Boolean
 
-#End Region 'Fields
+#End Region	'Fields
 
-    End Structure
+	End Structure
 
-#End Region 'Nested Types
+#End Region	'Nested Types
 
 End Class
