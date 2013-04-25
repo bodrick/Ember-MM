@@ -63,7 +63,9 @@ Namespace TMDBg
 		Private _TMDBConfE As V3.TmdbConfiguration
 		Private _TMDBApi As V3.Tmdb
 		Private _TMDBApiE As V3.Tmdb
-		Private _MySettings As EmberTMDBScraperModule.sMySettings
+        Private _MySettings As EmberTMDBScraperModule.sMySettings
+
+        Private Const IMDB_ID_REGEX As String = "tt\d\d\d\d\d\d\d"
 
 		Friend WithEvents bwTMDBg As New System.ComponentModel.BackgroundWorker
 
@@ -638,8 +640,8 @@ Namespace TMDBg
                 Dim aE As Boolean
                 Dim eMovie As WatTmdb.V3.TmdbMovie
 
-                If Regex.IsMatch(sMovie.ToLower, "tt\d\d\d\d\d\d\d") Then
-                    Dim sIMDBID As String = Regex.Match(sMovie.ToLower, "tt\d\d\d\d\d\d\d").ToString
+                If Regex.IsMatch(sMovie.ToLower, IMDB_ID_REGEX) Then
+                    Dim sIMDBID As String = Regex.Match(sMovie.ToLower, IMDB_ID_REGEX).ToString
                     eMovie = _TMDBApi.GetMovieByIMDB(sIMDBID, _MySettings.TMDBLanguage)
                     If eMovie.id > 0 Then
                         Dim e1 As String = eMovie.imdb_id
