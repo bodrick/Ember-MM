@@ -421,7 +421,8 @@ Namespace FileUtils
 
 					For Each sFile As FileInfo In lFi
 						RaiseEvent ProgressUpdated(iCount, String.Concat(Master.eLang.GetString(219, "Moving "), sFile.Name))
-						tmpName = Path.GetFileNameWithoutExtension(sFile.Name)
+                        tmpName = Path.GetFileNameWithoutExtension(sFile.Name)
+                        tmpName = tmpName.Replace("-poster", String.Empty)
 						tmpName = tmpName.Replace(".fanart", String.Empty)
 						tmpName = tmpName.Replace("-fanart", String.Empty)
 						tmpName = tmpName.Replace("-trailer", String.Empty)
