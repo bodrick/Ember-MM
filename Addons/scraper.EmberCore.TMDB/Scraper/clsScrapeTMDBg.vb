@@ -643,14 +643,17 @@ Namespace TMDBg
                 If Regex.IsMatch(sMovie.ToLower, IMDB_ID_REGEX) Then
                     Dim sIMDBID As String = Regex.Match(sMovie.ToLower, IMDB_ID_REGEX).ToString
                     eMovie = _TMDBApi.GetMovieByIMDB(sIMDBID, _MySettings.TMDBLanguage)
-                    If eMovie.id > 0 Then
-                        Dim e1 As String = eMovie.imdb_id
-                        Dim e2 As String = CStr(IIf(String.IsNullOrEmpty(eMovie.title), "", eMovie.title))
-                        Dim e3 As String = Left(CStr(IIf(String.IsNullOrEmpty(eMovie.release_date), "", eMovie.release_date)), 4)
-                        Dim eNewMovie As MediaContainers.Movie = New MediaContainers.Movie(e1, e2, e3, 0)
-                        eNewMovie.TMDBID = eMovie.id.ToString
-                        R.Matches.Add(eNewMovie)
-                    End If
+					If eMovie.id = 0 And _MySettings.FallBackEng Then
+						eMovie = _TMDBApiE.GetMovieByIMDB(sIMDBID)
+					End If
+					If eMovie.id > 0 Then
+						Dim e1 As String = eMovie.imdb_id
+						Dim e2 As String = CStr(IIf(String.IsNullOrEmpty(eMovie.title), "", eMovie.title))
+						Dim e3 As String = Left(CStr(IIf(String.IsNullOrEmpty(eMovie.release_date), "", eMovie.release_date)), 4)
+						Dim eNewMovie As MediaContainers.Movie = New MediaContainers.Movie(e1, e2, e3, 0)
+						eNewMovie.TMDBID = eMovie.id.ToString
+						R.Matches.Add(eNewMovie)
+					End If
                 Else
                     Movies = _TMDBApi.SearchMovie(sMovie, Page, _MySettings.TMDBLanguage)
                     If Movies.total_results = 0 And _MySettings.FallBackEng Then
