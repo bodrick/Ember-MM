@@ -884,4 +884,9 @@
   <string id="883">Watched</string>
   <string id="884">Hide Watched Column</string>
   <string id="885">Lock Subtitle</string>
+  <string id="886">Retry</string>
+  <string id="887">Abort</string>
+  <string id="888">Database Compatibility</string>
+  <string id="889">Database is not compatible!</string>
+  <string id="890">Your database is not compatible with this version of Ember!\n\nYou can ....</string> 
 </strings>
