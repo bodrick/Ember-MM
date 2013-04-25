@@ -135,18 +135,17 @@ Public Class genericYAMJ
 								Case Enums.TVImageType.AllSeasonPoster
 									If AdvancedSettings.GetBooleanSetting("YAMJAllSeasonPoster", False) Then
 										Dim seasonPath As String = Functions.GetSeasonDirectoryFromShowPath(mShow.ShowPath, 0)
-										If String.IsNullOrEmpty(seasonPath) Then
-											Dim dtSeasons As New DataTable
-											Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", mShow.ShowID, " AND Season <> 999 ORDER BY Season;"))
-											If dtSeasons.Rows.Count > 0 Then
-												seasonPath = Functions.GetSeasonDirectoryFromShowPath(mShow.ShowPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
-											End If
-										End If
-										tPath = Path.Combine(mShow.ShowPath, seasonPath)
-										'tPath = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(mShow.ShowPath), "_1.banner.jpg"))
-										tPath = Path.Combine(tPath, "Season 1.banner.jpg")
-										imageList.Add(tPath)
-										'doContinue = False
+                                        If String.IsNullOrEmpty(seasonPath) Then
+                                            Dim dtSeasons As New DataTable
+                                            Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVSeason WHERE TVShowID = ", mShow.ShowID, " AND Season <> 999 ORDER BY Season;"))
+                                            If dtSeasons.Rows.Count > 0 Then
+                                                seasonPath = Functions.GetSeasonDirectoryFromShowPath(mShow.ShowPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
+                                            End If
+                                        End If
+                                        tPath = Path.Combine(mShow.ShowPath, seasonPath)
+                                        tPath = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(mShow.ShowPath), "_1.banner.jpg"))
+                                        imageList.Add(tPath)
+                                        'doContinue = False
 									End If
 								Case Enums.TVImageType.EpisodePoster
 									If AdvancedSettings.GetBooleanSetting("YAMJEpisodePoster", False) Then

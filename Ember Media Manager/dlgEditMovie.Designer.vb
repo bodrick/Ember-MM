@@ -1326,7 +1326,7 @@ Partial Class dlgEditMovie
         Me.chkWatched.Name = "chkWatched"
         Me.chkWatched.Size = New System.Drawing.Size(75, 17)
         Me.chkWatched.TabIndex = 6
-        Me.chkWatched.Text = "Watched!"
+        Me.chkWatched.Text = "Watched"
         Me.chkWatched.UseVisualStyleBackColor = True
         '
         'dlgEditMovie

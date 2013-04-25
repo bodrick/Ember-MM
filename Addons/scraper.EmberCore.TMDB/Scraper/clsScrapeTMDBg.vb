@@ -63,7 +63,9 @@ Namespace TMDBg
 		Private _TMDBConfE As V3.TmdbConfiguration
 		Private _TMDBApi As V3.Tmdb
 		Private _TMDBApiE As V3.Tmdb
-		Private _MySettings As EmberTMDBScraperModule.sMySettings
+        Private _MySettings As EmberTMDBScraperModule.sMySettings
+
+        Private Const IMDB_ID_REGEX As String = "tt\d\d\d\d\d\d\d"
 
 		Friend WithEvents bwTMDBg As New System.ComponentModel.BackgroundWorker
 
@@ -635,50 +637,65 @@ Namespace TMDBg
 				Dim Page As Integer = 1
 				Dim Movies As WatTmdb.V3.TmdbMovieSearch
 				Dim TotP As Integer
-				Dim aE As Boolean
-				Movies = _TMDBApi.SearchMovie(sMovie, Page, _MySettings.TMDBLanguage)
-				If Movies.total_results = 0 And _MySettings.FallBackEng Then
-					Movies = _TMDBApiE.SearchMovie(sMovie, Page)
-					aE = True
-				End If
-				If Movies.total_results > 0 Then
-					Dim t1 As String
-					Dim t2 As String
-					Dim t3 As String
-					TotP = Movies.total_pages
-					While Page <= TotP And Page <= 3
-						For Each aMovie In Movies.results
-							Dim aMI As WatTmdb.V3.TmdbMovie
-							aMI = _TMDBApi.GetMovieInfo(aMovie.id)
-							If IsNothing(aMI) Then
-								aMI = _TMDBApiE.GetMovieInfo(aMovie.id)
-							End If
-							If IsNothing(aMI.imdb_id) Then
-								t1 = ""
-							Else
-								t1 = aMI.imdb_id.ToString
-							End If
-							t2 = CStr(IIf(String.IsNullOrEmpty(aMovie.title), "", aMovie.title))
-							t3 = Left(CStr(IIf(String.IsNullOrEmpty(aMovie.release_date), "", aMovie.release_date)), 4)
-							Dim lNewMovie As MediaContainers.Movie = New MediaContainers.Movie(t1, t2, t3, 0)
-							lNewMovie.TMDBID = aMI.id.ToString
-							R.Matches.Add(lNewMovie)
-						Next
-						Page = Page + 1
-						If aE Then
-							Movies = _TMDBApiE.SearchMovie(sMovie, Page)
-						Else
-							Movies = _TMDBApi.SearchMovie(sMovie, Page, _MySettings.TMDBLanguage)
-						End If
+                Dim aE As Boolean
+                Dim eMovie As WatTmdb.V3.TmdbMovie
 
-					End While
-				End If
+                If Regex.IsMatch(sMovie.ToLower, IMDB_ID_REGEX) Then
+                    Dim sIMDBID As String = Regex.Match(sMovie.ToLower, IMDB_ID_REGEX).ToString
+                    eMovie = _TMDBApi.GetMovieByIMDB(sIMDBID, _MySettings.TMDBLanguage)
+                    If eMovie.id > 0 Then
+                        Dim e1 As String = eMovie.imdb_id
+                        Dim e2 As String = CStr(IIf(String.IsNullOrEmpty(eMovie.title), "", eMovie.title))
+                        Dim e3 As String = Left(CStr(IIf(String.IsNullOrEmpty(eMovie.release_date), "", eMovie.release_date)), 4)
+                        Dim eNewMovie As MediaContainers.Movie = New MediaContainers.Movie(e1, e2, e3, 0)
+                        eNewMovie.TMDBID = eMovie.id.ToString
+                        R.Matches.Add(eNewMovie)
+                    End If
+                Else
+                    Movies = _TMDBApi.SearchMovie(sMovie, Page, _MySettings.TMDBLanguage)
+                    If Movies.total_results = 0 And _MySettings.FallBackEng Then
+                        Movies = _TMDBApiE.SearchMovie(sMovie, Page)
+                        aE = True
+                    End If
+                    If Movies.total_results > 0 Then
+                        Dim t1 As String
+                        Dim t2 As String
+                        Dim t3 As String
+                        TotP = Movies.total_pages
+                        While Page <= TotP And Page <= 3
+                            For Each aMovie In Movies.results
+                                Dim aMI As WatTmdb.V3.TmdbMovie
+                                aMI = _TMDBApi.GetMovieInfo(aMovie.id)
+                                If IsNothing(aMI) Then
+                                    aMI = _TMDBApiE.GetMovieInfo(aMovie.id)
+                                End If
+                                If IsNothing(aMI.imdb_id) Then
+                                    t1 = ""
+                                Else
+                                    t1 = aMI.imdb_id.ToString
+                                End If
+                                t2 = CStr(IIf(String.IsNullOrEmpty(aMovie.title), "", aMovie.title))
+                                t3 = Left(CStr(IIf(String.IsNullOrEmpty(aMovie.release_date), "", aMovie.release_date)), 4)
+                                Dim lNewMovie As MediaContainers.Movie = New MediaContainers.Movie(t1, t2, t3, 0)
+                                lNewMovie.TMDBID = aMI.id.ToString
+                                R.Matches.Add(lNewMovie)
+                            Next
+                            Page = Page + 1
+                            If aE Then
+                                Movies = _TMDBApiE.SearchMovie(sMovie, Page)
+                            Else
+                                Movies = _TMDBApi.SearchMovie(sMovie, Page, _MySettings.TMDBLanguage)
+                            End If
 
-				Return R
-			Catch ex As Exception
-				Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
-				Return Nothing
-			End Try
+                        End While
+                    End If
+                End If
+
+                Return R
+            Catch ex As Exception
+                Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
+                Return Nothing
+            End Try
 		End Function
 
 #End Region	'Methods

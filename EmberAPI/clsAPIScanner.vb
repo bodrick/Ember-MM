@@ -472,6 +472,48 @@ Public Class Scanner
                 End If
             End If
 
+            If AdvancedSettings.GetBooleanSetting("YAMJTVImageNaming", False, "multi.Compatibility") Then
+
+                Try
+                    lFiles.AddRange(Directory.GetFiles(ShowPath, "*.jpg"))
+                Catch
+                End Try
+
+                If String.IsNullOrEmpty(TVDB.SeasonPosterPath) AndAlso AdvancedSettings.GetBooleanSetting("YAMJSeasonPoster", False, "multi.Compatibility") Then
+                    Dim tPath As String = String.Empty
+                    Dim epPath As String = String.Empty
+                    If Not String.IsNullOrEmpty(TVDB.Filename) AndAlso Not Path.GetFileNameWithoutExtension(TVDB.Filename).ToLower = "file" Then
+                        epPath = TVDB.Filename
+                    End If
+                    If String.IsNullOrEmpty(epPath) Then
+                        Dim dtEpisodes As New DataTable
+                        Master.DB.FillDataTable(dtEpisodes, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", TVDB.ShowID, " AND Season = ", TVDB.TVEp.Season, " ORDER BY Episode;"))
+                        If dtEpisodes.Rows.Count > 0 Then
+                            epPath = dtEpisodes.Rows(0).Item("TVEpPath").ToString
+                        End If
+                    End If
+                    fName = Path.Combine(Path.GetDirectoryName(epPath), String.Concat(Path.GetFileNameWithoutExtension(epPath), ".jpg"))
+                    TVDB.SeasonPosterPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+                End If
+
+                If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso AdvancedSettings.GetBooleanSetting("YAMJSeasonFanart", False, "multi.Compatibility") Then
+                    Dim tPath As String = String.Empty
+                    Dim epPath As String = String.Empty
+                    If Not String.IsNullOrEmpty(TVDB.Filename) AndAlso Not Path.GetFileNameWithoutExtension(TVDB.Filename).ToLower = "file" Then
+                        epPath = TVDB.Filename
+                    End If
+                    If String.IsNullOrEmpty(epPath) Then
+                        Dim dtEpisodes As New DataTable
+                        Master.DB.FillDataTable(dtEpisodes, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", TVDB.ShowID, " AND Season = ", TVDB.TVEp.Season, " ORDER BY Episode;"))
+                        If dtEpisodes.Rows.Count > 0 Then
+                            epPath = dtEpisodes.Rows(0).Item("TVEpPath").ToString
+                        End If
+                    End If
+                    fName = Path.Combine(Path.GetDirectoryName(epPath), String.Concat(Path.GetFileNameWithoutExtension(epPath), ".fanart.jpg"))
+                    TVDB.SeasonFanartPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+                End If
+            End If
+
             If bInside AndAlso ((Master.eSettings.SeasonPosterTBN OrElse Master.eSettings.SeasonPosterJPG OrElse _
                                 Master.eSettings.SeasonNameTBN OrElse Master.eSettings.SeasonNameJPG OrElse _
                                 Master.eSettings.SeasonFolderJPG OrElse AdvancedSettings.GetBooleanSetting("YAMJSeasonPoster", False, "multi.Compatibility") AndAlso _
@@ -519,11 +561,9 @@ Public Class Scanner
                     If String.IsNullOrEmpty(TVDB.SeasonPosterPath) AndAlso AdvancedSettings.GetBooleanSetting("YAMJSeasonPoster", False, "multi.Compatibility") Then
                         Dim tPath As String = String.Empty
                         Dim epPath As String = String.Empty
-
                         If Not String.IsNullOrEmpty(TVDB.Filename) AndAlso Not Path.GetFileNameWithoutExtension(TVDB.Filename).ToLower = "file" Then
                             epPath = TVDB.Filename
                         End If
-
                         If String.IsNullOrEmpty(epPath) Then
                             Dim dtEpisodes As New DataTable
                             Master.DB.FillDataTable(dtEpisodes, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", TVDB.ShowID, " AND Season = ", TVDB.TVEp.Season, " ORDER BY Episode;"))
@@ -531,7 +571,6 @@ Public Class Scanner
                                 epPath = dtEpisodes.Rows(0).Item("TVEpPath").ToString
                             End If
                         End If
-
                         fName = Path.Combine(Path.GetDirectoryName(epPath), String.Concat(Path.GetFileNameWithoutExtension(epPath), ".jpg"))
                         TVDB.SeasonPosterPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                     End If
@@ -556,11 +595,9 @@ Public Class Scanner
                     If String.IsNullOrEmpty(TVDB.SeasonFanartPath) AndAlso AdvancedSettings.GetBooleanSetting("YAMJSeasonFanart", False, "multi.Compatibility") Then
                         Dim tPath As String = String.Empty
                         Dim epPath As String = String.Empty
-
                         If Not String.IsNullOrEmpty(TVDB.Filename) AndAlso Not Path.GetFileNameWithoutExtension(TVDB.Filename).ToLower = "file" Then
                             epPath = TVDB.Filename
                         End If
-
                         If String.IsNullOrEmpty(epPath) Then
                             Dim dtEpisodes As New DataTable
                             Master.DB.FillDataTable(dtEpisodes, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", TVDB.ShowID, " AND Season = ", TVDB.TVEp.Season, " ORDER BY Episode;"))
@@ -568,7 +605,6 @@ Public Class Scanner
                                 epPath = dtEpisodes.Rows(0).Item("TVEpPath").ToString
                             End If
                         End If
-
                         fName = Path.Combine(Path.GetDirectoryName(epPath), String.Concat(Path.GetFileNameWithoutExtension(epPath), ".fanart.jpg"))
                         TVDB.SeasonFanartPath = lFiles.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
                     End If
@@ -693,6 +729,28 @@ Public Class Scanner
                 tPath = Path.Combine(parPath, seasonPath)
                 fName = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(parPath), "_1.jpg"))
                 tShow.Poster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
+            End If
+
+            If String.IsNullOrEmpty(tShow.AllSeasonPoster) AndAlso AdvancedSettings.GetBooleanSetting("YAMJAllSeasonPoster", False, "multi.Compatibility") Then
+                Dim tPath As String = String.Empty
+                Dim seasonPath As String = String.Empty
+                If tShow.Episodes.Count > 0 Then
+                    seasonPath = Directory.GetParent(tShow.Episodes.FirstOrDefault.Filename).FullName
+                End If
+                If String.IsNullOrEmpty(seasonPath) Then
+                    Dim dtSeasons As New DataTable
+                    Master.DB.FillDataTable(dtSeasons, String.Concat("SELECT * FROM TVEps INNER JOIN TVEpPaths ON (TVEpPaths.ID = TVEpPathid) WHERE TVShowID = ", ID, " ORDER BY Season, Episode;"))
+                    If dtSeasons.Rows.Count > 0 Then
+                        seasonPath = Functions.GetSeasonDirectoryFromShowPath(parPath, Convert.ToInt32(dtSeasons.Rows(0).Item("Season").ToString))
+                    End If
+                End If
+                Try
+                    fList.AddRange(Directory.GetFiles(seasonPath))
+                Catch
+                End Try
+                tPath = Path.Combine(parPath, seasonPath)
+                fName = Path.Combine(tPath, String.Concat("Set_", FileUtils.Common.GetDirectory(parPath), "_1.banner.jpg"))
+                tShow.AllSeasonPoster = fList.FirstOrDefault(Function(s) s.ToLower = fName.ToLower)
             End If
 
             If String.IsNullOrEmpty(tShow.Fanart) AndAlso AdvancedSettings.GetBooleanSetting("YAMJShowFanart", False, "multi.Compatibility") Then

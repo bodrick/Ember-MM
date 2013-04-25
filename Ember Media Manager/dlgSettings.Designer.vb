@@ -81,6 +81,7 @@ Partial Class dlgSettings
         Me.chkMarkNew = New System.Windows.Forms.CheckBox()
         Me.lbGenre = New System.Windows.Forms.CheckedListBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.chkMovieWatchedCol = New System.Windows.Forms.CheckBox()
         Me.txtCheckTitleTol = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.chkCheckTitles = New System.Windows.Forms.CheckBox()
@@ -351,6 +352,7 @@ Partial Class dlgSettings
         Me.gbTVListOptions = New System.Windows.Forms.GroupBox()
         Me.chkDisplayMissingEpisodes = New System.Windows.Forms.CheckBox()
         Me.gbEpisodeListOptions = New System.Windows.Forms.GroupBox()
+        Me.chkEpisodeWatchedCol = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeNfoCol = New System.Windows.Forms.CheckBox()
         Me.chkEpisodeFanartCol = New System.Windows.Forms.CheckBox()
         Me.chkEpisodePosterCol = New System.Windows.Forms.CheckBox()
@@ -581,6 +583,7 @@ Partial Class dlgSettings
         Me.chkUseMIDuration = New System.Windows.Forms.CheckBox()
         Me.chkScanMediaInfo = New System.Windows.Forms.CheckBox()
         Me.GroupBox10 = New System.Windows.Forms.GroupBox()
+        Me.chkLockSubtitle = New System.Windows.Forms.CheckBox()
         Me.chkLockMPAA = New System.Windows.Forms.CheckBox()
         Me.chkLockLanguageA = New System.Windows.Forms.CheckBox()
         Me.chkLockLanguageV = New System.Windows.Forms.CheckBox()
@@ -1295,6 +1298,7 @@ Partial Class dlgSettings
         '
         'GroupBox2
         '
+        Me.GroupBox2.Controls.Add(Me.chkMovieWatchedCol)
         Me.GroupBox2.Controls.Add(Me.txtCheckTitleTol)
         Me.GroupBox2.Controls.Add(Me.Label30)
         Me.GroupBox2.Controls.Add(Me.chkCheckTitles)
@@ -1309,10 +1313,21 @@ Partial Class dlgSettings
         Me.GroupBox2.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox2.Location = New System.Drawing.Point(7, 106)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(218, 279)
+        Me.GroupBox2.Size = New System.Drawing.Size(218, 291)
         Me.GroupBox2.TabIndex = 4
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Media List Options"
+        '
+        'chkMovieWatchedCol
+        '
+        Me.chkMovieWatchedCol.AutoSize = True
+        Me.chkMovieWatchedCol.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMovieWatchedCol.Location = New System.Drawing.Point(9, 274)
+        Me.chkMovieWatchedCol.Name = "chkMovieWatchedCol"
+        Me.chkMovieWatchedCol.Size = New System.Drawing.Size(142, 17)
+        Me.chkMovieWatchedCol.TabIndex = 75
+        Me.chkMovieWatchedCol.Text = "Hide Watched Column"
+        Me.chkMovieWatchedCol.UseVisualStyleBackColor = True
         '
         'txtCheckTitleTol
         '
@@ -2570,7 +2585,7 @@ Partial Class dlgSettings
         Me.pnlMovies.Controls.Add(Me.GroupBox27)
         Me.pnlMovies.Controls.Add(Me.GroupBox12)
         Me.pnlMovies.Controls.Add(Me.GroupBox2)
-        Me.pnlMovies.Location = New System.Drawing.Point(997, 642)
+        Me.pnlMovies.Location = New System.Drawing.Point(850, 650)
         Me.pnlMovies.Name = "pnlMovies"
         Me.pnlMovies.Size = New System.Drawing.Size(617, 400)
         Me.pnlMovies.TabIndex = 15
@@ -4288,7 +4303,7 @@ Partial Class dlgSettings
         Me.pnlShows.Controls.Add(Me.gbTVMisc)
         Me.pnlShows.Controls.Add(Me.gbEpFilter)
         Me.pnlShows.Controls.Add(Me.gbShowFilter)
-        Me.pnlShows.Location = New System.Drawing.Point(654, 767)
+        Me.pnlShows.Location = New System.Drawing.Point(850, 750)
         Me.pnlShows.Name = "pnlShows"
         Me.pnlShows.Size = New System.Drawing.Size(617, 400)
         Me.pnlShows.TabIndex = 20
@@ -4301,9 +4316,9 @@ Partial Class dlgSettings
         Me.gbTVListOptions.Controls.Add(Me.gbSeasonListOptions)
         Me.gbTVListOptions.Controls.Add(Me.gbShowListOptions)
         Me.gbTVListOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbTVListOptions.Location = New System.Drawing.Point(6, 150)
+        Me.gbTVListOptions.Location = New System.Drawing.Point(6, 143)
         Me.gbTVListOptions.Name = "gbTVListOptions"
-        Me.gbTVListOptions.Size = New System.Drawing.Size(219, 245)
+        Me.gbTVListOptions.Size = New System.Drawing.Size(219, 252)
         Me.gbTVListOptions.TabIndex = 1
         Me.gbTVListOptions.TabStop = False
         Me.gbTVListOptions.Text = "Media List Options"
@@ -4312,7 +4327,7 @@ Partial Class dlgSettings
         '
         Me.chkDisplayMissingEpisodes.AutoSize = True
         Me.chkDisplayMissingEpisodes.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkDisplayMissingEpisodes.Location = New System.Drawing.Point(10, 224)
+        Me.chkDisplayMissingEpisodes.Location = New System.Drawing.Point(8, 231)
         Me.chkDisplayMissingEpisodes.Name = "chkDisplayMissingEpisodes"
         Me.chkDisplayMissingEpisodes.Size = New System.Drawing.Size(155, 17)
         Me.chkDisplayMissingEpisodes.TabIndex = 3
@@ -4321,16 +4336,28 @@ Partial Class dlgSettings
         '
         'gbEpisodeListOptions
         '
+        Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodeWatchedCol)
         Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodeNfoCol)
         Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodeFanartCol)
         Me.gbEpisodeListOptions.Controls.Add(Me.chkEpisodePosterCol)
         Me.gbEpisodeListOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbEpisodeListOptions.Location = New System.Drawing.Point(10, 143)
         Me.gbEpisodeListOptions.Name = "gbEpisodeListOptions"
-        Me.gbEpisodeListOptions.Size = New System.Drawing.Size(199, 68)
+        Me.gbEpisodeListOptions.Size = New System.Drawing.Size(199, 86)
         Me.gbEpisodeListOptions.TabIndex = 2
         Me.gbEpisodeListOptions.TabStop = False
         Me.gbEpisodeListOptions.Text = "Episodes"
+        '
+        'chkEpisodeWatchedCol
+        '
+        Me.chkEpisodeWatchedCol.AutoSize = True
+        Me.chkEpisodeWatchedCol.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkEpisodeWatchedCol.Location = New System.Drawing.Point(7, 64)
+        Me.chkEpisodeWatchedCol.Name = "chkEpisodeWatchedCol"
+        Me.chkEpisodeWatchedCol.Size = New System.Drawing.Size(142, 17)
+        Me.chkEpisodeWatchedCol.TabIndex = 3
+        Me.chkEpisodeWatchedCol.Text = "Hide Watched Column"
+        Me.chkEpisodeWatchedCol.UseVisualStyleBackColor = True
         '
         'chkEpisodeNfoCol
         '
@@ -4455,7 +4482,7 @@ Partial Class dlgSettings
         Me.gbTVMisc.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.gbTVMisc.Location = New System.Drawing.Point(6, 7)
         Me.gbTVMisc.Name = "gbTVMisc"
-        Me.gbTVMisc.Size = New System.Drawing.Size(219, 142)
+        Me.gbTVMisc.Size = New System.Drawing.Size(219, 130)
         Me.gbTVMisc.TabIndex = 0
         Me.gbTVMisc.TabStop = False
         Me.gbTVMisc.Text = "Miscellaneous"
@@ -6420,9 +6447,9 @@ Partial Class dlgSettings
         Me.gbOptions.Controls.Add(Me.chkYear)
         Me.gbOptions.Controls.Add(Me.chkTitle)
         Me.gbOptions.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
-        Me.gbOptions.Location = New System.Drawing.Point(8, 218)
+        Me.gbOptions.Location = New System.Drawing.Point(8, 227)
         Me.gbOptions.Name = "gbOptions"
-        Me.gbOptions.Size = New System.Drawing.Size(302, 179)
+        Me.gbOptions.Size = New System.Drawing.Size(302, 170)
         Me.gbOptions.TabIndex = 67
         Me.gbOptions.TabStop = False
         Me.gbOptions.Text = "Scraper Fields - Global"
@@ -6892,6 +6919,7 @@ Partial Class dlgSettings
         '
         'GroupBox10
         '
+        Me.GroupBox10.Controls.Add(Me.chkLockSubtitle)
         Me.GroupBox10.Controls.Add(Me.chkLockMPAA)
         Me.GroupBox10.Controls.Add(Me.chkLockLanguageA)
         Me.GroupBox10.Controls.Add(Me.chkLockLanguageV)
@@ -6906,10 +6934,20 @@ Partial Class dlgSettings
         Me.GroupBox10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(238, Byte))
         Me.GroupBox10.Location = New System.Drawing.Point(8, 6)
         Me.GroupBox10.Name = "GroupBox10"
-        Me.GroupBox10.Size = New System.Drawing.Size(156, 206)
+        Me.GroupBox10.Size = New System.Drawing.Size(156, 224)
         Me.GroupBox10.TabIndex = 1
         Me.GroupBox10.TabStop = False
         Me.GroupBox10.Text = "Global Locks"
+        '
+        'chkLockSubtitle
+        '
+        Me.chkLockSubtitle.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkLockSubtitle.Location = New System.Drawing.Point(6, 203)
+        Me.chkLockSubtitle.Name = "chkLockSubtitle"
+        Me.chkLockSubtitle.Size = New System.Drawing.Size(129, 17)
+        Me.chkLockSubtitle.TabIndex = 50
+        Me.chkLockSubtitle.Text = "Lock Subtitle"
+        Me.chkLockSubtitle.UseVisualStyleBackColor = True
         '
         'chkLockMPAA
         '
@@ -6959,7 +6997,7 @@ Partial Class dlgSettings
         Me.chkLockPlot.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkLockPlot.Location = New System.Drawing.Point(6, 33)
         Me.chkLockPlot.Name = "chkLockPlot"
-        Me.chkLockPlot.Size = New System.Drawing.Size(129, 17)
+        Me.chkLockPlot.Size = New System.Drawing.Size(76, 17)
         Me.chkLockPlot.TabIndex = 0
         Me.chkLockPlot.Text = "Lock Plot"
         Me.chkLockPlot.UseVisualStyleBackColor = True
@@ -7179,7 +7217,7 @@ Partial Class dlgSettings
         Me.pnlScraper.Controls.Add(Me.gbOptions)
         Me.pnlScraper.Controls.Add(Me.GroupBox1)
         Me.pnlScraper.Controls.Add(Me.GroupBox26)
-        Me.pnlScraper.Location = New System.Drawing.Point(936, 576)
+        Me.pnlScraper.Location = New System.Drawing.Point(902, 202)
         Me.pnlScraper.Name = "pnlScraper"
         Me.pnlScraper.Size = New System.Drawing.Size(617, 400)
         Me.pnlScraper.TabIndex = 14
@@ -7256,6 +7294,7 @@ Partial Class dlgSettings
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
         Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(892, 628)
+        Me.Controls.Add(Me.pnlShows)
         Me.Controls.Add(Me.pnlSources)
         Me.Controls.Add(Me.pnlTVSources)
         Me.Controls.Add(Me.pnlImages)
@@ -7275,7 +7314,6 @@ Partial Class dlgSettings
         Me.Controls.Add(Me.pnlXBMCCom)
         Me.Controls.Add(Me.pnlMain)
         Me.Controls.Add(Me.pnlTVScraper)
-        Me.Controls.Add(Me.pnlShows)
         Me.DoubleBuffered = True
         Me.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -8038,4 +8076,7 @@ Partial Class dlgSettings
     Friend WithEvents chkLockLanguageA As System.Windows.Forms.CheckBox
     Friend WithEvents chkLockMPAA As System.Windows.Forms.CheckBox
     Friend WithEvents chkUseMPAAFSK As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMovieWatchedCol As System.Windows.Forms.CheckBox
+    Friend WithEvents chkLockSubtitle As System.Windows.Forms.CheckBox
+    Friend WithEvents chkEpisodeWatchedCol As System.Windows.Forms.CheckBox
 End Class

@@ -86,6 +86,7 @@ Public Class Settings
     Private _episodejpg As Boolean
     Private _episodedashthumbjpg As Boolean
     Private _episodenfocol As Boolean
+    Private _episodewatchedcol As Boolean
     Private _episodepostercol As Boolean
     Private _episodetbn As Boolean
     Private _eplockplot As Boolean
@@ -150,6 +151,7 @@ Public Class Settings
     Private _locklanguageV As Boolean
     Private _locklanguageA As Boolean
     Private _lockMPAA As Boolean
+    Private _lockSubtitle As Boolean
     Private _useMPAAForFSK As Boolean
     Private _lockstudio As Boolean
     Private _locktagline As Boolean
@@ -184,6 +186,7 @@ Public Class Settings
     Private _movietbn As Boolean
     Private _movietheme As String
     Private _movietrailerCol As Boolean
+    Private _moviewatchedCol As Boolean
     Private _nodisplayfanart As Boolean
     Private _nodisplayposter As Boolean
     Private _noepfilters As Boolean
@@ -866,6 +869,15 @@ Public Class Settings
         End Set
     End Property
 
+    Public Property EpisodeWatchedCol() As Boolean
+        Get
+            Return Me._episodewatchedcol
+        End Get
+        Set(ByVal value As Boolean)
+            Me._episodewatchedcol = value
+        End Set
+    End Property
+
     Public Property EpisodePosterCol() As Boolean
         Get
             Return Me._episodepostercol
@@ -1448,6 +1460,14 @@ Public Class Settings
             Me._lockMPAA = value
         End Set
     End Property
+    Public Property LockSubtitle() As Boolean
+        Get
+            Return Me._lockSubtitle
+        End Get
+        Set(ByVal value As Boolean)
+            Me._lockSubtitle = value
+        End Set
+    End Property
     Public Property UseMPAAForFSK() As Boolean
         Get
             Return Me._useMPAAForFSK
@@ -1750,6 +1770,15 @@ Public Class Settings
         End Get
         Set(ByVal value As Boolean)
             Me._movietrailerCol = value
+        End Set
+    End Property
+
+    Public Property MovieWatchedCol() As Boolean
+        Get
+            Return Me._moviewatchedCol
+        End Get
+        Set(ByVal value As Boolean)
+            Me._moviewatchedCol = value
         End Set
     End Property
 
@@ -3359,6 +3388,7 @@ Public Class Settings
         Me._moviefanartCol = False
         Me._movieinfoCol = False
         Me._movietrailerCol = False
+        Me._moviewatchedCol = False
         Me._moviesubCol = False
         Me._movieextraCol = False
         Me._cleanfolderJpg = False
@@ -3610,6 +3640,7 @@ Public Class Settings
         Me._episodepostercol = False
         Me._episodefanartcol = True
         Me._episodenfocol = False
+        Me._episodewatchedcol = False
         Me._proxyuri = String.Empty
         Me._proxyport = -1
         Me._proxycredentials = New NetworkCredential

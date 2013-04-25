@@ -7,15 +7,16 @@
   <string id="5">YAMJ Specific NFO fields</string>
   <string id="6">Show Poster as Set_&lt;Show&gt;_1.jpg</string>
   <string id="7">Show Poster as Set_&lt;Show&gt;_1.fanart.jpg</string>
-  <string id="8">Season Poster as &lt;Episode&gt;SxxE01.jpg</string>
-  <string id="9">Season Fanart as &lt;Episode&gt;SxxE01.fanart.jpg</string>
-  <string id="10">Episode Poster as &lt;Show&gt;.videoimage.jpg</string>
+  <string id="8">Season Poster as &lt;Episode&gt;.jpg *</string>
+  <string id="9">Season Fanart as &lt;Episode&gt;.fanart.jpg *</string>
+  <string id="10">Episode Poster as &lt;Episode&gt;.videoimage.jpg</string>
   <string id="11">Compatible VIDEO_TS File Placement/Naming (NOTE: This will be applyed even if module is disabled)</string>
   <string id="12">Movie Fanart as backdrop.jpg</string>
   <string id="13">Media Browser mymovies.xml</string>
-  <string id="14">Show All Season as Season 1.banner.jpg</string>
+  <string id="14">All Seasons Poster as Set_&lt;Show&gt;_1.banner.jpg</string>
   <string id="15">Replace ID field with Boxee Id Field</string>
   <string id="16">TV Show Options</string>
-  <string id="17">Experimental module</string>
+  <string id="17">Use YAMJ Settings</string>
   <string id="18">Boxee Compatibility</string>
+  <string id="19">* Use allways the first existing episode of a season</string>
 </strings>

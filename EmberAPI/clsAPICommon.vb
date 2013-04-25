@@ -735,6 +735,7 @@ Public Class Functions
             .bLanguageV = Not Master.eSettings.LockLanguageV
             .bLanguageA = Not Master.eSettings.LockLanguageA
             .buseMPAAForFSK = Not Master.eSettings.UseMPAAForFSK
+            .bSubtitle = Not Master.eSettings.LockSubtitle
 
             .bRelease = True
             .bRuntime = True
@@ -1239,6 +1240,7 @@ Public Class Structures
         Dim bRating As Boolean
         Dim bLanguageV As Boolean
         Dim bLanguageA As Boolean
+        Dim bSubtitle As Boolean
         Dim buseMPAAForFSK As Boolean
         Dim bRelease As Boolean
         Dim bRuntime As Boolean

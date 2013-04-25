@@ -66,7 +66,7 @@ Public Class StringUtils
     Public Shared Function CleanStackingMarkers(ByVal sPath As String, Optional ByVal Asterisk As Boolean = False) As String
         If AdvancedSettings.GetBooleanSetting("DisableMultiPartMedia", False) Then Return sPath
         If String.IsNullOrEmpty(sPath) Then Return String.Empty
-        Dim sReturn As String = Regex.Replace(sPath, AdvancedSettings.GetSetting("DeleteStackMarkers", "[\s_\-\.]?((cd|dvd|p(?:ar)?t|dis[ck])[\s_\-\.]*([0-9]))"), If(Asterisk, "*", " "), RegexOptions.IgnoreCase).Trim
+        Dim sReturn As String = Regex.Replace(sPath, AdvancedSettings.GetSetting("DeleteStackMarkers", "[\s_\-\.]?((cd|dvd|p(?:ar)?t|dis[ck])[\s_\-\.]*([0-9]+))"), If(Asterisk, "*", " "), RegexOptions.IgnoreCase).Trim
         If Not sReturn = sPath Then
             Return Regex.Replace(sReturn, "\s\s(\s+)?", " ").Trim
         Else
@@ -422,6 +422,24 @@ Public Class StringUtils
                 Return "Rated NC-17"
         End Select
         Return String.Empty
+    End Function
+
+    Public Shared Function CleanFileName(ByVal fName As String) As String
+
+        If Not String.IsNullOrEmpty(fName) Then
+            fName = fName.Replace(":", " -")
+            fName = fName.Replace("/", String.Empty)
+            'pattern = pattern.Replace("\", String.Empty)
+            fName = fName.Replace("|", String.Empty)
+            fName = fName.Replace("<", String.Empty)
+            fName = fName.Replace(">", String.Empty)
+            fName = fName.Replace("?", String.Empty)
+            fName = fName.Replace("*", String.Empty)
+            fName = fName.Replace("  ", " ")
+            Return fName
+        End If
+
+        Return fName
     End Function
 
 #End Region 'Methods

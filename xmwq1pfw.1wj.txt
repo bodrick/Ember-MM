@@ -1,0 +1,61 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch 1.3.0.x
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   Addons/generic.EmberCore.BulkRename/clsAPIRenamer.vb
+#	modified:   Addons/generic.EmberCore.BulkRename/dlgBulkRename.vb
+#	modified:   Addons/generic.EmberCore.MovieExport/Langs/generic.EmberCore.MovieExporter.English_(en_US)-Help.xml
+#	modified:   Addons/generic.EmberCore.MovieExport/Langs/generic.EmberCore.MovieExporter.English_(en_US).xml
+#	modified:   Addons/generic.EmberCore.MovieExport/Module.MovieExporter.vb
+#	modified:   Addons/generic.EmberCore.MovieExport/dlgExportMovies.designer.vb
+#	modified:   Addons/generic.EmberCore.MovieExport/dlgExportMovies.resx
+#	modified:   Addons/generic.EmberCore.MovieExport/dlgExportMovies.vb
+#	modified:   Addons/generic.EmberCore.MovieExport/frmSettingsHolder.Designer.vb
+#	modified:   Addons/generic.EmberCore.MovieExport/frmSettingsHolder.vb
+#	modified:   Addons/multi.Compatibility/Langs/multi.Compatibility.English_(en_US).xml
+#	modified:   Addons/multi.Compatibility/frmYAMJ.designer.vb
+#	modified:   Addons/multi.Compatibility/frmYAMJ.vb
+#	modified:   Addons/multi.Compatibility/genericYAMJ.vb
+#	modified:   Addons/scraper.EmberCore.TMDB/Scraper/clsScrapeTMDBg.vb
+#	modified:   Addons/scraper.EmberCore.TMDB/Scraper/dlgTMDBSearchResults.vb
+#	modified:   Addons/scraper.EmberCore/Scraper/clsScrapeIMDB.vb
+#	modified:   Addons/scraper.EmberCore/Scraper/dlgIMDBSearchResults.vb
+#	modified:   Addons/scraper.EmberCore/scraperMovieNativeModule.vb
+#	modified:   Ember Media Manager/Bin/ffmpeg.exe
+#	modified:   Ember Media Manager/Ember Media Manager.vbproj
+#	modified:   Ember Media Manager/Langs/English_(en_US)-Help.xml
+#	modified:   Ember Media Manager/Langs/English_(en_US).xml
+#	modified:   Ember Media Manager/Langs/html/template MovieHomepage/English_(en_US).html
+#	modified:   Ember Media Manager/Langs/html/template MovieHomepage/German_(de_DE).html
+#	modified:   Ember Media Manager/Langs/html/template MovieHomepage/function.js
+#	new file:   Ember Media Manager/Resources/haswatched.png
+#	modified:   Ember Media Manager/dlgEditEpisode.Designer.vb
+#	modified:   Ember Media Manager/dlgEditEpisode.resx
+#	modified:   Ember Media Manager/dlgEditEpisode.vb
+#	modified:   Ember Media Manager/dlgEditMovie.Designer.vb
+#	modified:   Ember Media Manager/dlgEditMovie.vb
+#	modified:   Ember Media Manager/dlgSettings.Designer.vb
+#	modified:   Ember Media Manager/dlgSettings.resx
+#	modified:   Ember Media Manager/dlgSettings.vb
+#	modified:   Ember Media Manager/frmMain.Designer.vb
+#	modified:   Ember Media Manager/frmMain.resx
+#	modified:   Ember Media Manager/frmMain.vb
+#	modified:   EmberAPI/EmberAPI.vbproj
+#	modified:   EmberAPI/Resources/MediaDatabaseSQL_v1.txt
+#	modified:   EmberAPI/clsAPICommon.vb
+#	modified:   EmberAPI/clsAPIDatabase.vb
+#	modified:   EmberAPI/clsAPIImages.vb
+#	modified:   EmberAPI/clsAPIMediaContainers.vb
+#	modified:   EmberAPI/clsAPIMediaInfo.vb
+#	modified:   EmberAPI/clsAPIScanner.vb
+#	modified:   EmberAPI/clsAPISettings.vb
+#	modified:   EmberAPI/clsAPIStringUtils.vb
+#	modified:   EmberAPI/clsAdvancedSettings.vb
+#	new file:   EmberAPI/dlgCompatibility.Designer.vb
+#	new file:   EmberAPI/dlgCompatibility.resx
+#	new file:   EmberAPI/dlgCompatibility.vb
+#
+
