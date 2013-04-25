@@ -389,7 +389,7 @@ Public Class Database
             If doAddColumnWatched = True Then
                 Using transaction As SQLite.SQLiteTransaction = _mediaDBConn.BeginTransaction()
                     Dim strlistSQLCommands As New List(Of String)
-                    strlistSQLCommands.Add("alter table TVEps add HasWatched BOOL;")
+                    strlistSQLCommands.Add("alter table TVEps add HasWatched BOOL NOT NULL DEFAULT 0;")
                     For Each sqlstatement In strlistSQLCommands
                         Try
                             SQLpathcommand.CommandText = sqlstatement
