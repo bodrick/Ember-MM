@@ -192,30 +192,18 @@ Public Class Images
         Try
             Dim tPath As String = Directory.GetParent(mMovie.Filename).FullName
             Dim params As New List(Of Object)(New Object() {mMovie})
+
             ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.OnMovieFanartDelete, params, Nothing, False)
 
-            If (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isVideoTS(mMovie.Filename) Then
-                If Master.eSettings.FanartJPG Then
-                    Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "fanart.jpg"))
-                ElseIf Master.eSettings.MovieNameFanartJPG Then
-                    Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), "-fanart.jpg"))
-                    Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "fanart.jpg"))
-                ElseIf Master.eSettings.MovieNameDotFanartJPG Then
-                    Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".fanart.jpg"))
-                Else
-                    Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "fanart.jpg"))
-                End If
-            ElseIf (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
-                If Master.eSettings.FanartJPG Then
-                    Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "fanart.jpg"))
-                ElseIf Master.eSettings.MovieNameFanartJPG Then
-                    Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), "-fanart.jpg"))
-                    Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "fanart.jpg"))
-                ElseIf Master.eSettings.MovieNameDotFanartJPG Then
-                    Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".fanart.jpg"))
-                Else
-                    Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "fanart.jpg"))
-                End If
+            If FileUtils.Common.isVideoTS(mMovie.Filename) Then
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "fanart.jpg"))
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", ".fanart.jpg"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), "-fanart.jpg"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".fanart.jpg"))
+            ElseIf FileUtils.Common.isBDRip(mMovie.Filename) Then
+                Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "fanart.jpg"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), "-fanart.jpg"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".fanart.jpg"))
             Else
                 If mMovie.isSingle Then
                     Delete(Path.Combine(tPath, "fanart.jpg"))
@@ -229,10 +217,11 @@ Public Class Images
                     Delete(Path.Combine(tPath, "index.fanart.jpg"))
                 Else
                     Dim fPath As String = Path.Combine(tPath, Path.GetFileNameWithoutExtension(mMovie.Filename))
+                    Dim fPathStack As String = Path.Combine(tPath, StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(mMovie.Filename)))
                     Delete(String.Concat(fPath, "-fanart.jpg"))
                     Delete(String.Concat(fPath, ".fanart.jpg"))
+                    Delete(String.Concat(fPathStack, "-fanart.jpg"))
                 End If
-
             End If
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -243,48 +232,26 @@ Public Class Images
         Try
             Dim tPath As String = Directory.GetParent(mMovie.Filename).FullName
             Dim params As New List(Of Object)(New Object() {mMovie})
+
             ModulesManager.Instance.RunGeneric(Enums.ModuleEventType.OnMoviePosterDelete, params, Nothing, False)
 
-            If (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isVideoTS(mMovie.Filename) Then
-                With Master.eSettings
-                    If .MovieNameJPG Then
-                        Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".jpg"))
-                    ElseIf .MovieJPG Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "movie.jpg"))
-                    ElseIf .FolderJPG Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "folder.jpg"))
-                    ElseIf .PosterJPG Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.jpg"))
-                    ElseIf .MovieNameTBN Then
-                        Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".tbn"))
-                    ElseIf .MovieNameDashPosterJPG Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.jpg"))
-                    ElseIf .MovieTBN Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "movie.tbn"))
-                    ElseIf .PosterTBN Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.tbn"))
-                    End If
-                End With
-            ElseIf (Master.eSettings.VideoTSParent OrElse Master.eSettings.VideoTSParentXBMC) AndAlso FileUtils.Common.isBDRip(mMovie.Filename) Then
-                With Master.eSettings
-                    If .MovieNameJPG Then
-                        Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".jpg"))
-                    ElseIf .MovieJPG Then
-                        Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "movie.jpg"))
-                    ElseIf .FolderJPG Then
-                        Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "folder.jpg"))
-                    ElseIf .PosterJPG Then
-                        Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "poster.jpg"))
-                    ElseIf .MovieNameTBN Then
-                        Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".tbn"))
-                    ElseIf .MovieNameDashPosterJPG Then
-                        Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.jpg"))
-                    ElseIf .MovieTBN Then
-                        Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "movie.tbn"))
-                    ElseIf .PosterTBN Then
-                        Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "poster.tbn"))
-                    End If
-                End With
+            If FileUtils.Common.isVideoTS(mMovie.Filename) Then
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "movie.jpg"))
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "movie.tbn"))
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "folder.jpg"))
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.jpg"))
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.tbn"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".jpg"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(tPath).FullName, Directory.GetParent(tPath).Name), ".tbn"))
+            ElseIf FileUtils.Common.isBDRip(mMovie.Filename) Then
+                Delete(String.Concat(Directory.GetParent(tPath).FullName, "\", "poster.jpg"))
+                Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "movie.jpg"))
+                Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "movie.tbn"))
+                Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "folder.jpg"))
+                Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "poster.jpg"))
+                Delete(String.Concat(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, "\", "poster.tbn"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".jpg"))
+                Delete(String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(tPath).FullName).FullName, Directory.GetParent(Directory.GetParent(tPath).FullName).Name), ".tbn"))
             Else
 
                 If mMovie.isSingle Then
@@ -303,9 +270,11 @@ Public Class Images
                     Delete(Path.Combine(tPath, "index.jpg"))
                 Else
                     Dim pPath As String = Path.Combine(tPath, Path.GetFileNameWithoutExtension(mMovie.Filename))
+                    Dim pPathStack As String = Path.Combine(tPath, StringUtils.CleanStackingMarkers(Path.GetFileNameWithoutExtension(mMovie.Filename)))
                     Delete(String.Concat(pPath, ".tbn"))
                     Delete(String.Concat(pPath, ".jpg"))
                     Delete(String.Concat(pPath, "-poster.jpg"))
+                    Delete(String.Concat(pPathStack, "-poster.jpg"))
                 End If
 
             End If
@@ -821,7 +790,7 @@ Public Class Images
                     End If
 
                     If .MovieNameFanartJPG AndAlso Not Master.eSettings.VideoTSParentXBMC Then
-                        fPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName, Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).Name), "-fanart.jpg")
+                        fPath = String.Concat(Path.Combine(Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).FullName, Directory.GetParent(Directory.GetParent(Directory.GetParent(mMovie.Filename).FullName).FullName).Name), "-fanart.jpg")
                         If Not File.Exists(fPath) OrElse (IsEdit OrElse Master.eSettings.OverwritePoster) Then
                             Save(fPath, Master.eSettings.AllSPosterQuality, sURL, doResize)
                             strReturn = fPath
