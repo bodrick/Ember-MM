@@ -1,4 +1,5 @@
-﻿' ################################################################################
+﻿
+' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #
 ' ################################################################################
 ' ################################################################################
@@ -179,13 +180,13 @@ Public Class dlgEditMovie
     Private Sub btnRemoveFanart_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveFanart.Click
 		Me.pbFanart.Image = Nothing
 		Me.pbFanart.Tag = Nothing
-		Me.Fanart = Nothing
+		Me.Fanart.Dispose()	'I need the object to call Delete... :) so I dispose the memory structures
     End Sub
 
     Private Sub btnRemovePoster_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemovePoster.Click
 		Me.pbPoster.Image = Nothing
 		Me.pbPoster.Tag = Nothing
-		Me.Poster = Nothing
+		Me.Poster.Dispose()	'I need the object to call Delete... :) so I dispose the memory structures
     End Sub
 
     Private Sub btnRemoveThumb_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRemoveThumb.Click
@@ -1306,30 +1307,30 @@ Public Class dlgEditMovie
                     .Poster.DeletePosters(Master.currMovie)
                 End If
 
-                If Not IsNothing(.Fanart.Image) Then
-                    Dim fPath As String = .Fanart.SaveAsFanart(Master.currMovie)
-                    Master.currMovie.FanartPath = fPath
-                Else
-                    .Fanart.DeleteFanart(Master.currMovie)
-                    Master.currMovie.FanartPath = String.Empty
-                End If
+				If Not IsNothing(.Fanart.Image) Then
+					Dim fPath As String = .Fanart.SaveAsFanart(Master.currMovie)
+					Master.currMovie.FanartPath = fPath
+				Else
+					.Fanart.DeleteFanart(Master.currMovie)
+					Master.currMovie.FanartPath = String.Empty
+				End If
 
-                If Not IsNothing(.Poster.Image) Then
-                    Dim pPath As String = .Poster.SaveAsPoster(Master.currMovie)
-                    Master.currMovie.PosterPath = pPath
-                Else
-                    .Poster.DeletePosters(Master.currMovie)
-                    Master.currMovie.PosterPath = String.Empty
-                End If
+				If Not IsNothing(.Poster.Image) Then
+					Dim pPath As String = .Poster.SaveAsPoster(Master.currMovie)
+					Master.currMovie.PosterPath = pPath
+				Else
+					.Poster.DeletePosters(Master.currMovie)
+					Master.currMovie.PosterPath = String.Empty
+				End If
 
-                If Not Master.eSettings.NoSaveImagesToNfo AndAlso pResults.Posters.Count > 0 Then Master.currMovie.Movie.Thumb = pResults.Posters
-                If Not Master.eSettings.NoSaveImagesToNfo AndAlso fResults.Fanart.Thumb.Count > 0 Then Master.currMovie.Movie.Fanart = pResults.Fanart
+				If Not Master.eSettings.NoSaveImagesToNfo AndAlso pResults.Posters.Count > 0 Then Master.currMovie.Movie.Thumb = pResults.Posters
+				If Not Master.eSettings.NoSaveImagesToNfo AndAlso fResults.Fanart.Thumb.Count > 0 Then Master.currMovie.Movie.Fanart = pResults.Fanart
 
-                .SaveExtraThumbsList()
+				.SaveExtraThumbsList()
 
-                .TransferETs()
+				.TransferETs()
 
-            End With
+			End With
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
         End Try
