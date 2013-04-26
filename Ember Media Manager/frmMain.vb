@@ -3047,7 +3047,6 @@ doCancel:
 
     Private Sub dgvMediaList_CellPainting(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellPaintingEventArgs) Handles dgvMediaList.CellPainting
         Try
-
             If Master.isWindows AndAlso e.RowIndex >= 0 AndAlso Not Me.dgvMediaList.Item(e.ColumnIndex, e.RowIndex).Displayed Then
                 e.Handled = True
                 Return
@@ -3072,49 +3071,49 @@ doCancel:
 
             End If
 
-                'text
-                If e.ColumnIndex = 3 AndAlso e.RowIndex >= 0 Then
-                    If Convert.ToBoolean(Me.dgvMediaList.Item(11, e.RowIndex).Value) Then 'is marked
-                        e.CellStyle.ForeColor = Color.Crimson
-                        e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                        e.CellStyle.SelectionForeColor = Color.Crimson
-                    ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(10, e.RowIndex).Value) Then 'is new
-                        e.CellStyle.ForeColor = Color.Green
-                        e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                        e.CellStyle.SelectionForeColor = Color.Green
-                    Else
-                        e.CellStyle.ForeColor = Color.Black
-                        e.CellStyle.Font = New Font("Segoe UI", 8.25, FontStyle.Regular)
-                        e.CellStyle.SelectionForeColor = Color.FromKnownColor(KnownColor.HighlightText)
-                    End If
+            'text
+            If e.ColumnIndex = 3 AndAlso e.RowIndex >= 0 Then
+                If Convert.ToBoolean(Me.dgvMediaList.Item(11, e.RowIndex).Value) Then 'is marked
+                    e.CellStyle.ForeColor = Color.Crimson
+                    e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                    e.CellStyle.SelectionForeColor = Color.Crimson
+                ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(10, e.RowIndex).Value) Then 'is new
+                    e.CellStyle.ForeColor = Color.Green
+                    e.CellStyle.Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                    e.CellStyle.SelectionForeColor = Color.Green
+                Else
+                    e.CellStyle.ForeColor = Color.Black
+                    e.CellStyle.Font = New Font("Segoe UI", 8.25, FontStyle.Regular)
+                    e.CellStyle.SelectionForeColor = Color.FromKnownColor(KnownColor.HighlightText)
+                End If
+            End If
+
+            If e.ColumnIndex >= 3 AndAlso e.ColumnIndex <= 34 AndAlso e.RowIndex >= 0 Then
+                If Convert.ToBoolean(Me.dgvMediaList.Item(14, e.RowIndex).Value) Then 'is locked
+                    e.CellStyle.BackColor = Color.LightSteelBlue
+                    e.CellStyle.SelectionBackColor = Color.DarkTurquoise
+                ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(44, e.RowIndex).Value) Then 'title is out of tolerance
+                    e.CellStyle.BackColor = Color.MistyRose
+                    e.CellStyle.SelectionBackColor = Color.DarkMagenta
+                Else
+                    e.CellStyle.BackColor = Color.White
+                    e.CellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.Highlight)
                 End If
 
-                If e.ColumnIndex >= 3 AndAlso e.ColumnIndex <= 34 AndAlso e.RowIndex >= 0 Then
-                    If Convert.ToBoolean(Me.dgvMediaList.Item(14, e.RowIndex).Value) Then 'is locked
-                        e.CellStyle.BackColor = Color.LightSteelBlue
-                        e.CellStyle.SelectionBackColor = Color.DarkTurquoise
-                    ElseIf Convert.ToBoolean(Me.dgvMediaList.Item(43, e.RowIndex).Value) Then 'use folder
-                        e.CellStyle.BackColor = Color.MistyRose
-                        e.CellStyle.SelectionBackColor = Color.DarkMagenta
-                    Else
-                        e.CellStyle.BackColor = Color.White
-                        e.CellStyle.SelectionBackColor = Color.FromKnownColor(KnownColor.Highlight)
-                    End If
+                If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 34 Then
+                    e.PaintBackground(e.ClipBounds, True)
 
-                    If e.ColumnIndex >= 4 AndAlso e.ColumnIndex <= 34 Then
-                        e.PaintBackground(e.ClipBounds, True)
+                    Dim pt As Point = e.CellBounds.Location
+                    Dim offset As Integer = Convert.ToInt32((e.CellBounds.Width - Me.ilColumnIcons.ImageSize.Width) / 2)
 
-                        Dim pt As Point = e.CellBounds.Location
-                        Dim offset As Integer = Convert.ToInt32((e.CellBounds.Width - Me.ilColumnIcons.ImageSize.Width) / 2)
-
-                        pt.X += offset
-                        pt.Y = e.CellBounds.Top + 3
-                        Me.ilColumnIcons.Draw(e.Graphics, pt, If(Convert.ToBoolean(e.Value), 6, 7))
-                        e.Handled = True
-                    End If
+                    pt.X += offset
+                    pt.Y = e.CellBounds.Top + 3
+                    Me.ilColumnIcons.Draw(e.Graphics, pt, If(Convert.ToBoolean(e.Value), 6, 7))
+                    e.Handled = True
                 End If
+            End If
 
-                Me.tabMovies.Text = String.Format("{0} ({1})", Master.eLang.GetString(36, "Movies"), Me.dgvMediaList.RowCount)
+            Me.tabMovies.Text = String.Format("{0} ({1})", Master.eLang.GetString(36, "Movies"), Me.dgvMediaList.RowCount)
 
         Catch ex As Exception
             Master.eLog.WriteToErrorLog(ex.Message, ex.StackTrace, "Error")
@@ -4181,7 +4180,7 @@ doCancel:
                             ElseIf FileUtils.Common.isBDRip(drvRow.Cells(1).Value.ToString) Then
                                 pTitle = Directory.GetParent(Directory.GetParent(Directory.GetParent(drvRow.Cells(1).Value.ToString).FullName).FullName).Name
                             Else
-                                If Convert.ToBoolean(drvRow.Cells(42).Value) AndAlso Convert.ToBoolean(drvRow.Cells(2).Value) Then
+                                If Convert.ToBoolean(drvRow.Cells(43).FormattedValue) AndAlso Convert.ToBoolean(drvRow.Cells(2).FormattedValue) Then
                                     pTitle = Directory.GetParent(drvRow.Cells(1).Value.ToString).Name
                                 Else
                                     pTitle = Path.GetFileNameWithoutExtension(drvRow.Cells(1).Value.ToString)
@@ -4191,11 +4190,11 @@ doCancel:
                             LevFail = StringUtils.ComputeLevenshtein(StringUtils.FilterName(drvRow.Cells(15).Value.ToString, False, True).ToLower, StringUtils.FilterName(pTitle, False, True).ToLower) > Master.eSettings.LevTolerance
 
                             parOutOfTolerance.Value = LevFail
-                            drvRow.Cells(43).Value = LevFail
+                            drvRow.Cells(44).Value = LevFail
                             parID.Value = drvRow.Cells(0).Value
                         Else
                             parOutOfTolerance.Value = False
-                            drvRow.Cells(43).Value = False
+                            drvRow.Cells(44).Value = False
                             parID.Value = drvRow.Cells(0).Value
                         End If
                         SQLcommand.ExecuteNonQuery()

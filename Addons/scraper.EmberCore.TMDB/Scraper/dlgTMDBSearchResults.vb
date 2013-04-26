@@ -295,7 +295,7 @@ Public Class dlgTMDBSearchResults
 		'Dim selNode As New TreeNode
 
 		Try
-            'Me.tvResults.Nodes.Clear()
+			Me.tvResults.Nodes.Clear()
 			Me.ClearInfo()
 			If Not IsNothing(M) AndAlso M.Matches.Count > 0 Then
 

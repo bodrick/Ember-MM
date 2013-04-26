@@ -44,10 +44,10 @@ Partial Class frmTrakt
         'txtTraktUser
         '
         Me.txtTraktUser.Enabled = False
-        Me.txtTraktUser.Location = New System.Drawing.Point(78, 51)
+        Me.txtTraktUser.Location = New System.Drawing.Point(110, 51)
         Me.txtTraktUser.Name = "txtTraktUser"
-        Me.txtTraktUser.Size = New System.Drawing.Size(167, 20)
-        Me.txtTraktUser.TabIndex = 0
+        Me.txtTraktUser.Size = New System.Drawing.Size(135, 20)
+        Me.txtTraktUser.TabIndex = 1
         '
         'lblTraktUser
         '
@@ -74,7 +74,7 @@ Partial Class frmTrakt
         Me.chkUseTrakt.Location = New System.Drawing.Point(22, 16)
         Me.chkUseTrakt.Name = "chkUseTrakt"
         Me.chkUseTrakt.Size = New System.Drawing.Size(85, 17)
-        Me.chkUseTrakt.TabIndex = 6
+        Me.chkUseTrakt.TabIndex = 0
         Me.chkUseTrakt.Text = "Use Trakt.tv"
         Me.chkUseTrakt.UseVisualStyleBackColor = True
         '
@@ -103,16 +103,16 @@ Partial Class frmTrakt
         Me.btGetSeriesTrakt.Location = New System.Drawing.Point(140, 208)
         Me.btGetSeriesTrakt.Name = "btGetSeriesTrakt"
         Me.btGetSeriesTrakt.Size = New System.Drawing.Size(105, 66)
-        Me.btGetSeriesTrakt.TabIndex = 39
+        Me.btGetSeriesTrakt.TabIndex = 5
         Me.btGetSeriesTrakt.Text = "Get watched episodes"
         Me.btGetSeriesTrakt.UseVisualStyleBackColor = True
         '
         'btnSavetraktsettings
         '
-        Me.btnSavetraktsettings.Location = New System.Drawing.Point(78, 104)
+        Me.btnSavetraktsettings.Location = New System.Drawing.Point(110, 103)
         Me.btnSavetraktsettings.Name = "btnSavetraktsettings"
         Me.btnSavetraktsettings.Size = New System.Drawing.Size(75, 23)
-        Me.btnSavetraktsettings.TabIndex = 38
+        Me.btnSavetraktsettings.TabIndex = 3
         Me.btnSavetraktsettings.Text = "Save "
         Me.btnSavetraktsettings.UseVisualStyleBackColor = True
         '
@@ -128,10 +128,10 @@ Partial Class frmTrakt
         'txtTraktPassword
         '
         Me.txtTraktPassword.Enabled = False
-        Me.txtTraktPassword.Location = New System.Drawing.Point(78, 77)
+        Me.txtTraktPassword.Location = New System.Drawing.Point(110, 77)
         Me.txtTraktPassword.Name = "txtTraktPassword"
-        Me.txtTraktPassword.Size = New System.Drawing.Size(167, 20)
-        Me.txtTraktPassword.TabIndex = 36
+        Me.txtTraktPassword.Size = New System.Drawing.Size(135, 20)
+        Me.txtTraktPassword.TabIndex = 2
         '
         'lblstate
         '
@@ -158,7 +158,7 @@ Partial Class frmTrakt
         Me.btSaveMoviesTrakt.Location = New System.Drawing.Point(22, 280)
         Me.btSaveMoviesTrakt.Name = "btSaveMoviesTrakt"
         Me.btSaveMoviesTrakt.Size = New System.Drawing.Size(223, 44)
-        Me.btSaveMoviesTrakt.TabIndex = 33
+        Me.btSaveMoviesTrakt.TabIndex = 6
         Me.btSaveMoviesTrakt.Text = "Save playcount to database/Nfo"
         Me.btSaveMoviesTrakt.UseVisualStyleBackColor = True
         '

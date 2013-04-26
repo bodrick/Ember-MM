@@ -938,7 +938,7 @@ mPlot:
                     Dim sHTTP As New HTTP
                     Dim eIMDBID = Regex.Match(sMovie.ToLower, IMDB_ID_REGEX).ToString
                     Dim HTMLe As String = sHTTP.DownloadData(String.Concat("http://", IMDBURL, "/title/", eIMDBID))
-                    Dim lNewMovie As MediaContainers.Movie = New MediaContainers.Movie(eIMDBID, StringUtils.ProperCase(sMovie), Regex.Match(Regex.Match(HTMLe, MOVIE_TITLE_PATTERN).ToString, "(?<=\()\d+(?=.*\))").ToString, 0)
+                    Dim lNewMovie As MediaContainers.Movie = New MediaContainers.Movie(eIMDBID, Regex.Match(HTMLe, MOVIE_TITLE_PATTERN).ToString.Replace(" - IMDb", String.Empty), "", 0) ', Regex.Match(Regex.Match(HTMLe, MOVIE_TITLE_PATTERN).ToString, "(?<=\()\d+(?=.*\))").ToString, 0)
                     R.ExactMatches.Add(lNewMovie)
                     Return R
                 Else
