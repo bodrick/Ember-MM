@@ -124,8 +124,8 @@ Public Class dlgEditShow
 
     Private Sub btnASPosterRemove_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnASPosterRemove.Click
 		Me.pbASPoster.Image = Nothing
-		Me.pbASPoster.Tag = Nothing
-		Me.ASPoster = Nothing
+        Me.pbASPoster.Tag = Nothing
+        Me.ASPoster.Dispose() 'I need the object to call Delete... :) so I dispose the memory structures
     End Sub
 
     Private Sub btnEditActor_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEditActor.Click
