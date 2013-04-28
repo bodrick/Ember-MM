@@ -751,6 +751,7 @@ Partial Class dlgEditMovie
         Me.txtPlot.Location = New System.Drawing.Point(443, 22)
         Me.txtPlot.Multiline = True
         Me.txtPlot.Name = "txtPlot"
+        Me.txtPlot.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtPlot.Size = New System.Drawing.Size(385, 112)
         Me.txtPlot.TabIndex = 28
         '
@@ -772,6 +773,7 @@ Partial Class dlgEditMovie
         Me.txtOutline.Location = New System.Drawing.Point(217, 22)
         Me.txtOutline.Multiline = True
         Me.txtOutline.Name = "txtOutline"
+        Me.txtOutline.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtOutline.Size = New System.Drawing.Size(220, 112)
         Me.txtOutline.TabIndex = 26
         '
@@ -1324,7 +1326,7 @@ Partial Class dlgEditMovie
         Me.chkWatched.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkWatched.Location = New System.Drawing.Point(96, 559)
         Me.chkWatched.Name = "chkWatched"
-        Me.chkWatched.Size = New System.Drawing.Size(75, 17)
+        Me.chkWatched.Size = New System.Drawing.Size(72, 17)
         Me.chkWatched.TabIndex = 6
         Me.chkWatched.Text = "Watched"
         Me.chkWatched.UseVisualStyleBackColor = True
