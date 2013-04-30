@@ -3409,7 +3409,7 @@ Public Class Settings
         Me._cleanwhitelistexts = New List(Of String)
         Me._postersize = Enums.PosterSize.Xlrg
         Me._fanartsize = Enums.FanartSize.Lrg
-        Me._showbanner = True
+        Me._showbanner = False
         Me._showbannertype = Enums.ShowBannerType.Graphical
         Me._showpostersize = Enums.PosterSize.Xlrg
         Me._allsbanner = False
