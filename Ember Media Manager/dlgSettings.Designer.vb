@@ -825,6 +825,7 @@ Partial Class dlgSettings
         'chkUpdates
         '
         Me.chkUpdates.AutoSize = True
+        Me.chkUpdates.Enabled = False
         Me.chkUpdates.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkUpdates.Location = New System.Drawing.Point(10, 20)
         Me.chkUpdates.Name = "chkUpdates"
@@ -832,6 +833,7 @@ Partial Class dlgSettings
         Me.chkUpdates.TabIndex = 0
         Me.chkUpdates.Text = "Check for Updates"
         Me.chkUpdates.UseVisualStyleBackColor = True
+        Me.chkUpdates.Visible = False
         '
         'chkOverwriteNfo
         '
@@ -3635,6 +3637,7 @@ Partial Class dlgSettings
         Me.chkShowBannerJPG.TabIndex = 0
         Me.chkShowBannerJPG.Text = "banner.jpg"
         Me.chkShowBannerJPG.UseVisualStyleBackColor = True
+        Me.chkShowBannerJPG.Visible = False
         '
         'gbAllSeasonPoster
         '

@@ -3517,7 +3517,7 @@ Public Class Settings
         Me._scshowstate = 200
         Me._scseasonstate = 200
         Me._infopanelanim = False   'emm-r
-        Me._checkupdates = True
+        Me._checkupdates = False
         Me._bdpath = String.Empty
         Me._autobd = False
         Me._usemiduration = False
