@@ -35,9 +35,13 @@ Public Class dlgCompatibility
     Private Sub SetUp()
         Me.Text = Master.eLang.GetString(888, "Database Compatibility")
         Me.lblHeader.Text = Master.eLang.GetString(889, "Database is not compatible!")
-        Me.lblBody.Text = Master.eLang.GetString(890, "Your database is not compatible with this version of Ember!\n\nYou can ....").Replace("\n", vbCrLf)
+        Me.lblBody.Text = Master.eLang.GetString(890, "Your database is not compatible with this version of Ember!\n\nYour existing database will be saved as ""Media.emm_old"" and empty database will be created.\n\nTo adapt your old Databank follow this tutorial.").Replace("\n", vbCrLf) 'other languages ​​are currently not loaded
 
         Me.btnOK.Text = Master.eLang.GetString(179, "OK")
         'Me.btnAbort.Text = Master.eLang.GetString(887, "Cancel")
+    End Sub
+
+    Private Sub lblTutorial_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lblTutorial.LinkClicked
+        Process.Start("http://forum.xbmc.org/showthread.php?tid=116941&pid=1410086#pid1410086")
     End Sub
 End Class
