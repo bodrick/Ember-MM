@@ -4616,7 +4616,7 @@ doCancel:
             End If
 
             If Not String.IsNullOrEmpty(Master.currShow.TVShow.Studio) Then
-                Me.pbStudio.Image = APIXML.GetStudioImage(Master.currShow.TVShow.Studio)
+                Me.pbStudio.Image = APIXML.GetStudioImage(Master.currShow.TVShow.Studio.ToLower) 'ByDef all images file a lower case
                 Me.pbStudio.Tag = Master.currShow.TVShow.Studio
             Else
                 Me.pbStudio.Image = APIXML.GetStudioImage("####")
@@ -4965,9 +4965,11 @@ doCancel:
             End If
 
             If Not String.IsNullOrEmpty(Master.currShow.TVShow.Studio) Then
-                Me.pbStudio.Image = APIXML.GetStudioImage(Master.currShow.TVShow.Studio)
+                Me.pbStudio.Image = APIXML.GetStudioImage(Master.currShow.TVShow.Studio.ToLower) 'ByDef all images file a lower case
+                Me.pbStudio.Tag = Master.currShow.TVShow.Studio
             Else
                 Me.pbStudio.Image = APIXML.GetStudioImage("####")
+                Me.pbStudio.Tag = String.Empty
             End If
 
             Me.pnlInfoIcons.Width = pbStudio.Width + 1
@@ -5109,9 +5111,11 @@ doCancel:
             End If
 
             If Not String.IsNullOrEmpty(Master.currShow.TVShow.Studio) Then
-                Me.pbStudio.Image = APIXML.GetStudioImage(Master.currShow.TVShow.Studio)
+                Me.pbStudio.Image = APIXML.GetStudioImage(Master.currShow.TVShow.Studio.ToLower) 'ByDef all images file a lower case
+                Me.pbStudio.Tag = Master.currShow.TVShow.Studio
             Else
                 Me.pbStudio.Image = APIXML.GetStudioImage("####")
+                Me.pbStudio.Tag = String.Empty
             End If
 
             Me.pnlInfoIcons.Width = pbStudio.Width + 1
