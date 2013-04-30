@@ -64,12 +64,14 @@ Public Class frmTMDBMediaSettingsHolder
 
 	Sub CheckTrailer()
 		Me.txtTimeout.Enabled = Me.chkDownloadTrailer.Checked
-		Me.chkTrailerTMDB.Enabled = Me.chkDownloadTrailer.Checked
-		Me.chkTrailerTMDBXBMC.Enabled = Me.chkDownloadTrailer.Checked
+        Me.chkTrailerTMDB.Enabled = Me.chkDownloadTrailer.Checked
+        Me.chkTrailerTMDBXBMC.Enabled = Me.chkTrailerTMDB.Checked
+        Me.chkTrailerIMDB.Enabled = Me.chkDownloadTrailer.Checked
 		If Not Me.chkDownloadTrailer.Checked Then
 			Me.txtTimeout.Text = "2"
 			Me.chkTrailerTMDB.Checked = False
-			Me.chkTrailerTMDBXBMC.Checked = False
+            Me.chkTrailerTMDBXBMC.Checked = False
+            Me.chkTrailerIMDB.Checked = False
 		End If
 	End Sub
 
@@ -80,7 +82,10 @@ Public Class frmTMDBMediaSettingsHolder
 
 	Private Sub chkTrailerTMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailerTMDB.CheckedChanged
 		chkTrailerTMDBXBMC.Enabled = chkTrailerTMDB.Checked
-		cbTrailerTMDBPref.Enabled = chkTrailerTMDB.Checked
+        cbTrailerTMDBPref.Enabled = chkTrailerTMDB.Checked
+        If Not Me.chkTrailerTMDB.Checked Then
+            Me.chkTrailerTMDBXBMC.Checked = False
+        End If
 		RaiseEvent ModuleSettingsChanged()
 	End Sub
 
@@ -94,51 +99,58 @@ Public Class frmTMDBMediaSettingsHolder
 
 	Private Sub chkScrapeFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapeFanart.CheckedChanged
 		RaiseEvent ModuleSettingsChanged()
-		grpSaveFanart.Enabled = chkScrapeFanart.Checked
-	End Sub
+        gbSaveFanartIn.Enabled = chkScrapeFanart.Checked
+    End Sub
 
-	Private Sub chkScrapePoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapePoster.CheckedChanged
-		RaiseEvent ModuleSettingsChanged()
-	End Sub
+    Private Sub chkScrapePoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapePoster.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
-	Private Sub chkUseFANARTTV_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseFANARTTV.CheckedChanged
-		RaiseEvent ModuleSettingsChanged()
-	End Sub
+    Private Sub chkUseFANARTTV_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseFANARTTV.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
-	Private Sub chkUseIMDBp_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseIMDBp.CheckedChanged
-		RaiseEvent ModuleSettingsChanged()
-	End Sub
+    Private Sub chkUseIMDBp_CheckedChanged(sender As System.Object, e As System.EventArgs) Handles chkUseIMDBp.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
-	Private Sub chkUseIMDBf_CheckedChanged(sender As System.Object, e As System.EventArgs)
-		RaiseEvent ModuleSettingsChanged()
-	End Sub
+    Private Sub chkUseIMDBf_CheckedChanged(sender As System.Object, e As System.EventArgs)
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
-	Private Sub chkUseIMPA_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseIMPA.CheckedChanged
-		RaiseEvent ModuleSettingsChanged()
-	End Sub
+    Private Sub chkUseIMPA_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseIMPA.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
-	Private Sub chkUseMPDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseMPDB.CheckedChanged
-		RaiseEvent ModuleSettingsChanged()
-	End Sub
+    Private Sub chkUseMPDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkUseMPDB.CheckedChanged
+        RaiseEvent ModuleSettingsChanged()
+    End Sub
 
-	Sub orderChanged()
-		Dim order As Integer = ModulesManager.Instance.externalScrapersModules.FirstOrDefault(Function(p) p.AssemblyName = EmberTMDBScraperModule._AssemblyName).PostScraperOrder
-		btnDown.Enabled = (order < ModulesManager.Instance.externalScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).Count - 1)
-		btnUp.Enabled = (order > 1)
-	End Sub
+    Sub orderChanged()
+        Dim order As Integer = ModulesManager.Instance.externalScrapersModules.FirstOrDefault(Function(p) p.AssemblyName = EmberTMDBScraperModule._AssemblyName).PostScraperOrder
+        btnDown.Enabled = (order < ModulesManager.Instance.externalScrapersModules.Where(Function(y) y.ProcessorModule.IsPostScraper).Count - 1)
+        btnUp.Enabled = (order > 1)
+    End Sub
 
-	Sub SetUp()
-		Me.txtTimeout.Text = Master.eSettings.TrailerTimeout.ToString
-		Me.Label23.Text = Master.eLang.GetString(7, "Timeout:")
-		Me.GroupBox2.Text = Master.eLang.GetString(8, "Supported Sites:")
-		Me.grpSaveFanart.Text = Master.eLang.GetString(8001, "Save Fanart In:")
-		Me.chkDownloadTrailer.Text = Master.eLang.GetString(529, "Enable Trailer Support", True)
-		Me.Label3.Text = Master.eLang.GetString(168, "Scrape Order", True)
-		Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
-		Me.chkScrapePoster.Text = Master.eLang.GetString(101, "Get Posters")
-		Me.chkScrapeFanart.Text = Master.eLang.GetString(102, "Get Fanart")
-		Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
-	End Sub
+    Sub SetUp()
+        Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
+        Me.chkDownloadTrailer.Text = Master.eLang.GetString(529, "Enable Trailer Support", True)
+        Me.chkScrapeFanart.Text = Master.eLang.GetString(102, "Get Fanart")
+        Me.chkScrapePoster.Text = Master.eLang.GetString(101, "Get Posters")
+        Me.chkTrailerTMDBXBMC.Text = Master.eLang.GetString(111, "XBMC Format")
+        Me.gbExtrathumbsSize.Text = Master.eLang.GetString(108, "TMDB Extrathumbs Size:")
+        Me.gbGetFanart.Text = Master.eLang.GetString(124, "Get Fanart From:")
+        Me.gbGetPoster.Text = Master.eLang.GetString(125, "Get Poster From:")
+        Me.gbSupportedSites.Text = Master.eLang.GetString(8, "Supported Sites:")
+        Me.gbTrailers.Text = Master.eLang.GetString(109, "Trailers")
+        Me.gbImages.Text = Master.eLang.GetString(497, "Images", True)
+        Me.gbSaveFanartIn.Text = Master.eLang.GetString(113, "Save Fanart In:")
+        Me.lblInfo.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
+        Me.lblPrefLanguage.Text = Master.eLang.GetString(112, "Preferred language")
+        Me.lblScraperOrder.Text = Master.eLang.GetString(168, "Scrape Order", True)
+        Me.lblTimeout.Text = Master.eLang.GetString(7, "Timeout:")
+        Me.txtTimeout.Text = Master.eSettings.TrailerTimeout.ToString
+    End Sub
 
 	Private Sub txtTimeout_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTimeout.TextChanged
 		RaiseEvent ModuleSettingsChanged()

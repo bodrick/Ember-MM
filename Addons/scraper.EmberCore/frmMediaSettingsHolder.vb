@@ -59,14 +59,14 @@ Public Class frmMediaSettingsHolder
 
     Sub CheckTrailer()
         Me.txtTimeout.Enabled = Me.chkDownloadTrailer.Checked
-        Me.chkTrailerIMDB.Enabled = Me.chkDownloadTrailer.Checked
         Me.chkTrailerTMDB.Enabled = Me.chkDownloadTrailer.Checked
-        Me.chkTrailerTMDBXBMC.Enabled = Me.chkDownloadTrailer.Checked
+        Me.chkTrailerTMDBXBMC.Enabled = Me.chkTrailerTMDB.Checked
+        Me.chkTrailerIMDB.Enabled = Me.chkDownloadTrailer.Checked
         If Not Me.chkDownloadTrailer.Checked Then
             Me.txtTimeout.Text = "2"
             Me.chkTrailerTMDB.Checked = False
-            Me.chkTrailerIMDB.Checked = False
             Me.chkTrailerTMDBXBMC.Checked = False
+            Me.chkTrailerIMDB.Checked = False
         End If
     End Sub
 
@@ -78,6 +78,9 @@ Public Class frmMediaSettingsHolder
     Private Sub chkTrailerTMDB_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkTrailerTMDB.CheckedChanged
         chkTrailerTMDBXBMC.Enabled = chkTrailerTMDB.Checked
         cbTrailerTMDBPref.Enabled = chkTrailerTMDB.Checked
+        If Not Me.chkTrailerTMDB.Checked Then
+            Me.chkTrailerTMDBXBMC.Checked = False
+        End If
         RaiseEvent ModuleSettingsChanged()
     End Sub
 
@@ -91,7 +94,7 @@ Public Class frmMediaSettingsHolder
 
     Private Sub chkScrapeFanart_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapeFanart.CheckedChanged
         RaiseEvent ModuleSettingsChanged()
-        grpSaveFanart.Enabled = chkScrapeFanart.Checked
+        gbSaveFanartIn.Enabled = chkScrapeFanart.Checked
     End Sub
 
     Private Sub chkScrapePoster_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkScrapePoster.CheckedChanged
@@ -123,25 +126,24 @@ Public Class frmMediaSettingsHolder
     End Sub
 
     Sub SetUp()
-        Me.txtTimeout.Text = Master.eSettings.TrailerTimeout.ToString
-        Me.Label23.Text = Master.eLang.GetString(7, "Timeout:")
-        Me.GroupBox2.Text = Master.eLang.GetString(8, "Supported Sites:")
-        Me.GroupBox9.Text = Master.eLang.GetString(9, "Get Images From:")
-        Me.grpSaveFanart.Text = Master.eLang.GetString(8001, "Save Fanart In:")
-        Me.chkDownloadTrailer.Text = Master.eLang.GetString(529, "Enable Trailer Support", True)
-        Me.Label3.Text = Master.eLang.GetString(168, "Scrape Order", True)
         Me.cbEnabled.Text = Master.eLang.GetString(774, "Enabled", True)
-        Me.chkScrapePoster.Text = Master.eLang.GetString(101, "Get Posters")
+        Me.chkDownloadTrailer.Text = Master.eLang.GetString(529, "Enable Trailer Support", True)
         Me.chkScrapeFanart.Text = Master.eLang.GetString(102, "Get Fanart")
-        Me.Label1.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
-        Me.GroupBox3.Text = Master.eLang.GetString(497, "Images", True)
-        Me.GroupBox4.Text = Master.eLang.GetString(108, "TMDB Extrathumbs Size:")
-        Me.GroupBox1.Text = Master.eLang.GetString(109, "Trailers")
-        Me.GroupBox5.Text = Master.eLang.GetString(110, "Youtube/TMDB Trailer:")
+        Me.chkScrapePoster.Text = Master.eLang.GetString(101, "Get Posters")
         Me.chkTrailerTMDBXBMC.Text = Master.eLang.GetString(111, "XBMC Format")
-        Me.Label2.Text = Master.eLang.GetString(112, "Preferred language")
-        Me.grpSaveFanart.Text = Master.eLang.GetString(113, "Save Fanart In:")
-	End Sub
+        Me.gbExtrathumbsSize.Text = Master.eLang.GetString(108, "TMDB Extrathumbs Size:")
+        Me.gbImages.Text = Master.eLang.GetString(497, "Images", True)
+        Me.gbSaveFanartIn.Text = Master.eLang.GetString(113, "Save Fanart In:")
+        Me.gbSupportedSites.Text = Master.eLang.GetString(8, "Supported Sites:")
+        Me.gbTrailers.Text = Master.eLang.GetString(109, "Trailers")
+        Me.gbGetImages.Text = Master.eLang.GetString(9, "Get Images From:")
+        Me.gbYouTubeTrailer.Text = Master.eLang.GetString(110, "Youtube/TMDB Trailer:")
+        Me.lblInfo.Text = String.Format(Master.eLang.GetString(103, "These settings are specific to this module.{0}Please refer to the global settings for more options."), vbCrLf)
+        Me.lblPrefLanguage.Text = Master.eLang.GetString(112, "Preferred language")
+        Me.lblScraperOrder.Text = Master.eLang.GetString(168, "Scrape Order", True)
+        Me.lblTimeout.Text = Master.eLang.GetString(7, "Timeout:")
+        Me.txtTimeout.Text = Master.eSettings.TrailerTimeout.ToString
+    End Sub
 
     Private Sub txtTimeout_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTimeout.TextChanged
         RaiseEvent ModuleSettingsChanged()
