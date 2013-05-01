@@ -38,6 +38,7 @@ Partial Class frmInfoSettingsHolder
         Me.btnDown = New System.Windows.Forms.Button()
         Me.btnUp = New System.Windows.Forms.Button()
         Me.pnlSettings = New System.Windows.Forms.Panel()
+        Me.lblOFDBWarning = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.gbOptions = New System.Windows.Forms.GroupBox()
@@ -65,7 +66,6 @@ Partial Class frmInfoSettingsHolder
         Me.chkMPAA = New System.Windows.Forms.CheckBox()
         Me.chkYear = New System.Windows.Forms.CheckBox()
         Me.chkTitle = New System.Windows.Forms.CheckBox()
-        Me.lblOFDBWarning = New System.Windows.Forms.Label()
         Me.GroupBox30.SuspendLayout()
         Me.GroupBox15.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -234,6 +234,16 @@ Partial Class frmInfoSettingsHolder
         Me.pnlSettings.Name = "pnlSettings"
         Me.pnlSettings.Size = New System.Drawing.Size(617, 369)
         Me.pnlSettings.TabIndex = 0
+        '
+        'lblOFDBWarning
+        '
+        Me.lblOFDBWarning.Location = New System.Drawing.Point(14, 208)
+        Me.lblOFDBWarning.Name = "lblOFDBWarning"
+        Me.lblOFDBWarning.Size = New System.Drawing.Size(600, 36)
+        Me.lblOFDBWarning.TabIndex = 97
+        Me.lblOFDBWarning.Text = "OFDB allows only 100 queries in a certain time-frame." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "After you exceed the usage" & _
+    " limits, your IP is blocked for a while and Ember uses IMDB data instead (Englis" & _
+    "h only)."
         '
         'Label1
         '
@@ -559,15 +569,6 @@ Partial Class frmInfoSettingsHolder
         Me.chkTitle.TabIndex = 0
         Me.chkTitle.Text = "Title"
         Me.chkTitle.UseVisualStyleBackColor = True
-        '
-        'lblOFDBWarning
-        '
-        Me.lblOFDBWarning.Location = New System.Drawing.Point(14, 208)
-        Me.lblOFDBWarning.Name = "lblOFDBWarning"
-        Me.lblOFDBWarning.Size = New System.Drawing.Size(600, 36)
-        Me.lblOFDBWarning.TabIndex = 97
-        Me.lblOFDBWarning.Text = "OFDB allowed only 100 queries within a short time." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "After that your IP is blocked" & _
-    " for a certain time and Ember makes a fallback to IMDB (English only)."
         '
         'frmInfoSettingsHolder
         '

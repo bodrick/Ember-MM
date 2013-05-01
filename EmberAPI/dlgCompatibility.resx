@@ -120,7 +120,7 @@
   <data name="lblBody.Text" xml:space="preserve">
     <value>Your database is not compatible with this version of Ember!
 
-Your existing database will be saved as "Media.emm_old" and empty database will be created.
+Your existing database will be saved as "Media.emm_old" and an empty database will be created.
 
 To adapt your old Databank follow this tutorial.</value>
   </data>

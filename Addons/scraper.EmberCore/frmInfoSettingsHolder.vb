@@ -226,7 +226,7 @@ Public Class frmInfoSettingsHolder
 		Me.chkTop250.Text = Master.eLang.GetString(868, "Top250", True)
 		Me.GroupBox30.Text = Master.eLang.GetString(106, "IMDB")
         Me.GroupBox15.Text = Master.eLang.GetString(107, "OFDB (German)")
-        Me.lblOFDBWarning.Text = String.Format(Master.eLang.GetString(115, "OFDB allowed only 100 queries within a short time.{0}After that your IP is blocked for a certain time and Ember makes a fallback to IMDB (English only)."), vbCrLf)
+        Me.lblOFDBWarning.Text = String.Format(Master.eLang.GetString(115, "OFDB allows only 100 queries in a certain time-frame.{0}After you exceed the usage limits, your IP is blocked for a while and Ember uses IMDB data instead (English only)."), vbCrLf)
     End Sub
 
     Private Sub txtIMDBURL_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtIMDBURL.TextChanged

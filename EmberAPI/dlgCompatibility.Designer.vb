@@ -26,9 +26,9 @@ Partial Class dlgCompatibility
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.lblBody = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnOK = New System.Windows.Forms.Button()
         Me.tblCompatibility = New System.Windows.Forms.TableLayoutPanel()
         Me.lblTutorial = New System.Windows.Forms.LinkLabel()
+        Me.btnOK = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.tblCompatibility.SuspendLayout()
         Me.SuspendLayout()
@@ -67,15 +67,6 @@ Partial Class dlgCompatibility
         Me.Panel1.Size = New System.Drawing.Size(489, 177)
         Me.Panel1.TabIndex = 1
         '
-        'btnOK
-        '
-        Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnOK.Location = New System.Drawing.Point(212, 195)
-        Me.btnOK.Name = "btnOK"
-        Me.btnOK.Size = New System.Drawing.Size(67, 23)
-        Me.btnOK.TabIndex = 0
-        Me.btnOK.Text = "OK"
-        '
         'tblCompatibility
         '
         Me.tblCompatibility.ColumnCount = 1
@@ -105,6 +96,15 @@ Partial Class dlgCompatibility
         Me.lblTutorial.TabStop = True
         Me.lblTutorial.Text = "Tutorial"
         Me.lblTutorial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'btnOK
+        '
+        Me.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom
+        Me.btnOK.Location = New System.Drawing.Point(212, 195)
+        Me.btnOK.Name = "btnOK"
+        Me.btnOK.Size = New System.Drawing.Size(67, 23)
+        Me.btnOK.TabIndex = 0
+        Me.btnOK.Text = "OK"
         '
         'dlgCompatibility
         '
