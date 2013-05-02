@@ -1,6 +1,6 @@
 <strings>
   <string control="Core_chkShowGenresText">Wenn aktiviert wird der Names des Genres immer im Genrebild angezeigt. Wenn deaktiviert wird der Name des Genres nur angezeigt, wenn sich die Maus auf dem Genrebild befindet</string>
-  <string control="Core_chkSourceFromFolder">Wenn aktiviert durchsucht ember Verzeichnissnamen nach Tags (=SourceTypes). Wenn deaktivert wird nur der Dateiname durchsucht.</string>
+  <string control="Core_chkSourceFromFolder">Wenn aktiviert durchsucht Ember Verzeichnissnamen nach Tags (=SourceTypes). Wenn deaktivert wird nur der Dateiname durchsucht.</string>
   <string control="Core_chkNoDisplayFanart">Wenn aktiviert werden Fanarts nicht in der Standardansicht angezeigt. Dies könnte auf langsamen Computern helfen die Geschwindigkeit zu erhöhen.</string>
   <string control="Core_chkNoDisplayPoster">Wenn aktiviert werden Poster nicht in der Standardansicht angezeigt. Dies könnte auf langsamen Computern helfen die Geschwindigkeit zu erhöhen.</string>
   <string control="Core_chkShowDims">Wenn aktiviert blendet ember die Abmessungen der Poster und Fanarts oben in den Bildern ein.</string>
@@ -364,4 +364,5 @@
   <string control="Core_chkLockLanguageA">Wenn aktiviert wird das Sprachfeld (Audio Metadata) nicht aktualisiert.</string>
   <string control="Core_chkLockMPAA">Wenn aktiviert wird die Altersfreigabe nicht aktualisiert.</string>
   <string control="Core_chkUseMPAAFSK">Wenn aktiviert werden die MPAA Freigabewerte in FSK konvertiert falls keine FSK Freigabe gefunden wird. Priorität: FSK -&gt; MPAA</string>
+  <string control="Core_chkMovieWatchedCol">Verstecke die Gesehen Spalte in der Medienliste.</string>
 </strings>

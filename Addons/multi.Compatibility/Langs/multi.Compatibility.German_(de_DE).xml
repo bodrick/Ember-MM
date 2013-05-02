@@ -7,15 +7,16 @@
   <string id="5">YAMJ spezifische NFO Einträge</string>
   <string id="6">Zeige Cover als SET_&lt;Show&gt;_1.jpg</string>
   <string id="7">Zeige Cover als SET_&lt;Show&gt;_1.fanart.jpg</string>
-  <string id="8">Staffel Cover als &lt;Episode&gt;SxxE01.jpg</string>
-  <string id="9">Staffel Fanart als &lt;Episode&gt;SxxE01.fanart.jpg</string>
-  <string id="10">Episode Poster als &lt;Show&gt;.videoimage.jpg</string>
+  <string id="8">Staffel Poster als &lt;Episode&gt;.jpg *</string>
+  <string id="9">Staffel Fanart als &lt;Episode&gt;.fanart.jpg *</string>
+  <string id="10">Episoden Poster als &lt;Episode&gt;.videoimage.jpg</string>
   <string id="11">YAMJ kompatible VIDEO_TS Datei und Namen (INFO: Diese Option greift auch wenn das Modul deaktiviert ist)</string>
   <string id="12">Movie Fanart als backdrop.jpg</string>
   <string id="13">Media Browser mymovies.xml</string>
-  <string id="14">Zeige alle Staffeln als Season 1.banner.jpg</string>
+  <string id="14">AllSeasons Poster als Set_&lt;Show&gt;_1.banner.jpg</string>
   <string id="15">Ersetze die ID mit der Boxee ID</string>
   <string id="16">TV Serien Optionen</string>
-  <string id="17">Experimentelles Modul</string>
+  <string id="17">Benutze YAMJ Settings</string>
   <string id="18">Boxee Kompatibilität</string>
+  <string id="19">* Es wird immer die erste existierende Episode einer Staffel verwendet</string>
 </strings>

@@ -102,7 +102,7 @@
   <string id="100">Aktuelles Bild:</string>
   <string id="101">Poster laden</string>
   <string id="102">Fanart laden</string>
-  <string id="103">Diese Einstellungen sind Modul-spezifisch. {0} Bitte werfen sie einen blick in die Globalen Einstellungen für noch mehr Optionen.</string>
+  <string id="103">Diese Einstellungen sind Modul-spezifisch. {0} Bitte werfen sie einen Blick in die Globalen Einstellungen für noch mehr Optionen.</string>
   <string id="104">Ember Nativer Film Scraper</string>
   <string id="105"/>
   <string id="106">IMDB</string>
@@ -114,4 +114,5 @@
   <string id="112">Bevorzugte Sprache</string>
   <string id="113">Speichere Fanart in:</string>
   <string id="114">Im Browser öffnen</string>
+  <string id="115">OFDB erlaubt nur 100 Abfragen innerhalb einer kurzen Zeit.{0}Danach wird für eine gewisse Zeit deine IP blockiert und Ember macht ein Fallback zu IMDB (nur Englisch).</string>
 </strings>

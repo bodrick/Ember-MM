@@ -572,7 +572,7 @@
   <string id="571">[Deaktiviert]</string>
   <string id="572">Scrape Poster:</string>
   <string id="573">Scrape Fanart:</string>
-  <string id="574">Scrape Trailers:</string>
+  <string id="574">Scrape Trailer:</string>
   <string id="575">Erzeuge Extrathumbs:</string>
   <string id="576">Überprüfe Filmdetails:</string>
   <string id="577">Scrape Felder - Global</string>
@@ -872,7 +872,7 @@
   <string id="871"/>
   <string id="872"/>
   <string id="873"/>
-  <string id="874"/>
+  <string id="874">Nutze "Erstellt:"-Dateiinfo der Videodatei</string>
   <string id="875"/>
   <string id="876"/>
   <string id="877"/>
@@ -881,4 +881,12 @@
   <string id="880">Sprache sperren (Audio)</string>
   <string id="881">Altersfreigabe sperren</string>
   <string id="882">Benutze MPAA wenn keine FSK Freigabe vorliegt</string>
+  <string id="883">Gesehen</string>
+  <string id="884">Gesehen-Spalte verstecken</string>
+  <string id="885">Untertitel sperren</string>
+  <string id="886">Wiederholen</string>
+  <string id="887">Abbrechen</string>
+  <string id="888">Datenbank Kompatibilität</string>
+  <string id="889">Datenbank ist nicht kompatibel!</string>
+  <string id="890">Deine Datenbank ist nicht kompatibel mit dieser Version von Ember!\n\nDeine bestehende Datenbank wird als "Media.emm_old" gesichert und eine leere Datenbank angelegt.\n\nUm deine alte Datenbank anzupassen folge diesem Tutorial.</string>
 </strings>

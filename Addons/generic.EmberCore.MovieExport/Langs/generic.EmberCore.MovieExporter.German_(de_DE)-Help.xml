@@ -1,3 +1,14 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <string control="Exporter_cbEnabled">Aktiviert oder deaktiviert dieses Modul.</string>
+  <string control="Exporter_cbEnabled">Aktiviert oder deaktiviert dieses Modul</string>
+  <string control="Exporter_txt_exportmoviepath">Das Ablageverzeichnis der generierten HTML-Templates.  Zum Starten des Templates auf die index.htm Datei in diesem Verzeichnis klicken.
+Tipp: Zum Veröffentlichen im Internet, den Inhalt des Verzeichnisses auf einem Webhoster kopieren</string>
+  <string control="Exporter_cbo_exportmoviefanart">Die gewünschte Breite der Fanarts des Templates.  Eine geringe Breite verringert ebenfalls die Dateigröße der Bilddateien und bewirkt damit eine schnellere Ladezeit und Anzeige der einzelnen Filme in bildlastigen Templates wie z.B. dem Movietemplate</string>
+  <string control="Exporter_cbo_exportmovieposter">Die gewünschte Höhe der Filmposter des Templates.  Ein geringer Wert verringert ebenfalls die Dateigröße der Bilddateien und bewirkt damit eine schnellere Ladezeit und Anzeige der einzelnen Filme in bildlastigen Templates wie z.B. dem Movietemplate</string>
+  <string control="Exporter_cbo_exportmoviequality">JPG-Qualitätseinstellung:
+100: Kein Qualitätsverlust gegenüber Original, aber auch größere Dateien
+Tipp: Wert zwischen 65 - 80 einstellen! Der Qualitätsverlust ist dann nicht sichtbar, Dateigrößen dafür deutlich kleiner und somit schnellere Ladezeit in bildlastigen Templates wie dem MovieTemplate</string>
+  <string control="Exporter_cbo_exportmoviefiltergenerate">Hier können bis zu 3 Filter gespeichert werden, die dann im HTML-Export Menü ausgewählt werden können</string>
+  <string control="Exporter_cbSearch">Verschiedene Filtertypen die für den Aufbau des Filters verwendet werden können</string>
+  <string control="Exporter_btn_Apply">Ausgewählten Filter speichern</string>
+  <string control="Exporter_btn_Reset">Ausgewählten Filter zurücksetzen</string>
 </strings>
