@@ -872,7 +872,7 @@
   <string id="871"/>
   <string id="872"/>
   <string id="873"/>
-  <string id="874"/>
+  <string id="874">Bruk fildatoen fra videofilen</string>
   <string id="875"/>
   <string id="876"/>
   <string id="877"/>
@@ -881,4 +881,12 @@
   <string id="880">Lås Språk (lyd)</string>
   <string id="881">Lås MPAA/Aldersgrense</string>
   <string id="882">Bruk MPAA som reserve for FSK gradering</string>
+  <string id="883">Sett</string>
+  <string id="884">Gjem sett-seksjon</string>
+  <string id="885">Lås undertekst</string>
+  <string id="886">Prøv på nytt</string>
+  <string id="887">Avbryt</string>
+  <string id="888">Database-kompatibilitet</string>
+  <string id="889">Databasen er ikke kompatibel!</string>
+  <string id="890">Databasen din er ikke kompatibel med denne versjonen av EMM!\n\nDin eksisterende database vil bli lagret som "Media.emm_old", og en ny database vil bli laget.\n\nFølg denne henvisningen.</string>
 </strings>

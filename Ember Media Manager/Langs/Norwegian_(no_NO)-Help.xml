@@ -364,4 +364,5 @@
   <string control="Core_chkLockLanguageA">Hvis påslått, så vil språk (lydmetadata) ikke bli oppdatert.</string>
   <string control="Core_chkLockMPAA">Hvis påslått, så vil MPAA/aldersgrense ikke bli oppdatert.</string>
   <string control="Core_chkUseMPAAFSK">Hvis påslått, så vil MPAA-verdier bli konvertert til FSK hvis ingen FSK-verdier ble funnet. Prioritet: FSK -&gt; MPAA</string>
+  <string control="Core_chkMovieWatchedCol">Gjem sett-seksjonen fra filmlisten.</string>
 </strings>

@@ -1,3 +1,11 @@
 <strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <string control="Exporter_cbEnabled">Slå på eller slå av denne modulen.</string>
+  <string control="Exporter_txt_exportmoviepath">Mappen hvor den lagrede HTMLtemplaten befinner seg</string>
+  <string control="Exporter_cbo_exportmoviefanart">Ønskede bredde av eksportert fankunst. En lavere verdi resulterer i mindre filer, og raskere lastetider.</string>
+  <string control="Exporter_cbo_exportmovieposter">Ønsket bredde av eksportert plakatt. Lavere verdi resulterer i mindre filer, og raskere lastetider.</string>
+  <string control="Exporter_cbo_exportmoviequality">100 betyr null kvalitetstap, men også størst filstørrelse. Velg lavere verdi for raskere lastetider!</string>
+  <string control="Exporter_cbo_exportmoviefiltergenerate">Tre filtere kan bli brukt for å lagre forskjellige filtere. Disse kan bli valgt i Filmeksporterings-grensesnittet.</string>
+  <string control="Exporter_cbSearch">Forskjellige filtertype å velge fra</string>
+  <string control="Exporter_btn_Apply">Lagre valgt filter</string>
+  <string control="Exporter_btn_Reset">Nullstill valgt filter.</string>
 </strings>

@@ -114,4 +114,5 @@
   <string id="112">Foretrukket språk</string>
   <string id="113">Lagre fankunst i:</string>
   <string id="114">Åpne i nettleser</string>
+  <string id="115">OFDB tillater kun 100 forespørsler i en gitt tidsramme.{0}Sender du flere enn dette, så vil IP-adressen din bli sperret for en stund, og IMDB vil bli brukt istedet (kun engelsk).</string>
 </strings>
