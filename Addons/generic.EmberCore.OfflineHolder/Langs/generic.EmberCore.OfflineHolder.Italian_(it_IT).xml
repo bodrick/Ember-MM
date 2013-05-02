@@ -1,0 +1,33 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Offline Media Manager</string>
+  <string id="1">Inderisci DVD</string>
+  <string id="2">Preparo i Dati</string>
+  <string id="3">Creo Film</string>
+  <string id="4">Assemblo Film</string>
+  <string id="5">Sposto Files</string>
+  <string id="6">Rinomino Files</string>
+  <string id="7">Contenitore Offline Creato!</string>
+  <string id="8">La cartella origine non esiste o non può essere trovata:</string>
+  <string id="9">Cartella Origine</string>
+  <string id="10">Film (Nome Cartella)</string>
+  <string id="11">Contenitore Immagini</string>
+  <string id="12">Offline Media Manager</string>
+  <string id="13">Aggiungere Film Offline</string>
+  <string id="14">Aggiungi Origine:</string>
+  <string id="15">Contenitore Cartella/Titolo Film:</string>
+  <string id="16">Cerca IMDB</string>
+  <string id="17">Creatore di massa:</string>
+  <string id="18">Condizione</string>
+  <string id="19">Crea</string>
+  <string id="20">Usa Fanart per Contenitore Video</string>
+  <string id="21">Tagline Contenitore Video </string>
+  <string id="22">Colore Testo:</string>
+  <string id="23">Tagline Top:</string>
+  <string id="24">Formato Contenitore Video:</string>
+  <string id="25">Usa Sfondo Tagline</string>
+  <string id="26">Colore Sfondo Tagline</string>
+  <string id="27">Usa Overlay di Ember</string>
+  <string id="28">Seleziona carattere...</string>
+  <string id="29">Informazione</string>
+  <string id="30">Offline Media Manager</string>
+</strings>

@@ -1,0 +1,18 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Analizzatori Film Ember XML</string>
+  <string id="1"/>
+  <string id="2">Genere(i):</string>
+  <string id="3">Visualizza i dettagli di ogni risultato per trovare il film corretto.</string>
+  <string id="4">Risultati della ricerca del Film</string>
+  <string id="5">Cerco...</string>
+  <string id="6">Scaricamento dettagli...</string>
+  <string id="7">Cerca Risultati</string>
+  <string id="8">Configura questo analizzatore in</string>
+  <string id="9">Caricamento, attendere.</string>
+  <string id="10">Campi Analizzatore - Specifico</string>
+  <string id="11">Queste impostazioni sono specifiche di questo modulo.{0} Fai riferimento alle impostazioni globali per ulteriori opzioni.</string>
+  <string id="12">Analizzatore</string>
+  <string id="13">Riempi Analizzatori</string>
+  <string id="14">Impostazioni</string>
+  <string id="15">Impostazioni</string>
+</strings>

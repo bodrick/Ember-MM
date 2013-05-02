@@ -1,0 +1,31 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="TMDBMovieInfo_cbEnabled">Abilita o disabilita questo modulo.</string>
+  <string control="TMDBMovieInfo_btnUp">Muovi questo modulo d'analisi in alto. (I moduli d'analisi saranno processati in ordine, dall'alto verso il basso)</string>
+  <string control="TMDBMovieInfo_btnDown">Muovi questo modulo d'analisi in basso. (I moduli d'analisi saranno processati in ordine, dall'alto verso il basso)</string>
+  <string control="TMDBMovieInfo_txtTMDBApiKey">API Key dal sito TMDB. È vietato condividere la chiave API.</string>
+  <string control="TMDBMovieInfo_chkCertification">Abilita l'analisi della certificazione del film.</string>
+  <string control="TMDBMovieInfo_cbTMDBPrefLanguage">Lingua selezionata per le ricerche di TMDB</string>
+  <string control="TMDBMovieInfo_chkFallBackEng">Se nessun record è disponibile per la lingua selezionata prova con l'inglese</string>
+  <string control="TMDBMovieInfo_chkCrew">Abilita l'analisi di altri membri del crew. (L'opzione di analisi di tutti i membri del crew deve essere abilitata)</string>
+  <string control="TMDBMovieInfo_chkStudio">Abilita l'analisi degli studios.</string>
+  <string control="TMDBMovieInfo_chkRuntime">Abilita l'analisi della durata del film.</string>
+  <string control="TMDBMovieInfo_chkPlot">Abilita l'analisi della trama.</string>
+  <string control="TMDBMovieInfo_chkOutline">Abilita l'analisi della trama breve.</string>
+  <string control="TMDBMovieInfo_chkGenre">Abilita l'analisi del genere.</string>
+  <string control="TMDBMovieInfo_chkTagline">Abilita l'analisi della tagline.</string>
+  <string control="TMDBMovieInfo_chkCast">Abilita l'analisi del cast.</string>
+  <string control="TMDBMovieInfo_chkVotes">Abilita l'analisi del numero di voti ricevuti.</string>
+  <string control="TMDBMovieInfo_chkRating">Abilita l'analisi del punteggio del film.</string>
+  <string control="TMDBMovieInfo_chkRelease">Abilita l'analisi della data di rilascio.</string>
+  <string control="TMDBMovieInfo_chkMPAA">Abilita l'analisi della certificazione MPAA.</string>
+  <string control="TMDBMovieInfo_chkYear">Abilita l'analisi dell'anno di rilascio del film.</string>
+  <string control="TMDBMovieInfo_chkTitle">Abilita l'analisi del titolo del film.</string>
+  <string control="TMDBMovieMedia_btnUp">Muovi questo modulo d'analisi in alto. (I moduli d'analisi saranno processati in ordine, dall'alto verso il basso)</string>
+  <string control="TMDBMovieMedia_cbEnabled">Abilita o disabilita questo modulo.</string>
+  <string control="TMDBMovieMedia_btnDown">Muovi questo modulo d'analisi in basso. (I moduli d'analisi saranno processati in ordine, dall'alto verso il basso)</string>
+  <string control="TMDBMovieMedia_chkScrapePoster">Abilita l'analisi dei posters con questo modulo. (Usa le impostazioni globali per i posters per maggiori opzioni)</string>
+  <string control="TMDBMovieMedia_chkScrapeFanart">Abilita l'analisi dei posters con questo modulo. (Usa le impostazioni globali per le fanart per maggiori opzioni)</string>
+  <string control="TMDBMovieMedia_chkDownloadTrailer">Abilita il download del trailer con questo modulo. (Usa le impostazioni globali peri trailers per maggiori opzioni)</string>
+  <string control="TMDBMovieMedia_txtTimeout">Inserisci il tempo d'attesa (in secondi) da essere usato per i siti di trailers. (Se non viene data una risposta nel tempo dato, il sito verrà temporaneamente saltato).</string>
+  <string control="TMDBMovieMedia_lbTrailerSites">Seleziona i siti da cui recuperare gli URL ai trailers e/o files.</string>
+</strings>

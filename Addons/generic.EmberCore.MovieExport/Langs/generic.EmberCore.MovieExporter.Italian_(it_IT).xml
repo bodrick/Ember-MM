@@ -1,0 +1,30 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Esportatore Lista Film</string>
+  <string id="1">Cartella Sorgente</string>
+  <string id="2">Bandiera Video</string>
+  <string id="3">Bandiera Audio</string>
+  <string id="4">Anteprima in preparazione. Attendere...</string>
+  <string id="5">Cartella Sorgente</string>
+  <string id="6">Carico. Attendere...</string>
+  <string id="7">Salvataggio di tutti i files. Attendere...</string>
+  <string id="8">Esporta Films</string>
+  <string id="9">Reset</string>
+  <string id="10">Filtro</string>
+  <string id="11">in</string>
+  <string id="12">Compilazione Lista Film</string>
+  <string id="13">Cancellazione Compilazione...</string>
+  <string id="14">Modello</string>
+  <string id="15">Esporta Lista Film</string>
+  <string id="16">Export TV Shows</string>
+  <string id="17">Generate Filter</string>
+  <string id="18">Export Path</string>
+  <string id="19">Fanart Width [px]</string>
+  <string id="20">Poster Height [px]</string>
+  <string id="21">Filter Settings</string>
+  <string id="22">Image Settings</string>
+  <string id="23">General Settings</string>
+  <string id="24">Save Filter</string>
+  <string id="25">Reset Filter</string>
+  <string id="26">Generate HTML...</string>
+  <string id="27">Template saved to:</string>
+</strings>

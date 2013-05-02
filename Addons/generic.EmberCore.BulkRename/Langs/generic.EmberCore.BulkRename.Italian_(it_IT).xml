@@ -1,0 +1,36 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Rinominatore</string>
+  <string id="1">Rinomino...</string>
+  <string id="2">Rinominatore di massa</string>
+  <string id="3">Rinomina Films e Files</string>
+  <string id="4">Compilazione Lista Film...</string>
+  <string id="5">Cancellazione Compilazione...</string>
+  <string id="6">Rinomina</string>
+  <string id="7">Schema Cartella (per Film singolo nella Cartella)</string>
+  <string id="8">Schema File</string>
+  <string id="9">Schema Cartella (per Film Multipli nella Cartella)</string>
+  <string id="10">Mostra solo i Films che saranno rinominati</string>
+  <string id="11">$T = Title{0}$X. (Replace Space with .){0}$D = Directory{0}$F = File Name{0}$O = OriginalTitle{0}$Y = Year{0}$I = IMDB ID{0}$R = Resolution{0}$A = Audio{0}$S = Source{0}$M = MPAA{0}$B = Base Path{0}$L = List Title{0}{{}} = Optional{0}$?aaa?bbb? = Replace aaa with bbb{0}$- = Remove previous char if next pattern does not have a value{0}$+ = Remove next char if previous pattern does not have a value{0}$^ = Remove previous and next char if next pattern does not have a value</string>
+  <string id="12">C'è stato un errore nel tentativo di rinominare una cartella:{0}{0}{1}{0}{0}Assicurati che la cartella o uno dei files contenuti non siano in uso da un altro programma (inclusa la navigazione da Windows Explorer)</string>
+  <string id="13">Impossibile Rinominare la Cartella</string>
+  <string id="14">C'è stato un errore nel tentativo di rinominare un file:{0}{0}{1}{0}{0}Assicurati che il file non sia in uso da un altro programma.</string>
+  <string id="15">Impossibile Rinominare File</string>
+  <string id="16">Rinomina Manualmente</string>
+  <string id="17">Nome Cartella</string>
+  <string id="18">Nome File</string>
+  <string id="19">Titolo:</string>
+  <string id="20">Sto Rinominando Cartelle/Files...</string>
+  <string id="21">Rinomina Automaticamente i Files durante un'Analisi Multipla</string>
+  <string id="22">Rinomina Automaticamente i Files durante un'Analisi Singola</string>
+  <string id="23">Schemi predefiniti di ridenominazione</string>
+  <string id="24">Schema Files</string>
+  <string id="25">Schema Cartelle</string>
+  <string id="26">&amp;Rinominatore di massa</string>
+  <string id="27"/>
+  <string id="28">Auto</string>
+  <string id="29">Manuale</string>
+  <string id="30">Nuovo Percorso</string>
+  <string id="31">Nuovo Nome File</string>
+  <string id="32">Abilita Modulo Generico di Ridenominazione</string>
+  <string id="33">Abilita lo Strumento Rinominatore di Massa </string>
+</strings>

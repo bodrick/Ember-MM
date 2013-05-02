@@ -1,0 +1,22 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Compatibilità MediaBrowser</string>
+  <string id="1">Compatibilità YAMJ</string>
+  <string id="2">Sets Compatibili YAMJ</string>
+  <string id="3">Posizione e denominazione files VIDEO_TS compatibile (NOTA: Questo si applicherà anche se il modulo è disabilitato)</string>
+  <string id="4">Denominazione delle Imagini TV compatibile YAMJ</string>
+  <string id="5">Campi NFO specifici YAMJ</string>
+  <string id="6">Mostra Poster come Set_&lt;Show&gt;_1.jpg</string>
+  <string id="7">Mostra Poster come Set_&lt;Show&gt;_1.fanart.jpg</string>
+  <string id="8">Poster Stagione come &lt;Episode&gt;.jpg *</string>
+  <string id="9">Fanart Stagione come &lt;Episode&gt;.fanart.jpg *</string>
+  <string id="10">Poster Episodio come &lt;Episode&gt;.videoimage.jpg</string>
+  <string id="11">Posizione e denominazione files VIDEO_TS compatibile (NOTA: Questo si applicherà anche se il modulo è disabilitato)</string>
+  <string id="12">Fanart Film come backdrop.jpg</string>
+  <string id="13">Media Browser mymovies.xml</string>
+  <string id="14">Poster Tutte le Stagioni come Set_&lt;Show&gt;_1.banner.jpg</string>
+  <string id="15">Sostituisci campo ID col Campo ID Boxee</string>
+  <string id="16">Opzioni Serie TV</string>
+  <string id="17">Usa le impostazioni YAMJ </string>
+  <string id="18">Compatibilità Boxee</string>
+  <string id="19">* Usa sempre il primo episodio presente di una stagione</string>
+</strings>

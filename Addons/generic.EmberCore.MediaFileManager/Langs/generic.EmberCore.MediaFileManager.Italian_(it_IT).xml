@@ -1,0 +1,10 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Media File Manager</string>
+  <string id="1">Media File Manager</string>
+  <string id="2">Sposta in</string>
+  <string id="3">Copia in</string>
+  <string id="4">Sposta da {0} a {1}</string>
+  <string id="5">Copia da {0} a {1}</string>
+  <string id="6">Spostamento Film</string>
+  <string id="7">Copia Film</string>
+</strings>

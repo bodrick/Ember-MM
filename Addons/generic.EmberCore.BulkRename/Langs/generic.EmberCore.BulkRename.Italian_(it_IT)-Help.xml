@@ -1,0 +1,9 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Renamer_chkEnabled">Abilita o disabilita questo modulo.</string>
+  <string control="Renamer_chkGenericModule">Abilita o disabilita le funzioni di ridenominazione generica.</string>
+  <string control="Renamer_txtFolderPattern">Inserisci uno schema di ridenominazione da essere usato automaticamente per le cartelle.</string>
+  <string control="Renamer_txtFilePattern">Inserisci uno schema di ridenominazione da essere usato automaticamente per i files.</string>
+  <string control="Renamer_chkRenameMulti">Se abilitato, Ember rinominerà automaticamente i files e le cartelle durante l'analisi di più film alla volta.</string>
+  <string control="Renamer_chkRenameSingle">Se abilitato, Ember rinominerà automaticamente i files e le cartelle durante l'analisi del film.</string>
+  <string control="Renamer_chkBulkRenamer">Abilita la funzione di ridenominazione di gruppo.</string>
+</strings>

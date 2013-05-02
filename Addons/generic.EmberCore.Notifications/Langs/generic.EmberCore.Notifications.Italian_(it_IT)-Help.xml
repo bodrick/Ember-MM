@@ -1,0 +1,7 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Notify_chkEnabled">Abilita o disabilita questo modulo.</string>
+  <string control="Notify_chkOnError">Se abilitato, verrà visualizzata una notifica in caso di errore.</string>
+  <string control="Notify_chkOnNewMovie">Se abilitato, verrà visualizzata una notifica quando viene aggiunto un film alla libreria.</string>
+  <string control="Notify_chkOnMovieScraped">Se abilitato, verrà visualizzata una notifica quando un film è analizzato.</string>
+  <string control="Notify_chkOnNewEp">Se abilitato, verrà visualizzata una notifica quando viene aggiunto un episodio alla libreria.</string>
+</strings>
