@@ -178,6 +178,12 @@
     <Content Include="Langs\generic.EmberCore.XBMC.Debug_%28db_DB%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Langs\generic.EmberCore.XBMC.Dutch_%28nl_NL%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\generic.EmberCore.XBMC.Dutch_%28nl_NL%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Langs\generic.EmberCore.XBMC.English_%28en_US%29-Help.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -190,10 +196,22 @@
     <Content Include="Langs\generic.EmberCore.XBMC.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Langs\generic.EmberCore.XBMC.Italian_%28it_IT%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\generic.EmberCore.XBMC.Italian_%28it_IT%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Langs\generic.EmberCore.XBMC.Norwegian_%28no_NO%29-Help.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Langs\generic.EmberCore.XBMC.Norwegian_%28no_NO%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\generic.EmberCore.XBMC.Spanish_%28es_ES%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\generic.EmberCore.XBMC.Spanish_%28es_ES%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

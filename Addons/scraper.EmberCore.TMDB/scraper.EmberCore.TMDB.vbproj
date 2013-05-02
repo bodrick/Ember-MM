@@ -251,6 +251,12 @@
     <Content Include="Langs\scraper.EmberCore.TMDB.Debug_%28db_DB%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Langs\scraper.EmberCore.TMDB.Dutch_%28nl_NL%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\scraper.EmberCore.TMDB.Dutch_%28nl_NL%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Langs\scraper.EmberCore.TMDB.English_%28en_US%29-Help.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -263,10 +269,22 @@
     <Content Include="Langs\scraper.EmberCore.TMDB.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Langs\scraper.EmberCore.TMDB.Italian_%28it_IT%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\scraper.EmberCore.TMDB.Italian_%28it_IT%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Langs\scraper.EmberCore.TMDB.Norwegian_%28no_NO%29-Help.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Langs\scraper.EmberCore.TMDB.Norwegian_%28no_NO%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\scraper.EmberCore.TMDB.Spanish_%28es_ES%29-Help.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\scraper.EmberCore.TMDB.Spanish_%28es_ES%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

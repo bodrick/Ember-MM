@@ -169,13 +169,22 @@
     <Content Include="Langs\multi.EmberExtras.Debug_%28db_DB%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Langs\multi.EmberExtras.Dutch_%28nl_NL%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Langs\multi.EmberExtras.English_%28en_US%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Langs\multi.EmberExtras.German_%28de_DE%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Langs\multi.EmberExtras.Italian_%28it_IT%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Langs\multi.EmberExtras.Norwegian_%28no_NO%29.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Langs\multi.EmberExtras.Spanish_%28es_ES%29.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\trakt.png" />
