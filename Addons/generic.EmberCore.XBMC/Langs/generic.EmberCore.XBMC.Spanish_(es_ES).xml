@@ -1,0 +1,34 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Controlador XBMC</string>
+  <string id="1">El nombre que está intentando utilizar para esta instalación XBMC está ya en uso.  Por favor seleccione otro.</string>
+  <string id="2">Cada nombre tiene que ser único</string>
+  <string id="3">Debe de introducir un número de puerto para esta instalación XBMC.</string>
+  <string id="4">Por favor intorduzca un número de Puerto</string>
+  <string id="5">Debe de intorducir una dirección IP para esta instalación XBMC.</string>
+  <string id="6">Por favor intorduzca una dirección IP</string>
+  <string id="7">Debe de intorducir un nombre para esta instalación XBMC</string>
+  <string id="8">Por favor introduzca un Nombre Único</string>
+  <string id="9">Comunicación XBMC</string>
+  <string id="10">Editar</string>
+  <string id="11">Nombre:</string>
+  <string id="12">Adicionar</string>
+  <string id="13">Dirección IP de XBMC:</string>
+  <string id="14">Número de Puerto de XBMC:</string>
+  <string id="15">Remover lo Seleccionado</string>
+  <string id="16">No fue posible Iniciar la Actualización de XBMC</string>
+  <string id="17">Ocurrió un problema al comunicarse con {0}{1}.</string>
+  <string id="18">XBMC</string>
+  <string id="19">Controlador XBMC</string>
+  <string id="20">Habilitar la Sincronización en Tiempo Real</string>
+  <string id="21">Sincronización en Tiempo Real</string>
+  <string id="22">Buscando...</string>
+  <string id="23">Cargar Fuentes</string>
+  <string id="24">Fuente de Ember</string>
+  <string id="25">Fuente de XBMC</string>
+  <string id="26">Tipo de Fuente de XBMC</string>
+  <string id="27">Letra de Disco de Windows (X:\)</string>
+  <string id="28">UNC de Windows/Linux/MacOS X</string>
+  <string id="29">Nombre de Host XBMC</string>
+  <string id="30">Enviar Notificaciones</string>
+  <string id="31">Obtener PlayCount desde:</string>
+</strings>

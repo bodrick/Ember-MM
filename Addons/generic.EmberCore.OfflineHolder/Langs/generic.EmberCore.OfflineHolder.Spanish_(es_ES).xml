@@ -1,0 +1,33 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Gestor de Media Offline</string>
+  <string id="1">Inserte DVD</string>
+  <string id="2">Preparando Datos</string>
+  <string id="3">Creando Película</string>
+  <string id="4">Construyendo Película</string>
+  <string id="5">Moviendo Archivos</string>
+  <string id="6">Renombrando Archivos</string>
+  <string id="7">Lugar reservado para película offline ha sido creado!</string>
+  <string id="8">El directorio fuente no existe o no pudo ser encontrado:</string>
+  <string id="9">Folder Fuente</string>
+  <string id="10">Película (Nombre de Folder)</string>
+  <string id="11">Imágen para Lugar Reservado</string>
+  <string id="12">Gestor de Media Offline</string>
+  <string id="13">Adicionar película Offline</string>
+  <string id="14">Añadir a Fuente:</string>
+  <string id="15">Folder de Lugar Reservado/Nombre de Película:</string>
+  <string id="16">Buscar en IMDB</string>
+  <string id="17">Creador en Masa</string>
+  <string id="18">Condición</string>
+  <string id="19">Crear</string>
+  <string id="20">Utilizar Fanart para Vídeo de Lugar Reservado</string>
+  <string id="21">Slogan de Vídeo de Lugar Reservado:</string>
+  <string id="22">Color de Texto:</string>
+  <string id="23">Slogan Superior:</string>
+  <string id="24">Formato de Vídeo de Lugar Reservado:</string>
+  <string id="25">Utilizar Fondo de Slogan</string>
+  <string id="26">Color de Fondo de Slogan:</string>
+  <string id="27">Utilizar Overlay de Ember</string>
+  <string id="28">Seleccione el Font...</string>
+  <string id="29">Información</string>
+  <string id="30">Gestor de Media Offline</string>
+</strings>

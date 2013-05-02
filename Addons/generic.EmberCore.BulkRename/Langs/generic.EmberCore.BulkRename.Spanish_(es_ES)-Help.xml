@@ -1,0 +1,9 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Renamer_chkEnabled">Habilitar o deshabilitar este módulo.</string>
+  <string control="Renamer_chkGenericModule">Habilitar o deshabilitar las funciones de renombramiento genérico.</string>
+  <string control="Renamer_txtFolderPattern">Digite un patrón de renombramiento para ser utilizado en renombramiento automático de folders.</string>
+  <string control="Renamer_txtFilePattern">Digite un patrón de renombramiento para ser utilizado en renombramiento automático de archivos.</string>
+  <string control="Renamer_chkRenameMulti">Si está habilitado, Ember renombrará automáticamente archivos y folders cuando haga scraping de múltiples películas.</string>
+  <string control="Renamer_chkRenameSingle">Si está habilitado, EMber renombrará automáticamente archivos y folders cuando haga scraping de una sola película.</string>
+  <string control="Renamer_chkBulkRenamer">Habilitar la herramienta de renombramiento en masa.</string>
+</strings>

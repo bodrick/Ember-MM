@@ -1,0 +1,11 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Exporter_cbEnabled">Habilitar o deshabilitar este módulo.</string>
+  <string control="Exporter_txt_exportmoviepath">El directorio donde se guarda la Plantilla HTML creada</string>
+  <string control="Exporter_cbo_exportmoviefanart">La anchura deseada para el fanart exportado. Un valor más pequeño da como resultado ficheros más pequeños y tiempos de carga más rápidos.</string>
+  <string control="Exporter_cbo_exportmovieposter">La anchura deseada para el poster exportado. Un valor más pequeño da como resultado ficheros más pequeños</string>
+  <string control="Exporter_cbo_exportmoviequality">100 significa sin pérdida de calidad, pero tambien un tamaño de fichero más grande - Pon valores más pequeños para mejorar tiempos de carga!</string>
+  <string control="Exporter_cbo_exportmoviefiltergenerate">Tres filtros que se pueden usar para almacenar diferentes filtros. Aquellos que se pueden seleccionar en el interfaz de Exportar Películas</string>
+  <string control="Exporter_cbSearch">Tipos de filtros diferentes para elegir</string>
+  <string control="Exporter_btn_Apply">Guardar filtro seleccionado</string>
+  <string control="Exporter_btn_Reset">Limpiar filtro seleccionado</string>
+</strings>

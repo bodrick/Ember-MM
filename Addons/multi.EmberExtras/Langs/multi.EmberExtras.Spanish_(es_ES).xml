@@ -1,0 +1,34 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Mapeo de Códec de Audio &amp; Vídeo</string>
+  <string id="1">Editor de Géneros</string>
+  <string id="2">&lt;Todos&gt;</string>
+  <string id="3">Digite el nuevo Idioma</string>
+  <string id="4">Nuevo Idioma</string>
+  <string id="5">Esto removerá el Idioma de todos los Géneros. ¿Está seguro(a)?</string>
+  <string id="6">Remover Idioma</string>
+  <string id="7">Idiomas</string>
+  <string id="8">Cambiar</string>
+  <string id="9">Imagen</string>
+  <string id="10">Filtro de Géneros</string>
+  <string id="11"/>
+  <string id="30">Audio</string>
+  <string id="31">Vídeo</string>
+  <string id="32">Códec de Mediainfo</string>
+  <string id="33">Códec Mapeado</string>
+  <string id="61">Editor de Fuentes de Medios</string>
+  <string id="62">Fuentes</string>
+  <string id="63">Texto de Búsqueda</string>
+  <string id="64">Nombre de Fuente</string>
+  <string id="65">Mapear Fuente de Medios vía Extensión de Archivo</string>
+  <string id="66">Extensión de Archivo</string>
+  <string id="67">Establecer Valores Predeterminados</string>
+  <string id="68">Usa trakt.tv como fuente para "Playcount"</string>
+  <string id="69">Sincronizar "Playcount" de trakt.tv</string>
+  <string id="70">Obtener películas vistas</string>
+  <string id="71">Graba "playcount" en la base de datos/nfo</string>
+  <string id="72"/>
+  <string id="73">Nombre de usuario</string>
+  <string id="74">Contraseña</string>
+  <string id="75">Obtener episodios vistos</string>
+  <string id="76">Grabar</string>
+</strings>

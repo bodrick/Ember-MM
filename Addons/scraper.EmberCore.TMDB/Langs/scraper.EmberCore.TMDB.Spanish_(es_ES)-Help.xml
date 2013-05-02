@@ -1,0 +1,31 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="TMDBMovieInfo_cbEnabled">Habilitar o deshabilitar este módulo.</string>
+  <string control="TMDBMovieInfo_btnUp">Mover este módulo scraper más arriba en el orden. (Los módulos Scraper serán procesados en orden desde arriba hacia abajo)</string>
+  <string control="TMDBMovieInfo_btnDown">Mover este módulo scraper más abajo en el orden. (Los módulos Scraper serán procesados en orden desde arriba hacia abajo)</string>
+  <string control="TMDBMovieInfo_txtTMDBApiKey">API Key del site de TMDB.  Está prohibido compartir el API Key.</string>
+  <string control="TMDBMovieInfo_chkCertification">Habilitar hacer scrape a la certificación de la película.</string>
+  <string control="TMDBMovieInfo_cbTMDBPrefLanguage">Idioma seleccionado para las búsquedas en TMDB</string>
+  <string control="TMDBMovieInfo_chkFallBackEng">Si no hay registro disponible para el idioma seleccionado intentar Inglés</string>
+  <string control="TMDBMovieInfo_chkCrew">Habilitar hacer scraping al otro equipo de la película. (Hacer scraping al Equipo COmpleto tiene que estar habilitado)</string>
+  <string control="TMDBMovieInfo_chkStudio">Habilitar hacer scraping al estudio de producción de la película.</string>
+  <string control="TMDBMovieInfo_chkRuntime">Habilitar hacer scraping al tiempo de ejecución de la película.</string>
+  <string control="TMDBMovieInfo_chkPlot">Habilitar hacer scraping a la trama de la película.</string>
+  <string control="TMDBMovieInfo_chkOutline">Habilitar hacer scraping al resumen de trama de la película.</string>
+  <string control="TMDBMovieInfo_chkGenre">Habilitar hacer scraping al género de la película.</string>
+  <string control="TMDBMovieInfo_chkTagline">Habilitar hacer scraping al slogan de la película.</string>
+  <string control="TMDBMovieInfo_chkCast">Habilitar hacer scraping al elenco de la película.</string>
+  <string control="TMDBMovieInfo_chkVotes">Habilitar hacer scraping al número de votos de la película.</string>
+  <string control="TMDBMovieInfo_chkRating">Habilitar hacer scraping a la calificación de la película.</string>
+  <string control="TMDBMovieInfo_chkRelease">Habilitar hacer scraping a la fecha de lanzamiento de la película.</string>
+  <string control="TMDBMovieInfo_chkMPAA">Habilitar hacer scraping a la calificación MPAA de la película.</string>
+  <string control="TMDBMovieInfo_chkYear">Habilitar hacer scraping al año de la película.</string>
+  <string control="TMDBMovieInfo_chkTitle">Hbilitar hacer scraping al título de la película.</string>
+  <string control="TMDBMovieMedia_btnUp">Mover este módulo scraper más arriba en el orden. (Los módulos Scraper serán procesados en orden desde arriba hacia abajo)</string>
+  <string control="TMDBMovieMedia_cbEnabled">Habilitar o deshabilitar este módulo.</string>
+  <string control="TMDBMovieMedia_btnDown">Mover este módulo scraper más abajo en el orden. (Los módulos Scraper serán procesados en orden desde arriba hacia abajo)</string>
+  <string control="TMDBMovieMedia_chkScrapePoster">Habilitar hacer scraping de posters desde este módulo. (Refiérase a los ajustes globales de posters para más opciones)</string>
+  <string control="TMDBMovieMedia_chkScrapeFanart">Habilitar hacer scraping de fanart desde este módulo. (Refiérase a los ajustes globales de fanart para más opciones)</string>
+  <string control="TMDBMovieMedia_chkDownloadTrailer">Habilitar descarga de trailer desde este módulo.  (Refiérase a los ajustes globales de trailer para más opciones)</string>
+  <string control="TMDBMovieMedia_txtTimeout">Digite el tiempo (en segundos) que desea utilizar como tiempo máximo de espera para los sitios de trailer.  (Si no hay respuesta en este intervalo de tiempo, el sitio de trailer será obviado temporalmente.)</string>
+  <string control="TMDBMovieMedia_lbTrailerSites">Seleccione los sitios desde los cuales desearía traer los URLs y/o archivos de trailer.</string>
+</strings>

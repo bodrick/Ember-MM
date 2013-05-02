@@ -1,0 +1,11 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Extractor de Fotograma</string>
+  <string id="1">Auto-Generar</string>
+  <string id="2"># a Crear:</string>
+  <string id="3">Auto-Generar</string>
+  <string id="4">Guardar Extrathumb</string>
+  <string id="5">Extrayendo Fotograma...</string>
+  <string id="6">Cargar Película</string>
+  <string id="7">Cargar Episodio</string>
+  <string id="8">Guardar como Poster</string>
+</strings>

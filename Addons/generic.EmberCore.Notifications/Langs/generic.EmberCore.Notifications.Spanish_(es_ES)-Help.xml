@@ -1,0 +1,7 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Notify_chkEnabled">Habilitar o deshabilitar este módulo.</string>
+  <string control="Notify_chkOnError">Si está habilitado, se mostrará una notificación cuando ocurra un error.</string>
+  <string control="Notify_chkOnNewMovie">Si está habilitado, se mostrará una notificación cuando se adicione una película a la videoteca.</string>
+  <string control="Notify_chkOnMovieScraped">Si está habilitado, se mostrará una notificación cuando se haga scraping a una película.</string>
+  <string control="Notify_chkOnNewEp">Si está habilitado, se mostrará una notificación cuando se adicione un episodio a la videoteca.</string>
+</strings>

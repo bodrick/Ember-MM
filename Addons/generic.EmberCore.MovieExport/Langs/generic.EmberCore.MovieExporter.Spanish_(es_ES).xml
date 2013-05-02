@@ -1,0 +1,30 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Exportador de Lista de Películas</string>
+  <string id="1">Folder Fuente</string>
+  <string id="2">Indicador de Vídeo</string>
+  <string id="3">Indicador de Audio</string>
+  <string id="4">Preparando vista previa.  Por favor espere...</string>
+  <string id="5">Folder Fuente</string>
+  <string id="6">Cargando.  Por favor espere...</string>
+  <string id="7">Guardando todos los archivos.  Por favor espere...</string>
+  <string id="8">Exportar Películas</string>
+  <string id="9">Volver al inicio</string>
+  <string id="10">Filtrar</string>
+  <string id="11">en</string>
+  <string id="12">Compilando Lista de Películas...</string>
+  <string id="13">Cancelando la Compilación...</string>
+  <string id="14">Plantilla</string>
+  <string id="15">Exportar Lista de Películas</string>
+  <string id="16">Exportar Series de TV</string>
+  <string id="17">Generar Filtro</string>
+  <string id="18">Exportar Directorio</string>
+  <string id="19">Anchura del Fanart [px]</string>
+  <string id="20">Altura del Poster [px]</string>
+  <string id="21">Ajustes de Filtros</string>
+  <string id="22">Ajustes de Imagen</string>
+  <string id="23">Ajustes Generales</string>
+  <string id="24">Guardar Filtro</string>
+  <string id="25">Limpiar Filtros</string>
+  <string id="26">Generar HTML...</string>
+  <string id="27">Plantilla guardada en:</string>
+</strings>

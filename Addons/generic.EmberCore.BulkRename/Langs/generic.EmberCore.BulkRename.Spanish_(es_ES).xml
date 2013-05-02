@@ -1,0 +1,36 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Renombrador</string>
+  <string id="1">Renombrando...</string>
+  <string id="2">Renombrador en Masa</string>
+  <string id="3">Renombrar películas y archivos</string>
+  <string id="4">Compilando lista de Películas...</string>
+  <string id="5">Cancelando la Compilación...</string>
+  <string id="6">Renombrar</string>
+  <string id="7">Patrón de Folder (para una Sola película en el Folder)</string>
+  <string id="8">Patrón de Archivo</string>
+  <string id="9">Patrón de Folder (para Múltiples películas en el Folder)</string>
+  <string id="10">Mostrar Sólo Películas Que Serán Renombradas</string>
+  <string id="11">$T = Título{0}$X. (Reemplazar espacio con .){0}$D = Directorio{0}$F = Nombre de Archivo{0}$O = TítuloOriginal{0}$Y = Año{0}$I = IMDB ID{0}$R = Resolución{0}$A = Audio{0}$S = Fuente{0}$M = MPAA{0}$B = DIrección Base{0}$L = Título de Lista{0}{{}} = Opcional{0}$?aaa?bbb? = Reemplazar aaa con bbb{0}$- = Remover caracter previo si el próximo patrón no tiene un valor{0}$+ = Remove el siguiente caracter si el patrón previo no tiene un valor{0}$^ = Remover los caracteres previo y siguiente si el próximo patrón no tiene un valor</string>
+  <string id="12">Ha ocurrido un error al intentar renombrar el folder:{0}{0}{1}{0}{0}Por favor asegúrese de no estar accediendo a este folder o a ninguno de sus archivos desde otro programa (incluyendo visualizando a través del Windows Explorer</string>
+  <string id="13">No fue posible Renombrar el Folder</string>
+  <string id="14">Ha ocurrido un error al intentar renombrar el archivo:{0}{0}{1}{0}{0}Por favor asegúrese de no estar accediendo a este archivo desde otro programa.</string>
+  <string id="15">No fue posible Renombrar el Archivo</string>
+  <string id="16">Renombramiento Manual</string>
+  <string id="17">Nombre de Folder</string>
+  <string id="18">Nombre de Archivo</string>
+  <string id="19">Título:</string>
+  <string id="20">Renombrando Folder/Archivos...</string>
+  <string id="21">Renombrar Archivos automáticamente durante Scrape Múltiple</string>
+  <string id="22">Renombrar Archivos automáticamente durante Scrape Unitario</string>
+  <string id="23">Patrones de Renombramiento por Defecto</string>
+  <string id="24">Patrón de Archivos</string>
+  <string id="25">Patrón de Folders</string>
+  <string id="26">&amp;Renombrador en Masa</string>
+  <string id="27"/>
+  <string id="28">Automático</string>
+  <string id="29">Manual</string>
+  <string id="30">Nueva Dirección</string>
+  <string id="31">Nuevo Nombre de Archivo</string>
+  <string id="32">Habilitar Módulo de Renombramiento Genérico</string>
+  <string id="33">Hbilitar Herramienta de Renombramiento en Masa</string>
+</strings>

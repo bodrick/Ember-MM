@@ -1,0 +1,10 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Gestor de Archivos de Media</string>
+  <string id="1">Gestor de Archivos de Media</string>
+  <string id="2">Mover A</string>
+  <string id="3">Copiar A</string>
+  <string id="4">Mover desde {0} hacia {1}</string>
+  <string id="5">Copiar desde {0} hacia {1}</string>
+  <string id="6">Moviendo Película</string>
+  <string id="7">Copiando Película</string>
+</strings>

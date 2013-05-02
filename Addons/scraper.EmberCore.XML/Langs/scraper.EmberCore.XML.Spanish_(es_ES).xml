@@ -1,0 +1,18 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Scrapers XML de Ember para Películas</string>
+  <string id="1"/>
+  <string id="2">Género(s):</string>
+  <string id="3">Ver detalles de cada resultado para encontrar la película correcta.</string>
+  <string id="4">Resultados de Búsqueda de Películas</string>
+  <string id="5">Buscando ...</string>
+  <string id="6">Descargando detalles ...</string>
+  <string id="7">Resultados de Búsqueda</string>
+  <string id="8">Configurar los Ajustes de este Scraper en</string>
+  <string id="9">Cargando, Por favor Esperar</string>
+  <string id="10">Campos de Scraper - Específicos del Scraper</string>
+  <string id="11">Estos ajustes son específicos para este módulo.{0} Por favor referirse a los ajustes globales para más opciones.</string>
+  <string id="12">Scraper</string>
+  <string id="13">Cargar lista de scrapers</string>
+  <string id="14">Ajustes</string>
+  <string id="15">Ajustes</string>
+</strings>
