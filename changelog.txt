@@ -1,0 +1,100 @@
+Changelog 1.3.0.12 (02.05.2013):
+
+Movie List Exporter Module: (Cocotus)
+- fixed: Watched /Unwatched Filter is now working when clicking on "ALL"
+- fixed: No more crashes during saving process (dropped the filedialog and uses exportpath setting instead)
+- added: TVShow View (just a list of all tv shows with season posters)
+- added: Now everytime Watched or Unwatched checkbox is clicked, navigation will be updated at once
+- changed: Trailer/IMDB Link opens in new tab/window
+- changed: Moved Export settings to module settings, added JPG Quality setting to further reduce filesize and therefore decrease loading time
+
+Renamer Module:
+- fixed: manually rename destroyed VIDEO_TS/BDMV structure
+- fixed: Bulk Renamer destroyed VIDEO_TS/BDMV structure
+- fixed: help window cuts a part of text
+
+YAMJ Module:
+- added: save AllSeasonPoster as "Set_<Show>_1.banner.jpg"
+- fixed: module setting page does not deactivate tv show images
+- fixed: local files are not recognized
+
+Ember Main:
+- fixed: all images bugs with posters and fanarts (m.savazzi)
+- fixed: frame exctration does not work for episodes (m.savazzi)
+- fixed: poster/fanart preview not works (m.savazzi)
+- fixed: season fanart can't change if episodes are not in a separate season folder
+- fixed: not all the local posters/fanarts are deleted on first scraping/change movie/tv show
+- fixed: Ember always create a fanart backdrop in Ember root folder
+- fixed: unique filenames for fanart backdrops (<original movie title>_<IMDB ID>.jpg)
+- fixed: season refresh does not save to database
+- fixed: file stacking does not work with more then one digit (CD01)
+- fixed: file info in movie search result windows display always the first scraped movie
+- fixed: only a file name variant is saved for VIDEO_TS & BDMV, although several are activated
+- fixed: file sorter does not move "*-poster.jpg"
+- fixed: check title match confidence (known as "pink movie list bug")
+- fixed: studioname in tv shows does not display
+- fixed: mouse over studioname in tv shows creates an error when no movies are available in database
+- fixed: trailer checkboxes in native and TMDB scraper settings page
+- added: "Has Watched" column for movies and episodes (hide option in settings)
+- added: export movies and tv shows to XML file (Tools menu), can be opened by Excel (Cocotus)
+- added: subtitle lock (Cocotus)
+- added: native and TMDB Scraper use IMDB ID in foldername *
+- added: CTRL+A works now for plot and outline
+- added: scrollbars for plot and outline
+- changed: typ "Poster" as standard for tv shows
+- removed: option "Check for Updates"
+- removed: option "banner.jpg" in tv show (no banner support yet)
+- updated: MediaInfo.dll and ffmpeg.exe
+
+- updated: german & norwegian languages
+- added: dutch language (99% translated) (Shemhazai2, remmie, matrix808, kriss1981)
+- added: spanish language (87% translated) (orbtwin, bsoriano, diegobarrioh)
+- added: italian language (80% translated) (Wolf666)
+
+* If you use "Folder/File Name Filter" it is necessary to adjust the filter properly, so that the IMDB ID is not removed.
+
+
+
+Changelog 1.3.0.11 (17.04.2013):
+
+Trakt.tv addon: (Cocotus)
+- added: basic authentification (username / password) required from now on, no problem with privacy settings
+- added: playcount for tv show episodes
+
+Renamer Module:
+- fixed: VIDEO_TS & BDMV handling
+- fixed: multipart movies (tested with "Avatar CD1.avi" / "Avatar CD2.avi")
+- fixed: auto rename on auto scraping
+
+YAMJ Module:
+- fixed: tv show image handling/naming
+- fixed: Ember now detects all existing images correctly
+- changed: now all "File Naming" options in standard TV Shows settings can be deactivated, only these in the module must be activated
+
+Ember Main:
+- added: display of metadata on main page of Ember (bitrate is displayed) (Cocotus)
+- fixed: 7.1/6.1 scan of Mediafiles in Ember - i.e Mediainfo delivers "8 / 6" for audio channel which is wrong format for Ember (Ember expects only 1 char/Number) (Cocotus)
+- added: language lock option for video & audio metadata (Cocotus)
+- added: MPAA/certification lock (Cocotus)
+- added: movie sets in MovieTemplate (Cocotus)
+- fixed: better/faster image handling, movie images are no longer resized (direct download from TMDB) (m.savazzi)
+- changed: "Enable Actors Cache" is renamed to "Enable Actors Thumbs"
+- fixed: Ember create empty actor thumb files
+- fixed: unchecking "Enable Actor Cache" does not stop creation of .actors folder
+- added: option to set the preferred actor thumbs size
+- fixed: Ember create movie poster/fanart outside of the movie folder when VIDEO_TS is activated in YAMJ-Module
+- added: more file name stacking variants (same like XBMC + more)
+- fixed: autoselect best entry in movie search result window
+- added: movie title handling on OFDB; now change "Avengers, The" -> "The Avengers"
+- fixed: many OFDB errors (missing title/genres, bad outline)
+- added: open trailer in browser button in trailer window
+- fixed: <episodeguide> tag now work correct if a API key added in settings
+- added: genre filter now work also on multi/auto-scraping
+- added: gerne "Western" to german genre list
+- fixed: image rescrape in movie/tv show and season edit window (episode has a error atm)
+- added: file information and a button to open the movie file directory in search result window
+- added: Denmark and Italy to forced title (themagnifico)
+- added: norwegian lang files (Dragen)
+
+- removed: german genre "Kinder-" in genre list
+- removed: portugues lang file (incomplete)
