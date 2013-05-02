@@ -1,0 +1,34 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Audio &amp; Video Codec indeling</string>
+  <string id="1">Genres bewerker</string>
+  <string id="2">&lt; Alle &gt;</string>
+  <string id="3">Voer de nieuwe taal in</string>
+  <string id="4">Nieuwe taal</string>
+  <string id="5">Dit zal de taal uit alle genres verwijderen. Bent u zeker?</string>
+  <string id="6">Verwijder taal</string>
+  <string id="7">Talen</string>
+  <string id="8">Wijzig</string>
+  <string id="9">Afbeelding</string>
+  <string id="10">Genres filter</string>
+  <string id="11"/>
+  <string id="30">Audio</string>
+  <string id="31">Video</string>
+  <string id="32">Mediainfo codec</string>
+  <string id="33">Ingedeelde Codec</string>
+  <string id="61">Bewerker Mediabronnen </string>
+  <string id="62">Bronnen</string>
+  <string id="63">Zoektekst</string>
+  <string id="64">Bronnaam</string>
+  <string id="65">Deel mediabron in op bestandsextensie</string>
+  <string id="66">Bestandsextensie</string>
+  <string id="67">Stel standaarden in</string>
+  <string id="68">Gebruik trakt.tv als bron voor "Playcount"</string>
+  <string id="69">trakt.tv Playcount Sync</string>
+  <string id="70">Haal bekeken films op</string>
+  <string id="71">Bewaar de afspeeltelling in de database/nfo</string>
+  <string id="72"/>
+  <string id="73">Gebruikersnaam</string>
+  <string id="74">Wachtwoord</string>
+  <string id="75">Haal bekeken afleveringen op</string>
+  <string id="76">Opslaan</string>
+</strings>

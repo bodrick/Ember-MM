@@ -1,0 +1,7 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Meldingen</string>
+  <string id="1">Bij fouten</string>
+  <string id="2">Bij nieuw toegevoegde films</string>
+  <string id="3">Bij gescande films</string>
+  <string id="4">Bij nieuw toegevoegde aflevering</string>
+</strings>

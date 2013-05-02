@@ -1,0 +1,31 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="TMDBMovieInfo_cbEnabled">Zet deze module aan of uit.</string>
+  <string control="TMDBMovieInfo_btnUp">Verplaats deze scanner omhoog in rangorde. (Scanner modules worden uitgevoerd in rangorde van boven naar beneden)</string>
+  <string control="TMDBMovieInfo_btnDown">Verplaats deze scanner omlaag in rangorde. (Scanner modules worden uitgevoerd in rangorde van boven naar beneden)</string>
+  <string control="TMDBMovieInfo_txtTMDBApiKey">API Key van de TMDB site. De API Key delen is verboden.</string>
+  <string control="TMDBMovieInfo_chkCertification">Scan film certificering.</string>
+  <string control="TMDBMovieInfo_cbTMDBPrefLanguage">Geselecteerde taal voor TMDB zoekopgaven.</string>
+  <string control="TMDBMovieInfo_chkFallBackEng">Indien er geen record aanwezig is voor de geselecteerde taal, neem dan Engels.</string>
+  <string control="TMDBMovieInfo_chkCrew">Scan overige filmcrew. (Scan volledige crew moet geactiveerd zijn)</string>
+  <string control="TMDBMovieInfo_chkStudio">Scan filmstudio.</string>
+  <string control="TMDBMovieInfo_chkRuntime">Scan film speelduur.</string>
+  <string control="TMDBMovieInfo_chkPlot">Scan film plot.</string>
+  <string control="TMDBMovieInfo_chkOutline">Scan film verhaalschets.</string>
+  <string control="TMDBMovieInfo_chkGenre">Scan film genre.</string>
+  <string control="TMDBMovieInfo_chkTagline">Scan film quote.</string>
+  <string control="TMDBMovieInfo_chkCast">Scan film cast.</string>
+  <string control="TMDBMovieInfo_chkVotes">Scan film stemmen</string>
+  <string control="TMDBMovieInfo_chkRating">Scan film rating.</string>
+  <string control="TMDBMovieInfo_chkRelease">Scan film introductiedatum.</string>
+  <string control="TMDBMovieInfo_chkMPAA">Scan MPAA waardering.</string>
+  <string control="TMDBMovieInfo_chkYear">Scan film jaar.</string>
+  <string control="TMDBMovieInfo_chkTitle">Scan film titel.</string>
+  <string control="TMDBMovieMedia_btnUp">Verplaats deze scanner omhoog in rangorde. (Scanner modules worden uitgevoerd in rangorde van boven naar beneden)</string>
+  <string control="TMDBMovieMedia_cbEnabled">Zet deze module aan of uit.</string>
+  <string control="TMDBMovieMedia_btnDown">Verplaats deze scanner omlaag in rangorde. (Scanner modules worden uitgevoerd in rangorde van boven naar beneden)</string>
+  <string control="TMDBMovieMedia_chkScrapePoster">Gebruik scannen van posters in deze module. (Kijk bij algemene instellingen voor meer opties)</string>
+  <string control="TMDBMovieMedia_chkScrapeFanart">Gebruik scannen van fanart in deze module. (Kijk bij algemene instellingen voor meer opties)</string>
+  <string control="TMDBMovieMedia_chkDownloadTrailer">Gebruik downloaden van trailers in deze module. (Kijk bij algemene instellingen voor meer opties)</string>
+  <string control="TMDBMovieMedia_txtTimeout">Geef de tijd op (in seconden) die je wilt wachten tot een timeout van de trailer sites. (Als er geen reactie komt in deze tijd, zal de trailer worden overgeslagen)</string>
+  <string control="TMDBMovieMedia_lbTrailerSites">Selecteer de site waar je trailer URL's en/of bestanden vandaan wilt halen.</string>
+</strings>

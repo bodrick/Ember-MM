@@ -1,0 +1,30 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Filmlijst Exporteur</string>
+  <string id="1">Bron map</string>
+  <string id="2">Video vlag</string>
+  <string id="3">Audio vlag</string>
+  <string id="4">Voorbereiden voorbeeld. Even wachten a.u.b. ...</string>
+  <string id="5">Bron map</string>
+  <string id="6">Laden. Even geduld a.u.b. ...</string>
+  <string id="7">Opslaan van bestanden. Even geduld a.u.b. ...</string>
+  <string id="8">Exporteer films</string>
+  <string id="9">Opnieuw instellen</string>
+  <string id="10">Filter</string>
+  <string id="11">in</string>
+  <string id="12">Compileren filmlijst...</string>
+  <string id="13">Afbreken compilatie...</string>
+  <string id="14">Sjabloon</string>
+  <string id="15">Exporteer filmlijst</string>
+  <string id="16">Exporteer TV Serie</string>
+  <string id="17">Maak filter aan</string>
+  <string id="18">Exporteer pad</string>
+  <string id="19">Fanart breedte [px]</string>
+  <string id="20">Poster hoogte [px]</string>
+  <string id="21">Filter Instellingen</string>
+  <string id="22">Afbeelding Instellingen</string>
+  <string id="23">Algemene Instellingen</string>
+  <string id="24">Bewaar Filter</string>
+  <string id="25">Filter herinstellen</string>
+  <string id="26">HTML aanmaken...</string>
+  <string id="27">Sjabloon opgeslagen naar:</string>
+</strings>

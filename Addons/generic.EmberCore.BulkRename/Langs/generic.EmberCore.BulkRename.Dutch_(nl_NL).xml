@@ -1,0 +1,36 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Hernoemer</string>
+  <string id="1">Hernoemen...</string>
+  <string id="2">Bulk hernoemer</string>
+  <string id="3">Hernoem films en bestanden</string>
+  <string id="4">Film lijst compileren...</string>
+  <string id="5">Afbreken compileren....</string>
+  <string id="6">Hernoem</string>
+  <string id="7">Map patroon (voor enkele film in map)</string>
+  <string id="8">Bestandspatroon</string>
+  <string id="9">Map patroon (voor meerdere films in één map)</string>
+  <string id="10">Toon alleen films die hernoemd worden</string>
+  <string id="11">$T = Titel{0}$X. (Vervang spatie met .){0}$D = Map{0}$F = Bestandsnaam{0}$O = Originele titel{0}$Y = Jaar{0}$I = IMDB ID{0}$R = Resolutie{0}$A = Audio{0}$S = Bron{0}$M = MPAA{0}$B = Bron pad{0}$L = Lijst titel{0}{{}} = Optioneel{0}$?aaa?bbb? = Vervang aaa met bbb{0}$- = Verwijder voorgaand karakter als het volgende patroon geen waarde heeft{0}$+ = Verwijder volgend karakter als vorig patroon geen waarde heeft{0}$^ = Verwijder vorig en volgend karakter als volgend patroon geen waarde heeft</string>
+  <string id="12">Er is een fout opgetreden bij het hernoemen van de map:{0}{0}{1}{0}{0}Controleer dat je deze map niet in een ander programma geopend hebt (inclusief Windows Explorer)</string>
+  <string id="13">Map hernoemen niet mogelijk</string>
+  <string id="14">Er is een fout opgetreden bij het hernoemen van een bestand:{0}{0}{1}{0}{0}Controleer dat het bestand niet in een ander programma geopend is.</string>
+  <string id="15">Bestand hernoemen niet mogelijk</string>
+  <string id="16">Handmatig hernoemen</string>
+  <string id="17">Map naam</string>
+  <string id="18">Bestandsnaam</string>
+  <string id="19">Titel:</string>
+  <string id="20">Hernoemen mappen/bestanden...</string>
+  <string id="21">Automatisch hernoemen tijdens het multi-scannen</string>
+  <string id="22">Automatisch hernoemen tijdens het enkel-scannen</string>
+  <string id="23">Standaard hernoem patronen</string>
+  <string id="24">Bestandspatroon</string>
+  <string id="25">Map patroon</string>
+  <string id="26">Bulk &amp;Hernoemer</string>
+  <string id="27"/>
+  <string id="28">Auto</string>
+  <string id="29">Hamdmatig</string>
+  <string id="30">Nieuw pad</string>
+  <string id="31">Nieuwe bestandsnaam:</string>
+  <string id="32">Gebruik rename module wel of niet</string>
+  <string id="33">Gebruik bulk-hernoemer wel of niet</string>
+</strings>

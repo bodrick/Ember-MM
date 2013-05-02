@@ -1,0 +1,7 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Notify_chkEnabled">Gebruik deze module wel of niet.</string>
+  <string control="Notify_chkOnError">Indien in gebruik zal er een melding worden getoond als er een fout optreedt.</string>
+  <string control="Notify_chkOnNewMovie">Indien in gebruik zal er een melding worden getoond indien een film is toegevoegd aan de bibliotheek.</string>
+  <string control="Notify_chkOnMovieScraped">Indien in gebruik zal een melding worden getoond als een film is gescand.</string>
+  <string control="Notify_chkOnNewEp">Indien in gebruik zal een melding worden getoond als een aflevering is toegevoegd aan de bibliotheek.</string>
+</strings>

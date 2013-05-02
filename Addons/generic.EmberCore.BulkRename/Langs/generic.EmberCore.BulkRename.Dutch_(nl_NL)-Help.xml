@@ -1,0 +1,9 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Renamer_chkEnabled">Gebruik deze module wel of niet</string>
+  <string control="Renamer_chkGenericModule">(De)activeer algemene hernoem functies</string>
+  <string control="Renamer_txtFolderPattern">Voer een patroon in voor het automatisch hernoemen van mappen.</string>
+  <string control="Renamer_txtFilePattern">Voer een patroon in voor het automatisch hernoemen van bestanden.</string>
+  <string control="Renamer_chkRenameMulti">Indien geactiveerd zal Ember automatisch bestanden en mappen hernoemen tijdens het scannen van meerdere films.</string>
+  <string control="Renamer_chkRenameSingle">Indien geactiveerd zal Ember automatisch bestanden en mappen hernoemen tijdens het scannen van een enkele film.</string>
+  <string control="Renamer_chkBulkRenamer">Activeer de bul hernoem tool.</string>
+</strings>

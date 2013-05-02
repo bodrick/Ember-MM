@@ -1,0 +1,22 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Mediabrowser geschiktheid</string>
+  <string id="1">YAMJ geschiktheid</string>
+  <string id="2">YAMJ geschikte sets</string>
+  <string id="3">Geschikte VIDEO_TS bestandsgebruik/notatie (Ter info: Dit wordt ook toegepast als de module is uitgeschakeld)</string>
+  <string id="4">YAMJ geschikte TV afbeeldingen benoeming</string>
+  <string id="5">YAMJ specifieke NFO velden</string>
+  <string id="6">Toon Poster als Set_&lt;Serie&gt;_1.jpg</string>
+  <string id="7">Toon Poster als Set_&lt;Serie&gt;_1.fanart.jpg</string>
+  <string id="8">Bewaar Seizoen poster als &lt;Aflevering&gt;.jpg *</string>
+  <string id="9">Bewaar Fanart als &lt;Aflevering&gt;.fanart.jpg *</string>
+  <string id="10">Bewaar Aflevering poster als &lt;Aflevering&gt;.videoimage.jpg</string>
+  <string id="11">Geschikte VIDEO_TS bestandsgebruik/notatie (Ter info: Dit wordt ook toegepast als de module is uitgeschakeld)</string>
+  <string id="12">Fanart Film als backdrop.jpg</string>
+  <string id="13">Media Browser mymovies.xml</string>
+  <string id="14">Bewaar Alle Seizoenen poster als Set_&lt;TV Serie&gt;_1.banner.jpg</string>
+  <string id="15">Vervang ID veld met Boxee Id veld</string>
+  <string id="16">TV Serie opties</string>
+  <string id="17">Gebruik YAMJ Instellingen</string>
+  <string id="18">Boxee Geschiktheid</string>
+  <string id="19">* Gebruik steeds de eerste bestaande aflevering van een seizoen</string>
+</strings>

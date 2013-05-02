@@ -1,0 +1,11 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string control="Exporter_cbEnabled">Activeer of deactiveer deze module.</string>
+  <string control="Exporter_txt_exportmoviepath">De map waar de aangemaakte HTML is bewaard</string>
+  <string control="Exporter_cbo_exportmoviefanart">De gewenste breedte van de ge-exporteerde fanart. Een lagere waarde resulteert in kleinere bestanden en snellere laadtijden.</string>
+  <string control="Exporter_cbo_exportmovieposter">De gewenste breedte van de ge-exporteerde poster. Een lagere waarde resulteert in kleinere bestanden en snellere laadtijden.</string>
+  <string control="Exporter_cbo_exportmoviequality">100 wil zeggen geen gegevensverlies, maar ook de grootste bestandsgrootte - stel een lagere waarde in om de laadtijden te verbeteren!</string>
+  <string control="Exporter_cbo_exportmoviefiltergenerate">Drie filters die gebruikt kunnen worden om verschillende filters in te bewaren. Deze kunnen in de Film Exporteur Interface aangeduid worden.</string>
+  <string control="Exporter_cbSearch">Verschillende filtertypes om uit te kiezen</string>
+  <string control="Exporter_btn_Apply">Sla de geselecteerde filter op</string>
+  <string control="Exporter_btn_Reset">Stel de geselecteerde filter opnieuw in</string>
+</strings>

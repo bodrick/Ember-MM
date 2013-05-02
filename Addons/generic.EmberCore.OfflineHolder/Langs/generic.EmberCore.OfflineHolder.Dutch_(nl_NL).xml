@@ -1,0 +1,33 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Offline Media Manager</string>
+  <string id="1">Voer DVD in</string>
+  <string id="2">Voorbereiden data</string>
+  <string id="3">Film maken</string>
+  <string id="4">Film bouwen</string>
+  <string id="5">Verplaatsen bestanden</string>
+  <string id="6">Hernoemen bestanden</string>
+  <string id="7">Offline film map gemaakt!</string>
+  <string id="8">Bronmap bestaat niet of kan niet worden gevonden:</string>
+  <string id="9">Bronmap</string>
+  <string id="10">Film (map naam)</string>
+  <string id="11">Map afbeelding</string>
+  <string id="12">Offline Media Manager</string>
+  <string id="13">Voeg offline film toe</string>
+  <string id="14">Voeg aan bron toe:</string>
+  <string id="15">Map/film naam:</string>
+  <string id="16">Zoek in IMDB</string>
+  <string id="17">Maken in bulk</string>
+  <string id="18">Conditie</string>
+  <string id="19">Maak</string>
+  <string id="20">Gebruik fanart voor map video</string>
+  <string id="21">Map video subtitel:</string>
+  <string id="22">Tekst kleur:</string>
+  <string id="23">Subtitel:</string>
+  <string id="24">Map video formaat:</string>
+  <string id="25">Gebruik subtitel achtergrond</string>
+  <string id="26">Subtitel achtergrondkleur</string>
+  <string id="27">Gebruik Ember overlay</string>
+  <string id="28">Selecteer lettertype...</string>
+  <string id="29">Informatie</string>
+  <string id="30">Offline Media Manager</string>
+</strings>

@@ -1,0 +1,18 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">Ember XML Film Scanners</string>
+  <string id="1"/>
+  <string id="2">Genre(s):</string>
+  <string id="3">Bekijk de details van ieder resultaat om de juiste film te vinden.</string>
+  <string id="4">Zoekresultaten films</string>
+  <string id="5">Aan het Zoeken...</string>
+  <string id="6">Details aan het downloaden...</string>
+  <string id="7">Zoekresultaten</string>
+  <string id="8">Configureer deze Scanner Instellingen in</string>
+  <string id="9">Aan het laden, wacht a.u.b.</string>
+  <string id="10">Scanner velden - Scanner specifiek</string>
+  <string id="11">Deze instellingen zijn specifiek voor deze module.{0}Bekijk de algemene instellingen voor meer opties.</string>
+  <string id="12">Scanner</string>
+  <string id="13">Vul de Scanners in</string>
+  <string id="14">Instellingen</string>
+  <string id="15">Instellingen</string>
+</strings>

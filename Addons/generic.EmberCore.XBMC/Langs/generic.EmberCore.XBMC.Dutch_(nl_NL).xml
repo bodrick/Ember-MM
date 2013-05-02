@@ -1,0 +1,34 @@
+<strings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <string id="0">XBMC controller</string>
+  <string id="1">De naam die je wilt gebruiken voor deze XBMC installatie is reeds in gebruik. Kies een andere naam.</string>
+  <string id="2">Iedere naam moet uniek zijn</string>
+  <string id="3">Voer een poort in voor deze XBMC installatie.</string>
+  <string id="4">Voer a.u.b. een poort in</string>
+  <string id="5">Voer een IP adres in voor deze XBMC installatie.</string>
+  <string id="6">Voer een IP in</string>
+  <string id="7">Je moet een naam invoeren voor deze XBMC installatie</string>
+  <string id="8">Voer a.u.b. een unieke naam in</string>
+  <string id="9">XBMC communicatie</string>
+  <string id="10">Wijzig</string>
+  <string id="11">Naam:</string>
+  <string id="12">Toevoegen</string>
+  <string id="13">XBMC IP:</string>
+  <string id="14">XBMC Port:</string>
+  <string id="15">Verwijder geselecteerde</string>
+  <string id="16">Starten XBMC update niet gelukt</string>
+  <string id="17">Er was een probleem tijdens de communicatie met {0}{1}.</string>
+  <string id="18">XBMC</string>
+  <string id="19">XBMC controller</string>
+  <string id="20">Realtime synchronisatie aanzetten</string>
+  <string id="21">Realtime synchronisatie</string>
+  <string id="22">Zoeken...</string>
+  <string id="23">Gebruik bronnen</string>
+  <string id="24">Ember bron</string>
+  <string id="25">XBMC bron</string>
+  <string id="26">XBMC bron type</string>
+  <string id="27">Windows schijfletter (X:\)</string>
+  <string id="28">Windows UNC/Linux/MacOS X</string>
+  <string id="29">XBMC host</string>
+  <string id="30">Stuur bericht</string>
+  <string id="31">Haal speel teller van:</string>
+</strings>
