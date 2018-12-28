@@ -1,0 +1,3763 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BSE.Windows.Forms</name>
+    </assembly>
+    <members>
+        <member name="T:BSE.Windows.Forms.PanelColorsOffice">
+            <summary>
+            Baseclass for a office2007 styled colortable.
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColors">
+            <summary>
+            Provides <see cref="T:System.Drawing.Color"/> structures that are colors of a Panel or XPanderPanel display element.
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColors.#ctor">
+            <summary>
+            Initializes a new instance of the PanelColors class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColors.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColors class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColors.Clear">
+            <summary>
+            Clears the current color table
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColors.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.BorderColor">
+            <summary>
+            Gets the border color of a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionCloseIcon">
+            <summary>
+            Gets the forecolor of a close icon in a Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionExpandIcon">
+            <summary>
+            Gets the forecolor of an expand icon in a Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionGradientBegin">
+            <summary>
+            Gets the starting color of the gradient of the Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionGradientEnd">
+            <summary>
+            Gets the end color of the gradient of the Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient of the Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionSelectedGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used when the hover icon in the captionbar on the Panel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionSelectedGradientEnd">
+            <summary>
+            Gets the end color of the gradient used when the hover icon in the captionbar on the Panel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCaptionText">
+            <summary>
+            Gets the text color of a Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelCollapsedCaptionText">
+            <summary>
+            Gets the text color of a Panel when it's collapsed.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelContentGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelContentGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.InnerBorderColor">
+            <summary>
+            Gets the inner border color of a Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelBackColor">
+            <summary>
+            Gets the backcolor of a XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCaptionCloseIcon">
+            <summary>
+            Gets the forecolor of a close icon in a XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCaptionExpandIcon">
+            <summary>
+            Gets the forecolor of an expand icon in a XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCaptionGradientBegin">
+            <summary>
+            Gets the starting color of the gradient of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCaptionGradientEnd">
+            <summary>
+            Gets the end color of the gradient of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCaptionGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient on the XPanderPanel captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCaptionText">
+            <summary>
+            Gets the text color of a XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelFlatCaptionGradientBegin">
+            <summary>
+            Gets the starting color of the gradient on a flat XPanderPanel captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelFlatCaptionGradientEnd">
+            <summary>
+            Gets the end color of the gradient on a flat XPanderPanel captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelPressedCaptionBegin">
+            <summary>
+            Gets the starting color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelPressedCaptionEnd">
+            <summary>
+            Gets the end color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelPressedCaptionMiddle">
+            <summary>
+            Gets the middle color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCheckedCaptionBegin">
+            <summary>
+            Gets the starting color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCheckedCaptionEnd">
+            <summary>
+            Gets the end color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelCheckedCaptionMiddle">
+            <summary>
+            Gets the middle color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelSelectedCaptionBegin">
+            <summary>
+            Gets the starting color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelSelectedCaptionEnd">
+            <summary>
+            Gets the end color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelSelectedCaptionMiddle">
+            <summary>
+            Gets the middle color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.XPanderPanelSelectedCaptionText">
+            <summary>
+            Gets the text color used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.PanelStyle">
+            <summary>
+            Gets the associated PanelStyle for the XPanderControls
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.UseSystemColors">
+            <summary>
+            Gets or sets a value indicating whether to use System.Drawing.SystemColors rather than colors that match the current visual style.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColors.Panel">
+            <summary>
+            Gets or sets the panel or xpanderpanel
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColors.KnownColors">
+            <summary>
+            Gets or sets the KnownColors appearance of the ProfessionalColorTable.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.BorderColor">
+            <summary>
+            The border color of the panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionCloseIcon">
+            <summary>
+            The forecolor of a close icon in a Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionExpandIcon">
+            <summary>
+            The forecolor of a expand icon in a Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionGradientBegin">
+            <summary>
+            The starting color of the gradient of the Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionGradientEnd">
+            <summary>
+            The end color of the gradient of the Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionGradientMiddle">
+            <summary>
+            The middle color of the gradient of the Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionSelectedGradientBegin">
+            <summary>
+            The starting color of the gradient used when the hover icon in the captionbar on the Panel is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionSelectedGradientEnd">
+            <summary>
+            The end color of the gradient used when the hover icon in the captionbar on the Panel is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelContentGradientBegin">
+            <summary>
+            The starting color of the gradient used in the Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelContentGradientEnd">
+            <summary>
+            The end color of the gradient used in the Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCaptionText">
+            <summary>
+            The text color of a Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.PanelCollapsedCaptionText">
+            <summary>
+            The text color of a Panel when it's collapsed.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.InnerBorderColor">
+            <summary>
+            The inner border color of a Panel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelBackColor">
+            <summary>
+            The backcolor of a XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCaptionCloseIcon">
+            <summary>
+            The forecolor of a close icon in a XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCaptionExpandIcon">
+            <summary>
+            The forecolor of a expand icon in a XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCaptionText">
+            <summary>
+            The text color of a XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCaptionGradientBegin">
+            <summary>
+            The starting color of the gradient of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCaptionGradientEnd">
+            <summary>
+            The end color of the gradient of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCaptionGradientMiddle">
+            <summary>
+            The middle color of the gradient of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelFlatCaptionGradientBegin">
+            <summary>
+            The starting color of the gradient of a flat XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelFlatCaptionGradientEnd">
+            <summary>
+            The end color of the gradient of a flat XPanderPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelPressedCaptionBegin">
+            <summary>
+            The starting color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelPressedCaptionEnd">
+            <summary>
+            The end color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelPressedCaptionMiddle">
+            <summary>
+            The middle color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCheckedCaptionBegin">
+            <summary>
+            The starting color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCheckedCaptionEnd">
+            <summary>
+            The end color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelCheckedCaptionMiddle">
+            <summary>
+            The middle color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelSelectedCaptionBegin">
+            <summary>
+            The starting color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelSelectedCaptionEnd">
+            <summary>
+            The end color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelSelectedCaptionMiddle">
+            <summary>
+            The middle color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelColors.KnownColors.XPanderPanelSelectedCaptionText">
+            <summary>
+            The text color used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice.#ctor">
+            <summary>
+            Initialize a new instance of the PanelColorsOffice class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColorsOffice class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined Office2007 colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColorsOffice.PanelStyle">
+            <summary>
+            Gets the associated PanelStyle for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.CustomPanelColors">
+            <summary>
+            Class for the custom colors at a Panel control. 
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="T:BSE.Windows.Forms.CustomColors">
+            <summary>
+            Base class for the custom colors at a panel or xpanderpanel control. 
+            </summary>
+            <remarks>
+            If you use the <see cref="F:BSE.Windows.Forms.ColorScheme.Custom"/> ColorScheme, this is the base class for the custom colors.
+            </remarks>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.CustomColors.OnCustomColorsChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CustomColors changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="E:BSE.Windows.Forms.CustomColors.CustomColorsChanged">
+            <summary>
+            Occurs when the value of the CustomColors property changes.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.BorderColor">
+            <summary>
+            Gets or sets the border color of a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.CaptionCloseIcon">
+            <summary>
+            Gets or sets the forecolor of a close icon in a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.CaptionExpandIcon">
+            <summary>
+            Gets or sets the forecolor of an expand icon in a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.CaptionGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient at the caption on a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.CaptionGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient at the caption on a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.CaptionGradientMiddle">
+            <summary>
+            Gets or sets the middle color of the gradient at the caption on a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.CaptionText">
+            <summary>
+            Gets or sets the text color at the caption on a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomColors.InnerBorderColor">
+            <summary>
+            Gets or sets the inner border color of a Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomPanelColors.CaptionSelectedGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient used when the hover icon in the captionbar on the Panel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomPanelColors.CaptionSelectedGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient used when the hover icon in the captionbar on the Panel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomPanelColors.CollapsedCaptionText">
+            <summary>
+            Gets or sets the text color of a Panel when it's collapsed.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomPanelColors.ContentGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient used in the Panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomPanelColors.ContentGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient used in the Panel.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColorsBse">
+            <summary>
+            Baseclass for a bse styled colortable.
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBse.#ctor">
+            <summary>
+            Initialize a new instance of the PanelColorsBse class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBse.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColorsBse class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBse.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined Bse colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelColorsBse.PanelStyle">
+            <summary>
+            Gets the associated PanelStyle for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.HoverState">
+            <summary>
+            Specifies constants that define the hoverstate at the captionbar or a part of it on a Panel or XPanderPanel.
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.HoverState.None">
+            <summary>
+            The hoverstate in its normal state (none of the other states apply).
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.HoverState.Hover">
+            <summary>
+            The hoverstate over which a mouse pointer is resting.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.CustomXPanderPanelColors">
+            <summary>
+            Class for the custom colors at a XPanderPanel control. 
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.BackColor">
+            <summary>
+            Gets or sets the backcolor of a XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.FlatCaptionGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient on a flat XPanderPanel captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.FlatCaptionGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient on a flat XPanderPanel captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionPressedGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionPressedGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionPressedGradientMiddle">
+            <summary>
+            Gets or sets the middle color of the gradient used when the XPanderPanel is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionCheckedGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionCheckedGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionCheckedGradientMiddle">
+            <summary>
+            Gets or sets the middle color of the gradient used when the XPanderPanel is checked.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionSelectedGradientBegin">
+            <summary>
+            Gets or sets the starting color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionSelectedGradientEnd">
+            <summary>
+            Gets or sets the end color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionSelectedGradientMiddle">
+            <summary>
+            Gets or sets the middle color of the gradient used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.CustomXPanderPanelColors.CaptionSelectedText">
+            <summary>
+            Gets or sets the text color used when the XPanderPanel is selected.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderStateChangeEventArgs">
+            <summary>
+            Provides data for the XPanderStateChange event.
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderStateChangeEventArgs.#ctor(System.Boolean)">
+            <summary>
+            arguments used when a XPanderStateChange event occurs.
+            </summary>
+            <param name="bExpand">Gets a value indicating whether the panel expands.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderStateChangeEventArgs.Expand">
+            <summary>
+            Gets a value indicating whether the panel expands.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ColorScheme">
+            <summary>
+            Contains information for the drawing of panels or xpanderpanels in a xpanderpanellist. 
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.ColorScheme.Professional">
+            <summary>
+            Draws the panels caption with <see cref="T:System.Windows.Forms.ProfessionalColors">ProfessionalColors</see>
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ColorScheme.Custom">
+            <summary>
+            Draws the panels caption with custom colors.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.Office2007BlueColorTable">
+            <summary>
+            Provides colors used for Microsoft Office 2007 blue display elements.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.OfficeColorTable">
+            <summary>
+            Baseclass for a colortable for the <see cref="T:BSE.Windows.Forms.Office2007Renderer"/>
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ProfessionalColorTable">
+            <summary>
+            Provides colors used for Microsoft Office display elements.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProfessionalColorTable.#ctor">
+            <summary>
+            Initializes a new instance of the ProfessionalColorTable class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProfessionalColorTable.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.ProfessionalColorTable.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedBorder">
+            <summary>
+            Gets the border color to use with the <see cref="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientBegin"/>, <see cref="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientMiddle"/>, and <see cref="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientEnd"/> colors.
+            </summary>
+            <value>
+            A <see cref="T:System.Drawing.Color"/> that is the border color to use with the <see cref="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientBegin"/>, <see cref="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientMiddle"/>, and <see cref="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientEnd"/> colors.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used when the button is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientEnd">
+            <summary>
+            Gets the end color of the gradient used when the button is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonPressedGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient used when the button is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonSelectedBorder">
+            <summary>
+            Gets the starting color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonSelectedGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonSelectedGradientEnd">
+            <summary>
+            Gets the end color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonSelectedGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ButtonSelectedHighlightBorder">
+            <summary>
+            Gets the border color to use with ButtonSelectedHighlight.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.CheckBackground">
+            <summary>
+            Gets the solid color to use when the check box is selected and gradients are being used.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.CheckSelectedBackground">
+            <summary>
+            Gets the solid color to use when the check box is selected and gradients are being used.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.GripDark">
+            <summary>
+            Gets the color to use for shadow effects on the grip or move handle.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.GripLight">
+            <summary>
+            Gets the color to use for highlight effects on the grip or move handle.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ImageMarginGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the image margin of a ToolStripDropDownMenu.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuBorder">
+            <summary>
+            Gets the border color or a MenuStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemBorder">
+            <summary>
+            Gets the border color to use with a ToolStripMenuItem.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemPressedGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used when a top-level ToolStripMenuItem is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemPressedGradientEnd">
+            <summary>
+            Gets the end color of the gradient used when a top-level ToolStripMenuItem is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemPressedGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient used when a top-level ToolStripMenuItem is pressed down.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemSelected">
+            <summary>
+            Gets the solid color to use when a ToolStripMenuItem other than the top-level ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemText">
+            <summary>
+            Gets the text color of a top-level ToolStripMenuItem.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemTopLevelSelectedBorder">
+            <summary>
+            Gets the border color used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemTopLevelSelectedGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemTopLevelSelectedGradientEnd">
+            <summary>
+            Gets the end color of the gradient used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemTopLevelSelectedGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemSelectedGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used when the ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuItemSelectedGradientEnd">
+            <summary>
+            Gets the end color of the gradient used when the ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuStripGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the MenuStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.MenuStripGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the MenuStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.OverflowButtonGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the ToolStripOverflowButton.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.OverflowButtonGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the ToolStripOverflowButton.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.OverflowButtonGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient used in the ToolStripOverflowButton.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.RaftingContainerGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the ToolStripContainer.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.RaftingContainerGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the ToolStripContainer.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.SeparatorDark">
+            <summary>
+            Gets the color to use to for shadow effects on the ToolStripSeparator.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.SeparatorLight">
+            <summary>
+            Gets the color to use to for highlight effects on the ToolStripSeparator.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.StatusStripGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used on the StatusStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.StatusStripGradientEnd">
+            <summary>
+            Gets the end color of the gradient used on the StatusStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.StatusStripText">
+            <summary>
+            Gets the text color used on the StatusStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripBorder">
+            <summary>
+            Gets the border color to use on the bottom edge of the ToolStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripContentPanelGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the ToolStripContentPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripContentPanelGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the ToolStripContentPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripDropDownBackground">
+            <summary>
+            Gets the solid background color of the ToolStripDropDown.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the ToolStrip background.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the ToolStrip background.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripGradientMiddle">
+            <summary>
+            Gets the middle color of the gradient used in the ToolStrip background.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripPanelGradientBegin">
+            <summary>
+            Gets the starting color of the gradient used in the ToolStripPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripPanelGradientEnd">
+            <summary>
+            Gets the end color of the gradient used in the ToolStripPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.ToolStripText">
+            <summary>
+            Gets the text color used on the ToolStrip.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.PanelColorTable">
+            <summary>
+            Gets the associated ColorTable for the XPanderControls
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProfessionalColorTable.UseSystemColors">
+            <summary>
+            Gets or sets a value indicating whether to use System.Drawing.SystemColors rather than colors that match the current visual style.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ProfessionalColorTable.KnownColors">
+            <summary>
+            Gets or sets the KnownColors appearance of the ProfessionalColorTable.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedBorder">
+            <summary>
+            The border color to use with the <see cref="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedGradientBegin"/>, <see cref="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedGradientMiddle"/>, and <see cref="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedGradientEnd"/> colors.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedGradientBegin">
+            <summary>
+            The starting color of the gradient used when the button is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedGradientEnd">
+            <summary>
+            The end color of the gradient used when the button is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonPressedGradientMiddle">
+            <summary>
+            The middle color of the gradient used when the button is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonSelectedGradientBegin">
+            <summary>
+            The starting color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonSelectedBorder">
+            <summary>
+            The border color to use with the ButtonSelectedGradientBegin,
+            ButtonSelectedGradientMiddle,
+            and ButtonSelectedGradientEnd colors.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonSelectedGradientEnd">
+            <summary>
+            The end color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonSelectedGradientMiddle">
+            <summary>
+            The middle color of the gradient used when the button is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ButtonSelectedHighlightBorder">
+            <summary>
+            The border color to use with ButtonSelectedHighlight.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.CheckBackground">
+            <summary>
+            The solid color to use when the check box is selected and gradients are being used.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.CheckSelectedBackground">
+            <summary>
+            The solid color to use when the check box is selected and gradients are being used.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.GripDark">
+            <summary>
+            The color to use for shadow effects on the grip or move handle.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.GripLight">
+            <summary>
+            The color to use for highlight effects on the grip or move handle.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ImageMarginGradientBegin">
+            <summary>
+            The starting color of the gradient used in the image margin
+            of a ToolStripDropDownMenu.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuBorder">
+            <summary>
+            The border color or a MenuStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemBorder">
+            <summary>
+            The border color to use with a ToolStripMenuItem.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemPressedGradientBegin">
+            <summary>
+            The starting color of the gradient used when a top-level
+            ToolStripMenuItem is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemPressedGradientEnd">
+            <summary>
+            The end color of the gradient used when a top-level
+            ToolStripMenuItem is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemPressedGradientMiddle">
+            <summary>
+            The middle color of the gradient used when a top-level
+            ToolStripMenuItem is pressed down.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemSelected">
+            <summary>
+            The solid color to use when a ToolStripMenuItem other
+            than the top-level ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemSelectedGradientBegin">
+            <summary>
+            The starting color of the gradient used when the ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemSelectedGradientEnd">
+            <summary>
+            The end color of the gradient used when the ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemText">
+            <summary>
+            The text color of a top-level ToolStripMenuItem.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemTopLevelSelectedBorder">
+            <summary>
+            The border color used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemTopLevelSelectedGradientBegin">
+            <summary>
+            The starting color of the gradient used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemTopLevelSelectedGradientEnd">
+            <summary>
+            The end color of the gradient used when a top-level
+            ToolStripMenuItem is selected. 
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuItemTopLevelSelectedGradientMiddle">
+            <summary>
+            The middle color of the gradient used when a top-level
+            ToolStripMenuItem is selected.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuStripGradientBegin">
+            <summary>
+            The starting color of the gradient used in the MenuStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.MenuStripGradientEnd">
+            <summary>
+            The end color of the gradient used in the MenuStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.OverflowButtonGradientBegin">
+            <summary>
+            The starting color of the gradient used in the ToolStripOverflowButton.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.OverflowButtonGradientEnd">
+            <summary>
+            The end color of the gradient used in the ToolStripOverflowButton.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.OverflowButtonGradientMiddle">
+            <summary>
+            The middle color of the gradient used in the ToolStripOverflowButton.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.RaftingContainerGradientBegin">
+            <summary>
+            The starting color of the gradient used in the ToolStripContainer.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.RaftingContainerGradientEnd">
+            <summary>
+            The end color of the gradient used in the ToolStripContainer.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.SeparatorDark">
+            <summary>
+            The color to use to for shadow effects on the ToolStripSeparator.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.SeparatorLight">
+            <summary>
+            The color to use to for highlight effects on the ToolStripSeparator.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.StatusStripGradientBegin">
+            <summary>
+            The starting color of the gradient used on the StatusStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.StatusStripGradientEnd">
+            <summary>
+            The end color of the gradient used on the StatusStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.StatusStripText">
+            <summary>
+            The text color used on the StatusStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripBorder">
+            <summary>
+            The border color to use on the bottom edge of the ToolStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripContentPanelGradientBegin">
+            <summary>
+            The starting color of the gradient used in the ToolStripContentPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripContentPanelGradientEnd">
+            <summary>
+            The end color of the gradient used in the ToolStripContentPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripDropDownBackground">
+            <summary>
+            The solid background color of the ToolStripDropDown.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripGradientBegin">
+            <summary>
+            The starting color of the gradient used in the ToolStrip background.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripGradientEnd">
+            <summary>
+            The end color of the gradient used in the ToolStrip background.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripGradientMiddle">
+            <summary>
+            The middle color of the gradient used in the ToolStrip background.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripPanelGradientBegin">
+            <summary>
+            The starting color of the gradient used in the ToolStripPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripPanelGradientEnd">
+            <summary>
+            The end color of the gradient used in the ToolStripPanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.ToolStripText">
+            <summary>
+            The text color used on the ToolStrip.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProfessionalColorTable.KnownColors.LastKnownColor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007BlueColorTable.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.ProfessionalColorTable.KnownColors,System.Drawing.Color})">
+            <summary>
+            Unitializes a color dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.Office2007BlueColorTable.PanelColorTable">
+            <summary>
+            Gets the associated ColorTable for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelSettingsManager">
+             <summary>
+             Controls Panel and XPanderPanel rendering.
+             </summary>
+             <example>
+             The following code example creates a <see cref="T:BSE.Windows.Forms.Panel"/> and sets the panel properties for the forms controls collection,
+             <code>
+             using System;
+             using System.Text;
+             using System.Windows.Forms;
+            
+             namespace BSE.Windows.Test
+             {
+                 public class Form2 : Form
+                 {
+                     private BSE.Windows.Forms.Panel panel1;
+            
+                     public Form2()
+                     {
+                         // Create and initialize a Panel.
+                         this.panel1 = new BSE.Windows.Forms.Panel();
+                         this.panel1.Text = "panel1";
+                         // Set the panel background.
+                         this.panel1.ShowTransparentBackground = false;
+                         // Set the panel's DockStyle to DockStyle.Fill
+                         this.panel1.Dock = DockStyle.Fill;
+                         // Add the panel to the form
+                         this.Controls.Add(this.panel1);
+            
+                         // Create and initialize a ToolStripProfessionalRenderer.
+                         ToolStripProfessionalRenderer renderer = new BSE.Windows.Forms.Office2007Renderer();
+                         // Add it to the ToolStripManager.Renderer
+                         ToolStripManager.Renderer = renderer;
+            
+                         // Get the ProfessionalColorTable colorTable for the current renderer.
+                         BSE.Windows.Forms.ProfessionalColorTable colorTable = renderer.ColorTable as BSE.Windows.Forms.ProfessionalColorTable;
+                         if (colorTable != null)
+                         {
+                             // Get the PanelColors panelColorTable for the current  colortable.
+                             BSE.Windows.Forms.PanelColors panelColorTable = colorTable.PanelColorTable;
+                             if (panelColorTable != null)
+                             {
+                                 // Set the panel properties for the form controls collection
+                                 BSE.Windows.Forms.PanelSettingsManager.SetPanelProperties(this.Controls, panelColorTable);
+                             }
+                         }
+                     }
+                 }
+             }
+             </code>
+             </example>
+             <copyright>Copyright © 2006-2008 Uwe Eichkorn
+             THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+             KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+             IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+             PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+             REMAINS UNCHANGED.
+             </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelSettingsManager.SetPanelProperties(System.Windows.Forms.Control.ControlCollection,BSE.Windows.Forms.PanelColors)">
+            <summary>
+            Sets the PanelStyle and PanelColors table in the given control collection.
+            </summary>
+            <param name="controls">A collection of child controls.</param>
+            <param name="panelColors">The PanelColors table</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelSettingsManager.SetPanelProperties(System.Windows.Forms.Control.ControlCollection,BSE.Windows.Forms.PanelStyle,BSE.Windows.Forms.PanelColors)">
+            <summary>
+            Sets the PanelStyle and PanelColors table in the given control collection.
+            </summary>
+            <param name="controls">A collection of child controls</param>
+            <param name="panelStyle">Style of the panel</param>
+            <param name="panelColors">The PanelColors table</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelSettingsManager.SetPanelProperties(System.Windows.Forms.Control.ControlCollection,BSE.Windows.Forms.PanelStyle)">
+            <summary>
+            Sets the PanelStyle in the given control collection.
+            </summary>
+            <param name="controls">a collection of child controls</param>
+            <param name="panelStyle">Style of the panel</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelSettingsManager.FindPanels(System.Boolean,System.Windows.Forms.Control.ControlCollection)">
+            <summary>
+            Find all controls that derived from BasePanel.
+            </summary>
+            <param name="searchAllChildren">A value indicating whether the FindPanels method loops through all controls.</param>
+            <param name="controlsToLookIn">A collection of child controls.</param>
+            <returns>A arraylist of derived types.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelSettingsManager.FindPanelLists(System.Boolean,System.Windows.Forms.Control.ControlCollection)">
+            <summary>
+            Find all XPanderPanelLists.
+            </summary>
+            <param name="searchAllChildren">A value indicating whether the FindPanels method loops through all controls.</param>
+            <param name="controlsToLookIn">A collection of child controls.</param>
+            <returns></returns>
+        </member>
+        <member name="T:BSE.Windows.Forms.Splitter">
+            <summary>
+            Represents a splitter control that enables the user to resize docked controls.
+            </summary>
+            <remarks>
+            The splitter control supports in difference to the <see cref="T:System.Windows.Forms.Splitter"/> the using
+            of a transparent backcolor.
+            </remarks>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.Splitter.#ctor">
+            <summary>
+            Initializes a new instance of the Splitter class.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.Splitter.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Splitter.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Splitter.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.BasePanel">
+            <summary>
+            Base class for the panel or xpanderpanel control. 
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED. 
+            </copyright>
+        </member>
+        <member name="T:BSE.Windows.Forms.IPanel">
+            <summary>
+            Used to group collections of controls. 
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="P:BSE.Windows.Forms.IPanel.PanelStyle">
+            <summary>
+            Gets or sets the style of the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.IPanel.ColorScheme">
+            <summary>
+            Gets or sets the color schema which is used for the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.IPanel.ShowBorder">
+            <summary>
+            Gets or sets a value indicating whether the control shows a border
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.IPanel.ShowExpandIcon">
+            <summary>
+            Gets or sets a value indicating whether the expand icon in the caption bar is visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.IPanel.ShowCloseIcon">
+            <summary>
+            Gets or sets a value indicating whether the close icon in the caption bar is visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.IPanel.Expand">
+            <summary>
+            Expands the panel or xpanderpanel.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.BasePanel.CaptionSpacing">
+            <summary>
+            padding value for the panel
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.BasePanel.RectangleExpandIcon">
+            <summary>
+            The rectangle that contains the expand panel icon
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.BasePanel.RectangleCloseIcon">
+            <summary>
+            The rectangle that contains the close panel icon
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.SetPanelProperties(BSE.Windows.Forms.PanelColors)">
+            <summary>
+            Sets the PanelProperties for a Panel or XPanderPanel
+            </summary>
+            <param name="panelColors">The PanelColors table</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.#ctor">
+            <summary>
+            Initializes a new instance of the BasePanel class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnTextChanged(System.EventArgs)">
+            <summary>
+            Raises the TextChanged event.
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnColorSchemeChanged(System.Object,BSE.Windows.Forms.ColorSchemeChangeEventArgs)">
+            <summary>
+            Raises the ColorScheme changed event
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Raises the MouseUp event
+            </summary>
+            <param name="e">A MouseEventArgs that contains data about the OnMouseUp event.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnMouseMove(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Raises the MouseMove event
+            </summary>
+            <param name="e">A MouseEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnMouseLeave(System.EventArgs)">
+            <summary>
+            Raises the MouseLeave event.
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnPanelExpanding(System.Object,BSE.Windows.Forms.XPanderStateChangeEventArgs)">
+            <summary>
+            Raises the PanelExpanding event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A XPanderStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnPanelCollapsing(System.Object,BSE.Windows.Forms.XPanderStateChangeEventArgs)">
+            <summary>
+            Raises the PanelCollapsing event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A XPanderStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnPanelStyleChanged(System.Object,BSE.Windows.Forms.PanelStyleChangeEventArgs)">
+            <summary>
+            Raises the PanelStyle changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A PanelStyleChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnCloseClick(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CloseClick event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnExpandClick(System.Object,System.EventArgs)">
+            <summary>
+            Raises the ExpandClick event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnExpandIconHoverStateChanged(System.Object,BSE.Windows.Forms.HoverStateChangeEventArgs)">
+            <summary>
+            Raises the ExpandIconHoverState changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A HoverStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnCaptionHeightChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CaptionHeight changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnCaptionBarHoverStateChanged(System.Object,BSE.Windows.Forms.HoverStateChangeEventArgs)">
+            <summary>
+            Raises the CaptionBarHoverState changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A HoverStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnCloseIconHoverStateChanged(System.Object,BSE.Windows.Forms.HoverStateChangeEventArgs)">
+            <summary>
+            Raises the CloseIconHoverState changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A HoverStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.OnCustomColorsChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CustomColors changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.DrawString(System.Drawing.Graphics,System.Drawing.RectangleF,System.Drawing.Font,System.Drawing.Color,System.String,System.Windows.Forms.RightToLeft,System.Drawing.StringAlignment)">
+            <summary>
+            Draws the specified text string on the specified caption surface; within the specified bounds; and in the specified font, color. 
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="layoutRectangle">Rectangle structure that specifies the location of the drawn text.</param>
+            <param name="font">Font that defines the text format of the string.</param>
+            <param name="fontColor">The color of the string</param>
+            <param name="strText">String to draw.</param>
+            <param name="rightToLeft">Gets or sets a value indicating whether control's elements are aligned to support locales using right-to-left fonts.</param>
+            <param name="stringAlignment">The alignment of a text string relative to its layout rectangle.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.DrawIcon(System.Drawing.Graphics,System.Drawing.Image,System.Drawing.Rectangle,System.Drawing.Color,System.Int32)">
+            <summary>
+            Draws the icon image at the specified location.
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="imgPanelIcon">icon image to draw.</param>
+            <param name="imageRectangle">A rectangle structure that specifies the bounds of the linear gradient.</param>
+            <param name="foreColorImage">The foreground color of this image</param>
+            <param name="iconPositionY">The vertical position for the icon image</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.DrawImage(System.Drawing.Graphics,System.Drawing.Image,System.Drawing.Rectangle)">
+            <summary>
+            Draws the specified Image at the specified location. 
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="image">Image to draw.</param>
+            <param name="imageRectangle">Rectangle structure that specifies the location and size of the drawn image.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.DrawImagesAndText(System.Drawing.Graphics,System.Drawing.Rectangle,System.Int32,System.Drawing.Rectangle,System.Drawing.Image,System.Windows.Forms.RightToLeft,System.Drawing.Font,System.Drawing.Color,System.String)">
+            <summary>
+            Draws the text and image objects at the specified location. 
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="captionRectangle">The drawing rectangle on a panel's caption.</param>
+            <param name="iSpacing">The spacing on a panel's caption</param>
+            <param name="imageRectangle">The rectangle of an image displayed on a panel's caption.</param>
+            <param name="image">The image that is displayed on a panel's caption.</param>
+            <param name="rightToLeft">A value indicating whether control's elements are aligned to support locales using right-to-left fonts.</param>
+            <param name="fontCaption">The font of the text displayed on a panel's caption.</param>
+            <param name="captionForeColor">The foreground color of the text displayed on a panel's caption.</param>
+            <param name="strCaptionText">The text which is associated with this caption.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.DrawImagesAndText(System.Drawing.Graphics,System.Drawing.Rectangle,System.Int32,System.Drawing.Rectangle,System.Drawing.Image,System.Windows.Forms.RightToLeft,System.Boolean,System.Boolean,System.Drawing.Image,System.Drawing.Color,System.Drawing.Rectangle@,System.Boolean,System.Drawing.Image,System.Drawing.Color,System.Drawing.Rectangle@,System.Drawing.Font,System.Drawing.Color,System.String)">
+            <summary>
+            Draws the text and image objects at the specified location. 
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="captionRectangle">The drawing rectangle on a panel's caption.</param>
+            <param name="iSpacing">The spacing on a panel's caption</param>
+            <param name="imageRectangle">The rectangle of an image displayed on a panel's caption.</param>
+            <param name="image">The image that is displayed on a panel's caption.</param>
+            <param name="rightToLeft">A value indicating whether control's elements are aligned to support locales using right-to-left fonts.</param>
+            <param name="bIsClosable">A value indicating whether the xpanderpanel is closable</param>
+            <param name="bShowCloseIcon">A value indicating whether the close image is displayed</param>
+            <param name="imageClosePanel">The close image that is displayed on a panel's caption.</param>
+            <param name="foreColorCloseIcon">The foreground color of the close image that is displayed on a panel's caption.</param>
+            <param name="rectangleImageClosePanel">The rectangle of the close image that is displayed on a panel's caption.</param>
+            <param name="bShowExpandIcon">A value indicating whether the expand image is displayed</param>
+            <param name="imageExandPanel">The expand image that is displayed on a panel's caption.</param>
+            <param name="foreColorExpandIcon">The foreground color of the expand image displayed by this caption.</param>
+            <param name="rectangleImageExandPanel">the rectangle of the expand image displayed by this caption.</param>
+            <param name="fontCaption">The font of the text displayed on a panel's caption.</param>
+            <param name="captionForeColor">The foreground color of the text displayed on a panel's caption.</param>
+            <param name="strCaptionText">The text which is associated with this caption.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.DrawImagesAndText(System.Drawing.Graphics,System.Windows.Forms.DockStyle,System.Int32,System.Drawing.Rectangle,System.Drawing.Rectangle,System.Drawing.Rectangle,System.Drawing.Image,System.Windows.Forms.RightToLeft,System.Boolean,System.Drawing.Image,System.Drawing.Color,System.Drawing.Rectangle@,System.Boolean,System.Boolean,System.Drawing.Image,System.Drawing.Color,System.Drawing.Rectangle@,System.Drawing.Font,System.Drawing.Color,System.Drawing.Color,System.String)">
+            <summary>
+            Draws the text and image objects at the specified location.
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="dockStyle">Specifies the position and manner in which a control is docked.</param>
+            <param name="iSpacing">The spacing on a panel's caption</param>
+            <param name="captionRectangle">The rectangle of the panel's caption bar.</param>
+            <param name="panelRectangle">The rectangle that represents the client area of the panel.</param>
+            <param name="imageRectangle">The rectangle of an image displayed on a panel's caption.</param>
+            <param name="image">The image that is displayed on a panel's caption.</param>
+            <param name="rightToLeft">A value indicating whether control's elements are aligned to support locales using right-to-left fonts.</param>
+            <param name="bShowCloseIcon">A value indicating whether the close image is displayed</param>
+            <param name="imageClosePanel">The close image that is displayed on a panel's caption.</param>
+            <param name="foreColorCloseIcon">The foreground color of the close image that is displayed on a panel's caption.</param>
+            <param name="rectangleImageClosePanel">The rectangle of the close image that is displayed on a panel's caption.</param>
+            <param name="bShowExpandIcon">A value indicating whether the expand image is displayed</param>
+            <param name="bIsExpanded">A value indicating whether the panel is expanded or collapsed</param>
+            <param name="imageExandPanel">The expand image that is displayed on a panel's caption.</param>
+            <param name="foreColorExpandPanel">The foreground color of the expand image displayed by this caption.</param>
+            <param name="rectangleImageExandPanel"></param>
+            <param name="fontCaption">The font of the text displayed on a panel's caption.</param>
+            <param name="captionForeColor">The foreground color of the text displayed on a panel's caption.</param>
+            <param name="collapsedForeColor"></param>
+            <param name="strCaptionText">The text which is associated with this caption.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.RenderDoubleBackgroundGradient(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color,System.Drawing.Drawing2D.LinearGradientMode,System.Boolean)">
+            <summary>
+            Renders the background of the caption bar
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="bounds">Rectangle structure that specifies the location of the caption bar.</param>
+            <param name="beginColor">The starting color of the gradient used on the caption bar</param>
+            <param name="middleColor">The middle color of the gradient used on the caption bar</param>
+            <param name="endColor">The end color of the gradient used on the caption bar</param>
+            <param name="linearGradientMode">Specifies the type of fill a Pen object uses to fill lines.</param>
+            <param name="flipHorizontal"></param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.RenderBackgroundGradient(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Drawing2D.LinearGradientMode)">
+            <summary>
+            Renders the panel background
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="bounds">Rectangle structure that specifies the backgrounds location.</param>
+            <param name="beginColor">The starting color of the gradient used on the panel background</param>
+            <param name="endColor">The end color of the gradient used on the panel background</param>
+            <param name="linearGradientMode">Specifies the type of fill a Pen object uses to fill lines.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.RenderButtonBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Renders the button background
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="bounds">Rectangle structure that specifies the backgrounds location.</param>
+            <param name="colorGradientBegin">The starting color of the gradient used on the button background</param>
+            <param name="colorGradientMiddle">The middle color of the gradient used on the button background</param>
+            <param name="colorGradientEnd">The end color of the gradient used on the button background</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.RenderFlatButtonBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Boolean)">
+            <summary>
+            Renders the flat button background
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="bounds">Rectangle structure that specifies the backgrounds location.</param>
+            <param name="colorGradientBegin">The starting color of the gradient used on the button background</param>
+            <param name="colorGradientEnd">The end color of the gradient used on the button background</param>
+            <param name="bHover">A indicator that represents when the mouse cursor hovers over</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.GetPath(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Gets a GraphicsPath. 
+            </summary>
+            <param name="bounds">Rectangle structure that specifies the backgrounds location.</param>
+            <param name="radius">The radius in the graphics path</param>
+            <returns>the specified graphics path</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.GetUpperBackgroundPath(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Gets a GraphicsPath with rounded corners on the upper side.
+            </summary>
+            <param name="bounds">Rectangle structure that specifies the backgrounds location.</param>
+            <param name="radius">The radius in the graphics path</param>
+            <returns>the specified graphics path</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.GetBackgroundPath(System.Drawing.Rectangle,System.Int32)">
+            <summary>
+            Gets a GraphicsPath.
+            </summary>
+            <param name="bounds">Rectangle structure that specifies the backgrounds location.</param>
+            <param name="radius">The radius in the graphics path</param>
+            <returns>The specified graphics path</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.GetFlatGradientBackBrush(System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color,System.Boolean)">
+            <summary>
+            Gets the linear GradientBackBrush for flat XPanderPanel captions.
+            </summary>
+            <param name="bounds">Rectangle structure that specifies the bounds of the linear gradient.</param>
+            <param name="colorGradientBegin">A Color structure that represents the starting color for the gradient.</param>
+            <param name="colorGradientEnd">A Color structure that represents the end color for the gradient.</param>
+            <param name="bHover">A indicator that represents when the mouse cursor hovers over</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.BasePanel.IsZeroWidthOrHeight(System.Drawing.Rectangle)">
+            <summary>
+            Checks if the rectangle width or height is equal to 0.
+            </summary>
+            <param name="rectangle">the rectangle to check</param>
+            <returns>true if the with or height of the rectangle is 0 else false</returns>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.CloseClick">
+            <summary>
+            Occurs when the close icon in the caption of the panel or xpanderpanel is clicked. 
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.ExpandClick">
+            <summary>
+            Occurs when the expand icon in the caption of the panel or xpanderpanel is clicked. 
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.PanelExpanding">
+            <summary>
+            Occurs when the panel or xpanderpanel expands.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.PanelCollapsing">
+            <summary>
+            Occurs when the panel or xpanderpanel collapse.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.PanelStyleChanged">
+            <summary>
+            The PanelStyleChanged event occurs when PanelStyle flags have been changed.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.ColorSchemeChanged">
+            <summary>
+            The ColorSchemeChanged event occurs when ColorScheme flags have been changed.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.CustomColorsChanged">
+            <summary>
+            Occurs when the value of the CustomColors property changes.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.CaptionHeightChanged">
+            <summary>
+            Occurs when the value of the CaptionHeight property changes.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.CaptionBarHoverStateChanged">
+            <summary>
+            Occurs when the value of the CaptionBar HoverState changes.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.CloseIconHoverStateChanged">
+            <summary>
+            Occurs when the value of the CloseIcon HoverState changes.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.BasePanel.ExpandIconHoverStateChanged">
+            <summary>
+            Occurs when the value of the ExpandIcon HoverState changes.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.PanelStyle">
+            <summary>
+            Gets or sets the style of the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.Image">
+            <summary>
+            Gets or sets the image that is displayed on a Panels caption.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ColorScheme">
+            <summary>
+            Gets or sets the color schema which is used for the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.CaptionHeight">
+            <summary>
+            Gets or sets the height of the panels caption.  
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.CaptionFont">
+            <summary>
+            Gets or sets the font of the text displayed on the caption.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.Expand">
+            <summary>
+            Expands the panel or xpanderpanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ShowBorder">
+            <summary>
+            Gets or sets a value indicating whether the control shows a border.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ShowExpandIcon">
+            <summary>
+            Gets or sets a value indicating whether the expand icon in a Panel or XPanderPanel is visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ToolTipTextCloseIcon">
+            <summary>
+            Gets or sets the text that appears as a ToolTip on a panel when the mouse
+            movers over the closeicon.
+            </summary>
+            <value>
+            Type:<see cref="T:System.String"/>
+            A string representing the ToolTip text when the mouse moves over the closeicon.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ToolTipTextExpandIconPanelCollapsed">
+            <summary>
+            Gets or sets the text that appears as a ToolTip on a panel when the mouse
+            movers over the expandicon and the panel is collapsed. 
+            </summary>
+            <value>
+            Type:<see cref="T:System.String"/>
+            A string representing the ToolTip text.
+            </value> 
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ToolTipTextExpandIconPanelExpanded">
+            <summary>
+            Gets or sets the text that appears as a ToolTip on a panel when the mouse
+            movers over the expandicon and the panel is expanded.
+            </summary>
+            <value>
+            Type:<see cref="T:System.String"/>
+            A string representing the ToolTip text when the mouse moves over the expandicon and the panel is expanded.
+            </value> 
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ShowCloseIcon">
+            <summary>
+            Gets or sets a value indicating whether the close icon in a Panel or XPanderPanel is visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.PanelColors">
+            <summary>
+            Gets the panelcolors table.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.HoverStateCaptionBar">
+            <summary>
+            Gets or sets the HoverState of the CaptionBar at a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.HoverStateCloseIcon">
+            <summary>
+            Gets or sets the HoverState of the CloseIcon in a captionbar at a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.HoverStateExpandIcon">
+            <summary>
+            Gets or sets the HoverState of the ExpandIcon in a captionbar at a Panel or XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ImageSize">
+            <summary>
+            Gets or sets the size of an image in the captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.CaptionRectangle">
+            <summary>
+            Gets the size of a captionbar in a Panel or XPanderPanel
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.BasePanel.ImageRectangle">
+            <summary>
+            Gets the Rectangle of an Image in a captionbar
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.BseRenderer">
+            <summary>
+            Draw ToolStrips using the Office 2007 themed appearance.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.#ctor">
+            <summary>
+            Initialize a new instance of the BseRenderer class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.#ctor(BSE.Windows.Forms.ProfessionalColorTable)">
+            <summary>
+            Initializes a new instance of the BseRenderer class.
+            </summary>
+            <param name="professionalColorTable">A <see cref="T:BSE.Windows.Forms.ProfessionalColorTable"/> to be used for painting.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderArrow(System.Windows.Forms.ToolStripArrowRenderEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.ToolStripRenderer.RenderArrow"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.ToolStripArrowRenderEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderButtonBackground(System.Windows.Forms.ToolStripItemRenderEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.ToolStripRenderer.RenderButtonBackground"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.ToolStripItemRenderEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderDropDownButtonBackground(System.Windows.Forms.ToolStripItemRenderEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.ToolStripRenderer.RenderDropDownButtonBackground"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.ToolStripItemRenderEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderSplitButtonBackground(System.Windows.Forms.ToolStripItemRenderEventArgs)">
+            <summary>
+            Raises the <see cref="M:System.Windows.Forms.ToolStripRenderer.OnRenderSplitButtonBackground(System.Windows.Forms.ToolStripItemRenderEventArgs)"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.ToolStripItemRenderEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderMenuItemBackground(System.Windows.Forms.ToolStripItemRenderEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.ToolStripRenderer.RenderMenuItemBackground"/> event. 
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.ToolStripItemRenderEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderItemText(System.Windows.Forms.ToolStripItemTextRenderEventArgs)">
+            <summary>
+            Raises the RenderItemText event.
+            </summary>
+            <param name="e">A ToolStripItemTextRenderEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderToolStripContentPanelBackground(System.Windows.Forms.ToolStripContentPanelRenderEventArgs)">
+            <summary>
+            Raises the RenderToolStripContentPanelBackground event. 
+            </summary>
+            <param name="e">An ToolStripContentPanelRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderOverflowButtonBackground(System.Windows.Forms.ToolStripItemRenderEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.ToolStripRenderer.RenderOverflowButtonBackground"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.ToolStripItemRenderEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderSeparator(System.Windows.Forms.ToolStripSeparatorRenderEventArgs)">
+            <summary>
+            Raises the RenderSeparator event. 
+            </summary>
+            <param name="e">An ToolStripSeparatorRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderStatusStripSizingGrip(System.Windows.Forms.ToolStripRenderEventArgs)">
+            <summary>
+            Raises the RenderStatusStripSizingGrip event.
+            </summary>
+            <param name="e">A ToolStripRenderEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderToolStripBackground(System.Windows.Forms.ToolStripRenderEventArgs)">
+            <summary>
+            Raises the RenderToolStripBackground event. 
+            </summary>
+            <param name="e">An ToolStripRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.OnRenderImageMargin(System.Windows.Forms.ToolStripRenderEventArgs)">
+            <summary>
+            Raises the RenderImageMargin event. 
+            </summary>
+            <param name="e">An ToolStripRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.RenderArrowInternal(System.Drawing.Graphics,System.Drawing.Rectangle,System.Windows.Forms.ArrowDirection,System.Drawing.Color)">
+            <summary>
+            Renders the arrows in the OverflowButton.
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="dropDownRectangle">The rectangle in which the arrows should drawn.</param>
+            <param name="direction">the direction of the arrows.</param>
+            <param name="color">The color used to fill the arrow polygons</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.RenderOverflowButtonLine(System.Drawing.Graphics,System.Drawing.Color,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Renders the lines in the OverflowButton.
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="color">The color used to fill the line</param>
+            <param name="x1">The x-coordinate of the first point.</param>
+            <param name="y1">The y-coordinate of the first point.</param>
+            <param name="x2">The x-coordinate of the second point.</param>
+            <param name="y2">The y-coordinate of the second point.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.BseRenderer.IsZeroWidthOrHeight(System.Drawing.Rectangle)">
+            <summary>
+            Checks if the rectangle width or height is equal to 0.
+            </summary>
+            <param name="rectangle">the rectangle to check</param>
+            <returns>true if the with or height of the rectangle is 0 else false</returns>
+        </member>
+        <member name="T:BSE.Windows.Forms.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Properties.Resources.IDS_ArgumentException">
+            <summary>
+              Looks up a localized string similar to Parameter {0} can&apos;t be null.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Properties.Resources.IDS_InvalidBoundArgument">
+             <summary>
+               Looks up a localized string similar to Value of &apos;{0}&apos; is not valid for &apos;{1}&apos;. &apos;Value&apos; should be between &apos;{2}&apos; and &apos;{3}&apos;.
+            Parameter name: {1}.
+             </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Properties.Resources.IDS_InvalidLowBoundArgument">
+             <summary>
+               Looks up a localized string similar to Value of &apos;{0}&apos; is not valid for &apos;{1}&apos;. &apos;Maximum&apos; must be greater than or equal to 0.
+            Parameter name: {1}.
+             </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Properties.Resources.IDS_InvalidOperationExceptionInteger">
+             <summary>
+               Looks up a localized string similar to Value of &apos;{0}&apos; is not valid for &apos;{1}&apos;. &apos;{1}&apos; must be greater than or equal to {2}.
+            Parameter name: {1}.
+             </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColorsBlue">
+            <summary>
+            Provide black theme colors for a Panel or XPanderPanel display element.
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBlue.#ctor">
+            <summary>
+            Initialize a new instance of the PanelColorsBlack class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBlue.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColorsBlack class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBlue.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.BseColorTable">
+            <summary>
+            Baseclass for a colortable for the <see cref="T:BSE.Windows.Forms.BseRenderer"/>
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelStyleChangeEventArgs">
+            <summary>
+            Provides data for the PanelStyleChange event.
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED. 
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelStyleChangeEventArgs.#ctor(BSE.Windows.Forms.PanelStyle)">
+            <summary>
+            Arguments used when a PanelStyleChange event occurs.
+            </summary>
+            <param name="ePanelStyle">the style of the panel.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelStyleChangeEventArgs.PanelStyle">
+            <summary>
+            Gets the style of the panel.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColorsOffice2007Black">
+            <summary>
+            Provide Office 2007 Black theme colors
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Black.#ctor">
+            <summary>
+            Initialize a new instance of the PanelColorsOffice2007Black class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Black.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColorsOffice2007Black class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Black.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.CaptionStyle">
+            <summary>
+            Specifies constants that define the style of the caption in a XPanderPanel.
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.CaptionStyle.Normal">
+            <summary>
+             The normal style of a caption.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.CaptionStyle.Flat">
+            <summary>
+            The flat style of a caption.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.Office2007Renderer">
+            <summary>
+            Draw ToolStrips using the Office 2007 themed appearance.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.#ctor">
+            <summary>
+            Initialize a new instance of the Office2007Renderer class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.#ctor(BSE.Windows.Forms.ProfessionalColorTable)">
+            <summary>
+            Initializes a new instance of the Office2007Renderer class.
+            </summary>
+            <param name="professionalColorTable">A <see cref="T:BSE.Windows.Forms.ProfessionalColorTable"/> to be used for painting.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.OnRenderArrow(System.Windows.Forms.ToolStripArrowRenderEventArgs)">
+            <summary>
+            Raises the RenderArrow event.
+            </summary>
+            <param name="e">A ToolStripArrowRenderEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.OnRenderItemText(System.Windows.Forms.ToolStripItemTextRenderEventArgs)">
+            <summary>
+            Raises the RenderItemText event.
+            </summary>
+            <param name="e">A ToolStripItemTextRenderEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.OnRenderToolStripContentPanelBackground(System.Windows.Forms.ToolStripContentPanelRenderEventArgs)">
+            <summary>
+            Raises the RenderToolStripContentPanelBackground event. 
+            </summary>
+            <param name="e">An ToolStripContentPanelRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.OnRenderSeparator(System.Windows.Forms.ToolStripSeparatorRenderEventArgs)">
+            <summary>
+            Raises the RenderSeparator event. 
+            </summary>
+            <param name="e">An ToolStripSeparatorRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.OnRenderToolStripBackground(System.Windows.Forms.ToolStripRenderEventArgs)">
+            <summary>
+            Raises the RenderToolStripBackground event. 
+            </summary>
+            <param name="e">An ToolStripRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007Renderer.OnRenderImageMargin(System.Windows.Forms.ToolStripRenderEventArgs)">
+            <summary>
+            Raises the RenderImageMargin event. 
+            </summary>
+            <param name="e">An ToolStripRenderEventArgs containing the event data.</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.Office2007BlackColorTable">
+            <summary>
+            Provides colors used for Microsoft Office 2007 black display elements.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007BlackColorTable.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.ProfessionalColorTable.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initializes a color dictionary with defined colors.
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.Office2007BlackColorTable.PanelColorTable">
+            <summary>
+            Gets the associated ColorTable for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelList">
+            <summary>
+            Manages a related set of xpanderpanels.
+            </summary>
+            <remarks>
+            The XPanderPanelList contains XPanderPanels, which are represented by XPanderPanel
+            objects that you can add through the XPanderPanels property.
+            The order of XPanderPanel objects reflects the order the xpanderpanels appear
+            in the XPanderPanelList control.
+            </remarks>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.#ctor">
+            <summary>
+            Initializes a new instance of the XPanderPanelList class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.Expand(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Expands the specified XPanderPanel
+            </summary>
+            <param name="panel">The XPanderPanel to expand</param>
+            <example>
+            <code>
+            private void btnExpandXPander_Click(object sender, EventArgs e)
+            {
+               // xPanderPanel10 is not null
+               if (xPanderPanel10 != null)
+               {
+                   BSE.Windows.Forms.XPanderPanelList panelList = xPanderPanel10.Parent as BSE.Windows.Forms.XPanderPanelList;
+                   // and it's parent panelList is not null
+                   if (panelList != null)
+                   {
+                       // expands xPanderPanel10 in it's panelList.
+                       panelList.Expand(xPanderPanel10);
+                   }
+               }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Paints the background of the xpanderpanellist.
+            </summary>
+            <param name="pevent">A PaintEventArgs that contains information about the control to paint.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnControlAdded(System.Windows.Forms.ControlEventArgs)">
+            <summary>
+            Raises the ControlAdded event.
+            </summary>
+            <param name="e">A ControlEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnControlRemoved(System.Windows.Forms.ControlEventArgs)">
+            <summary>
+            Raises the ControlRemoved event.
+            </summary>
+            <param name="e">A ControlEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnResize(System.EventArgs)">
+            <summary>
+            Raises the Resize event.
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnPanelStyleChanged(System.Object,BSE.Windows.Forms.PanelStyleChangeEventArgs)">
+            <summary>
+            Raises the PanelStyle changed event
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A PanelStyleChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnColorSchemeChanged(System.Object,BSE.Windows.Forms.ColorSchemeChangeEventArgs)">
+            <summary>
+            Raises the ColorScheme changed event
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnCaptionHeightChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CaptionHeight changed event
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.OnCaptionStyleChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CaptionStyleChanged changed event
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="F:BSE.Windows.Forms.XPanderPanelList.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelList.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.XPanderPanelList.PanelStyleChanged">
+            <summary>
+            The PanelStyleChanged event occurs when PanelStyle flags have been changed.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.XPanderPanelList.CaptionStyleChanged">
+            <summary>
+            The CaptionStyleChanged event occurs when CaptionStyle flags have been changed.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.XPanderPanelList.ColorSchemeChanged">
+            <summary>
+            The ColorSchemeChanged event occurs when ColorScheme flags have been changed.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.XPanderPanelList.CaptionHeightChanged">
+            <summary>
+            Occurs when the value of the CaptionHeight property changes.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.XPanderPanels">
+            <summary>
+            Gets the collection of xpanderpanels in this xpanderpanellist.
+            </summary>
+            <example>The following code example creates a XPanderPanel and adds it to the XPanderPanels collection,
+            <code>
+            private void btnAddXPanderPanel_Click(object sender, EventArgs e)
+            {
+                if (xPanderPanelList3 != null)
+                {
+                    // Create and initialize a XPanderPanel.
+                    BSE.Windows.Forms.XPanderPanel xpanderPanel = new BSE.Windows.Forms.XPanderPanel();
+                    xpanderPanel.Text = "new XPanderPanel";
+                    // and add it to the XPanderPanels collection
+                    xPanderPanelList3.XPanderPanels.Add(xpanderPanel);
+                }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.PanelStyle">
+            <summary>
+            Specifies the style of the panels in this xpanderpanellist.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.PanelColors">
+            <summary>
+            Gets or sets the Panelcolors table.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.ColorScheme">
+            <summary>
+            Specifies the colorscheme of the xpanderpanels in the xpanderpanellist
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.CaptionStyle">
+            <summary>
+            Gets or sets the style of the captionbar.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.LinearGradientMode">
+            <summary>
+            LinearGradientMode of the background in the xpanderpanellist 
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.ShowGradientBackground">
+            <summary>
+            Gets or sets a value indicating whether a xpanderpanellist's gradient background is shown. 
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.ShowBorder">
+            <summary>
+            Gets or sets a value indicating whether a xpanderpanellist's border is shown
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.ShowExpandIcon">
+            <summary>
+            Gets or sets a value indicating whether the expand icon of the xpanderpanels in this xpanderpanellist are visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.ShowCloseIcon">
+            <summary>
+            Gets or sets a value indicating whether the close icon of the xpanderpanels in this xpanderpanellist are visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.GradientBackground">
+            <summary>
+            Gradientcolor background in this xpanderpanellist
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelList.CaptionHeight">
+            <summary>
+            Gets or sets the height of the XpanderPanels in this XPanderPanelList. 
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelListDesigner">
+            <summary>
+            Extends the design mode behavior of a XPanderPanelList control that supports nested controls.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesigner.#ctor">
+            <summary>
+            nitializes a new instance of the XPanderPanelListDesigner class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+            Initializes the designer with the specified component.
+            </summary>
+            <param name="component">The IComponent to associate with the designer.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesigner.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the XPanderPanelDesigner,
+            and optionally releases the managed resources. 
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources;
+            false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Receives a call when the control that the designer is managing has painted its surface so the designer can
+            paint any additional adornments on top of the xpanderpanel.
+            </summary>
+            <param name="e">A PaintEventArgs the designer can use to draw on the xpanderpanel.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesigner.ActionLists">
+            <summary>
+            This member overrides ParentControlDesigner.ActionLists
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelListDesignerActionList">
+            <summary>
+            Provides the class for types that define a list of items used to create a smart tag panel for the XPanderPanelList.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesignerActionList.#ctor(System.ComponentModel.IComponent)">
+            <summary>
+            Initializes a new instance of the XPanderPanelListDesignerActionList class.
+            </summary>
+            <param name="component">A component related to the DesignerActionList.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesignerActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list.
+            </summary>
+            <returns> A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesignerActionList.ToggleDockStyle">
+            <summary>
+            Dock/Undock designer action method implementation
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelListDesignerActionList.GetDockStyleText">
+            <summary>
+            Helper method that returns an appropriate display name for the Dock/Undock property,
+            based on the ClockControl's current Dock property value
+            </summary>
+            <returns>the string to display</returns>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.XPanderPanels">
+            <summary>
+            Gets a collecion of XPanderPanel objects
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.PanelStyle">
+            <summary>
+            Gets or sets the style of the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.ColorScheme">
+            <summary>
+            Gets or sets the color schema which is used for the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.CaptionStyle">
+            <summary>
+            Gets or sets the style of the caption (not for PanelStyle.Aqua).
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.ShowBorder">
+            <summary>
+            Gets or sets a value indicating whether the control shows a border.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.ShowExpandIcon">
+            <summary>
+            Gets or sets a value indicating whether the expand icon is visible
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelListDesignerActionList.ShowCloseIcon">
+            <summary>
+            Gets or sets a value indicating whether the close icon is visible
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelCollection">
+            <summary>
+            Contains a collection of XPanderPanel objects.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.Contains(BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Determines whether the XPanderPanelCollection contains a specific XPanderPanel
+            </summary>
+            <param name="xpanderPanel">The XPanderPanel to locate in the XPanderPanelCollection</param>
+            <returns>true if the XPanderPanelCollection contains the specified value; otherwise, false.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.Add(BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Adds a XPanderPanel to the collection.  
+            </summary>
+            <param name="xpanderPanel">The XPanderPanel to add.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.Remove(BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Removes the first occurrence of a specific XPanderPanel from the XPanderPanelCollection
+            </summary>
+            <param name="xpanderPanel">The XPanderPanel to remove from the XPanderPanelCollection</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.Clear">
+            <summary>
+            Removes all the XPanderPanels from the collection. 
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.GetEnumerator">
+            <summary>
+            Returns an enumeration of all the XPanderPanels in the collection.  
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.IndexOf(BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Returns the index of the specified XPanderPanel in the collection. 
+            </summary>
+            <param name="xpanderPanel">The xpanderPanel to find the index of.</param>
+            <returns>The index of the xpanderPanel, or -1 if the xpanderPanel is not in the <see ref="ControlCollection">ControlCollection</see> instance.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.RemoveAt(System.Int32)">
+            <summary>
+            Removes the XPanderPanel at the specified index from the collection. 
+            </summary>
+            <param name="index">The zero-based index of the xpanderPanel to remove from the ControlCollection instance.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.Insert(System.Int32,BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Inserts an XPanderPanel to the collection at the specified index. 
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted. </param>
+            <param name="xpanderPanel">The XPanderPanel to insert into the Collection.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.CopyTo(BSE.Windows.Forms.XPanderPanel[],System.Int32)">
+             <summary>
+             Copies the elements of the collection to an Array, starting at a particular Array index.
+             </summary>
+             <param name="xpanderPanels">The one-dimensional Array that is the destination of the elements copied from ICollection.
+             The Array must have zero-based indexing.
+            </param>
+             <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the elements of the ICollection to an Array, starting at a particular Array index.
+            </summary>
+            <param name="array">The one-dimensional Array that is the destination of the elements copied from ICollection. The Array must have zero-based indexing.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#Add(System.Object)">
+            <summary>
+            Adds an item to the IList.
+            </summary>
+            <param name="value">The Object to add to the IList.</param>
+            <returns>The position into which the new element was inserted.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#Contains(System.Object)">
+            <summary>
+            Determines whether the IList contains a specific value.
+            </summary>
+            <param name="value">The Object to locate in the IList.</param>
+            <returns>true if the Object is found in the IList; otherwise, false.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#IndexOf(System.Object)">
+            <summary>
+            Determines the index of a specific item in the IList.
+            </summary>
+            <param name="value">The Object to locate in the IList.</param>
+            <returns>The index of value if found in the list; otherwise, -1.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#Insert(System.Int32,System.Object)">
+            <summary>
+            Inserts an item to the IList at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the item to insert.</param>
+            <param name="value">The Object to insert into the IList.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#Remove(System.Object)">
+            <summary>
+            Removes the first occurrence of a specific object from the IList.
+            </summary>
+            <param name="value">The Object to remove from the IList.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#RemoveAt(System.Int32)">
+            <summary>
+            Removes the IList item at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the item to remove.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.Item(System.Int32)">
+            <summary>
+            Gets or sets a XPanderPanel in the collection. 
+            </summary>
+            <param name="index">The zero-based index of the XPanderPanel to get or set.</param>
+            <returns>The xPanderPanel at the specified index.</returns>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.Count">
+            <summary>
+            Gets the number of XPanderPanels in the collection. 
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the collection is read-only. 
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#ICollection#Count">
+            <summary>
+            Gets the number of elements contained in the ICollection.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#ICollection#IsSynchronized">
+            <summary>
+            Gets a value indicating whether access to the ICollection is synchronized
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#ICollection#SyncRoot">
+            <summary>
+            Gets an object that can be used to synchronize access to the ICollection.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#Item(System.Int32)">
+            <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element to get or set.</param>
+            <returns> The element at the specified index.</returns>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#IsReadOnly">
+            <summary>
+            Gets a value indicating whether the IList is read-only.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCollection.System#Collections#IList#IsFixedSize">
+            <summary>
+            Gets a value indicating whether the IList has a fixed size.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelCollectionEditor">
+            <summary>
+            Provides a user interface that can edit most types of collections at design time.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollectionEditor.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the XPanderPanelCollectionEditor class
+            using the specified collection type.
+            </summary>
+            <param name="type">The type of the collection for this editor to edit.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollectionEditor.CreateCollectionForm">
+            <summary>
+            Creates a new form to display and edit the current collection.
+            </summary>
+            <returns> A CollectionEditor.CollectionForm to provide as the user interface for editing the collection.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCollectionEditor.CreateInstance(System.Type)">
+            <summary>
+            Creates a new instance of the specified collection item type.
+            </summary>
+            <param name="ItemType">The type of item to create.</param>
+            <returns> A new instance of the specified object.</returns>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanel">
+            <summary>
+            Used to group collections of controls. 
+            </summary>
+            <remarks>
+            XPanderPanel controls represent the expandable and collapsable panels in XPanderPanelList.
+            The XpanderPanel is a control that contains other controls.
+            You can use a XPanderPanel to group collections of controls such as the XPanderPanelList.
+            The order of xpanderpanels in the XPanderPanelList.XPanderPanels collection reflects the order
+            of xpanderpanels controls. To change the order of tabs in the control, you must change
+            their positions in the collection by removing them and inserting them at new indexes.
+            You can change the xpanderpanel's appearance. For example, to make it appear flat,
+            set the CaptionStyle property to CaptionStyle.Flat.
+            On top of the XPanderPanel there is the captionbar.
+            This captionbar may contain an image and text. According to it's properties the panel is closable.
+            </remarks>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.XPanderPanel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.#ctor">
+            <summary>
+            Initializes a new instance of the XPanderPanel class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Paints the background of the control.
+            </summary>
+            <param name="pevent">A PaintEventArgs that contains information about the control to paint.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the Paint event.
+            </summary>
+            <param name="e">A PaintEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.OnPanelExpanding(System.Object,BSE.Windows.Forms.XPanderStateChangeEventArgs)">
+            <summary>
+            Raises the PanelExpanding event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A XPanderStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.OnCaptionStyleChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the CaptionStyleChanged event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.OnMouseUp(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Raises the MouseUp event.
+            </summary>
+            <param name="e">A MouseEventArgs that contains data about the OnMouseUp event.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanel.OnVisibleChanged(System.EventArgs)">
+            <summary>
+            Raises the VisibleChanged event.
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="E:BSE.Windows.Forms.XPanderPanel.CaptionStyleChanged">
+            <summary>
+            The CaptionStyleChanged event occurs when CaptionStyle flags have been changed.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.ShowExpandIcon">
+            <summary>
+            Gets or sets a value indicating whether the expand icon in a XPanderPanel is visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.ShowCloseIcon">
+            <summary>
+            Gets or sets a value indicating whether the close icon in a XPanderPanel is visible.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.CustomColors">
+            <summary>
+            Gets the custom colors which are used for the XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.CaptionStyle">
+            <summary>
+            Gets or sets the style of the caption (not for PanelStyle.Aqua).
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.IsClosable">
+            <summary>
+            Gets or sets a value indicating whether this XPanderPanel is closable.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.Size">
+            <summary>
+            Gets or sets the height and width of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanel.DisplayRectangle">
+            <summary>
+            Gets the rectangle that represents the display area of the XPanderPanel.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.HoverStateChangeEventArgs">
+            <summary>
+            Provides data for the HoverStateChange event.
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.HoverStateChangeEventArgs.#ctor(BSE.Windows.Forms.HoverState)">
+            <summary>
+            Initializes a new instance of the HoverStateChangeEventArgs class.
+            </summary>
+            <param name="hoverState">The <see cref="P:BSE.Windows.Forms.HoverStateChangeEventArgs.HoverState"/> values.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.HoverStateChangeEventArgs.HoverState">
+            <summary>
+            Gets the HoverState.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ProgressBar">
+            <summary>
+            Represents a Windows progress bar control. 
+            </summary>
+            <copyright>Copyright © 2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.ProgressBar.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.#ctor">
+            <summary>
+            Initializes a new instance of the ProgressBar class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the Paint event.
+            </summary>
+            <param name="e">A PaintEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.OnBorderColorChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the BorderColor changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.OnBackgroundColorChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the BackgroundColor changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.OnValueColorChanged(System.Object,System.EventArgs)">
+            <summary>
+            Raises the ValueColor changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.ProgressBar.IsZeroWidthOrHeight(System.Drawing.Rectangle)">
+            <summary>
+            Checks if the rectangle width or height is equal to 0.
+            </summary>
+            <param name="rectangle">the rectangle to check</param>
+            <returns>true if the with or height of the rectangle is 0 else false</returns>
+        </member>
+        <member name="E:BSE.Windows.Forms.ProgressBar.BorderColorChanged">
+            <summary>
+            Occurs when the value of the BorderColor property changes.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.ProgressBar.BackgroundColorChanged">
+            <summary>
+            Occurs when the value of the BackgroundColor property changes.
+            </summary>
+        </member>
+        <member name="E:BSE.Windows.Forms.ProgressBar.ValueColorChanged">
+            <summary>
+            Occurs when the value of the ValueColor property changes.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.BackgroundColor">
+            <summary>
+            Gets or sets the color used for the background rectangle of this control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Color"/>
+            A Color used for the background rectangle of this control.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.ValueColor">
+            <summary>
+            Gets or sets the color used for the value rectangle of this control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Color"/>
+            A Color used for the value rectangle of this control.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.BorderColor">
+            <summary>
+            Gets or sets the border color for the control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Color"/>
+            A Color that represents the border color of the control.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.BackColor">
+            <summary>
+            Gets or sets the background color for the control.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.Maximum">
+            <summary>
+            Gets or sets the maximum value of the range of the control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Int32"/>
+            The maximum value of the range. The default is 100.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.Minimum">
+            <summary>
+            Gets or sets the minimum value of the range of the control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Int32"/>
+            The minimum value of the range. The default is 0.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ProgressBar.Value">
+            <summary>
+            Gets or sets the current position of the progress bar.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Int32"/>
+            The position within the range of the progress bar. The default is 0.
+            </value>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelDesigner">
+            <summary>
+            Designer class for extending the design mode behavior of a XPanderPanel control
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelDesigner.#ctor">
+            <summary>
+            Initializes a new instance of the XPanderPanelDesigner class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+            Initializes the designer with the specified component.
+            </summary>
+            <param name="component">The IComponent to associate with the designer.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelDesigner.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the XPanderPanelDesigner,
+            and optionally releases the managed resources. 
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources;
+            false to release only unmanaged resources.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Receives a call when the control that the designer is managing has painted its surface so the designer can
+            paint any additional adornments on top of the xpanderpanel.
+            </summary>
+            <param name="e">A PaintEventArgs the designer can use to draw on the xpanderpanel.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelDesigner.PostFilterProperties(System.Collections.IDictionary)">
+            <summary>
+            Allows a designer to change or remove items from the set of properties that it exposes through a <see cref="T:System.ComponentModel.TypeDescriptor">TypeDescriptor</see>. 
+            </summary>
+            <param name="properties">The properties for the class of the component.</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelCaptionGlyph">
+            <summary>
+            Represents a single user interface (UI) entity managed by an Adorner.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCaptionGlyph.#ctor(System.Windows.Forms.Design.Behavior.BehaviorService,BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Initializes a new instance of the CaptionGlyph class.
+            </summary>
+            <param name="behaviorService"></param>
+            <param name="xpanderPanel"></param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCaptionGlyph.GetHitTest(System.Drawing.Point)">
+            <summary>
+            Provides hit test logic.
+            </summary>
+            <param name="p">A point to hit-test.</param>
+            <returns>A Cursor if the Glyph is associated with p; otherwise, a null reference</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCaptionGlyph.Paint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Provides paint logic.
+            </summary>
+            <param name="pe">A PaintEventArgs that contains the event data.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.XPanderPanelCaptionGlyph.Bounds">
+            <summary>
+            Gets the bounds of the Glyph.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.XPanderPanelCaptionClickBehavior">
+            <summary>
+            Designer behaviour when the user clicks in the glyph on the XPanderPanel caption
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCaptionClickBehavior.#ctor(BSE.Windows.Forms.XPanderPanel)">
+            <summary>
+            Initializes a new instance of the Behavior class.
+            </summary>
+            <param name="xpanderPanel">XPanderPanel for this behaviour</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.XPanderPanelCaptionClickBehavior.OnMouseDown(System.Windows.Forms.Design.Behavior.Glyph,System.Windows.Forms.MouseButtons,System.Drawing.Point)">
+            <summary>
+            Called when any mouse-down message enters the adorner window of the BehaviorService. 
+            </summary>
+            <param name="g">A Glyph.</param>
+            <param name="button">A MouseButtons value indicating which button was clicked.</param>
+            <param name="mouseLoc">The location at which the click occurred.</param>
+            <returns>true if the message was handled; otherwise, false. </returns>
+        </member>
+        <member name="T:BSE.Windows.Forms.UseAntiAlias">
+            <summary>
+            Set the SmoothingMode=AntiAlias until instance disposed.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseAntiAlias.#ctor(System.Drawing.Graphics)">
+            <summary>
+            Initialize a new instance of the UseAntiAlias class.
+            </summary>
+            <param name="graphics">Graphics instance.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseAntiAlias.Finalize">
+            <summary>
+            destructor of the UseAntiAlias class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseAntiAlias.Dispose">
+            <summary>
+            Releases all resources used by the class. 
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseAntiAlias.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.Constants">
+            <summary>
+            Contains the constants for the XPanderControls
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.Constants.CaptionMinHeight">
+            <summary>
+            The minimum height for the captionbars in the panels
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.Constants.BorderThickness">
+            <summary>
+            Gets the thickness, in pixels, of a flat-style control border.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ColorTableBlue">
+            <summary>
+            Provide Office 2007 black theme colors
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ColorTableBlue.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.ProfessionalColorTable.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initializes a color dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.ColorTableBlue.PanelColorTable">
+            <summary>
+            Gets the associated ColorTable for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ToolStripProgressBar">
+            <summary>
+            Represents a Windows progress bar control contained in a StatusStrip.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ToolStripProgressBar.#ctor">
+            <summary>
+            Initializes a new instance of the ToolStripProgressBar class. 
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ToolStripProgressBar.OnOwnerChanged(System.EventArgs)">
+            <summary>
+            Raises the OwnerChanged event. 
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.ProgressBar">
+            <summary>
+            Gets the ProgressBar.
+            </summary>
+            <value>
+            Type: <see cref="T:BSE.Windows.Forms.ProgressBar"/>
+            A ProgressBar.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.RightToLeft">
+            <summary>
+            Gets or sets a value indicating whether items are to be placed from right to left
+            and text is to be written from right to left.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Windows.Forms.RightToLeft"/>
+            true if items are to be placed from right to left and text is to be written from right to left; otherwise, false.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.BackgroundColor">
+            <summary>
+            Gets or sets the color used for the background rectangle for this <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/>.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Color"/>
+            A Color used for the background rectangle of this ToolStripProgressBar.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.ValueColor">
+            <summary>
+            Gets or sets the color used for the value rectangle of this control.
+            Gets or sets color used for the value rectangle for this <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/>.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Color"/>
+            A Color used for the value rectangle for this ToolStripProgressBar.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.ForeColor">
+            <summary>
+            Gets or sets the foreground color of the hosted control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Color"/>
+            A <see cref="T:System.Drawing.Color"/> representing the foreground color of the hosted control.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.Font">
+            <summary>
+            Gets or sets the font to be used on the hosted control.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Font"/>
+            The Font for the hosted control.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.Maximum">
+            <summary>
+            Gets or sets the upper bound of the range that is defined for this <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/>.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Int32"/>
+            An integer representing the upper bound of the range. The default is 100.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.Minimum">
+            <summary>
+            Gets or sets the lower bound of the range that is defined for this <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/>.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Int32"/>
+            An integer representing the lower bound of the range. The default is 0.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.Value">
+            <summary>
+            Gets or sets the current value of the <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/>.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Int32"/>
+            An integer representing the current value.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.Text">
+            <summary>
+            Gets or sets the text displayed on the <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/>.
+            </summary>
+            <value>
+            Type: <see cref="T:System.String"/>
+            A <see cref="T:System.String"/> representing the display text.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.DefaultSize">
+            <summary>
+            Gets the height and width of the ToolStripProgressBar in pixels.
+            </summary>
+            <value>
+            Type: <see cref="T:System.Drawing.Size"/>
+            A Point value representing the height and width.
+            </value>
+        </member>
+        <member name="P:BSE.Windows.Forms.ToolStripProgressBar.DefaultMargin">
+            <summary>
+            Gets the spacing between the <see cref="T:BSE.Windows.Forms.ToolStripProgressBar"/> and adjacent items.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelStyle">
+            <summary>
+            Contains information about the style of the panels or xpanderpanels
+            </summary>
+            <copyright>Copyright © 2007-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelStyle.Default">
+            <summary>
+            Draws the panels caption in the default office 2003 style.
+            </summary>
+        </member>
+        <member name="F:BSE.Windows.Forms.PanelStyle.Office2007">
+            <summary>
+            Draws the panels caption in the office 2007 style.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColorsBlack">
+            <summary>
+            Provide black theme colors for a Panel or XPanderPanel display element.
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBlack.#ctor">
+            <summary>
+            Initialize a new instance of the PanelColorsBlack class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBlack.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColorsBlack class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsBlack.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.Panel">
+            <summary>
+            Used to group collections of controls. 
+            </summary>
+            <remarks>The Panel is a control that contains other controls.
+            You can use a Panel to group collections of controls such as the XPanderPanelList control.
+            On top of the Panel there is the captionbar. This captionbar may contain an image and text.
+            According to it's dockstyle and properties the panel is collapsable and/or closable.</remarks>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="F:BSE.Windows.Forms.Panel.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.#ctor">
+            <summary>
+            Initializes a new instance of the Panel class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.SetPanelProperties(BSE.Windows.Forms.PanelColors)">
+            <summary>
+            Sets the PanelProperties for the Panel
+            </summary>
+            <param name="panelColors">The PanelColors table</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnExpandClick(System.Object,System.EventArgs)">
+            <summary>
+            Raises the ExpandClick event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnExpandIconHoverStateChanged(System.Object,BSE.Windows.Forms.HoverStateChangeEventArgs)">
+            <summary>
+            Raises the ExpandIconHoverState changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A HoverStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnCloseIconHoverStateChanged(System.Object,BSE.Windows.Forms.HoverStateChangeEventArgs)">
+            <summary>
+            Raises the CloseIconHoverStat changed event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A HoverStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Paints the background of the control.
+            </summary>
+            <param name="pevent">A PaintEventArgs that contains information about the control to paint.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the Paint event.
+            </summary>
+            <param name="e">A PaintEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnPanelCollapsing(System.Object,BSE.Windows.Forms.XPanderStateChangeEventArgs)">
+            <summary>
+            Raises the PanelCollapsing event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A XPanderStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnPanelExpanding(System.Object,BSE.Windows.Forms.XPanderStateChangeEventArgs)">
+            <summary>
+            Raises the PanelExpanding event.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A XPanderStateChangeEventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnPanelStyleChanged(System.Object,BSE.Windows.Forms.PanelStyleChangeEventArgs)">
+            <summary>
+            Raises the PanelStyleChanged event
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">A EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnCreateControl">
+            <summary>
+            Raises the CreateControl method.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnResize(System.EventArgs)">
+            <summary>
+            Raises the Resize event.
+            </summary>
+            <param name="e">An EventArgs that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.OnVisibleChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.VisibleChanged"/>VisibleChanged event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.Panel.GetPanelIconBackground(System.Drawing.Graphics,System.Drawing.Rectangle,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            Gets the background for an panelicon image
+            </summary>
+            <param name="graphics">The Graphics to draw on.</param>
+            <param name="rectanglePanelIcon"></param>
+            <param name="backgroundColorBegin"></param>
+            <param name="backgroundColorEnd"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.AssociatedSplitter">
+            <summary>
+            Gets or sets the associated Splitter. If there is a splitter associated to a panel,
+            the splitter visibility always changes when the visibilty of this panel changes.
+            </summary>
+            <value>The associated <see cref="T:BSE.Windows.Forms.Splitter"/></value>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.CustomColors">
+            <summary>
+            Gets the custom colors which are used for the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.Expand">
+            <summary>
+            Expands the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.LinearGradientMode">
+            <summary>
+            LinearGradientMode of the panels background
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.ShowCaptionbar">
+            <summary>
+            Gets or sets a value indicating whether the panels captionbar is displayed.
+            </summary>
+            <example>
+            <code>
+            private void btnShowHideCaptionbar_Click(object sender, EventArgs e)
+            {
+                //displaye or hides the captionbar at the top of the panel
+                panel6.ShowCaptionbar = !panel6.ShowCaptionbar;
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.ShowTransparentBackground">
+            <summary>
+            Gets or sets a value indicating whether the controls background is transparent.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.ShowXPanderPanelProfessionalStyle">
+            <summary>
+            Gets or sets a value indicating whether the controls caption professional colorscheme is the same then the XPanderPanels
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.RestoreBounds">
+            <summary>
+            Gets the size and location of the panel in it's normal expanded state.
+            </summary>
+            <remarks>
+            A Rect that specifies the size and location of a panel before being either collapsed
+            </remarks>
+        </member>
+        <member name="P:BSE.Windows.Forms.Panel.DisplayRectangle">
+            <summary>
+            Gets the rectangle that represents the display area of the Panel.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelDesigner">
+            <summary>
+            Extends the design mode behavior of a Panel control that supports nested controls.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelDesigner.#ctor">
+            <summary>
+            Initializes a new instance of the PanelDesigner class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelDesigner.Initialize(System.ComponentModel.IComponent)">
+            <summary>
+            Initializes the designer with the specified component.
+            </summary>
+            <param name="component"></param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelDesigner.OnPaintAdornments(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Called when the control that the designer is managing has painted 
+            its surface so the designer can paint any additional adornments on
+            top of the control.
+            </summary>
+            <param name="e">A PaintEventArgs that provides data for the event.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesigner.ActionLists">
+            <summary>
+            Gets the design-time action lists supported by the component associated with the designer.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelDesignerActionList">
+            <summary>
+            Provides the class for types that define a list of items used to create a smart tag panel for the Panel.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelDesignerActionList.#ctor(System.ComponentModel.IComponent)">
+            <summary>
+            Initializes a new instance of the PanelDesignerActionList class.
+            </summary>
+            <param name="component">A component related to the DesignerActionList.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelDesignerActionList.GetSortedActionItems">
+            <summary>
+            Returns the collection of DesignerActionItem objects contained in the list.
+            </summary>
+            <returns> A DesignerActionItem array that contains the items in this list.</returns>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelDesignerActionList.ToggleDockStyle">
+            <summary>
+            Dock/Undock designer action method implementation
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.ShowCaptionbar">
+            <summary>
+            Gets or sets a value indicating whether the panels captionbar is displayed.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.ShowTransparentBackground">
+            <summary>
+            Gets or sets a value indicating whether the controls background is transparent.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.ShowXPanderPanelProfessionalStyle">
+            <summary>
+            Gets or sets a value indicating whether the controls caption professional colorscheme is the same then the XPanderPanels
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.ShowExpandIcon">
+            <summary>
+            Gets or sets a value indicating whether the expand icon of the panel is visible
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.ShowCloseIcon">
+            <summary>
+            Gets or sets a value indicating whether the close icon is visible
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.PanelStyle">
+            <summary>
+            Gets or sets the style of the panel.
+            </summary>
+        </member>
+        <member name="P:BSE.Windows.Forms.PanelDesignerActionList.ColorScheme">
+            <summary>
+            Gets or sets the color schema which is used for the panel.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ColorSchemeChangeEventArgs">
+            <summary>
+            Provides data for the ColorSchemeChange event.
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.ColorSchemeChangeEventArgs.#ctor(BSE.Windows.Forms.ColorScheme)">
+            <summary>
+            Arguments used when a ColorSchemeChange event occurs.
+            </summary>
+            <param name="eColorSchema">The color schema which is used for the panel.</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.ColorSchemeChangeEventArgs.ColorSchema">
+            <summary>
+            Gets the color schema which is used for the panel.
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.ColorTableBlack">
+            <summary>
+            Provide Office 2007 black theme colors
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.ColorTableBlack.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.ProfessionalColorTable.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initializes a color dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.ColorTableBlack.PanelColorTable">
+            <summary>
+            Gets the associated ColorTable for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.Office2007SilverColorTable">
+            <summary>
+            Provides colors used for Microsoft Office 2007 silver display elements.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.Office2007SilverColorTable.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.ProfessionalColorTable.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initializes a color dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="P:BSE.Windows.Forms.Office2007SilverColorTable.PanelColorTable">
+            <summary>
+            Gets the associated ColorTable for the XPanderControls
+            </summary>
+        </member>
+        <member name="T:BSE.Windows.Forms.UseClearTypeGridFit">
+            <summary>
+            Set the TextRenderingHint.ClearTypeGridFit until instance disposed.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseClearTypeGridFit.#ctor(System.Drawing.Graphics)">
+            <summary>
+            Initialize a new instance of the UseClearTypeGridFit class.
+            </summary>
+            <param name="graphics">Graphics instance.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseClearTypeGridFit.Finalize">
+            <summary>
+            destructor of the UseClearTypeGridFit class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseClearTypeGridFit.Dispose">
+            <summary>
+            Releases all resources used by the class. 
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.UseClearTypeGridFit.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColorsOffice2007Silver">
+            <summary>
+            Provide Office 2007 silver theme colors
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Silver.#ctor">
+            <summary>
+            Initialize a new instance of the PanelColorsOffice2007Silver class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Silver.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the PanelColorsOffice2007Silver class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Silver.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+        <member name="T:BSE.Windows.Forms.PanelColorsOffice2007Blue">
+            <summary>
+            Provide Office 2007 Blue Theme colors
+            </summary>
+            <copyright>Copyright © 2006-2008 Uwe Eichkorn
+            THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+            KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+            IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A PARTICULAR
+            PURPOSE. IT CAN BE DISTRIBUTED FREE OF CHARGE AS LONG AS THIS HEADER 
+            REMAINS UNCHANGED.
+            </copyright>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Blue.#ctor">
+            <summary>
+            Initialize a new instance of the Office2007Colors class.
+            </summary>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Blue.#ctor(BSE.Windows.Forms.BasePanel)">
+            <summary>
+            Initialize a new instance of the Office2007Colors class.
+            </summary>
+            <param name="basePanel">Base class for the panel or xpanderpanel control.</param>
+        </member>
+        <member name="M:BSE.Windows.Forms.PanelColorsOffice2007Blue.InitColors(System.Collections.Generic.Dictionary{BSE.Windows.Forms.PanelColors.KnownColors,System.Drawing.Color})">
+            <summary>
+            Initialize a color Dictionary with defined colors
+            </summary>
+            <param name="rgbTable">Dictionary with defined colors</param>
+        </member>
+    </members>
+</doc>
