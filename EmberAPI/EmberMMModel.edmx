@@ -385,7 +385,7 @@
           <EntitySet Name="ExcludeDirs" EntityType="EmberMediaModel.ExcludeDir" />
           <EntitySet Name="ExcludeFiles" EntityType="EmberMediaModel.ExcludeFile" />
           <EntitySet Name="ExcludeFilesInFolders" EntityType="EmberMediaModel.ExcludeFilesInFolder" />
-          <EntitySet Name="Movies" EntityType="EmberMediaModel.Movy" />
+          <EntitySet Name="Movies" EntityType="EmberMediaModel.Movie" />
           <EntitySet Name="MoviesActors" EntityType="EmberMediaModel.MoviesActor" />
           <EntitySet Name="MoviesAStreams" EntityType="EmberMediaModel.MoviesAStream" />
           <EntitySet Name="MoviesFanarts" EntityType="EmberMediaModel.MoviesFanart" />
@@ -446,7 +446,7 @@
           <Property Name="Filename" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="EmberPath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Movy">
+        <EntityType Name="Movie">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
@@ -776,7 +776,7 @@
             <ScalarProperty Name="Filename" ColumnName="Filename" />
             <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Movies"><EntityTypeMapping TypeName="EmberMediaModel.Movy"><MappingFragment StoreEntitySet="Movies">
+          <EntitySetMapping Name="Movies"><EntityTypeMapping TypeName="EmberMediaModel.Movie"><MappingFragment StoreEntitySet="Movies">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="MoviePath" ColumnName="MoviePath" />
             <ScalarProperty Name="Type" ColumnName="Type" />
@@ -1030,7 +1030,7 @@
         <EntityTypeShape EntityType="EmberMediaModel.ExcludeDir" Width="1.5" PointX="0.75" PointY="3.75" Height="1.211080729166667" IsExpanded="true" />
         <EntityTypeShape EntityType="EmberMediaModel.ExcludeFile" Width="1.5" PointX="2.75" PointY="3.75" Height="1.2110807291666674" IsExpanded="true" />
         <EntityTypeShape EntityType="EmberMediaModel.ExcludeFilesInFolder" Width="1.5" PointX="4.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
-        <EntityTypeShape EntityType="EmberMediaModel.Movy" Width="1.5" PointX="4.75" PointY="3.75" Height="10.441549479166667" IsExpanded="true" />
+        <EntityTypeShape EntityType="EmberMediaModel.Movie" Width="1.5" PointX="4.75" PointY="3.75" Height="10.441549479166667" IsExpanded="true" />
         <EntityTypeShape EntityType="EmberMediaModel.MoviesActor" Width="1.5" PointX="0.75" PointY="5.75" Height="1.5956835937499996" IsExpanded="true" />
         <EntityTypeShape EntityType="EmberMediaModel.MoviesAStream" Width="1.5" PointX="6.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="EmberMediaModel.MoviesFanart" Width="1.5" PointX="6.75" PointY="3.75" Height="1.7879850260416674" IsExpanded="true" />

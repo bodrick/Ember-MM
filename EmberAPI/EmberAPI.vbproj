@@ -179,7 +179,7 @@
     <Compile Include="MoviesVStream.vb">
       <DependentUpon>EmberMMModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Movy.vb">
+    <Compile Include="Movie.vb">
       <DependentUpon>EmberMMModel.tt</DependentUpon>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -266,7 +266,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
-  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.Entity.Core.Objects
 Imports EmberMediaManger.API
 Imports System.Data.Objects
 Imports System.Threading.Tasks

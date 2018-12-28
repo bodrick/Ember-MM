@@ -1,4 +1,6 @@
-﻿Namespace Classes
+﻿Imports System.Data.Entity
+
+Namespace Classes
     Public Class Database
         Public Shared Function LoadAllTVShows() As List(Of Model.TVShow)
             Try

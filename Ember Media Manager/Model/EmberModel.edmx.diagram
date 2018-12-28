@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <edmx:Designer>
+    <edmx:Diagrams>
+      <edmx:Diagram Name="EmberModel">
+        <edmx:EntityTypeShape EntityType="MediaModel.Actor" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.EmberFile" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.ExcludeDir" Width="1.5" PointX="0.75" PointY="3.75" Height="1.211080729166667" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.ExcludeFile" Width="1.5" PointX="2.75" PointY="3.75" Height="1.2110807291666674" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.ExcludeFilesInFolder" Width="1.5" PointX="4.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.Movie" Width="1.5" PointX="4.75" PointY="3.75" Height="10.441549479166667" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesActor" Width="1.5" PointX="0.75" PointY="5.75" Height="1.9802864583333326" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesAStream" Width="1.5" PointX="6.75" PointY="0.75" Height="2.364889322916667" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesFanart" Width="1.5" PointX="6.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesPoster" Width="1.5" PointX="7" PointY="6.75" Height="1.7879850260416657" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesSet" Width="1.5" PointX="8.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesSub" Width="1.5" PointX="0.75" PointY="8.75" Height="2.3648893229166656" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.MoviesVStream" Width="1.5" PointX="8.75" PointY="3.75" Height="3.1340950520833317" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.OrigPath" Width="1.5" PointX="8.75" PointY="7.75" Height="1.7879850260416674" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.Set" Width="1.5" PointX="10.75" PointY="0.75" Height="1.2110807291666674" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.Source" Width="1.5" PointX="10.75" PointY="2.75" Height="2.3648893229166674" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVAStream" Width="1.5" PointX="10.75" PointY="6.75" Height="2.1725878906250031" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVEpActor" Width="1.5" PointX="6.75" PointY="10.75" Height="1.9802864583333335" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVEpPath" Width="1.5" PointX="8.75" PointY="10.75" Height="1.4033821614583388" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVEp" Width="1.5" PointX="10.75" PointY="9.75" Height="6.0186165364583335" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVSeason" Width="1.5" PointX="15.125" PointY="10" Height="3.1340950520833317" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVShowActor" Width="1.5" PointX="12.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVShow" Width="1.5" PointX="12.75" PointY="3.75" Height="5.63401367187501" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVSource" Width="1.5" PointX="12.75" PointY="10.75" Height="1.7879850260416674" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVSub" Width="1.5" PointX="6.75" PointY="13.75" Height="1.7879850260416674" IsExpanded="true" />
+        <edmx:EntityTypeShape EntityType="MediaModel.TVVStream" Width="1.5" PointX="12.75" PointY="13.75" Height="2.9417936197916674" IsExpanded="true" />
+        <edmx:AssociationConnector Association="MediaModel.ActorMoviesActor">
+          <edmx:ConnectorPoint PointX="0.75" PointY="2.34568359375" />
+          <edmx:ConnectorPoint PointX="0.375" PointY="2.72068359375" />
+          <edmx:ConnectorPoint PointX="0.375" PointY="5.375" />
+          <edmx:ConnectorPoint PointX="0.75" PointY="5.75" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MoviesActorMovie">
+          <edmx:ConnectorPoint PointX="2.25" PointY="6.7401432291666659" />
+          <edmx:ConnectorPoint PointX="4.75" PointY="6.7401432291666659" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.TVShowTVShowActor">
+          <edmx:ConnectorPoint PointX="13.5" PointY="3.75" />
+          <edmx:ConnectorPoint PointX="13.5" PointY="2.7302864583333335" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.ActorTVShowActor">
+          <edmx:ConnectorPoint PointX="2.25" PointY="0.75115284615384614" />
+          <edmx:ConnectorPoint PointX="2.6261528461538468" PointY="0.37499999999999911" />
+          <edmx:ConnectorPoint PointX="12.375" PointY="0.37499999999999911" />
+          <edmx:ConnectorPoint PointX="12.75" PointY="0.74999999999999944" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.TVEpTVEpActor">
+          <edmx:ConnectorPoint PointX="10.75" PointY="12.473084309895835" />
+          <edmx:ConnectorPoint PointX="8.25" PointY="12.473084309895835" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.ActorTVEpActor">
+          <edmx:ConnectorPoint PointX="2.25" PointY="1.7719716522435896" />
+          <edmx:ConnectorPoint PointX="2.5" PointY="1.7719716522435896" />
+          <edmx:ConnectorPoint PointX="2.5" PointY="3.5" />
+          <edmx:ConnectorPoint PointX="6.5" PointY="3.5" />
+          <edmx:ConnectorPoint PointX="6.5" PointY="10.374999999999998" />
+          <edmx:ConnectorPoint PointX="7.5" PointY="10.374999999999998" />
+          <edmx:ConnectorPoint PointX="7.5" PointY="10.75" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.TVShowTVSeason">
+          <edmx:ConnectorPoint PointX="14.25" PointY="6.7593082682291667" />
+          <edmx:ConnectorPoint PointX="15.875" PointY="6.7593082682291667" />
+          <edmx:ConnectorPoint PointX="15.875" PointY="10" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.TVSeasonTVEp">
+          <edmx:ConnectorPoint PointX="15.125" PointY="12.963440755208334" />
+          <edmx:ConnectorPoint PointX="12.25" PointY="12.963440755208334" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MovieMoviesAStream">
+          <edmx:ConnectorPoint PointX="6.25" PointY="3.75" />
+          <edmx:ConnectorPoint PointX="6.75" PointY="3.1148893229166674" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MovieMoviesVStream">
+          <edmx:ConnectorPoint PointX="6.25" PointY="6.2401432291666667" />
+          <edmx:ConnectorPoint PointX="6.416666666666667" PointY="6.2401432291666659" />
+          <edmx:ConnectorPoint PointX="6.583333333333333" PointY="6.2401432291666667" />
+          <edmx:ConnectorPoint PointX="8.75" PointY="6.2401432291666667" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MovieMoviesSub">
+          <edmx:ConnectorPoint PointX="4.75" PointY="9.9324446614583337" />
+          <edmx:ConnectorPoint PointX="2.25" PointY="9.9324446614583337" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MovieMoviesSet">
+          <edmx:ConnectorPoint PointX="6.25" PointY="3.7753836153846154" />
+          <edmx:ConnectorPoint PointX="6.5804832027771649" PointY="3.375" />
+          <edmx:ConnectorPoint PointX="9.5" PointY="3.375" />
+          <edmx:ConnectorPoint PointX="9.5" PointY="2.537985026041667" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MovieMoviesPoster">
+          <edmx:ConnectorPoint PointX="6.25" PointY="7.6439925130208328" />
+          <edmx:ConnectorPoint PointX="6.416666666666667" PointY="7.6439925130208319" />
+          <edmx:ConnectorPoint PointX="6.583333333333333" PointY="7.6439925130208328" />
+          <edmx:ConnectorPoint PointX="7" PointY="7.6439925130208328" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.MovieMoviesFanart">
+          <edmx:ConnectorPoint PointX="6.25" PointY="4.7840875368589746" />
+          <edmx:ConnectorPoint PointX="6.416666666666667" PointY="4.7840875368589737" />
+          <edmx:ConnectorPoint PointX="6.583333333333333" PointY="4.7840875368589746" />
+          <edmx:ConnectorPoint PointX="6.75" PointY="4.7840875368589746" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.TVShowTVEp">
+          <edmx:ConnectorPoint PointX="12.75" PointY="6.855458984375" />
+          <edmx:ConnectorPoint PointX="12.51" PointY="6.855458984375" />
+          <edmx:ConnectorPoint PointX="12.51" PointY="9.51" />
+          <edmx:ConnectorPoint PointX="11.5" PointY="9.51" />
+          <edmx:ConnectorPoint PointX="11.5" PointY="9.75" />
+        </edmx:AssociationConnector>
+        <edmx:AssociationConnector Association="MediaModel.TVEpTVEpPath">
+          <edmx:ConnectorPoint PointX="10.75" PointY="11.547841796875" />
+          <edmx:ConnectorPoint PointX="10.25" PointY="11.547841796875" />
+        </edmx:AssociationConnector>
+      </edmx:Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

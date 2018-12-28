@@ -19,6 +19,7 @@
 ' ################################################################################
 
 Imports System
+Imports System.Data.Entity.Core.Objects
 Imports System.Drawing
 Imports System.IO
 Imports System.Linq

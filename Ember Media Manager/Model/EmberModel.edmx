@@ -1,38 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
   <!-- EF Runtime content -->
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MediaModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="MediaModelStoreContainer">
-          <EntitySet Name="Actors" EntityType="MediaModel.Store.Actors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="EmberFiles" EntityType="MediaModel.Store.EmberFiles" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ExcludeDir" EntityType="MediaModel.Store.ExcludeDir" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ExcludeFiles" EntityType="MediaModel.Store.ExcludeFiles" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="ExcludeFilesInFolders" EntityType="MediaModel.Store.ExcludeFilesInFolders" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Movies" EntityType="MediaModel.Store.Movies" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesActors" EntityType="MediaModel.Store.MoviesActors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesAStreams" EntityType="MediaModel.Store.MoviesAStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesFanart" EntityType="MediaModel.Store.MoviesFanart" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesPosters" EntityType="MediaModel.Store.MoviesPosters" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesSets" EntityType="MediaModel.Store.MoviesSets" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesSubs" EntityType="MediaModel.Store.MoviesSubs" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="MoviesVStreams" EntityType="MediaModel.Store.MoviesVStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="OrigPaths" EntityType="MediaModel.Store.OrigPaths" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Sets" EntityType="MediaModel.Store.Sets" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Sources" EntityType="MediaModel.Store.Sources" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVAStreams" EntityType="MediaModel.Store.TVAStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVEpActors" EntityType="MediaModel.Store.TVEpActors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVEpPaths" EntityType="MediaModel.Store.TVEpPaths" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVEps" EntityType="MediaModel.Store.TVEps" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVSeason" EntityType="MediaModel.Store.TVSeason" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVShowActors" EntityType="MediaModel.Store.TVShowActors" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVShows" EntityType="MediaModel.Store.TVShows" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVSources" EntityType="MediaModel.Store.TVSources" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVSubs" EntityType="MediaModel.Store.TVSubs" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="TVVStreams" EntityType="MediaModel.Store.TVVStreams" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-        </EntityContainer>
+      <Schema Namespace="MediaModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="Data Source=D:\Github\Ember-MM\Data\media.sqlite" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actors">
           <Key>
             <PropertyRef Name="Name" />
@@ -374,12 +346,40 @@
           <Property Name="Video_Language" Type="nvarchar" />
           <Property Name="Video_LongLanguage" Type="nvarchar" />
         </EntityType>
+		<EntityContainer Name="MediaModelStoreContainer">
+          <EntitySet Name="Actors" EntityType="Self.Actors" store:Type="Tables" />
+          <EntitySet Name="EmberFiles" EntityType="Self.EmberFiles" store:Type="Tables" />
+          <EntitySet Name="ExcludeDir" EntityType="Self.ExcludeDir" store:Type="Tables" />
+          <EntitySet Name="ExcludeFiles" EntityType="Self.ExcludeFiles" store:Type="Tables" />
+          <EntitySet Name="ExcludeFilesInFolders" EntityType="Self.ExcludeFilesInFolders" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" store:Type="Tables" />
+          <EntitySet Name="MoviesActors" EntityType="Self.MoviesActors" store:Type="Tables" />
+          <EntitySet Name="MoviesAStreams" EntityType="Self.MoviesAStreams" store:Type="Tables" />
+          <EntitySet Name="MoviesFanart" EntityType="Self.MoviesFanart" store:Type="Tables" />
+          <EntitySet Name="MoviesPosters" EntityType="Self.MoviesPosters" store:Type="Tables" />
+          <EntitySet Name="MoviesSets" EntityType="Self.MoviesSets" store:Type="Tables" />
+          <EntitySet Name="MoviesSubs" EntityType="Self.MoviesSubs" store:Type="Tables" />
+          <EntitySet Name="MoviesVStreams" EntityType="Self.MoviesVStreams" store:Type="Tables" />
+          <EntitySet Name="OrigPaths" EntityType="Self.OrigPaths" store:Type="Tables" />
+          <EntitySet Name="Sets" EntityType="Self.Sets" store:Type="Tables" />
+          <EntitySet Name="Sources" EntityType="Self.Sources" store:Type="Tables" />
+          <EntitySet Name="TVAStreams" EntityType="Self.TVAStreams" store:Type="Tables" />
+          <EntitySet Name="TVEpActors" EntityType="Self.TVEpActors" store:Type="Tables" />
+          <EntitySet Name="TVEpPaths" EntityType="Self.TVEpPaths" store:Type="Tables" />
+          <EntitySet Name="TVEps" EntityType="Self.TVEps" store:Type="Tables" />
+          <EntitySet Name="TVSeason" EntityType="Self.TVSeason" store:Type="Tables" />
+          <EntitySet Name="TVShowActors" EntityType="Self.TVShowActors" store:Type="Tables" />
+          <EntitySet Name="TVShows" EntityType="Self.TVShows" store:Type="Tables" />
+          <EntitySet Name="TVSources" EntityType="Self.TVSources" store:Type="Tables" />
+          <EntitySet Name="TVSubs" EntityType="Self.TVSubs" store:Type="Tables" />
+          <EntitySet Name="TVVStreams" EntityType="Self.TVVStreams" store:Type="Tables" />
+        </EntityContainer>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MediaModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="MediaEntities" annotation:LazyLoadingEnabled="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+      <Schema Namespace="MediaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MediaEntities" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Actors" EntityType="MediaModel.Actor" />
           <EntitySet Name="EmberFiles" EntityType="MediaModel.EmberFile" />
           <EntitySet Name="ExcludeDirs" EntityType="MediaModel.ExcludeDir" />
@@ -602,7 +602,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MovieID" Type="Int64" Nullable="false" />
           <Property Name="preview" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="thumbs" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
@@ -612,7 +612,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MovieID" Type="Int64" Nullable="false" />
           <Property Name="thumbs" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Movie" Relationship="MediaModel.MovieMoviesPoster" FromRole="MoviesPoster" ToRole="Movie" />
@@ -677,7 +677,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="path" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="Recursive" Type="Boolean" Nullable="false" />
@@ -712,7 +712,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FilePath" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="TVEps" Relationship="MediaModel.TVEpTVEpPath" FromRole="TVEpPath" ToRole="TVEp" />
         </EntityType>
@@ -720,7 +720,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TVShowID" Type="Int64" Nullable="false" />
           <Property Name="Episode" Type="Int64" />
           <Property Name="Title" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
@@ -781,7 +781,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="HasPoster" Type="Boolean" Nullable="false" />
           <Property Name="HasFanart" Type="Boolean" Nullable="false" />
@@ -813,7 +813,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="path" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="LastScan" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
@@ -1042,263 +1042,367 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MediaModelStoreContainer" CdmEntityContainer="MediaEntities">
-          <EntitySetMapping Name="Actors"><EntityTypeMapping TypeName="MediaModel.Actor"><MappingFragment StoreEntitySet="Actors">
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="thumb" ColumnName="thumb" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="EmberFiles"><EntityTypeMapping TypeName="MediaModel.EmberFile"><MappingFragment StoreEntitySet="EmberFiles">
-            <ScalarProperty Name="OrigPath" ColumnName="OrigPath" />
-            <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
-            <ScalarProperty Name="Filename" ColumnName="Filename" />
-            <ScalarProperty Name="Hash" ColumnName="Hash" />
-            <ScalarProperty Name="Platform" ColumnName="Platform" />
-            <ScalarProperty Name="UseFile" ColumnName="UseFile" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ExcludeDirs"><EntityTypeMapping TypeName="MediaModel.ExcludeDir"><MappingFragment StoreEntitySet="ExcludeDir">
-            <ScalarProperty Name="Dirname" ColumnName="Dirname" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ExcludeFiles"><EntityTypeMapping TypeName="MediaModel.ExcludeFile"><MappingFragment StoreEntitySet="ExcludeFiles">
-            <ScalarProperty Name="Filename" ColumnName="Filename" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="ExcludeFilesInFolders"><EntityTypeMapping TypeName="MediaModel.ExcludeFilesInFolder"><MappingFragment StoreEntitySet="ExcludeFilesInFolders">
-            <ScalarProperty Name="Filename" ColumnName="Filename" />
-            <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Movies"><EntityTypeMapping TypeName="MediaModel.Movie"><MappingFragment StoreEntitySet="Movies">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="MoviePath" ColumnName="MoviePath" />
-            <ScalarProperty Name="Type" ColumnName="Type" />
-            <ScalarProperty Name="ListTitle" ColumnName="ListTitle" />
-            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
-            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
-            <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
-            <ScalarProperty Name="HasTrailer" ColumnName="HasTrailer" />
-            <ScalarProperty Name="HasSub" ColumnName="HasSub" />
-            <ScalarProperty Name="HasExtra" ColumnName="HasExtra" />
-            <ScalarProperty Name="IsNew" ColumnName="New" />
-            <ScalarProperty Name="Mark" ColumnName="Mark" />
-            <ScalarProperty Name="Source" ColumnName="Source" />
-            <ScalarProperty Name="Imdb" ColumnName="Imdb" />
-            <ScalarProperty Name="Lock" ColumnName="Lock" />
-            <ScalarProperty Name="Title" ColumnName="Title" />
-            <ScalarProperty Name="OriginalTitle" ColumnName="OriginalTitle" />
-            <ScalarProperty Name="Year" ColumnName="Year" />
-            <ScalarProperty Name="Rating" ColumnName="Rating" />
-            <ScalarProperty Name="Votes" ColumnName="Votes" />
-            <ScalarProperty Name="MPAA" ColumnName="MPAA" />
-            <ScalarProperty Name="Top250" ColumnName="Top250" />
-            <ScalarProperty Name="Country" ColumnName="Country" />
-            <ScalarProperty Name="Outline" ColumnName="Outline" />
-            <ScalarProperty Name="Plot" ColumnName="Plot" />
-            <ScalarProperty Name="Tagline" ColumnName="Tagline" />
-            <ScalarProperty Name="Certification" ColumnName="Certification" />
-            <ScalarProperty Name="Genre" ColumnName="Genre" />
-            <ScalarProperty Name="Studio" ColumnName="Studio" />
-            <ScalarProperty Name="Runtime" ColumnName="Runtime" />
-            <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
-            <ScalarProperty Name="Director" ColumnName="Director" />
-            <ScalarProperty Name="Credits" ColumnName="Credits" />
-            <ScalarProperty Name="Playcount" ColumnName="Playcount" />
-            <ScalarProperty Name="Watched" ColumnName="Watched" />
-            <ScalarProperty Name="Trailer" ColumnName="Trailer" />
-            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
-            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
-            <ScalarProperty Name="ExtraPath" ColumnName="ExtraPath" />
-            <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
-            <ScalarProperty Name="TrailerPath" ColumnName="TrailerPath" />
-            <ScalarProperty Name="SubPath" ColumnName="SubPath" />
-            <ScalarProperty Name="FanartURL" ColumnName="FanartURL" />
-            <ScalarProperty Name="UseFolder" ColumnName="UseFolder" />
-            <ScalarProperty Name="OutOfTolerance" ColumnName="OutOfTolerance" />
-            <ScalarProperty Name="FileSource" ColumnName="FileSource" />
-            <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
-            <ScalarProperty Name="SortTitle" ColumnName="SortTitle" />
-            <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesActors"><EntityTypeMapping TypeName="MediaModel.MoviesActor"><MappingFragment StoreEntitySet="MoviesActors">
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="ActorName" ColumnName="ActorName" />
-            <ScalarProperty Name="Role" ColumnName="Role" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesAStreams"><EntityTypeMapping TypeName="MediaModel.MoviesAStream"><MappingFragment StoreEntitySet="MoviesAStreams">
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
-            <ScalarProperty Name="Audio_Language" ColumnName="Audio_Language" />
-            <ScalarProperty Name="Audio_LongLanguage" ColumnName="Audio_LongLanguage" />
-            <ScalarProperty Name="Audio_Codec" ColumnName="Audio_Codec" />
-            <ScalarProperty Name="Audio_Channel" ColumnName="Audio_Channel" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesFanarts"><EntityTypeMapping TypeName="MediaModel.MoviesFanart"><MappingFragment StoreEntitySet="MoviesFanart">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="preview" ColumnName="preview" />
-            <ScalarProperty Name="thumbs" ColumnName="thumbs" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesPosters"><EntityTypeMapping TypeName="MediaModel.MoviesPoster"><MappingFragment StoreEntitySet="MoviesPosters">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="thumbs" ColumnName="thumbs" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesSets"><EntityTypeMapping TypeName="MediaModel.MoviesSet"><MappingFragment StoreEntitySet="MoviesSets">
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="SetName" ColumnName="SetName" />
-            <ScalarProperty Name="SetOrder" ColumnName="SetOrder" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesSubs"><EntityTypeMapping TypeName="MediaModel.MoviesSub"><MappingFragment StoreEntitySet="MoviesSubs">
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
-            <ScalarProperty Name="Subs_Language" ColumnName="Subs_Language" />
-            <ScalarProperty Name="Subs_LongLanguage" ColumnName="Subs_LongLanguage" />
-            <ScalarProperty Name="Subs_Type" ColumnName="Subs_Type" />
-            <ScalarProperty Name="Subs_Path" ColumnName="Subs_Path" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="MoviesVStreams"><EntityTypeMapping TypeName="MediaModel.MoviesVStream"><MappingFragment StoreEntitySet="MoviesVStreams">
-            <ScalarProperty Name="MovieID" ColumnName="MovieID" />
-            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
-            <ScalarProperty Name="Video_Width" ColumnName="Video_Width" />
-            <ScalarProperty Name="Video_Height" ColumnName="Video_Height" />
-            <ScalarProperty Name="Video_Codec" ColumnName="Video_Codec" />
-            <ScalarProperty Name="Video_Duration" ColumnName="Video_Duration" />
-            <ScalarProperty Name="Video_ScanType" ColumnName="Video_ScanType" />
-            <ScalarProperty Name="Video_AspectDisplayRatio" ColumnName="Video_AspectDisplayRatio" />
-            <ScalarProperty Name="Video_Language" ColumnName="Video_Language" />
-            <ScalarProperty Name="Video_LongLanguage" ColumnName="Video_LongLanguage" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="OrigPaths"><EntityTypeMapping TypeName="MediaModel.OrigPath"><MappingFragment StoreEntitySet="OrigPaths">
-            <ScalarProperty Name="OrigPath1" ColumnName="OrigPath" />
-            <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
-            <ScalarProperty Name="Platform" ColumnName="Platform" />
-            <ScalarProperty Name="Recursive" ColumnName="Recursive" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Sets"><EntityTypeMapping TypeName="MediaModel.Set"><MappingFragment StoreEntitySet="Sets">
-            <ScalarProperty Name="SetName" ColumnName="SetName" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Sources"><EntityTypeMapping TypeName="MediaModel.Source"><MappingFragment StoreEntitySet="Sources">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="path" ColumnName="path" />
-            <ScalarProperty Name="Recursive" ColumnName="Recursive" />
-            <ScalarProperty Name="Foldername" ColumnName="Foldername" />
-            <ScalarProperty Name="Single" ColumnName="Single" />
-            <ScalarProperty Name="LastScan" ColumnName="LastScan" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVAStreams"><EntityTypeMapping TypeName="MediaModel.TVAStream"><MappingFragment StoreEntitySet="TVAStreams">
-            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
-            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
-            <ScalarProperty Name="Audio_Language" ColumnName="Audio_Language" />
-            <ScalarProperty Name="Audio_LongLanguage" ColumnName="Audio_LongLanguage" />
-            <ScalarProperty Name="Audio_Codec" ColumnName="Audio_Codec" />
-            <ScalarProperty Name="Audio_Channel" ColumnName="Audio_Channel" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVEpActors"><EntityTypeMapping TypeName="MediaModel.TVEpActor"><MappingFragment StoreEntitySet="TVEpActors">
-            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
-            <ScalarProperty Name="ActorName" ColumnName="ActorName" />
-            <ScalarProperty Name="Role" ColumnName="Role" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVEpPaths"><EntityTypeMapping TypeName="MediaModel.TVEpPath"><MappingFragment StoreEntitySet="TVEpPaths">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="FilePath" ColumnName="TVEpPath" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVEps"><EntityTypeMapping TypeName="MediaModel.TVEp"><MappingFragment StoreEntitySet="TVEps">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
-            <ScalarProperty Name="Episode" ColumnName="Episode" />
-            <ScalarProperty Name="Title" ColumnName="Title" />
-            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
-            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
-            <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
-            <ScalarProperty Name="IsNew" ColumnName="New" />
-            <ScalarProperty Name="Mark" ColumnName="Mark" />
-            <ScalarProperty Name="TVEpPathID" ColumnName="TVEpPathID" />
-            <ScalarProperty Name="Source" ColumnName="Source" />
-            <ScalarProperty Name="Lock" ColumnName="Lock" />
-            <ScalarProperty Name="Season" ColumnName="Season" />
-            <ScalarProperty Name="Rating" ColumnName="Rating" />
-            <ScalarProperty Name="Plot" ColumnName="Plot" />
-            <ScalarProperty Name="Aired" ColumnName="Aired" />
-            <ScalarProperty Name="Director" ColumnName="Director" />
-            <ScalarProperty Name="Credits" ColumnName="Credits" />
-            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
-            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
-            <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
-            <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
-            <ScalarProperty Name="Missing" ColumnName="Missing" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVSeasons"><EntityTypeMapping TypeName="MediaModel.TVSeason"><MappingFragment StoreEntitySet="TVSeason">
-            <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
-            <ScalarProperty Name="SeasonText" ColumnName="SeasonText" />
-            <ScalarProperty Name="Season" ColumnName="Season" />
-            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
-            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
-            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
-            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
-            <ScalarProperty Name="Lock" ColumnName="Lock" />
-            <ScalarProperty Name="Mark" ColumnName="Mark" />
-            <ScalarProperty Name="IsNew" ColumnName="New" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVShowActors"><EntityTypeMapping TypeName="MediaModel.TVShowActor"><MappingFragment StoreEntitySet="TVShowActors">
-            <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
-            <ScalarProperty Name="ActorName" ColumnName="ActorName" />
-            <ScalarProperty Name="Role" ColumnName="Role" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVShows"><EntityTypeMapping TypeName="MediaModel.TVShow"><MappingFragment StoreEntitySet="TVShows">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Title" ColumnName="Title" />
-            <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
-            <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
-            <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
-            <ScalarProperty Name="IsNew" ColumnName="New" />
-            <ScalarProperty Name="Mark" ColumnName="Mark" />
-            <ScalarProperty Name="TVShowPath" ColumnName="TVShowPath" />
-            <ScalarProperty Name="Source" ColumnName="Source" />
-            <ScalarProperty Name="TVDB" ColumnName="TVDB" />
-            <ScalarProperty Name="Lock" ColumnName="Lock" />
-            <ScalarProperty Name="EpisodeGuide" ColumnName="EpisodeGuide" />
-            <ScalarProperty Name="Plot" ColumnName="Plot" />
-            <ScalarProperty Name="Genre" ColumnName="Genre" />
-            <ScalarProperty Name="Premiered" ColumnName="Premiered" />
-            <ScalarProperty Name="Studio" ColumnName="Studio" />
-            <ScalarProperty Name="MPAA" ColumnName="MPAA" />
-            <ScalarProperty Name="Rating" ColumnName="Rating" />
-            <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
-            <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
-            <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
-            <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
-            <ScalarProperty Name="Language" ColumnName="Language" />
-            <ScalarProperty Name="Ordering" ColumnName="Ordering" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVSources"><EntityTypeMapping TypeName="MediaModel.TVSource"><MappingFragment StoreEntitySet="TVSources">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Name" ColumnName="Name" />
-            <ScalarProperty Name="path" ColumnName="path" />
-            <ScalarProperty Name="LastScan" ColumnName="LastScan" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVSubs"><EntityTypeMapping TypeName="MediaModel.TVSub"><MappingFragment StoreEntitySet="TVSubs">
-            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
-            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
-            <ScalarProperty Name="Subs_Language" ColumnName="Subs_Language" />
-            <ScalarProperty Name="Subs_LongLanguage" ColumnName="Subs_LongLanguage" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TVVStreams"><EntityTypeMapping TypeName="MediaModel.TVVStream"><MappingFragment StoreEntitySet="TVVStreams">
-            <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
-            <ScalarProperty Name="StreamID" ColumnName="StreamID" />
-            <ScalarProperty Name="Video_Width" ColumnName="Video_Width" />
-            <ScalarProperty Name="Video_Height" ColumnName="Video_Height" />
-            <ScalarProperty Name="Video_Codec" ColumnName="Video_Codec" />
-            <ScalarProperty Name="Video_Duration" ColumnName="Video_Duration" />
-            <ScalarProperty Name="Video_ScanType" ColumnName="Video_ScanType" />
-            <ScalarProperty Name="Video_AspectDisplayRatio" ColumnName="Video_AspectDisplayRatio" />
-            <ScalarProperty Name="Video_Language" ColumnName="Video_Language" />
-            <ScalarProperty Name="Video_LongLanguage" ColumnName="Video_LongLanguage" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Actors">
+            <EntityTypeMapping TypeName="MediaModel.Actor">
+              <MappingFragment StoreEntitySet="Actors">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="thumb" ColumnName="thumb" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmberFiles">
+            <EntityTypeMapping TypeName="MediaModel.EmberFile">
+              <MappingFragment StoreEntitySet="EmberFiles">
+                <ScalarProperty Name="OrigPath" ColumnName="OrigPath" />
+                <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="Hash" ColumnName="Hash" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="UseFile" ColumnName="UseFile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExcludeDirs">
+            <EntityTypeMapping TypeName="MediaModel.ExcludeDir">
+              <MappingFragment StoreEntitySet="ExcludeDir">
+                <ScalarProperty Name="Dirname" ColumnName="Dirname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExcludeFiles">
+            <EntityTypeMapping TypeName="MediaModel.ExcludeFile">
+              <MappingFragment StoreEntitySet="ExcludeFiles">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExcludeFilesInFolders">
+            <EntityTypeMapping TypeName="MediaModel.ExcludeFilesInFolder">
+              <MappingFragment StoreEntitySet="ExcludeFilesInFolders">
+                <ScalarProperty Name="Filename" ColumnName="Filename" />
+                <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies">
+            <EntityTypeMapping TypeName="MediaModel.Movie">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MoviePath" ColumnName="MoviePath" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ListTitle" ColumnName="ListTitle" />
+                <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+                <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+                <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
+                <ScalarProperty Name="HasTrailer" ColumnName="HasTrailer" />
+                <ScalarProperty Name="HasSub" ColumnName="HasSub" />
+                <ScalarProperty Name="HasExtra" ColumnName="HasExtra" />
+                <ScalarProperty Name="IsNew" ColumnName="New" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Imdb" ColumnName="Imdb" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="OriginalTitle" ColumnName="OriginalTitle" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Votes" ColumnName="Votes" />
+                <ScalarProperty Name="MPAA" ColumnName="MPAA" />
+                <ScalarProperty Name="Top250" ColumnName="Top250" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Outline" ColumnName="Outline" />
+                <ScalarProperty Name="Plot" ColumnName="Plot" />
+                <ScalarProperty Name="Tagline" ColumnName="Tagline" />
+                <ScalarProperty Name="Certification" ColumnName="Certification" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Studio" ColumnName="Studio" />
+                <ScalarProperty Name="Runtime" ColumnName="Runtime" />
+                <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="Playcount" ColumnName="Playcount" />
+                <ScalarProperty Name="Watched" ColumnName="Watched" />
+                <ScalarProperty Name="Trailer" ColumnName="Trailer" />
+                <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+                <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+                <ScalarProperty Name="ExtraPath" ColumnName="ExtraPath" />
+                <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
+                <ScalarProperty Name="TrailerPath" ColumnName="TrailerPath" />
+                <ScalarProperty Name="SubPath" ColumnName="SubPath" />
+                <ScalarProperty Name="FanartURL" ColumnName="FanartURL" />
+                <ScalarProperty Name="UseFolder" ColumnName="UseFolder" />
+                <ScalarProperty Name="OutOfTolerance" ColumnName="OutOfTolerance" />
+                <ScalarProperty Name="FileSource" ColumnName="FileSource" />
+                <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
+                <ScalarProperty Name="SortTitle" ColumnName="SortTitle" />
+                <ScalarProperty Name="DateAdd" ColumnName="DateAdd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesActors">
+            <EntityTypeMapping TypeName="MediaModel.MoviesActor">
+              <MappingFragment StoreEntitySet="MoviesActors">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesAStreams">
+            <EntityTypeMapping TypeName="MediaModel.MoviesAStream">
+              <MappingFragment StoreEntitySet="MoviesAStreams">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="Audio_Language" ColumnName="Audio_Language" />
+                <ScalarProperty Name="Audio_LongLanguage" ColumnName="Audio_LongLanguage" />
+                <ScalarProperty Name="Audio_Codec" ColumnName="Audio_Codec" />
+                <ScalarProperty Name="Audio_Channel" ColumnName="Audio_Channel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesFanarts">
+            <EntityTypeMapping TypeName="MediaModel.MoviesFanart">
+              <MappingFragment StoreEntitySet="MoviesFanart">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="preview" ColumnName="preview" />
+                <ScalarProperty Name="thumbs" ColumnName="thumbs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesPosters">
+            <EntityTypeMapping TypeName="MediaModel.MoviesPoster">
+              <MappingFragment StoreEntitySet="MoviesPosters">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="thumbs" ColumnName="thumbs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesSets">
+            <EntityTypeMapping TypeName="MediaModel.MoviesSet">
+              <MappingFragment StoreEntitySet="MoviesSets">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="SetName" ColumnName="SetName" />
+                <ScalarProperty Name="SetOrder" ColumnName="SetOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesSubs">
+            <EntityTypeMapping TypeName="MediaModel.MoviesSub">
+              <MappingFragment StoreEntitySet="MoviesSubs">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="Subs_Language" ColumnName="Subs_Language" />
+                <ScalarProperty Name="Subs_LongLanguage" ColumnName="Subs_LongLanguage" />
+                <ScalarProperty Name="Subs_Type" ColumnName="Subs_Type" />
+                <ScalarProperty Name="Subs_Path" ColumnName="Subs_Path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MoviesVStreams">
+            <EntityTypeMapping TypeName="MediaModel.MoviesVStream">
+              <MappingFragment StoreEntitySet="MoviesVStreams">
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="Video_Width" ColumnName="Video_Width" />
+                <ScalarProperty Name="Video_Height" ColumnName="Video_Height" />
+                <ScalarProperty Name="Video_Codec" ColumnName="Video_Codec" />
+                <ScalarProperty Name="Video_Duration" ColumnName="Video_Duration" />
+                <ScalarProperty Name="Video_ScanType" ColumnName="Video_ScanType" />
+                <ScalarProperty Name="Video_AspectDisplayRatio" ColumnName="Video_AspectDisplayRatio" />
+                <ScalarProperty Name="Video_Language" ColumnName="Video_Language" />
+                <ScalarProperty Name="Video_LongLanguage" ColumnName="Video_LongLanguage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrigPaths">
+            <EntityTypeMapping TypeName="MediaModel.OrigPath">
+              <MappingFragment StoreEntitySet="OrigPaths">
+                <ScalarProperty Name="OrigPath1" ColumnName="OrigPath" />
+                <ScalarProperty Name="EmberPath" ColumnName="EmberPath" />
+                <ScalarProperty Name="Platform" ColumnName="Platform" />
+                <ScalarProperty Name="Recursive" ColumnName="Recursive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sets">
+            <EntityTypeMapping TypeName="MediaModel.Set">
+              <MappingFragment StoreEntitySet="Sets">
+                <ScalarProperty Name="SetName" ColumnName="SetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sources">
+            <EntityTypeMapping TypeName="MediaModel.Source">
+              <MappingFragment StoreEntitySet="Sources">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="Recursive" ColumnName="Recursive" />
+                <ScalarProperty Name="Foldername" ColumnName="Foldername" />
+                <ScalarProperty Name="Single" ColumnName="Single" />
+                <ScalarProperty Name="LastScan" ColumnName="LastScan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVAStreams">
+            <EntityTypeMapping TypeName="MediaModel.TVAStream">
+              <MappingFragment StoreEntitySet="TVAStreams">
+                <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="Audio_Language" ColumnName="Audio_Language" />
+                <ScalarProperty Name="Audio_LongLanguage" ColumnName="Audio_LongLanguage" />
+                <ScalarProperty Name="Audio_Codec" ColumnName="Audio_Codec" />
+                <ScalarProperty Name="Audio_Channel" ColumnName="Audio_Channel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVEpActors">
+            <EntityTypeMapping TypeName="MediaModel.TVEpActor">
+              <MappingFragment StoreEntitySet="TVEpActors">
+                <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+                <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVEpPaths">
+            <EntityTypeMapping TypeName="MediaModel.TVEpPath">
+              <MappingFragment StoreEntitySet="TVEpPaths">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FilePath" ColumnName="TVEpPath" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVEps">
+            <EntityTypeMapping TypeName="MediaModel.TVEp">
+              <MappingFragment StoreEntitySet="TVEps">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
+                <ScalarProperty Name="Episode" ColumnName="Episode" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+                <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+                <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
+                <ScalarProperty Name="IsNew" ColumnName="New" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="TVEpPathID" ColumnName="TVEpPathID" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Plot" ColumnName="Plot" />
+                <ScalarProperty Name="Aired" ColumnName="Aired" />
+                <ScalarProperty Name="Director" ColumnName="Director" />
+                <ScalarProperty Name="Credits" ColumnName="Credits" />
+                <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+                <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+                <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
+                <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
+                <ScalarProperty Name="Missing" ColumnName="Missing" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVSeasons">
+            <EntityTypeMapping TypeName="MediaModel.TVSeason">
+              <MappingFragment StoreEntitySet="TVSeason">
+                <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
+                <ScalarProperty Name="SeasonText" ColumnName="SeasonText" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+                <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+                <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+                <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="IsNew" ColumnName="New" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVShowActors">
+            <EntityTypeMapping TypeName="MediaModel.TVShowActor">
+              <MappingFragment StoreEntitySet="TVShowActors">
+                <ScalarProperty Name="TVShowID" ColumnName="TVShowID" />
+                <ScalarProperty Name="ActorName" ColumnName="ActorName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVShows">
+            <EntityTypeMapping TypeName="MediaModel.TVShow">
+              <MappingFragment StoreEntitySet="TVShows">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="HasPoster" ColumnName="HasPoster" />
+                <ScalarProperty Name="HasFanart" ColumnName="HasFanart" />
+                <ScalarProperty Name="HasNfo" ColumnName="HasNfo" />
+                <ScalarProperty Name="IsNew" ColumnName="New" />
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="TVShowPath" ColumnName="TVShowPath" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="TVDB" ColumnName="TVDB" />
+                <ScalarProperty Name="Lock" ColumnName="Lock" />
+                <ScalarProperty Name="EpisodeGuide" ColumnName="EpisodeGuide" />
+                <ScalarProperty Name="Plot" ColumnName="Plot" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Premiered" ColumnName="Premiered" />
+                <ScalarProperty Name="Studio" ColumnName="Studio" />
+                <ScalarProperty Name="MPAA" ColumnName="MPAA" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="PosterPath" ColumnName="PosterPath" />
+                <ScalarProperty Name="FanartPath" ColumnName="FanartPath" />
+                <ScalarProperty Name="NfoPath" ColumnName="NfoPath" />
+                <ScalarProperty Name="NeedsSave" ColumnName="NeedsSave" />
+                <ScalarProperty Name="Language" ColumnName="Language" />
+                <ScalarProperty Name="Ordering" ColumnName="Ordering" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVSources">
+            <EntityTypeMapping TypeName="MediaModel.TVSource">
+              <MappingFragment StoreEntitySet="TVSources">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="LastScan" ColumnName="LastScan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVSubs">
+            <EntityTypeMapping TypeName="MediaModel.TVSub">
+              <MappingFragment StoreEntitySet="TVSubs">
+                <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="Subs_Language" ColumnName="Subs_Language" />
+                <ScalarProperty Name="Subs_LongLanguage" ColumnName="Subs_LongLanguage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TVVStreams">
+            <EntityTypeMapping TypeName="MediaModel.TVVStream">
+              <MappingFragment StoreEntitySet="TVVStreams">
+                <ScalarProperty Name="TVEpID" ColumnName="TVEpID" />
+                <ScalarProperty Name="StreamID" ColumnName="StreamID" />
+                <ScalarProperty Name="Video_Width" ColumnName="Video_Width" />
+                <ScalarProperty Name="Video_Height" ColumnName="Video_Height" />
+                <ScalarProperty Name="Video_Codec" ColumnName="Video_Codec" />
+                <ScalarProperty Name="Video_Duration" ColumnName="Video_Duration" />
+                <ScalarProperty Name="Video_ScanType" ColumnName="Video_ScanType" />
+                <ScalarProperty Name="Video_AspectDisplayRatio" ColumnName="Video_AspectDisplayRatio" />
+                <ScalarProperty Name="Video_Language" ColumnName="Video_Language" />
+                <ScalarProperty Name="Video_LongLanguage" ColumnName="Video_LongLanguage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
@@ -1307,126 +1411,13 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams>
-      <Diagram Name="EmberModel">
-        <EntityTypeShape EntityType="MediaModel.Actor" Width="1.5" PointX="0.75" PointY="0.75" Height="1.4033821614583331" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.EmberFile" Width="1.5" PointX="2.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.ExcludeDir" Width="1.5" PointX="0.75" PointY="3.75" Height="1.211080729166667" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.ExcludeFile" Width="1.5" PointX="2.75" PointY="3.75" Height="1.2110807291666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.ExcludeFilesInFolder" Width="1.5" PointX="4.75" PointY="0.75" Height="1.4033821614583317" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.Movie" Width="1.5" PointX="4.75" PointY="3.75" Height="10.441549479166667" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesActor" Width="1.5" PointX="0.75" PointY="5.75" Height="1.9802864583333326" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesAStream" Width="1.5" PointX="6.75" PointY="0.75" Height="2.364889322916667" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesFanart" Width="1.5" PointX="6.75" PointY="3.75" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesPoster" Width="1.5" PointX="7" PointY="6.75" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesSet" Width="1.5" PointX="8.75" PointY="0.75" Height="1.787985026041667" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesSub" Width="1.5" PointX="0.75" PointY="8.75" Height="2.3648893229166656" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.MoviesVStream" Width="1.5" PointX="8.75" PointY="3.75" Height="3.1340950520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.OrigPath" Width="1.5" PointX="8.75" PointY="7.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.Set" Width="1.5" PointX="10.75" PointY="0.75" Height="1.2110807291666674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.Source" Width="1.5" PointX="10.75" PointY="2.75" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVAStream" Width="1.5" PointX="10.75" PointY="6.75" Height="2.1725878906250031" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVEpActor" Width="1.5" PointX="6.75" PointY="10.75" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVEpPath" Width="1.5" PointX="8.75" PointY="10.75" Height="1.4033821614583388" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVEp" Width="1.5" PointX="10.75" PointY="9.75" Height="6.0186165364583335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVSeason" Width="1.5" PointX="15.125" PointY="10" Height="3.1340950520833317" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVShowActor" Width="1.5" PointX="12.75" PointY="0.75" Height="1.9802864583333335" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVShow" Width="1.5" PointX="12.75" PointY="3.75" Height="5.63401367187501" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVSource" Width="1.5" PointX="12.75" PointY="10.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVSub" Width="1.5" PointX="6.75" PointY="13.75" Height="1.7879850260416674" IsExpanded="true" />
-        <EntityTypeShape EntityType="MediaModel.TVVStream" Width="1.5" PointX="12.75" PointY="13.75" Height="2.9417936197916674" IsExpanded="true" />
-        <AssociationConnector Association="MediaModel.ActorMoviesActor">
-          <ConnectorPoint PointX="0.75" PointY="2.34568359375" />
-          <ConnectorPoint PointX="0.375" PointY="2.72068359375" />
-          <ConnectorPoint PointX="0.375" PointY="5.375" />
-          <ConnectorPoint PointX="0.75" PointY="5.75" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MoviesActorMovie">
-          <ConnectorPoint PointX="2.25" PointY="6.7401432291666659" />
-          <ConnectorPoint PointX="4.75" PointY="6.7401432291666659" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.TVShowTVShowActor">
-          <ConnectorPoint PointX="13.5" PointY="3.75" />
-          <ConnectorPoint PointX="13.5" PointY="2.7302864583333335" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.ActorTVShowActor">
-          <ConnectorPoint PointX="2.25" PointY="0.75115284615384614" />
-          <ConnectorPoint PointX="2.6261528461538468" PointY="0.37499999999999911" />
-          <ConnectorPoint PointX="12.375" PointY="0.37499999999999911" />
-          <ConnectorPoint PointX="12.75" PointY="0.74999999999999944" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.TVEpTVEpActor">
-          <ConnectorPoint PointX="10.75" PointY="12.473084309895835" />
-          <ConnectorPoint PointX="8.25" PointY="12.473084309895835" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.ActorTVEpActor">
-          <ConnectorPoint PointX="2.25" PointY="1.7719716522435896" />
-          <ConnectorPoint PointX="2.5" PointY="1.7719716522435896" />
-          <ConnectorPoint PointX="2.5" PointY="3.5" />
-          <ConnectorPoint PointX="6.5" PointY="3.5" />
-          <ConnectorPoint PointX="6.5" PointY="10.374999999999998" />
-          <ConnectorPoint PointX="7.5" PointY="10.374999999999998" />
-          <ConnectorPoint PointX="7.5" PointY="10.75" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.TVShowTVSeason">
-          <ConnectorPoint PointX="14.25" PointY="6.7593082682291667" />
-          <ConnectorPoint PointX="15.875" PointY="6.7593082682291667" />
-          <ConnectorPoint PointX="15.875" PointY="10" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.TVSeasonTVEp">
-          <ConnectorPoint PointX="15.125" PointY="12.963440755208334" />
-          <ConnectorPoint PointX="12.25" PointY="12.963440755208334" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MovieMoviesAStream">
-          <ConnectorPoint PointX="6.25" PointY="3.75" />
-          <ConnectorPoint PointX="6.75" PointY="3.1148893229166674" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MovieMoviesVStream">
-          <ConnectorPoint PointX="6.25" PointY="6.2401432291666667" />
-          <ConnectorPoint PointX="6.416666666666667" PointY="6.2401432291666659" />
-          <ConnectorPoint PointX="6.583333333333333" PointY="6.2401432291666667" />
-          <ConnectorPoint PointX="8.75" PointY="6.2401432291666667" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MovieMoviesSub">
-          <ConnectorPoint PointX="4.75" PointY="9.9324446614583337" />
-          <ConnectorPoint PointX="2.25" PointY="9.9324446614583337" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MovieMoviesSet">
-          <ConnectorPoint PointX="6.25" PointY="3.7753836153846154" />
-          <ConnectorPoint PointX="6.5804832027771649" PointY="3.375" />
-          <ConnectorPoint PointX="9.5" PointY="3.375" />
-          <ConnectorPoint PointX="9.5" PointY="2.537985026041667" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MovieMoviesPoster">
-          <ConnectorPoint PointX="6.25" PointY="7.6439925130208328" />
-          <ConnectorPoint PointX="6.416666666666667" PointY="7.6439925130208319" />
-          <ConnectorPoint PointX="6.583333333333333" PointY="7.6439925130208328" />
-          <ConnectorPoint PointX="7" PointY="7.6439925130208328" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.MovieMoviesFanart">
-          <ConnectorPoint PointX="6.25" PointY="4.7840875368589746" />
-          <ConnectorPoint PointX="6.416666666666667" PointY="4.7840875368589737" />
-          <ConnectorPoint PointX="6.583333333333333" PointY="4.7840875368589746" />
-          <ConnectorPoint PointX="6.75" PointY="4.7840875368589746" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.TVShowTVEp">
-          <ConnectorPoint PointX="12.75" PointY="6.855458984375" />
-          <ConnectorPoint PointX="12.51" PointY="6.855458984375" />
-          <ConnectorPoint PointX="12.51" PointY="9.51" />
-          <ConnectorPoint PointX="11.5" PointY="9.51" />
-          <ConnectorPoint PointX="11.5" PointY="9.75" />
-        </AssociationConnector>
-        <AssociationConnector Association="MediaModel.TVEpTVEpPath">
-          <ConnectorPoint PointX="10.75" PointY="11.547841796875" />
-          <ConnectorPoint PointX="10.25" PointY="11.547841796875" />
-        </AssociationConnector>
-      </Diagram>
-    </Diagrams>
+    <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>

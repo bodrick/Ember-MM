@@ -27,7 +27,7 @@ Partial Public Class EmberMediaEntities
     Public Property ExcludeDirs() As DbSet(Of ExcludeDir)
     Public Property ExcludeFiles() As DbSet(Of ExcludeFile)
     Public Property ExcludeFilesInFolders() As DbSet(Of ExcludeFilesInFolder)
-    Public Property Movies() As DbSet(Of Movy)
+    Public Property Movies() As DbSet(Of Movie)
     Public Property MoviesActors() As DbSet(Of MoviesActor)
     Public Property MoviesAStreams() As DbSet(Of MoviesAStream)
     Public Property MoviesFanarts() As DbSet(Of MoviesFanart)

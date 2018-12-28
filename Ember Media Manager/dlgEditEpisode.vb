@@ -18,6 +18,7 @@
 ' # along with Ember Media Manager.  If not, see <http://www.gnu.org/licenses/>. #
 ' ################################################################################
 
+Imports System.Data.Entity
 Imports System.IO
 Imports BrightIdeasSoftware
 Imports EmberMediaManger.API

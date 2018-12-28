@@ -1,4 +1,5 @@
-﻿Imports EmberMediaManger.API
+﻿Imports System.Data.Entity
+Imports EmberMediaManger.API
 
 ' ################################################################################
 ' #                             EMBER MEDIA MANAGER                              #

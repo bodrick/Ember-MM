@@ -19,6 +19,7 @@
 ' ################################################################################
 
 Imports System
+Imports System.Data.Entity
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports EmberMediaManger.API

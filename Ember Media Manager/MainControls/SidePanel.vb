@@ -1,4 +1,6 @@
-﻿Imports BrightIdeasSoftware
+﻿Imports System.Data.Entity
+Imports System.Data.Entity.Core.Objects
+Imports BrightIdeasSoftware
 Imports EmberMediaManger.Classes
 Imports EmberMediaManger.API
 Imports System.Data.Objects

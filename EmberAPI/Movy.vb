@@ -10,7 +10,7 @@
 Imports System
 Imports System.Collections.Generic
 
-Partial Public Class Movy
+Partial Public Class Movie
     Public Property ID As Long
     Public Property MoviePath As String
     Public Property Type As Nullable(Of Boolean)

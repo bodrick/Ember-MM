@@ -1,4 +1,5 @@
-﻿Imports System.Data.Objects
+﻿Imports System.Data.Entity.Core.Objects
+Imports System.Data.Objects
 Imports BrightIdeasSoftware
 
 Namespace Classes

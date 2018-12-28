@@ -20,6 +20,7 @@
 
 'TODO: 1.5 - TV Show renaming (including "dump folder")
 'TODO: 1.5 - Support VIDEO_TS/BDMV folders for TV Shows
+Imports System.Data.Entity.Core.Objects
 Imports System.IO
 Imports System.Text.RegularExpressions
 Imports EmberMediaManger.API
